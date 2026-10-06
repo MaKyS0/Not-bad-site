@@ -10,7 +10,7 @@ const converter = (
   fromExt: string[],
   extra: Partial<ToolMeta> = {},
 ): ToolMeta => {
-  const toLabel = to === 'jpeg' ? 'JPG' : to.toUpperCase();
+  const toLabel = { jpeg: 'JPG', png: 'PNG', webp: 'WebP' }[to];
   return {
     id,
     name: `${from} to ${toLabel}`,
