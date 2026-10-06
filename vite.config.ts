@@ -62,6 +62,17 @@ function staticPagesPlugin(): Plugin {
     configResolved(c) {
       config = c;
     },
+    configureServer(server) {
+      // Dev: serve pdf.js runtime assets (copied into dist/pdfjs/ at build time).
+      server.middlewares.use((req, res, next) => {
+        const m = /\/pdfjs\/(cmaps|standard_fonts|wasm|iccs)\/([^?#]+)/.exec(req.url ?? '');
+        if (!m || m[2].includes('..')) return next();
+        const file = join(root, 'node_modules/pdfjs-dist', m[1], decodeURIComponent(m[2]));
+        if (!existsSync(file)) return next();
+        res.setHeader('Content-Type', file.endsWith('.wasm') ? 'application/wasm' : 'application/octet-stream');
+        res.end(readFileSync(file));
+      });
+    },
     transformIndexHtml: {
       order: 'pre',
       handler(html, ctx) {
