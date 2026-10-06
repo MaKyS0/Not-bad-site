@@ -1,0 +1,36 @@
+{
+  "name": "universal-file-toolbox",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Free browser-based tools for your files. Convert, compress, edit and analyze files privately, directly in your browser.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "node scripts/e2e.mjs",
+    "icons": "node scripts/generate-icons.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@jsquash/webp": "^1.5.0",
+    "exifr": "^7.1.3",
+    "fflate": "^0.8.3",
+    "papaparse": "^5.7.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.4.299",
+    "upng-js": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/papaparse": "^5.5.2",
+    "playwright": "^1.56.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  }
+}

@@ -1,0 +1,48 @@
+import type { ToolMeta } from '../types';
+
+export const developerTools: ToolMeta[] = [
+  {
+    id: 'uuid-generator',
+    name: 'UUID Generator',
+    category: 'developer',
+    description: 'Generate random v4 UUIDs (and time-ordered v7) in bulk.',
+    about: 'Create cryptographically random UUID v4 or time-ordered UUID v7 identifiers using the Web Crypto API. Generate up to 10,000 at once, in upper or lower case, with or without hyphens.',
+    supportedFormats: [],
+    icon: 'hash',
+    component: 'developer/uuid',
+    keywords: ['uuid', 'guid', 'random id', 'v4', 'v7', 'generator'],
+  },
+  {
+    id: 'text-hash',
+    name: 'Text Hash Generator',
+    category: 'developer',
+    description: 'SHA-1, SHA-256, SHA-384, SHA-512 hashes of text, live.',
+    about: 'Type or paste text and get its SHA-1/256/384/512 digest in hex or Base64, computed with the Web Crypto API as you type. Text is encoded as UTF-8.',
+    supportedFormats: [],
+    icon: 'hash',
+    component: 'developer/textHash',
+    keywords: ['hash', 'sha256', 'sha1', 'sha512', 'digest', 'checksum', 'text'],
+  },
+  {
+    id: 'jwt-decoder',
+    name: 'JWT Decoder',
+    category: 'developer',
+    description: 'Decode JSON Web Token header and payload, check expiry.',
+    about: 'Paste a JWT to see its decoded header and payload, issued/expiry times in your time zone and whether it is expired. The signature is NOT verified — that requires the secret or public key.',
+    supportedFormats: [],
+    icon: 'key',
+    component: 'developer/jwt',
+    keywords: ['jwt', 'json web token', 'decode', 'token', 'bearer', 'claims'],
+  },
+  {
+    id: 'data-uri',
+    name: 'File to Data URI',
+    category: 'developer',
+    description: 'Turn an image or any small file into a data: URI for CSS/HTML.',
+    about: 'Convert a file to a Base64 data URI and get ready-to-use snippets for HTML <img>, CSS background-image and Markdown.',
+    supportedFormats: ['*'],
+    icon: 'link',
+    component: 'developer/dataUri',
+    keywords: ['data uri', 'base64 image', 'inline image', 'css', 'embed'],
+  },
+];
