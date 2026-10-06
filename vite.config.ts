@@ -133,8 +133,10 @@ function staticPagesPlugin(): Plugin {
 }
 
 function standalone404(): string {
-  const script = "(function(){var p=location.pathname.split('/').filter(Boolean);var b=/\\.github\\.io$/.test(location.hostname)&&p.length?'/'+p[0]+'/':'/';var a=document.getElementById('home');a.href=b;a.nextElementSibling.href=b+'tools/';})();";
-  const csp = `default-src 'self'; script-src 'sha256-${sha256b64(script)}'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'`;
+  // Relative-base builds don't know their URL prefix. Probe each parent path for
+  // the app's manifest to find the site root, then fix the links.
+  const script = "(async function(){var p=location.pathname.split('/').filter(Boolean);for(var k=p.length;k>=0;k--){var b='/'+p.slice(0,k).join('/')+(k?'/':'');try{var r=await fetch(b+'manifest.webmanifest',{method:'HEAD',cache:'no-store'});if(r.ok){var a=document.getElementById('home');a.href=b;a.nextElementSibling.href=b+'tools/';return;}}catch(e){}}})();";
+  const csp = `default-src 'self'; script-src 'sha256-${sha256b64(script)}'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'none'`;
   return `<!doctype html>
 <html lang="en">
 <head>

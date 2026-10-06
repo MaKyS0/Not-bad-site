@@ -14,9 +14,11 @@ export function outputPanel(opts: { label: string; fileName: () => string; mime?
   const id = `out-${Math.random().toString(36).slice(2, 8)}`;
   const ta = h('textarea', { id, class: 'input', rows: opts.rows ?? 12, readonly: true, spellcheck: 'false' });
   const status = h('p', { class: 'status-line', 'aria-live': 'polite' });
-  const copyBtn = button('Copy', { variant: 'secondary', size: 'sm', icon: 'copy', onClick: () => void copyText(ta.value) });
-  const dlBtn = button('Download', { variant: 'secondary', size: 'sm', icon: 'download', onClick: () => void downloadBlob(new Blob([ta.value], { type: opts.mime ?? 'text/plain;charset=utf-8' }), opts.fileName()) });
-  const useBtn = opts.onUseAsInput ? button('Use as input', { variant: 'ghost', size: 'sm', icon: 'up', onClick: () => opts.onUseAsInput!(ta.value) }) : null;
+  // Keep the exact string: <textarea> normalises CRLF to LF, which matters for CSV.
+  let raw = '';
+  const copyBtn = button('Copy', { variant: 'secondary', size: 'sm', icon: 'copy', onClick: () => void copyText(raw) });
+  const dlBtn = button('Download', { variant: 'secondary', size: 'sm', icon: 'download', onClick: () => void downloadBlob(new Blob([raw], { type: opts.mime ?? 'text/plain;charset=utf-8' }), opts.fileName()) });
+  const useBtn = opts.onUseAsInput ? button('Use as input', { variant: 'ghost', size: 'sm', icon: 'up', onClick: () => opts.onUseAsInput!(raw) }) : null;
   const sync = () => {
     const empty = !ta.value;
     copyBtn.disabled = empty;
@@ -28,10 +30,11 @@ export function outputPanel(opts: { label: string; fileName: () => string; mime?
   return {
     el,
     set(text) {
+      raw = text;
       ta.value = text;
       sync();
     },
-    get: () => ta.value,
+    get: () => raw,
     setStatus(text, kind = '') {
       status.textContent = text;
       status.className = `status-line${kind ? ` status-${kind}` : ''}`;
