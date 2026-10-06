@@ -8,6 +8,7 @@ import { icon } from './icons';
 import { extOf } from '../utils/format';
 import { canonicalExt } from '../utils/fileType';
 import { toast } from './toast';
+import { plural, t } from '../i18n/i18n';
 
 /** Relative path inside a dropped folder (File.webkitRelativePath is read-only). */
 export const relativePaths = new WeakMap<File, string>();
@@ -26,6 +27,31 @@ export interface DropzoneOptions {
   /** Listen for paste events on the document while mounted. */
   paste?: boolean;
   buttonLabel?: string;
+  /** Extra line under the buttons, e.g. a list of supported formats. */
+  hint?: string;
+  /** @deprecated every drop zone now accepts drops anywhere on the page. */
+  global?: boolean;
+}
+
+/* ---------- page-wide drop & paste: forwarded to the most recent drop zone ---------- */
+
+interface ZoneEntry {
+  zone: HTMLElement;
+  emit: (files: File[]) => void;
+  paste: boolean;
+}
+const zones: ZoneEntry[] = [];
+
+/** Register any element as a page-wide drop/paste target (e.g. text editors). */
+export function registerDropTarget(zone: HTMLElement, emit: (files: File[]) => void, paste = true): void {
+  zones.push({ zone, emit, paste });
+}
+
+function activeZone(): ZoneEntry | undefined {
+  for (let i = zones.length - 1; i >= 0; i--) {
+    if (!zones[i].zone.isConnected) zones.splice(i, 1);
+  }
+  return zones[zones.length - 1];
 }
 
 interface FsEntry {
@@ -96,7 +122,7 @@ export function dropzone(opts: DropzoneOptions): HTMLElement {
     const { ok, rejected } = filterAccepted(files, opts.accept);
     if (rejected.length) {
       toast(
-        `${rejected.length} file${rejected.length > 1 ? 's' : ''} skipped: unsupported type (${[...new Set(rejected.map((f) => extOf(f.name) || f.type || '?'))].join(', ')}).`,
+        t('{files} skipped: unsupported type ({types}).', { files: plural(rejected.length, 'file'), types: [...new Set(rejected.map((f) => extOf(f.name) || f.type || '?'))].join(', ') }),
         'error',
         5000,
       );
@@ -118,11 +144,11 @@ export function dropzone(opts: DropzoneOptions): HTMLElement {
     'button',
     { type: 'button', class: 'btn btn-primary btn-lg', onClick: () => input.click() },
     icon('upload'),
-    h('span', null, opts.buttonLabel ?? (multiple ? 'Choose Files' : 'Choose File')),
+    h('span', null, opts.buttonLabel ?? (multiple ? t('Choose Files') : t('Choose File'))),
   );
   const supportsFolder = opts.folders && 'webkitdirectory' in folderInput && !/iPhone|iPad|iPod/.test(navigator.userAgent);
   const folderBtn = supportsFolder
-    ? h('button', { type: 'button', class: 'btn btn-secondary btn-lg', onClick: () => folderInput.click() }, icon('folder'), h('span', null, 'Add Folder'))
+    ? h('button', { type: 'button', class: 'btn btn-secondary btn-lg', onClick: () => folderInput.click() }, icon('folder'), h('span', null, t('Add Folder')))
     : null;
 
   const formats = opts.accept && opts.accept.length && !opts.accept.includes('*')
@@ -133,10 +159,11 @@ export function dropzone(opts: DropzoneOptions): HTMLElement {
     'div',
     { class: ['dropzone', opts.compact && 'dropzone-compact'], 'data-dropzone': '' },
     h('div', { class: 'dropzone-icon' }, icon('upload', 'icon icon-xl')),
-    h('p', { class: 'dropzone-title' }, opts.title ?? (multiple ? 'Drop files here' : 'Drop a file here')),
-    h('p', { class: 'dropzone-sub' }, opts.subtitle ?? 'or'),
+    h('p', { class: 'dropzone-title' }, opts.title ?? (multiple ? t('Drop files here') : t('Drop a file here'))),
+    h('p', { class: 'dropzone-sub' }, opts.subtitle ?? t('or')),
     h('div', { class: 'dropzone-actions' }, chooseBtn, folderBtn),
-    formats ? h('p', { class: 'dropzone-formats' }, `Supported: ${formats}`) : null,
+    opts.hint ? h('p', { class: 'dropzone-formats' }, opts.hint) : formats ? h('p', { class: 'dropzone-formats' }, t('Supported: {formats}', { formats })) : null,
+    h('p', { class: 'dropzone-tip' }, t('Tip: you can drop files anywhere on the page or paste with Ctrl+V.')),
     input,
     folderInput,
   );
@@ -168,36 +195,61 @@ export function dropzone(opts: DropzoneOptions): HTMLElement {
     input.click();
   });
 
-  if (opts.paste) {
-    const onPaste = (e: ClipboardEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (target && (target.tagName === 'TEXTAREA' || target.tagName === 'INPUT' || target.isContentEditable)) return;
-      const files = Array.from(e.clipboardData?.files ?? []);
-      if (files.length) {
-        e.preventDefault();
-        emit(files);
-      }
-    };
-    document.addEventListener('paste', onPaste);
-    // Detach when the zone leaves the DOM.
-    const mo = new MutationObserver(() => {
-      if (!zone.isConnected) {
-        document.removeEventListener('paste', onPaste);
-        mo.disconnect();
-      }
-    });
-    queueMicrotask(() => mo.observe(document.body, { childList: true, subtree: true }));
-  }
+  registerDropTarget(zone, emit, Boolean(opts.paste));
 
   return zone;
 }
 
-/** Prevent the browser from navigating to a file dropped outside a drop zone. */
-export function preventWindowDrop(): void {
-  window.addEventListener('dragover', (e) => {
-    if (!(e.target as HTMLElement)?.closest?.('[data-dropzone]')) e.preventDefault();
+/**
+ * Page-wide drag & drop and paste: files dropped anywhere (or pasted) go to the
+ * most recently mounted drop zone, with a full-screen overlay while dragging.
+ * Also prevents the browser from navigating away to a dropped file.
+ */
+export function installGlobalDrop(): void {
+  let depth = 0;
+  let overlay: HTMLElement | null = null;
+  const hasFiles = (e: DragEvent) => Array.from(e.dataTransfer?.types ?? []).includes('Files');
+  const show = () => {
+    if (overlay || !activeZone()) return;
+    overlay = h('div', { class: 'drop-overlay', 'aria-hidden': 'true' }, h('div', { class: 'drop-overlay-card' }, icon('upload', 'icon icon-xl'), h('p', null, t('Drop files to add them'))));
+    document.body.appendChild(overlay);
+  };
+  const hide = () => {
+    depth = 0;
+    overlay?.remove();
+    overlay = null;
+  };
+  window.addEventListener('dragenter', (e) => {
+    if (!hasFiles(e)) return;
+    depth++;
+    if (!(e.target as HTMLElement)?.closest?.('[data-dropzone]')) show();
   });
-  window.addEventListener('drop', (e) => {
-    if (!(e.target as HTMLElement)?.closest?.('[data-dropzone]')) e.preventDefault();
+  window.addEventListener('dragleave', () => {
+    depth = Math.max(0, depth - 1);
+    if (!depth) hide();
+  });
+  window.addEventListener('dragover', (e) => {
+    if (!(e.target as HTMLElement)?.closest?.('[data-dropzone]')) {
+      e.preventDefault();
+      if (e.dataTransfer) e.dataTransfer.dropEffect = activeZone() ? 'copy' : 'none';
+    }
+  });
+  window.addEventListener('drop', async (e) => {
+    const inZone = (e.target as HTMLElement)?.closest?.('[data-dropzone]');
+    hide();
+    if (inZone) return;
+    e.preventDefault();
+    const z = activeZone();
+    if (z && e.dataTransfer) z.emit(await filesFromDataTransfer(e.dataTransfer));
+  });
+  document.addEventListener('paste', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (target && (target.tagName === 'TEXTAREA' || target.tagName === 'INPUT' || target.isContentEditable)) return;
+    const files = Array.from(e.clipboardData?.files ?? []);
+    const z = activeZone();
+    if (files.length && z?.paste) {
+      e.preventDefault();
+      z.emit(files);
+    }
   });
 }

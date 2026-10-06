@@ -10,6 +10,8 @@ import { toolAbout, toolFaq, howToSteps, relatedTools, categoryName } from '../s
 import { breadcrumbs } from './listing';
 import { toolGrid } from '../components/toolCard';
 import { PRIVACY_TEXT } from '../config';
+import { t } from '../i18n/i18n';
+import { loc } from '../i18n/localize';
 
 /** Mount a tool page. Returns a cleanup function (or null if the tool doesn't exist). */
 export function toolPage(root: HTMLElement, id: string): (() => void) | null {
@@ -42,7 +44,7 @@ export function toolPage(root: HTMLElement, id: string): (() => void) | null {
     recordUse: (s) => void recordToolUse(tool.id, s),
   };
 
-  const mountPoint = h('div', { class: 'tool-root', id: 'tool-root' }, h('div', { class: 'loading', role: 'status' }, h('span', { class: 'spinner', 'aria-hidden': 'true' }), 'Loading tool…'));
+  const mountPoint = h('div', { class: 'tool-root', id: 'tool-root' }, h('div', { class: 'loading', role: 'status' }, h('span', { class: 'spinner', 'aria-hidden': 'true' }), t('Loading tool…')));
 
   const mount = async () => {
     try {
@@ -57,41 +59,42 @@ export function toolPage(root: HTMLElement, id: string): (() => void) | null {
       render(
         mountPoint,
         errorPanel(
-          offline ? Object.assign(new Error('Tool code is not cached yet and you are offline.'), { name: 'OfflineError' }) : e,
+          offline ? Object.assign(new Error(t('Tool code is not cached yet and you are offline.')), { name: 'OfflineError' }) : e,
           () => {
-            render(mountPoint, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), 'Loading tool…'));
+            render(mountPoint, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), t('Loading tool…')));
             void mount();
           },
-          'Retry',
+          t('Retry'),
         ),
       );
     }
   };
 
   const faq = toolFaq(tool);
+  const l = loc(tool);
   render(
     root,
-    breadcrumbs([['Home', routeHref.home()], [categoryName(tool.category), routeHref.category(tool.category)], [tool.name, null]]),
+    breadcrumbs([[t('Home'), routeHref.home()], [categoryName(tool.category), routeHref.category(tool.category)], [l.name, null]]),
     h(
       'header',
       { class: 'tool-head' },
       h('span', { class: `tool-icon tool-icon-lg cat-${tool.category}` }, icon(tool.icon)),
-      h('div', null, h('h1', null, tool.name), h('p', { class: 'lead' }, tool.description)),
+      h('div', null, h('h1', null, l.name), h('p', { class: 'lead' }, l.description)),
     ),
-    h('p', { class: 'privacy-line privacy-line-sm' }, icon('lock'), PRIVACY_TEXT),
+    h('p', { class: 'privacy-line privacy-line-sm' }, icon('lock'), t(PRIVACY_TEXT)),
     mountPoint,
     h(
       'section',
       { class: 'tool-info', 'aria-labelledby': 'about-h' },
-      h('h2', { id: 'about-h' }, `About the ${tool.name}`),
+      h('h2', { id: 'about-h' }, t('About: {name}', { name: l.name })),
       h('p', null, toolAbout(tool)),
-      h('h3', null, 'How to use'),
+      h('h3', null, t('How to use')),
       h('ol', { class: 'steps' }, ...howToSteps(tool).map((s) => h('li', null, s))),
-      h('h2', { id: 'faq-h' }, 'Frequently asked questions'),
+      h('h2', { id: 'faq-h' }, t('Frequently asked questions')),
       h('div', { class: 'faq' }, ...faq.map((f) => h('details', null, h('summary', null, f.q), h('p', null, f.a)))),
     ),
-    h('section', { class: 'section', 'aria-labelledby': 'rel-h' }, h('h2', { id: 'rel-h' }, 'Related tools'), toolGrid(relatedTools(tool), { label: 'Related tools' })),
-    h('div', { class: 'back-row' }, h('a', { class: 'btn btn-ghost', href: routeHref.tools() }, icon('left'), h('span', null, 'All tools'))),
+    h('section', { class: 'section', 'aria-labelledby': 'rel-h' }, h('h2', { id: 'rel-h' }, t('Related tools')), toolGrid(relatedTools(tool), { label: t('Related tools') })),
+    h('div', { class: 'back-row' }, h('a', { class: 'btn btn-ghost', href: routeHref.tools() }, icon('left'), h('span', null, t('All tools')))),
   );
   void mount();
 

@@ -9,6 +9,7 @@ import { downloadBlob } from '../../services/download';
 import { extOf, formatBytes, safeFileName } from '../../utils/format';
 import type { ImageForPdf, ImagesToPdfOptions } from '../../utils/pdfOps';
 import { throwIfAborted } from '../../utils/errors';
+import { t } from '../../i18n/i18n';
 
 let nextId = 1;
 
@@ -50,20 +51,20 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   let items: SortItem[] = [];
   const listBox = h('div');
   const result = h('div', { 'aria-live': 'polite' });
-  const prog = progress('Creating PDF…');
-  const nameIn = textInput('images.pdf', { ariaLabel: 'Output file name' });
-  const btn = button('Create PDF', { variant: 'primary', icon: 'pdf', size: 'lg', onClick: () => void run() });
+  const prog = progress(t('Creating PDF…'));
+  const nameIn = textInput('images.pdf', { ariaLabel: t('Output file name') });
+  const btn = button(t('Create PDF'), { variant: 'primary', icon: 'pdf', size: 'lg', onClick: () => void run() });
 
-  const sizeSel = field('Page size', select<Settings['pageSize']>([{ value: 'a4', label: 'A4 (210 × 297 mm)' }, { value: 'letter', label: 'US Letter (8.5 × 11 in)' }, { value: 'fit', label: 'Same as image' }], s.pageSize, (v) => { s.pageSize = v; ctx.saveSettings(s); orient.el.hidden = v === 'fit'; }));
-  const orient = segmented<Settings['orientation']>('Orientation', [{ value: 'auto', label: 'Auto' }, { value: 'portrait', label: 'Portrait' }, { value: 'landscape', label: 'Landscape' }], s.orientation, (v) => { s.orientation = v; ctx.saveSettings(s); });
+  const sizeSel = field(t('Page size'), select<Settings['pageSize']>([{ value: 'a4', label: t('A4 (210 × 297 mm)') }, { value: 'letter', label: t('US Letter (8.5 × 11 in)') }, { value: 'fit', label: t('Same as image') }], s.pageSize, (v) => { s.pageSize = v; ctx.saveSettings(s); orient.el.hidden = v === 'fit'; }));
+  const orient = segmented<Settings['orientation']>(t('Orientation'), [{ value: 'auto', label: t('Auto') }, { value: 'portrait', label: t('Portrait') }, { value: 'landscape', label: t('Landscape') }], s.orientation, (v) => { s.orientation = v; ctx.saveSettings(s); });
   orient.el.hidden = s.pageSize === 'fit';
-  const margin = segmented<Settings['margin']>('Margin', [{ value: 'none', label: 'None' }, { value: 'small', label: 'Small' }, { value: 'large', label: 'Large' }], s.margin, (v) => { s.margin = v; ctx.saveSettings(s); });
+  const margin = segmented<Settings['margin']>(t('Margin'), [{ value: 'none', label: t('None') }, { value: 'small', label: t('Small') }, { value: 'large', label: t('Large') }], s.margin, (v) => { s.margin = v; ctx.saveSettings(s); });
 
   const controls = h('div', { class: 'tool-layout', hidden: true },
-    h('aside', { class: 'tool-options panel', 'aria-label': 'PDF options' }, sizeSel, orient.el, margin.el, field('File name', nameIn), btn, prog.el),
-    h('div', { class: 'tool-main' }, h('div', { class: 'panel' }, h('h2', { class: 'panel-title' }, 'Pages (drag to reorder)'), listBox), result),
+    h('aside', { class: 'tool-options panel', 'aria-label': t('PDF options') }, sizeSel, orient.el, margin.el, field(t('File name'), nameIn), btn, prog.el),
+    h('div', { class: 'tool-main' }, h('div', { class: 'panel' }, h('h2', { class: 'panel-title' }, t('Pages (drag to reorder)')), listBox), result),
   );
-  const zone = dropzone({ accept: ctx.meta.supportedFormats, multiple: true, onFiles: (f) => add(f), paste: true, title: 'Drop images here', compact: false });
+  const zone = dropzone({ accept: ctx.meta.supportedFormats, multiple: true, onFiles: (f) => add(f), paste: true, title: t('Drop images here'), compact: false });
   root.append(zone, controls);
 
   ctx.onCleanup(() => items.forEach((i) => i.thumbUrl && ctx.revokeUrl(i.thumbUrl)));
@@ -87,15 +88,15 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     try {
       const prepared: ImageForPdf[] = [];
       for (const [i, it] of items.entries()) {
-        prog.set((i / items.length) * 0.7, `Preparing image ${i + 1} of ${items.length}…`);
+        prog.set((i / items.length) * 0.7, t('Preparing image {i} of {n}…', { i: i + 1, n: items.length }));
         prepared.push(await prepare(it.file, ctx.signal));
       }
       const opts: ImagesToPdfOptions = { pageSize: s.pageSize, orientation: s.orientation, margin: MARGINS[s.margin] };
-      const bytes = await pdfWorker().call<Uint8Array>('images', { images: prepared, opts }, { transfer: prepared.map((p) => p.bytes.buffer as ArrayBuffer), onProgress: (f) => prog.set(0.7 + f * 0.3, 'Building PDF…'), signal: ctx.signal });
+      const bytes = await pdfWorker().call<Uint8Array>('images', { images: prepared, opts }, { transfer: prepared.map((p) => p.bytes.buffer as ArrayBuffer), onProgress: (f) => prog.set(0.7 + f * 0.3, t('Building PDF…')), signal: ctx.signal });
       const blob = pdfBlob(bytes);
       let name = safeFileName(nameIn.value.trim() || 'images.pdf');
       if (!/\.pdf$/i.test(name)) name += '.pdf';
-      render(result, h('div', { class: 'batch-summary' }, h('span', null, `${items.length} page${items.length > 1 ? 's' : ''} · ${formatBytes(blob.size)}`), button('Download PDF', { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(blob, name) })));
+      render(result, h('div', { class: 'batch-summary' }, h('span', null, `${items.length} page${items.length > 1 ? 's' : ''} · ${formatBytes(blob.size)}`), button(t('Download PDF'), { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(blob, name) })));
       ctx.recordUse(s);
       await downloadBlob(blob, name);
     } catch (e) {

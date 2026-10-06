@@ -1,5 +1,6 @@
 import { h, type Child } from '../utils/dom';
 import { iconButton } from './ui';
+import { t } from '../i18n/i18n';
 
 export interface DialogHandle {
   el: HTMLDialogElement;
@@ -16,7 +17,7 @@ export function dialog(title: string, body: Child, opts: { class?: string; onClo
     h(
       'div',
       { class: 'dialog-inner' },
-      h('div', { class: ['dialog-head', opts.hideTitle && 'sr-only'] }, h('h2', { id: titleId }, title), iconButton('x', 'Close', () => handle.close())),
+      h('div', { class: ['dialog-head', opts.hideTitle && 'sr-only'] }, h('h2', { id: titleId }, title), iconButton('x', t('Close'), () => handle.close())),
       body,
     ),
   );

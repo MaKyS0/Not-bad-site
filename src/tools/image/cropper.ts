@@ -6,6 +6,7 @@ import { decodeImage, processImage, isSvg } from '../../services/imageService';
 import { formatSelect, outputTypeFor, outputName, type FormatChoice } from './shared';
 import { downloadBlob } from '../../services/download';
 import { formatBytes } from '../../utils/format';
+import { t } from '../../i18n/i18n';
 
 type Ratio = 'free' | '1:1' | '4:3' | '16:9' | '9:16' | '3:2' | 'custom';
 interface Rect { x: number; y: number; w: number; h: number }
@@ -62,13 +63,13 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   };
 
   const area = h('div', { class: 'tool-main' });
-  const options = h('aside', { class: 'tool-options panel', 'aria-label': 'Crop options', hidden: true });
+  const options = h('aside', { class: 'tool-options panel', 'aria-label': t('Crop options'), hidden: true });
   const zone = dropzone({ accept: ctx.meta.supportedFormats, multiple: false, onFiles: (f) => void load(f[0]), paste: true });
   root.append(zone, h('div', { class: 'tool-layout options-right' }, area, options));
 
   // ----- crop stage -----
-  const img = h('img', { alt: 'Image to crop', draggable: 'false' });
-  const box = h('div', { class: 'crop-box', tabindex: '0', role: 'group', 'aria-label': 'Crop area. Use arrow keys to move, Shift+arrows to move faster, Alt+arrows to resize.' });
+  const img = h('img', { alt: t('Image to crop'), draggable: 'false' });
+  const box = h('div', { class: 'crop-box', tabindex: '0', role: 'group', 'aria-label': t('Crop area. Use arrow keys to move, Shift+arrows to move faster, Alt+arrows to resize.') });
   for (const hd of ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w']) box.append(h('span', { class: 'crop-handle', dataset: { h: hd }, 'aria-hidden': 'true' }));
   const stage = h('div', { class: 'crop-stage' }, img, box);
   const wrap = h('div', { class: 'crop-wrap' }, stage);
@@ -76,8 +77,8 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
 
   const xIn = numberInput(0, { min: 0, onInput: (v) => setRect({ ...rect, x: v }, 'move') , ariaLabel: 'X' });
   const yIn = numberInput(0, { min: 0, onInput: (v) => setRect({ ...rect, y: v }, 'move'), ariaLabel: 'Y' });
-  const wIn = numberInput(0, { min: 1, onInput: (v) => setRect({ ...rect, w: v }, 'se'), ariaLabel: 'Width' });
-  const hIn = numberInput(0, { min: 1, onInput: (v) => setRect({ ...rect, h: v }, 's'), ariaLabel: 'Height' });
+  const wIn = numberInput(0, { min: 1, onInput: (v) => setRect({ ...rect, w: v }, 'se'), ariaLabel: t('Width') });
+  const hIn = numberInput(0, { min: 1, onInput: (v) => setRect({ ...rect, h: v }, 's'), ariaLabel: t('Height') });
 
   const scale = () => (img.clientWidth && iw ? img.clientWidth / iw : 1);
 
@@ -88,7 +89,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     if (document.activeElement !== yIn) yIn.value = String(rect.y);
     if (document.activeElement !== wIn) wIn.value = String(rect.w);
     if (document.activeElement !== hIn) hIn.value = String(rect.h);
-    dims.textContent = `Selection: ${rect.w} × ${rect.h} px at (${rect.x}, ${rect.y}) — image ${iw} × ${ih} px`;
+    dims.textContent = t('Selection: {w} × {h} px at ({x}, {y}) — image {iw} × {ih} px', { w: rect.w, h: rect.h, x: rect.x, y: rect.y, iw, ih });
   }
 
   function setRect(r: Rect, anchor: Parameters<typeof clampRect>[4] = 'se') {
@@ -159,26 +160,26 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   ctx.onCleanup(() => ro.disconnect());
 
   // ----- options -----
-  const customW = numberInput(s.customW, { min: 0.01, step: 0.01, onInput: (v) => { s.customW = v; save(); resetRect(); }, ariaLabel: 'Custom ratio width' });
-  const customH = numberInput(s.customH, { min: 0.01, step: 0.01, onInput: (v) => { s.customH = v; save(); resetRect(); }, ariaLabel: 'Custom ratio height' });
-  const customBox = h('div', { class: 'two-col' }, field('Ratio W', customW), field('Ratio H', customH));
-  const ratioSeg = segmented<Ratio>('Aspect ratio', [
-    { value: 'free', label: 'Free' }, { value: '1:1', label: '1:1' }, { value: '4:3', label: '4:3' }, { value: '3:2', label: '3:2' },
-    { value: '16:9', label: '16:9' }, { value: '9:16', label: '9:16' }, { value: 'custom', label: 'Custom' },
+  const customW = numberInput(s.customW, { min: 0.01, step: 0.01, onInput: (v) => { s.customW = v; save(); resetRect(); }, ariaLabel: t('Custom ratio width') });
+  const customH = numberInput(s.customH, { min: 0.01, step: 0.01, onInput: (v) => { s.customH = v; save(); resetRect(); }, ariaLabel: t('Custom ratio height') });
+  const customBox = h('div', { class: 'two-col' }, field(t('Ratio W'), customW), field(t('Ratio H'), customH));
+  const ratioSeg = segmented<Ratio>(t('Aspect ratio'), [
+    { value: 'free', label: t('Free') }, { value: '1:1', label: '1:1' }, { value: '4:3', label: '4:3' }, { value: '3:2', label: '3:2' },
+    { value: '16:9', label: '16:9' }, { value: '9:16', label: '9:16' }, { value: 'custom', label: t('Custom') },
   ], s.ratio, (v) => { s.ratio = v; save(); customBox.hidden = v !== 'custom'; if (iw) resetRect(); });
   customBox.hidden = s.ratio !== 'custom';
-  const quality = slider('Quality (JPG/WebP)', s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
-  const prog = progress('Cropping…');
+  const quality = slider(t('Quality (JPG/WebP)'), s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
+  const prog = progress(t('Cropping…'));
   const result = h('div', { 'aria-live': 'polite' });
-  const cropBtn = button('Crop image', { variant: 'primary', icon: 'crop', size: 'lg', onClick: () => void doCrop() });
+  const cropBtn = button(t('Crop image'), { variant: 'primary', icon: 'crop', size: 'lg', onClick: () => void doCrop() });
 
   render(
     options,
     ratioSeg.el,
     customBox,
     h('div', { class: 'two-col' }, field('X', xIn), field('Y', yIn)),
-    h('div', { class: 'two-col' }, field('Width', wIn), field('Height', hIn)),
-    button('Reset selection', { variant: 'ghost', icon: 'rotate', onClick: resetRect }),
+    h('div', { class: 'two-col' }, field(t('Width'), wIn), field(t('Height'), hIn)),
+    button(t('Reset selection'), { variant: 'ghost', icon: 'rotate', onClick: resetRect }),
     formatSelect(s.format, (v) => { s.format = v; save(); }),
     quality.el,
     cropBtn,
@@ -187,7 +188,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
 
   async function load(f: File) {
     file = f;
-    render(area, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), 'Loading image…'));
+    render(area, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), t('Loading image…')));
     options.hidden = true;
     try {
       const d = await decodeImage(f);
@@ -204,7 +205,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       render(area, wrap, dims, result);
       options.hidden = false;
       zone.hidden = true;
-      render(result, button('Choose another image', { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }));
+      render(result, button(t('Choose another image'), { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }));
       resetRect();
     } catch (e) {
       render(area, errorPanel(e, () => { zone.hidden = false; render(area); }));
@@ -214,7 +215,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   async function doCrop() {
     if (!file) return;
     cropBtn.disabled = true;
-    prog.set(0, 'Cropping…');
+    prog.set(0, t('Cropping…'));
     try {
       const type = outputTypeFor(file, s.format);
       const svgW = (await isSvg(file)) ? iw : undefined;
@@ -225,12 +226,12 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       render(
         result,
         h('div', { class: 'panel' },
-          h('h2', { class: 'panel-title' }, 'Result'),
-          h('div', { class: 'preview-box' }, h('img', { src: resultUrl, alt: 'Cropped result' })),
+          h('h2', { class: 'panel-title' }, t('Result')),
+          h('div', { class: 'preview-box' }, h('img', { src: resultUrl, alt: t('Cropped result') })),
           h('p', { class: 'hint' }, `${res.width} × ${res.height} px · ${formatBytes(res.blob.size)}`),
           h('div', { class: 'toolbar' },
-            button('Download', { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(res.blob, name) }),
-            button('Choose another image', { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }),
+            button(t('Download'), { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(res.blob, name) }),
+            button(t('Choose another image'), { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }),
           ),
         ),
       );

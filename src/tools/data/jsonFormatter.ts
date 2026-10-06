@@ -7,6 +7,7 @@ import { WorkerPool } from '../../workers/rpc';
 import { describeError } from '../../utils/errors';
 import { copyText, downloadBlob } from '../../services/download';
 import { baseName, formatBytes } from '../../utils/format';
+import { plural, t } from '../../i18n/i18n';
 
 const SAMPLE = '{"name":"Universal File Toolbox","private":true,"tools":["json","csv","xml"],"stats":{"users":1024,"rating":4.9,"offline":true,"backend":null}}';
 const HIGHLIGHT_LIMIT = 400_000;
@@ -29,17 +30,17 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   let lastOutput = '';
   let used = false;
   const status = h('p', { class: 'status-line', role: 'status' });
-  const prog = progress('Parsing…');
-  const outPre = h('pre', { class: 'code-view', tabindex: '0', 'aria-label': 'Formatted JSON' });
-  const copyBtn = button('Copy', { variant: 'secondary', size: 'sm', icon: 'copy', onClick: () => void copyText(lastOutput) });
-  const dlBtn = button('Download', { variant: 'secondary', size: 'sm', icon: 'download', onClick: () => void downloadBlob(new Blob([lastOutput], { type: 'application/json' }), `${input.fileName ? baseName(input.fileName) : 'data'}.json`) });
+  const prog = progress(t('Parsing…'));
+  const outPre = h('pre', { class: 'code-view', tabindex: '0', 'aria-label': t('Formatted JSON') });
+  const copyBtn = button(t('Copy'), { variant: 'secondary', size: 'sm', icon: 'copy', onClick: () => void copyText(lastOutput) });
+  const dlBtn = button(t('Download'), { variant: 'secondary', size: 'sm', icon: 'download', onClick: () => void downloadBlob(new Blob([lastOutput], { type: 'application/json' }), `${input.fileName ? baseName(input.fileName) : 'data'}.json`) });
   const outInfo = h('span', { class: 'hint toolbar-end' });
 
-  const input = textEditor({ label: 'JSON input', placeholder: 'Paste JSON here or open a .json file…', accept: ctx.meta.supportedFormats, onInput: debounce(() => s.live && run('format'), 250), rows: 18, sample: SAMPLE, maxBytes: 200 * 1024 * 1024 });
+  const input = textEditor({ label: t('JSON input'), placeholder: t('Paste JSON here or open a .json file…'), accept: ctx.meta.supportedFormats, onInput: debounce(() => s.live && run('format'), 250), rows: 18, sample: SAMPLE, maxBytes: 200 * 1024 * 1024 });
 
-  const indentSel = field('Indentation', select([{ value: '2', label: '2 spaces' }, { value: '4', label: '4 spaces' }, { value: 'tab', label: 'Tabs' }], s.indent, (v) => { s.indent = v; ctx.saveSettings(s); run('format'); }));
-  const sortKeys = checkbox('Sort keys A→Z', s.sortKeys, (v) => { s.sortKeys = v; ctx.saveSettings(s); run('format'); });
-  const live = checkbox('Format as I type', s.live, (v) => { s.live = v; ctx.saveSettings(s); });
+  const indentSel = field(t('Indentation'), select([{ value: '2', label: t('2 spaces') }, { value: '4', label: t('4 spaces') }, { value: 'tab', label: t('Tabs') }], s.indent, (v) => { s.indent = v; ctx.saveSettings(s); run('format'); }));
+  const sortKeys = checkbox(t('Sort keys A→Z'), s.sortKeys, (v) => { s.sortKeys = v; ctx.saveSettings(s); run('format'); });
+  const live = checkbox(t('Format as I type'), s.live, (v) => { s.live = v; ctx.saveSettings(s); });
 
   async function run(action: 'format' | 'minify' | 'validate') {
     const text = input.value;
@@ -56,15 +57,15 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     try {
       let out: string;
       if (text.length > WORKER_THRESHOLD) {
-        prog.indeterminate(`Parsing ${formatBytes(text.length)}…`);
+        prog.indeterminate(t('Parsing {size}…', { size: formatBytes(text.length) }));
         out = await dataWorker().call<string>('formatJson', { text, ...opts }, { signal: ctx.signal });
       } else out = formatJson(text, opts);
       status.className = 'status-line status-ok';
-      status.textContent = '✓ Valid JSON';
+      status.textContent = `✓ ${t('Valid JSON')}`;
       if (action === 'validate') return;
       lastOutput = out;
       copyBtn.disabled = dlBtn.disabled = false;
-      outInfo.textContent = `${out.split('\n').length.toLocaleString()} lines · ${formatBytes(new Blob([out]).size)}`;
+      outInfo.textContent = `${plural(out.split('\n').length, 'line')} · ${formatBytes(new Blob([out]).size)}`;
       if (out.length <= HIGHLIGHT_LIMIT) render(outPre, highlightJson(out));
       else outPre.textContent = out;
       if (!used) {
@@ -92,9 +93,9 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   root.append(
     h('div', { class: 'panel stack' },
       h('div', { class: 'toolbar', style: 'gap:12px' },
-        button('Format', { variant: 'primary', icon: 'braces', onClick: () => void run('format') }),
-        button('Minify', { variant: 'secondary', icon: 'compress', onClick: () => void run('minify') }),
-        button('Validate', { variant: 'secondary', icon: 'check', onClick: () => void run('validate') }),
+        button(t('Format'), { variant: 'primary', icon: 'braces', onClick: () => void run('format') }),
+        button(t('Minify'), { variant: 'secondary', icon: 'compress', onClick: () => void run('minify') }),
+        button(t('Validate'), { variant: 'secondary', icon: 'check', onClick: () => void run('validate') }),
       ),
       h('div', { class: 'options-grid' }, indentSel, h('div', { class: 'stack-sm' }, sortKeys.el, live.el)),
       status,
@@ -102,7 +103,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     ),
     h('div', { class: 'editor-grid' },
       input.el,
-      h('div', { class: 'field' }, h('span', { class: 'field-label' }, 'Output'), h('div', { class: 'toolbar' }, copyBtn, dlBtn, outInfo), outPre),
+      h('div', { class: 'field' }, h('span', { class: 'field-label' }, t('Output')), h('div', { class: 'toolbar' }, copyBtn, dlBtn, outInfo), outPre),
     ),
   );
   if (ctx.initialFiles[0]) {

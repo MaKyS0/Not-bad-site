@@ -1,5 +1,5 @@
 import { h, render } from './utils/dom';
-import { startRouter, type Route, routeHref } from './services/router';
+import { startRouter, type Route, routeHref, langOf } from './services/router';
 import { homePage } from './pages/home';
 import { toolsPage, categoryPage } from './pages/listing';
 import { toolPage } from './pages/tool';
@@ -9,6 +9,8 @@ import { toolTitle, toolDescription } from './seo/content';
 import { APP_NAME, TAGLINE, SUBTITLE } from './config';
 import { openSearch } from './components/searchDialog';
 import { openSettings } from './components/settingsDialog';
+import { getLang, LANG_PREF_KEY, setLang, t, type Lang } from './i18n/i18n';
+import { locCategory } from './i18n/localize';
 
 let cleanup: (() => void) | null = null;
 
@@ -19,16 +21,23 @@ function setMeta(title: string, description: string): void {
   document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
 }
 
+/** Keep the EN/RU switcher pointing at the current page after SPA navigation. */
+function syncLangLinks(): void {
+  document.querySelectorAll<HTMLAnchorElement>('[data-lang-link]').forEach((a) => {
+    a.href = routeHref.inLang(a.dataset.langLink as Lang);
+  });
+}
+
 function notFound(main: HTMLElement): void {
-  setMeta(`Page not found | ${APP_NAME}`, 'The page you are looking for does not exist.');
+  setMeta(`${t('Page not found')} | ${APP_NAME}`, t('The page you are looking for does not exist.'));
   render(
     main,
     h(
       'section',
       { class: 'not-found' },
-      h('h1', null, 'Page not found'),
-      h('p', { class: 'lead' }, 'The page you are looking for does not exist or was moved.'),
-      h('div', { class: 'toolbar' }, h('a', { class: 'btn btn-primary', href: routeHref.home() }, 'Go to home page'), h('a', { class: 'btn btn-secondary', href: routeHref.tools() }, 'Browse all tools')),
+      h('h1', null, t('Page not found')),
+      h('p', { class: 'lead' }, t('The page you are looking for does not exist or was moved.')),
+      h('div', { class: 'toolbar' }, h('a', { class: 'btn btn-primary', href: routeHref.home() }, t('Go to home page')), h('a', { class: 'btn btn-secondary', href: routeHref.tools() }, t('Browse all tools'))),
     ),
   );
 }
@@ -43,22 +52,25 @@ function show(route: Route, opts: { scroll: boolean }): void {
     }
     cleanup = null;
   }
+  document.documentElement.lang = getLang();
+  syncLangLinks();
   document.querySelectorAll('[data-nav]').forEach((a) => a.removeAttribute('aria-current'));
   try {
     switch (route.name) {
       case 'home':
-        setMeta(`${APP_NAME} — ${TAGLINE}`, SUBTITLE);
+        setMeta(`${APP_NAME} — ${t(TAGLINE)}`, t(SUBTITLE));
         cleanup = homePage(main);
         break;
       case 'tools':
-        setMeta(`All Tools | ${APP_NAME}`, 'Every free, private, in-browser file tool: images, PDF, data, text, ZIP, audio and developer utilities.');
+        setMeta(`${t('All Tools')} | ${APP_NAME}`, t('Every free, private, in-browser file tool: images, PDF, data, text, ZIP, audio and developer utilities.'));
         document.querySelector('[data-nav="tools"]')?.setAttribute('aria-current', 'page');
         toolsPage(main);
         break;
       case 'category': {
         const cat = categoryById(route.id);
         if (!cat || !categoryPage(main, route.id)) return notFound(main);
-        setMeta(`${cat.name} Tools — Free & Private | ${APP_NAME}`, cat.description);
+        const lc = locCategory(cat);
+        setMeta(`${t('{name} Tools — Free & Private', { name: lc.name })} | ${APP_NAME}`, lc.description);
         break;
       }
       case 'tool': {
@@ -73,7 +85,7 @@ function show(route: Route, opts: { scroll: boolean }): void {
     }
   } catch (e) {
     console.error(e);
-    render(main, h('div', { class: 'error-panel', role: 'alert' }, h('strong', null, 'Something went wrong while loading this page.'), h('p', null, 'Please reload the page.')));
+    render(main, h('div', { class: 'error-panel', role: 'alert' }, h('strong', null, t('Something went wrong while loading this page.')), h('p', null, t('Please reload the page.'))));
   }
   if (opts.scroll) window.scrollTo({ top: 0 });
   // Move focus to the main heading for screen reader users after navigation.
@@ -84,9 +96,52 @@ function show(route: Route, opts: { scroll: boolean }): void {
   }
 }
 
+/**
+ * On the very first visit, switch to Russian if the browser prefers it.
+ * An explicit choice (clicking EN/RU) is remembered and always wins.
+ * Returns true when a redirect was started.
+ */
+function autoLanguage(): boolean {
+  let saved: string | null = null;
+  try {
+    saved = localStorage.getItem(LANG_PREF_KEY);
+  } catch {
+    return false;
+  }
+  const prefersRu = (navigator.languages ?? [navigator.language]).some((l) => /^(ru|be|uk|kk)\b/i.test(l ?? ''));
+  const want: Lang | null = saved === 'en' || saved === 'ru' ? saved : prefersRu ? 'ru' : null;
+  if (want && want !== getLang() && !saved) {
+    try {
+      localStorage.setItem(LANG_PREF_KEY, want);
+    } catch {
+      /* ignore */
+    }
+    location.replace(routeHref.inLang(want) + location.search + location.hash);
+    return true;
+  }
+  return false;
+}
+
 export function startApp(): void {
+  setLang(langOf(location.pathname));
+  if (autoLanguage()) return;
   document.querySelector('[data-action="search"]')?.addEventListener('click', () => openSearch());
   document.querySelector('[data-action="settings"]')?.addEventListener('click', () => openSettings());
+  // Remember an explicit language choice.
+  document.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest?.<HTMLAnchorElement>('a[data-lang-link]');
+    if (!a) return;
+    try {
+      localStorage.setItem(LANG_PREF_KEY, a.dataset.langLink!);
+    } catch {
+      /* ignore */
+    }
+  });
   document.documentElement.classList.add('js');
+  // Header shadow once the page is scrolled.
+  const header = document.querySelector('.site-header');
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 4);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
   startRouter(show);
 }

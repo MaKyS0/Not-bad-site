@@ -5,17 +5,21 @@ import { routeHref, navigate } from '../services/router';
 import { icon } from './icons';
 import { popularTools, categoryById } from '../tools/catalog';
 import type { ToolMeta } from '../tools/types';
+import { plural, t } from '../i18n/i18n';
+import { loc, locCategory } from '../i18n/localize';
 
 let instance: DialogHandle | null = null;
 let inputEl: HTMLInputElement | null = null;
 
-function resultItem(tool: ToolMeta, id: string, active: boolean): HTMLElement {
+function resultItem(raw: ToolMeta, id: string, active: boolean): HTMLElement {
+  const tool = loc(raw);
+  const cat = categoryById(tool.category);
   return h(
     'li',
     { role: 'option', id, 'aria-selected': active ? 'true' : 'false', class: ['search-item', active && 'is-active'], dataset: { href: routeHref.tool(tool.id) } },
     h('span', { class: `tool-icon cat-${tool.category}` }, icon(tool.icon)),
     h('span', { class: 'search-item-text' }, h('strong', null, tool.name), h('small', null, tool.description)),
-    h('span', { class: 'badge' }, categoryById(tool.category)?.name ?? ''),
+    h('span', { class: 'badge' }, cat ? locCategory(cat).name : ''),
   );
 }
 
@@ -24,8 +28,8 @@ function create(): DialogHandle {
   const input = h('input', {
     type: 'search',
     class: 'search-input',
-    placeholder: 'Search tools — try “webp”, “merge pdf”, “base64”…',
-    'aria-label': 'Search tools',
+    placeholder: t('Search tools — try “webp”, “merge pdf”, “base64”…'),
+    'aria-label': t('Search tools'),
     role: 'combobox',
     'aria-expanded': 'true',
     'aria-controls': listId,
@@ -35,7 +39,7 @@ function create(): DialogHandle {
     enterkeyhint: 'go',
   });
   inputEl = input;
-  const list = h('ul', { id: listId, role: 'listbox', class: 'search-results', 'aria-label': 'Results' });
+  const list = h('ul', { id: listId, role: 'listbox', class: 'search-results', 'aria-label': t('Results') });
   const status = h('p', { class: 'search-status', 'aria-live': 'polite' });
   let results: ToolMeta[] = [];
   let active = 0;
@@ -45,18 +49,18 @@ function create(): DialogHandle {
     results = q ? searchTools(q, 12) : popularTools().slice(0, 8);
     active = 0;
     draw();
-    status.textContent = q ? (results.length ? `${results.length} tools found` : `No tools match “${q}”.`) : 'Popular tools';
+    status.textContent = q ? (results.length ? t('{tools} found', { tools: plural(results.length, 'tool') }) : t('No tools match “{q}”.', { q })) : t('Popular tools');
   };
   const draw = () => {
-    render(list, ...results.map((t, i) => resultItem(t, `${listId}-${i}`, i === active)));
+    render(list, ...results.map((tool, i) => resultItem(tool, `${listId}-${i}`, i === active)));
     input.setAttribute('aria-activedescendant', results.length ? `${listId}-${active}` : '');
     list.children[active]?.scrollIntoView({ block: 'nearest' });
   };
   const go = (i: number) => {
-    const t = results[i];
-    if (!t) return;
+    const tool = results[i];
+    if (!tool) return;
     handle.close();
-    navigate(routeHref.tool(t.id));
+    navigate(routeHref.tool(tool.id));
   };
 
   input.addEventListener('input', update);
@@ -80,7 +84,7 @@ function create(): DialogHandle {
   });
 
   const body = h('div', { class: 'search-body' }, h('div', { class: 'search-field' }, icon('search'), input), status, list);
-  const handle = dialog('Search tools', body, { class: 'dialog-search', hideTitle: true });
+  const handle = dialog(t('Search tools'), body, { class: 'dialog-search', hideTitle: true });
   update();
   return handle;
 }

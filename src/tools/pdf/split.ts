@@ -8,6 +8,7 @@ import { describeError } from '../../utils/errors';
 import { downloadAll, downloadBlob } from '../../services/download';
 import { baseName, formatBytes } from '../../utils/format';
 import { icon } from '../../components/icons';
+import { t } from '../../i18n/i18n';
 
 type Mode = 'each' | 'every' | 'ranges';
 
@@ -18,17 +19,17 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     let ranges = n > 1 ? `1-${Math.ceil(n / 2)}, ${Math.ceil(n / 2) + 1}-${n}` : '1';
     const plan = h('p', { class: 'hint', 'aria-live': 'polite' });
     const result = h('div', { 'aria-live': 'polite' });
-    const prog = progress('Splitting…');
+    const prog = progress(t('Splitting…'));
     const rangeIn = textInput(ranges, { placeholder: 'e.g. 1-3, 4-6, 7', onInput: (v) => { ranges = v; updatePlan(); } });
     const everyIn = numberInput(s.every, { min: 1, max: n, onInput: (v) => { s.every = Math.max(1, Math.round(v)); ctx.saveSettings(s); updatePlan(); } });
-    const rangeField = field('Page ranges (each becomes one PDF)', rangeIn, 'Example: “1-3, 4-6, 7-” → three files. Open ranges like “7-” go to the last page.');
-    const everyField = field('Pages per file', everyIn);
-    const mode = segmented<Mode>('Split mode', [
-      { value: 'ranges', label: 'Custom ranges' },
-      { value: 'each', label: 'Every page' },
-      { value: 'every', label: 'Every N pages' },
+    const rangeField = field(t('Page ranges (each becomes one PDF)'), rangeIn, t('Example: “1-3, 4-6, 7-” → three files. Open ranges like “7-” go to the last page.'));
+    const everyField = field(t('Pages per file'), everyIn);
+    const mode = segmented<Mode>(t('Split mode'), [
+      { value: 'ranges', label: t('Custom ranges') },
+      { value: 'each', label: t('Every page') },
+      { value: 'every', label: t('Every N pages') },
     ], s.mode, (v) => { s.mode = v; ctx.saveSettings(s); updatePlan(); });
-    const btn = button('Split PDF', { variant: 'primary', icon: 'split', size: 'lg', onClick: () => void run() });
+    const btn = button(t('Split PDF'), { variant: 'primary', icon: 'split', size: 'lg', onClick: () => void run() });
 
     const groups = (): number[][] => (s.mode === 'each' ? chunkPages(n, 1) : s.mode === 'every' ? chunkPages(n, s.every) : parseRangeGroups(ranges, n));
 
@@ -56,17 +57,17 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
         return;
       }
       btn.disabled = true;
-      prog.set(0, 'Splitting…');
+      prog.set(0, t('Splitting…'));
       render(result);
       try {
-        const outs = await pdfWorker().call<Uint8Array[]>('split', { bytes: bytes.slice(), groups: g, name: file.name }, { onProgress: (f) => prog.set(f, 'Splitting…'), signal: ctx.signal });
+        const outs = await pdfWorker().call<Uint8Array[]>('split', { bytes: bytes.slice(), groups: g, name: file.name }, { onProgress: (f) => prog.set(f, t('Splitting…')), signal: ctx.signal });
         const base = baseName(file.name);
         const files = outs.map((o, i) => ({ name: `${base}-${g[i].length === 1 ? `page-${g[i][0]}` : `pages-${g[i][0]}-${g[i][g[i].length - 1]}`}.pdf`, blob: pdfBlob(o) }));
         render(
           result,
           h('div', { class: 'batch-summary' },
             h('span', null, `${files.length} PDF${files.length > 1 ? 's' : ''} · ${formatBytes(files.reduce((a, f) => a + f.blob.size, 0))}`),
-            button(files.length > 1 ? 'Download All (ZIP)' : 'Download', { variant: 'primary', icon: 'download', onClick: () => void downloadAll(files, `${base}-split.zip`) }),
+            button(files.length > 1 ? t('Download All (ZIP)') : t('Download'), { variant: 'primary', icon: 'download', onClick: () => void downloadAll(files, `${base}-split.zip`) }),
           ),
           h('ul', { class: 'entry-list', style: 'margin-top:12px' }, ...files.map((f) =>
             h('li', { class: 'entry' }, icon('pdf'), h('span', { class: 'entry-name' }, f.name), h('span', { class: 'entry-size' }, formatBytes(f.blob.size)),

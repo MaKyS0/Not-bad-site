@@ -1,8 +1,9 @@
 import { h } from '../utils/dom';
+import { t } from '../i18n/i18n';
 
 /** Before/after slider. Keyboard accessible via the underlying range input. */
-export function compareView(beforeUrl: string, afterUrl: string, labels: [string, string] = ['Before', 'After']): HTMLElement {
-  const range = h('input', { type: 'range', min: '0', max: '100', value: '50', class: 'compare-range', 'aria-label': 'Before/after split position' });
+export function compareView(beforeUrl: string, afterUrl: string, labels: [string, string] = [t('Before'), t('After')]): HTMLElement {
+  const range = h('input', { type: 'range', min: '0', max: '100', value: '50', class: 'compare-range', 'aria-label': t('Before/after split position') });
   const el = h(
     'div',
     { class: 'compare' },

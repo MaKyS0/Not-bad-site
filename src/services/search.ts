@@ -4,16 +4,18 @@
  */
 import type { ToolMeta } from '../tools/types';
 import { TOOLS, categoryById } from '../tools/catalog';
+import { loc, locCategory } from '../i18n/localize';
 
 const norm = (s: string): string =>
   s
     .toLowerCase()
     .normalize('NFKD')
     .replace(/[̀-ͯ]/g, '')
+    .replace(/ё/g, 'е')
     .replace(/jpeg/g, 'jpg')
     .replace(/[→>]/g, ' to ');
 
-const tokenize = (s: string): string[] => norm(s).split(/[^a-z0-9+#]+/).filter(Boolean);
+const tokenize = (s: string): string[] => norm(s).split(/[^a-z0-9+#\u0430-\u044f]+/).filter(Boolean);
 
 interface Indexed {
   tool: ToolMeta;
@@ -26,15 +28,21 @@ interface Indexed {
 
 let index: Indexed[] | null = null;
 
+/** Index English and Russian texts together so either language finds a tool. */
 function build(): Indexed[] {
-  return TOOLS.map((tool) => ({
-    tool,
-    name: norm(tool.name),
-    nameTokens: tokenize(tool.name),
-    formats: tool.supportedFormats.map(norm),
-    keywords: norm((tool.keywords ?? []).join(' ')),
-    rest: norm(`${tool.description} ${categoryById(tool.category)?.name ?? ''} ${tool.id.replace(/-/g, ' ')}`),
-  }));
+  return TOOLS.map((tool) => {
+    const ru = loc(tool, 'ru');
+    const cat = categoryById(tool.category);
+    const names = `${tool.name} ${ru.name}`;
+    return {
+      tool,
+      name: norm(names),
+      nameTokens: tokenize(names),
+      formats: tool.supportedFormats.map(norm),
+      keywords: norm([...(tool.keywords ?? []), ...(ru.keywords ?? [])].join(' ')),
+      rest: norm(`${tool.description} ${ru.description} ${cat?.name ?? ''} ${cat ? locCategory(cat, 'ru').name : ''} ${tool.id.replace(/-/g, ' ')}`),
+    };
+  });
 }
 
 function scoreToken(e: Indexed, t: string): number {
@@ -66,8 +74,9 @@ export function searchTools(query: string, limit = 20): ToolMeta[] {
       total += s;
     }
     if (!all) continue;
-    if (e.name === q) total += 20;
-    else if (e.name.startsWith(q)) total += 8;
+    const localName = norm(loc(e.tool).name);
+    if (localName === q || norm(e.tool.name) === q) total += 20;
+    else if (localName.startsWith(q) || norm(e.tool.name).startsWith(q)) total += 8;
     if (!e.tool.variantOf) total += 1;
     if (e.tool.popular) total += 0.5;
     results.push({ tool: e.tool, score: total });

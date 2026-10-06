@@ -5,6 +5,7 @@ import { segmented, checkbox, slider } from '../../components/ui';
 import { processImage, isSvg, decodeImage } from '../../services/imageService';
 import { formatSelect, outputTypeFor, outputName, type FormatChoice } from './shared';
 import { icon } from '../../components/icons';
+import { t } from '../../i18n/i18n';
 
 interface Settings {
   rotate: '0' | '90' | '180' | '270';
@@ -21,14 +22,14 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     batch.invalidate();
     drawPreview();
   };
-  const rot = segmented<Settings['rotate']>('Rotate (clockwise)', [
+  const rot = segmented<Settings['rotate']>(t('Rotate (clockwise)'), [
     { value: '0', label: '0°' }, { value: '90', label: '90°' }, { value: '180', label: '180°' }, { value: '270', label: '270°' },
   ], s.rotate, (v) => { s.rotate = v; save(); });
-  const fh = checkbox('Flip horizontally (mirror)', s.flipH, (v) => { s.flipH = v; save(); });
-  const fv = checkbox('Flip vertically', s.flipV, (v) => { s.flipV = v; save(); });
-  const quality = slider('Quality (JPG/WebP)', s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
+  const fh = checkbox(t('Flip horizontally (mirror)'), s.flipH, (v) => { s.flipH = v; save(); });
+  const fv = checkbox(t('Flip vertically'), s.flipV, (v) => { s.flipV = v; save(); });
+  const quality = slider(t('Quality (JPG/WebP)'), s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
 
-  const previewImg = h('img', { alt: 'Preview of the first image with the current rotation', style: 'max-height:240px;transition:transform .25s' });
+  const previewImg = h('img', { alt: t('Preview of the first image with the current rotation'), style: 'max-height:240px;transition:transform .25s' });
   const previewBox = h('div', { class: 'preview-box', hidden: true, style: 'min-height:260px' }, previewImg);
   let previewUrl = '';
   function drawPreview() {
@@ -39,7 +40,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   const batch = createBatch({
     ctx,
     accept: ctx.meta.supportedFormats,
-    actionLabel: 'Rotate',
+    actionLabel: t('Rotate'),
     zipName: 'rotated-images.zip',
     concurrency: 3,
     onFilesChange: (items) => {
@@ -67,9 +68,9 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
 
   root.append(
     h('div', { class: 'tool-layout' },
-      h('aside', { class: 'tool-options panel', 'aria-label': 'Rotation options' },
+      h('aside', { class: 'tool-options panel', 'aria-label': t('Rotation options') },
         rot.el,
-        h('div', { class: 'field' }, h('span', { class: 'field-label' }, h('span', { style: 'display:inline-flex;gap:6px;align-items:center' }, icon('flipH'), 'Flip')), fh.el, fv.el),
+        h('div', { class: 'field' }, h('span', { class: 'field-label' }, h('span', { style: 'display:inline-flex;gap:6px;align-items:center' }, icon('flipH'), t('Flip'))), fh.el, fv.el),
         previewBox,
         formatSelect(s.format, (v) => { s.format = v; save(); }),
         quality.el,

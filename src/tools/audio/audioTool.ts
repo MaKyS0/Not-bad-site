@@ -8,6 +8,7 @@ import { readId3 } from './lib/id3';
 import { baseName, formatBytes, formatDuration } from '../../utils/format';
 import { downloadBlob } from '../../services/download';
 import { UserError } from '../../utils/errors';
+import { t } from '../../i18n/i18n';
 
 type Mode = 'info' | 'convert' | 'trim';
 
@@ -19,13 +20,13 @@ const AudioCtx = (): AC | undefined => (window.AudioContext ?? (window as unknow
 
 async function decode(file: File): Promise<AudioBuffer> {
   const Ctor = AudioCtx();
-  if (!Ctor) throw new UserError('Your browser does not support the Web Audio API.');
+  if (!Ctor) throw new UserError(t('Your browser does not support the Web Audio API.'));
   const ac = new Ctor();
   try {
     const data = await file.arrayBuffer();
     return await new Promise<AudioBuffer>((resolve, reject) => {
       // Callback form for older Safari; promise form elsewhere.
-      const p = ac.decodeAudioData(data, resolve, () => reject(new UserError('This audio file could not be decoded.', 'The format or codec may not be supported by your browser (e.g. some browsers cannot decode OGG/Opus or AAC), or the file is damaged.')));
+      const p = ac.decodeAudioData(data, resolve, () => reject(new UserError(t('This audio file could not be decoded.'), 'The format or codec may not be supported by your browser (e.g. some browsers cannot decode OGG/Opus or AAC), or the file is damaged.')));
       p?.catch?.(() => undefined);
     });
   } finally {
@@ -72,15 +73,15 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   const mode = ((ctx.preset as { mode?: Mode }).mode ?? 'info') as Mode;
   const s = await ctx.loadSettings({ channels: 'keep' as 'keep' | 'mono', rate: 'keep', bitDepth: '16' as '16' | '24', fadeIn: 0, fadeOut: 0 });
   const area = h('div', { class: 'stack' });
-  const zone = dropzone({ accept: ctx.meta.supportedFormats, multiple: false, onFiles: (f) => void load(f[0]), paste: true, title: 'Drop an audio file here' });
+  const zone = dropzone({ accept: ctx.meta.supportedFormats, multiple: false, onFiles: (f) => void load(f[0]), paste: true, title: t('Drop an audio file here') });
   root.append(zone, area);
   let playCtx: AudioContext | null = null;
   ctx.onCleanup(() => void playCtx?.close?.());
 
   async function load(file: File) {
-    render(area, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), 'Decoding audio…'));
+    render(area, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), t('Decoding audio…')));
     try {
-      if (file.size > 400 * 1024 * 1024) throw new UserError('This file is too large to decode in the browser.', 'Decoded audio needs a lot of memory (about 10× the MP3 size). Try a file under 400 MB.');
+      if (file.size > 400 * 1024 * 1024) throw new UserError(t('This file is too large to decode in the browser.'), 'Decoded audio needs a lot of memory (about 10× the MP3 size). Try a file under 400 MB.');
       const buf = await decode(file);
       const head = new Uint8Array(await file.slice(0, 512 * 1024).arrayBuffer());
       const tail = new Uint8Array(await file.slice(Math.max(0, file.size - 128)).arrayBuffer());
@@ -103,7 +104,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     }
     const url = ctx.objectUrl(file);
     const audio = h('audio', { controls: true, src: url, preload: 'metadata' });
-    const canvas = h('canvas', { 'aria-label': 'Waveform', role: 'img' });
+    const canvas = h('canvas', { 'aria-label': t('Waveform'), role: 'img' });
     const sel = h('div', { class: 'wave-sel', hidden: mode !== 'trim' });
     const playhead = h('div', { class: 'wave-playhead' });
     const wave = h('div', { class: 'waveform-wrap' }, canvas, sel, playhead);
@@ -111,15 +112,15 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     let start = 0;
     let end = dur;
     const result = h('div', { 'aria-live': 'polite' });
-    const prog = progress('Encoding WAV…');
+    const prog = progress(t('Encoding WAV…'));
 
-    const startIn = numberInput(0, { min: 0, max: dur, step: 0.01, ariaLabel: 'Start (seconds)', onInput: (v) => { start = Math.max(0, Math.min(v, end - 0.01)); drawSel(); } });
-    const endIn = numberInput(Number(dur.toFixed(2)), { min: 0, max: dur, step: 0.01, ariaLabel: 'End (seconds)', onInput: (v) => { end = Math.min(dur, Math.max(v, start + 0.01)); drawSel(); } });
+    const startIn = numberInput(0, { min: 0, max: dur, step: 0.01, ariaLabel: t('Start (seconds)'), onInput: (v) => { start = Math.max(0, Math.min(v, end - 0.01)); drawSel(); } });
+    const endIn = numberInput(Number(dur.toFixed(2)), { min: 0, max: dur, step: 0.01, ariaLabel: t('End (seconds)'), onInput: (v) => { end = Math.min(dur, Math.max(v, start + 0.01)); drawSel(); } });
     const selInfo = h('p', { class: 'hint', 'aria-live': 'polite' });
     function drawSel() {
       sel.style.left = `${(start / dur) * 100}%`;
       sel.style.width = `${((end - start) / dur) * 100}%`;
-      selInfo.textContent = `Selection: ${formatDuration(start)} → ${formatDuration(end)} (${formatDuration(end - start)})`;
+      selInfo.textContent = t('Selection: {a} → {b} ({d})', { a: formatDuration(start), b: formatDuration(end), d: formatDuration(end - start) });
       if (document.activeElement !== startIn) startIn.value = start.toFixed(2);
       if (document.activeElement !== endIn) endIn.value = end.toFixed(2);
     }
@@ -166,7 +167,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     };
 
     async function exportWav(trim: boolean) {
-      prog.indeterminate('Preparing audio…');
+      prog.indeterminate(t('Preparing audio…'));
       render(result);
       try {
         let src = buf;
@@ -181,13 +182,13 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
           for (const ch of channels) for (let i = 0; i < mono.length; i++) mono[i] += ch[i] / channels.length;
           channels = [mono];
         }
-        prog.indeterminate('Encoding WAV…');
+        prog.indeterminate(t('Encoding WAV…'));
         const bytes = await audioWorker().call<Uint8Array>('encodeWav', { channels, sampleRate: k, bitDepth: Number(s.bitDepth), fadeIn: trim ? s.fadeIn : 0, fadeOut: trim ? s.fadeOut : 0 }, { transfer: channels.map((c) => c.buffer as ArrayBuffer), signal: ctx.signal });
         const blob = new Blob([bytes as BlobPart], { type: 'audio/wav' });
         const name = `${baseName(file.name)}${trim ? '-trimmed' : ''}.wav`;
         const outUrl = ctx.objectUrl(blob);
         render(result,
-          h('div', { class: 'batch-summary' }, h('span', null, `${name} · ${formatBytes(blob.size)} · ${formatDuration((to - from) / k)}`), button('Download WAV', { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(blob, name) })),
+          h('div', { class: 'batch-summary' }, h('span', null, `${name} · ${formatBytes(blob.size)} · ${formatDuration((to - from) / k)}`), button(t('Download WAV'), { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(blob, name) })),
           h('audio', { controls: true, src: outUrl, style: 'margin-top:8px' }),
         );
         ctx.recordUse(s);
@@ -200,44 +201,44 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
 
     const bitrate = (file.size * 8) / dur / 1000;
     const stats = statGrid([
-      ['Duration', formatDuration(dur)],
-      ['Sample rate', `${buf.sampleRate.toLocaleString()} Hz`],
-      ['Channels', buf.numberOfChannels === 1 ? 'Mono' : buf.numberOfChannels === 2 ? 'Stereo' : String(buf.numberOfChannels)],
-      ['Peak', peak > 0 ? `${(20 * Math.log10(peak)).toFixed(1)} dBFS` : '−∞ dBFS'],
-      ['File size', formatBytes(file.size)],
-      ['Avg. bitrate', `${Math.round(bitrate)} kbps`],
+      [t('Duration'), formatDuration(dur)],
+      [t('Sample rate'), `${buf.sampleRate.toLocaleString()} Hz`],
+      [t('Channels'), buf.numberOfChannels === 1 ? 'Mono' : buf.numberOfChannels === 2 ? 'Stereo' : String(buf.numberOfChannels)],
+      [t('Peak'), peak > 0 ? `${(20 * Math.log10(peak)).toFixed(1)} dBFS` : '−∞ dBFS'],
+      [t('File size'), formatBytes(file.size)],
+      [t('Avg. bitrate'), `${Math.round(bitrate)} kbps`],
     ]);
 
     const convertOpts = h('div', { class: 'options-grid' },
-      segmented<'keep' | 'mono'>('Channels', [{ value: 'keep', label: 'Keep' }, { value: 'mono', label: 'Mono' }], s.channels, (v) => { s.channels = v; ctx.saveSettings(s); }).el,
-      field('Sample rate', select([{ value: 'keep', label: `Keep (${buf.sampleRate} Hz)` }, { value: '48000', label: '48,000 Hz' }, { value: '44100', label: '44,100 Hz' }, { value: '22050', label: '22,050 Hz' }, { value: '16000', label: '16,000 Hz (speech)' }], s.rate, (v) => { s.rate = v; ctx.saveSettings(s); })),
-      segmented<'16' | '24'>('Bit depth', [{ value: '16', label: '16-bit' }, { value: '24', label: '24-bit' }], s.bitDepth, (v) => { s.bitDepth = v; ctx.saveSettings(s); }).el,
+      segmented<'keep' | 'mono'>(t('Channels'), [{ value: 'keep', label: t('Keep') }, { value: 'mono', label: t('Mono') }], s.channels, (v) => { s.channels = v; ctx.saveSettings(s); }).el,
+      field(t('Sample rate'), select([{ value: 'keep', label: t('Keep ({rate} Hz)', { rate: buf.sampleRate }) }, { value: '48000', label: t('48,000 Hz') }, { value: '44100', label: t('44,100 Hz') }, { value: '22050', label: t('22,050 Hz') }, { value: '16000', label: t('16,000 Hz (speech)') }], s.rate, (v) => { s.rate = v; ctx.saveSettings(s); })),
+      segmented<'16' | '24'>(t('Bit depth'), [{ value: '16', label: '16-bit' }, { value: '24', label: '24-bit' }], s.bitDepth, (v) => { s.bitDepth = v; ctx.saveSettings(s); }).el,
     );
 
     render(
       area,
-      h('div', { class: 'toolbar', style: 'justify-content:space-between' }, h('p', { style: 'margin:0' }, h('strong', { class: 'break' }, file.name)), button('Open another file', { variant: 'ghost', icon: 'upload', onClick: () => zone.querySelector('input')?.click() })),
+      h('div', { class: 'toolbar', style: 'justify-content:space-between' }, h('p', { style: 'margin:0' }, h('strong', { class: 'break' }, file.name)), button(t('Open another file'), { variant: 'ghost', icon: 'upload', onClick: () => zone.querySelector('input')?.click() })),
       stats,
       wave,
       audio,
       mode === 'trim'
         ? h('div', { class: 'panel stack' },
-            h('p', { class: 'hint' }, 'Drag across the waveform to select, or type exact times.'),
-            h('div', { class: 'two-col' }, field('Start (s)', startIn), field('End (s)', endIn)),
+            h('p', { class: 'hint' }, t('Drag across the waveform to select, or type exact times.')),
+            h('div', { class: 'two-col' }, field(t('Start (s)'), startIn), field(t('End (s)'), endIn)),
             selInfo,
             h('div', { class: 'two-col' },
-              slider('Fade in', s.fadeIn, { min: 0, max: 5, step: 0.1, format: (v) => `${v.toFixed(1)} s`, onInput: (v) => { s.fadeIn = v; ctx.saveSettings(s); } }).el,
-              slider('Fade out', s.fadeOut, { min: 0, max: 5, step: 0.1, format: (v) => `${v.toFixed(1)} s`, onInput: (v) => { s.fadeOut = v; ctx.saveSettings(s); } }).el,
+              slider(t('Fade in'), s.fadeIn, { min: 0, max: 5, step: 0.1, format: (v) => `${v.toFixed(1)} s`, onInput: (v) => { s.fadeIn = v; ctx.saveSettings(s); } }).el,
+              slider(t('Fade out'), s.fadeOut, { min: 0, max: 5, step: 0.1, format: (v) => `${v.toFixed(1)} s`, onInput: (v) => { s.fadeOut = v; ctx.saveSettings(s); } }).el,
             ),
             convertOpts,
-            h('div', { class: 'toolbar' }, button('Play selection', { icon: 'play', onClick: playSel }), button('Stop', { variant: 'ghost', icon: 'pause', onClick: () => selSource?.stop() }), button('Download trimmed WAV', { variant: 'primary', icon: 'scissors', onClick: () => void exportWav(true) })),
+            h('div', { class: 'toolbar' }, button(t('Play selection'), { icon: 'play', onClick: playSel }), button(t('Stop'), { variant: 'ghost', icon: 'pause', onClick: () => selSource?.stop() }), button(t('Download trimmed WAV'), { variant: 'primary', icon: 'scissors', onClick: () => void exportWav(true) })),
             prog.el,
           )
         : mode === 'convert'
-          ? h('div', { class: 'panel stack' }, convertOpts, notice('info', 'Output is uncompressed PCM WAV. Browsers do not include MP3/OGG encoders, so other output formats are not offered.'), h('div', { class: 'toolbar' }, button('Convert to WAV', { variant: 'primary', icon: 'convert', onClick: () => void exportWav(false) })), prog.el)
+          ? h('div', { class: 'panel stack' }, convertOpts, notice('info', t('Output is uncompressed PCM WAV. Browsers do not include MP3/OGG encoders, so other output formats are not offered.')), h('div', { class: 'toolbar' }, button(t('Convert to WAV'), { variant: 'primary', icon: 'convert', onClick: () => void exportWav(false) })), prog.el)
           : null,
       result,
-      tags.length || hasCover ? kvTable([...tags, ...(hasCover ? ([['Cover art', 'Embedded picture present']] as [string, string][]) : [])], 'Tags (ID3)') : mode === 'info' ? notice('info', 'No ID3 tags found.') : null,
+      tags.length || hasCover ? kvTable([...tags, ...(hasCover ? ([[t('Cover art'), t('Embedded picture present')]] as [string, string][]) : [])], t('Tags (ID3)')) : mode === 'info' ? notice('info', t('No ID3 tags found.')) : null,
     );
     requestAnimationFrame(() => drawWave(canvas, buf));
     const ro = new ResizeObserver(() => drawWave(canvas, buf));

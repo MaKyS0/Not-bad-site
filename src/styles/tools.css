@@ -277,3 +277,19 @@ audio { width: 100%; }
 .stack { display: flex; flex-direction: column; gap: 16px; }
 .stack-sm { display: flex; flex-direction: column; gap: 8px; }
 .flip-icon .icon { transform: scaleX(-1); }
+
+/* Sticky action bar for batch tools: always reachable while scrolling long lists. */
+.batch-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  padding: 12px 0;
+  background: linear-gradient(to top, var(--bg) 75%, transparent);
+}
+@media (max-width: 899px) {
+  .batch-actions { padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  /* Files first on phones: options follow below the drop zone. */
+  .tool-layout > .tool-main { order: -1; }
+}
+.batch, .batch-body { display: flex; flex-direction: column; gap: 12px; }
+.batch-body[hidden] { display: none; }

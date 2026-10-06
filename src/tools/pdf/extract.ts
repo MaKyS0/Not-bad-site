@@ -7,6 +7,7 @@ import { formatPageList, parsePageList } from '../../utils/pageRanges';
 import { describeError } from '../../utils/errors';
 import { downloadBlob } from '../../services/download';
 import { baseName, formatBytes } from '../../utils/format';
+import { plural, t } from '../../i18n/i18n';
 
 type Mode = 'keep' | 'remove';
 
@@ -16,9 +17,9 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
     let mode: Mode = 'keep';
     const status = h('p', { class: 'hint', 'aria-live': 'polite' });
     const result = h('div', { 'aria-live': 'polite' });
-    const prog = progress('Creating PDF…');
-    const rangeIn = textInput('', { placeholder: 'e.g. 1, 3-5', ariaLabel: 'Selected pages' });
-    const btn = button('Extract pages', { variant: 'primary', icon: 'pages', size: 'lg', onClick: () => void run() });
+    const prog = progress(t('Creating PDF…'));
+    const rangeIn = textInput('', { placeholder: 'e.g. 1, 3-5', ariaLabel: t('Selected pages') });
+    const btn = button(t('Extract pages'), { variant: 'primary', icon: 'pages', size: 'lg', onClick: () => void run() });
 
     const grid = pageGrid(doc, {
       selectable: true,
@@ -37,9 +38,9 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
       }
     });
 
-    const modeSeg = segmented<Mode>('Mode', [
-      { value: 'keep', label: 'Keep selected pages' },
-      { value: 'remove', label: 'Delete selected pages' },
+    const modeSeg = segmented<Mode>(t('Mode'), [
+      { value: 'keep', label: t('Keep selected pages') },
+      { value: 'remove', label: t('Delete selected pages') },
     ], mode, (v) => { mode = v; update(); });
 
     const outputPages = (): number[] => {
@@ -53,22 +54,22 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
       const out = outputPages();
       status.className = 'hint';
       status.textContent = grid.selected.size === 0
-        ? 'Click pages to select them, or type page numbers.'
-        : `New PDF will contain ${out.length} page${out.length === 1 ? '' : 's'}${out.length ? `: ${formatPageList(out)}` : ''}.`;
+        ? t('Click pages to select them, or type page numbers.')
+        : `${t('New PDF will contain {pages}', { pages: plural(out.length, 'page') })}${out.length ? `: ${formatPageList(out)}` : ''}.`;
       btn.disabled = out.length === 0 || grid.selected.size === 0;
-      btn.querySelector('span')!.textContent = mode === 'keep' ? 'Extract pages' : 'Delete pages & save';
+      btn.querySelector('span')!.textContent = mode === 'keep' ? t('Extract pages') : t('Delete pages & save');
     }
 
     async function run() {
       const pages = outputPages();
       btn.disabled = true;
-      prog.indeterminate('Creating PDF…');
+      prog.indeterminate(t('Creating PDF…'));
       render(result);
       try {
         const out = await pdfWorker().call<Uint8Array>('extract', { bytes: bytes.slice(), pages, name: file.name }, { signal: ctx.signal });
         const blob = pdfBlob(out);
         const name = `${baseName(file.name)}-${mode === 'keep' ? 'extracted' : 'edited'}.pdf`;
-        render(result, h('div', { class: 'batch-summary' }, h('span', null, `${pages.length} pages · ${formatBytes(blob.size)}`), button('Download PDF', { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(blob, name) })));
+        render(result, h('div', { class: 'batch-summary' }, h('span', null, `${pages.length} pages · ${formatBytes(blob.size)}`), button(t('Download PDF'), { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(blob, name) })));
         ctx.recordUse();
         await downloadBlob(blob, name);
       } catch (e) {
@@ -83,12 +84,12 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
       area,
       h('div', { class: 'panel stack' },
         modeSeg.el,
-        field('Pages', rangeIn),
+        field(t('Pages'), rangeIn),
         h('div', { class: 'toolbar' },
-          button('Select all', { variant: 'secondary', size: 'sm', onClick: () => { grid.setSelected(Array.from({ length: n }, (_, i) => i + 1)); rangeIn.value = `1-${n}`; update(); } }),
-          button('Select none', { variant: 'secondary', size: 'sm', onClick: () => { grid.setSelected([]); rangeIn.value = ''; update(); } }),
-          button('Odd pages', { variant: 'secondary', size: 'sm', onClick: () => { const p = Array.from({ length: n }, (_, i) => i + 1).filter((x) => x % 2); grid.setSelected(p); rangeIn.value = formatPageList(p); update(); } }),
-          button('Even pages', { variant: 'secondary', size: 'sm', onClick: () => { const p = Array.from({ length: n }, (_, i) => i + 1).filter((x) => !(x % 2)); grid.setSelected(p); rangeIn.value = formatPageList(p); update(); } }),
+          button(t('Select all'), { variant: 'secondary', size: 'sm', onClick: () => { grid.setSelected(Array.from({ length: n }, (_, i) => i + 1)); rangeIn.value = `1-${n}`; update(); } }),
+          button(t('Select none'), { variant: 'secondary', size: 'sm', onClick: () => { grid.setSelected([]); rangeIn.value = ''; update(); } }),
+          button(t('Odd pages'), { variant: 'secondary', size: 'sm', onClick: () => { const p = Array.from({ length: n }, (_, i) => i + 1).filter((x) => x % 2); grid.setSelected(p); rangeIn.value = formatPageList(p); update(); } }),
+          button(t('Even pages'), { variant: 'secondary', size: 'sm', onClick: () => { const p = Array.from({ length: n }, (_, i) => i + 1).filter((x) => !(x % 2)); grid.setSelected(p); rangeIn.value = formatPageList(p); update(); } }),
         ),
         status,
         h('div', { class: 'toolbar' }, btn),

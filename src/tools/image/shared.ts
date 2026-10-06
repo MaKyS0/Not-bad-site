@@ -6,6 +6,7 @@ import { field, select } from '../../components/ui';
 import type { OutputType } from '../../utils/imageCore';
 import { baseName, extOf } from '../../utils/format';
 import { canonicalExt } from '../../utils/fileType';
+import { t } from '../../i18n/i18n';
 
 export type FormatChoice = 'keep' | 'jpeg' | 'png' | 'webp';
 
@@ -32,7 +33,8 @@ export function outputName(file: File, type: OutputType, suffix = ''): string {
 }
 
 export function formatSelect(value: FormatChoice, onChange: (v: FormatChoice) => void, includeKeep = true): HTMLElement {
-  return field('Output format', select(includeKeep ? FORMAT_OPTIONS : FORMAT_OPTIONS.filter((o) => o.value !== 'keep'), value, onChange));
+  const opts = FORMAT_OPTIONS.map((o) => ({ ...o, label: t(o.label) }));
+  return field(t('Output format'), select(includeKeep ? opts : opts.filter((o) => o.value !== 'keep'), value, onChange));
 }
 
 export function colorField(label: string, value: string, onInput: (v: string) => void): HTMLElement {

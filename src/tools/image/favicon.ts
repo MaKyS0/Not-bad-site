@@ -9,6 +9,7 @@ import { zipFiles } from '../../utils/zip';
 import { downloadBlob, copyText } from '../../services/download';
 import { colorField } from './shared';
 import { formatBytes } from '../../utils/format';
+import { t } from '../../i18n/i18n';
 
 interface Settings {
   padding: number;
@@ -82,29 +83,29 @@ export function htmlSnippet(appName: string, themeColor: string): string {
 }
 
 export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolContext) => {
-  const s = await ctx.loadSettings<Settings>({ padding: 0, radius: 0, fillBg: false, background: '#ffffff', appName: 'My Website', themeColor: '#ffffff' });
+  const s = await ctx.loadSettings<Settings>({ padding: 0, radius: 0, fillBg: false, background: '#ffffff', appName: t('My Website'), themeColor: '#ffffff' });
   let decoded: Decoded | null = null;
   let fileName = '';
   let outputs: { name: string; blob: Blob }[] = [];
   const urls: string[] = [];
 
   const out = h('div', { class: 'tool-main', 'aria-live': 'polite' });
-  const prog = progress('Generating icons…');
-  const zone = dropzone({ accept: ctx.meta.supportedFormats, multiple: false, onFiles: (f) => void load(f[0]), paste: true, subtitle: 'Square PNG or SVG, 512×512 px or larger works best' });
+  const prog = progress(t('Generating icons…'));
+  const zone = dropzone({ accept: ctx.meta.supportedFormats, multiple: false, onFiles: (f) => void load(f[0]), paste: true, hint: t('Square PNG or SVG, 512×512 px or larger works best') });
 
-  const pad = slider('Padding', s.padding, { min: 0, max: 30, format: (v) => `${v}%`, onInput: (v) => { s.padding = v; changed(); } });
-  const rad = slider('Corner radius', s.radius, { min: 0, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.radius = v; changed(); } });
-  const bgToggle = checkbox('Fill background', s.fillBg, (v) => { s.fillBg = v; bgField.hidden = !v; rad.el.hidden = !v; changed(); });
-  const bgField = colorField('Background colour', s.background, (v) => { s.background = v; changed(); });
+  const pad = slider(t('Padding'), s.padding, { min: 0, max: 30, format: (v) => `${v}%`, onInput: (v) => { s.padding = v; changed(); } });
+  const rad = slider(t('Corner radius'), s.radius, { min: 0, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.radius = v; changed(); } });
+  const bgToggle = checkbox(t('Fill background'), s.fillBg, (v) => { s.fillBg = v; bgField.hidden = !v; rad.el.hidden = !v; changed(); });
+  const bgField = colorField(t('Background colour'), s.background, (v) => { s.background = v; changed(); });
   bgField.hidden = !s.fillBg;
   rad.el.hidden = !s.fillBg;
   const nameIn = textInput(s.appName, { onInput: (v) => { s.appName = v; ctx.saveSettings(s); drawSnippet(); } });
-  const themeField = colorField('Theme colour', s.themeColor, (v) => { s.themeColor = v; ctx.saveSettings(s); drawSnippet(); });
+  const themeField = colorField(t('Theme colour'), s.themeColor, (v) => { s.themeColor = v; ctx.saveSettings(s); drawSnippet(); });
   const snippetBox = h('div');
 
-  const options = h('aside', { class: 'tool-options panel', 'aria-label': 'Favicon options' },
-    pad.el, bgToggle.el, bgField, rad.el, field('App name (manifest)', nameIn), themeField,
-    h('p', { class: 'hint' }, 'The Apple touch icon always gets an opaque background because iOS renders transparency as black.'),
+  const options = h('aside', { class: 'tool-options panel', 'aria-label': t('Favicon options') },
+    pad.el, bgToggle.el, bgField, rad.el, field(t('App name (manifest)'), nameIn), themeField,
+    h('p', { class: 'hint' }, t('The Apple touch icon always gets an opaque background because iOS renders transparency as black.')),
   );
 
   root.append(zone, h('div', { class: 'tool-layout' }, options, out));
@@ -134,10 +135,10 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     const code = htmlSnippet(s.appName, s.themeColor);
     render(snippetBox,
       h('div', { class: 'panel' },
-        h('h2', { class: 'panel-title' }, 'HTML snippet'),
-        h('p', { class: 'hint' }, 'Put the files in your site root and paste this inside <head>:'),
+        h('h2', { class: 'panel-title' }, t('HTML snippet')),
+        h('p', { class: 'hint' }, t('Put the files in your site root and paste this inside <head>:')),
         h('pre', { class: 'code-view wrap' }, code),
-        h('div', { class: 'toolbar', style: 'margin-top:8px' }, button('Copy HTML', { icon: 'copy', onClick: () => void copyText(code) })),
+        h('div', { class: 'toolbar', style: 'margin-top:8px' }, button(t('Copy HTML'), { icon: 'copy', onClick: () => void copyText(code) })),
       ),
     );
   }
@@ -156,7 +157,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
 
   async function generate() {
     if (!decoded) return;
-    prog.set(0, 'Generating icons…');
+    prog.set(0, t('Generating icons…'));
     try {
       const master = renderMaster(decoded, s, false);
       const masterOpaque = renderMaster(decoded, s, true);
@@ -177,27 +178,27 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
         const url = ctx.objectUrl(f.blob);
         urls.push(url);
         const shown = Math.min(f.size, 96);
-        return h('div', { class: 'icon-preview' }, h('img', { src: url, width: shown, height: shown, alt: `${f.size}×${f.size} icon` }), `${f.size}px`);
+        return h('div', { class: 'icon-preview' }, h('img', { src: url, width: shown, height: shown, alt: t('{n}×{n} icon', { n: f.size }) }), `${f.size}px`);
       });
       render(
         out,
         h('div', { class: 'panel' },
           h('div', { class: 'toolbar', style: 'justify-content:space-between;margin-bottom:12px' },
-            h('h2', { class: 'panel-title', style: 'margin:0' }, 'Preview — ', h('span', { class: 'muted break' }, fileName)),
-            button('Use another image', { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }),
+            h('h2', { class: 'panel-title', style: 'margin:0' }, t('Preview:'), ' ', h('span', { class: 'muted break' }, fileName)),
+            button(t('Use another image'), { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }),
           ),
           h('div', { class: 'icon-previews' }, ...previews),
         ),
         h('div', { class: 'panel' },
-          h('h2', { class: 'panel-title' }, 'Files'),
-          h('ul', { class: 'entry-list' }, ...outputs.map((o) => h('li', { class: 'entry' }, h('span', null), h('span', { class: 'entry-name' }, o.name), h('span', { class: 'entry-size' }, formatBytes(o.blob.size)), h('span', { class: 'entry-actions' }, button('', { variant: 'ghost', size: 'sm', icon: 'download', ariaLabel: `Download ${o.name}`, onClick: () => void downloadBlob(o.blob, o.name) }))))),
+          h('h2', { class: 'panel-title' }, t('Files')),
+          h('ul', { class: 'entry-list' }, ...outputs.map((o) => h('li', { class: 'entry' }, h('span', null), h('span', { class: 'entry-name' }, o.name), h('span', { class: 'entry-size' }, formatBytes(o.blob.size)), h('span', { class: 'entry-actions' }, button('', { variant: 'ghost', size: 'sm', icon: 'download', ariaLabel: t('Download {name}', { name: o.name }), onClick: () => void downloadBlob(o.blob, o.name) }))))),
           h('div', { class: 'toolbar', style: 'margin-top:12px' },
-            button('Download all (ZIP)', { variant: 'primary', icon: 'download', size: 'lg', onClick: async () => {
+            button(t('Download all (ZIP)'), { variant: 'primary', icon: 'download', size: 'lg', onClick: async () => {
               const zip = await zipFiles(outputs.map((o) => ({ name: o.name, data: o.blob })), { level: 6 });
               await downloadBlob(zip, 'favicons.zip');
               ctx.recordUse(s);
             } }),
-            button('Download favicon.ico', { variant: 'secondary', icon: 'download', onClick: () => void downloadBlob(ico, 'favicon.ico') }),
+            button(t('Download {name}', { name: 'favicon.ico' }), { variant: 'secondary', icon: 'download', onClick: () => void downloadBlob(ico, 'favicon.ico') }),
           ),
         ),
         snippetBox,

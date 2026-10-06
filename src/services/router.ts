@@ -4,6 +4,7 @@
  * redirect hacks; in-app navigation is intercepted for instant page changes.
  */
 import { APP_BASE_PATH, href, routeOf } from '../utils/base';
+import { langPrefix, setLang, type Lang } from '../i18n/i18n';
 
 export type Route =
   | { name: 'home' }
@@ -12,8 +13,19 @@ export type Route =
   | { name: 'tool'; id: string }
   | { name: 'notFound'; path: string };
 
+/** Language encoded in a pathname (/ru/… → ru). */
+export function langOf(pathname: string): Lang {
+  return /^ru(\/|$)/.test(routeOf(pathname)) ? 'ru' : 'en';
+}
+
+/** Route path without base and language prefix, e.g. "tools/zip/". */
+export function routePathOf(pathname: string): string {
+  return routeOf(pathname).replace(/^ru(\/|$)/, '').replace(/index\.html$/, '');
+}
+
 export function parseRoute(pathname: string): Route {
-  const path = routeOf(pathname).replace(/index\.html$/, '').replace(/\/+$/, '');
+  setLang(langOf(pathname));
+  const path = routePathOf(pathname).replace(/\/+$/, '');
   if (path === '' || path === '404.html') return path === '' ? { name: 'home' } : { name: 'notFound', path: pathname };
   const parts = path.split('/');
   if (parts[0] === 'tools' && parts.length === 1) return { name: 'tools' };
@@ -23,10 +35,12 @@ export function parseRoute(pathname: string): Route {
 }
 
 export const routeHref = {
-  home: () => href(''),
-  tools: () => href('tools/'),
-  tool: (id: string) => href(`tools/${id}/`),
-  category: (id: string) => href(`category/${id}/`),
+  home: () => href(langPrefix()),
+  tools: () => href(`${langPrefix()}tools/`),
+  tool: (id: string) => href(`${langPrefix()}tools/${id}/`),
+  category: (id: string) => href(`${langPrefix()}category/${id}/`),
+  /** The current page in another language. */
+  inLang: (lang: Lang) => href(langPrefix(lang) + routePathOf(location.pathname)),
 };
 
 type Handler = (route: Route, opts: { scroll: boolean }) => void;
@@ -34,7 +48,8 @@ let handler: Handler | null = null;
 
 export function navigate(url: string, opts: { replace?: boolean } = {}): void {
   const target = new URL(url, location.href);
-  if (target.origin !== location.origin || !target.pathname.startsWith(APP_BASE_PATH)) {
+  // Another language means another static shell (header/footer): do a full load.
+  if (target.origin !== location.origin || !target.pathname.startsWith(APP_BASE_PATH) || langOf(target.pathname) !== langOf(location.pathname)) {
     location.href = target.href;
     return;
   }
@@ -49,7 +64,7 @@ export function startRouter(h: Handler): void {
   document.addEventListener('click', (e) => {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     const a = (e.target as HTMLElement).closest?.('a');
-    if (!a || a.target === '_blank' || a.hasAttribute('download') || a.dataset.external !== undefined) return;
+    if (!a || a.target === '_blank' || a.hasAttribute('download') || a.dataset.external !== undefined || a.dataset.langLink) return;
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin || !url.pathname.startsWith(APP_BASE_PATH)) return;
     if (/\.(xml|txt|webmanifest|json|png|svg|ico)$/.test(url.pathname)) return;

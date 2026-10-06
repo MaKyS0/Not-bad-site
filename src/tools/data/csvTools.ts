@@ -7,14 +7,15 @@ import { parseJson, jsonToRows } from './lib/json';
 import { describeError } from '../../utils/errors';
 import { baseName } from '../../utils/format';
 import { routeHref } from '../../services/router';
+import { plural, t } from '../../i18n/i18n';
 
 type Mode = 'view' | 'csv2json' | 'json2csv';
 const DELIMS = [
-  { value: 'auto', label: 'Auto-detect' },
-  { value: ',', label: 'Comma ( , )' },
-  { value: ';', label: 'Semicolon ( ; )' },
-  { value: '\t', label: 'Tab' },
-  { value: '|', label: 'Pipe ( | )' },
+  { value: 'auto', label: t('Auto-detect') },
+  { value: ',', label: t('Comma ( , )') },
+  { value: ';', label: t('Semicolon ( ; )') },
+  { value: '\t', label: t('Tab') },
+  { value: '|', label: t('Pipe ( | )') },
 ];
 const DELIM_NAMES: Record<string, string> = { ',': 'comma', ';': 'semicolon', '\t': 'tab', '|': 'pipe' };
 const SAMPLE_CSV = 'name,age,city,active\nAnn,31,"Berlin, DE",true\nBob,27,Paris,false\n"Zoë ""Z"" Li",45,Tokyo,true';
@@ -37,17 +38,17 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   const status = h('p', { class: 'status-line', role: 'status' });
   const isCsvInput = mode !== 'json2csv';
   const input = textEditor({
-    label: isCsvInput ? 'CSV input' : 'JSON input',
+    label: isCsvInput ? t('CSV input') : t('JSON input'),
     accept: ctx.meta.supportedFormats,
     encoding: isCsvInput,
     rows: 14,
     sample: isCsvInput ? SAMPLE_CSV : SAMPLE_JSON,
-    placeholder: isCsvInput ? 'Paste CSV here or open a .csv file…' : 'Paste a JSON array of objects…',
+    placeholder: isCsvInput ? t('Paste CSV here or open a .csv file…') : t('Paste a JSON array of objects…'),
     onInput: debounce(() => run(), 200),
     maxBytes: 100 * 1024 * 1024,
   });
   const name = () => (input.fileName ? baseName(input.fileName) : 'data');
-  const output = outputPanel({ label: mode === 'json2csv' ? 'CSV output' : 'JSON output', rows: 14, fileName: () => `${name()}.${mode === 'json2csv' ? 'csv' : 'json'}`, mime: mode === 'json2csv' ? 'text/csv;charset=utf-8' : 'application/json' });
+  const output = outputPanel({ label: mode === 'json2csv' ? t('CSV output') : t('JSON output'), rows: 14, fileName: () => `${name()}.${mode === 'json2csv' ? 'csv' : 'json'}`, mime: mode === 'json2csv' ? 'text/csv;charset=utf-8' : 'application/json' });
   const tableBox = h('div', { class: 'stack-sm' });
 
   function parseCsv(text: string) {
@@ -83,16 +84,16 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
         const csv = Papa.unparse({ fields, data: rows as unknown[][] }, { delimiter: s.outDelimiter, quotes: s.quoteAll, newline: '\r\n' });
         output.set(s.bom ? `﻿${csv}` : csv);
         status.className = 'status-line status-ok';
-        status.textContent = `✓ ${rows.length.toLocaleString()} rows × ${fields.length} columns`;
+        status.textContent = `✓ ${plural(rows.length, 'row')} × ${plural(fields.length, 'column')}`;
         mark();
         return;
       }
       const res = parseCsv(text);
       const rows = res.data as string[][];
       const delim = res.meta.delimiter;
-      const errs = res.errors.slice(0, 3).map((e) => `Row ${(e.row ?? 0) + 1}: ${e.message}`);
+      const errs = res.errors.slice(0, 3).map((e) => `${t('Row {n}', { n: (e.row ?? 0) + 1 })}: ${e.message}`);
       status.className = `status-line ${errs.length ? 'status-err' : 'status-ok'}`;
-      status.textContent = `${errs.length ? '⚠' : '✓'} ${rows.length.toLocaleString()} rows · delimiter: ${DELIM_NAMES[delim] ?? JSON.stringify(delim)}${errs.length ? ` · ${res.errors.length} issue(s): ${errs.join('; ')}` : ''}`;
+      status.textContent = `${errs.length ? '⚠' : '✓'} ${plural(rows.length, 'row')} · ${t('delimiter: {d}', { d: DELIM_NAMES[delim] ? t(DELIM_NAMES[delim]) : JSON.stringify(delim) })}${errs.length ? ` · ${plural(res.errors.length, 'issue')}: ${errs.join('; ')}` : ''}`;
       if (mode === 'view') {
         renderTable(rows);
       } else {
@@ -120,14 +121,14 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     const cols = Math.max(head.length, ...body.slice(0, VIEW_LIMIT).map((r) => r.length));
     render(
       tableBox,
-      body.length > VIEW_LIMIT ? notice('info', `Showing the first ${VIEW_LIMIT.toLocaleString()} of ${body.length.toLocaleString()} rows. Convert to JSON to get all data.`) : null,
+      body.length > VIEW_LIMIT ? notice('info', t('Showing the first {n} of {total} rows. Convert to JSON to get all data.', { n: VIEW_LIMIT.toLocaleString(), total: body.length.toLocaleString() })) : null,
       h('div', { class: 'table-wrap', style: 'max-height:70vh' },
         h('table', { class: 'data-table' },
           h('thead', null, h('tr', null, h('th', { class: 'rownum', scope: 'col' }, '#'), ...Array.from({ length: cols }, (_, i) => h('th', { scope: 'col' }, head[i] ?? '')))),
           h('tbody', null, ...body.slice(0, VIEW_LIMIT).map((r, i) => h('tr', null, h('td', { class: 'rownum' }, String(i + 1)), ...Array.from({ length: cols }, (_, c) => h('td', { title: r[c] ?? '' }, r[c] ?? ''))))),
         ),
       ),
-      h('p', { class: 'hint' }, 'Need JSON? ', h('a', { href: routeHref.tool('csv-to-json') }, 'Convert this CSV to JSON'), '.'),
+      h('p', { class: 'hint' }, t('Need JSON? '), h('a', { href: routeHref.tool('csv-to-json') }, t('Convert this CSV to JSON')), '.'),
     );
   }
 
@@ -135,14 +136,14 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   const options = h('div', { class: 'panel stack' });
   if (isCsvInput) {
     append(options, [
-      h('div', { class: 'options-grid' }, field('Delimiter', select(DELIMS, s.delimiter, (v) => { s.delimiter = v; save(); run(); }))),
+      h('div', { class: 'options-grid' }, field(t('Delimiter'), select(DELIMS, s.delimiter, (v) => { s.delimiter = v; save(); run(); }))),
       h('div', { class: 'stack-sm' }, opt('First row is a header', 'header'), mode === 'csv2json' ? opt('Convert numbers & booleans', 'dynamicTyping') : null, opt('Skip empty lines', 'skipEmpty')),
-      mode === 'csv2json' ? segmented<'objects' | 'arrays'>('JSON shape', [{ value: 'objects', label: 'Array of objects' }, { value: 'arrays', label: 'Array of arrays' }], s.jsonShape, (v) => { s.jsonShape = v; save(); run(); }).el : null,
-      h('p', { class: 'hint' }, 'Wrong characters (Ã©, Ð¿…)? Choose the file’s encoding in the selector next to “Open file”.'),
+      mode === 'csv2json' ? segmented<'objects' | 'arrays'>(t('JSON shape'), [{ value: 'objects', label: t('Array of objects') }, { value: 'arrays', label: t('Array of arrays') }], s.jsonShape, (v) => { s.jsonShape = v; save(); run(); }).el : null,
+      h('p', { class: 'hint' }, t('Wrong characters (Ã©, Ð¿…)? Choose the file’s encoding in the selector next to “Open file”.')),
     ]);
   } else {
     options.append(
-      h('div', { class: 'options-grid' }, field('Output delimiter', select(DELIMS.filter((d) => d.value !== 'auto'), s.outDelimiter, (v) => { s.outDelimiter = v; save(); run(); }))),
+      h('div', { class: 'options-grid' }, field(t('Output delimiter'), select(DELIMS.filter((d) => d.value !== 'auto'), s.outDelimiter, (v) => { s.outDelimiter = v; save(); run(); }))),
       h('div', { class: 'stack-sm' }, opt('Flatten nested objects (address.city)', 'flatten'), opt('Quote all fields', 'quoteAll'), opt('Add UTF-8 BOM (helps Excel open non-English text)', 'bom')),
     );
   }

@@ -9,6 +9,7 @@ import { downloadAll, downloadBlob } from '../../services/download';
 import { baseName, formatBytes } from '../../utils/format';
 import { canvasToBlob, maxArea, MAX_SIDE } from '../../utils/imageCore';
 import { nextFrame } from '../../utils/dom';
+import { plural, t } from '../../i18n/i18n';
 
 interface Settings {
   format: 'png' | 'jpeg';
@@ -24,23 +25,23 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     let abort: AbortController | null = null;
     const status = h('p', { class: 'hint', 'aria-live': 'polite' });
     const result = h('div', { 'aria-live': 'polite' });
-    const prog = progress('Rendering…');
-    const fmt = segmented<Settings['format']>('Image format', [{ value: 'png', label: 'PNG' }, { value: 'jpeg', label: 'JPG' }], s.format, (v) => { s.format = v; ctx.saveSettings(s); quality.el.hidden = v !== 'jpeg'; });
-    const dpi = segmented<string>('Resolution', [
-      { value: '72', label: '72 dpi' }, { value: '150', label: '150 dpi' }, { value: '200', label: '200 dpi' }, { value: '300', label: '300 dpi' },
+    const prog = progress(t('Rendering…'));
+    const fmt = segmented<Settings['format']>(t('Image format'), [{ value: 'png', label: 'PNG' }, { value: 'jpeg', label: 'JPG' }], s.format, (v) => { s.format = v; ctx.saveSettings(s); quality.el.hidden = v !== 'jpeg'; });
+    const dpi = segmented<string>(t('Resolution'), [
+      { value: '72', label: t('72 dpi') }, { value: '150', label: t('150 dpi') }, { value: '200', label: t('200 dpi') }, { value: '300', label: t('300 dpi') },
     ], String(s.dpi), (v) => { s.dpi = Number(v); ctx.saveSettings(s); });
-    const quality = slider('JPG quality', s.quality, { min: 10, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; ctx.saveSettings(s); } });
+    const quality = slider(t('JPG quality'), s.quality, { min: 10, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; ctx.saveSettings(s); } });
     quality.el.hidden = s.format !== 'jpeg';
     const pagesIn = textInput(pagesText, { onInput: (v) => { pagesText = v; check(); } });
-    const btn = button('Convert to images', { variant: 'primary', icon: 'image', size: 'lg', onClick: () => void run() });
-    const cancel = button('Cancel', { variant: 'secondary', icon: 'x', onClick: () => abort?.abort() });
+    const btn = button(t('Convert to images'), { variant: 'primary', icon: 'image', size: 'lg', onClick: () => void run() });
+    const cancel = button(t('Cancel'), { variant: 'secondary', icon: 'x', onClick: () => abort?.abort() });
     cancel.hidden = true;
 
     function check(): number[] | null {
       try {
         const pages = parsePageList(pagesText, n);
         status.className = 'hint';
-        status.textContent = `${pages.length} image${pages.length === 1 ? '' : 's'} will be created.`;
+        status.textContent = t('{images} will be created.', { images: plural(pages.length, 'image') });
         btn.disabled = false;
         return pages;
       } catch (e) {
@@ -69,7 +70,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       try {
         for (const [i, p] of pages.entries()) {
           throwIfAborted(signal);
-          prog.set(i / pages.length, `Rendering page ${p} (${i + 1} of ${pages.length})…`);
+          prog.set(i / pages.length, t('Rendering page {p} ({i} of {n})…', { p, i: i + 1, n: pages.length }));
           await nextFrame();
           // Respect canvas limits: lower the scale for huge pages instead of failing.
           const page = await doc.getPage(p);
@@ -85,14 +86,14 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
           canvas.width = canvas.height = 1;
           outputs.push({ name: `${base}-page-${String(p).padStart(String(n).length, '0')}.${ext}`, blob });
         }
-        prog.set(1, 'Done');
+        prog.set(1, t('Done'));
         const total = outputs.reduce((a, o) => a + o.blob.size, 0);
         render(
           result,
-          reduced ? notice('warn', 'Some pages were too large for the selected resolution on this device and were rendered at the highest possible resolution instead.') : null,
+          reduced ? notice('warn', t('Some pages were too large for the selected resolution on this device and were rendered at the highest possible resolution instead.')) : null,
           h('div', { class: 'batch-summary' },
             h('span', null, `${outputs.length} image${outputs.length > 1 ? 's' : ''} · ${formatBytes(total)}`),
-            button(outputs.length > 1 ? 'Download All (ZIP)' : 'Download', { variant: 'primary', icon: 'download', onClick: () => void downloadAll(outputs, `${base}-images.zip`) }),
+            button(outputs.length > 1 ? t('Download All (ZIP)') : t('Download'), { variant: 'primary', icon: 'download', onClick: () => void downloadAll(outputs, `${base}-images.zip`) }),
           ),
           h('ul', { class: 'file-list', style: 'margin-top:12px' }, ...outputs.slice(0, 200).map((o) => {
             const url = ctx.objectUrl(o.blob);
@@ -114,7 +115,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       }
     }
 
-    render(area, h('div', { class: 'panel stack' }, field('Pages', pagesIn, 'All pages by default. Example: 1-3, 8'), status, fmt.el, dpi.el, quality.el, h('div', { class: 'toolbar' }, btn, cancel), prog.el), result);
+    render(area, h('div', { class: 'panel stack' }, field(t('Pages'), pagesIn, t('All pages by default. Example: 1-3, 8')), status, fmt.el, dpi.el, quality.el, h('div', { class: 'toolbar' }, btn, cancel), prog.el), result);
     check();
   });
 };

@@ -5,6 +5,7 @@
 import { h, uid, type Child } from '../utils/dom';
 import { icon } from './icons';
 import { describeError, isAbort } from '../utils/errors';
+import { t } from '../i18n/i18n';
 
 export interface ButtonOpts {
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
@@ -137,7 +138,7 @@ export interface ProgressHandle {
 }
 
 /** Progress bar with text "Processing… ████░░ 82%". */
-export function progress(initialLabel = 'Processing…'): ProgressHandle {
+export function progress(initialLabel = t('Processing…')): ProgressHandle {
   const bar = h('div', { class: 'progress-fill' });
   const pct = h('span', { class: 'progress-pct' }, '0%');
   const text = h('span', { class: 'progress-label' }, initialLabel);
@@ -179,7 +180,7 @@ export function notice(kind: 'info' | 'warn' | 'error' | 'success', ...children:
 }
 
 /** The standard error panel shown when an operation fails. */
-export function errorPanel(e: unknown, onRetry?: () => void, retryLabel = 'Try another file'): HTMLElement {
+export function errorPanel(e: unknown, onRetry?: () => void, retryLabel = t('Try another file')): HTMLElement {
   if (isAbort(e)) return h('div');
   const f = describeError(e);
   if (!(e instanceof Error && e.name === 'UserError')) console.error(e);
@@ -190,7 +191,7 @@ export function errorPanel(e: unknown, onRetry?: () => void, retryLabel = 'Try a
     h('div', { class: 'error-body' },
       h('strong', null, f.title),
       f.message ? h('p', null, f.message) : null,
-      f.details ? h('details', null, h('summary', null, 'Technical details'), h('code', null, f.details)) : null,
+      f.details ? h('details', null, h('summary', null, t('Technical details')), h('code', null, f.details)) : null,
       onRetry ? button(retryLabel, { onClick: onRetry, variant: 'secondary' }) : null,
     ),
   );

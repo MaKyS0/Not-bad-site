@@ -5,10 +5,11 @@ import { kvTable, statGrid, errorPanel, button, notice } from '../../components/
 import { pdfWorker, readFileBytes, openPdfJs } from './lib';
 import type { PdfInfo } from '../../utils/pdfOps';
 import { formatBytes, formatDate } from '../../utils/format';
+import { plural, t } from '../../i18n/i18n';
 
 const PT_PER_MM = 72 / 25.4;
 const PAPER: [string, number, number][] = [
-  ['A3', 297, 420], ['A4', 210, 297], ['A5', 148, 210], ['Letter', 215.9, 279.4], ['Legal', 215.9, 355.6], ['Tabloid', 279.4, 431.8],
+  ['A3', 297, 420], ['A4', 210, 297], ['A5', 148, 210], [t('Letter'), 215.9, 279.4], [t('Legal'), 215.9, 355.6], [t('Tabloid'), 279.4, 431.8],
 ];
 
 export function paperName(wPt: number, hPt: number): string {
@@ -17,16 +18,16 @@ export function paperName(wPt: number, hPt: number): string {
   const [a, b] = w < hh ? [w, hh] : [hh, w];
   const hit = PAPER.find(([, pw, ph]) => Math.abs(pw - a) < 3 && Math.abs(ph - b) < 3);
   const dims = `${w.toFixed(0)} × ${hh.toFixed(0)} mm`;
-  return hit ? `${hit[0]} ${w > hh ? 'landscape' : 'portrait'} (${dims})` : dims;
+  return hit ? `${hit[0]} ${w > hh ? t('landscape') : t('portrait')} (${dims.replace('mm', t('mm'))})` : dims.replace('mm', t('mm'));
 }
 
 export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) => {
   const out = h('div', { class: 'tool-main', 'aria-live': 'polite' });
-  const zone = dropzone({ accept: ['pdf'], multiple: false, onFiles: (f) => void inspect(f[0]), paste: true, title: 'Drop a PDF here' });
+  const zone = dropzone({ accept: ['pdf'], multiple: false, onFiles: (f) => void inspect(f[0]), paste: true, title: t('Drop a PDF here') });
   root.append(zone, out);
 
   async function inspect(file: File) {
-    render(out, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), 'Reading PDF…'));
+    render(out, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), t('Reading PDF…')));
     try {
       const bytes = await readFileBytes(file);
       const info = await pdfWorker().call<PdfInfo>('info', { bytes: bytes.slice() }, { signal: ctx.signal });
@@ -37,12 +38,12 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
         const meta = await doc.getMetadata();
         const infoDict = meta.info as Record<string, unknown>;
         extra = [
-          ['Linearized (fast web view)', infoDict?.IsLinearized ? 'Yes' : 'No'],
-          ['AcroForm (fillable form)', infoDict?.IsAcroFormPresent ? 'Yes' : 'No'],
-          ['XFA form', infoDict?.IsXFAPresent ? 'Yes' : 'No'],
+          [t('Linearized (fast web view)'), infoDict?.IsLinearized ? t('Yes') : t('No')],
+          [t('AcroForm (fillable form)'), infoDict?.IsAcroFormPresent ? t('Yes') : t('No')],
+          [t('XFA form'), infoDict?.IsXFAPresent ? t('Yes') : t('No')],
         ];
         const xmpTitle = meta.metadata?.get('dc:title');
-        if (xmpTitle && !info.title) extra.unshift(['Title (XMP)', String(xmpTitle)]);
+        if (xmpTitle && !info.title) extra.unshift([t('Title (XMP)'), String(xmpTitle)]);
         await doc.loadingTask.destroy();
       } catch {
         extra = [];
@@ -56,26 +57,26 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
       render(
         out,
         statGrid([
-          ['Pages', info.pageCount.toLocaleString()],
-          ['File size', formatBytes(file.size)],
-          ['PDF version', info.version ?? '—'],
-          ['Encrypted', info.encrypted ? 'Yes' : 'No'],
+          [t('Pages'), info.pageCount.toLocaleString()],
+          [t('File size'), formatBytes(file.size)],
+          [t('PDF version'), info.version ?? '—'],
+          [t('Encrypted'), info.encrypted ? t('Yes') : t('No')],
         ]),
-        info.encrypted ? notice('warn', 'This PDF is encrypted. Metadata may be unreadable and editing tools (merge, split, rotate) cannot modify it.') : null,
+        info.encrypted ? notice('warn', t('This PDF is encrypted. Metadata may be unreadable and editing tools (merge, split, rotate) cannot modify it.')) : null,
         kvTable([
-          ['File name', h('span', { class: 'break' }, file.name)],
-          ['Title', info.title || '—'],
-          ['Author', info.author || '—'],
-          ['Subject', info.subject || '—'],
-          ['Keywords', info.keywords || '—'],
-          ['Creator (app)', info.creator || '—'],
-          ['Producer', info.producer || '—'],
-          ['Created', info.creationDate ? formatDate(new Date(info.creationDate)) : '—'],
-          ['Modified', info.modificationDate ? formatDate(new Date(info.modificationDate)) : '—'],
+          [t('File name'), h('span', { class: 'break' }, file.name)],
+          [t('Title'), info.title || '—'],
+          [t('Author'), info.author || '—'],
+          [t('Subject'), info.subject || '—'],
+          [t('Keywords'), info.keywords || '—'],
+          [t('Creator (app)'), info.creator || '—'],
+          [t('Producer'), info.producer || '—'],
+          [t('Created'), info.creationDate ? formatDate(new Date(info.creationDate)) : '—'],
+          [t('Modified'), info.modificationDate ? formatDate(new Date(info.modificationDate)) : '—'],
           ...extra,
-        ], 'Document metadata'),
-        kvTable([...sizes.entries()].map(([k, v]) => [k, `${v} page${v > 1 ? 's' : ''}`] as [string, string]).concat(rotated ? [['Rotated pages', String(rotated)]] : []), 'Page sizes'),
-        h('div', { class: 'toolbar' }, button('Inspect another PDF', { variant: 'ghost', icon: 'upload', onClick: () => zone.querySelector('input')?.click() })),
+        ], t('Document metadata')),
+        kvTable([...sizes.entries()].map(([k, v]) => [k, plural(v, 'page')] as [string, string]).concat(rotated ? [[t('Rotated pages'), String(rotated)]] : []), t('Page sizes')),
+        h('div', { class: 'toolbar' }, button(t('Inspect another PDF'), { variant: 'ghost', icon: 'upload', onClick: () => zone.querySelector('input')?.click() })),
       );
       ctx.recordUse();
     } catch (e) {

@@ -4,6 +4,7 @@ import { createBatch } from '../../components/batch';
 import { slider, field, numberInput, checkbox, segmented, select } from '../../components/ui';
 import { processImage, decodeImage, isSvg } from '../../services/imageService';
 import { formatSelect, outputTypeFor, outputName, type FormatChoice } from './shared';
+import { t } from '../../i18n/i18n';
 
 type Mode = 'pixels' | 'percent';
 type Fit = 'fit' | 'exact';
@@ -56,16 +57,16 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   };
   let firstSize: { width: number; height: number } | null = null;
 
-  const mode = segmented<Mode>('Resize by', [{ value: 'pixels', label: 'Pixels' }, { value: 'percent', label: 'Percentage' }], s.mode, (v) => { s.mode = v; save(); sync(); });
+  const mode = segmented<Mode>(t('Resize by'), [{ value: 'pixels', label: t('Pixels') }, { value: 'percent', label: t('Percentage') }], s.mode, (v) => { s.mode = v; save(); sync(); });
   const wIn = numberInput(s.width, { min: 0, max: 16384, onInput: (v) => { s.width = Math.max(0, Math.round(v)); linkFrom('w'); save(); preview(); } });
   const hIn = numberInput(s.height, { min: 0, max: 16384, onInput: (v) => { s.height = Math.max(0, Math.round(v)); linkFrom('h'); save(); preview(); } });
-  const lock = checkbox('Lock aspect ratio', s.lock, (v) => { s.lock = v; save(); sync(); });
-  const fitSel = field('When both are set', select<Fit>([{ value: 'fit', label: 'Fit inside width × height' }, { value: 'exact', label: 'Use width, height follows' }], s.fit, (v) => { s.fit = v; save(); preview(); }));
-  const pct = slider('Scale', s.percent, { min: 1, max: 400, format: (v) => `${v}%`, onInput: (v) => { s.percent = v; save(); preview(); } });
-  const noUp = checkbox('Never enlarge smaller images', s.noUpscale, (v) => { s.noUpscale = v; save(); preview(); });
-  const quality = slider('Quality (JPG/WebP)', s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
-  const info = h('p', { class: 'hint', 'aria-live': 'polite' }, 'Leave width or height at 0 to calculate it automatically.');
-  const pxBox = h('div', { class: 'field' }, h('div', { class: 'two-col' }, field('Width (px)', wIn), field('Height (px)', hIn)), lock.el, fitSel);
+  const lock = checkbox(t('Lock aspect ratio'), s.lock, (v) => { s.lock = v; save(); sync(); });
+  const fitSel = field(t('When both are set'), select<Fit>([{ value: 'fit', label: t('Fit inside width × height') }, { value: 'exact', label: t('Use width, height follows') }], s.fit, (v) => { s.fit = v; save(); preview(); }));
+  const pct = slider(t('Scale'), s.percent, { min: 1, max: 400, format: (v) => `${v}%`, onInput: (v) => { s.percent = v; save(); preview(); } });
+  const noUp = checkbox(t('Never enlarge smaller images'), s.noUpscale, (v) => { s.noUpscale = v; save(); preview(); });
+  const quality = slider(t('Quality (JPG/WebP)'), s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
+  const info = h('p', { class: 'hint', 'aria-live': 'polite' }, t('Leave width or height at 0 to calculate it automatically.'));
+  const pxBox = h('div', { class: 'field' }, h('div', { class: 'two-col' }, field(t('Width (px)'), wIn), field(t('Height (px)'), hIn)), lock.el, fitSel);
 
   function linkFrom(which: 'w' | 'h') {
     // With a locked ratio and a known first image, keep the other field in sync for clarity.
@@ -81,8 +82,8 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
 
   function preview() {
     if (!firstSize) return;
-    const t = targetSize(firstSize.width, firstSize.height, s);
-    info.textContent = `First image: ${firstSize.width}×${firstSize.height} → ${t.width}×${t.height} px`;
+    const ts = targetSize(firstSize.width, firstSize.height, s);
+    info.textContent = t('First image: {w}×{h} → {tw}×{th} px', { w: firstSize.width, h: firstSize.height, tw: ts.width, th: ts.height });
   }
 
   function sync() {
@@ -95,7 +96,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   const batch = createBatch({
     ctx,
     accept: ctx.meta.supportedFormats,
-    actionLabel: 'Resize',
+    actionLabel: t('Resize'),
     zipName: 'resized-images.zip',
     concurrency: 3,
     onFilesChange: async (items) => {
@@ -118,16 +119,16 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       const d = await decodeImage(file);
       const size = { width: d.width, height: d.height };
       d.close();
-      const t = targetSize(size.width, size.height, s);
+      const ts = targetSize(size.width, size.height, s);
       const type = outputTypeFor(file, s.format);
-      const res = await processImage(file, { resize: t, output: { type, quality: s.quality / 100 } }, { onProgress, signal, svgWidth: svg ? t.width : undefined });
+      const res = await processImage(file, { resize: ts, output: { type, quality: s.quality / 100 } }, { onProgress, signal, svgWidth: svg ? ts.width : undefined });
       return { name: outputName(file, type, `-${res.width}x${res.height}`), blob: res.blob, width: res.width, height: res.height };
     },
   });
 
   root.append(
     h('div', { class: 'tool-layout' },
-      h('aside', { class: 'tool-options panel', 'aria-label': 'Resize options' }, mode.el, pxBox, pct.el, noUp.el, info, formatSelect(s.format, (v) => { s.format = v; save(); }), quality.el),
+      h('aside', { class: 'tool-options panel', 'aria-label': t('Resize options') }, mode.el, pxBox, pct.el, noUp.el, info, formatSelect(s.format, (v) => { s.format = v; save(); }), quality.el),
       h('div', { class: 'tool-main' }, batch.el),
     ),
   );

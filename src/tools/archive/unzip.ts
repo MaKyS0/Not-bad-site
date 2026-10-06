@@ -8,6 +8,7 @@ import { downloadBlob } from '../../services/download';
 import { formatBytes } from '../../utils/format';
 import { sniffBytes } from '../../utils/fileType';
 import { describeError } from '../../utils/errors';
+import { plural, t } from '../../i18n/i18n';
 
 interface DirHandle {
   getDirectoryHandle(name: string, o?: { create?: boolean }): Promise<DirHandle>;
@@ -26,15 +27,15 @@ const MAX_ARCHIVE = 1024 * 1024 * 1024;
 
 export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) => {
   const area = h('div', { class: 'stack' });
-  const zone = dropzone({ accept: ['zip'], multiple: false, onFiles: (f) => void open(f[0]), paste: true, title: 'Drop a ZIP file here' });
+  const zone = dropzone({ accept: ['zip'], multiple: false, onFiles: (f) => void open(f[0]), paste: true, title: t('Drop a ZIP file here') });
   root.append(zone, area);
   let buf: Uint8Array | null = null;
   ctx.onCleanup(() => (buf = null));
 
   async function open(file: File) {
-    render(area, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), 'Reading archive…'));
+    render(area, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), t('Reading archive…')));
     try {
-      if (file.size > MAX_ARCHIVE) throw new Error(`Archives larger than ${formatBytes(MAX_ARCHIVE)} cannot be opened in the browser.`);
+      if (file.size > MAX_ARCHIVE) throw new Error(t('Archives larger than {size} cannot be opened in the browser.', { size: formatBytes(MAX_ARCHIVE) }));
       buf = new Uint8Array(await file.arrayBuffer());
       const entries = listZip(buf).filter((e) => !e.isDirectory);
       draw(file, entries);
@@ -47,8 +48,8 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
   function draw(file: File, entries: ZipEntryInfo[]) {
     let filter = '';
     const preview = h('div', { 'aria-live': 'polite' });
-    const listEl = h('ul', { class: 'entry-list', 'aria-label': 'Files in archive' });
-    const prog = progress('Extracting…');
+    const listEl = h('ul', { class: 'entry-list', 'aria-label': t('Files in archive') });
+    const prog = progress(t('Extracting…'));
     const total = entries.reduce((a, e) => a + e.size, 0);
     const picker = (window as PickerWindow).showDirectoryPicker;
 
@@ -59,7 +60,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
 
     const showPreview = async (e: ZipEntryInfo) => {
       try {
-        if (e.size > 20 * 1024 * 1024) return render(preview, notice('info', 'File too large to preview — download it instead.'));
+        if (e.size > 20 * 1024 * 1024) return render(preview, notice('info', t('File too large to preview — download it instead.')));
         const blob = getBlob(e);
         if (PREVIEW_IMG.test(e.name)) {
           render(preview, h('div', { class: 'panel' }, h('h2', { class: 'panel-title break' }, e.name), h('div', { class: 'preview-box' }, h('img', { src: ctx.objectUrl(blob), alt: e.name }))));
@@ -104,7 +105,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
       try {
         let i = 0;
         for (const e of entries) {
-          prog.set(i++ / entries.length, `Extracting ${i} of ${entries.length}…`);
+          prog.set(i++ / entries.length, t('Extracting {i} of {n}…', { i, n: entries.length }));
           const segs = safeSegments(e.name);
           const fileName = segs.pop();
           if (!fileName) continue;
@@ -115,25 +116,25 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
           await w.write(extractEntry(buf!, e.name) as BlobPart);
           await w.close();
         }
-        render(preview, notice('success', `Extracted ${entries.length} files to the selected folder.`));
+        render(preview, notice('success', t('Extracted {files} to the selected folder.', { files: plural(entries.length, 'file') })));
       } catch (err) {
-        render(preview, notice('error', `Extraction stopped: ${describeError(err).title}`));
+        render(preview, notice('error', t('Extraction stopped: {reason}', { reason: describeError(err).title })));
       } finally {
         prog.hide();
       }
     };
 
-    const filterIn = textInput('', { placeholder: 'Filter files…', ariaLabel: 'Filter files', onInput: (v) => { filter = v.toLowerCase(); drawList(); } });
+    const filterIn = textInput('', { placeholder: t('Filter files…'), ariaLabel: t('Filter files'), onInput: (v) => { filter = v.toLowerCase(); drawList(); } });
     render(
       area,
       h('div', { class: 'panel stack' },
         h('div', { class: 'toolbar', style: 'justify-content:space-between' },
-          h('p', { style: 'margin:0' }, h('strong', { class: 'break' }, file.name), ` · ${entries.length.toLocaleString()} files · ${formatBytes(file.size)} → ${formatBytes(total)} uncompressed`),
-          button('Open another ZIP', { variant: 'ghost', icon: 'upload', onClick: () => zone.querySelector('input')?.click() }),
+          h('p', { style: 'margin:0' }, h('strong', { class: 'break' }, file.name), ` · ${plural(entries.length, 'file')} · ${formatBytes(file.size)} → ${t('{size} uncompressed', { size: formatBytes(total) })}`),
+          button(t('Open another ZIP'), { variant: 'ghost', icon: 'upload', onClick: () => zone.querySelector('input')?.click() }),
         ),
         picker
-          ? h('div', { class: 'toolbar' }, button('Extract all to a folder…', { variant: 'primary', icon: 'folder', onClick: () => void saveAll() }))
-          : notice('info', 'Your browser cannot write to folders, so files are downloaded one at a time using the download buttons. (Chrome and Edge on desktop support “Extract all to a folder”.)'),
+          ? h('div', { class: 'toolbar' }, button(t('Extract all to a folder…'), { variant: 'primary', icon: 'folder', onClick: () => void saveAll() }))
+          : notice('info', t('Your browser cannot write to folders, so files are downloaded one at a time using the download buttons. (Chrome and Edge on desktop support “Extract all to a folder”.)')),
         prog.el,
         entries.length > 20 ? filterIn : null,
       ),

@@ -4,14 +4,16 @@ import './styles/components.css';
 import './styles/tools.css';
 import { initTheme } from './services/theme';
 import { startApp } from './app';
-import { preventWindowDrop } from './components/dropzone';
+import { installGlobalDrop } from './components/dropzone';
 import { initSearchShortcut } from './components/searchDialog';
 import { registerServiceWorker } from './services/sw';
 import { toast } from './components/toast';
-import { isAbort } from './utils/errors';
+import { t, translateMessage } from './i18n/i18n';
+import { isAbort, setErrorTranslator } from './utils/errors';
 
+setErrorTranslator((s) => translateMessage(s));
 initTheme();
-preventWindowDrop();
+installGlobalDrop();
 initSearchShortcut();
 
 // Never leave the user with a white screen or a silent failure.
@@ -19,12 +21,12 @@ window.addEventListener('error', (e) => {
   // Ignore errors from extensions / cross-origin scripts without details.
   if (!e.error) return;
   console.error(e.error);
-  toast('Something went wrong. Please try again or use another file.', 'error', 5000);
+  toast(t('Something went wrong. Please try again or use another file.'), 'error', 5000);
 });
 window.addEventListener('unhandledrejection', (e) => {
   if (isAbort(e.reason)) return;
   console.error(e.reason);
-  toast('Something went wrong. Please try again or use another file.', 'error', 5000);
+  toast(t('Something went wrong. Please try again or use another file.'), 'error', 5000);
 });
 
 startApp();

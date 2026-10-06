@@ -12,6 +12,7 @@ import { describeError, isAbort } from '../utils/errors';
 import { guessKind } from '../utils/fileType';
 import type { OutputFile, ToolContext } from '../tools/types';
 import { toast } from './toast';
+import { plural, t } from '../i18n/i18n';
 
 export interface BatchResult extends OutputFile {
   width?: number;
@@ -66,19 +67,19 @@ export function createBatch(opts: BatchOptions): BatchHandle {
   let running = false;
   let runController: AbortController | null = null;
 
-  const list = h('ul', { class: 'file-list', 'aria-label': 'Files' });
-  const overall = progress('Processing…');
+  const list = h('ul', { class: 'file-list', 'aria-label': t('Files') });
+  const overall = progress(t('Processing…'));
   const summary = h('div', { class: 'batch-summary', hidden: true, role: 'status' });
   const runBtn = button(opts.actionLabel, { variant: 'primary', icon: 'zap', size: 'lg', onClick: () => void run() });
-  const cancelBtn = button('Cancel', { variant: 'secondary', icon: 'x', onClick: () => runController?.abort() });
+  const cancelBtn = button(t('Cancel'), { variant: 'secondary', icon: 'x', onClick: () => runController?.abort() });
   cancelBtn.hidden = true;
-  const clearBtn = button('Clear all', { variant: 'ghost', icon: 'trash', onClick: () => setItems([]) });
-  const dlAllBtn = button('Download All', { variant: 'primary', icon: 'download', onClick: () => void dlAll() });
+  const clearBtn = button(t('Clear all'), { variant: 'ghost', icon: 'trash', onClick: () => setItems([]) });
+  const dlAllBtn = button(t('Download All'), { variant: 'primary', icon: 'download', onClick: () => void dlAll() });
   dlAllBtn.hidden = true;
-  const actions = h('div', { class: 'toolbar' }, runBtn, cancelBtn, dlAllBtn, h('span', { class: 'toolbar-end' }, clearBtn));
+  const actions = h('div', { class: 'toolbar batch-actions' }, runBtn, cancelBtn, dlAllBtn, h('span', { class: 'toolbar-end' }, clearBtn));
 
-  const zone = dropzone({ accept: opts.accept, multiple: true, onFiles: (f) => addFiles(f), compact: true, paste: true, title: 'Drop files here', subtitle: 'or' });
-  const body = h('div', { class: 'batch-body', hidden: true }, actions, overall.el, summary, list);
+  const zone = dropzone({ accept: opts.accept, multiple: true, onFiles: (f) => addFiles(f), compact: true, paste: true });
+  const body = h('div', { class: 'batch-body', hidden: true }, overall.el, summary, list, actions);
   const el = h('div', { class: 'batch' }, zone, body);
 
   const releaseThumb = (it: BatchItem) => {
@@ -120,17 +121,17 @@ export function createBatch(opts: BatchOptions): BatchHandle {
         res.note ? h('span', null, res.note) : null,
       ]);
     } else if (it.status === 'error') {
-      meta.append(h('span', { class: 'status-err' }, it.error ?? 'Failed'));
+      meta.append(h('span', { class: 'status-err' }, it.error ?? t('Failed')));
     } else {
-      meta.append(h('span', null, formatBytes(it.file.size)), h('span', null, it.status === 'working' ? 'Processing…' : 'Ready'));
+      meta.append(h('span', null, formatBytes(it.file.size)), h('span', null, it.status === 'working' ? t('Processing…') : t('Ready')));
     }
     const actionsEl = h(
       'div',
       { class: 'file-actions' },
       it.status === 'done' && res
-        ? button('', { variant: 'secondary', icon: 'download', size: 'sm', ariaLabel: `Download ${res.name}`, title: 'Download', onClick: (e) => { e.stopPropagation(); void downloadBlob(res.blob, res.name); } })
+        ? button('', { variant: 'secondary', icon: 'download', size: 'sm', ariaLabel: t('Download {name}', { name: res.name }), title: t('Download'), onClick: (e) => { e.stopPropagation(); void downloadBlob(res.blob, res.name); } })
         : null,
-      iconButton('x', `Remove ${it.file.name}`, (e) => {
+      iconButton('x', t('Remove {name}', { name: it.file.name }), (e) => {
         e.stopPropagation();
         setItems(items.filter((x) => x !== it));
       }),
@@ -141,7 +142,7 @@ export function createBatch(opts: BatchOptions): BatchHandle {
       {
         class: ['file-row', it.status === 'error' && 'is-error', opts.onSelect && it.status === 'done' && 'is-clickable'],
         tabindex: opts.onSelect && it.status === 'done' ? '0' : undefined,
-        'aria-label': opts.onSelect && it.status === 'done' ? `${name}: show preview` : undefined,
+        'aria-label': opts.onSelect && it.status === 'done' ? t('{name}: show preview', { name }) : undefined,
       },
       thumb,
       h('div', { class: 'file-info' }, h('span', { class: 'file-name', title: name }, name), meta),
@@ -171,9 +172,9 @@ export function createBatch(opts: BatchOptions): BatchHandle {
     render(list, ...items.map(rowFor));
     const done = items.filter((i) => i.status === 'done');
     dlAllBtn.hidden = done.length === 0;
-    dlAllBtn.querySelector('span')!.textContent = done.length > 1 ? `Download All (${done.length}) as ZIP` : 'Download';
+    dlAllBtn.querySelector('span')!.textContent = done.length > 1 ? t('Download All ({n}) as ZIP', { n: done.length }) : t('Download');
     const pending = items.filter((i) => i.status !== 'done').length;
-    runBtn.querySelector('span')!.textContent = pending && done.length ? `${opts.actionLabel} remaining ${pending}` : items.length > 1 ? `${opts.actionLabel} all ${items.length} files` : opts.actionLabel;
+    runBtn.querySelector('span')!.textContent = pending && done.length ? t('{action} remaining ({n})', { action: opts.actionLabel, n: pending }) : items.length > 1 ? t('{action} all ({files})', { action: opts.actionLabel, files: plural(items.length, 'file') }) : opts.actionLabel;
     runBtn.disabled = running || pending === 0;
     drawSummary();
   }
@@ -189,7 +190,7 @@ export function createBatch(opts: BatchOptions): BatchHandle {
     const after = done.reduce((s, i) => s + i.result!.blob.size, 0);
     render(
       summary,
-      h('span', null, `${done.length} of ${items.length} done`, failed ? ` · ${failed} failed` : ''),
+      h('span', null, t('{done} of {total} done', { done: done.length, total: items.length }), failed ? ` · ${t('{n} failed', { n: failed })}` : ''),
       done.length ? h('span', null, `${formatBytes(before)} → ${formatBytes(after)}`, opts.showSaving ? ` (${formatPercent(percentChange(before, after))})` : '') : null,
     );
     summary.hidden = false;
@@ -210,9 +211,9 @@ export function createBatch(opts: BatchOptions): BatchHandle {
     const total = queue.length;
     const tick = () => {
       const sum = [...fractions.values()].reduce((a, b) => a + b, 0);
-      overall.set(sum / total, `Processing ${Math.min(total, [...fractions.values()].filter((v) => v >= 1).length + 1)} of ${total}…`);
+      overall.set(sum / total, t('Processing {i} of {n}…', { i: Math.min(total, [...fractions.values()].filter((v) => v >= 1).length + 1), n: total }));
     };
-    overall.set(0, `Processing 1 of ${total}…`);
+    overall.set(0, t('Processing {i} of {n}…', { i: 1, n: total }));
     const usedNames = new Set(items.filter((i) => i.status === 'done' && i.result).map((i) => i.result!.name));
     let index = 0;
     const worker = async () => {
@@ -237,7 +238,7 @@ export function createBatch(opts: BatchOptions): BatchHandle {
           } else {
             it.status = 'error';
             const f = describeError(e);
-            it.error = f.message && f.title === 'Something went wrong.' ? `${f.title} ${f.message}` : f.title;
+            it.error = f.message && f.details ? `${f.title} ${f.message}` : f.title;
             console.warn(e);
           }
         }
@@ -257,10 +258,17 @@ export function createBatch(opts: BatchOptions): BatchHandle {
       if (!ctx.signal.aborted) {
         draw();
         const ok = items.filter((i) => i.status === 'done').length;
-        if (signal.aborted) toast('Processing cancelled', 'info');
+        if (signal.aborted) toast(t('Processing cancelled'), 'info');
         else {
-          announce(`${ok} of ${items.length} files processed.`);
-          if (ok) ctx.recordUse();
+          const failed = items.filter((i) => i.status === 'error').length;
+          announce(t('{done} of {total} done', { done: ok, total: items.length }));
+          if (ok) {
+            ctx.recordUse();
+            toast(failed ? t('Done: {ok}, failed: {failed}', { ok, failed }) : t('Done! {files} processed.', { files: plural(ok, 'file') }), failed ? 'error' : 'success');
+            // Bring the results into view (useful on phones).
+            const r = summary.getBoundingClientRect();
+            if (r.top < 0 || r.bottom > window.innerHeight) summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
         }
       }
     }
@@ -271,8 +279,8 @@ export function createBatch(opts: BatchOptions): BatchHandle {
     if (!done.length) return;
     dlAllBtn.disabled = true;
     try {
-      if (done.length > 1) overall.set(0, 'Creating ZIP…');
-      await downloadAll(done, opts.zipName, (f) => overall.set(f, 'Creating ZIP…'));
+      if (done.length > 1) overall.set(0, t('Creating ZIP…'));
+      await downloadAll(done, opts.zipName, (f) => overall.set(f, t('Creating ZIP…')));
     } catch (e) {
       toast(describeError(e).title, 'error');
     } finally {

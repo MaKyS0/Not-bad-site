@@ -53,12 +53,13 @@ try {
   // ---------------------------------------------------------------- pages
   console.log('\nPages');
   const toolIds = readdirSync(new URL('../dist/tools/', import.meta.url)).filter((d) => !d.includes('.'));
-  const pages = ['', 'tools/', ...['image', 'pdf', 'files', 'data', 'text', 'archive', 'audio', 'developer'].map((c) => `category/${c}/`), ...toolIds.map((t) => `tools/${t}/`)];
+  const enPages = ['', 'tools/', ...['image', 'pdf', 'files', 'data', 'text', 'archive', 'audio', 'developer'].map((c) => `category/${c}/`), ...toolIds.map((t) => `tools/${t}/`)];
+  const pages = [...enPages, ...enPages.map((p) => `ru/${p}`)];
   for (const p of pages) {
     const res = await page.goto(ROOT + p);
     const status = res?.status();
     await page.waitForLoadState('domcontentloaded');
-    if (p.startsWith('tools/') && p !== 'tools/') {
+    if (/^(ru\/)?tools\/./.test(p)) {
       await page.waitForFunction(() => !document.querySelector('#tool-root .loading') || document.querySelector('#tool-root .error-panel'), null, { timeout: 15000 }).catch(() => {});
       const broken = await page.$('#tool-root > .error-panel');
       if (broken) fail(`${p} mount error: ${await text('#tool-root')}`);
@@ -66,6 +67,8 @@ try {
     const h1 = await page.$eval('h1', (e) => e.textContent?.trim()).catch(() => '');
     const desc = await page.$eval('meta[name=description]', (e) => e.getAttribute('content')).catch(() => '');
     if (status !== 200 || !h1 || !desc) fail(`${p} status=${status} h1=${h1} desc=${!!desc}`);
+    if (p.startsWith('ru/') && !/[а-яё]/i.test(`${h1} ${desc}`) && !/ в /.test(h1)) fail(`${p} is not Russian: ${h1}`);
+    if (p.startsWith('ru/') && (await page.getAttribute('html', 'lang')) !== 'ru') fail(`${p} html lang is not ru`);
   }
   ok(`${pages.length} pages load with H1 + meta description`);
 
@@ -292,7 +295,7 @@ try {
   await up([{ name: 'renamed.txt', mimeType: 'text/plain', buffer: png }]);
   await page.waitForFunction(() => /[0-9a-f]{64}/.test(document.querySelector('.hash-out')?.textContent ?? ''), null, { timeout: 20000 });
   const inspect = await text('#tool-root');
-  check(inspect.includes('PNG image') && inspect.includes('640 × 480') && inspect.includes('looks like a PNG'), 'inspector: magic-byte detection, dimensions, mismatch warning, SHA-256');
+  check(inspect.includes('PNG image') && inspect.includes('640 × 480') && inspect.includes('looks like: PNG image'), 'inspector: magic-byte detection, dimensions, mismatch warning, SHA-256');
   await page.goto(`${ROOT}tools/zip/`);
   await up([{ name: 'a.txt', mimeType: 'text/plain', buffer: Buffer.from('hello '.repeat(500)) }, { name: 'b.png', mimeType: 'image/png', buffer: png }]);
   await page.waitForSelector('.entry');
@@ -350,6 +353,60 @@ try {
   await page.waitForSelector('#recent-h', { timeout: 5000 }).catch(() => {});
   check(!!(await page.$('#recent-h')), 'recently used tools shown on home');
 
+  // ---------------------------------------------------------------- Russian
+  console.log('\nRussian version');
+  const rawRu = readFileSync(new URL('../dist/ru/tools/pdf-merge/index.html', import.meta.url), 'utf8');
+  check(rawRu.includes('<html lang="ru">') && rawRu.includes('<h1>Объединить PDF</h1>') && rawRu.includes('hreflang="en"'), 'static RU page: lang, H1, hreflang alternates');
+  await page.goto(`${ROOT}tools/image-compressor/`);
+  const ruHref = await page.getAttribute('.lang-switch a[hreflang="ru"]', 'href');
+  check(ruHref?.endsWith('/ru/tools/image-compressor/'), `language switch points to the same page (${ruHref})`);
+  await page.click('.lang-switch a[hreflang="ru"]');
+  await page.waitForURL(/\/ru\/tools\/image-compressor\/$/);
+  check((await text('h1')) === 'Сжатие изображений' && (await page.getAttribute('html', 'lang')) === 'ru', 'switched to Russian on the same tool');
+  await up([{ name: 'a.png', mimeType: 'image/png', buffer: png }, { name: 'b.jpg', mimeType: 'image/jpeg', buffer: jpg }]);
+  check((await text('.batch-actions .btn-primary')).includes('Сжать все (2 файла)'), `RU action button with plural: ${await text('.batch-actions .btn-primary')}`);
+  await page.click('.batch-actions .btn-primary >> nth=0');
+  await page.waitForSelector('.toast-success', { timeout: 30000 });
+  check((await text('.toast-success')).includes('Готово! Обработано: 2 файла.'), `RU success toast: ${await text('.toast-success')}`);
+  check((await text('.batch-summary')).includes('Готово 2 из 2'), 'RU batch summary');
+  // SPA navigation keeps the language; search works with Russian words
+  await page.keyboard.press('/');
+  await page.fill('.search-input', 'объединить');
+  check((await text('.search-item strong')).startsWith('Объединить PDF'), 'Russian search query finds “Объединить PDF”');
+  await page.keyboard.press('Enter');
+  await page.waitForURL(/\/ru\/tools\/pdf-merge\/$/);
+  check((await text('h1')) === 'Объединить PDF', 'SPA navigation stays in Russian');
+  // RU error message translation (worker error → translated)
+  await page.goto(`${ROOT}ru/tools/pdf-split/`);
+  await up([{ name: 'bad.pdf', mimeType: 'application/pdf', buffer: Buffer.from('%PDF-1.4 garbage') }]);
+  await page.waitForSelector('.error-panel', { timeout: 15000 });
+  check((await text('.error-panel')).includes('Это не корректный PDF.'), `RU error panel: ${(await text('.error-panel')).slice(0, 80)}`);
+  // page-wide drop: drop a file on the page body (outside the drop zone)
+  await page.goto(`${ROOT}ru/tools/file-inspector/`);
+  const dt = await page.evaluateHandle(() => {
+    const d = new DataTransfer();
+    d.items.add(new File(['hello'], 'note.txt', { type: 'text/plain' }));
+    return d;
+  });
+  await page.dispatchEvent('body', 'dragenter', { dataTransfer: dt });
+  check(!!(await page.$('.drop-overlay')), 'page-wide drop overlay appears');
+  await page.dispatchEvent('main', 'drop', { dataTransfer: dt });
+  await page.waitForSelector('.kv', { timeout: 10000 });
+  check((await text('#tool-root')).includes('note.txt'), 'file dropped anywhere on the page reaches the tool');
+  // automatic language for a Russian-speaking browser on the first visit
+  const ruCtx = await browser.newContext({ locale: 'ru-RU' });
+  const ruPage = await ruCtx.newPage();
+  await ruPage.goto(`${ROOT}tools/zip/`);
+  await ruPage.waitForURL(/\/ru\/tools\/zip\/$/, { timeout: 10000 }).catch(() => {});
+  check(ruPage.url().endsWith('/ru/tools/zip/'), 'first visit with ru-RU browser opens the Russian page');
+  await ruPage.goto(`${ROOT}ru/`);
+  await ruPage.click('.lang-switch a[hreflang="en"]');
+  await ruPage.waitForURL((u) => !u.pathname.includes('/ru/'));
+  await ruPage.goto(`${ROOT}tools/zip/`);
+  await ruPage.waitForTimeout(500);
+  check(!ruPage.url().includes('/ru/'), 'explicit choice of English is remembered');
+  await ruCtx.close();
+
   // ---------------------------------------------------------------- PWA / offline
   console.log('\nPWA & offline');
   const manifest = await (await page.request.get(`${ROOT}manifest.webmanifest`)).json();
@@ -377,7 +434,7 @@ try {
   console.log('\nMobile layout');
   const mobile = await browser.newContext({ viewport: { width: 360, height: 740 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
   const mp = await mobile.newPage();
-  for (const p of ['', 'tools/', 'tools/image-compressor/', 'tools/pdf-merge/', 'tools/json-formatter/', 'tools/image-cropper/', 'tools/csv-viewer/']) {
+  for (const p of ['', 'tools/', 'tools/image-compressor/', 'tools/pdf-merge/', 'tools/json-formatter/', 'tools/image-cropper/', 'tools/csv-viewer/', 'ru/', 'ru/tools/image-resizer/', 'ru/tools/pdf-split/', 'ru/tools/word-counter/']) {
     await mp.goto(ROOT + p);
     await mp.waitForTimeout(400);
     const overflow = await mp.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

@@ -7,6 +7,7 @@ import { processImage } from '../../services/imageService';
 import { formatSelect, outputTypeFor, outputName, qualityToColors, type FormatChoice } from './shared';
 import { formatBytes, formatPercent, percentChange } from '../../utils/format';
 import type { ImageJob } from '../../utils/imageCore';
+import { t } from '../../i18n/i18n';
 
 interface Settings {
   format: FormatChoice;
@@ -26,16 +27,16 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     batch.invalidate();
   };
 
-  const quality = slider('Quality', s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
-  const pngMode = segmented<'lossy' | 'lossless'>('PNG compression', [
-    { value: 'lossy', label: 'Smaller (lossy)' },
-    { value: 'lossless', label: 'Lossless' },
+  const quality = slider(t('Quality'), s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
+  const pngMode = segmented<'lossy' | 'lossless'>(t('PNG compression'), [
+    { value: 'lossy', label: t('Smaller (lossy)') },
+    { value: 'lossless', label: t('Lossless') },
   ], s.pngMode, (v) => { s.pngMode = v; save(); syncVisibility(); });
   const maxInput = numberInput(s.maxSide, { min: 16, max: 16384, onInput: (v) => { s.maxSide = Math.round(v); save(); } });
-  const maxField = field('Max width/height (px)', maxInput);
-  const limit = checkbox('Also limit dimensions', s.limit, (v) => { s.limit = v; save(); syncVisibility(); });
-  const keep = checkbox('Keep original if the result is larger', s.keepSmaller, (v) => { s.keepSmaller = v; save(); });
-  const pngHint = notice('info', 'PNG is lossless by nature. “Smaller” reduces the colour palette (like TinyPNG); the quality slider controls how many colours are kept.');
+  const maxField = field(t('Max width/height (px)'), maxInput);
+  const limit = checkbox(t('Also limit dimensions'), s.limit, (v) => { s.limit = v; save(); syncVisibility(); });
+  const keep = checkbox(t('Keep original if the result is larger'), s.keepSmaller, (v) => { s.keepSmaller = v; save(); });
+  const pngHint = notice('info', t('PNG is lossless by nature. “Smaller” reduces the colour palette (like TinyPNG); the quality slider controls how many colours are kept.'));
 
   const syncVisibility = () => {
     const pngOut = s.format === 'png';
@@ -58,9 +59,9 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     render(
       preview,
       h('div', { class: 'panel' },
-        h('h2', { class: 'panel-title' }, 'Preview: ', h('span', { class: 'break' }, it.file.name)),
-        compareView(before, after, [`Original · ${formatBytes(it.file.size)}`, `Result · ${formatBytes(it.result.blob.size)}`]),
-        h('p', { class: 'small muted', style: 'margin:8px 0 0' }, 'Drag the slider to compare. ', pct <= 0 ? h('strong', { class: 'saving' }, `${formatPercent(pct)} smaller`) : h('strong', { class: 'growing' }, `${formatPercent(pct)} larger`)),
+        h('h2', { class: 'panel-title' }, t('Preview:'), ' ', h('span', { class: 'break' }, it.file.name)),
+        compareView(before, after, [`${t('Original')} · ${formatBytes(it.file.size)}`, `${t('Result')} · ${formatBytes(it.result.blob.size)}`]),
+        h('p', { class: 'small muted', style: 'margin:8px 0 0' }, t('Drag the slider to compare.'), ' ', pct <= 0 ? h('strong', { class: 'saving' }, t('{pct} smaller', { pct: formatPercent(pct) })) : h('strong', { class: 'growing' }, t('{pct} larger', { pct: formatPercent(pct) }))),
       ),
     );
   };
@@ -83,16 +84,16 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     const res = await processImage(file, job, { onProgress, signal });
     const sameType = file.type === type || (file.type === '' && type === 'image/png');
     if (s.keepSmaller && sameType && !job.resize && res.blob.size >= file.size) {
-      return { name: file.name, blob: file, width: res.width, height: res.height, note: 'original kept (already optimal)' };
+      return { name: file.name, blob: file, width: res.width, height: res.height, note: t('original kept (already optimal)') };
     }
-    return { name: outputName(file, type), blob: res.blob, width: res.width, height: res.height, note: res.encoder === 'wasm' ? 'WebP via WASM' : undefined };
+    return { name: outputName(file, type), blob: res.blob, width: res.width, height: res.height, note: res.encoder === 'wasm' ? t('WebP via WASM encoder') : undefined };
   };
 
   const batch = createBatch({
     ctx,
     accept: ctx.meta.supportedFormats,
     process,
-    actionLabel: 'Compress',
+    actionLabel: t('Compress'),
     zipName: 'compressed-images.zip',
     showSaving: true,
     concurrency: 3,
@@ -105,7 +106,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
 
   root.append(
     h('div', { class: 'tool-layout' },
-      h('aside', { class: 'tool-options panel', 'aria-label': 'Compression options' },
+      h('aside', { class: 'tool-options panel', 'aria-label': t('Compression options') },
         formatSelect(s.format, (v) => { s.format = v; save(); syncVisibility(); }),
         quality.el,
         pngMode.el,

@@ -11,6 +11,7 @@ import { assetUrl } from '../../utils/base';
 import { UserError } from '../../utils/errors';
 import { formatBytes } from '../../utils/format';
 import type { PDFDocumentProxy } from 'pdfjs-dist/legacy/build/pdf.mjs';
+import { t } from '../../i18n/i18n';
 
 let pool: WorkerPool | null = null;
 export function pdfWorker(): WorkerPool {
@@ -48,8 +49,8 @@ export async function openPdfJs(bytes: Uint8Array, password?: string): Promise<P
     return await task.promise;
   } catch (e) {
     const name = (e as Error).name;
-    if (name === 'PasswordException') throw new UserError('This PDF is password-protected.', 'Opening PDFs that require a password is not supported here.');
-    if (name === 'InvalidPDFException') throw new UserError('This file is not a valid PDF.', 'The file may be damaged or have a wrong extension.');
+    if (name === 'PasswordException') throw new UserError(t('This PDF is password-protected.'), 'Opening PDFs that require a password is not supported here.');
+    if (name === 'InvalidPDFException') throw new UserError(t('This file is not a valid PDF.'), 'The file may be damaged or have a wrong extension.');
     throw e;
   }
 }
@@ -89,7 +90,7 @@ export interface PageGrid {
 export function pageGrid(doc: PDFDocumentProxy, opts: { selectable?: boolean; onChange?: (sel: Set<number>) => void; initialSelected?: Iterable<number> } = {}): PageGrid {
   const selected = new Set<number>(opts.initialSelected ?? []);
   const rotations = new Map<number, number>();
-  const list = h('ul', { class: 'page-grid', role: 'list', 'aria-label': 'Pages' });
+  const list = h('ul', { class: 'page-grid', role: 'list', 'aria-label': t('Pages') });
   const cards: HTMLButtonElement[] = [];
   const io = new IntersectionObserver(
     (entries) => {
@@ -172,7 +173,7 @@ export interface SortItem {
 
 /** Reorderable list: drag & drop (pointer), plus up/down buttons for keyboard and touch. */
 export function sortableList(items: SortItem[], onChange: (items: SortItem[]) => void, onRemove: (item: SortItem) => void): HTMLElement {
-  const list = h('ol', { class: 'sort-list', 'aria-label': 'Order of files' });
+  const list = h('ol', { class: 'sort-list', 'aria-label': t('Order of files') });
   let dragIndex = -1;
   const move = (from: number, to: number) => {
     if (to < 0 || to >= items.length || from === to) return;
@@ -183,10 +184,10 @@ export function sortableList(items: SortItem[], onChange: (items: SortItem[]) =>
     requestAnimationFrame(() => (list.children[to]?.querySelector(to > from ? '[data-dir="down"]' : '[data-dir="up"]') as HTMLElement | null)?.focus());
   };
   items.forEach((it, i) => {
-    const up = iconButton('up', `Move ${it.file.name} up`, () => move(i, i - 1));
+    const up = iconButton('up', t('Move {name} up', { name: it.file.name }), () => move(i, i - 1));
     up.dataset.dir = 'up';
     up.disabled = i === 0;
-    const down = iconButton('down', `Move ${it.file.name} down`, () => move(i, i + 1));
+    const down = iconButton('down', t('Move {name} down', { name: it.file.name }), () => move(i, i + 1));
     down.dataset.dir = 'down';
     down.disabled = i === items.length - 1;
     const li = h(

@@ -54,6 +54,7 @@ function staticPagesPlugin(): Plugin {
   let config: ResolvedConfig;
   const fill = (template: string, page: PageSpec, base: string, csp?: string): string =>
     template
+      .replace(/<html lang="[^"]*">/, `<html lang="${page.lang}">`)
       .replace('<!--app-head-->', renderHead(page, { base, siteUrl: SITE_URL, csp }))
       .replace('<!--app-body-->', renderBody(page, { base, siteUrl: SITE_URL }));
 
@@ -78,7 +79,11 @@ function staticPagesPlugin(): Plugin {
       handler(html, ctx) {
         // Dev server: render the home shell. Build: keep placeholders for closeBundle.
         if (!ctx.server) return html;
-        const home = allPages(SITE_URL)[0](config.base);
+        // Pick the shell of the requested route (language + page) when it exists.
+        const url = (ctx.originalUrl ?? '/').split('?')[0].replace(config.base, '');
+        const route = url.replace(/index\.html$/, '');
+        const pages = allPages(SITE_URL).map((f) => f(config.base));
+        const home = pages.find((p) => p.path === route) ?? pages.find((p) => p.path === (route.startsWith('ru/') ? 'ru/' : '')) ?? pages[0];
         return fill(html, home, config.base);
       },
     },
@@ -201,7 +206,7 @@ function writeSeoFiles(out: string, paths: string[]): void {
   if (SITE_URL) {
     const today = new Date().toISOString().slice(0, 10);
     const urls = paths
-      .map((p) => `  <url><loc>${SITE_URL}${p}</loc><lastmod>${today}</lastmod><priority>${p === '' ? '1.0' : p.startsWith('tools/') ? '0.8' : '0.6'}</priority></url>`)
+      .map((p) => `  <url><loc>${SITE_URL}${p}</loc><lastmod>${today}</lastmod><priority>${p === '' || p === 'ru/' ? '1.0' : /^(ru\/)?tools\//.test(p) ? '0.8' : '0.6'}</priority></url>`)
       .join('\n');
     writeFileSync(join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
     lines.push(`Sitemap: ${SITE_URL}sitemap.xml`);

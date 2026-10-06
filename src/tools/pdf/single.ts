@@ -9,6 +9,7 @@ import { errorPanel, button } from '../../components/ui';
 import { openPdfJs, readFileBytes } from './lib';
 import type { PDFDocumentProxy } from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { formatBytes } from '../../utils/format';
+import { t } from '../../i18n/i18n';
 
 export interface LoadedPdf {
   file: File;
@@ -20,7 +21,7 @@ export function singlePdfTool(root: HTMLElement, ctx: ToolContext, onLoad: (pdf:
   const area = h('div', { class: 'tool-main' });
   let current: LoadedPdf | null = null;
   let dispose: (() => void) | void;
-  const zone = dropzone({ accept: ['pdf'], multiple: false, onFiles: (f) => void load(f[0]), paste: true, title: 'Drop a PDF here' });
+  const zone = dropzone({ accept: ['pdf'], multiple: false, onFiles: (f) => void load(f[0]), paste: true, title: t('Drop a PDF here') });
   root.append(zone, area);
 
   const cleanup = () => {
@@ -33,7 +34,7 @@ export function singlePdfTool(root: HTMLElement, ctx: ToolContext, onLoad: (pdf:
 
   async function load(file: File) {
     cleanup();
-    render(area, h('div', { class: 'loading', role: 'status' }, h('span', { class: 'spinner' }), 'Opening PDF…'));
+    render(area, h('div', { class: 'loading', role: 'status' }, h('span', { class: 'spinner' }), t('Opening PDF…')));
     try {
       const bytes = await readFileBytes(file);
       const doc = await openPdfJs(bytes);
@@ -44,7 +45,7 @@ export function singlePdfTool(root: HTMLElement, ctx: ToolContext, onLoad: (pdf:
         area,
         h('div', { class: 'toolbar', style: 'justify-content:space-between' },
           h('p', { class: 'muted', style: 'margin:0' }, h('strong', { class: 'break' }, file.name), ` · ${doc.numPages} page${doc.numPages === 1 ? '' : 's'} · ${formatBytes(file.size)}`),
-          button('Open another PDF', { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }),
+          button(t('Open another PDF'), { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }),
         ),
         content,
       );

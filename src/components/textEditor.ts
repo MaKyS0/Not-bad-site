@@ -5,9 +5,10 @@
  */
 import { h } from '../utils/dom';
 import { button, select } from './ui';
-import { filesFromDataTransfer } from './dropzone';
+import { filesFromDataTransfer, registerDropTarget } from './dropzone';
 import { formatBytes } from '../utils/format';
 import { toast } from './toast';
+import { plural, t } from '../i18n/i18n';
 
 export const ENCODINGS = [
   { value: 'utf-8', label: 'UTF-8' },
@@ -91,7 +92,7 @@ export function textEditor(opts: TextEditorOptions): TextEditor {
 
   const updateInfo = () => {
     const v = textarea.value;
-    info.textContent = v ? `${v.length.toLocaleString()} characters` : '';
+    info.textContent = v ? plural(v.length, 'character') : '';
   };
   const emit = () => {
     updateInfo();
@@ -102,14 +103,14 @@ export function textEditor(opts: TextEditorOptions): TextEditor {
   const fileInput = h('input', { type: 'file', class: 'sr-only', tabindex: '-1', 'aria-hidden': 'true', accept: opts.accept?.length && !opts.accept.includes('*') ? opts.accept.map((e) => `.${e}`).join(',') : undefined });
   const load = async (file: File) => {
     if (file.size > maxBytes) {
-      toast(`File is too large for the text editor (${formatBytes(file.size)} > ${formatBytes(maxBytes)}).`, 'error', 5000);
+      toast(t('File is too large for the text editor ({size} > {max}).', { size: formatBytes(file.size), max: formatBytes(maxBytes) }), 'error', 5000);
       return;
     }
     lastFile = file;
     handle.fileName = file.name;
     const bytes = new Uint8Array(await file.arrayBuffer());
     if (encoding === 'utf-8' && !looksLikeUtf8(bytes)) {
-      toast('This file is not valid UTF-8 — try another encoding in the selector.', 'info', 5000);
+      toast(t('This file is not valid UTF-8 — try another encoding in the selector.'), 'info', 5000);
     }
     textarea.value = decodeText(bytes, encoding);
     emit();
@@ -129,25 +130,27 @@ export function textEditor(opts: TextEditorOptions): TextEditor {
     if (files[0]) void load(files[0]);
   });
   textarea.dataset.dropzone = '';
+  // Files dropped anywhere on the page (or pasted) land in this editor.
+  if (!opts.readonly) registerDropTarget(textarea, (files) => files[0] && void load(files[0]), false);
 
   const encSel = opts.encoding
-    ? select(ENCODINGS as { value: string; label: string }[], encoding, (v) => {
+    ? select(ENCODINGS.map((e) => ({ value: e.value, label: t(e.label) })), encoding, (v) => {
         encoding = v;
         if (lastFile) void load(lastFile);
       })
     : null;
   if (encSel) {
-    encSel.setAttribute('aria-label', 'Text encoding');
+    encSel.setAttribute('aria-label', t('Text encoding'));
     encSel.style.width = 'auto';
   }
 
   const toolbar = h(
     'div',
     { class: 'toolbar' },
-    opts.readonly ? null : button('Open file', { variant: 'secondary', size: 'sm', icon: 'upload', onClick: () => fileInput.click() }),
+    opts.readonly ? null : button(t('Open file'), { variant: 'secondary', size: 'sm', icon: 'upload', onClick: () => fileInput.click() }),
     encSel,
-    opts.sample && !opts.readonly ? button('Sample', { variant: 'ghost', size: 'sm', onClick: () => { textarea.value = opts.sample!; lastFile = null; emit(); } }) : null,
-    opts.readonly ? null : button('Clear', { variant: 'ghost', size: 'sm', icon: 'x', onClick: () => { textarea.value = ''; lastFile = null; handle.fileName = null; emit(); textarea.focus(); } }),
+    opts.sample && !opts.readonly ? button(t('Sample'), { variant: 'ghost', size: 'sm', onClick: () => { textarea.value = opts.sample!; lastFile = null; emit(); } }) : null,
+    opts.readonly ? null : button(t('Clear'), { variant: 'ghost', size: 'sm', icon: 'x', onClick: () => { textarea.value = ''; lastFile = null; handle.fileName = null; emit(); textarea.focus(); } }),
     h('span', { class: 'toolbar-end' }, info),
   );
 

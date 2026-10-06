@@ -10,7 +10,9 @@ Universal File Toolbox is a static web app (no backend, no database, no sign-up)
 - Drag & drop, file picker, paste from clipboard, folder drop (ZIP)
 - Batch processing with per-file progress and **Download All** as ZIP
 - Installable PWA, works offline after the first visit
-- Dark / Light / System theme, global search (`/` or `Ctrl+K`), local history
+- **English & Russian** — separate indexable pages (`/…` and `/ru/…`) with `hreflang`, a language switch in the header, and automatic Russian for Russian-language browsers on the first visit
+- Drop files **anywhere on the page**, paste with `Ctrl+V`, sticky action bar, “Done!” notifications
+- Dark / Light / System theme, global search in both languages (`/` or `Ctrl+K`), local history
 - Works on Windows, macOS, Linux, Android, iOS — desktop and mobile browsers
 
 ---
@@ -24,6 +26,7 @@ Universal File Toolbox is a static web app (no backend, no database, no sign-up)
 - [Architecture](#architecture)
 - [Adding a new tool](#adding-a-new-tool)
 - [Adding a new file format](#adding-a-new-file-format)
+- [Languages (i18n)](#languages-i18n)
 - [Testing](#testing)
 - [Libraries & licenses](#libraries--licenses)
 - [Known limitations](#known-limitations)
@@ -214,15 +217,29 @@ That's it: routing, the static SEO page, sitemap entry, search, suggestions, his
 2. Add the extension to `supportedFormats` of every tool that can handle it (the drop zone, suggestions and search use these lists).
 3. If decoding needs new code (e.g. a WASM decoder), put it behind a dynamic `import()` in the relevant service so it is only downloaded when used.
 
+## Languages (i18n)
+
+The site is fully available in **English** (`/tools/…`) and **Russian** (`/ru/tools/…`). Every route is generated as a static page in both languages with `<html lang>`, translated title/description/H1/FAQ, JSON-LD `inLanguage` and `hreflang` alternates; the sitemap lists both versions.
+
+- `src/i18n/i18n.ts` — `t('English text', { param })`, plurals (`plural(3, 'file')` → “3 файла”) and translation of dynamic error messages coming from workers.
+- `src/i18n/ru.ts` — the Russian dictionary. **English source strings are the keys**, so untranslated text simply falls back to English.
+- `src/i18n/catalog.ru.ts` — Russian names, descriptions, FAQ and search keywords for every tool and category.
+- The current language comes from the URL. On the first visit, a Russian-language browser is sent to `/ru/…`; an explicit EN/RU choice is remembered.
+- Search matches tool names and keywords in both languages.
+- `tests/i18n.test.ts` fails if any `t('…')` string in the code has no Russian translation or if placeholders differ.
+
+To add a language: add it to `LANGS` in `i18n.ts`, create a dictionary like `ru.ts` and a catalog file like `catalog.ru.ts`, and hook them into `tr()` and `loc()`.
+
 ## Testing
 
 ```bash
-npm test             # Vitest: 46 unit tests (text, codecs, JSON/CSV/XML, Markdown XSS,
+npm test             # Vitest: 52 unit tests (incl. translation completeness) (text, codecs, JSON/CSV/XML, Markdown XSS,
                      # SHA-256 vs WebCrypto, ICO, WAV, ID3, PDF ops, ZIP, search, registry)
 npm run build
 npm run test:e2e     # Playwright + Chromium against ./dist served under /Not-bad-site/:
-                     # every page, real operations in every category, offline mode,
-                     # service worker, 360 px mobile layout, console errors
+                     # every page in EN and RU, real operations in every category,
+                     # language switch & auto-detection, page-wide drag & drop,
+                     # offline mode, service worker, 360 px mobile layout, console errors
 ```
 
 (`test:e2e` needs Chromium: `npx playwright install chromium`, or set `CHROMIUM_PATH`.)

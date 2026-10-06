@@ -1,6 +1,7 @@
 import { h } from '../utils/dom';
 import { button } from './ui';
 import { copyText, downloadBlob } from '../services/download';
+import { t } from '../i18n/i18n';
 
 export interface OutputPanel {
   el: HTMLElement;
@@ -16,9 +17,9 @@ export function outputPanel(opts: { label: string; fileName: () => string; mime?
   const status = h('p', { class: 'status-line', 'aria-live': 'polite' });
   // Keep the exact string: <textarea> normalises CRLF to LF, which matters for CSV.
   let raw = '';
-  const copyBtn = button('Copy', { variant: 'secondary', size: 'sm', icon: 'copy', onClick: () => void copyText(raw) });
-  const dlBtn = button('Download', { variant: 'secondary', size: 'sm', icon: 'download', onClick: () => void downloadBlob(new Blob([raw], { type: opts.mime ?? 'text/plain;charset=utf-8' }), opts.fileName()) });
-  const useBtn = opts.onUseAsInput ? button('Use as input', { variant: 'ghost', size: 'sm', icon: 'up', onClick: () => opts.onUseAsInput!(raw) }) : null;
+  const copyBtn = button(t('Copy'), { variant: 'secondary', size: 'sm', icon: 'copy', onClick: () => void copyText(raw) });
+  const dlBtn = button(t('Download'), { variant: 'secondary', size: 'sm', icon: 'download', onClick: () => void downloadBlob(new Blob([raw], { type: opts.mime ?? 'text/plain;charset=utf-8' }), opts.fileName()) });
+  const useBtn = opts.onUseAsInput ? button(t('Use as input'), { variant: 'ghost', size: 'sm', icon: 'up', onClick: () => opts.onUseAsInput!(raw) }) : null;
   const sync = () => {
     const empty = !ta.value;
     copyBtn.disabled = empty;

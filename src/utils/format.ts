@@ -1,7 +1,8 @@
+import { locale, t } from '../i18n/i18n';
 export function formatBytes(bytes: number, decimals = 1): string {
   if (!Number.isFinite(bytes)) return '—';
-  if (bytes < 1024) return `${bytes} B`;
-  const units = ['KB', 'MB', 'GB', 'TB'];
+  if (bytes < 1024) return `${bytes} ${t('B')}`;
+  const units = [t('KB'), t('MB'), t('GB'), t('TB')];
   let value = bytes / 1024;
   let i = 0;
   while (value >= 1024 && i < units.length - 1) {
@@ -25,18 +26,18 @@ export function formatPercent(p: number): string {
 export function formatDate(d: Date | number): string {
   const date = typeof d === 'number' ? new Date(d) : d;
   if (Number.isNaN(date.getTime())) return '—';
-  return date.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  return date.toLocaleString(locale(), { dateStyle: 'medium', timeStyle: 'short' });
 }
 
 export function formatRelative(ts: number): string {
   const diff = Date.now() - ts;
   const min = 60_000;
-  if (diff < min) return 'just now';
-  if (diff < 60 * min) return `${Math.floor(diff / min)} min ago`;
-  if (diff < 24 * 60 * min) return `${Math.floor(diff / (60 * min))} h ago`;
+  if (diff < min) return t('just now');
+  if (diff < 60 * min) return t('{n} min ago', { n: Math.floor(diff / min) });
+  if (diff < 24 * 60 * min) return t('{n} h ago', { n: Math.floor(diff / (60 * min)) });
   const days = Math.floor(diff / (24 * 60 * min));
-  if (days < 30) return `${days} d ago`;
-  return new Date(ts).toLocaleDateString();
+  if (days < 30) return t('{n} d ago', { n: days });
+  return new Date(ts).toLocaleDateString(locale());
 }
 
 export function formatDuration(seconds: number): string {
@@ -51,7 +52,7 @@ export function formatDuration(seconds: number): string {
 }
 
 export function formatNumber(n: number): string {
-  return n.toLocaleString();
+  return n.toLocaleString(locale());
 }
 
 /** File name helpers */

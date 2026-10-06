@@ -5,6 +5,7 @@ import { button } from '../../components/ui';
 import { markdownToHtml } from './lib/markdown';
 import { copyText, downloadBlob } from '../../services/download';
 import { baseName } from '../../utils/format';
+import { getLang, t } from '../../i18n/i18n';
 
 const SAMPLE = `# Universal File Toolbox
 
@@ -33,7 +34,7 @@ const EXPORT_CSS = 'body{font-family:system-ui,-apple-system,Segoe UI,Roboto,san
 
 export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolContext) => {
   let used = false;
-  const preview = h('div', { class: 'markdown-body', 'aria-live': 'off', 'aria-label': 'Preview' });
+  const preview = h('div', { class: 'markdown-body', 'aria-live': 'off', 'aria-label': t('Preview') });
   let html = '';
   const update = (fromUser = true) => {
     html = markdownToHtml(input.value);
@@ -44,14 +45,14 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       ctx.recordUse();
     }
   };
-  const input = textEditor({ label: 'Markdown', accept: ctx.meta.supportedFormats, rows: 22, sample: SAMPLE, onInput: debounce(() => update(), 120), placeholder: '# Write Markdown here…' });
-  const fullHtml = () => `<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>${(input.fileName ? baseName(input.fileName) : 'Document').replace(/</g, '&lt;')}</title>\n<style>${EXPORT_CSS}</style>\n</head>\n<body>\n${html}\n</body>\n</html>\n`;
+  const input = textEditor({ label: t('Markdown'), accept: ctx.meta.supportedFormats, rows: 22, sample: SAMPLE, onInput: debounce(() => update(), 120), placeholder: t('# Write Markdown here…') });
+  const fullHtml = () => `<!doctype html>\n<html lang="${getLang()}">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>${(input.fileName ? baseName(input.fileName) : 'Document').replace(/</g, '&lt;')}</title>\n<style>${EXPORT_CSS}</style>\n</head>\n<body>\n${html}\n</body>\n</html>\n`;
   root.append(
     h('div', { class: 'toolbar' },
-      button('Download HTML', { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(new Blob([fullHtml()], { type: 'text/html' }), `${input.fileName ? baseName(input.fileName) : 'document'}.html`) }),
-      button('Copy HTML', { variant: 'secondary', icon: 'copy', onClick: () => void copyText(html) }),
+      button(t('Download HTML'), { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(new Blob([fullHtml()], { type: 'text/html' }), `${input.fileName ? baseName(input.fileName) : 'document'}.html`) }),
+      button(t('Copy HTML'), { variant: 'secondary', icon: 'copy', onClick: () => void copyText(html) }),
     ),
-    h('div', { class: 'editor-grid' }, input.el, h('div', { class: 'field' }, h('span', { class: 'field-label' }, 'Preview'), preview)),
+    h('div', { class: 'editor-grid' }, input.el, h('div', { class: 'field' }, h('span', { class: 'field-label' }, t('Preview')), preview)),
   );
   if (ctx.initialFiles[0]) await loadIntoEditor(input, ctx.initialFiles[0]);
   else {

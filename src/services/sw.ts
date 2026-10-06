@@ -1,5 +1,6 @@
 import { APP_BASE_URL } from '../utils/base';
 import { toast } from '../components/toast';
+import { t } from '../i18n/i18n';
 
 /** Register the offline service worker (production builds only). */
 export function registerServiceWorker(): void {
@@ -12,9 +13,9 @@ export function registerServiceWorker(): void {
           const worker = reg.installing;
           worker?.addEventListener('statechange', () => {
             if (worker.state === 'installed' && navigator.serviceWorker.controller) {
-              toast('A new version is available — it will be used after you reload.', 'info', 6000);
+              toast(t('A new version is available — it will be used after you reload.'), 'info', 6000);
             } else if (worker.state === 'activated' && !navigator.serviceWorker.controller) {
-              toast('Ready to work offline.', 'success');
+              toast(t('Ready to work offline.'), 'success');
             }
           });
         });
@@ -22,6 +23,6 @@ export function registerServiceWorker(): void {
       .catch((e) => console.warn('Service worker registration failed', e));
   });
 
-  const offlineToast = () => toast('You are offline. Cached tools keep working.', 'info');
+  const offlineToast = () => toast(t('You are offline. Cached tools keep working.'), 'info');
   window.addEventListener('offline', offlineToast);
 }

@@ -9,6 +9,7 @@ import { zipFiles } from '../utils/zip';
 import type { OutputFile } from '../tools/types';
 import { toast } from '../components/toast';
 import { safeFileName } from '../utils/format';
+import { t } from '../i18n/i18n';
 
 interface SavePickerWindow {
   showSaveFilePicker?: (opts: {
@@ -65,7 +66,7 @@ export async function downloadAll(files: OutputFile[], zipName: string, onProgre
 export async function copyText(text: string): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(text);
-    toast('Copied to clipboard', 'success');
+    toast(t('Copied to clipboard'), 'success');
     return true;
   } catch {
     // Fallback for older browsers / insecure contexts.
@@ -83,7 +84,7 @@ export async function copyText(text: string): Promise<boolean> {
       ok = false;
     }
     ta.remove();
-    toast(ok ? 'Copied to clipboard' : 'Copy failed — select the text and copy manually', ok ? 'success' : 'error');
+    toast(ok ? t('Copied to clipboard') : t('Copy failed — select the text and copy manually'), ok ? 'success' : 'error');
     return ok;
   }
 }

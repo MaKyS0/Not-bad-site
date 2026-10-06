@@ -7,6 +7,7 @@ import { colorField, formatSelect, outputName, type FormatChoice } from './share
 import type { OutputType } from '../../utils/imageCore';
 import { canonicalExt } from '../../utils/fileType';
 import { extOf } from '../../utils/format';
+import { t } from '../../i18n/i18n';
 
 interface Settings {
   to: Exclude<FormatChoice, 'keep'>;
@@ -26,15 +27,15 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     batch.invalidate();
   };
 
-  const quality = slider('Quality', s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
-  const bgField = colorField('Background for transparent areas', s.background, (v) => { s.background = v; save(); });
-  const fill = checkbox('Fill transparency with a colour', s.fillTransparent, (v) => { s.fillTransparent = v; save(); sync(); });
+  const quality = slider(t('Quality'), s.quality, { min: 1, max: 100, format: (v) => `${v}%`, onInput: (v) => { s.quality = v; save(); } });
+  const bgField = colorField(t('Background for transparent areas'), s.background, (v) => { s.background = v; save(); });
+  const fill = checkbox(t('Fill transparency with a colour'), s.fillTransparent, (v) => { s.fillTransparent = v; save(); sync(); });
   const svgW = numberInput(s.svgWidth, { min: 1, max: 16384, onInput: (v) => { s.svgWidth = Math.round(v); save(); } });
-  const svgOrig = checkbox('Use the SVG’s own size', s.svgUseOriginal, (v) => { s.svgUseOriginal = v; save(); sync(); });
-  const svgWField = field('Output width for SVG (px)', svgW, 'SVG is vector: render it at any size without blur.');
-  const svgBox = h('div', { class: 'field', hidden: true }, h('span', { class: 'field-label' }, 'SVG input'), svgOrig.el, svgWField);
-  const jpgNote = notice('info', 'JPG has no transparency — transparent pixels are filled with the background colour.');
-  const gifNote = notice('warn', 'Animated GIFs: only the first frame is converted.');
+  const svgOrig = checkbox(t('Use the SVG’s own size'), s.svgUseOriginal, (v) => { s.svgUseOriginal = v; save(); sync(); });
+  const svgWField = field(t('Output width for SVG (px)'), svgW, t('SVG is vector: render it at any size without blur.'));
+  const svgBox = h('div', { class: 'field', hidden: true }, h('span', { class: 'field-label' }, t('SVG input')), svgOrig.el, svgWField);
+  const jpgNote = notice('info', t('JPG has no transparency — transparent pixels are filled with the background colour.'));
+  const gifNote = notice('warn', t('Animated GIFs: only the first frame is converted.'));
   gifNote.hidden = true;
 
   const sync = () => {
@@ -48,7 +49,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   const batch = createBatch({
     ctx,
     accept: ctx.meta.supportedFormats,
-    actionLabel: 'Convert',
+    actionLabel: t('Convert'),
     zipName: `converted-to-${s.to}.zip`,
     concurrency: 3,
     showSaving: true,
@@ -68,13 +69,13 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
         { output: { type, quality: s.quality / 100, background: type === 'image/jpeg' || s.fillTransparent ? s.background : undefined } },
         { onProgress, signal, svgWidth },
       );
-      return { name: outputName(file, type), blob: res.blob, width: res.width, height: res.height, note: res.encoder === 'wasm' ? 'WebP via WASM encoder' : undefined };
+      return { name: outputName(file, type), blob: res.blob, width: res.width, height: res.height, note: res.encoder === 'wasm' ? t('WebP via WASM encoder') : undefined };
     },
   });
 
   root.append(
     h('div', { class: 'tool-layout' },
-      h('aside', { class: 'tool-options panel', 'aria-label': 'Conversion options' },
+      h('aside', { class: 'tool-options panel', 'aria-label': t('Conversion options') },
         formatSelect(s.to, (v) => { s.to = v as Settings['to']; save(); sync(); }, false),
         quality.el,
         jpgNote,
