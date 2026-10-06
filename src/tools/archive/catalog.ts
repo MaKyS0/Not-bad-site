@@ -1,4 +1,4 @@
-import type { ToolMeta } from '../types';
+import type { ToolMeta } from '../types.ts';
 
 export const archiveTools: ToolMeta[] = [
   {

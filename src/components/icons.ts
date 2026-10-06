@@ -1,7 +1,7 @@
 /**
  * Static inline SVG icon set (24×24, stroke-based). Only trusted strings here.
  */
-import { svg } from '../utils/dom';
+import { svg } from '../utils/dom.ts';
 
 const wrap = (body: string): string =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;

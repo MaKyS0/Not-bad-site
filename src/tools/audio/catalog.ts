@@ -1,4 +1,4 @@
-import type { ToolMeta } from '../types';
+import type { ToolMeta } from '../types.ts';
 
 const AUDIO = ['mp3', 'wav', 'ogg', 'oga', 'm4a', 'aac', 'flac', 'opus', 'webm'];
 

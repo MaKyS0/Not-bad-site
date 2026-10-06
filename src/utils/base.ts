@@ -10,7 +10,7 @@ function computeBase(): string {
   if (import.meta.env.DEV) return new URL(import.meta.env.BASE_URL, location.origin).href;
   const configured = import.meta.env.BASE_URL;
   if (configured && configured.startsWith('/')) return new URL(configured, location.origin).href;
-  return new URL('../', import.meta.url).href;
+  return new URL(/* @vite-ignore */ '../', import.meta.url).href;
 }
 
 export const APP_BASE_URL = computeBase();

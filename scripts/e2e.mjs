@@ -17,7 +17,7 @@ import { unzipSync } from 'fflate';
 import { startServer } from './serve.mjs';
 
 const PORT = 4280;
-const BASE_PATH = '/Not-bad-site/';
+const BASE_PATH = process.env.BASE_PATH && process.env.BASE_PATH !== './' ? process.env.BASE_PATH : '/Not-bad-site/';
 const ROOT = `http://localhost:${PORT}${BASE_PATH}`;
 const exe = process.env.CHROMIUM_PATH ?? ['/opt/pw-browsers/chromium-1194/chrome-linux/chrome'].find((p) => existsSync(p));
 

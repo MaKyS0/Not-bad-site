@@ -1,4 +1,4 @@
-import type { Category } from './types';
+import type { Category } from './types.ts';
 
 export const CATEGORIES: Category[] = [
   { id: 'image', name: 'Image', icon: 'image', description: 'Compress, convert, resize, crop and rotate images.' },

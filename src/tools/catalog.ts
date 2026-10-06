@@ -3,17 +3,17 @@
  * To add a tool, append a ToolMeta entry to the matching category catalog
  * and create the component module referenced by `component`.
  */
-import type { ToolMeta } from './types';
-import { imageTools } from './image/catalog';
-import { pdfTools } from './pdf/catalog';
-import { fileTools } from './files/catalog';
-import { dataTools } from './data/catalog';
-import { textTools } from './text/catalog';
-import { archiveTools } from './archive/catalog';
-import { audioTools } from './audio/catalog';
-import { developerTools } from './developer/catalog';
+import type { ToolMeta } from './types.ts';
+import { imageTools } from './image/catalog.ts';
+import { pdfTools } from './pdf/catalog.ts';
+import { fileTools } from './files/catalog.ts';
+import { dataTools } from './data/catalog.ts';
+import { textTools } from './text/catalog.ts';
+import { archiveTools } from './archive/catalog.ts';
+import { audioTools } from './audio/catalog.ts';
+import { developerTools } from './developer/catalog.ts';
 
-export { CATEGORIES, categoryById } from './categories';
+export { CATEGORIES, categoryById } from './categories.ts';
 
 export const TOOLS: ToolMeta[] = [
   ...imageTools,

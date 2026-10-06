@@ -2,9 +2,9 @@
  * SEO text shared by the client (tool pages) and the build-time static page
  * generator. Pure data/strings only — no DOM.
  */
-import type { FaqItem, ToolMeta } from '../tools/types';
-import { APP_NAME } from '../config';
-import { TOOLS, categoryById } from '../tools/catalog';
+import type { FaqItem, ToolMeta } from '../tools/types.ts';
+import { APP_NAME } from '../config.ts';
+import { TOOLS, categoryById } from '../tools/catalog.ts';
 
 export function toolTitle(t: ToolMeta): string {
   return `${t.title ?? `${t.name} — Free Online, Private, No Upload`} | ${APP_NAME}`;

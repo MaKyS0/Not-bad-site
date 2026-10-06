@@ -5,11 +5,11 @@
  *
  * Runs in Node — strings only, no DOM APIs.
  */
-import { APP_NAME, APP_SHORT_NAME, GITHUB_URL, PRIVACY_TEXT, SUBTITLE, TAGLINE } from '../config';
-import { CATEGORIES, TOOLS, categoryById, popularTools, primaryTools, toolsInCategory } from '../tools/catalog';
-import type { ToolMeta } from '../tools/types';
-import { ICONS } from '../components/icons';
-import { howToSteps, relatedTools, toolAbout, toolDescription, toolFaq, toolTitle } from './content';
+import { APP_NAME, APP_SHORT_NAME, GITHUB_URL, PRIVACY_TEXT, SUBTITLE, TAGLINE } from '../config.ts';
+import { CATEGORIES, TOOLS, categoryById, popularTools, primaryTools, toolsInCategory } from '../tools/catalog.ts';
+import type { ToolMeta } from '../tools/types.ts';
+import { ICONS } from '../components/icons.ts';
+import { howToSteps, relatedTools, toolAbout, toolDescription, toolFaq, toolTitle } from './content.ts';
 
 export const THEME_INIT_SCRIPT =
   "(function(){try{var s=JSON.parse(localStorage.getItem('uft-settings')||'{}');var t=s.theme||'system';if(t==='system')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();";

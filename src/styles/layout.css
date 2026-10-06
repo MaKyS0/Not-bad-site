@@ -218,3 +218,12 @@
 .not-found { text-align: center; padding: 64px 0; }
 .not-found .toolbar { justify-content: center; }
 .back-row { margin-top: 32px; }
+
+/* Compact "All tools" lists on small screens: titles only. */
+@media (max-width: 640px) {
+  .category-block .tool-card-desc { display: none; }
+  .category-block .tool-card { min-height: 56px; align-items: center; padding: 10px 12px; }
+  .category-block .tool-grid { gap: 8px; }
+  .hero { padding-top: 8px; }
+  .dropzone { padding: 28px 16px; }
+}

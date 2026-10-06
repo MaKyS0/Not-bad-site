@@ -1,4 +1,4 @@
-import type { ToolMeta } from '../types';
+import type { ToolMeta } from '../types.ts';
 
 /** Raster/vector formats the browser can decode in an <img>/canvas. */
 export const IMAGE_INPUT = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'bmp', 'svg', 'ico', 'avif'];

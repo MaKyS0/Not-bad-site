@@ -1,4 +1,4 @@
-import type { ToolMeta } from '../types';
+import type { ToolMeta } from '../types.ts';
 
 const encryptedFaq = {
   q: 'Does it work with password-protected PDFs?',

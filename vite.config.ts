@@ -3,9 +3,9 @@ import { createHash } from 'node:crypto';
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { allPages, notFoundPage, renderBody, renderHead, THEME_INIT_SCRIPT, type PageSpec } from './src/seo/shell';
-import { APP_NAME, APP_SHORT_NAME, SUBTITLE } from './src/config';
-import { popularTools } from './src/tools/catalog';
+import { allPages, notFoundPage, renderBody, renderHead, THEME_INIT_SCRIPT, type PageSpec } from './src/seo/shell.ts';
+import { APP_NAME, APP_SHORT_NAME, SUBTITLE } from './src/config.ts';
+import { popularTools } from './src/tools/catalog.ts';
 
 /**
  * BASE_PATH: set to "/<repository>/" for GitHub project pages (the deploy
