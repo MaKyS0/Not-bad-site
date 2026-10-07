@@ -54,7 +54,8 @@ function show(route: Route, opts: { scroll: boolean }): void {
   }
   document.documentElement.lang = getLang();
   syncLangLinks();
-  document.querySelectorAll('[data-nav]').forEach((a) => a.removeAttribute('aria-current'));
+  closeMenu();
+  markNav(route);
   try {
     switch (route.name) {
       case 'home':
@@ -63,7 +64,6 @@ function show(route: Route, opts: { scroll: boolean }): void {
         break;
       case 'tools':
         setMeta(`${t('All Tools')} | ${APP_NAME}`, t('Every free, private, in-browser file tool: images, PDF, data, text, ZIP, audio and developer utilities.'));
-        document.querySelector('[data-nav="tools"]')?.setAttribute('aria-current', 'page');
         toolsPage(main);
         break;
       case 'category': {
@@ -94,6 +94,51 @@ function show(route: Route, opts: { scroll: boolean }): void {
     h1.setAttribute('tabindex', '-1');
     h1.focus({ preventScroll: true });
   }
+}
+
+/** Highlight where the user is: the page itself, or its category for a tool page. */
+function markNav(route: Route): void {
+  document.querySelectorAll('[data-nav]').forEach((a) => a.removeAttribute('aria-current'));
+  const set = (key: string, value: 'page' | 'true') => document.querySelectorAll(`[data-nav="${key}"]`).forEach((a) => a.setAttribute('aria-current', value));
+  if (route.name === 'tools') set('tools', 'page');
+  else if (route.name === 'category') set(`category/${route.id}`, 'page');
+  else if (route.name === 'tool') {
+    const cat = getTool(route.id)?.category;
+    if (cat) set(`category/${cat}`, 'true');
+  }
+  // Categories without a header link fall back to "All tools".
+  const nav = document.querySelector('.header-nav');
+  if (nav && route.name !== 'home' && route.name !== 'notFound' && !nav.querySelector('[aria-current]')) nav.querySelector('[data-nav="tools"]')?.setAttribute('aria-current', 'true');
+}
+
+function closeMenu(): void {
+  const btn = document.querySelector<HTMLButtonElement>('[data-action="menu"]');
+  const panel = document.getElementById('mobile-nav');
+  if (!btn || !panel || panel.hidden) return;
+  panel.hidden = true;
+  btn.setAttribute('aria-expanded', 'false');
+}
+
+function initMenu(): void {
+  const btn = document.querySelector<HTMLButtonElement>('[data-action="menu"]');
+  const panel = document.getElementById('mobile-nav');
+  if (!btn || !panel) return;
+  btn.addEventListener('click', () => {
+    const open = panel.hidden;
+    panel.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    if (open) panel.querySelector<HTMLElement>('a')?.focus();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hidden) {
+      closeMenu();
+      btn.focus();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node;
+    if (!panel.hidden && !panel.contains(target) && !btn.contains(target)) closeMenu();
+  });
 }
 
 /**
@@ -127,6 +172,7 @@ export function startApp(): void {
   if (autoLanguage()) return;
   document.querySelector('[data-action="search"]')?.addEventListener('click', () => openSearch());
   document.querySelector('[data-action="settings"]')?.addEventListener('click', () => openSettings());
+  initMenu();
   // Remember an explicit language choice.
   document.addEventListener('click', (e) => {
     const a = (e.target as HTMLElement).closest?.<HTMLAnchorElement>('a[data-lang-link]');

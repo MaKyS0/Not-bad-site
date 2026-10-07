@@ -1,87 +1,97 @@
-/* ---------- Design tokens ---------- */
+/* ---------- Design tokens ----------
+ * Warm paper neutrals, one pine-green brand colour for actions, and a burnt
+ * orange "signal" used sparingly (focus ring, drag-over, highlights).
+ * Radii follow purpose: tags 3px, controls 6px, cards 8px, panels 10px;
+ * page-level containers are square.
+ */
 :root {
-  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --font: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --bg: #f7f8fb;
-  --bg-elev: #ffffff;
-  --bg-sunken: #eef0f5;
-  --bg-hover: #f1f3f8;
-  --border: #e3e6ee;
-  --border-strong: #cdd2de;
-  --text: #0f172a;
-  --text-2: #475569;
-  --text-3: #64748b;
-  --accent: #4f46e5;
-  --accent-hover: #4338ca;
-  --accent-soft: #eef2ff;
-  --accent-text: #3730a3;
+  --bg: #f4f2ed;
+  --bg-elev: #fffefb;
+  --bg-sunken: #ebe8e1;
+  --bg-hover: #eeebe4;
+  --border: #dcd8ce;
+  --border-strong: #c3beb1;
+  --text: #1c1b18;
+  --text-2: #45423b;
+  --text-3: #686459;
+  --accent: #1a6b56;
+  --accent-hover: #135644;
+  --accent-soft: #e1ede7;
+  --accent-text: #124c3d;
   --on-accent: #ffffff;
-  --success: #15803d;
-  --success-soft: #ecfdf3;
-  --warn: #a16207;
-  --warn-soft: #fefce8;
-  --danger: #b91c1c;
-  --danger-soft: #fef2f2;
-  --focus: #6366f1;
+  --signal: #c4501a;
+  --signal-soft: #fbe9df;
+  --success: #2b7a3d;
+  --success-soft: #e6f1e3;
+  --warn: #855600;
+  --warn-soft: #f9efd6;
+  --danger: #b42318;
+  --danger-soft: #fae7e3;
+  --focus: #c4501a;
 
-  --c-image: #db2777;
-  --c-pdf: #dc2626;
-  --c-files: #0891b2;
-  --c-data: #7c3aed;
-  --c-text: #2563eb;
-  --c-archive: #b45309;
-  --c-audio: #059669;
-  --c-developer: #475569;
+  --c-image: #b5562c;
+  --c-pdf: #b42318;
+  --c-files: #3f5d7a;
+  --c-data: #866710;
+  --c-text: #5b5850;
+  --c-archive: #7a5230;
+  --c-audio: #2f6b4f;
+  --c-developer: #4f5763;
 
-  --radius-sm: 8px;
-  --radius: 12px;
-  --radius-lg: 18px;
-  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
-  --shadow: 0 1px 3px rgb(15 23 42 / 0.06), 0 6px 20px -6px rgb(15 23 42 / 0.12);
-  --shadow-lg: 0 24px 60px -12px rgb(15 23 42 / 0.25);
-  --header-h: 64px;
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 0 rgb(28 27 24 / 0.05);
+  --shadow: 0 1px 2px rgb(28 27 24 / 0.06), 0 6px 16px -10px rgb(28 27 24 / 0.25);
+  --shadow-lg: 0 20px 50px -18px rgb(28 27 24 / 0.4);
+  --header-h: 56px;
   --tap: 44px;
-  --container: 1180px;
+  --container: 1200px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --bg: #0b0f17;
-  --bg-elev: #121826;
-  --bg-sunken: #0e131e;
-  --bg-hover: #1a2233;
-  --border: #222b3d;
-  --border-strong: #334056;
-  --text: #e8ecf4;
-  --text-2: #a9b4c8;
-  --text-3: #8592a8;
-  --accent: #818cf8;
-  --accent-hover: #a5b4fc;
-  --accent-soft: #1e1b4b;
-  --accent-text: #c7d2fe;
-  --on-accent: #0b0f17;
-  --success: #4ade80;
-  --success-soft: #0f2a1b;
-  --warn: #facc15;
-  --warn-soft: #2a2410;
-  --danger: #f87171;
-  --danger-soft: #2c1215;
-  --focus: #a5b4fc;
+  --bg: #151513;
+  --bg-elev: #1d1d1a;
+  --bg-sunken: #10100e;
+  --bg-hover: #262622;
+  --border: #302f2a;
+  --border-strong: #47453e;
+  --text: #ecebe5;
+  --text-2: #c0bdb3;
+  --text-3: #9a968b;
+  --accent: #6cc4a4;
+  --accent-hover: #8ad3b8;
+  --accent-soft: #17302a;
+  --accent-text: #a6e3cc;
+  --on-accent: #0c1f19;
+  --signal: #f08a4b;
+  --signal-soft: #3a2216;
+  --success: #7bc98b;
+  --success-soft: #16281a;
+  --warn: #e3b35a;
+  --warn-soft: #2d2412;
+  --danger: #f08a7e;
+  --danger-soft: #33171a;
+  --focus: #f08a4b;
 
-  --c-image: #f472b6;
-  --c-pdf: #f87171;
-  --c-files: #22d3ee;
-  --c-data: #a78bfa;
-  --c-text: #60a5fa;
-  --c-archive: #fbbf24;
-  --c-audio: #34d399;
-  --c-developer: #94a3b8;
+  --c-image: #e08a62;
+  --c-pdf: #ee8378;
+  --c-files: #8fb0cf;
+  --c-data: #d4b35a;
+  --c-text: #b7b3a8;
+  --c-archive: #c99a6b;
+  --c-audio: #7cc4a0;
+  --c-developer: #a3abb7;
 
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow: 0 1px 3px rgb(0 0 0 / 0.4), 0 8px 24px -8px rgb(0 0 0 / 0.6);
-  --shadow-lg: 0 24px 60px -12px rgb(0 0 0 / 0.7);
+  --shadow-sm: 0 1px 0 rgb(0 0 0 / 0.3);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 20px -10px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 20px 50px -16px rgb(0 0 0 / 0.75);
   color-scheme: dark;
 }
 
@@ -115,13 +125,13 @@ body {
 }
 
 h1, h2, h3, h4 {
-  line-height: 1.2;
-  letter-spacing: -0.015em;
+  line-height: 1.25;
   margin: 0 0 0.5em;
+  font-weight: 600;
 }
-h1 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem); font-weight: 750; }
-h2 { font-size: 1.3rem; font-weight: 700; }
-h3 { font-size: 1.05rem; font-weight: 650; }
+h1 { font-size: clamp(1.55rem, 1.3rem + 1vw, 2rem); letter-spacing: -0.012em; }
+h2 { font-size: 1.2rem; letter-spacing: -0.005em; }
+h3 { font-size: 1rem; }
 p { margin: 0 0 1em; }
 
 a {
@@ -145,9 +155,8 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 
 /* ---------- Accessibility ---------- */
 :focus-visible {
-  outline: 3px solid var(--focus);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
-  border-radius: 6px;
 }
 .sr-only {
   position: absolute !important;
@@ -166,13 +175,13 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   top: -100px;
   z-index: 1000;
   padding: 12px 16px;
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--text);
+  color: var(--bg);
   border-radius: var(--radius-sm);
   font-weight: 600;
   text-decoration: none;
 }
-.skip-link:focus { top: 12px; color: var(--on-accent); }
+.skip-link:focus { top: 12px; color: var(--bg); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -185,7 +194,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 
 .icon { width: 20px; height: 20px; flex: none; }
 .icon-lg { width: 28px; height: 28px; }
-.icon-xl { width: 40px; height: 40px; }
+.icon-xl { width: 32px; height: 32px; }
 .muted { color: var(--text-3); }
 .small { font-size: 0.875rem; }
 .mono { font-family: var(--mono); }

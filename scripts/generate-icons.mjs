@@ -23,7 +23,7 @@ const icon = (size) => render(`<div style="width:${size}px;height:${size}px">${s
 // Maskable: full-bleed background, logo inside the 80 % safe zone.
 const maskable = (size) =>
   render(
-    `<div style="width:${size}px;height:${size}px;background:linear-gradient(135deg,#6366f1,#a855f7);display:grid;place-items:center">${svg
+    `<div style="width:${size}px;height:${size}px;background:#1a6b56;display:grid;place-items:center">${svg
       .replace('<svg ', `<svg width="${size * 0.8}" height="${size * 0.8}" `)
       .replace(/<rect[^>]*\/>/, '')}</div>`,
     size,
@@ -59,12 +59,16 @@ entries.forEach((s, i) => {
 });
 writeFileSync(fileURLToPath(new URL('../public/favicon.ico', import.meta.url)), Buffer.concat([header, ...pngs]));
 
-// Open Graph image 1200×630
+// Open Graph image 1200×630, set in IBM Plex Sans (embedded so the render matches the site)
+const font = (w) => readFileSync(fileURLToPath(new URL(`../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-${w}-normal.woff2`, import.meta.url))).toString('base64');
 const og = await render(
-  `<div style="width:1200px;height:630px;display:flex;flex-direction:column;justify-content:center;padding:80px;box-sizing:border-box;background:#0b0f17;color:#e8ecf4;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
-    <div style="display:flex;align-items:center;gap:24px;margin-bottom:40px">${svg.replace('<svg ', '<svg width="96" height="96" ')}<span style="font-size:44px;font-weight:800">File<span style="color:#818cf8">Toolbox</span></span></div>
-    <div style="font-size:64px;font-weight:800;line-height:1.1;letter-spacing:-0.03em">Free browser-based tools for your files</div>
-    <div style="font-size:30px;color:#a9b4c8;margin-top:24px">Convert, compress, edit and analyze — privately. No uploads.</div>
+  `<style>@font-face{font-family:Plex;font-weight:400;src:url(data:font/woff2;base64,${font(400)})}@font-face{font-family:Plex;font-weight:600;src:url(data:font/woff2;base64,${font(600)})}</style>
+  <div style="width:1200px;height:630px;display:flex;flex-direction:column;justify-content:space-between;padding:72px 80px;box-sizing:border-box;background:#f4f2ed;color:#1c1b18;font-family:Plex,sans-serif;border-bottom:16px solid #1a6b56">
+    <div style="display:flex;align-items:center;gap:20px">${svg.replace('<svg ', '<svg width="72" height="72" ')}<span style="font-size:40px">File<b style="font-weight:600">Toolbox</b></span></div>
+    <div>
+      <div style="font-size:68px;font-weight:600;line-height:1.08;letter-spacing:-0.02em;max-width:900px">File tools that run in your browser</div>
+      <div style="font-size:30px;color:#45423b;margin-top:22px">Images, PDF, CSV/JSON, ZIP, audio. Nothing is uploaded.</div>
+    </div>
   </div>`,
   1200,
   630,

@@ -52,11 +52,31 @@ export function toolFaq(t: ToolMeta, lang: Lang = getLang()): FaqItem[] {
   return [...specific, ...generic];
 }
 
+/** Tools whose workflow differs from the generic "drop → set options → download". */
+const STEPS: Record<string, string[]> = {
+  'virus-scanner': ['Drop the files you want to check, or a whole folder.', 'Read the verdict and the list of findings for each file.', 'For a second opinion, open the SHA-256 on VirusTotal.'],
+  'file-inspector': ['Drop any file.', 'Compare the extension with the type detected from the file’s bytes.', 'Copy the SHA-256 to verify the file elsewhere.'],
+  'hash-generator': ['Drop one or more files.', 'Pick the algorithms; paste the expected hash if you have one.', 'Copy the checksums or check the match result.'],
+  'pdf-info': ['Drop a PDF.', 'Read the page count, sizes, version and metadata.'],
+  'image-metadata': ['Drop a photo or image.', 'Read the dimensions, camera data, dates and GPS position.'],
+  'audio-info': ['Drop an audio file.', 'See the duration, sample rate, channels, peak level and waveform.'],
+  'unzip': ['Drop a ZIP archive.', 'Browse or filter the file list and preview text or images.', 'Download single files or extract everything to a folder.'],
+  'zip': ['Drop files or folders — or an existing ZIP to edit it.', 'Remove what you don’t need, set the archive name and compression.', 'Press “Download ZIP”.'],
+  'pdf-merge': ['Drop two or more PDFs.', 'Drag the files into the order you want.', 'Press “Merge PDFs” and save the result.'],
+  'pdf-split': ['Drop a PDF.', 'Choose single pages, fixed chunks or your own ranges.', 'Download the parts one by one or as a ZIP.'],
+  'pdf-extract-pages': ['Drop a PDF.', 'Click the pages to keep (or to delete).', 'Save the new PDF.'],
+  'images-to-pdf': ['Drop the images.', 'Put them in order and choose page size and margins.', 'Press “Create PDF” and save it.'],
+  'image-cropper': ['Drop an image.', 'Drag the frame or pick an aspect ratio.', 'Press “Crop image” and download the result.'],
+  'favicon-generator': ['Drop a square logo (SVG or PNG works best).', 'Check the previews at every size.', 'Download the ZIP and paste the HTML snippet into your page.'],
+};
+
 export function howToSteps(t: ToolMeta, lang: Lang = getLang()): string[] {
+  const own = STEPS[t.variantOf ?? t.id] ?? STEPS[t.id];
+  if (own) return own.map((s) => tr(lang, s));
   if (!t.supportedFormats.length) return [tr(lang, 'Enter or paste your input.'), tr(lang, 'Adjust the options.'), tr(lang, 'Copy or download the result.')];
   return [
     tr(lang, t.batch ? 'Drop one or more files onto the upload area or tap “Choose Files”.' : 'Drop a file onto the upload area or tap “Choose Files”.'),
-    tr(lang, 'Adjust the options — a preview updates instantly.'),
+    tr(lang, t.batch ? 'Choose the settings and start processing.' : 'Choose the settings you need.'),
     tr(lang, t.batch ? 'Download each result or use “Download All” to get a ZIP.' : 'Download or copy the result.'),
   ];
 }

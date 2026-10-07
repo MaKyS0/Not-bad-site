@@ -127,7 +127,7 @@ src/
   utils/                    DOM helpers, formatting, file-type sniffing, image pipeline,
                             ZIP, PDF ops, page ranges, ICO encoder, SHA-256, errors
   seo/                      shared SEO text + static HTML renderer
-  styles/                   design tokens (light/dark), layout, components, tools
+  styles/                   fonts, design tokens (light/dark), layout, components, tools
 tests/                      Vitest unit tests (pure logic, PDF/ZIP ops, registry)
 ```
 
@@ -154,6 +154,16 @@ interface ToolModule {
 ```
 
 `ToolContext` gives each tool: its preset, files handed over from the home page, auto-revoked object URLs, an `AbortSignal` for unmount, cleanup hooks, settings persistence and history recording. Pure processing functions (`ProcessFn`) are plugged into the shared **batch runner** (`components/batch.ts`), which handles queueing, concurrency, progress, errors, per-file download and ZIP export.
+
+### Interface design
+
+The UI is meant to feel like a tool, not a landing page:
+
+- **Palette** – warm paper neutrals with one pine-green brand colour for actions; a burnt-orange "signal" colour is reserved for focus rings and drag-over. Every text/background pair passes WCAG AA in both themes. Tokens live in `src/styles/base.css`.
+- **Type** – IBM Plex Sans for the interface and Plex Mono for data: format tags (`PNG`, `JPG → WEBP`), sizes, counts, hashes.
+- **Radii by purpose** – 3 px tags, 6 px controls, 8 px cards, 10 px panels; page-level sections are square and separated by rules rather than boxed.
+- **Different components for different jobs** – the home page pairs a short intro with the drop zone, lists *common tasks* as rows with format tags, and shows every tool in a dense category index (`components/toolCard.ts`: `toolList`, `directory`). On phones the index collapses into disclosures and the header becomes a menu.
+- **Motion** – short (150–200 ms) transitions on hover, focus, menu and dialog opening only; `prefers-reduced-motion` disables them.
 
 ### Performance & memory
 
@@ -262,6 +272,7 @@ npm run test:e2e     # Playwright + Chromium against ./dist served under /Not-ba
 | [PapaParse](https://github.com/mholt/PapaParse) | 5.7 | MIT | CSV parsing / writing |
 | [UPNG.js](https://github.com/photopea/UPNG.js) (+ pako) | 2.1 | MIT (pako: MIT/Zlib) | lossy PNG compression (colour quantisation) |
 | [@jsquash/webp](https://github.com/jamsinclair/jSquash) (libwebp WASM from Squoosh) | 1.5 | Apache-2.0 (libwebp: BSD-3) | WebP encoding where the browser cannot (Safari) |
+| [IBM Plex Sans / Mono](https://github.com/IBM/plex) via @fontsource | 5.3 | OFL-1.1 | interface typefaces, self-hosted (Latin + Cyrillic subsets, ~110 KB total, loaded per script) |
 
 Dev tooling: Vite (MIT), TypeScript (Apache-2.0), Vitest (MIT), Playwright (Apache-2.0).
 The project itself is released under the [MIT License](LICENSE).

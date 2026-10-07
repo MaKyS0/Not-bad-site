@@ -76,6 +76,10 @@ function create(): DialogHandle {
     } else if (e.key === 'Enter') {
       e.preventDefault();
       go(active);
+    } else if (e.key === 'Escape') {
+      // A search input would otherwise only clear its text on the first Esc.
+      e.preventDefault();
+      handle.close();
     }
   });
   list.addEventListener('click', (e) => {

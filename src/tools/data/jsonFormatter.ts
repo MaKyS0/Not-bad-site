@@ -31,7 +31,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   let used = false;
   const status = h('p', { class: 'status-line', role: 'status' });
   const prog = progress(t('Parsing…'));
-  const outPre = h('pre', { class: 'code-view', tabindex: '0', 'aria-label': t('Formatted JSON') });
+  const outPre = h('pre', { class: 'code-view code-out', tabindex: '0', 'aria-label': t('Formatted JSON'), 'data-empty': t('The formatted JSON will appear here.') });
   const copyBtn = button(t('Copy'), { variant: 'secondary', size: 'sm', icon: 'copy', onClick: () => void copyText(lastOutput) });
   const dlBtn = button(t('Download'), { variant: 'secondary', size: 'sm', icon: 'download', onClick: () => void downloadBlob(new Blob([lastOutput], { type: 'application/json' }), `${input.fileName ? baseName(input.fileName) : 'data'}.json`) });
   const outInfo = h('span', { class: 'hint toolbar-end' });
@@ -97,7 +97,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
         button(t('Minify'), { variant: 'secondary', icon: 'compress', onClick: () => void run('minify') }),
         button(t('Validate'), { variant: 'secondary', icon: 'check', onClick: () => void run('validate') }),
       ),
-      h('div', { class: 'options-grid' }, indentSel, h('div', { class: 'stack-sm' }, sortKeys.el, live.el)),
+      h('div', { class: 'options-inline' }, indentSel, sortKeys.el, live.el),
       status,
       prog.el,
     ),

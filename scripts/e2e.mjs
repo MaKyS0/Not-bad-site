@@ -88,8 +88,8 @@ try {
   // ---------------------------------------------------------------- home + search + theme
   console.log('\nHome, search, navigation, theme');
   await page.goto(ROOT);
-  check((await text('h1')) === 'Free browser-based tools for your files', 'home hero title');
-  check((await text('body')).includes('Your files are processed locally in your browser and are not uploaded to our server.'), 'privacy statement visible');
+  check((await text('h1')) === 'File tools that run in your browser', 'home title');
+  check((await text('.privacy-note')).includes('Nowhere. Files are read by your browser'), 'privacy statement visible');
   await page.keyboard.press('/');
   await page.waitForSelector('.dialog-search[open]');
   await page.fill('.search-input', 'webp');
@@ -98,6 +98,28 @@ try {
   await page.keyboard.press('Enter');
   await page.waitForURL(/\/tools\//);
   check(page.url().includes('/tools/'), `Enter opens first result (${page.url().replace(ROOT, '')})`);
+  check((await page.getAttribute('.header-nav [data-nav="category/image"]', 'aria-current')) === 'true', 'header marks the current section on a tool page');
+  await page.keyboard.press('/');
+  await page.waitForSelector('.dialog-search[open]');
+  await page.fill('.search-input', 'pdf');
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(150);
+  check(!(await page.$('.dialog-search[open]')), 'one Esc closes the search, even with text typed');
+  {
+    const m = await context.newPage();
+    await m.setViewportSize({ width: 390, height: 800 });
+    await m.goto(`${ROOT}tools/`);
+    const navVisible = await m.isVisible('.header-nav');
+    await m.click('[data-action="menu"]');
+    const opened = await m.isVisible('#mobile-nav') && (await m.getAttribute('[data-action="menu"]', 'aria-expanded')) === 'true';
+    await m.keyboard.press('Escape');
+    const closed = !(await m.isVisible('#mobile-nav'));
+    await m.click('[data-action="menu"]');
+    await m.click('#mobile-nav a[href$="category/pdf/"]');
+    await m.waitForURL(/category\/pdf/);
+    check(!navVisible && opened && closed && !(await m.isVisible('#mobile-nav')) && (await m.textContent('h1')) === 'PDF tools', 'mobile menu: opens, closes with Esc, navigates and closes');
+    await m.close();
+  }
   // drop files on home → suggestions → tool receives files
   await page.goto(ROOT);
   const png = Buffer.from(
@@ -130,10 +152,10 @@ try {
     'base64',
   );
   await up([{ name: 'one.png', mimeType: 'image/png', buffer: png }, { name: 'two.jpg', mimeType: 'image/jpeg', buffer: jpg }]);
-  await page.waitForSelector('.staged:not([hidden]) .tool-card');
-  const sugg = await page.$$eval('.staged .tool-card-title', (e) => e.map((x) => x.textContent));
+  await page.waitForSelector('.staged:not([hidden]) .tool-row');
+  const sugg = await page.$$eval('.staged .tool-row-name', (e) => e.map((x) => x.textContent));
   check(sugg[0] === 'Image Compressor', `suggestions for 2 images: ${sugg.slice(0, 4).join(', ')}`);
-  await page.click('.staged .tool-card >> nth=0');
+  await page.click('.staged .tool-row >> nth=0');
   await page.waitForSelector('.file-row');
   check((await page.$$('.file-row')).length === 2, 'files handed over from home page to the tool (SPA navigation)');
   // theme

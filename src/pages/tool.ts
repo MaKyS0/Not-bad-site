@@ -8,8 +8,8 @@ import { loadToolSettings, recordToolUse, saveToolSettings } from '../services/h
 import { routeHref } from '../services/router';
 import { toolAbout, toolFaq, howToSteps, relatedTools, categoryName } from '../seo/content';
 import { breadcrumbs } from './listing';
-import { toolGrid } from '../components/toolCard';
-import { PRIVACY_TEXT } from '../config';
+import { fmtTags, toolList } from '../components/toolCard';
+import { PRIVACY_SHORT } from '../config';
 import { t } from '../i18n/i18n';
 import { inertBlob, isActiveContent, svgDataUrl } from '../utils/safeUrl';
 import { loc } from '../i18n/localize';
@@ -82,23 +82,25 @@ export function toolPage(root: HTMLElement, id: string): (() => void) | null {
     h(
       'header',
       { class: 'tool-head' },
-      h('span', { class: `tool-icon tool-icon-lg cat-${tool.category}` }, icon(tool.icon)),
       h('div', null, h('h1', null, l.name), h('p', { class: 'lead' }, l.description)),
+      h('div', { class: 'tool-head-meta' }, fmtTags(tool), h('p', { class: 'privacy-line' }, icon('lock'), t(PRIVACY_SHORT))),
     ),
-    h('p', { class: 'privacy-line privacy-line-sm' }, icon('lock'), t(PRIVACY_TEXT)),
     mountPoint,
     h(
       'section',
       { class: 'tool-info', 'aria-labelledby': 'about-h' },
-      h('h2', { id: 'about-h' }, t('About: {name}', { name: l.name })),
-      h('p', null, toolAbout(tool)),
-      h('h3', null, t('How to use')),
-      h('ol', { class: 'steps' }, ...howToSteps(tool).map((s) => h('li', null, s))),
-      h('h2', { id: 'faq-h' }, t('Frequently asked questions')),
-      h('div', { class: 'faq' }, ...faq.map((f) => h('details', null, h('summary', null, f.q), h('p', null, f.a)))),
+      h('div', null,
+        h('h2', { id: 'about-h' }, t('About: {name}', { name: l.name })),
+        h('p', null, toolAbout(tool)),
+        h('h3', null, t('How to use')),
+        h('ol', { class: 'steps' }, ...howToSteps(tool).map((s) => h('li', null, s))),
+      ),
+      h('div', null,
+        h('h2', { id: 'faq-h' }, t('Frequently asked questions')),
+        h('div', { class: 'faq' }, ...faq.map((f) => h('details', null, h('summary', null, f.q), h('p', null, f.a)))),
+      ),
     ),
-    h('section', { class: 'section', 'aria-labelledby': 'rel-h' }, h('h2', { id: 'rel-h' }, t('Related tools')), toolGrid(relatedTools(tool), { label: t('Related tools') })),
-    h('div', { class: 'back-row' }, h('a', { class: 'btn btn-ghost', href: routeHref.tools() }, icon('left'), h('span', null, t('All tools')))),
+    h('section', { class: 'section', 'aria-labelledby': 'rel-h' }, h('div', { class: 'section-head' }, h('h2', { id: 'rel-h' }, t('Related tools'))), toolList(relatedTools(tool), { label: t('Related tools'), columns: true })),
   );
   void mount();
 
