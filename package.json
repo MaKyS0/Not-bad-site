@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "node scripts/e2e.mjs",
+    "test:e2e": "node scripts/e2e.mjs && node scripts/e2e-tools.mjs",
+    "test:e2e:tools": "node scripts/e2e-tools.mjs",
     "icons": "node scripts/generate-icons.mjs",
     "models": "node scripts/fetch-models.mjs"
   },

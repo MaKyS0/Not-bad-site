@@ -113,10 +113,12 @@ try {
     await m.click('[data-action="menu"]');
     const opened = await m.isVisible('#mobile-nav') && (await m.getAttribute('[data-action="menu"]', 'aria-expanded')) === 'true';
     await m.keyboard.press('Escape');
-    const closed = !(await m.isVisible('#mobile-nav'));
+    // The panel animates closed, so wait for it rather than checking at once.
+    const closed = (await m.getAttribute('[data-action="menu"]', 'aria-expanded')) === 'false' && (await m.waitForSelector('#mobile-nav', { state: 'hidden', timeout: 3000 }).then(() => true, () => false));
     await m.click('[data-action="menu"]');
     await m.click('#mobile-nav a[href$="category/pdf/"]');
     await m.waitForURL(/category\/pdf/);
+    await m.waitForSelector('#mobile-nav', { state: 'hidden', timeout: 3000 }).catch(() => {});
     check(!navVisible && opened && closed && !(await m.isVisible('#mobile-nav')) && (await m.textContent('h1')) === 'PDF tools', 'mobile menu: opens, closes with Esc, navigates and closes');
     await m.close();
   }

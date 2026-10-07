@@ -35,6 +35,10 @@ describe('line ops', () => {
   });
   it('sorts', () => {
     expect(sortLines('b\na\nC', 'asc')).toBe('a\nb\nC');
+    // case-sensitive is still alphabetical; case only breaks ties
+    expect(sortLines('pear\napple\nBanana\nApple', 'asc', false)).toBe('Apple\napple\nBanana\npear');
+    expect(sortLines('pear\napple\nBanana', 'desc', false)).toBe('pear\nBanana\napple');
+    expect(sortLines('ж\nё\nе\nя', 'asc')).toBe('е\nё\nж\nя');
     expect(sortLines('item10\nitem2\nitem1', 'natural')).toBe('item1\nitem2\nitem10');
     expect(sortLines('ccc\na\nbb', 'length')).toBe('a\nbb\nccc');
     expect(sortLines('1\n2\n3', 'reverse')).toBe('3\n2\n1');

@@ -126,14 +126,18 @@ export function dedupeLines(s: string, o: DedupeOptions = {}): { text: string; r
 }
 
 const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+// Alphabetical order follows the language rules (apple < Banana, е < ё < ж), not
+// code points. With case kept, case only decides between otherwise equal lines.
+const alpha = new Intl.Collator(undefined, { sensitivity: 'accent' });
+const alphaCase = new Intl.Collator(undefined, { sensitivity: 'variant', caseFirst: 'upper' });
 
 export function sortLines(s: string, mode: 'asc' | 'desc' | 'natural' | 'length' | 'shuffle' | 'reverse', ignoreCase = true): string {
   const lines = splitLines(s);
   switch (mode) {
     case 'asc':
-      return lines.sort((a, b) => (ignoreCase ? a.localeCompare(b, undefined, { sensitivity: 'base' }) : a < b ? -1 : a > b ? 1 : 0)).join('\n');
+      return lines.sort((ignoreCase ? alpha : alphaCase).compare).join('\n');
     case 'desc':
-      return lines.sort((a, b) => (ignoreCase ? b.localeCompare(a, undefined, { sensitivity: 'base' }) : a < b ? 1 : a > b ? -1 : 0)).join('\n');
+      return lines.sort((a, b) => (ignoreCase ? alpha : alphaCase).compare(b, a)).join('\n');
     case 'natural':
       return lines.sort(collator.compare).join('\n');
     case 'length':
