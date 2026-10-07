@@ -8,6 +8,8 @@ import { saveBackupFile } from '../services/backup-file.js';
 import { decodeBytes, parseCsv, detectDelimiter, stringifyCsv } from '../domain/csv.js';
 import { autoMap, hasRecognizedHeader, rowsToRecords, parseJsonImport, FIELD_LABELS, STUDENT_FIELDS, STAFF_FIELDS } from '../domain/importer.js';
 import { validateBackup } from '../domain/backup.js';
+import { isEncryptedBox } from '../domain/crypto-box.js';
+import { unlockBox } from '../ui/unlock.js';
 import { studentsCsv, classesCsv, staffCsv, STUDENT_TEMPLATE, STAFF_TEMPLATE } from '../domain/exports.js';
 import { nRows } from '../domain/plural.js';
 import { formatDate } from '../domain/dates.js';
@@ -61,11 +63,36 @@ export function render(ctx) {
 
   const kind = () => kindR[0].input.checked ? 'students' : 'staff';
 
-  function reparse() {
+  // Зашифрованный набор данных, лежащий рядом с сайтом (data/lyceum-data.enc.json).
+  async function loadFromRepo() {
+    try {
+      const res = await fetch(new URL('../../data/lyceum-data.enc.json', import.meta.url), { cache: 'no-store' });
+      if (!res.ok) throw new Error('Файл data/lyceum-data.enc.json не найден на сайте');
+      source = await res.text();
+      paste.value = '';
+      await reparse();
+    } catch (e) { toastError(e); }
+  }
+  if (ctx.query.source === 'repo') {
+    history.replaceState(null, '', '#/import'); // чтобы перерисовка страницы не запускала загрузку повторно
+    queueMicrotask(loadFromRepo);
+  }
+
+  async function reparse() {
     out.replaceChildren();
     csv = null;
-    const text = String(source || '').trim();
+    let text = String(source || '').trim();
     if (!text) return;
+    if (text.startsWith('{')) {
+      let maybe = null;
+      try { maybe = JSON.parse(text); } catch { /* не JSON — разберём ниже */ }
+      if (isEncryptedBox(maybe)) {
+        const data = await unlockBox(maybe);
+        if (!data) return void (source = '');
+        text = JSON.stringify(data);
+        source = text; // расшифрованный текст живёт только в памяти страницы и сбрасывается после импорта
+      }
+    }
     if (/^[{[]/.test(text)) {
       const j = parseJsonImport(text);
       if (!j.ok) return void out.append(notice('danger', j.error));
@@ -167,6 +194,7 @@ export function render(ctx) {
     h('div', { class: 'field' }, h('div', { class: 'label' }, 'Что импортируем'), kindR.map((x) => x.el)),
     h('div', { class: 'field' }, h('label', { for: 'importFile' }, 'Файл'), fileInput),
     h('div', { class: 'field' }, h('label', { for: 'importText' }, 'Или вставьте данные'), paste), parseBtn,
+    h('div', { class: 'notice info', style: 'margin-top:12px' }, h('strong', null, 'Зашифрованные данные лицея. '), 'Файл ', h('code', null, 'data/lyceum-data.enc.json'), ' (или такой же файл, выбранный выше) расшифровывается паролем в вашем браузере и проходит обычный предпросмотр импорта. ', btn('Загрузить зашифрованные данные лицея', loadFromRepo, 'sm', { id: 'loadEncBtn' })),
     h('div', { class: 'row', style: 'margin-top:12px' }, btn('Шаблон CSV: ученики', () => downloadText('шаблон-ученики.csv', STUDENT_TEMPLATE, 'text/csv;charset=utf-8'), 'sm'), btn('Шаблон CSV: персонал', () => downloadText('шаблон-персонал.csv', STAFF_TEMPLATE, 'text/csv;charset=utf-8'), 'sm')),
     out));
 }

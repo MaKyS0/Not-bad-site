@@ -44,7 +44,8 @@ export function render(ctx) {
 
   if (!v.total && !v.unassigned.length) {
     el.append(h('div', { class: 'card', style: 'margin-top:16px' }, emptyState('База учеников пуста', 'Импортируйте список из CSV или JSON, добавьте учеников вручную или загрузите демонстрационные данные, чтобы посмотреть, как всё работает.', [
-      link('Импортировать данные', '#/import', 'primary'),
+      link('Загрузить данные лицея (зашифрованные)', '#/import?source=repo', 'primary'),
+      link('Импортировать из файла', '#/import'),
       link('Добавить в классе', '#/classes'),
       btn('Загрузить DEMO-данные', async () => { try { const r = await loadDemo(repo); toast(`Загружено DEMO: ${nStudents(r.students)}, сотрудников: ${r.staff}`); } catch (e) { toastError(e); } }),
     ])));

@@ -3,6 +3,7 @@
 import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import { startServer } from './server.mjs';
+import { encryptJson } from '../../js/domain/crypto-box.js';
 
 let pw;
 try { pw = await import('playwright'); } catch { pw = createRequire('/opt/node22/lib/node_modules/')('playwright'); }
@@ -361,6 +362,39 @@ await scenario('Импорт: CSV (Windows-1251, «;»), вставка из Exc
   await page.waitForFunction(() => window.__lyceum.store.state.students.some((s) => s.lastName === 'Джейсонов'));
   // перед импортом создавались резервные копии
   eq(await state(page, `S.settings.lastBackupAt !== null`), true, 'резервная копия перед импортом');
+});
+
+await scenario('Зашифрованные данные: выбор файла, неверный пароль, расшифровка, предпросмотр, импорт; файл из data/ с неверным паролем', async (page) => {
+  const box = await encryptJson({ students: [{ fio: 'Шифров Шифр Шифрович', class: '9B', birthDate: '2011-05-05' }, { fio: 'Тайнов Тайн', class: '9С', birthDate: '2011-06-06' }], teachers: [{ fio: 'Секретова Секрета', class: '9B' }] }, 'тестовый-пароль-123');
+  assert(!JSON.stringify(box).includes('Шифров'), 'в зашифрованном файле нет открытого текста');
+  await open(page, '#/import');
+  await page.setInputFiles('#importFile', { name: 'data.enc.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(box)) });
+  await modal(page).locator('input[name=unlockPass]').fill('неверный-пароль');
+  await modal(page).locator('button:has-text("Расшифровать")').click();
+  await page.waitForSelector('.toast.error:has-text("Неверный пароль")');
+  assert(await modal(page).count() === 1, 'окно пароля осталось открытым');
+  eq(await state(page, 'S.students.length'), 0, 'ничего не импортировано');
+  await modal(page).locator('input[name=unlockPass]').fill('тестовый-пароль-123');
+  await modal(page).locator('button:has-text("Расшифровать")').click();
+  await page.waitForSelector('#importOut table');
+  assert((await page.textContent('#importOut')).includes('Шифров Шифр Шифрович'), 'предпросмотр показывает расшифрованные данные');
+  await page.click('#importApply');
+  await page.waitForFunction(() => window.__lyceum.store.state.students.length === 2 && window.__lyceum.store.state.staff.length === 1);
+  eq(await state(page, `S.enrollments.find(e => e.studentId === S.students.find(s => s.lastName === 'Тайнов').id).classId`), '2026-2027:9C', 'класс 9С распознан');
+  // отмена ввода пароля — ничего не происходит
+  await open(page, '#/import');
+  await page.setInputFiles('#importFile', { name: 'data.enc.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(box)) });
+  await modal(page).locator('button:has-text("Отмена")').click();
+  await page.waitForSelector('dialog.modal[open]', { state: 'detached' });
+  eq(await page.locator('#importOut table').count(), 0, 'без пароля предпросмотра нет');
+  // файл data/lyceum-data.enc.json из репозитория: с неверным паролем данные не раскрываются
+  await open(page, '#/import');
+  await page.click('#loadEncBtn');
+  await modal(page).locator('input[name=unlockPass]').fill('точно-неверный-пароль');
+  await modal(page).locator('button:has-text("Расшифровать")').click();
+  await page.waitForSelector('.toast.error:has-text("Неверный пароль")');
+  await modal(page).locator('button:has-text("Отмена")').click();
+  eq(await state(page, 'S.students.length'), 2, 'данные из репозитория не загружены без пароля');
 });
 
 await scenario('Экспорт JSON, очистка, восстановление из файла и из копии в браузере, CSV-экспорт', async (page) => {

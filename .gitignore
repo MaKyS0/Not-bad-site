@@ -5,3 +5,9 @@ dist
 test-results
 coverage
 public/models
+
+# Исходные таблицы и расшифрованные данные лицея никогда не коммитим
+*.xlsx
+*.xls
+lyceum/data/private/
+lyceum/data/*.plain.json
