@@ -90,6 +90,8 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin || !url.href.startsWith(SCOPE)) return;
   // Speech models are cached by the recognition library itself (Cache API).
   if (url.href.startsWith(new URL('models/', SCOPE).href)) return;
+  // The lyceum registry (/lyceum/) is a separate static app: never intercept it.
+  if (url.href.startsWith(new URL('lyceum/', SCOPE).href)) return;
   if (request.mode === 'navigate') {
     event.respondWith(networkFirstPage(request));
     return;

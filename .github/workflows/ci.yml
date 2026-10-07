@@ -24,8 +24,12 @@ jobs:
           path: public/models
           key: whisper-${{ hashFiles('scripts/fetch-models.mjs') }}
       - run: npm test
+      - name: Lyceum registry unit tests
+        run: node --test lyceum/tests/unit/*.test.mjs
       - run: npm run build
       - name: Install Chromium for E2E
         run: npx playwright install --with-deps chromium
       - name: E2E (real browser, GitHub-Pages-like sub-path)
         run: npm run test:e2e
+      - name: Lyceum registry E2E (real browser, GitHub-Pages-like sub-path)
+        run: node lyceum/tests/e2e/run.mjs

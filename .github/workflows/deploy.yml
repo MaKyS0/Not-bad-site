@@ -42,12 +42,21 @@ jobs:
       - name: Unit tests
         run: npm test
 
+      - name: Lyceum registry unit tests
+        run: node --test lyceum/tests/unit/*.test.mjs
+
       - name: Build
         env:
           # e.g. "/repository" for project pages, "" for user pages or a custom domain
           BASE_PATH: ${{ steps.pages.outputs.base_path }}/
           SITE_URL: ${{ steps.pages.outputs.base_url }}/
         run: npm run build
+
+      - name: Add lyceum registry (static, no build step)
+        run: |
+          mkdir -p dist/lyceum
+          cp -R lyceum/. dist/lyceum/
+          rm -rf dist/lyceum/tests
 
       - uses: actions/upload-pages-artifact@v3
         with:

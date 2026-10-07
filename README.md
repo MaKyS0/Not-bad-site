@@ -15,6 +15,8 @@ Universal File Toolbox is a static web app (no backend, no database, no sign-up)
 - Dark / Light / System theme, global search in both languages (`/` or `Ctrl+K`), local history
 - Works on Windows, macOS, Linux, Android, iOS — desktop and mobile browsers
 
+> **Also in this repository:** [`lyceum/`](lyceum/README.md) — «Учёт лицея», a separate static registry of classes, students, class teachers and tutors with yearly promotion, history, reports, import/export and Google Sheets sync. It is published next to the toolbox at `/lyceum/` (see `lyceum/README.md`); the toolbox service worker deliberately ignores that path.
+
 ---
 
 ## Contents
