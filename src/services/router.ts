@@ -23,14 +23,23 @@ export function routePathOf(pathname: string): string {
   return routeOf(pathname).replace(/^ru(\/|$)/, '').replace(/index\.html$/, '');
 }
 
+function decode(s: string): string | null {
+  try {
+    return decodeURIComponent(s);
+  } catch {
+    return null; // malformed escape such as "%E0"
+  }
+}
+
 export function parseRoute(pathname: string): Route {
   setLang(langOf(pathname));
   const path = routePathOf(pathname).replace(/\/+$/, '');
   if (path === '' || path === '404.html') return path === '' ? { name: 'home' } : { name: 'notFound', path: pathname };
   const parts = path.split('/');
   if (parts[0] === 'tools' && parts.length === 1) return { name: 'tools' };
-  if (parts[0] === 'tools' && parts.length === 2) return { name: 'tool', id: decodeURIComponent(parts[1]) };
-  if (parts[0] === 'category' && parts.length === 2) return { name: 'category', id: decodeURIComponent(parts[1]) };
+  const id = parts.length === 2 ? decode(parts[1]) : null;
+  if (parts[0] === 'tools' && id !== null) return { name: 'tool', id };
+  if (parts[0] === 'category' && id !== null) return { name: 'category', id };
   return { name: 'notFound', path: pathname };
 }
 

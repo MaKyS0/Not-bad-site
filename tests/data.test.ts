@@ -79,3 +79,18 @@ describe('markdown (safe)', () => {
     expect(html).toContain('href="https://example.com"');
   });
 });
+
+describe('markdown link safety', () => {
+  it('rejects scripts hidden behind control characters and keeps tags intact', async () => {
+    const { markdownToHtml } = await import('../src/tools/data/lib/markdown');
+    for (const evil of ['\u0001javascript:alert(1)', 'java\tscript:alert(1)', ' javascript:alert(1)', 'JaVaScRiPt:alert(1)', 'data:text/html,x', '\u0000javascript:x']) {
+      const html = markdownToHtml(`[click](${evil})`);
+      expect(html, evil).not.toMatch(/href/);
+    }
+    const html = markdownToHtml('[x](http://a/*) foo*');
+    expect(html).toContain('href="http://a/*"');
+    expect(html).toContain('target="_blank"');
+    expect(markdownToHtml('[x](//evil.com)')).toContain('rel="noopener noreferrer"');
+    expect(markdownToHtml('**bold [*link*](https://e.com)**')).toBe('<p><strong>bold <a href="https://e.com" target="_blank" rel="noopener noreferrer"><em>link</em></a></strong></p>');
+  });
+});

@@ -39,13 +39,19 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+/** Cache by path only: query strings must not create unbounded cache entries. */
+function cacheKey(request) {
+  const url = new URL(request.url);
+  return url.origin + url.pathname;
+}
+
 async function cacheFirst(request) {
   const cached = await caches.match(request, { ignoreSearch: true });
   if (cached) return cached;
   const res = await fetch(request);
   if (res.ok && res.type === 'basic') {
     const cache = await caches.open(RUNTIME_CACHE);
-    cache.put(request, res.clone());
+    cache.put(cacheKey(request), res.clone());
   }
   return res;
 }
@@ -58,9 +64,9 @@ async function networkFirstPage(request) {
     const timer = setTimeout(() => controller.abort(), 4000);
     const res = await fetch(request, { signal: controller.signal });
     clearTimeout(timer);
-    if (res.ok) {
+    if (res.ok && res.type === 'basic') {
       const cache = await caches.open(RUNTIME_CACHE);
-      cache.put(request, res.clone());
+      cache.put(cacheKey(request), res.clone());
     }
     return res;
   } catch (e) {

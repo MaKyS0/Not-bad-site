@@ -22,9 +22,15 @@ const SAMPLE_CSV = 'name,age,city,active\nAnn,31,"Berlin, DE",true\nBob,27,Paris
 const SAMPLE_JSON = '[{"name":"Ann","age":31,"address":{"city":"Berlin","zip":"10115"},"tags":["admin","dev"]},{"name":"Bob","age":27,"address":{"city":"Paris"}}]';
 const VIEW_LIMIT = 1000;
 
+/**
+ * Text cells that Excel/Sheets would run as formulas (CSV injection), e.g.
+ * "=HYPERLINK(…)" or "@SUM(…)". Plain signed numbers such as "-5" are left alone.
+ */
+const FORMULA = /^(?:[=@\t\r]|[+-](?!\d+(?:[.,]\d+)?(?:e[+-]?\d+)?$))/i;
+
 export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolContext) => {
   const mode = ((ctx.preset as { mode?: Mode }).mode ?? 'view') as Mode;
-  const s = await ctx.loadSettings({ delimiter: 'auto', header: true, dynamicTyping: true, skipEmpty: true, outDelimiter: ',', bom: false, flatten: true, quoteAll: false, jsonShape: 'objects' as 'objects' | 'arrays' });
+  const s = await ctx.loadSettings({ delimiter: 'auto', header: true, dynamicTyping: true, skipEmpty: true, outDelimiter: ',', bom: false, flatten: true, quoteAll: false, safeFormulas: true, jsonShape: 'objects' as 'objects' | 'arrays' });
   const Papa = (await import('papaparse')).default;
   let used = false;
   const save = () => ctx.saveSettings(s);
@@ -81,7 +87,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     try {
       if (mode === 'json2csv') {
         const { fields, rows } = jsonToRows(parseJson(text), s.flatten);
-        const csv = Papa.unparse({ fields, data: rows as unknown[][] }, { delimiter: s.outDelimiter, quotes: s.quoteAll, newline: '\r\n' });
+        const csv = Papa.unparse({ fields, data: rows as unknown[][] }, { delimiter: s.outDelimiter, quotes: s.quoteAll, newline: '\r\n', escapeFormulae: s.safeFormulas ? FORMULA : false });
         output.set(s.bom ? `﻿${csv}` : csv);
         status.className = 'status-line status-ok';
         status.textContent = `✓ ${plural(rows.length, 'row')} × ${plural(fields.length, 'column')}`;
@@ -132,7 +138,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     );
   }
 
-  const opt = (label: string, key: 'header' | 'dynamicTyping' | 'skipEmpty' | 'bom' | 'flatten' | 'quoteAll') => checkbox(label, s[key], (v) => { s[key] = v; save(); run(); }).el;
+  const opt = (label: string, key: 'header' | 'dynamicTyping' | 'skipEmpty' | 'bom' | 'flatten' | 'quoteAll' | 'safeFormulas') => checkbox(t(label), s[key], (v) => { s[key] = v; save(); run(); }).el;
   const options = h('div', { class: 'panel stack' });
   if (isCsvInput) {
     append(options, [
@@ -144,7 +150,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   } else {
     options.append(
       h('div', { class: 'options-grid' }, field(t('Output delimiter'), select(DELIMS.filter((d) => d.value !== 'auto'), s.outDelimiter, (v) => { s.outDelimiter = v; save(); run(); }))),
-      h('div', { class: 'stack-sm' }, opt('Flatten nested objects (address.city)', 'flatten'), opt('Quote all fields', 'quoteAll'), opt('Add UTF-8 BOM (helps Excel open non-English text)', 'bom')),
+      h('div', { class: 'stack-sm' }, opt('Flatten nested objects (address.city)', 'flatten'), opt('Quote all fields', 'quoteAll'), opt('Add UTF-8 BOM (helps Excel open non-English text)', 'bom'), opt('Protect against spreadsheet formulas (=, +, -, @)', 'safeFormulas')),
     );
   }
   options.append(status);

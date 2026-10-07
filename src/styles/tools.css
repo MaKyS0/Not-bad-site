@@ -293,3 +293,24 @@ audio { width: 100%; }
 }
 .batch, .batch-body { display: flex; flex-direction: column; gap: 12px; }
 .batch-body[hidden] { display: none; }
+
+/* ---------- virus check ---------- */
+.verdict { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: var(--radius); border: 1px solid transparent; }
+.verdict p { margin: 4px 0 0; }
+.verdict .icon { flex: none; margin-top: 2px; }
+.verdict-danger { background: var(--danger-soft); color: var(--danger); border-color: color-mix(in srgb, var(--danger) 30%, transparent); }
+.verdict-warn { background: var(--warn-soft); color: var(--warn); border-color: color-mix(in srgb, var(--warn) 30%, transparent); }
+.verdict-clean { background: var(--success-soft); color: var(--success); border-color: color-mix(in srgb, var(--success) 30%, transparent); }
+.findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.finding { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--border); border-left-width: 4px; border-radius: 10px; background: var(--bg-elev); }
+.finding p { margin: 2px 0 0; color: var(--text-2); overflow-wrap: anywhere; }
+.finding-icon { flex: none; display: inline-flex; margin-top: 1px; }
+.finding-danger { border-left-color: var(--danger); }
+.finding-danger .finding-icon { color: var(--danger); }
+.finding-warn { border-left-color: var(--warn); }
+.finding-warn .finding-icon { color: var(--warn); }
+.finding-info { border-left-color: var(--accent); }
+.finding-info .finding-icon { color: var(--accent); }
+.vt-row { display: grid; gap: 6px; justify-items: start; }
+.vt-row .hint { margin: 0; }
+.finding-where { font-family: var(--mono); font-size: 0.85rem; }

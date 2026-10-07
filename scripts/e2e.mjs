@@ -13,7 +13,8 @@
 import { chromium } from 'playwright';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { PDFDocument, StandardFonts } from 'pdf-lib';
-import { unzipSync } from 'fflate';
+import { unzipSync, zipSync } from 'fflate';
+import { createHash } from 'node:crypto';
 import { startServer } from './serve.mjs';
 
 const PORT = 4280;
@@ -296,6 +297,36 @@ try {
   await page.waitForFunction(() => /[0-9a-f]{64}/.test(document.querySelector('.hash-out')?.textContent ?? ''), null, { timeout: 20000 });
   const inspect = await text('#tool-root');
   check(inspect.includes('PNG image') && inspect.includes('640 × 480') && inspect.includes('looks like: PNG image'), 'inspector: magic-byte detection, dimensions, mismatch warning, SHA-256');
+  // virus check: disguised program, EICAR in a ZIP, clean file — and the RU UI
+  {
+    const exeBuf = Buffer.alloc(512);
+    exeBuf.write('MZ', 0, 'latin1');
+    exeBuf.writeUInt32LE(0x80, 0x3c);
+    exeBuf.write('PE\0\0', 0x80, 'latin1');
+    const eicar = ['X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR', 'STANDARD', 'ANTIVIRUS', 'TEST', 'FILE!$H+H*'].join('-');
+    const eicarZip = Buffer.from(zipSync({ 'readme.txt': new TextEncoder().encode(eicar) }));
+    await page.goto(`${ROOT}tools/virus-scanner/`);
+    await up([
+      { name: 'invoice.pdf', mimeType: 'application/pdf', buffer: exeBuf },
+      { name: 'files.zip', mimeType: 'application/zip', buffer: eicarZip },
+      { name: 'photo.png', mimeType: 'image/png', buffer: png },
+    ]);
+    await page.waitForFunction(() => document.querySelectorAll('.verdict').length === 3, null, { timeout: 30000 });
+    const verdicts = await page.$$eval('.verdict', (els) => els.map((e) => e.className));
+    check(verdicts[0].includes('danger') && verdicts[1].includes('danger') && verdicts[2].includes('clean'), `virus check verdicts: ${verdicts.join(' | ')}`);
+    const vtxt = await text('#tool-root');
+    check(vtxt.includes('Program disguised as another file type') && vtxt.includes('EICAR antivirus test file') && vtxt.includes('readme.txt'), 'virus check: disguised EXE + EICAR inside ZIP reported');
+    await page.waitForSelector('a[href^="https://www.virustotal.com/gui/file/"]', { timeout: 20000 });
+    const vt = await page.getAttribute('a[href^="https://www.virustotal.com/gui/file/"] >> nth=2', 'href');
+    const pngHash = createHash('sha256').update(png).digest('hex');
+    check(vt === `https://www.virustotal.com/gui/file/${pngHash}`, 'virus check: VirusTotal link carries only the SHA-256');
+    check(vtxt.includes('Checked 3 files: 2 dangerous, 0 need caution, 1 without threats.'), 'virus check: batch summary');
+    await page.goto(`${ROOT}ru/tools/virus-scanner/`);
+    await up([{ name: 'invoice.pdf', mimeType: 'application/pdf', buffer: exeBuf }]);
+    await page.waitForSelector('.verdict', { timeout: 20000 });
+    const rtxt = await text('#tool-root');
+    check(rtxt.includes('Найдены опасные признаки') && rtxt.includes('Программа под видом файла другого типа') && rtxt.includes('Программа Windows (EXE)'), 'virus check: Russian UI');
+  }
   await page.goto(`${ROOT}tools/zip/`);
   await up([{ name: 'a.txt', mimeType: 'text/plain', buffer: Buffer.from('hello '.repeat(500)) }, { name: 'b.png', mimeType: 'image/png', buffer: png }]);
   await page.waitForSelector('.entry');

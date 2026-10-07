@@ -2,6 +2,25 @@ import type { ToolMeta } from '../types.ts';
 
 export const fileTools: ToolMeta[] = [
   {
+    id: 'virus-scanner',
+    name: 'Virus Check',
+    category: 'files',
+    description: 'Check files for malware red flags locally, plus a one-click VirusTotal hash lookup.',
+    about: 'Scan files for the tricks malware uses, right on your device: programs disguised as documents or pictures, double extensions and hidden Unicode characters in names, Office macros, remote templates and DDE fields, JavaScript and launch actions in PDFs, dropper commands in scripts, phishing and HTML-smuggling pages, zip bombs, “zip slip” paths and password-protected archives with programs inside. ZIP archives are checked entry by entry. For a second opinion, one click looks up the file’s SHA-256 hash on VirusTotal — only the hash is sent, never the file. This is a heuristic check, not a full antivirus.',
+    supportedFormats: ['*'],
+    icon: 'shield',
+    component: 'files/virusScan',
+    keywords: ['virus', 'virus scan', 'malware', 'antivirus', 'scan file', 'check file for viruses', 'trojan', 'macro', 'phishing', 'virustotal', 'safe'],
+    popular: true,
+    batch: true,
+    title: 'Check a File for Viruses Online — Free, Private, No Upload',
+    faq: [
+      { q: 'Is this a real antivirus?', a: 'No. It has no database of known viruses. It looks for the techniques malicious files rely on (disguised programs, macros, scripts, exploits patterns, zip bombs). For a database check, use the VirusTotal button — it looks up only the file’s SHA-256 hash.' },
+      { q: 'Is my file uploaded anywhere?', a: 'No. The scan runs in your browser. The VirusTotal button opens virustotal.com with the file’s hash in the address; the file itself stays on your device.' },
+      { q: 'The check found nothing — is the file safe?', a: 'Not necessarily. New or well-hidden malware can pass any heuristic check. Treat files from unknown senders with care, keep your system updated and use an antivirus.' },
+    ],
+  },
+  {
     id: 'file-inspector',
     name: 'File Inspector',
     category: 'files',

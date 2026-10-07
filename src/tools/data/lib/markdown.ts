@@ -9,18 +9,30 @@ const esc = (s: string): string => s.replace(/&/g, '&amp;').replace(/</g, '&lt;'
 const unesc = (s: string): string => s.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 
 function safeUrl(raw: string): string | null {
-  const url = unesc(raw).trim();
+  // Browsers ignore control characters and whitespace inside a URL scheme
+  // ("\u0001java\tscript:" is javascript:), so drop them before checking.
+  const url = unesc(raw).replace(/[\u0000-\u0020\u007f-\u009f]/g, '');
   if (/^(https?:|mailto:)/i.test(url)) return url;
-  if (/^[a-z][a-z0-9+.-]*:/i.test(url)) return null; // javascript:, data:, vbscript: …
+  if (/^[a-z][a-z0-9+.-]*:/i.test(url) || /^[^/?#]*:/.test(url)) return null; // javascript:, data:, vbscript: …
   return url; // relative or #anchor
 }
+
+const isExternal = (u: string): boolean => /^(https?:|mailto:|\/\/)/i.test(u);
+
+const emphasis = (s: string): string =>
+  s
+    .replace(/(\*\*|__)(?=\S)([\s\S]*?\S)\1/g, '<strong>$2</strong>')
+    .replace(/(?<![\w*])\*(?=\S)([\s\S]*?\S)\*(?!\*)/g, '<em>$1</em>')
+    .replace(/(?<![\w_])_(?=\S)([\s\S]*?\S)_(?![\w_])/g, '<em>$1</em>')
+    .replace(/~~(?=\S)([\s\S]*?\S)~~/g, '<del>$1</del>');
 
 const slug = (s: string): string =>
   s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z#0-9]+;/g, '').replace(/[^\p{L}\p{N}\s-]/gu, '').trim().replace(/\s+/g, '-');
 
 export function inline(src: string): string {
   const codes: string[] = [];
-  let s = src.replace(/(`+)([\s\S]*?[^`])\1(?!`)/g, (_m, _t, code: string) => {
+  // Placeholder markers below use U+0000–U+0002; they must not come from the input.
+  let s = src.replace(/[\u0000-\u0002]/g, '').replace(/(`+)([\s\S]*?[^`])\1(?!`)/g, (_m, _t, code: string) => {
     codes.push(`<code>${esc(code.trim())}</code>`);
     return `\u0000${codes.length - 1}\u0000`;
   });
@@ -31,27 +43,29 @@ export function inline(src: string): string {
     escapes.push(c);
     return `\u0001${escapes.length - 1}\u0001`;
   });
+  // Generated tags are parked in placeholders so that the emphasis pass below
+  // can never rewrite their attributes.
+  const tags: string[] = [];
+  const park = (html: string) => {
+    tags.push(html);
+    return `\u0002${tags.length - 1}\u0002`;
+  };
   // images (remote images are not fetched)
   s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+&quot;([^&]*)&quot;)?\)/g, (_m, alt: string, url: string) => {
     const u = safeUrl(url);
     if (!u) return alt;
-    return `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer" class="md-img">🖼 ${alt || 'image'}</a>`;
+    return park(`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer" class="md-img">🖼 ${emphasis(alt) || 'image'}</a>`);
   });
   // links
   s = s.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+&quot;([^&]*)&quot;)?\)/g, (_m, text: string, url: string, title?: string) => {
     const u = safeUrl(url);
     if (!u) return text;
-    const ext = /^(https?:|mailto:)/i.test(u);
-    return `<a href="${esc(u)}"${title ? ` title="${title}"` : ''}${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>${text}</a>`;
+    return park(`<a href="${esc(u)}"${title ? ` title="${title}"` : ''}${isExternal(u) ? ' target="_blank" rel="noopener noreferrer"' : ''}>${emphasis(text)}</a>`);
   });
   // autolinks
-  s = s.replace(/&lt;(https?:\/\/[^\s&]+)&gt;/g, (_m, u: string) => `<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`);
-  s = s
-    .replace(/(\*\*|__)(?=\S)([\s\S]*?\S)\1/g, '<strong>$2</strong>')
-    .replace(/(?<![\w*])\*(?=\S)([\s\S]*?\S)\*(?!\*)/g, '<em>$1</em>')
-    .replace(/(?<![\w_])_(?=\S)([\s\S]*?\S)_(?![\w_])/g, '<em>$1</em>')
-    .replace(/~~(?=\S)([\s\S]*?\S)~~/g, '<del>$1</del>')
-    .replace(/( {2,}|\\)\n/g, '<br>\n');
+  s = s.replace(/&lt;(https?:\/\/[^\s&]+)&gt;/g, (_m, u: string) => park(`<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`));
+  s = emphasis(s).replace(/( {2,}|\\)\n/g, '<br>\n');
+  s = s.replace(/\u0002(\d+)\u0002/g, (_m, i: string) => tags[Number(i)]);
   s = s.replace(/\u0001(\d+)\u0001/g, (_m, i: string) => esc(escapes[Number(i)]));
   return s.replace(/\u0000(\d+)\u0000/g, (_m, i: string) => codes[Number(i)]);
 }

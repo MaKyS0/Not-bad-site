@@ -87,8 +87,12 @@ export function uniqueName(name: string, used: Set<string>): string {
   }
 }
 
+/** Invisible bidi controls (e.g. U+202E) can disguise "gpj.exe" as "exe.jpg". */
+export const BIDI_CHARS = /[\u200e\u200f\u061c\u202a-\u202e\u2066-\u2069]/g;
+export const stripBidi = (s: string): string => s.replace(BIDI_CHARS, '');
+
 /** Strip characters that are invalid in file names on common OSes. */
 export function safeFileName(name: string, fallback = 'file'): string {
-  const cleaned = name.replace(/[\\/:*?"<>|\u0000-\u001f]/g, '_').replace(/^\.+/, '').trim();
+  const cleaned = stripBidi(name).replace(/[\\/:*?"<>|\u0000-\u001f\u007f]/g, '_').replace(/^\.+/, '').trim();
   return cleaned.slice(0, 200) || fallback;
 }

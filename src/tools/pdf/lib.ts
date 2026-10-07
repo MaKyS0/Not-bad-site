@@ -44,6 +44,10 @@ export async function openPdfJs(bytes: Uint8Array, password?: string): Promise<P
     standardFontDataUrl: assetUrl('pdfjs/standard_fonts/'),
     wasmUrl: assetUrl('pdfjs/wasm/'),
     iccUrl: assetUrl('pdfjs/iccs/'),
+    // Hardening against crafted PDFs: never run XFA forms, and skip embedded
+    // images above 100 megapixels (decompression bombs) instead of decoding them.
+    enableXfa: false,
+    maxImageSize: 100_000_000,
   });
   try {
     return await task.promise;

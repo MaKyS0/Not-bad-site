@@ -5,7 +5,7 @@ import { button, errorPanel, notice, progress, textInput } from '../../component
 import { icon } from '../../components/icons';
 import { listZip, extractEntry, type ZipEntryInfo } from '../../utils/zip';
 import { downloadBlob } from '../../services/download';
-import { formatBytes } from '../../utils/format';
+import { formatBytes, stripBidi } from '../../utils/format';
 import { sniffBytes } from '../../utils/fileType';
 import { describeError } from '../../utils/errors';
 import { plural, t } from '../../i18n/i18n';
@@ -18,7 +18,7 @@ type PickerWindow = Window & { showDirectoryPicker?: (o?: { mode?: string }) => 
 
 /** Prevent "zip slip": keep only safe path segments. */
 export function safeSegments(path: string): string[] {
-  return path.split(/[\\/]+/).filter((seg) => seg && seg !== '.' && seg !== '..').map((seg) => seg.replace(/[:*?"<>|\u0000-\u001f]/g, '_'));
+  return stripBidi(path).split(/[\\/]+/).filter((seg) => seg && seg !== '.' && seg !== '..').map((seg) => seg.replace(/[:*?"<>|\u0000-\u001f\u007f]/g, '_'));
 }
 
 const PREVIEW_TEXT = /\.(txt|md|json|csv|tsv|xml|html?|css|js|ts|ya?ml|ini|log|svg)$/i;
@@ -79,7 +79,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
       render(listEl, ...shown.map((e) =>
         h('li', { class: 'entry' },
           icon(e.name.includes('/') ? 'folder' : 'file'),
-          h('span', { class: 'entry-name', title: e.name }, e.name),
+          h('span', { class: 'entry-name', title: stripBidi(e.name) }, stripBidi(e.name)),
           h('span', { class: 'entry-size' }, formatBytes(e.size)),
           h('span', { class: 'entry-actions' },
             PREVIEW_IMG.test(e.name) || PREVIEW_TEXT.test(e.name) ? button('', { variant: 'ghost', size: 'sm', icon: 'search', ariaLabel: `Preview ${e.name}`, onClick: () => void showPreview(e) }) : null,
