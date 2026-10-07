@@ -48,9 +48,13 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       previewUrl = '';
       previewBox.hidden = !items.length;
       if (items[0]) {
-        previewUrl = ctx.objectUrl(items[0].file);
-        previewImg.src = previewUrl;
-        drawPreview();
+        const file = items[0].file;
+        void ctx.imageUrl(file).then((u) => {
+          if (items[0]?.file !== file) return ctx.revokeUrl(u);
+          previewUrl = u;
+          previewImg.src = u;
+          drawPreview();
+        });
       }
     },
     process: async (file, onProgress, signal) => {

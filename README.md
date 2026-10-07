@@ -39,7 +39,7 @@ Universal File Toolbox is a static web app (no backend, no database, no sign-up)
 |---|---|
 | **Image** | Image Compressor (JPG/PNG/WebP, quality slider, before/after slider, size saving, batch) · Image Converter (PNG ↔ JPG ↔ WebP; reads BMP, GIF, SVG, ICO, AVIF) · presets: PNG→JPG, JPG→PNG, JPG→WebP, PNG→WebP, WebP→PNG, WebP→JPG, BMP→PNG, SVG→PNG, GIF→PNG, ICO→PNG · Image Resizer (px / %, aspect lock, batch) · Image Cropper (free, 1:1, 4:3, 3:2, 16:9, 9:16, custom) · Rotate & Flip (90/180/270°, H/V flip, batch) · Image Metadata (dimensions, MIME, size, EXIF/IPTC/XMP/GPS) · Favicon Generator (favicon.ico 16/32/48, PNG 16–512, Apple touch icon, manifest, HTML snippet) |
 | **PDF** | Merge · Split (every page, every N pages, custom ranges) · Extract / delete pages (thumbnails) · Rotate pages · PDF → PNG/JPG (72–300 dpi) · Images → PDF (A4/Letter/fit, orientation, margins) · PDF Info (pages, sizes, version, metadata) |
-| **Files** | File Inspector (name, extension, declared vs. detected MIME via magic bytes, size, dates, dimensions, PDF pages, audio duration, SHA-256) · File Hash (SHA-1/256/384/512, compare with expected, streaming SHA-256 for huge files) |
+| **Files** | Virus Check (local malware red-flag scan + one-click VirusTotal hash lookup) · File Inspector (name, extension, declared vs. detected MIME via magic bytes, size, dates, dimensions, PDF pages, audio duration, SHA-256) · File Hash (SHA-1/256/384/512, compare with expected, streaming SHA-256 for huge files) |
 | **Data** | JSON Formatter (format, minify, validate with line/column, highlighting, copy) · CSV Viewer · CSV → JSON · JSON → CSV (delimiter & encoding selection, flattening, Excel BOM) · XML Formatter (format, minify, well-formedness check) · Markdown Preview (safe renderer, HTML export) |
 | **Text** | Word / Character / Line counter · Remove duplicate lines · Sort lines (A-Z, Z-A, natural, length, shuffle, reverse) · Reverse text/words · Case converter (12 cases) · Trim spaces · Base64 encode/decode (text & files) · URL encode/decode · HTML entities encode/decode |
 | **Archive** | ZIP Creator (files & folders, remove entries, open an existing ZIP to add/remove files, compression level) · ZIP Extractor (browse, preview, download single files, extract all to a folder where supported) |
@@ -166,8 +166,15 @@ interface ToolModule {
 ### Security
 
 - Strict CSP via `<meta>`: `default-src 'self'`, no inline scripts except a hashed theme bootstrap, `connect-src 'self' blob: data:`, `object-src 'none'`, `form-action 'none'`, `wasm-unsafe-eval` only for the WebAssembly codecs.
-- No `eval`, no user JavaScript execution. User text is always inserted as text nodes. SVGs are rasterised through `<img>` (scripts never run). Markdown is rendered by a sanitising converter that escapes all HTML and allows only safe link schemes. ZIP extraction strips `..` path segments.
+- No `eval`, no user JavaScript execution. User text is always inserted as text nodes. Markdown is rendered by a sanitising converter that escapes all HTML and allows only `http(s)`/`mailto`/relative links (control characters that browsers strip from URL schemes are removed before the check).
+- **User SVG/HTML never becomes a same-origin page.** A `blob:` URL inherits the site's origin, so "Open image in new tab" on an SVG preview would run its scripts with access to the site's storage and service-worker cache. Object URLs of SVG/HTML/XML are created with a non-renderable type, and SVG previews use `data:` URLs (opaque origin, not openable as a top-level page) — see `src/utils/safeUrl.ts`.
+- **Hostile files are refused before they can hurt:** PDF page trees are walked once with loop/shared-node detection and a 10 000-page cap (a 4 KB "page-tree bomb" claims a trillion pages); pdf.js runs without XFA and skips embedded images above 100 MP; image headers are read before decoding (> 268 MP refused); ZIP entries are extracted only after checking encryption, declared size, actual size and CRC-32; opening a ZIP for editing refuses > 1 GB / > 10 000 entries / zip-bomb ratios; names written into archives are normalised (no `..`, absolute paths, drive letters, bidi characters); Markdown parsing is linear-time (no ReDoS) with a nesting cap; extremely deep JSON/XML produces a clear error.
+- Download and extracted file names are stripped of path characters, control characters and bidi overrides (U+202E "gpj.exe" tricks). JSON→CSV escapes spreadsheet formulas (`=`, `+`, `-`, `@`) by default.
 - File types are validated by extension **and** magic bytes; mismatches are reported.
+
+### Virus Check
+
+`src/tools/files/lib/scan.ts` is a static, on-device analyser (run in a Web Worker). It is **not an antivirus** — there is no signature database — but it recognises the tricks malicious files rely on: executables disguised as documents (magic bytes vs. extension), double extensions and bidi characters in names, Office macros (OOXML `vbaProject.bin`, OLE `_VBA_PROJECT`), XLM macro sheets, remote templates and DDE fields, RTF OLE objects and Equation Editor exploits, PDF JavaScript/OpenAction/Launch/EmbeddedFile (also inside compressed object streams and hex-obfuscated names), dropper command lines (PowerShell, certutil, mshta, `curl | sh` …), HTML smuggling and phishing pages, SVG scripts, Base64-embedded executables, zip bombs, zip-slip paths, password-protected archives with programs, image bombs and the EICAR test file. ZIP entries are inspected one by one. The *Check hash on VirusTotal* button opens `virustotal.com/gui/file/<sha256>` — only the hash leaves the device, and only when the user clicks.
 
 ## Adding a new tool
 
@@ -233,7 +240,7 @@ To add a language: add it to `LANGS` in `i18n.ts`, create a dictionary like `ru.
 ## Testing
 
 ```bash
-npm test             # Vitest: 52 unit tests (incl. translation completeness) (text, codecs, JSON/CSV/XML, Markdown XSS,
+npm test             # Vitest: 67 unit tests (incl. translation completeness) (text, codecs, JSON/CSV/XML, Markdown XSS,
                      # SHA-256 vs WebCrypto, ICO, WAV, ID3, PDF ops, ZIP, search, registry)
 npm run build
 npm run test:e2e     # Playwright + Chromium against ./dist served under /Not-bad-site/:
@@ -270,6 +277,8 @@ These are honest browser limits — the app shows a clear message instead of fak
 - **EXIF**: output images from compress/convert/resize contain no EXIF (canvas re-encoding). The *Image Metadata* tool reads EXIF but does not edit it; WebP EXIF is not read by exifr.
 - **Very large files** are limited by device memory: canvas size limits (iOS ≈ 16.7 MP), ZIP extraction up to 1 GB, decoded audio ≈ 10× the compressed size. Hashing streams files of any size (SHA-256 only above 512 MB).
 - **ZIP**: no encrypted archives, no RAR/7z; only Stored/Deflate entries. “Extract all to a folder” needs the File System Access API (Chrome/Edge desktop); elsewhere files are downloaded individually.
+- **Virus Check** is heuristic: it has no database of known malware, does not unpack RAR/7z/nested archives, and cannot see inside encrypted content. A clean result is not a guarantee; use the VirusTotal lookup or an antivirus for a definitive answer.
+- **Hosting limits (GitHub Pages)**: no custom HTTP headers, so `frame-ancestors`/`X-Frame-Options` (anti-clickjacking) cannot be set — the CSP is delivered via `<meta>`. The app keeps no accounts or secrets, so framing has little impact. All repositories of the same GitHub user share the `<user>.github.io` origin.
 - **XML** is checked for well-formedness only (no XSD/DTD validation). **JWT** signatures are not verified.
 - **WebP encoding in Safari** uses the bundled WASM encoder (slower than native).
 - Service-worker offline mode requires one online visit; the first visit to a tool after an update downloads its chunk.

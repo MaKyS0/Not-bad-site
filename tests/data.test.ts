@@ -94,3 +94,22 @@ describe('markdown link safety', () => {
     expect(markdownToHtml('**bold [*link*](https://e.com)**')).toBe('<p><strong>bold <a href="https://e.com" target="_blank" rel="noopener noreferrer"><em>link</em></a></strong></p>');
   });
 });
+
+describe('markdown robustness', () => {
+  it('renders adversarial input in linear time', () => {
+    const cases = ['# a' + '\t'.repeat(5000) + 'x', 'x ' + '`'.repeat(20000) + 'a', '>'.repeat(20000) + ' deep', '-' + ' '.repeat(50000) + 'x', '*a '.repeat(50000), '[a]('.repeat(40000), '# x', '####### seven'];
+    for (const c of cases) {
+      const t0 = performance.now();
+      const html = markdownToHtml(c);
+      expect(performance.now() - t0, c.slice(0, 20)).toBeLessThan(1500);
+      expect(typeof html).toBe('string');
+    }
+  });
+  it('keeps CommonMark basics', () => {
+    expect(markdownToHtml('## Title ##')).toBe('<h2 id="title">Title</h2>');
+    expect(markdownToHtml('# C#')).toBe('<h1 id="c">C#</h1>');
+    expect(markdownToHtml('* * *')).toBe('<hr>');
+    expect(markdownToHtml('use `a` and ``b ` c``')).toBe('<p>use <code>a</code> and <code>b ` c</code></p>');
+    expect(markdownToHtml('> quote')).toBe('<blockquote><p>quote</p></blockquote>');
+  });
+});

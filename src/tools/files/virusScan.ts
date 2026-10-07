@@ -71,6 +71,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
   );
 
   let run = 0;
+  let hashQueue: Promise<unknown> = Promise.resolve();
   async function scanAll(files: File[]) {
     const id = ++run;
     render(out);
@@ -85,7 +86,10 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
       out.append(card);
       const hashCell = h('span', { class: 'hash-out' }, t('computing…'));
       const vtSlot = h('div');
-      const hashing = hashFile(file, ['SHA-256'], { signal: ctx.signal }).then((d) => {
+      // Hash one file at a time: hashing holds the whole file in memory.
+      const digest = hashQueue.catch(() => {}).then(() => hashFile(file, ['SHA-256'], { signal: ctx.signal }));
+      hashQueue = digest;
+      const hashing = digest.then((d) => {
         const sha = d['SHA-256'];
         hashCell.replaceChildren(sha, ' ', button('', { variant: 'ghost', size: 'sm', icon: 'copy', ariaLabel: t('Copy SHA-256'), onClick: () => void copyText(sha) }));
         render(

@@ -216,3 +216,10 @@ export function card(...children: Child[]): HTMLElement {
 export function toolbar(...children: Child[]): HTMLElement {
   return h('div', { class: 'toolbar' }, ...children);
 }
+
+/** <img> for user-supplied image data; SVG is shown through a data: URL (see utils/safeUrl.ts). */
+export function imgFor(ctx: { imageUrl(b: Blob): Promise<string> }, blob: Blob, attrs: { alt: string; style?: string; class?: string }): HTMLImageElement {
+  const img = h('img', attrs);
+  void ctx.imageUrl(blob).then((u) => (img.src = u));
+  return img;
+}

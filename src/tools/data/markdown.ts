@@ -1,7 +1,7 @@
-import { h, debounce } from '../../utils/dom';
+import { h, debounce, render } from '../../utils/dom';
 import type { ToolContext, ToolModule } from '../types';
 import { textEditor, loadIntoEditor } from '../../components/textEditor';
-import { button } from '../../components/ui';
+import { button, errorPanel } from '../../components/ui';
 import { markdownToHtml } from './lib/markdown';
 import { copyText, downloadBlob } from '../../services/download';
 import { baseName } from '../../utils/format';
@@ -37,7 +37,13 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   const preview = h('div', { class: 'markdown-body', 'aria-live': 'off', 'aria-label': t('Preview') });
   let html = '';
   const update = (fromUser = true) => {
-    html = markdownToHtml(input.value);
+    try {
+      html = markdownToHtml(input.value);
+    } catch (e) {
+      html = '';
+      render(preview, errorPanel(e));
+      return;
+    }
     // Safe: markdownToHtml escapes all text and only emits a fixed set of tags.
     preview.innerHTML = html;
     if (fromUser && input.value && !used) {

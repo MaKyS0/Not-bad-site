@@ -48,11 +48,11 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   const preview = h('div', { class: 'tool-preview', 'aria-live': 'polite' });
   let previewItem: BatchItem | null = null;
   const urls: string[] = [];
-  const showPreview = (it: BatchItem) => {
+  const showPreview = async (it: BatchItem) => {
     if (!it.result) return;
     previewItem = it;
     urls.splice(0).forEach((u) => ctx.revokeUrl(u));
-    const before = ctx.objectUrl(it.file);
+    const before = await ctx.imageUrl(it.file);
     const after = ctx.objectUrl(it.result.blob);
     urls.push(before, after);
     const pct = percentChange(it.file.size, it.result.blob.size);

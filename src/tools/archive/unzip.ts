@@ -1,7 +1,7 @@
 import { h, render } from '../../utils/dom';
 import type { ToolContext, ToolModule } from '../types';
 import { dropzone } from '../../components/dropzone';
-import { button, errorPanel, notice, progress, textInput } from '../../components/ui';
+import { button, errorPanel, imgFor, notice, progress, textInput } from '../../components/ui';
 import { icon } from '../../components/icons';
 import { listZip, extractEntry, type ZipEntryInfo } from '../../utils/zip';
 import { downloadBlob } from '../../services/download';
@@ -54,7 +54,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
     const picker = (window as PickerWindow).showDirectoryPicker;
 
     const getBlob = (e: ZipEntryInfo): Blob => {
-      const data = extractEntry(buf!, e.name);
+      const data = extractEntry(buf!, e);
       return new Blob([data as BlobPart], { type: sniffBytes(data.subarray(0, 512))?.mime ?? 'application/octet-stream' });
     };
 
@@ -63,7 +63,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
         if (e.size > 20 * 1024 * 1024) return render(preview, notice('info', t('File too large to preview — download it instead.')));
         const blob = getBlob(e);
         if (PREVIEW_IMG.test(e.name)) {
-          render(preview, h('div', { class: 'panel' }, h('h2', { class: 'panel-title break' }, e.name), h('div', { class: 'preview-box' }, h('img', { src: ctx.objectUrl(blob), alt: e.name }))));
+          render(preview, h('div', { class: 'panel' }, h('h2', { class: 'panel-title break' }, e.name), h('div', { class: 'preview-box' }, imgFor(ctx, blob, { alt: stripBidi(e.name) }))));
         } else {
           const text = await blob.text();
           render(preview, h('div', { class: 'panel' }, h('h2', { class: 'panel-title break' }, e.name), h('pre', { class: 'code-view wrap', style: 'max-height:50vh' }, text.length > 200_000 ? `${text.slice(0, 200_000)}\n…` : text)));
@@ -113,7 +113,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
           for (const seg of segs) d = await d.getDirectoryHandle(seg, { create: true });
           const fh = await d.getFileHandle(fileName, { create: true });
           const w = await fh.createWritable();
-          await w.write(extractEntry(buf!, e.name) as BlobPart);
+          await w.write(extractEntry(buf!, e) as BlobPart);
           await w.close();
         }
         render(preview, notice('success', t('Extracted {files} to the selected folder.', { files: plural(entries.length, 'file') })));

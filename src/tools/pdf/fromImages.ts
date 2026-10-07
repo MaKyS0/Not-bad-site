@@ -9,7 +9,7 @@ import { downloadBlob } from '../../services/download';
 import { extOf, formatBytes, safeFileName } from '../../utils/format';
 import type { ImageForPdf, ImagesToPdfOptions } from '../../utils/pdfOps';
 import { throwIfAborted } from '../../utils/errors';
-import { t } from '../../i18n/i18n';
+import { plural, t } from '../../i18n/i18n';
 
 let nextId = 1;
 
@@ -78,7 +78,14 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
   }
 
   function add(files: File[]) {
-    setItems([...items, ...files.map((file) => ({ id: nextId++, file, thumbUrl: ctx.objectUrl(file) }))]);
+    const fresh = files.map((file) => ({ id: nextId++, file, thumbUrl: '' }));
+    setItems([...items, ...fresh]);
+    for (const it of fresh) {
+      void ctx.imageUrl(it.file).then((u) => {
+        it.thumbUrl = u;
+        document.querySelectorAll<HTMLImageElement>(`img[data-thumb="${it.id}"]`).forEach((img) => (img.src = u));
+      });
+    }
     render(result);
   }
 
@@ -96,7 +103,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       const blob = pdfBlob(bytes);
       let name = safeFileName(nameIn.value.trim() || 'images.pdf');
       if (!/\.pdf$/i.test(name)) name += '.pdf';
-      render(result, h('div', { class: 'batch-summary' }, h('span', null, `${items.length} page${items.length > 1 ? 's' : ''} · ${formatBytes(blob.size)}`), button(t('Download PDF'), { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(blob, name) })));
+      render(result, h('div', { class: 'batch-summary' }, h('span', null, `${plural(items.length, 'page')} · ${formatBytes(blob.size)}`), button(t('Download PDF'), { variant: 'primary', icon: 'download', onClick: () => void downloadBlob(blob, name) })));
       ctx.recordUse(s);
       await downloadBlob(blob, name);
     } catch (e) {

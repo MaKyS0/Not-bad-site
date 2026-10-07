@@ -1,7 +1,7 @@
 import { h, render } from '../../utils/dom';
 import type { ToolContext, ToolModule } from '../types';
 import { dropzone } from '../../components/dropzone';
-import { button, notice, errorPanel, kvTable } from '../../components/ui';
+import { button, notice, errorPanel, kvTable, imgFor } from '../../components/ui';
 import { bytesToBase64 } from '../text/lib/codec';
 import { copyText } from '../../services/download';
 import { formatBytes } from '../../utils/format';
@@ -30,7 +30,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
           [t('Markdown'), `![image](${uri})`],
         ] as [string, string][]) : []),
       ];
-      const preview = isImg ? h('div', { class: 'preview-box', style: 'min-height:120px' }, h('img', { src: ctx.objectUrl(file), alt: t('Preview'), style: 'max-height:200px' })) : null;
+      const preview = isImg ? h('div', { class: 'preview-box', style: 'min-height:120px' }, imgFor(ctx, file, { alt: t('Preview'), style: 'max-height:200px' })) : null;
       render(
         out,
         kvTable([[t('File'), file.name], ['MIME type', mime], [t('File size'), formatBytes(file.size)], [t('Data URI length'), `${plural(uri.length, 'character')} (${formatBytes(uri.length)})`]]),

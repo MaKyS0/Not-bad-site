@@ -56,6 +56,53 @@ export function assertCanvasSize(w: number, h: number): void {
   }
 }
 
+/** Images whose header claims more pixels than this are refused before decoding. */
+export const MAX_DECODE_PIXELS = 268_435_456;
+
+/**
+ * Read width/height from the file header (PNG, GIF, BMP, WebP, JPEG) without
+ * decoding pixels. Returns null for other formats or unreadable headers.
+ */
+export function headerDimensions(b: Uint8Array): { width: number; height: number } | null {
+  const be16 = (o: number) => (b[o] << 8) | b[o + 1];
+  const be32 = (o: number) => ((b[o] << 24) | (b[o + 1] << 16) | (b[o + 2] << 8) | b[o + 3]) >>> 0;
+  const le16 = (o: number) => b[o] | (b[o + 1] << 8);
+  const le32 = (o: number) => (b[o] | (b[o + 1] << 8) | (b[o + 2] << 16) | (b[o + 3] << 24)) >>> 0;
+  const ascii = (o: number, n: number) => String.fromCharCode(...b.subarray(o, o + n));
+  if (b.length >= 24 && be32(0) === 0x89504e47 && ascii(12, 4) === 'IHDR') return { width: be32(16), height: be32(20) };
+  if (b.length >= 10 && ascii(0, 3) === 'GIF') return { width: le16(6), height: le16(8) };
+  if (b.length >= 26 && ascii(0, 2) === 'BM') return { width: le32(18) | 0, height: Math.abs(le32(22) | 0) };
+  if (b.length >= 30 && ascii(0, 4) === 'RIFF' && ascii(8, 4) === 'WEBP') {
+    const kind = ascii(12, 4);
+    if (kind === 'VP8X') return { width: 1 + (b[24] | (b[25] << 8) | (b[26] << 16)), height: 1 + (b[27] | (b[28] << 8) | (b[29] << 16)) };
+    if (kind === 'VP8L') return { width: 1 + (le16(21) & 0x3fff), height: 1 + ((le32(21) >>> 14) & 0x3fff) };
+    if (kind === 'VP8 ') return { width: le16(26) & 0x3fff, height: le16(28) & 0x3fff };
+  }
+  if (b.length >= 4 && b[0] === 0xff && b[1] === 0xd8) {
+    let o = 2;
+    while (o + 9 < b.length) {
+      if (b[o] !== 0xff) return null;
+      const marker = b[o + 1];
+      if (marker === 0xff) {
+        o++;
+        continue;
+      }
+      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) return { width: be16(o + 7), height: be16(o + 5) };
+      o += 2 + be16(o + 2);
+    }
+  }
+  return null;
+}
+
+/** Refuse decompression bombs (e.g. a 100 KB PNG claiming 50 000 × 50 000 px). */
+export async function assertDecodable(blob: Blob): Promise<void> {
+  const head = new Uint8Array(await blob.slice(0, 256 * 1024).arrayBuffer());
+  const d = headerDimensions(head);
+  if (d && d.width * d.height > MAX_DECODE_PIXELS) {
+    throw new UserError(`The image is too large for this browser (${d.width}×${d.height} px).`, 'Images above 268 megapixels cannot be opened in the browser.');
+  }
+}
+
 export function makeCanvas(w: number, h: number): AnyCanvas {
   assertCanvasSize(w, h);
   if (typeof OffscreenCanvas !== 'undefined') {

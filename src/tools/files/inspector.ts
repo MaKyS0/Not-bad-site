@@ -72,6 +72,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
   const out = h('div', { class: 'stack', 'aria-live': 'polite' });
   root.append(dropzone({ accept: ['*'], multiple: true, onFiles: (f) => void inspectAll(f), paste: true, title: t('Drop any files to inspect') }), out);
 
+  let hashQueue: Promise<unknown> = Promise.resolve();
   async function inspectAll(files: File[]) {
     render(out);
     for (const file of files.slice(0, 50)) {
@@ -99,7 +100,8 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
         prog.el,
         suggestions.length ? h('p', { class: 'hint' }, t('Tools for this file:'), ' ', ...suggestions.flatMap((tool, i) => [i ? ' · ' : '', h('a', { href: routeHref.tool(tool.id) }, loc(tool).name)])) : null,
       );
-      hashFile(file, ['SHA-256'], { signal: ctx.signal, onProgress: (f) => prog.set(f, t('Computing SHA-256…')) })
+      // One file at a time: hashing holds the whole file in memory.
+      hashQueue = hashQueue.then(() => hashFile(file, ['SHA-256'], { signal: ctx.signal, onProgress: (f) => prog.set(f, t('Computing SHA-256…')) }))
         .then((d) => {
           const v = d['SHA-256'];
           hashCell.replaceChildren(v, ' ', button('', { variant: 'ghost', size: 'sm', icon: 'copy', ariaLabel: t('Copy SHA-256'), onClick: () => void copyText(v) }));

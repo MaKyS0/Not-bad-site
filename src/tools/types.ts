@@ -72,8 +72,14 @@ export interface ToolContext {
   preset: Record<string, unknown>;
   /** Files handed over from the home page drop zone (may be empty). */
   initialFiles: File[];
-  /** Create an object URL that is revoked automatically when the tool unmounts. */
+  /**
+   * Create an object URL that is revoked automatically when the tool unmounts.
+   * SVG/HTML/XML blobs get a non-renderable type (see utils/safeUrl.ts) — use
+   * imageUrl() to display images.
+   */
   objectUrl(blob: Blob): string;
+  /** URL for showing an image in an <img>; safe for SVG (uses a data: URL). */
+  imageUrl(blob: Blob): Promise<string>;
   /** Explicitly revoke an object URL created with objectUrl(). */
   revokeUrl(url: string): void;
   /** Register cleanup callbacks run on unmount. */

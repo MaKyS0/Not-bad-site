@@ -48,6 +48,7 @@ export function decodeJwt(token: string): DecodedJwt {
     }
   };
   const header = dec(parts[0], 'header');
+  if (!header || typeof header !== 'object' || Array.isArray(header)) throw new UserError('The JWT header is not valid Base64URL-encoded JSON.');
   let payload: unknown;
   try {
     payload = dec(parts[1], 'payload');

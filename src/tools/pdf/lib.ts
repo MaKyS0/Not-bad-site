@@ -9,6 +9,7 @@ import { icon } from '../../components/icons';
 import { iconButton } from '../../components/ui';
 import { assetUrl } from '../../utils/base';
 import { UserError } from '../../utils/errors';
+import { MAX_PAGES, tooManyPages } from '../../utils/pdfLimits';
 import { formatBytes } from '../../utils/format';
 import type { PDFDocumentProxy } from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { t } from '../../i18n/i18n';
@@ -49,21 +50,33 @@ export async function openPdfJs(bytes: Uint8Array, password?: string): Promise<P
     enableXfa: false,
     maxImageSize: 100_000_000,
   });
+  let doc: PDFDocumentProxy;
   try {
-    return await task.promise;
+    doc = await task.promise;
   } catch (e) {
     const name = (e as Error).name;
     if (name === 'PasswordException') throw new UserError(t('This PDF is password-protected.'), 'Opening PDFs that require a password is not supported here.');
     if (name === 'InvalidPDFException') throw new UserError(t('This file is not a valid PDF.'), 'The file may be damaged or have a wrong extension.');
     throw e;
   }
+  if (doc.numPages > MAX_PAGES) {
+    void task.destroy();
+    throw tooManyPages();
+  }
+  return doc;
 }
+
+/** Canvases above this many pixels fail or exhaust memory in most browsers. */
+const MAX_CANVAS_PIXELS = 50_000_000;
 
 /** Render one page to a canvas at the given scale (1 = 72 dpi). */
 export async function renderPage(doc: PDFDocumentProxy, pageNumber: number, scale: number, extraRotation = 0): Promise<HTMLCanvasElement> {
   const page = await doc.getPage(pageNumber);
   try {
-    const viewport = page.getViewport({ scale, rotation: (page.rotate + extraRotation) % 360 });
+    const rotation = (page.rotate + extraRotation) % 360;
+    let viewport = page.getViewport({ scale, rotation });
+    // Absurd page sizes (MediaBox of 1e8 pt) would request gigantic canvases.
+    if (viewport.width * viewport.height > MAX_CANVAS_PIXELS) viewport = page.getViewport({ scale: scale * Math.sqrt(MAX_CANVAS_PIXELS / (viewport.width * viewport.height)), rotation });
     const canvas = document.createElement('canvas');
     canvas.width = Math.max(1, Math.floor(viewport.width));
     canvas.height = Math.max(1, Math.floor(viewport.height));
@@ -198,7 +211,7 @@ export function sortableList(items: SortItem[], onChange: (items: SortItem[]) =>
       'li',
       { class: 'sort-item', draggable: 'true' },
       h('span', { class: 'sort-index' }, String(i + 1)),
-      h('span', { class: 'sort-thumb' }, it.thumbUrl ? h('img', { src: it.thumbUrl, alt: '', loading: 'lazy' }) : icon('pdf')),
+      h('span', { class: 'sort-thumb' }, it.thumbUrl !== undefined ? h('img', { src: it.thumbUrl || undefined, alt: '', loading: 'lazy', 'data-thumb': String(it.id) }) : icon('pdf')),
       h('span', { class: 'file-info' }, h('span', { class: 'file-name', title: it.file.name }, it.file.name), h('span', { class: 'file-meta' }, formatBytes(it.file.size), it.meta ? ` · ${it.meta}` : '')),
       h('span', { class: 'sort-actions' }, up, down, iconButton('trash', `Remove ${it.file.name}`, () => onRemove(it))),
     );

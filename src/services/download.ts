@@ -3,6 +3,7 @@
  * dialog when the user enabled it and the browser supports it; otherwise a
  * regular download link. Object URLs are always revoked afterwards.
  */
+import { inertBlob } from '../utils/safeUrl';
 import { getSettings } from './settings';
 import { isAbort } from '../utils/errors';
 import { zipFiles } from '../utils/zip';
@@ -39,7 +40,8 @@ export async function downloadBlob(blob: Blob, filename: string): Promise<void> 
       // fall through to the classic download on any other error
     }
   }
-  const url = URL.createObjectURL(blob);
+  // SVG/HTML must not become a same-origin page (iOS Safari may open downloads in a tab).
+  const url = URL.createObjectURL(inertBlob(blob));
   const a = document.createElement('a');
   a.href = url;
   a.download = name;

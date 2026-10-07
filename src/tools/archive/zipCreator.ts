@@ -3,7 +3,7 @@ import type { ToolContext, ToolModule } from '../types';
 import { dropzone, pathOf } from '../../components/dropzone';
 import { button, iconButton, field, progress, select, textInput, errorPanel, notice } from '../../components/ui';
 import { icon } from '../../components/icons';
-import { zipFiles } from '../../utils/zip';
+import { entryName, extractEntry, listZip, zipFiles, type ZipEntryInfo } from '../../utils/zip';
 import { downloadBlob } from '../../services/download';
 import { formatBytes, safeFileName } from '../../utils/format';
 import { canonicalExt } from '../../utils/fileType';
@@ -19,16 +19,31 @@ interface Entry {
 
 type Level = '0' | '1' | '6' | '9';
 
-/** Read every file of an existing ZIP into Blobs (decompressed in fflate's worker). */
+/** Limits for archives opened for editing (everything is unpacked into memory). */
+const MAX_EDIT_TOTAL = 1024 * 1024 * 1024;
+const MAX_EDIT_ENTRIES = 10_000;
+const MAX_RATIO = 200;
+
+/** Read every file of an existing ZIP into Blobs, refusing zip bombs. */
 async function readZip(file: File): Promise<Entry[]> {
-  const { unzip } = await import('fflate');
   const buf = new Uint8Array(await file.arrayBuffer());
-  const files = await new Promise<Record<string, Uint8Array>>((resolve, reject) =>
-    unzip(buf, (err, data) => (err ? reject(new UserError(`“${file.name}” could not be opened.`, `It may be corrupted, encrypted or use unsupported compression (${err.message}).`)) : resolve(data))),
-  );
-  return Object.entries(files)
-    .filter(([p]) => !p.endsWith('/'))
-    .map(([path, data]) => ({ path, data: new Blob([data as BlobPart]) }));
+  let list: ZipEntryInfo[];
+  try {
+    list = listZip(buf).filter((e) => !e.isDirectory);
+  } catch {
+    throw new UserError(`“${file.name}” could not be opened.`, 'It may be corrupted or not a ZIP archive.');
+  }
+  const total = list.reduce((a, e) => a + e.size, 0);
+  if (list.length > MAX_EDIT_ENTRIES) throw new UserError(`“${file.name}” has too many files to edit here.`, `It contains ${list.length} files; the limit is ${MAX_EDIT_ENTRIES}.`);
+  if (total > MAX_EDIT_TOTAL || (total > 100 * 1024 * 1024 && total / Math.max(1, file.size) > MAX_RATIO)) {
+    throw new UserError(`“${file.name}” is too large when unpacked (${formatBytes(total)}).`, 'It may be a “zip bomb” — a small archive that expands to a huge size. It was not unpacked.');
+  }
+  const out: Entry[] = [];
+  for (const e of list) {
+    await new Promise((r) => setTimeout(r)); // keep the page responsive between entries
+    out.push({ path: entryName(e.name), data: new Blob([extractEntry(buf, e) as BlobPart]) });
+  }
+  return out;
 }
 
 export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolContext) => {

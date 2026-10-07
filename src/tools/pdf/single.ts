@@ -9,7 +9,7 @@ import { errorPanel, button } from '../../components/ui';
 import { openPdfJs, readFileBytes } from './lib';
 import type { PDFDocumentProxy } from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { formatBytes } from '../../utils/format';
-import { t } from '../../i18n/i18n';
+import { plural, t } from '../../i18n/i18n';
 
 export interface LoadedPdf {
   file: File;
@@ -44,7 +44,7 @@ export function singlePdfTool(root: HTMLElement, ctx: ToolContext, onLoad: (pdf:
       render(
         area,
         h('div', { class: 'toolbar', style: 'justify-content:space-between' },
-          h('p', { class: 'muted', style: 'margin:0' }, h('strong', { class: 'break' }, file.name), ` · ${doc.numPages} page${doc.numPages === 1 ? '' : 's'} · ${formatBytes(file.size)}`),
+          h('p', { class: 'muted', style: 'margin:0' }, h('strong', { class: 'break' }, file.name), ` · ${plural(doc.numPages, 'page')} · ${formatBytes(file.size)}`),
           button(t('Open another PDF'), { variant: 'ghost', icon: 'upload', onClick: () => { zone.hidden = false; zone.querySelector('input')?.click(); } }),
         ),
         content,

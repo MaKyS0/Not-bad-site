@@ -11,6 +11,7 @@ import { breadcrumbs } from './listing';
 import { toolGrid } from '../components/toolCard';
 import { PRIVACY_TEXT } from '../config';
 import { t } from '../i18n/i18n';
+import { inertBlob, isActiveContent, svgDataUrl } from '../utils/safeUrl';
 import { loc } from '../i18n/localize';
 
 /** Mount a tool page. Returns a cleanup function (or null if the tool doesn't exist). */
@@ -28,9 +29,12 @@ export function toolPage(root: HTMLElement, id: string): (() => void) | null {
     preset: tool.preset ?? {},
     initialFiles: takeFiles(tool.id),
     objectUrl(blob) {
-      const url = URL.createObjectURL(blob);
+      const url = URL.createObjectURL(inertBlob(blob));
       urls.add(url);
       return url;
+    },
+    async imageUrl(blob) {
+      return isActiveContent(blob) ? svgDataUrl(blob) : ctx.objectUrl(blob);
     },
     revokeUrl(url) {
       if (urls.delete(url)) URL.revokeObjectURL(url);

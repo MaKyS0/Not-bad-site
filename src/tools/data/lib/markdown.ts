@@ -29,14 +29,62 @@ const emphasis = (s: string): string =>
 const slug = (s: string): string =>
   s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z#0-9]+;/g, '').replace(/[^\p{L}\p{N}\s-]/gu, '').trim().replace(/\s+/g, '-');
 
+/**
+ * Code spans: a run of N backticks up to the next run of exactly N. Linear-time
+ * scanner (the equivalent regex backtracks cubically on long backtick runs).
+ */
+function codeSpans(src: string, codes: string[]): string {
+  let out = '';
+  let i = 0;
+  const runAt = (p: number) => {
+    let e = p;
+    while (src.charCodeAt(e) === 96) e++;
+    return e - p;
+  };
+  // Positions of backtick runs by length, so each lookup is O(1) amortised.
+  const runs = new Map<number, number[]>();
+  for (let p = 0; p < src.length; ) {
+    if (src.charCodeAt(p) !== 96) {
+      p++;
+      continue;
+    }
+    const n = runAt(p);
+    (runs.get(n) ?? runs.set(n, []).get(n)!).push(p);
+    p += n;
+  }
+  const cursor = new Map<number, number>();
+  while (i < src.length) {
+    const p = src.indexOf('`', i);
+    if (p < 0) break;
+    const n = runAt(p);
+    const list = runs.get(n)!;
+    let k = cursor.get(n) ?? 0;
+    while (k < list.length && list[k] <= p) k++;
+    cursor.set(n, k);
+    if (k < list.length) {
+      const end = list[k];
+      out += src.slice(i, p);
+      codes.push(`<code>${esc(src.slice(p + n, end).trim())}</code>`);
+      out += `\u0000${codes.length - 1}\u0000`;
+      i = end + n;
+      cursor.set(n, k + 1);
+    } else {
+      out += src.slice(i, p + n);
+      i = p + n;
+    }
+  }
+  return out + src.slice(i);
+}
+
+/** Longer paragraphs skip the link/emphasis passes (their regexes are quadratic). */
+const MAX_INLINE = 20_000;
+
 export function inline(src: string): string {
   const codes: string[] = [];
   // Placeholder markers below use U+0000–U+0002; they must not come from the input.
-  let s = src.replace(/[\u0000-\u0002]/g, '').replace(/(`+)([\s\S]*?[^`])\1(?!`)/g, (_m, _t, code: string) => {
-    codes.push(`<code>${esc(code.trim())}</code>`);
-    return `\u0000${codes.length - 1}\u0000`;
-  });
+  let s = codeSpans(src.replace(/[\u0000-\u0002]/g, ''), codes);
   s = esc(s);
+  if (s.length > MAX_INLINE) return s.replace(/\u0000(\d+)\u0000/g, (_m, i: string) => codes[Number(i)]);
   // backslash escapes
   const escapes: string[] = [];
   s = s.replace(/\\([\\`*_{}[\]()#+\-.!|~>])/g, (_m, c: string) => {
@@ -73,10 +121,32 @@ export function inline(src: string): string {
 const LIST_RE = /^( {0,3})([-*+]|\d{1,9}[.)])\s+(.*)$/;
 
 export function markdownToHtml(md: string): string {
-  return blocks(md.replace(/\r\n?/g, '\n').replace(/\t/g, '    ').split('\n'));
+  return blocks(md.replace(/\r\n?/g, '\n').replace(/\t/g, '    ').split('\n'), 0);
 }
 
-function blocks(lines: string[]): string {
+/** "---", "* * *", "___" … (no regex: nested quantifiers backtrack on long lines). */
+function isHr(line: string): boolean {
+  if (/^ {4}/.test(line)) return false;
+  const t = line.replace(/[ \t]/g, '');
+  return t.length >= 3 && /^[-*_]$/.test(t[0]) && t.split('').every((c) => c === t[0]);
+}
+
+/** ATX heading: "## Title ##" → [level, text]. */
+function heading(line: string): [number, string] | null {
+  const m = /^ {0,3}(#{1,6})(?:[ \t]+(.*))?$/.exec(line);
+  if (!m) return null;
+  let text = (m[2] ?? '').trimEnd();
+  let e = text.length;
+  while (e > 0 && text[e - 1] === '#') e--;
+  if (e === 0) text = '';
+  else if (e < text.length && (text[e - 1] === ' ' || text[e - 1] === '\t')) text = text.slice(0, e).trimEnd();
+  return [m[1].length, text];
+}
+
+/** Deeper nesting (e.g. 20 000 ">" levels) is rendered as plain paragraphs. */
+const MAX_DEPTH = 40;
+
+function blocks(lines: string[], depth: number): string {
   const out: string[] = [];
   let i = 0;
   const isBlank = (l: string | undefined) => l === undefined || !l.trim();
@@ -97,28 +167,28 @@ function blocks(lines: string[]): string {
       continue;
     }
     // heading
-    const hm = /^ {0,3}(#{1,6})\s+(.*?)\s*#*\s*$/.exec(line);
+    const hm = heading(line);
     if (hm) {
-      const content = inline(hm[2]);
-      out.push(`<h${hm[1].length} id="${slug(content)}">${content}</h${hm[1].length}>`);
+      const content = inline(hm[1]);
+      out.push(`<h${hm[0]} id="${slug(content)}">${content}</h${hm[0]}>`);
       i++;
       continue;
     }
     // horizontal rule
-    if (/^ {0,3}([-*_])(\s*\1){2,}\s*$/.test(line)) {
+    if (isHr(line)) {
       out.push('<hr>');
       i++;
       continue;
     }
     // blockquote
-    if (/^ {0,3}>/.test(line)) {
+    if (/^ {0,3}>/.test(line) && depth < MAX_DEPTH) {
       const body: string[] = [];
       while (i < lines.length && !isBlank(lines[i]) && (/^ {0,3}>/.test(lines[i]) || body.length)) {
         if (!/^ {0,3}>/.test(lines[i]) && (LIST_RE.test(lines[i]) || /^#/.test(lines[i]))) break;
         body.push(lines[i].replace(/^ {0,3}> ?/, ''));
         i++;
       }
-      out.push(`<blockquote>${blocks(body)}</blockquote>`);
+      out.push(`<blockquote>${blocks(body, depth + 1)}</blockquote>`);
       continue;
     }
     // table
@@ -135,7 +205,7 @@ function blocks(lines: string[]): string {
     }
     // list
     const lm = LIST_RE.exec(line);
-    if (lm) {
+    if (lm && depth < MAX_DEPTH) {
       const ordered = /\d/.test(lm[2]);
       const start = ordered ? parseInt(lm[2], 10) : 1;
       const items: string[][] = [];
@@ -174,7 +244,7 @@ function blocks(lines: string[]): string {
         }
         const rest = it.slice(1);
         const hasBlocks = rest.some((l) => l.trim());
-        const content = hasBlocks ? blocks([first, ...rest]) : inline(first);
+        const content = hasBlocks ? blocks([first, ...rest], depth + 1) : inline(first);
         return `<li${task ? ' class="task"' : ''}>${task}${hasBlocks ? content.replace(/^<p>([\s\S]*?)<\/p>/, '$1') : content}</li>`;
       });
       out.push(ordered ? `<ol${start !== 1 ? ` start="${start}"` : ''}>${li.join('')}</ol>` : `<ul>${li.join('')}</ul>`);
@@ -182,7 +252,8 @@ function blocks(lines: string[]): string {
     }
     // paragraph (with setext headings)
     const para: string[] = [];
-    while (i < lines.length && !isBlank(lines[i]) && !/^ {0,3}(#{1,6}\s|>|```|~~~)/.test(lines[i]) && !(para.length && LIST_RE.test(lines[i]))) {
+    // The first line is always taken, so the loop always makes progress.
+    while (i < lines.length && !isBlank(lines[i]) && !(para.length && (/^ {0,3}(#{1,6}\s|>|```|~~~)/.test(lines[i]) || LIST_RE.test(lines[i])))) {
       if (para.length && /^ {0,3}(=+|-+)\s*$/.test(lines[i])) {
         const level = lines[i].trim()[0] === '=' ? 1 : 2;
         const content = inline(para.join('\n'));
@@ -191,7 +262,7 @@ function blocks(lines: string[]): string {
         i++;
         break;
       }
-      if (para.length && /^ {0,3}([-*_])(\s*\1){2,}\s*$/.test(lines[i])) break;
+      if (para.length && isHr(lines[i])) break;
       para.push(lines[i++]);
     }
     if (para.length) out.push(`<p>${inline(para.join('\n'))}</p>`);

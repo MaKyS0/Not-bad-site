@@ -66,7 +66,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
         render(
           result,
           h('div', { class: 'batch-summary' },
-            h('span', null, `${files.length} PDF${files.length > 1 ? 's' : ''} · ${formatBytes(files.reduce((a, f) => a + f.blob.size, 0))}`),
+            h('span', null, `${files.length} PDF · ${formatBytes(files.reduce((a, f) => a + f.blob.size, 0))}`),
             button(files.length > 1 ? t('Download All (ZIP)') : t('Download'), { variant: 'primary', icon: 'download', onClick: () => void downloadAll(files, `${base}-split.zip`) }),
           ),
           h('ul', { class: 'entry-list', style: 'margin-top:12px' }, ...files.map((f) =>

@@ -106,8 +106,15 @@ export function createBatch(opts: BatchOptions): BatchHandle {
 
   function rowFor(it: BatchItem): HTMLElement {
     const isImage = guessKind(it.file) === 'image';
-    if (isImage && !it.thumbUrl && items.length <= 300) it.thumbUrl = ctx.objectUrl(it.file);
-    const thumb = h('div', { class: 'file-thumb' }, it.thumbUrl ? h('img', { src: it.thumbUrl, alt: '', loading: 'lazy', decoding: 'async' }) : icon('file'));
+    if (isImage && !it.thumbUrl && items.length <= 300) {
+      it.thumbUrl = 'pending';
+      void ctx.imageUrl(it.file).then((u) => {
+        it.thumbUrl = u;
+        document.querySelectorAll<HTMLImageElement>(`img[data-thumb="${it.id}"]`).forEach((img) => (img.src = u));
+      }, () => (it.thumbUrl = undefined));
+    }
+    const ready = it.thumbUrl && it.thumbUrl !== 'pending' ? it.thumbUrl : undefined;
+    const thumb = h('div', { class: 'file-thumb' }, it.thumbUrl ? h('img', { src: ready, alt: '', loading: 'lazy', decoding: 'async', 'data-thumb': String(it.id) }) : icon('file'));
     const meta = h('div', { class: 'file-meta' });
     const res = it.result;
     if (it.status === 'done' && res) {

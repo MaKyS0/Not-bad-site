@@ -2,18 +2,53 @@
  * PDF manipulation with pdf-lib. Pure functions over byte arrays so they run
  * the same in the PDF worker and in unit tests (Node).
  */
-import { PDFDocument, degrees, PageSizes, EncryptedPDFError } from 'pdf-lib';
+import { PDFDocument, degrees, PageSizes, EncryptedPDFError, PDFArray, PDFDict, PDFName, PDFRef } from 'pdf-lib';
 import { UserError } from './errors';
+import { MAX_PAGES, tooManyPages } from './pdfLimits';
+
+
+/**
+ * Walk the page tree once, refusing loops, shared subtrees (a "DAG" that makes
+ * 4 KB claim a trillion pages) and documents over MAX_PAGES. pdf-lib would
+ * otherwise recurse forever or hang counting pages.
+ */
+export function checkPageTree(doc: PDFDocument): number {
+  const seen = new Set<string>();
+  const stack: unknown[] = [doc.catalog.get(PDFName.of('Pages'))];
+  let pages = 0;
+  while (stack.length) {
+    let node = stack.pop();
+    if (node instanceof PDFRef) {
+      const key = node.toString();
+      if (seen.has(key)) throw new UserError('This PDF has a damaged page tree.', 'Its pages refer to each other in a loop. The file may be corrupted or crafted to crash PDF software.');
+      seen.add(key);
+      node = doc.context.lookup(node);
+    }
+    if (!(node instanceof PDFDict)) continue;
+    const kids = node.lookup(PDFName.of('Kids'));
+    if (kids instanceof PDFArray) {
+      if (seen.size + kids.size() > MAX_PAGES * 4) throw tooManyPages();
+      for (let i = 0; i < kids.size(); i++) stack.push(kids.get(i));
+    } else if (++pages > MAX_PAGES) {
+      throw tooManyPages();
+    }
+  }
+  return pages;
+}
+
 
 export async function loadPdf(bytes: Uint8Array | ArrayBuffer, name = 'PDF'): Promise<PDFDocument> {
+  let doc: PDFDocument;
   try {
-    return await PDFDocument.load(bytes, { updateMetadata: false });
+    doc = await PDFDocument.load(bytes, { updateMetadata: false });
   } catch (e) {
     if (e instanceof EncryptedPDFError || /encrypt/i.test((e as Error).message)) {
       throw new UserError(`“${name}” is encrypted or password-protected.`, 'Encrypted PDFs cannot be modified in the browser. Remove the protection in the original application, or use “PDF to Images” which can render PDFs that only have permission restrictions.');
     }
     throw new UserError(`“${name}” could not be read as a PDF.`, `The file may be damaged or not a real PDF (${(e as Error).message}).`);
   }
+  checkPageTree(doc);
+  return doc;
 }
 
 function stamp(doc: PDFDocument): void {
@@ -149,6 +184,7 @@ export async function pdfInfo(bytes: Uint8Array): Promise<PdfInfo> {
   } catch (e) {
     throw new UserError('This file could not be read as a PDF.', (e as Error).message);
   }
+  checkPageTree(doc);
   const safe = <T>(fn: () => T): T | undefined => {
     try {
       return fn();

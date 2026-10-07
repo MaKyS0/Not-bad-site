@@ -50,6 +50,13 @@ export function describeError(e: unknown): FriendlyError {
   }
   const raw = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
   const lower = raw.toLowerCase();
+  if (lower.includes('call stack')) {
+    return {
+      title: translate('The data is nested too deeply to process.'),
+      message: translate('It has thousands of nested levels — real files rarely do. The file may be malformed or crafted.'),
+      details: raw,
+    };
+  }
   if (lower.includes('quota') || lower.includes('out of memory') || lower.includes('allocation') || e instanceof RangeError) {
     return {
       title: translate('Not enough memory for this file.'),

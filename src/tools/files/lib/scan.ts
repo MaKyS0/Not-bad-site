@@ -10,6 +10,7 @@
  * Pure module (no DOM): runs in a Web Worker and in unit tests.
  */
 import { inflateSync, unzlibSync } from 'fflate';
+import { headerDimensions, MAX_DECODE_PIXELS } from '../../../utils/imageCore';
 
 export type Severity = 'danger' | 'warn' | 'info';
 
@@ -76,6 +77,7 @@ export const RULES = {
   'archive-nested': { title: 'Nested archives were not unpacked', detail: '{names}' },
   'zip-corrupt': { title: 'Archive structure is damaged or unusual', detail: 'Malformed archives are sometimes used to evade scanners. Some contents could not be checked.' },
   unscannable: { title: 'Archive contents could not be checked', detail: '{type} archives are not unpacked by this scanner. Their contents were not checked.' },
+  'image-bomb': { title: 'Image bomb', detail: 'The image claims to be {size} pixels. Opening it can freeze or crash image viewers and browsers.' },
   partial: { title: 'Only part of the file was checked', detail: 'The first {size} of the file content were examined.' },
 } as const;
 
@@ -491,7 +493,7 @@ async function scanZip(src: Source, out: Findings, onProgress?: (f: number) => v
     if (ARCHIVE_EXT.has(ext)) nested.push(e.name);
   }
   const ratio = total / Math.max(1, src.size);
-  if (total > 1024 ** 3 && ratio > 100) out.add('zip-bomb', 'danger', { size: formatSize(total), ratio: Math.round(ratio) });
+  if (total > 512 * 1024 ** 2 && ratio > 100) out.add('zip-bomb', 'danger', { size: formatSize(total), ratio: Math.round(ratio) });
   if (encrypted) {
     if (runnable.length || entries.some((e) => e.flags & 1 && isRunnable(extOf(e.name)))) out.add('zip-encrypted-exe', 'danger');
     else out.add('zip-encrypted', 'warn', { count: encrypted });
@@ -585,6 +587,10 @@ export async function scanFile(src: Source, onProgress?: (f: number) => void): P
   typeFindings(ext, out);
   if (label === 'Script (shebang)' && !SCRIPT_EXT.has(ext)) out.add('script', 'warn', { ext: ext || 'sh' });
 
+  if (fmt === 'image') {
+    const d = headerDimensions(head);
+    if (d && d.width * d.height > MAX_DECODE_PIXELS) out.add('image-bomb', 'warn', { size: `${d.width} × ${d.height}` });
+  }
   let zipOk = false;
   if (fmt === 'zip') {
     const z = await scanZip(src, out, onProgress);

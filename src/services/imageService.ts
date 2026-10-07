@@ -4,7 +4,7 @@
  * (rendered as an <img>, so scripts inside SVG never run).
  */
 import { WorkerPool } from '../workers/rpc';
-import { runJob, type ImageJob, type JobResult, type Drawable } from '../utils/imageCore';
+import { assertDecodable, runJob, type ImageJob, type JobResult, type Drawable } from '../utils/imageCore';
 import { UserError, throwIfAborted } from '../utils/errors';
 import { canonicalExt, readHead, sniffBytes } from '../utils/fileType';
 import { extOf } from '../utils/format';
@@ -106,6 +106,7 @@ export async function decodeImage(file: Blob & { name?: string }, opts: { svgWid
     const img = await loadImg(blob);
     return { source: img, width: img.naturalWidth || img.width, height: img.naturalHeight || img.height, close() {} };
   }
+  await assertDecodable(file);
   if (typeof createImageBitmap === 'function') {
     try {
       const bmp = await createImageBitmap(file, { imageOrientation: 'from-image' } as ImageBitmapOptions);

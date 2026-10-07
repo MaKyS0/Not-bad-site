@@ -6,6 +6,7 @@ import { button, checkbox, field, select } from '../../components/ui';
 import { formatXml, minifyXml } from './lib/xml';
 import { baseName, extOf } from '../../utils/format';
 import { t } from '../../i18n/i18n';
+import { describeError } from '../../utils/errors';
 
 const SAMPLE = '<?xml version="1.0" encoding="UTF-8"?><catalog><!-- sample --><book id="bk101" lang="en"><author>Gambardella, Matthew</author><title>XML Developer&apos;s Guide</title><price currency="USD">44.95</price><description><![CDATA[An in-depth look at <XML>.]]></description></book><book id="bk102"/></catalog>';
 
@@ -43,7 +44,13 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
     output.setStatus(`✓ ${t('Well-formed XML (syntax only — no schema/DTD validation)')}`, 'ok');
     if (action === 'validate') return;
     const indent = s.indent === 'tab' ? '\t' : ' '.repeat(Number(s.indent));
-    output.set(action === 'format' ? formatXml(text, indent) : minifyXml(text, s.removeComments));
+    try {
+      output.set(action === 'format' ? formatXml(text, indent) : minifyXml(text, s.removeComments));
+    } catch (e) {
+      output.set('');
+      output.setStatus(`✗ ${describeError(e).title}`, 'err');
+      return;
+    }
     if (!used) {
       used = true;
       ctx.recordUse(s);

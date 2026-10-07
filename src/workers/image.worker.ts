@@ -5,7 +5,7 @@
  * passes an ImageBitmap for those.
  */
 import { exposeHandlers } from './rpc';
-import { runJob, type ImageJob } from '../utils/imageCore';
+import { assertDecodable, runJob, type ImageJob } from '../utils/imageCore';
 
 interface ProcessParams {
   source: Blob | ImageBitmap;
@@ -15,6 +15,7 @@ interface ProcessParams {
 exposeHandlers({
   async process(params: ProcessParams, progress) {
     progress(0.1);
+    if (params.source instanceof Blob) await assertDecodable(params.source);
     const bitmap =
       params.source instanceof Blob
         ? await createImageBitmap(params.source, { imageOrientation: 'from-image' } as ImageBitmapOptions)

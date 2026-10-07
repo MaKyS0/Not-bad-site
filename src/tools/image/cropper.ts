@@ -196,7 +196,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       ih = d.height;
       d.close();
       if (imgUrl) ctx.revokeUrl(imgUrl);
-      imgUrl = ctx.objectUrl(f);
+      imgUrl = await ctx.imageUrl(f);
       await new Promise<void>((res, rej) => {
         img.onload = () => res();
         img.onerror = () => rej(new Error('Image failed to display'));

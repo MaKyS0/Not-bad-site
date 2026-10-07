@@ -92,7 +92,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
           result,
           reduced ? notice('warn', t('Some pages were too large for the selected resolution on this device and were rendered at the highest possible resolution instead.')) : null,
           h('div', { class: 'batch-summary' },
-            h('span', null, `${outputs.length} image${outputs.length > 1 ? 's' : ''} · ${formatBytes(total)}`),
+            h('span', null, `${plural(outputs.length, 'image')} · ${formatBytes(total)}`),
             button(outputs.length > 1 ? t('Download All (ZIP)') : t('Download'), { variant: 'primary', icon: 'download', onClick: () => void downloadAll(outputs, `${base}-images.zip`) }),
           ),
           h('ul', { class: 'file-list', style: 'margin-top:12px' }, ...outputs.slice(0, 200).map((o) => {

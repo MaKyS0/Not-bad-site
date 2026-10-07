@@ -297,6 +297,15 @@ try {
   await page.waitForFunction(() => /[0-9a-f]{64}/.test(document.querySelector('.hash-out')?.textContent ?? ''), null, { timeout: 20000 });
   const inspect = await text('#tool-root');
   check(inspect.includes('PNG image') && inspect.includes('640 × 480') && inspect.includes('looks like: PNG image'), 'inspector: magic-byte detection, dimensions, mismatch warning, SHA-256');
+  // SVG with script: previews must not be same-origin blob: documents
+  {
+    const evilSvg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" onload="document.title=1"><rect width="40" height="40"/></svg>');
+    await page.goto(`${ROOT}tools/svg-to-png/`);
+    await up([{ name: 'evil.svg', mimeType: 'image/svg+xml', buffer: evilSvg }]);
+    await page.waitForFunction(() => document.querySelector('.file-thumb img')?.getAttribute('src'), null, { timeout: 10000 });
+    const src = await page.getAttribute('.file-thumb img', 'src');
+    check(src.startsWith('data:image/svg+xml'), 'SVG thumbnails use data: URLs (no same-origin script via “open image in new tab”)');
+  }
   // virus check: disguised program, EICAR in a ZIP, clean file — and the RU UI
   {
     const exeBuf = Buffer.alloc(512);
