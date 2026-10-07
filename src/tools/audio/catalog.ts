@@ -4,6 +4,25 @@ const AUDIO = ['mp3', 'wav', 'ogg', 'oga', 'm4a', 'aac', 'flac', 'opus', 'webm']
 
 export const audioTools: ToolMeta[] = [
   {
+    id: 'audio-to-text',
+    name: 'Audio to Text',
+    category: 'audio',
+    description: 'Transcribe speech from audio or video with Whisper. Export TXT, SRT or VTT subtitles.',
+    about: 'Turn recordings, voice messages, lectures, interviews and videos into text. Speech is recognised by OpenAI’s Whisper model (int8 ONNX) running in your browser through WebAssembly — the file never leaves your device. The model is downloaded from this site once (41 MB fast or 77 MB accurate) and cached for offline use. Long recordings are split at pauses and the text appears as it is recognised; you can correct it before saving as plain text or as SRT / WebVTT subtitles with timestamps. About 100 languages are supported, including Russian, Ukrainian and English.',
+    supportedFormats: [...AUDIO, 'mp4', 'm4v', 'mov'],
+    icon: 'transcribe',
+    component: 'audio/transcriber',
+    keywords: ['speech to text', 'transcribe', 'transcription', 'audio to text', 'voice to text', 'whisper', 'subtitles', 'srt', 'vtt', 'captions', 'dictation', 'mp3 to text', 'video to text'],
+    popular: true,
+    title: 'Audio to Text Online — Private Speech Recognition, No Upload',
+    faq: [
+      { q: 'How accurate is it?', a: 'For clear speech the accurate model makes few mistakes; the fast one is quicker but weaker with accents, noise and rare words. Choosing the language instead of auto-detection helps. You can edit the text before downloading.' },
+      { q: 'How long does it take?', a: 'It depends on the device. On a modern laptop the fast model handles roughly a minute of audio in 10–30 seconds, the accurate model takes about twice as long. Phones are slower. The text appears piece by piece, and you can stop at any time.' },
+      { q: 'Why does the first run download a model?', a: 'Speech recognition needs a neural network. It is served from this site (not from a third party) and stored in your browser cache, so later runs start immediately and work offline.' },
+      { q: 'Which files can I use?', a: 'Anything your browser can play: MP3, WAV, M4A/AAC, OGG/Opus, FLAC, WebM and the sound track of MP4/MOV videos. Recordings up to 3 hours.' },
+    ],
+  },
+  {
     id: 'audio-info',
     name: 'Audio Info & Waveform',
     category: 'audio',

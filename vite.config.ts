@@ -128,6 +128,10 @@ function staticPagesPlugin(): Plugin {
         if (existsSync(join(pdfjs, dir))) cpSync(join(pdfjs, dir), join(out, 'pdfjs', dir), { recursive: true });
       }
 
+      // The speech-to-text tool is useless without its models: fail the build loudly.
+      if (!existsSync(join(out, 'models/onnx-community/whisper-base/onnx/decoder_model_merged_quantized.onnx'))) {
+        throw new Error('Whisper models missing in public/models — run "npm run models".');
+      }
       writeManifest(out);
       writeSeoFiles(out, pages.map((p) => p('./').path));
       writeServiceWorker(out);
@@ -217,7 +221,9 @@ function writeSeoFiles(out: string, paths: string[]): void {
 function writeServiceWorker(out: string): void {
   const files = walk(out)
     .map((f) => relative(out, f).split('\\').join('/'))
-    .filter((f) => !f.endsWith('.map') && f !== 'sw.js' && !f.startsWith('pdfjs/') && f !== '.nojekyll' && f !== '404.html' && f !== 'sitemap.xml' && f !== 'robots.txt' && !f.startsWith('icons/og-'))
+    .filter((f) => !f.endsWith('.map') && f !== 'sw.js' && !f.startsWith('pdfjs/') && !f.startsWith('models/') && f !== '.nojekyll' && f !== '404.html' && f !== 'sitemap.xml' && f !== 'robots.txt' && !f.startsWith('icons/og-'))
+    // Large on-demand files (the 14 MB speech runtime) are cached when first used, not on install.
+    .filter((f) => statSync(join(out, f)).size < 5 * 1024 * 1024)
     .map((f) => (f.endsWith('index.html') ? f.slice(0, -'index.html'.length) || './' : f))
     .sort();
   const hash = createHash('sha256');
@@ -230,6 +236,11 @@ function writeServiceWorker(out: string): void {
 export default defineConfig({
   base: BASE_PATH,
   plugins: [staticPagesPlugin()],
+  resolve: {
+    // transformers.js imports the WebGPU build of ONNX Runtime; we only use the
+    // WebAssembly backend, whose runtime is half the size (14 MB instead of 27 MB).
+    alias: [{ find: /^onnxruntime-web\/webgpu$/, replacement: 'onnxruntime-web/wasm' }],
+  },
   build: {
     target: ['es2020', 'safari14', 'firefox90', 'chrome88'],
     sourcemap: false,

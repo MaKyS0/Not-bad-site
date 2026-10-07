@@ -7,17 +7,20 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/fetch-models.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "node scripts/e2e.mjs",
-    "icons": "node scripts/generate-icons.mjs"
+    "icons": "node scripts/generate-icons.mjs",
+    "models": "node scripts/fetch-models.mjs"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
+    "@huggingface/transformers": "^4.3.1",
     "@jsquash/webp": "^1.5.0",
     "exifr": "^7.1.3",
     "fflate": "^0.8.3",

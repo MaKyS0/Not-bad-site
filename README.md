@@ -43,7 +43,7 @@ Universal File Toolbox is a static web app (no backend, no database, no sign-up)
 | **Data** | JSON Formatter (format, minify, validate with line/column, highlighting, copy) · CSV Viewer · CSV → JSON · JSON → CSV (delimiter & encoding selection, flattening, Excel BOM) · XML Formatter (format, minify, well-formedness check) · Markdown Preview (safe renderer, HTML export) |
 | **Text** | Word / Character / Line counter · Remove duplicate lines · Sort lines (A-Z, Z-A, natural, length, shuffle, reverse) · Reverse text/words · Case converter (12 cases) · Trim spaces · Base64 encode/decode (text & files) · URL encode/decode · HTML entities encode/decode |
 | **Archive** | ZIP Creator (files & folders, remove entries, open an existing ZIP to add/remove files, compression level) · ZIP Extractor (browse, preview, download single files, extract all to a folder where supported) |
-| **Audio** | Audio Info & waveform (duration, sample rate, channels, peak, ID3 tags) · Audio → WAV (mono/stereo, resample, 16/24-bit) · Audio Trimmer (waveform selection, fades, preview, WAV export) |
+| **Audio** | Audio to Text (Whisper speech recognition on the device, ~100 languages with auto-detection, TXT / SRT / VTT export) · Audio Info & waveform (duration, sample rate, channels, peak, ID3 tags) · Audio → WAV (mono/stereo, resample, 16/24-bit) · Audio Trimmer (waveform selection, fades, preview, WAV export) |
 | **Developer** | UUID v4/v7 generator · Text hash (SHA-1/256/384/512) · JWT decoder (expiry check, signature *not* verified — stated clearly) · File → Data URI |
 
 ### Cross-cutting features
@@ -63,9 +63,12 @@ Requirements: **Node.js 20+** (22 recommended).
 ```bash
 git clone https://github.com/MaKyS0/Not-bad-site.git
 cd Not-bad-site
-npm install
+npm install --ignore-scripts   # skips onnxruntime-node's native download (unused)
+npm run models       # downloads the Whisper models (~120 MB) into public/models/ (git-ignored)
 npm run dev          # http://localhost:5173
 ```
+
+`npm run build` fetches missing models automatically (`prebuild`) and fails if they are absent.
 
 ## Production build
 
@@ -182,6 +185,15 @@ The UI is meant to feel like a tool, not a landing page:
 - Download and extracted file names are stripped of path characters, control characters and bidi overrides (U+202E "gpj.exe" tricks). JSON→CSV escapes spreadsheet formulas (`=`, `+`, `-`, `@`) by default.
 - File types are validated by extension **and** magic bytes; mismatches are reported.
 
+### Audio to Text
+
+`src/tools/audio/transcriber.ts` + `src/workers/asr.worker.ts`. The file is decoded with the Web Audio API, downmixed to 16 kHz mono and cut into ≤ 28 s windows at the quietest moment near each limit (`lib/transcript.ts`), so words are not split. Each window goes to a worker running Whisper through transformers.js on ONNX Runtime's WebAssembly backend; text appears window by window and the run can be stopped at any time.
+
+- **Models are part of the site.** `scripts/fetch-models.mjs` downloads pinned revisions of `onnx-community/whisper-tiny` (41 MB) and `whisper-base` (77 MB), verifying sizes and SHA-256, into `public/models/`. Remote hubs are disabled in the worker and the CSP only allows this origin, so no request leaves the site. The library stores the model in the Cache API after the first use (offline afterwards); the service worker skips `/models/` and does not precache the 14 MB runtime.
+- **Language detection** is done explicitly (one decoder step, most likely language token), because transformers.js otherwise silently assumes English.
+- **Repetition loops** ("hallucinations" of small Whisper models) are filtered: segments repeating the previous one and phrases repeated 3+ times are collapsed.
+- The ONNX Runtime import is aliased from its WebGPU build to the WebAssembly build (`vite.config.ts`), halving the runtime size.
+
 ### Virus Check
 
 `src/tools/files/lib/scan.ts` is a static, on-device analyser (run in a Web Worker). It is **not an antivirus** — there is no signature database — but it recognises the tricks malicious files rely on: executables disguised as documents (magic bytes vs. extension), double extensions and bidi characters in names, Office macros (OOXML `vbaProject.bin`, OLE `_VBA_PROJECT`), XLM macro sheets, remote templates and DDE fields, RTF OLE objects and Equation Editor exploits, PDF JavaScript/OpenAction/Launch/EmbeddedFile (also inside compressed object streams and hex-obfuscated names), dropper command lines (PowerShell, certutil, mshta, `curl | sh` …), HTML smuggling and phishing pages, SVG scripts, Base64-embedded executables, zip bombs, zip-slip paths, password-protected archives with programs, image bombs and the EICAR test file. ZIP entries are inspected one by one. The *Check hash on VirusTotal* button opens `virustotal.com/gui/file/<sha256>` — only the hash leaves the device, and only when the user clicks.
@@ -250,7 +262,7 @@ To add a language: add it to `LANGS` in `i18n.ts`, create a dictionary like `ru.
 ## Testing
 
 ```bash
-npm test             # Vitest: 67 unit tests (incl. translation completeness) (text, codecs, JSON/CSV/XML, Markdown XSS,
+npm test             # Vitest: 71 unit tests (incl. translation completeness) (text, codecs, JSON/CSV/XML, Markdown XSS,
                      # SHA-256 vs WebCrypto, ICO, WAV, ID3, PDF ops, ZIP, search, registry)
 npm run build
 npm run test:e2e     # Playwright + Chromium against ./dist served under /Not-bad-site/:
@@ -272,6 +284,9 @@ npm run test:e2e     # Playwright + Chromium against ./dist served under /Not-ba
 | [PapaParse](https://github.com/mholt/PapaParse) | 5.7 | MIT | CSV parsing / writing |
 | [UPNG.js](https://github.com/photopea/UPNG.js) (+ pako) | 2.1 | MIT (pako: MIT/Zlib) | lossy PNG compression (colour quantisation) |
 | [@jsquash/webp](https://github.com/jamsinclair/jSquash) (libwebp WASM from Squoosh) | 1.5 | Apache-2.0 (libwebp: BSD-3) | WebP encoding where the browser cannot (Safari) |
+| [transformers.js](https://github.com/huggingface/transformers.js) | 4.3 | Apache-2.0 | running Whisper in a Web Worker (speech to text) |
+| [ONNX Runtime Web](https://github.com/microsoft/onnxruntime) | 1.31 | MIT | WebAssembly inference backend (CPU, single thread) |
+| [Whisper tiny / base](https://github.com/openai/whisper) (int8 ONNX by onnx-community) | — | MIT | speech-recognition models, served from `/models/` |
 | [IBM Plex Sans / Mono](https://github.com/IBM/plex) via @fontsource | 5.3 | OFL-1.1 | interface typefaces, self-hosted (Latin + Cyrillic subsets, ~110 KB total, loaded per script) |
 
 Dev tooling: Vite (MIT), TypeScript (Apache-2.0), Vitest (MIT), Playwright (Apache-2.0).
@@ -288,6 +303,7 @@ These are honest browser limits — the app shows a clear message instead of fak
 - **EXIF**: output images from compress/convert/resize contain no EXIF (canvas re-encoding). The *Image Metadata* tool reads EXIF but does not edit it; WebP EXIF is not read by exifr.
 - **Very large files** are limited by device memory: canvas size limits (iOS ≈ 16.7 MP), ZIP extraction up to 1 GB, decoded audio ≈ 10× the compressed size. Hashing streams files of any size (SHA-256 only above 512 MB).
 - **ZIP**: no encrypted archives, no RAR/7z; only Stored/Deflate entries. “Extract all to a folder” needs the File System Access API (Chrome/Edge desktop); elsewhere files are downloaded individually.
+- **Audio to Text** runs on the CPU in a single thread (GitHub Pages cannot enable the cross-origin isolation needed for WebAssembly threads), so it is slower than desktop apps: on a recent laptop the accurate model needs roughly 0.4× the audio duration, the fast one about half that; phones are several times slower. The first use downloads the model (41 or 77 MB). Accuracy is that of Whisper tiny/base — good for clear speech, weaker for noisy audio, strong accents and rare names. Recordings are limited to 3 hours and must be decodable by the browser.
 - **Virus Check** is heuristic: it has no database of known malware, does not unpack RAR/7z/nested archives, and cannot see inside encrypted content. A clean result is not a guarantee; use the VirusTotal lookup or an antivirus for a definitive answer.
 - **Hosting limits (GitHub Pages)**: no custom HTTP headers, so `frame-ancestors`/`X-Frame-Options` (anti-clickjacking) cannot be set — the CSP is delivered via `<meta>`. The app keeps no accounts or secrets, so framing has little impact. All repositories of the same GitHub user share the `<user>.github.io` origin.
 - **XML** is checked for well-formedness only (no XSD/DTD validation). **JWT** signatures are not verified.

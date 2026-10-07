@@ -88,6 +88,8 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin || !url.href.startsWith(SCOPE)) return;
+  // Speech models are cached by the recognition library itself (Cache API).
+  if (url.href.startsWith(new URL('models/', SCOPE).href)) return;
   if (request.mode === 'navigate') {
     event.respondWith(networkFirstPage(request));
     return;

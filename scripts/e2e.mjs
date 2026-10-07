@@ -409,6 +409,16 @@ try {
   const trimmed = await download(() => page.click('.batch-summary button'));
   check(trimmed.buf.readUInt32LE(40) === 4000 * 4 * (trimmed.buf.readUInt32LE(24) / 8000) || trimmed.buf.readUInt32LE(40) > 0, `trimmed WAV ${trimmed.buf.length} bytes`);
   check(Math.abs(trimmed.buf.readUInt32LE(40) / (trimmed.buf.readUInt32LE(24) * 4) - 0.5) < 0.01, 'trimmed WAV duration ≈ 0.5 s');
+  // speech recognition (Whisper, local model): real English speech, auto language, SRT export
+  await page.goto(`${ROOT}tools/audio-to-text/`);
+  await page.click('.tool-options .seg >> nth=0'); // fast model keeps CI quick
+  await up([{ name: 'jfk.wav', mimeType: 'audio/wav', buffer: readFileSync(new URL('../tests/fixtures/jfk-16k.wav', import.meta.url)) }]);
+  await page.click('button:has-text("Transcribe")');
+  await page.waitForFunction(() => /country/i.test(document.querySelector('.transcript')?.value ?? '') && !document.querySelector('.tool-main .toolbar .btn-primary')?.disabled, null, { timeout: 180000 });
+  const said = (await page.inputValue('.transcript')).toLowerCase().replace(/[^a-z ]/g, '');
+  check(said.includes('ask not what your country can do for you') && (await text('.tool-main .hint')).includes('English'), `speech to text: "${said.slice(0, 70)}…"`);
+  const srt = await download(() => page.click('button:has-text("Subtitles SRT")'));
+  check(srt.name === 'jfk.srt' && /^1\n00:00:0\d,\d{3} --> 00:00:\d\d,\d{3}\n/.test(srt.buf.toString('utf8')), 'transcript exported as SRT subtitles');
 
   // ---------------------------------------------------------------- history
   await page.goto(ROOT);
@@ -496,7 +506,7 @@ try {
   console.log('\nMobile layout');
   const mobile = await browser.newContext({ viewport: { width: 360, height: 740 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
   const mp = await mobile.newPage();
-  for (const p of ['', 'tools/', 'tools/image-compressor/', 'tools/pdf-merge/', 'tools/json-formatter/', 'tools/image-cropper/', 'tools/csv-viewer/', 'ru/', 'ru/tools/image-resizer/', 'ru/tools/pdf-split/', 'ru/tools/word-counter/']) {
+  for (const p of ['', 'tools/', 'tools/image-compressor/', 'tools/pdf-merge/', 'tools/json-formatter/', 'tools/image-cropper/', 'tools/csv-viewer/', 'ru/', 'ru/tools/image-resizer/', 'ru/tools/pdf-split/', 'ru/tools/word-counter/', 'ru/tools/audio-to-text/']) {
     await mp.goto(ROOT + p);
     await mp.waitForTimeout(400);
     const overflow = await mp.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

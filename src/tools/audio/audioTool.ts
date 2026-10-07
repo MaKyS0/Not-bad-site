@@ -5,6 +5,7 @@ import { button, errorPanel, field, kvTable, notice, numberInput, progress, segm
 import { WorkerPool } from '../../workers/rpc';
 import { peaks } from './lib/wav';
 import { readId3 } from './lib/id3';
+import { AudioCtx, decode, resample } from './lib/decode';
 import { baseName, formatBytes, formatDuration } from '../../utils/format';
 import { downloadBlob } from '../../services/download';
 import { UserError } from '../../utils/errors';
@@ -14,36 +15,6 @@ type Mode = 'info' | 'convert' | 'trim';
 
 let pool: WorkerPool | null = null;
 const audioWorker = () => (pool ??= new WorkerPool(() => new Worker(new URL('../../workers/audio.worker.ts', import.meta.url), { type: 'module' }), 1));
-
-type AC = typeof AudioContext;
-const AudioCtx = (): AC | undefined => (window.AudioContext ?? (window as unknown as { webkitAudioContext?: AC }).webkitAudioContext);
-
-async function decode(file: File): Promise<AudioBuffer> {
-  const Ctor = AudioCtx();
-  if (!Ctor) throw new UserError(t('Your browser does not support the Web Audio API.'));
-  const ac = new Ctor();
-  try {
-    const data = await file.arrayBuffer();
-    return await new Promise<AudioBuffer>((resolve, reject) => {
-      // Callback form for older Safari; promise form elsewhere.
-      const p = ac.decodeAudioData(data, resolve, () => reject(new UserError(t('This audio file could not be decoded.'), 'The format or codec may not be supported by your browser (e.g. some browsers cannot decode OGG/Opus or AAC), or the file is damaged.')));
-      p?.catch?.(() => undefined);
-    });
-  } finally {
-    void ac.close?.();
-  }
-}
-
-async function resample(buf: AudioBuffer, rate: number): Promise<AudioBuffer> {
-  if (rate === buf.sampleRate) return buf;
-  const length = Math.ceil(buf.duration * rate);
-  const off = new OfflineAudioContext(buf.numberOfChannels, length, rate);
-  const src = off.createBufferSource();
-  src.buffer = buf;
-  src.connect(off.destination);
-  src.start();
-  return off.startRendering();
-}
 
 function drawWave(canvas: HTMLCanvasElement, buf: AudioBuffer): void {
   const dpr = Math.min(2, window.devicePixelRatio || 1);

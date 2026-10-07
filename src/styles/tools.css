@@ -325,3 +325,8 @@ audio { width: 100%; }
 .status-line:empty { display: none; }
 .options-inline { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 24px; }
 .options-inline > .field { min-width: 160px; }
+
+/* ---------- Audio to text ---------- */
+textarea.transcript { min-height: 260px; font-family: var(--font); font-size: 1rem; line-height: 1.6; }
+.file-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0; }
+.file-line .icon { color: var(--text-3); }

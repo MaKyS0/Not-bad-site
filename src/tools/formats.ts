@@ -19,4 +19,4 @@ export function conversionLabel(tool: ToolMeta): string | null {
 }
 
 /** Tools listed under "Common tasks" on the home page, across categories. */
-export const COMMON_TASKS = ['image-compressor', 'image-converter', 'pdf-merge', 'images-to-pdf', 'pdf-split', 'virus-scanner', 'json-formatter', 'csv-to-json', 'unzip', 'word-counter'];
+export const COMMON_TASKS = ['image-compressor', 'image-converter', 'pdf-merge', 'images-to-pdf', 'pdf-split', 'virus-scanner', 'json-formatter', 'csv-to-json', 'unzip', 'audio-to-text'];
