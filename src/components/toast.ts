@@ -1,5 +1,7 @@
 import { h } from '../utils/dom';
 import { icon } from './icons';
+import { pop, reducedMotion } from '../utils/motion';
+import { animate } from 'motion/mini';
 
 type Kind = 'info' | 'success' | 'error';
 
@@ -20,8 +22,9 @@ export function toast(message: string, kind: Kind = 'info', ms = 3500): void {
     h('span', null, message),
   );
   container().appendChild(el);
+  pop(el, { y: 14, scale: 0.96 });
   setTimeout(() => {
-    el.classList.add('leaving');
-    setTimeout(() => el.remove(), 300);
+    if (reducedMotion()) return el.remove();
+    void animate(el, { opacity: [1, 0], transform: ['translateY(0)', 'translateY(10px)'] }, { duration: 0.2, ease: 'easeIn' }).then(() => el.remove());
   }, ms);
 }

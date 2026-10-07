@@ -9,6 +9,7 @@ import { extOf } from '../utils/format';
 import { canonicalExt } from '../utils/fileType';
 import { toast } from './toast';
 import { plural, t } from '../i18n/i18n';
+import { hop, pop } from '../utils/motion';
 
 /** Relative path inside a dropped folder (File.webkitRelativePath is read-only). */
 export const relativePaths = new WeakMap<File, string>();
@@ -172,6 +173,7 @@ export function dropzone(opts: DropzoneOptions): HTMLElement {
   zone.addEventListener('dragenter', (e) => {
     e.preventDefault();
     depth++;
+    if (!zone.classList.contains('is-over')) hop(zone.querySelector('.dropzone-icon'));
     zone.classList.add('is-over');
   });
   zone.addEventListener('dragover', (e) => {
@@ -213,6 +215,7 @@ export function installGlobalDrop(): void {
     if (overlay || !activeZone()) return;
     overlay = h('div', { class: 'drop-overlay', 'aria-hidden': 'true' }, h('div', { class: 'drop-overlay-card' }, icon('upload', 'icon icon-xl'), h('p', null, t('Drop files to add them'))));
     document.body.appendChild(overlay);
+    pop(overlay.firstElementChild, { scale: 0.94, y: 0 });
   };
   const hide = () => {
     depth = 0;

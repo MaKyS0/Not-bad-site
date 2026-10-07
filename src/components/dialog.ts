@@ -1,6 +1,7 @@
 import { h, type Child } from '../utils/dom';
 import { iconButton } from './ui';
 import { t } from '../i18n/i18n';
+import { pop } from '../utils/motion';
 
 export interface DialogHandle {
   el: HTMLDialogElement;
@@ -34,6 +35,7 @@ export function dialog(title: string, body: Child, opts: { class?: string; onClo
       returnFocus = document.activeElement as HTMLElement | null;
       if (typeof el.showModal === 'function') el.showModal();
       else el.setAttribute('open', '');
+      pop(el, { scale: 0.98, y: 8 });
     },
     close() {
       if (typeof el.close === 'function') el.close();

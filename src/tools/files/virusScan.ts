@@ -15,6 +15,7 @@ import { describeError } from '../../utils/errors';
 import { WorkerPool } from '../../workers/rpc';
 import { plural, t, translateMessage } from '../../i18n/i18n';
 import { RULES, verdict, type Finding, type ScanReport } from './lib/scan';
+import { enter, pop } from '../../utils/motion';
 
 let pool: WorkerPool | null = null;
 const scanWorker = () => (pool ??= new WorkerPool(() => new Worker(new URL('../../workers/scan.worker.ts', import.meta.url), { type: 'module' }), 1));
@@ -108,8 +109,14 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
         prog.hide();
         const v = verdict(report.findings);
         counts[v]++;
-        card.append(verdictBanner(report));
-        if (report.findings.length) card.append(h('ul', { class: 'findings' }, ...report.findings.map(findingItem)));
+        const banner = verdictBanner(report);
+        card.append(banner);
+        pop(banner);
+        if (report.findings.length) {
+          const findings = h('ul', { class: 'findings' }, ...report.findings.map(findingItem));
+          card.append(findings);
+          enter(findings.children, { delay: 0.08, gap: 0.05 });
+        }
         card.append(
           kvTable([
             [t('Detected type'), translateMessage(report.detected)],

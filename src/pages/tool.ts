@@ -13,6 +13,7 @@ import { PRIVACY_SHORT } from '../config';
 import { t } from '../i18n/i18n';
 import { inertBlob, isActiveContent, svgDataUrl } from '../utils/safeUrl';
 import { loc } from '../i18n/localize';
+import { smoothDetails } from '../utils/motion';
 
 /** Mount a tool page. Returns a cleanup function (or null if the tool doesn't exist). */
 export function toolPage(root: HTMLElement, id: string): (() => void) | null {
@@ -66,7 +67,8 @@ export function toolPage(root: HTMLElement, id: string): (() => void) | null {
           offline ? Object.assign(new Error(t('Tool code is not cached yet and you are offline.')), { name: 'OfflineError' }) : e,
           () => {
             render(mountPoint, h('div', { class: 'loading' }, h('span', { class: 'spinner' }), t('Loading tool…')));
-            void mount();
+            smoothDetails(root);
+  void mount();
           },
           t('Retry'),
         ),

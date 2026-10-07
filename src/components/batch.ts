@@ -13,6 +13,7 @@ import { guessKind } from '../utils/fileType';
 import type { OutputFile, ToolContext } from '../tools/types';
 import { toast } from './toast';
 import { plural, t } from '../i18n/i18n';
+import { enter, nudge, pop } from '../utils/motion';
 
 export interface BatchResult extends OutputFile {
   width?: number;
@@ -101,6 +102,7 @@ export function createBatch(opts: BatchOptions): BatchHandle {
   function addFiles(files: File[]) {
     const fresh = files.map<BatchItem>((file) => ({ id: nextId++, file, status: 'queued' }));
     setItems([...items, ...fresh]);
+    enter(fresh.map((f) => f.row).filter((r): r is HTMLElement => Boolean(r)), { y: 6 });
     if (opts.autoRun) void run();
   }
 
@@ -172,6 +174,8 @@ export function createBatch(opts: BatchOptions): BatchHandle {
     const old = it.row;
     const fresh = rowFor(it);
     if (old?.isConnected) old.replaceWith(fresh);
+    // Draw the eye to the result the moment a file finishes.
+    if (it.status === 'done' && !old?.querySelector('.saving, .growing')) nudge(fresh.querySelector('.saving, .growing'), { scale: 1.12 });
   }
 
   function draw() {
@@ -200,6 +204,7 @@ export function createBatch(opts: BatchOptions): BatchHandle {
       h('span', null, t('{done} of {total} done', { done: done.length, total: items.length }), failed ? ` · ${t('{n} failed', { n: failed })}` : ''),
       done.length ? h('span', null, `${formatBytes(before)} → ${formatBytes(after)}`, opts.showSaving ? ` (${formatPercent(percentChange(before, after))})` : '') : null,
     );
+    if (summary.hidden) pop(summary);
     summary.hidden = false;
   }
 

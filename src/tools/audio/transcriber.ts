@@ -17,6 +17,7 @@ import { toast } from '../../components/toast';
 import { t } from '../../i18n/i18n';
 import { decode, monoSamples } from './lib/decode';
 import { ASR_RATE, dropRepeats, isSilent, shortStamp, splitAtPauses, toSrt, toTxt, toVtt, type Segment } from './lib/transcript';
+import { pop } from '../../utils/motion';
 
 const MODELS = {
   tiny: { id: 'onnx-community/whisper-tiny', size: 41, bytes: 43_610_000 },
@@ -151,6 +152,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
         const sample = windows.map(([a, b]) => audio.slice(a, b)).find((w) => !isSilent(w)) ?? audio.slice(0, ASR_RATE * 28);
         language = await asrWorker().call<string>('detect', { model: model.id, base, bytes: model.bytes, audio: sample }, { signal, transfer: [sample.buffer] });
         render(langNote, t('Detected language: {name}', { name: languageName(language) }));
+        pop(langNote, { y: 4 });
       }
       for (const [i, [a, b]] of windows.entries()) {
         const at = a / ASR_RATE;

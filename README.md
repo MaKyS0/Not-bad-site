@@ -166,7 +166,7 @@ The UI is meant to feel like a tool, not a landing page:
 - **Type** – IBM Plex Sans for the interface and Plex Mono for data: format tags (`PNG`, `JPG → WEBP`), sizes, counts, hashes.
 - **Radii by purpose** – 3 px tags, 6 px controls, 8 px cards, 10 px panels; page-level sections are square and separated by rules rather than boxed.
 - **Different components for different jobs** – the home page pairs a short intro with the drop zone, lists *common tasks* as rows with format tags, and shows every tool in a dense category index (`components/toolCard.ts`: `toolList`, `directory`). On phones the index collapses into disclosures and the header becomes a menu.
-- **Motion** – short (150–200 ms) transitions on hover, focus, menu and dialog opening only; `prefers-reduced-motion` disables them.
+- **Motion** – animations use [Motion](https://motion.dev) (`src/utils/motion.ts`, the WAAPI "mini" build plus `spring`/`stagger`/`inView`). They mark changes the user caused: page content rises in, the home counter counts up, directory groups reveal on scroll, results and toasts pop in with a spring, finished savings get a nudge, the drop-zone icon hops on drag-over, the mobile menu and `<details>` expand smoothly. Elements are never hidden in advance, so nothing depends on an animation finishing; `prefers-reduced-motion` turns every one off.
 
 ### Performance & memory
 
@@ -285,6 +285,7 @@ npm run test:e2e     # Playwright + Chromium against ./dist served under /Not-ba
 | [UPNG.js](https://github.com/photopea/UPNG.js) (+ pako) | 2.1 | MIT (pako: MIT/Zlib) | lossy PNG compression (colour quantisation) |
 | [@jsquash/webp](https://github.com/jamsinclair/jSquash) (libwebp WASM from Squoosh) | 1.5 | Apache-2.0 (libwebp: BSD-3) | WebP encoding where the browser cannot (Safari) |
 | [transformers.js](https://github.com/huggingface/transformers.js) | 4.3 | Apache-2.0 | running Whisper in a Web Worker (speech to text) |
+| [Motion](https://github.com/motiondivision/motion) | 14 | MIT | interface animations |
 | [ONNX Runtime Web](https://github.com/microsoft/onnxruntime) | 1.31 | MIT | WebAssembly inference backend (CPU, single thread) |
 | [Whisper tiny / base](https://github.com/openai/whisper) (int8 ONNX by onnx-community) | — | MIT | speech-recognition models, served from `/models/` |
 | [IBM Plex Sans / Mono](https://github.com/IBM/plex) via @fontsource | 5.3 | OFL-1.1 | interface typefaces, self-hosted (Latin + Cyrillic subsets, ~110 KB total, loaded per script) |

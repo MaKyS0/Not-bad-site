@@ -11,6 +11,7 @@ import { openSearch } from './components/searchDialog';
 import { openSettings } from './components/settingsDialog';
 import { getLang, LANG_PREF_KEY, setLang, t, type Lang } from './i18n/i18n';
 import { locCategory } from './i18n/localize';
+import { enter, toggleHeight } from './utils/motion';
 
 let cleanup: (() => void) | null = null;
 
@@ -88,6 +89,8 @@ function show(route: Route, opts: { scroll: boolean }): void {
     render(main, h('div', { class: 'error-panel', role: 'alert' }, h('strong', null, t('Something went wrong while loading this page.')), h('p', null, t('Please reload the page.'))));
   }
   if (opts.scroll) window.scrollTo({ top: 0 });
+  // The home page choreographs its own entrance; other pages fade in as a whole.
+  if (route.name !== 'home') enter(Array.from(main.children).slice(0, 4), { y: 6, gap: 0.04 });
   // Move focus to the main heading for screen reader users after navigation.
   const h1 = main.querySelector('h1');
   if (h1 && opts.scroll) {
@@ -115,8 +118,8 @@ function closeMenu(): void {
   const btn = document.querySelector<HTMLButtonElement>('[data-action="menu"]');
   const panel = document.getElementById('mobile-nav');
   if (!btn || !panel || panel.hidden) return;
-  panel.hidden = true;
   btn.setAttribute('aria-expanded', 'false');
+  void toggleHeight(panel, false);
 }
 
 function initMenu(): void {
@@ -125,9 +128,11 @@ function initMenu(): void {
   if (!btn || !panel) return;
   btn.addEventListener('click', () => {
     const open = panel.hidden;
-    panel.hidden = !open;
     btn.setAttribute('aria-expanded', String(open));
-    if (open) panel.querySelector<HTMLElement>('a')?.focus();
+    if (!open) return closeMenu();
+    void toggleHeight(panel, true);
+    enter(panel.querySelectorAll('li'), { y: -4, gap: 0.02, duration: 0.2 });
+    panel.querySelector<HTMLElement>('a')?.focus();
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !panel.hidden) {

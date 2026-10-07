@@ -14,6 +14,7 @@ import { GITHUB_URL, SUBTITLE, TAGLINE } from '../config';
 import { iconButton, button } from '../components/ui';
 import { plural, t } from '../i18n/i18n';
 import { loc } from '../i18n/localize';
+import { countUp, enter, pop, reveal } from '../utils/motion';
 
 export function homePage(root: HTMLElement): () => void {
   const filesPanel = h('section', { class: 'staged', 'aria-live': 'polite', hidden: true });
@@ -62,7 +63,10 @@ export function homePage(root: HTMLElement): () => void {
           ]
         : h('p', { class: 'muted' }, t('No specialised tool for this file type yet. Try the'), ' ', h('a', { href: routeHref.tool('file-inspector') }, loc(toolById('file-inspector')!).name), ' / ', h('a', { href: routeHref.tool('zip') }, loc(toolById('zip')!).name), '.'),
     );
+    const wasHidden = filesPanel.hidden;
     filesPanel.hidden = false;
+    if (wasHidden) pop(filesPanel, { y: 10 });
+    enter(filesPanel.querySelectorAll('.file-chip, .tool-row'), { gap: 0.025, duration: 0.22 });
     announce(t('{files} selected. {n} suggested tools.', { files: plural(files.length, 'file'), n: suggestions.length }));
     filesPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -122,6 +126,15 @@ export function homePage(root: HTMLElement): () => void {
       directory(),
     ),
   );
+  // Entrance: headline and facts in sequence, then the drop zone, then the lists.
+  const intro = root.querySelector('.intro')!;
+  enter(intro.querySelectorAll('h1, .intro-sub, .intro-facts li'), { gap: 0.06 });
+  pop(intro.querySelector('.dropzone'), { y: 10 });
+  const count = intro.querySelector<HTMLElement>('.intro-facts b');
+  if (count) countUp(count, primaryTools().length);
+  enter(root.querySelectorAll('.home-split .tool-row'), { delay: 0.18, gap: 0.03 });
+  enter(root.querySelector('.privacy-note'), { delay: 0.3, y: 10 });
+  reveal(root, '.dir-group');
   if (getStaged().length) showStaged(getStaged());
   void drawRecent();
   return onHistoryChange(() => void drawRecent());
