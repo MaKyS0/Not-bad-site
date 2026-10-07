@@ -13,7 +13,7 @@
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
@@ -47,7 +47,7 @@
   flex: none;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 0.15s, color 0.15s;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .icon-btn:hover:not(:disabled) { background: var(--bg-hover); color: var(--text); }
 .icon-btn:disabled { opacity: 0.4; }
@@ -69,7 +69,7 @@
   background: var(--bg-elev);
   color: var(--text);
   font-size: 1rem; /* ≥16px prevents iOS zoom on focus */
-  transition: border-color 0.15s;
+  transition: border-color var(--dur) var(--ease);
 }
 .input:hover { border-color: var(--text-3); }
 .input:focus-visible { outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent); outline-offset: 0; border-color: var(--accent); }
@@ -106,7 +106,7 @@ input[type='color'].input { padding: 4px; width: 64px; }
   flex: none;
   border-radius: 10px;
   background: var(--border-strong);
-  transition: background 0.15s;
+  transition: background var(--dur) var(--ease);
 }
 .switch::after {
   content: '';
@@ -118,7 +118,7 @@ input[type='color'].input { padding: 4px; width: 64px; }
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
-  transition: transform 0.15s var(--ease);
+  transition: transform var(--dur) var(--ease) var(--ease);
 }
 .switch-input:checked + .switch { background: var(--accent); }
 .switch-input:checked + .switch::after { transform: translateX(14px); }
@@ -144,7 +144,7 @@ input[type='color'].input { padding: 4px; width: 64px; }
   cursor: pointer;
   user-select: none;
   border-left: 1px solid var(--border);
-  transition: background-color 0.15s, color 0.15s;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .seg:first-child { border-left: 0; }
 .seg .icon { width: 16px; height: 16px; }
@@ -170,7 +170,7 @@ input[type='color'].input { padding: 4px; width: 64px; }
   background: var(--bg-elev);
   text-align: center;
   cursor: pointer;
-  transition: border-color 0.15s, background-color 0.15s;
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
 .dropzone:hover { border-color: var(--text-3); }
 .dropzone.is-over { border-color: var(--signal); border-style: solid; background: var(--signal-soft); }
@@ -243,12 +243,12 @@ a.fmt:hover { border-color: var(--accent); color: var(--accent); }
   border-bottom: 1px solid var(--border);
   color: var(--text);
   text-decoration: none;
-  transition: background-color 0.15s;
+  transition: background-color var(--dur) var(--ease);
 }
 .tool-row:hover { background: var(--bg-elev); color: var(--text); }
 .tool-row:hover .tool-row-name { color: var(--accent); }
 .tool-row-body { display: flex; flex-direction: column; min-width: 0; }
-.tool-row-name { font-weight: 500; transition: color 0.15s; }
+.tool-row-name { font-weight: 500; transition: color var(--dur) var(--ease); }
 .tool-row-desc { font-size: 0.86rem; color: var(--text-3); line-height: 1.4; }
 .tool-row .fmts { justify-content: flex-end; max-width: 170px; }
 @media (max-width: 640px) {
@@ -274,7 +274,7 @@ a.fmt:hover { border-color: var(--accent); color: var(--accent); }
   color: var(--text-2);
   font-size: 0.9rem;
   text-decoration: none;
-  transition: border-color 0.15s, color 0.15s;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .category-chip:hover { border-color: var(--c); color: var(--text); }
 
@@ -383,7 +383,7 @@ a.fmt:hover { border-color: var(--accent); color: var(--accent); }
   height: 100%;
   width: 0;
   background: var(--accent);
-  transition: width 0.2s ease;
+  transition: width var(--dur-move) var(--ease);
 }
 .progress.is-indeterminate .progress-fill { width: 35% !important; animation: indeterminate 1.1s infinite ease-in-out; }
 @keyframes indeterminate {
@@ -513,7 +513,7 @@ a.fmt:hover { border-color: var(--accent); color: var(--accent); }
   min-height: var(--tap);
   list-style: none;
   font-weight: 500;
-  transition: color 0.15s;
+  transition: color var(--dur) var(--ease);
 }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::before { content: '+'; width: 14px; flex: none; font-family: var(--mono); color: var(--text-3); }

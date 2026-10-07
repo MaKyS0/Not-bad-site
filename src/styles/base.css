@@ -51,7 +51,9 @@
   --header-h: 56px;
   --tap: 44px;
   --container: 1200px;
-  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 0.25s; /* hover, focus, colour changes */
+  --dur-move: 0.4s; /* things that move or resize */
   color-scheme: light;
 }
 

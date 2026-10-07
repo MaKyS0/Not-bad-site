@@ -16,7 +16,7 @@
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding-top: env(safe-area-inset-top);
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow var(--dur-move) var(--ease);
 }
 .site-header.is-scrolled { box-shadow: 0 8px 16px -14px rgb(28 27 24 / 0.5); }
 .header-inner {
@@ -60,7 +60,7 @@
   font-size: 0.94rem;
   font-weight: 500;
   white-space: nowrap;
-  transition: color 0.15s;
+  transition: color var(--dur) var(--ease);
 }
 .header-nav a::after {
   content: '';
@@ -70,7 +70,7 @@
   bottom: -1px;
   height: 2px;
   background: transparent;
-  transition: background-color 0.15s;
+  transition: background-color var(--dur) var(--ease);
 }
 .header-nav a:hover { color: var(--text); }
 .header-nav a:hover::after { background: var(--border-strong); }
@@ -92,7 +92,7 @@
   color: var(--text-3);
   font-size: 0.92rem;
   text-align: left;
-  transition: border-color 0.15s;
+  transition: border-color var(--dur) var(--ease);
 }
 .header-search:hover { border-color: var(--border-strong); color: var(--text-2); }
 .header-search .icon { width: 17px; height: 17px; }
@@ -305,7 +305,7 @@ details.dir-group > summary::after {
   border-right: 1.5px solid var(--text-3);
   border-bottom: 1.5px solid var(--text-3);
   transform: rotate(45deg);
-  transition: transform 0.2s var(--ease);
+  transition: transform var(--dur-move) var(--ease);
 }
 details.dir-group[open] > summary::after { transform: rotate(-135deg); margin-bottom: -3px; }
 details.dir-group .dir-count { margin-left: auto; }

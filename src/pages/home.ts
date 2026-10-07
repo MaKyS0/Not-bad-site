@@ -66,7 +66,7 @@ export function homePage(root: HTMLElement): () => void {
     const wasHidden = filesPanel.hidden;
     filesPanel.hidden = false;
     if (wasHidden) pop(filesPanel, { y: 10 });
-    enter(filesPanel.querySelectorAll('.file-chip, .tool-row'), { gap: 0.025, duration: 0.22 });
+    enter(filesPanel.querySelectorAll('.file-chip, .tool-row'), { gap: 0.035 });
     announce(t('{files} selected. {n} suggested tools.', { files: plural(files.length, 'file'), n: suggestions.length }));
     filesPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -128,12 +128,12 @@ export function homePage(root: HTMLElement): () => void {
   );
   // Entrance: headline and facts in sequence, then the drop zone, then the lists.
   const intro = root.querySelector('.intro')!;
-  enter(intro.querySelectorAll('h1, .intro-sub, .intro-facts li'), { gap: 0.06 });
+  enter(intro.querySelectorAll('h1, .intro-sub, .intro-facts li'), { gap: 0.08, y: 16 });
   pop(intro.querySelector('.dropzone'), { y: 10 });
   const count = intro.querySelector<HTMLElement>('.intro-facts b');
   if (count) countUp(count, primaryTools().length);
-  enter(root.querySelectorAll('.home-split .tool-row'), { delay: 0.18, gap: 0.03 });
-  enter(root.querySelector('.privacy-note'), { delay: 0.3, y: 10 });
+  enter(root.querySelectorAll('.home-split .tool-row'), { delay: 0.25, gap: 0.04 });
+  enter(root.querySelector('.privacy-note'), { delay: 0.45, y: 14 });
   reveal(root, '.dir-group');
   if (getStaged().length) showStaged(getStaged());
   void drawRecent();

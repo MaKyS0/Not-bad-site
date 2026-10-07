@@ -102,7 +102,7 @@ export function createBatch(opts: BatchOptions): BatchHandle {
   function addFiles(files: File[]) {
     const fresh = files.map<BatchItem>((file) => ({ id: nextId++, file, status: 'queued' }));
     setItems([...items, ...fresh]);
-    enter(fresh.map((f) => f.row).filter((r): r is HTMLElement => Boolean(r)), { y: 6 });
+    enter(fresh.map((f) => f.row).filter((r): r is HTMLElement => Boolean(r)), { y: 8 });
     if (opts.autoRun) void run();
   }
 
@@ -175,7 +175,7 @@ export function createBatch(opts: BatchOptions): BatchHandle {
     const fresh = rowFor(it);
     if (old?.isConnected) old.replaceWith(fresh);
     // Draw the eye to the result the moment a file finishes.
-    if (it.status === 'done' && !old?.querySelector('.saving, .growing')) nudge(fresh.querySelector('.saving, .growing'), { scale: 1.12 });
+    if (it.status === 'done' && !old?.querySelector('.saving, .growing')) nudge(fresh.querySelector('.saving, .growing'), { scale: 1.08 });
   }
 
   function draw() {

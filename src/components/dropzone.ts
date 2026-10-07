@@ -215,7 +215,7 @@ export function installGlobalDrop(): void {
     if (overlay || !activeZone()) return;
     overlay = h('div', { class: 'drop-overlay', 'aria-hidden': 'true' }, h('div', { class: 'drop-overlay-card' }, icon('upload', 'icon icon-xl'), h('p', null, t('Drop files to add them'))));
     document.body.appendChild(overlay);
-    pop(overlay.firstElementChild, { scale: 0.94, y: 0 });
+    pop(overlay.firstElementChild, { scale: 0.97, y: 0 });
   };
   const hide = () => {
     depth = 0;

@@ -90,7 +90,7 @@ function show(route: Route, opts: { scroll: boolean }): void {
   }
   if (opts.scroll) window.scrollTo({ top: 0 });
   // The home page choreographs its own entrance; other pages fade in as a whole.
-  if (route.name !== 'home') enter(Array.from(main.children).slice(0, 4), { y: 6, gap: 0.04 });
+  if (route.name !== 'home') enter(Array.from(main.children).slice(0, 4), { y: 10, gap: 0.06 });
   // Move focus to the main heading for screen reader users after navigation.
   const h1 = main.querySelector('h1');
   if (h1 && opts.scroll) {
@@ -114,10 +114,13 @@ function markNav(route: Route): void {
   if (nav && route.name !== 'home' && route.name !== 'notFound' && !nav.querySelector('[aria-current]')) nav.querySelector('[data-nav="tools"]')?.setAttribute('aria-current', 'true');
 }
 
+// The button's aria-expanded is the menu state; the panel stays visible while it animates closed.
+const menuOpen = (btn: Element) => btn.getAttribute('aria-expanded') === 'true';
+
 function closeMenu(): void {
   const btn = document.querySelector<HTMLButtonElement>('[data-action="menu"]');
   const panel = document.getElementById('mobile-nav');
-  if (!btn || !panel || panel.hidden) return;
+  if (!btn || !panel || !menuOpen(btn)) return;
   btn.setAttribute('aria-expanded', 'false');
   void toggleHeight(panel, false);
 }
@@ -127,22 +130,21 @@ function initMenu(): void {
   const panel = document.getElementById('mobile-nav');
   if (!btn || !panel) return;
   btn.addEventListener('click', () => {
-    const open = panel.hidden;
-    btn.setAttribute('aria-expanded', String(open));
-    if (!open) return closeMenu();
+    if (menuOpen(btn)) return closeMenu();
+    btn.setAttribute('aria-expanded', 'true');
     void toggleHeight(panel, true);
-    enter(panel.querySelectorAll('li'), { y: -4, gap: 0.02, duration: 0.2 });
+    enter(panel.querySelectorAll('li'), { y: -6, gap: 0.03, duration: 0.45 });
     panel.querySelector<HTMLElement>('a')?.focus();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !panel.hidden) {
+    if (e.key === 'Escape' && menuOpen(btn)) {
       closeMenu();
       btn.focus();
     }
   });
   document.addEventListener('click', (e) => {
     const target = e.target as Node;
-    if (!panel.hidden && !panel.contains(target) && !btn.contains(target)) closeMenu();
+    if (menuOpen(btn) && !panel.contains(target) && !btn.contains(target)) closeMenu();
   });
 }
 

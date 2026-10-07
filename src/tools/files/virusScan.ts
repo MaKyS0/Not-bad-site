@@ -115,7 +115,7 @@ export const mount: ToolModule['mount'] = (root: HTMLElement, ctx: ToolContext) 
         if (report.findings.length) {
           const findings = h('ul', { class: 'findings' }, ...report.findings.map(findingItem));
           card.append(findings);
-          enter(findings.children, { delay: 0.08, gap: 0.05 });
+          enter(findings.children, { delay: 0.12, gap: 0.07 });
         }
         card.append(
           kvTable([
