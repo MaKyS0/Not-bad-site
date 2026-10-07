@@ -14,20 +14,21 @@ if (env.backends.onnx.wasm) env.backends.onnx.wasm.numThreads = 1; // GitHub Pag
 
 let current: { id: string; asr: Promise<AutomaticSpeechRecognitionPipeline> } | null = null;
 
-function load(id: string, base: string, progress: (v: number) => void): Promise<AutomaticSpeechRecognitionPipeline> {
+function load(id: string, base: string, bytes: number, progress: (v: number) => void): Promise<AutomaticSpeechRecognitionPipeline> {
   if (current?.id === id) return current.asr;
   env.localModelPath = base;
-  const files = new Map<string, { loaded: number; total: number }>();
+  // GitHub Pages serves the files gzip-compressed without Content-Length, so the
+  // total comes from the caller (the known model size), not from the responses.
+  const loadedByFile = new Map<string, number>();
   const asr = pipeline('automatic-speech-recognition', id, {
     dtype: 'q8',
     device: 'wasm',
     progress_callback: (p: { status: string; file?: string; loaded?: number; total?: number }) => {
-      if (p.status !== 'progress' || !p.file || !p.total) return;
-      files.set(p.file, { loaded: p.loaded ?? 0, total: p.total });
+      if (p.status !== 'progress' || !p.file) return;
+      loadedByFile.set(p.file, p.loaded ?? 0);
       let loaded = 0;
-      let total = 0;
-      files.forEach((f) => ((loaded += f.loaded), (total += f.total)));
-      progress(loaded / total);
+      loadedByFile.forEach((v) => (loaded += v));
+      progress(Math.min(0.99, loaded / bytes));
     },
   }) as Promise<AutomaticSpeechRecognitionPipeline>;
   current = { id, asr };
@@ -64,16 +65,16 @@ async function detectLanguage(asr: AutomaticSpeechRecognitionPipeline, audio: Fl
 }
 
 exposeHandlers({
-  async detect(p: { model: string; base: string; audio: Float32Array }, progress) {
-    const asr = await load(p.model, p.base, progress);
+  async detect(p: { model: string; base: string; bytes: number; audio: Float32Array }, progress) {
+    const asr = await load(p.model, p.base, p.bytes, progress);
     return { value: await detectLanguage(asr, p.audio) };
   },
-  async load(p: { model: string; base: string }, progress) {
-    await load(p.model, p.base, progress);
+  async load(p: { model: string; base: string; bytes: number }, progress) {
+    await load(p.model, p.base, p.bytes, progress);
     return { value: true };
   },
-  async transcribe(p: { model: string; base: string; audio: Float32Array; language: string }, progress) {
-    const asr = await load(p.model, p.base, progress);
+  async transcribe(p: { model: string; base: string; bytes: number; audio: Float32Array; language: string }, progress) {
+    const asr = await load(p.model, p.base, p.bytes, progress);
     const out = (await asr(p.audio, {
       task: 'transcribe',
       return_timestamps: true,

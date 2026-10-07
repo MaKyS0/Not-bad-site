@@ -19,8 +19,8 @@ import { decode, monoSamples } from './lib/decode';
 import { ASR_RATE, dropRepeats, isSilent, shortStamp, splitAtPauses, toSrt, toTxt, toVtt, type Segment } from './lib/transcript';
 
 const MODELS = {
-  tiny: { id: 'onnx-community/whisper-tiny', size: 41 },
-  base: { id: 'onnx-community/whisper-base', size: 77 },
+  tiny: { id: 'onnx-community/whisper-tiny', size: 41, bytes: 43_610_000 },
+  base: { id: 'onnx-community/whisper-base', size: 77, bytes: 79_690_000 },
 } as const;
 type ModelKey = keyof typeof MODELS;
 
@@ -143,13 +143,13 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
       const audio = await monoSamples(buf, ASR_RATE);
       const total = buf.duration;
       prog.set(0, t('Loading the speech model ({size} MB, only the first time)…', { size: model.size }));
-      await asrWorker().call('load', { model: model.id, base }, { signal, onProgress: (f) => prog.set(f, t('Loading the speech model ({size} MB, only the first time)…', { size: model.size })) });
+      await asrWorker().call('load', { model: model.id, base, bytes: model.bytes }, { signal, onProgress: (f) => prog.set(f, t('Loading the speech model ({size} MB, only the first time)…', { size: model.size })) });
       const windows = splitAtPauses(audio);
       let language = s.language;
       if (language === 'auto') {
         prog.indeterminate(t('Detecting the language…'));
         const sample = windows.map(([a, b]) => audio.slice(a, b)).find((w) => !isSilent(w)) ?? audio.slice(0, ASR_RATE * 28);
-        language = await asrWorker().call<string>('detect', { model: model.id, base, audio: sample }, { signal, transfer: [sample.buffer] });
+        language = await asrWorker().call<string>('detect', { model: model.id, base, bytes: model.bytes, audio: sample }, { signal, transfer: [sample.buffer] });
         render(langNote, t('Detected language: {name}', { name: languageName(language) }));
       }
       for (const [i, [a, b]] of windows.entries()) {
@@ -157,7 +157,7 @@ export const mount: ToolModule['mount'] = async (root: HTMLElement, ctx: ToolCon
         prog.set(at / total, t('Recognising speech… {done} of {total}', { done: shortStamp(at), total: shortStamp(total) }));
         const part = audio.slice(a, b);
         if (isSilent(part)) continue;
-        const res = await asrWorker().call<Segment[]>('transcribe', { model: model.id, base, audio: part, language }, { signal, transfer: [part.buffer] });
+        const res = await asrWorker().call<Segment[]>('transcribe', { model: model.id, base, bytes: model.bytes, audio: part, language }, { signal, transfer: [part.buffer] });
         segments = dropRepeats([...segments, ...res.map((r) => ({ start: r.start + at, end: Math.min(r.end + at, b / ASR_RATE), text: r.text }))]);
         showText();
         textArea.scrollTop = textArea.scrollHeight;
