@@ -3,7 +3,7 @@
   --bg: #000;
   --fg: #efecf7;
   --muted: #a9a5bd;
-  --panel: rgba(10, 8, 18, .58);
+  --panel: rgba(10, 8, 18, .74);   /* no backdrop-filter: blurring a live WebGL canvas is far too heavy for phones and tablets */
   --line: rgba(255, 255, 255, .13);
   --accent: #ffb869;
   --accent-2: #ffd9a6;
@@ -119,8 +119,7 @@ p { margin: 0 0 14px; }
 .card {
   width: min(460px, 100%); padding: 26px 28px;
   background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
-  box-shadow: 0 20px 60px rgba(0,0,0,.45);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
 }
 .card.wide { width: min(720px, 100%); }
 .card p { color: #d6d2e6; }
@@ -168,8 +167,7 @@ input[type=range] { width: 100%; accent-color: var(--accent); height: 28px; marg
 .panel {
   position: fixed; z-index: 30; padding: 10px 14px;
   background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0,0,0,.35);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
 }
 .explore-ui .panel { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease, visibility 0s .4s; }
 body.explore .explore-ui .panel { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition: opacity .45s ease .15s, transform .45s ease .15s, visibility 0s; }
