@@ -2,27 +2,9 @@
 (() => {
 "use strict";
 
-const SRC = {
-  scene: `precision highp float;
 
-uniform vec2  uRes;
-uniform float uTime;
-uniform vec3  uCam;
-uniform vec3  uFwd;
-uniform vec3  uRight;
-uniform vec3  uUp;
-uniform float uFov;
-uniform float uPix;     // angular size of one pixel (radians)
-uniform float uDisk;
-uniform vec2  uShift;   // moves the hole on screen (uv units)
-uniform float uVol;     // 1 = volumetric disk, 0 = thin sheet (cheaper)
-uniform int   uSteps;
-
-// Units: Schwarzschild radius rs = 1 (event horizon r = 1, photon sphere r = 1.5,
-// innermost stable circular orbit r = 3).
-const float R_IN  = 3.0;
-const float R_OUT = 13.0;
-
+// Noise helpers. Only the one-time bake passes use them; the per-frame shader just reads textures.
+const NOISE = `
 float hash2(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
   p += dot(p, p + 45.32);
@@ -65,6 +47,85 @@ float fbm3(vec3 p) {
   }
   return s;
 }
+`;
+
+const NOISE_BAKE = `precision highp float;
+varying vec2 vUv;
+` + NOISE + `
+// RG = disk turbulence (two phase-shifted layers), BA = fine streaks. Domain: x,z in [-14, 14].
+void main() {
+  vec2 q = (vUv - 0.5) * 28.0;
+  gl_FragColor = vec4(fbm2(q * 0.9), fbm2(q * 0.9 + 31.0),
+                      noise2(q * vec2(5.0, 9.0)), noise2(q * vec2(5.0, 9.0) + 7.0));
+}
+`;
+
+const SKY_BAKE = `precision highp float;
+varying vec2 vUv;
+uniform float uFace;
+` + NOISE + `
+// Milky-Way-like band on a tilted plane, with dust lanes and a warm core (stars are drawn live).
+vec3 nebula(vec3 d) {
+  vec3 bn = normalize(vec3(0.25, 0.9, 0.35));
+  float lat = dot(d, bn);
+  float band = exp(-lat * lat * 14.0);
+  float n1 = fbm3(d * 3.0);
+  float n2 = fbm3(d * 7.0 + 4.0);
+  float dust = smoothstep(0.35, 0.7, fbm3(d * 5.0 + 20.0));
+  float core = pow(max(dot(d, normalize(vec3(-0.6, 0.1, -0.7))), 0.0), 3.0);
+  vec3 cool = vec3(0.10, 0.20, 0.42);
+  vec3 warm = vec3(0.55, 0.30, 0.18);
+  vec3 neb  = mix(cool, warm, clamp(core * 1.3 + n2 * 0.25, 0.0, 1.0));
+  vec3 c = neb * band * (0.25 + 0.9 * n1 * n1 * 2.0) * (1.0 - 0.75 * dust) * 0.55;
+  c += vec3(0.20, 0.09, 0.26) * pow(fbm3(d * 2.2 + 40.0), 3.0) * 0.45;
+  c += vec3(0.9, 0.85, 0.8) * band * pow(n2, 2.0) * 0.08;
+  return c;
+}
+void main() {
+  vec2 t = vUv * 2.0 - 1.0;
+  vec3 d;
+  if (uFace < 0.5) d = vec3(1.0, -t.y, -t.x);
+  else if (uFace < 1.5) d = vec3(-1.0, -t.y, t.x);
+  else if (uFace < 2.5) d = vec3(t.x, 1.0, t.y);
+  else if (uFace < 3.5) d = vec3(t.x, -1.0, -t.y);
+  else if (uFace < 4.5) d = vec3(t.x, -t.y, 1.0);
+  else d = vec3(-t.x, -t.y, -1.0);
+  gl_FragColor = vec4(sqrt(clamp(nebula(normalize(d)) / 2.0, 0.0, 1.0)), 1.0);
+}
+`;
+
+const SRC = {
+  noiseBake: NOISE_BAKE,
+  skyBake: SKY_BAKE,
+  scene: `precision highp float;
+
+uniform vec2  uRes;
+uniform float uTime;
+uniform vec3  uCam;
+uniform vec3  uFwd;
+uniform vec3  uRight;
+uniform vec3  uUp;
+uniform float uFov;
+uniform float uPix;     // angular size of one pixel (radians)
+uniform float uDisk;
+uniform vec2  uShift;   // moves the hole on screen (uv units)
+uniform float uVol;     // 1 = volumetric disk, 0 = thin sheet (cheaper)
+uniform int   uSteps;
+uniform float uStep;    // ray step multiplier (bigger = faster, coarser)
+uniform sampler2D uNoise;   // baked disk noise
+uniform samplerCube uSky;   // baked nebula
+
+// Units: Schwarzschild radius rs = 1 (event horizon r = 1, photon sphere r = 1.5,
+// innermost stable circular orbit r = 3).
+const float R_IN  = 3.0;
+const float R_OUT = 13.0;
+
+float hash3(vec3 p) {
+  p = fract(p * 0.3183099 + 0.1);
+  p *= 17.0;
+  return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
+}
+float hash1(float n) { return fract(sin(n * 127.1) * 43758.5453); }
 
 // ---------------------------------------------------------------- sky
 vec3 starLayer(vec3 d, float scale, float density, float gain) {
@@ -86,25 +147,9 @@ vec3 starLayer(vec3 d, float scale, float density, float gain) {
 }
 
 vec3 background(vec3 d) {
-  vec3 c = starLayer(d, 60.0, 0.90, 1.5) + starLayer(d, 130.0, 0.92, 1.2) + starLayer(d, 260.0, 0.94, 1.0);
-
-  // Milky-Way-like band on a tilted plane, with dust lanes and a warm core
-  vec3 bn = normalize(vec3(0.25, 0.9, 0.35));
-  float lat = dot(d, bn);
-  float band = exp(-lat * lat * 14.0);
-  float n1 = fbm3(d * 3.0);
-  float n2 = fbm3(d * 7.0 + 4.0);
-  float dust = smoothstep(0.35, 0.7, fbm3(d * 5.0 + 20.0));
-  float core = pow(max(dot(d, normalize(vec3(-0.6, 0.1, -0.7))), 0.0), 3.0);
-
-  vec3 cool = vec3(0.10, 0.20, 0.42);
-  vec3 warm = vec3(0.55, 0.30, 0.18);
-  vec3 neb  = mix(cool, warm, clamp(core * 1.3 + n2 * 0.25, 0.0, 1.0));
-  c += neb * band * (0.25 + 0.9 * n1 * n1 * 2.0) * (1.0 - 0.75 * dust) * 0.55;
-  c += vec3(0.20, 0.09, 0.26) * pow(fbm3(d * 2.2 + 40.0), 3.0) * 0.45;
-  // dense star dust inside the band
-  c += vec3(0.9, 0.85, 0.8) * band * pow(n2, 2.0) * 0.08;
-  return c;
+  vec3 e = textureCube(uSky, d).rgb;
+  return starLayer(d, 60.0, 0.90, 1.5) + starLayer(d, 130.0, 0.92, 1.2) + starLayer(d, 260.0, 0.94, 1.0)
+       + e * e * 2.0;
 }
 
 // ---------------------------------------------------------------- disk
@@ -122,31 +167,32 @@ vec2 rot(vec2 p, float a) {
 
 // Density pattern of the disk (in the plane). Differential rotation is blended between
 // two phase-shifted layers so the pattern never winds up into sub-pixel noise over time.
+// The noise itself is baked into a texture, so this costs two texture fetches.
 float diskPattern(vec2 xz, float r) {
-  float omega = 1.9 * pow(r, -1.5);
-  float lr = log(r);
-  float sum = 0.0;
-  for (int k = 0; k < 2; k++) {
-    float ph = fract(uTime / 16.0 + 0.5 * float(k));
-    float w = 1.0 - abs(2.0 * ph - 1.0);
-    vec2 q = rot(xz, -omega * ph * 16.0);
-    float turb = 0.8 * fbm2(q * 0.9 + float(k) * 31.0) + 0.2 * noise2(q * vec2(5.0, 9.0) + float(k) * 7.0);
-    vec2 dq = q / r;
-    float arm = (dq.x * dq.x - dq.y * dq.y) * cos(3.2 * lr) + 2.0 * dq.x * dq.y * sin(3.2 * lr);
-    sum += w * (0.12 + 2.3 * turb * turb * turb + 0.16 * arm);
-  }
-  float rings = 0.62 + 0.38 * noise2(vec2(r * 3.0, 1.7));
+  float omega = 1.9 / (r * sqrt(r));
+  float ph0 = fract(uTime / 16.0);
+  float ph1 = fract(uTime / 16.0 + 0.5);
+  float w0 = 1.0 - abs(2.0 * ph0 - 1.0);
+  vec4 n0 = texture2D(uNoise, rot(xz, -omega * ph0 * 16.0) * (1.0 / 28.0) + 0.5);
+  vec4 n1 = texture2D(uNoise, rot(xz, -omega * ph1 * 16.0) * (1.0 / 28.0) + 0.5);
+  float t0 = 0.8 * n0.r + 0.2 * n0.b;
+  float t1 = 0.8 * n1.g + 0.2 * n1.a;
+  float sum = w0 * (0.12 + 2.3 * t0 * t0 * t0) + (1.0 - w0) * (0.12 + 2.3 * t1 * t1 * t1);
+  float x = r * 3.0, i = floor(x), f = fract(x);
+  float rings = 0.62 + 0.38 * mix(hash1(i), hash1(i + 1.0), f * f * (3.0 - 2.0 * f));
   return clamp(sum * rings, 0.0, 1.7);
 }
 
 // Colour of the emitting gas at radius r seen along ray direction v.
 vec3 diskColor(vec3 pos, float r, vec3 v) {
-  float temp = pow(R_IN / r, 0.75);
+  float x = R_IN / r;
+  float x4 = sqrt(sqrt(x));
+  float temp = sqrt(x) * x4;                                  // x^0.75
   float beta = clamp(sqrt(0.5 / (r - 1.0)), 0.0, 0.62);
   vec3 u = normalize(vec3(-pos.z, 0.0, pos.x)) * beta;      // orbital velocity of the gas
   float g = 1.0 / max(0.25, 1.0 + dot(u, v));                // Doppler factor
   g *= sqrt(max(0.0, 1.0 - 1.0 / length(pos)));              // gravitational redshift
-  return blackbody(temp * g) * pow(g, 3.0) * 1.5 * pow(R_IN / r, 0.9);
+  return blackbody(temp * g) * (g * g * g) * 1.5 * (x / sqrt(x4));   // x^0.875 ~ x^0.9
 }
 
 float diskEdge(float r) {
@@ -196,7 +242,7 @@ void main() {
   float rmin = 1e9;
   bool captured = false;
 
-  for (int i = 0; i < 420; i++) {
+  for (int i = 0; i < 320; i++) {
     if (i >= uSteps) { captured = true; break; }
     float r2 = dot(p, p);
     float r = sqrt(r2);
@@ -204,17 +250,17 @@ void main() {
     if (r < 1.0) { captured = true; break; }
     if (r > 26.0 && dot(p, v) > 0.0) break;           // flying away: nothing left to bend
 
-    float dt = clamp(0.045 * r * (1.0 + 0.04 * r), 0.02, 3.0);   // big steps far away, fine near the hole
+    float dt = clamp(0.045 * r * (1.0 + 0.04 * r), 0.02, 3.0) * uStep;   // big steps far away, fine near the hole
     bool inSlab = false;
     float rxz = length(p.xz);
     if (diskOn && vol && rxz < R_OUT + 1.0) {
       float H = diskThickness(rxz);
       float dy = abs(p.y) - 3.0 * H;
       if (dy > 0.0) {
-        if (p.y * v.y < 0.0 || r < 6.0) dt = min(dt, dy / max(abs(v.y), 0.02) + 0.08);
+        if (p.y * v.y < 0.0 || r < 6.0) dt = min(dt, dy / max(abs(v.y), 0.02) + 0.1);
       } else {
         inSlab = true;
-        dt = min(dt, 0.05 + 0.3 * H);
+        dt = min(dt, 0.09 + 0.45 * H);
       }
     }
 
@@ -351,13 +397,15 @@ function init(canvas) {
     return { p, u: (n) => (n in locs ? locs[n] : (locs[n] = gl.getUniformLocation(p, n))) };
   };
 
-  let scene, bright, down, blur, fin;
+  let scene, bright, down, blur, fin, bakeNoise, bakeSky;
   try {
     scene = makeProgram(SRC.scene);
     bright = makeProgram(SRC.bright);
     down = makeProgram(SRC.down);
     blur = makeProgram(SRC.blur);
     fin = makeProgram(SRC.final);
+    bakeNoise = makeProgram(SRC.noiseBake);
+    bakeSky = makeProgram(SRC.skyBake);
   } catch (e) { console.error(e); return null; }
 
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
@@ -407,6 +455,32 @@ function init(canvas) {
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
+  // ------------------------------------------------------------------ one-time bakes
+  // Procedural noise is expensive per pixel, so it is rendered once into textures:
+  // the disk turbulence (2D) and the nebula behind the stars (cube map).
+  const noiseT = makeTarget(1024, 1024);
+  pass(bakeNoise, noiseT, [], () => {});
+
+  const SKY_SIZE = 512;
+  const skyTex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_CUBE_MAP, skyTex);
+  for (let f = 0; f < 6; f++) {
+    gl.texImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_X + f, 0, gl.RGBA, SKY_SIZE, SKY_SIZE, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  }
+  gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const skyFb = gl.createFramebuffer();
+  gl.useProgram(bakeSky.p);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, skyFb);
+  gl.viewport(0, 0, SKY_SIZE, SKY_SIZE);
+  for (let f = 0; f < 6; f++) {
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_CUBE_MAP_POSITIVE_X + f, skyTex, 0);
+    gl.uniform1f(bakeSky.u('uFace'), f);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
   // ------------------------------------------------------------------ state
   const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
   const HOME = { yaw: 0.6, pitch: 0.17, dist: 24 };
@@ -436,27 +510,35 @@ function init(canvas) {
     setAutoRotate(on) { autoRotate = on; },
     setDisk(on) { disk = on; },
     setBloom(on) { bloomOn = on; },
-    setQuality(q) { quality = q; level = q === 'auto' ? (coarse ? 4 : 2) : PRESET[q]; lockUntil = 0; slow = fast = 0; },
+    setQuality(q) { quality = q; level = q === 'auto' ? startLevel : PRESET[q]; lockUntil = 0; slow = fast = 0; },
     reset() { Object.assign(target, HOME); },
     get quality() { return quality; },
   };
 
-  // quality ladder, best first
+  // Quality ladder, best first. `px` is the number of pixels the scene is ray-marched at (independent of
+  // the screen's pixel density; it is upscaled with filtering), `step` multiplies the ray step length.
   const LEVELS = [
-    { scale: 1.00, steps: 400, vol: 1 },
-    { scale: 0.85, steps: 340, vol: 1 },
-    { scale: 0.70, steps: 300, vol: 1 },
-    { scale: 0.60, steps: 300, vol: 1 },
-    { scale: 0.60, steps: 260, vol: 0 },
-    { scale: 0.50, steps: 220, vol: 0 },
-    { scale: 0.40, steps: 200, vol: 0 },
-    { scale: 0.33, steps: 180, vol: 0 },
+    { px: 900e3, steps: 300, vol: 1, step: 1.00, bloom: 1 },
+    { px: 650e3, steps: 280, vol: 1, step: 1.15, bloom: 1 },
+    { px: 450e3, steps: 250, vol: 1, step: 1.30, bloom: 1 },
+    { px: 330e3, steps: 230, vol: 0, step: 1.30, bloom: 1 },
+    { px: 240e3, steps: 200, vol: 0, step: 1.50, bloom: 1 },
+    { px: 170e3, steps: 180, vol: 0, step: 1.70, bloom: 1 },
+    { px: 120e3, steps: 160, vol: 0, step: 2.00, bloom: 0 },
+    { px:  80e3, steps: 140, vol: 0, step: 2.20, bloom: 0 },
   ];
-  const PRESET = { low: 6, mid: 3, high: 0 };
+  const PRESET = { low: 5, mid: 3, high: 1 };
   const coarse = matchMedia('(pointer: coarse)').matches || Math.min(screen.width, screen.height) < 600;
-  let quality = 'auto', level = coarse ? 4 : 2;
-  const maxDpr = Math.min(window.devicePixelRatio || 1, 2);
-  const MAX_PIXELS = 3.5e6;
+  const startLevel = coarse ? 4 : 2;
+  let quality = 'auto', level = startLevel;
+  const maxDpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.25 : 1.5);
+  const MAX_PIXELS = 1.8e6;
+
+  // canvas size, cached (reading clientWidth every frame can force a layout)
+  let cw = canvas.clientWidth, ch = canvas.clientHeight;
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(() => { cw = canvas.clientWidth; ch = canvas.clientHeight; }).observe(canvas);
+  }
 
   // ------------------------------------------------------------------ input (explore mode only)
   const pointers = new Map();
@@ -530,28 +612,35 @@ function init(canvas) {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const t0 = performance.now();
   let prev = t0, ema = 16, slow = 0, fast = 0, statAt = 0, frames = 0;
-  let lockUntil = 0, lockLen = 6000, lastUpgrade = 0;
+  let lockUntil = 0, lockLen = 6000, lastUpgrade = 0, capMs = 33.3, lastMode = '';
 
+  // The frame rate is capped: 30 fps while the page is being read (the camera drifts slowly),
+  // 60 fps in explore mode. Skipping frames halves the GPU load while scrolling.
   function adapt(now) {
-    if (quality !== 'auto' || ++frames < 45) return;
-    slow = ema > 21 ? slow + 1 : 0;
-    fast = ema < 18.5 ? fast + 1 : 0;
-    if (slow > 18 && level < LEVELS.length - 1) {
-      level++; slow = 0;
+    if (quality !== 'auto' || ++frames < 30) return;
+    slow = ema > capMs * 1.3 ? slow + 1 : 0;
+    fast = ema < capMs * 1.12 ? fast + 1 : 0;
+    if (slow > 8 && level < LEVELS.length - 1) {
+      // very slow: drop two steps at once
+      level = Math.min(LEVELS.length - 1, level + (ema > capMs * 2 ? 2 : 1)); slow = 0;
       // a downgrade soon after an upgrade means that level is too heavy: wait longer before retrying
       lockLen = now - lastUpgrade < 12000 ? Math.min(lockLen * 2, 60000) : 6000;
       lockUntil = now + lockLen;
-    } else if (fast > 150 && level > 0 && now > lockUntil) {
+    } else if (fast > 120 && level > 0 && now > lockUntil) {
       level--; fast = 0; lastUpgrade = now;
     }
   }
 
   function frame(now) {
     requestAnimationFrame(frame);
+    if (document.hidden) { prev = now; return; }
+    capMs = mode === 'explore' ? 16.7 : 33.3;
+    if (now - prev < capMs - 4) return;
+    if (mode !== lastMode) { lastMode = mode; ema = capMs; slow = fast = 0; }
     const dt = Math.min(0.25, (now - prev) / 1000);
     prev = now;
-    if (document.hidden || dt <= 0) return;
-    ema += (dt * 1000 - ema) * 0.08;
+    if (dt <= 0) return;
+    ema += (dt * 1000 - ema) * 0.1;
     adapt(now);
     const L = LEVELS[level];
 
@@ -589,15 +678,16 @@ function init(canvas) {
     const sway = mode === 'explore' && autoRotate && !reduceMotion && idle ? Math.sin(now / 5200) * 0.045 : 0;
     const pitch = clamp(cam.pitch + sway, -MAX_PITCH, MAX_PITCH);
 
-    // --- sizes
-    const cw = canvas.clientWidth, ch = canvas.clientHeight;
+    // --- sizes: the screen buffer is sharp (capped DPR), the ray-marched scene uses a fixed pixel budget
     if (!cw || !ch) return;
     let dpr = maxDpr;
     if (cw * ch * dpr * dpr > MAX_PIXELS) dpr = Math.sqrt(MAX_PIXELS / (cw * ch));
     const W = Math.max(1, Math.round(cw * dpr)), H = Math.max(1, Math.round(ch * dpr));
     if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
-    const sw = Math.max(16, Math.round(W * L.scale)), sh = Math.max(16, Math.round(H * L.scale));
+    const sw = Math.max(16, Math.min(W, Math.round(Math.sqrt(L.px * W / H))));
+    const sh = Math.max(16, Math.min(H, Math.round(sw * H / W)));
     ensureTargets(sw, sh);
+    const doBloom = bloomOn && L.bloom === 1;
 
     // --- camera basis
     const cp = Math.cos(pitch), sp = Math.sin(pitch);
@@ -614,7 +704,12 @@ function init(canvas) {
     const fov = Math.tan(0.5 * (cw < ch ? 1.25 : 0.95));
     const aspect = sw / sh;
 
-    pass(scene, S, [], (u) => {
+    pass(scene, S, [noiseT], (u) => {
+      gl.activeTexture(gl.TEXTURE1);
+      gl.bindTexture(gl.TEXTURE_CUBE_MAP, skyTex);
+      gl.uniform1i(u('uNoise'), 0);
+      gl.uniform1i(u('uSky'), 1);
+      gl.uniform1f(u('uStep'), L.step);
       gl.uniform2f(u('uRes'), sw, sh);
       gl.uniform1f(u('uTime'), now / 1000);
       gl.uniform3f(u('uCam'), pos[0], pos[1], pos[2]);
@@ -629,7 +724,7 @@ function init(canvas) {
       gl.uniform2f(u('uShift'), cam.sx * aspect, cam.sy);
     });
 
-    if (bloomOn) {
+    if (doBloom) {
       pass(bright, A1, [S], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uTexel'), 1 / S.w, 1 / S.h); });
       pass(blur, A2, [A1], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uDir'), 1 / A1.w, 0); });
       pass(blur, A1, [A2], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uDir'), 0, 1 / A1.h); });
@@ -645,12 +740,12 @@ function init(canvas) {
       gl.uniform2f(u('uRes'), W, H);
       gl.uniform1f(u('uTime'), now / 1000);
       gl.uniform1f(u('uFade'), fade);
-      gl.uniform1f(u('uBloom'), bloomOn ? 1 : 0);
+      gl.uniform1f(u('uBloom'), doBloom ? 1 : 0);
     });
 
     if (api.onStat && now - statAt > 500) {
       statAt = now;
-      api.onStat(`${Math.round(1000 / ema)} FPS · ${sw}×${sh} · r = ${cam.dist.toFixed(1)} rs`);
+      api.onStat(`${Math.round(1000 / ema)} FPS · ${sw}×${sh} · q${level} · r = ${cam.dist.toFixed(1)} rs`);
     }
   }
   requestAnimationFrame(frame);
