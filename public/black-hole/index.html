@@ -3,787 +3,173 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Чёрная дыра 3D</title>
-<meta name="description" content="Интерактивная 3D-модель чёрной дыры: гравитационное линзирование, аккреционный диск, эффект Доплера. Работает в браузере, без установки.">
+<title>Чёрная дыра — интерактивная 3D-модель</title>
+<meta name="description" content="Как устроена чёрная дыра: горизонт событий, фотонная сфера, аккреционный диск и гравитационное линзирование. Интерактивная 3D-модель в реальном времени — прямо в браузере.">
 <meta name="theme-color" content="#000000">
-<style>
-  :root {
-    color-scheme: dark;
-    --fg: #ece9f5;
-    --muted: #a39fb6;
-    --panel: rgba(12, 10, 20, .55);
-    --line: rgba(255, 255, 255, .13);
-    --accent: #ffb869;
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; background: #000; overflow: hidden; }
-  body {
-    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    color: var(--fg);
-    -webkit-user-select: none; user-select: none;
-  }
-  canvas {
-    position: fixed; inset: 0; width: 100%; height: 100%;
-    display: block; cursor: grab; touch-action: none;
-  }
-  canvas.drag { cursor: grabbing; }
-  .ui {
-    position: fixed; z-index: 2;
-    padding: 10px 14px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, .35);
-    -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
-    transition: opacity .35s ease, transform .35s ease;
-  }
-  .title {
-    top: max(16px, env(safe-area-inset-top)); left: max(16px, env(safe-area-inset-left));
-    max-width: min(330px, calc(100vw - 32px));
-    pointer-events: none;
-  }
-  .title h1 { margin: 0 0 2px; font-size: 17px; font-weight: 600; letter-spacing: .02em; }
-  .title p { margin: 0; color: var(--muted); font-size: 13px; }
-  .controls {
-    bottom: max(16px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
-    display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center;
-    width: max-content; max-width: calc(100vw - 32px);
-  }
-  .stat {
-    top: max(16px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right));
-    color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; pointer-events: none;
-  }
-  button, select {
-    font: inherit; color: var(--fg);
-    background: rgba(255, 255, 255, .06);
-    border: 1px solid var(--line); border-radius: 11px;
-    padding: 8px 12px; min-height: 40px; cursor: pointer;
-    transition: background .15s, border-color .15s, color .15s;
-  }
-  select option { background: #15121f; }
-  button:hover, select:hover { background: rgba(255, 255, 255, .13); }
-  button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: rgba(255, 184, 105, .09); }
-  #show {
-    position: fixed; z-index: 2; right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom));
-    opacity: 0; pointer-events: none; min-height: 34px; padding: 5px 10px; font-size: 12px;
-    background: var(--panel); transition: opacity .35s ease;
-  }
-  body.clean .ui { opacity: 0; pointer-events: none; }
-  body.clean .controls { transform: translateX(-50%) translateY(12px); }
-  body.clean #show { opacity: .5; pointer-events: auto; }
-  body.clean #show:hover, body.clean #show:focus-visible { opacity: 1; }
-  .fallback {
-    position: fixed; inset: 0; z-index: 3; display: none;
-    align-items: center; justify-content: center; text-align: center; padding: 24px;
-  }
-  .fallback.show { display: flex; }
-  .fallback .ui { position: static; }
-  @media (max-width: 520px) {
-    .stat { display: none; }
-    .title h1 { font-size: 15px; }
-    .title p { font-size: 12px; }
-  }
-</style>
+<meta property="og:title" content="Чёрная дыра — интерактивная 3D-модель">
+<meta property="og:description" content="Гравитационное линзирование, аккреционный диск и эффект Доплера — в реальном времени, в вашем браузере.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Cellipse cx='32' cy='33' rx='28' ry='8' fill='none' stroke='%23ffb869' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%23000' stroke='%23fff3dc' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<canvas id="c" aria-label="3D-модель чёрной дыры. Перетаскивайте, чтобы вращать, колесо мыши или щипок — приближение."></canvas>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="shade" aria-hidden="true"></div>
 
-<div class="ui title">
-  <h1>Чёрная дыра</h1>
-  <p>Тяните, чтобы вращать · колесо / щипок — приближение · H — скрыть панели</p>
-</div>
-<div class="ui stat" id="stat" aria-hidden="true"></div>
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="В начало">
+    <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="33" rx="29" ry="9" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="32" cy="32" r="13" fill="#000" stroke="currentColor" stroke-width="3"/></svg>
+    <span>Чёрная дыра</span>
+  </a>
+  <nav aria-label="Разделы">
+    <a href="#about">Что это</a>
+    <a href="#anatomy">Устройство</a>
+    <a href="#scale">Масштабы</a>
+    <a href="#how">Как это сделано</a>
+  </nav>
+  <button class="btn primary" data-explore type="button">Исследовать в 3D</button>
+</header>
 
-<div class="ui controls" role="toolbar" aria-label="Управление">
-  <button id="rotate" aria-pressed="true">Автовращение</button>
-  <button id="disk" aria-pressed="true">Аккреционный диск</button>
-  <button id="bloom" aria-pressed="true">Свечение</button>
-  <select id="quality" aria-label="Качество">
-    <option value="auto">Качество: авто</option>
-    <option value="low">Низкое</option>
-    <option value="mid">Среднее</option>
-    <option value="high">Высокое</option>
-  </select>
-  <button id="reset">Сброс</button>
-  <button id="hide" title="Клавиша H">Скрыть</button>
-  <button id="full">На весь экран</button>
-</div>
-<button id="show" aria-label="Показать интерфейс">Интерфейс</button>
+<main id="content">
+  <!-- data-cam = "yaw pitch distance shiftX shiftY": where the camera goes when this block is in the middle of the screen -->
+  <section class="step hero" id="top" data-cam="0.6 0.17 26 0.30 0">
+    <div class="hero-text">
+      <p class="eyebrow">Интерактивная модель в реальном времени</p>
+      <h1>Чёрная дыра</h1>
+      <p class="lead">Место, где гравитация так сильна, что даже свет не может вернуться. Посмотрите, как она искривляет пространство и время — прямо в вашем браузере.</p>
+      <div class="cta">
+        <button class="btn primary big" data-explore type="button">Исследовать в 3D</button>
+        <a class="btn big" href="#about">Узнать больше</a>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#about" aria-label="Прокрутить вниз"><span></span>Листайте</a>
+  </section>
 
-<div class="fallback" id="fallback">
-  <div class="ui">
-    <h1 style="margin:0 0 6px;font-size:17px">WebGL недоступен</h1>
-    <p style="margin:0;color:var(--muted)">Браузер или устройство не поддерживают WebGL. Попробуйте другой браузер<br>или включите аппаратное ускорение в настройках.</p>
+  <section class="step right" id="about" data-cam="1.9 0.38 19 -0.30 0">
+    <article class="card reveal">
+      <h2>Что такое чёрная дыра</h2>
+      <p>Это область пространства-времени, из которой ничто — даже свет — не может вырваться наружу. Она рождается, когда очень много вещества сжимается в крошечном объёме, например при гибели массивной звезды.</p>
+      <p>Саму дыру увидеть нельзя. Мы замечаем её по тому, как она изгибает свет и разогревает падающий газ.</p>
+      <ul class="chips">
+        <li><b>2019</b> первое изображение — M87*</li>
+        <li><b>2022</b> Sgr A* в центре Млечного Пути</li>
+        <li><b>2,95&nbsp;км</b> радиус горизонта на каждую массу Солнца</li>
+      </ul>
+    </article>
+  </section>
+
+  <div class="section-head reveal" id="anatomy">
+    <p class="eyebrow">Устройство</p>
+    <h2>Из чего она состоит</h2>
+    <p>Листайте — камера подлетит к каждой части. Расстояния ниже измеряются в радиусах Шварцшильда (rs) — размерах самого горизонта.</p>
+  </div>
+
+  <section class="step left" data-cam="2.4 0.12 12 0.36 0">
+    <article class="card reveal">
+      <span class="tag">1 · 1 rs</span>
+      <h3>Горизонт событий</h3>
+      <p>Граница, за которой возврата нет. Её радиус называют радиусом Шварцшильда: <i>rs = 2GM/c²</i>.</p>
+      <p>Чёрный круг, который вы видите, — это «тень». Она примерно в 2,6 раза шире самого горизонта: гравитация затягивает и те лучи, что проходят рядом.</p>
+    </article>
+  </section>
+
+  <section class="step right" data-cam="2.9 0.05 8.5 -0.36 0">
+    <article class="card reveal">
+      <span class="tag">2 · 1,5 rs</span>
+      <h3>Фотонная сфера</h3>
+      <p>На этом расстоянии свет может двигаться по круговой орбите. Орбита неустойчива: лучи, подошедшие почти вплотную, делают виток вокруг дыры и улетают.</p>
+      <p>Они рисуют тонкое яркое кольцо вдоль края тени.</p>
+    </article>
+  </section>
+
+  <section class="step left" data-cam="3.6 0.55 18 0.34 0">
+    <article class="card reveal">
+      <span class="tag">3 · от 3 rs</span>
+      <h3>Аккреционный диск</h3>
+      <p>Падающий газ закручивается в диск и раскаляется. Внутренний край — ближайшая устойчивая орбита, 3&nbsp;rs. Ближе газ уже не может держаться на круговой орбите.</p>
+      <p>Газ летит с околосветовой скоростью, поэтому сторона, идущая на нас, ярче и голубее (эффект Доплера), а уходящая — тусклее. У самого центра свет ещё и краснеет, выбираясь из гравитационной ямы.</p>
+    </article>
+  </section>
+
+  <section class="step right" data-cam="4.3 0.02 21 -0.34 0">
+    <article class="card reveal">
+      <span class="tag">4 · везде</span>
+      <h3>Гравитационное линзирование</h3>
+      <p>Гравитация искривляет путь света. Поэтому диск, лежащий позади дыры, виден над ней и под ней: свет обходит её сверху и снизу.</p>
+      <p>Так же растягиваются в дуги звёзды на заднем плане — взгляните на них вокруг тени.</p>
+    </article>
+  </section>
+
+  <section class="step center" id="scale" data-cam="5.6 0.2 36 0 0.12">
+    <article class="card wide reveal">
+      <p class="eyebrow">Масштабы</p>
+      <h2>Размер зависит только от массы</h2>
+      <p>Радиус горизонта растёт прямо пропорционально массе: <i>rs ≈ 2,95&nbsp;км × M / M☉</i>. Передвиньте ползунок или выберите объект.</p>
+
+      <div class="calc" aria-live="polite">
+        <div class="calc-mass"><span id="mass-out">1 M☉</span><small>масса</small></div>
+        <input id="mass" type="range" min="-6" max="10" step="0.01" value="0" aria-label="Масса в массах Солнца (логарифмическая шкала)">
+        <div class="presets" role="group" aria-label="Примеры">
+          <button type="button" data-m="3.003e-6">Земля</button>
+          <button type="button" data-m="1">Солнце</button>
+          <button type="button" data-m="10">Звезда 10 M☉</button>
+          <button type="button" data-m="4.3e6">Sgr A*</button>
+          <button type="button" data-m="6.5e9">M87*</button>
+        </div>
+        <div class="calc-res">
+          <div><small>Радиус горизонта</small><strong id="r-out">2,95 км</strong></div>
+          <p id="r-note"></p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="step right" id="how" data-cam="0.9 0.3 21 -0.30 0">
+    <article class="card reveal">
+      <p class="eyebrow">Как это сделано</p>
+      <h2>Свет считается заново для каждого пикселя</h2>
+      <p>Страница рисуется на видеокарте через WebGL: из камеры в каждый пиксель выпускается луч света и прослеживается по уравнению геодезической в метрике Шварцшильда. Поверх — свечение, эффект Доплера и красное смещение.</p>
+      <p>Это приближённая визуализация, а не научная симуляция: дыра не вращается, а диск — художественная модель. Качество подстраивается под вашу видеокарту автоматически. Данные никуда не загружаются.</p>
+    </article>
+  </section>
+
+  <section class="step center end" data-cam="6.3 0.17 22 0 0.08">
+    <div class="final reveal">
+      <h2>Теперь ваша очередь</h2>
+      <p>Вращайте, приближайте, отключайте диск — и посмотрите на дыру со всех сторон.</p>
+      <button class="btn primary big" data-explore type="button">Исследовать в 3D</button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Чёрная дыра 3D · визуализация в реальном времени</span>
+  <span>Факты: Event Horizon Telescope — M87* (2019), Sgr A* (2022)</span>
+</footer>
+
+<!-- Explore mode: content fades away, the canvas takes over -->
+<div class="explore-ui" id="explore-ui">
+  <div class="panel hint">
+    <button id="back" class="btn" type="button">← Назад к сайту</button>
+    <p>Тяните, чтобы вращать · колесо / щипок — приближение · двойной клик — сброс</p>
+  </div>
+  <div class="panel stat" id="stat" aria-hidden="true"></div>
+  <div class="panel controls" role="toolbar" aria-label="Управление моделью">
+    <button id="rotate" aria-pressed="true" type="button">Автовращение</button>
+    <button id="disk" aria-pressed="true" type="button">Аккреционный диск</button>
+    <button id="bloom" aria-pressed="true" type="button">Свечение</button>
+    <select id="quality" aria-label="Качество">
+      <option value="auto">Качество: авто</option>
+      <option value="low">Низкое</option>
+      <option value="mid">Среднее</option>
+      <option value="high">Высокое</option>
+    </select>
+    <button id="reset" type="button">Сброс</button>
+    <button id="full" type="button">На весь экран</button>
   </div>
 </div>
 
-<!-- ============================ shaders ============================ -->
-<script id="vs" type="x-shader/x-vertex">
-attribute vec2 aPos;
-void main() { gl_Position = vec4(aPos, 0.0, 1.0); }
-</script>
-
-<!-- Pass 1: ray-marched black hole. Output is HDR packed as sqrt(col / 8) into RGBA8. -->
-<script id="fs-scene" type="x-shader/x-fragment">
-precision highp float;
-
-uniform vec2  uRes;
-uniform float uTime;
-uniform vec3  uCam;
-uniform vec3  uFwd;
-uniform vec3  uRight;
-uniform vec3  uUp;
-uniform float uFov;
-uniform float uPix;     // angular size of one pixel (radians)
-uniform float uDisk;
-uniform float uVol;     // 1 = volumetric disk, 0 = thin sheet (cheaper)
-uniform int   uSteps;
-
-// Units: Schwarzschild radius rs = 1 (event horizon r = 1, photon sphere r = 1.5,
-// innermost stable circular orbit r = 3).
-const float R_IN  = 3.0;
-const float R_OUT = 13.0;
-
-float hash2(vec2 p) {
-  p = fract(p * vec2(123.34, 456.21));
-  p += dot(p, p + 45.32);
-  return fract(p.x * p.y);
-}
-float hash3(vec3 p) {
-  p = fract(p * 0.3183099 + 0.1);
-  p *= 17.0;
-  return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
-}
-float noise2(vec2 p) {
-  vec2 i = floor(p), f = fract(p);
-  f = f * f * (3.0 - 2.0 * f);
-  return mix(mix(hash2(i), hash2(i + vec2(1.0, 0.0)), f.x),
-             mix(hash2(i + vec2(0.0, 1.0)), hash2(i + vec2(1.0, 1.0)), f.x), f.y);
-}
-float noise3(vec3 p) {
-  vec3 i = floor(p), f = fract(p);
-  f = f * f * (3.0 - 2.0 * f);
-  return mix(mix(mix(hash3(i), hash3(i + vec3(1, 0, 0)), f.x),
-                 mix(hash3(i + vec3(0, 1, 0)), hash3(i + vec3(1, 1, 0)), f.x), f.y),
-             mix(mix(hash3(i + vec3(0, 0, 1)), hash3(i + vec3(1, 0, 1)), f.x),
-                 mix(hash3(i + vec3(0, 1, 1)), hash3(i + vec3(1, 1, 1)), f.x), f.y), f.z);
-}
-float fbm2(vec2 p) {
-  float a = 0.5, s = 0.0;
-  for (int i = 0; i < 5; i++) {
-    s += a * noise2(p);
-    p = p * 2.03 + 17.1;
-    a *= 0.5;
-  }
-  return s;
-}
-float fbm3(vec3 p) {
-  float a = 0.5, s = 0.0;
-  for (int i = 0; i < 5; i++) {
-    s += a * noise3(p);
-    p = p * 2.07 + 11.3;
-    a *= 0.5;
-  }
-  return s;
-}
-
-// ---------------------------------------------------------------- sky
-vec3 starLayer(vec3 d, float scale, float density, float gain) {
-  vec3 q = d * scale;
-  vec3 id = floor(q);
-  vec3 f = fract(q) - 0.5;
-  float h = hash3(id);
-  if (h < density) return vec3(0.0);
-  vec3 off = vec3(hash3(id + 1.3), hash3(id + 2.7), hash3(id + 4.1)) - 0.5;
-  // keep stars at least ~1 pixel wide so they do not flicker while the view moves
-  float rad = max(0.2, uPix * scale * 0.9);
-  float dist = length(f - off * 0.6);
-  float k = (h - density) / (1.0 - density);
-  float mag = 0.35 + 1.6 * k * k + 7.0 * pow(k, 14.0);
-  float b = smoothstep(rad, 0.0, dist) * mag * (0.2 / rad) * (0.2 / rad);
-  vec3 tint = mix(vec3(1.0, 0.72, 0.5), vec3(0.62, 0.78, 1.0), hash3(id + 9.1));
-  tint = mix(tint, vec3(1.0), 0.25);
-  return tint * b * gain;
-}
-
-vec3 background(vec3 d) {
-  vec3 c = starLayer(d, 60.0, 0.90, 1.5) + starLayer(d, 130.0, 0.92, 1.2) + starLayer(d, 260.0, 0.94, 1.0);
-
-  // Milky-Way-like band on a tilted plane, with dust lanes and a warm core
-  vec3 bn = normalize(vec3(0.25, 0.9, 0.35));
-  float lat = dot(d, bn);
-  float band = exp(-lat * lat * 14.0);
-  float n1 = fbm3(d * 3.0);
-  float n2 = fbm3(d * 7.0 + 4.0);
-  float dust = smoothstep(0.35, 0.7, fbm3(d * 5.0 + 20.0));
-  float core = pow(max(dot(d, normalize(vec3(-0.6, 0.1, -0.7))), 0.0), 3.0);
-
-  vec3 cool = vec3(0.10, 0.20, 0.42);
-  vec3 warm = vec3(0.55, 0.30, 0.18);
-  vec3 neb  = mix(cool, warm, clamp(core * 1.3 + n2 * 0.25, 0.0, 1.0));
-  c += neb * band * (0.25 + 0.9 * n1 * n1 * 2.0) * (1.0 - 0.75 * dust) * 0.75;
-  c += vec3(0.20, 0.09, 0.26) * pow(fbm3(d * 2.2 + 40.0), 3.0) * 0.45;
-  // dense star dust inside the band
-  c += vec3(0.9, 0.85, 0.8) * band * pow(n2, 2.0) * 0.08;
-  return c;
-}
-
-// ---------------------------------------------------------------- disk
-vec3 blackbody(float t) {
-  vec3 c = mix(vec3(0.50, 0.06, 0.02), vec3(1.0, 0.46, 0.10), smoothstep(0.0, 0.5, t));
-  c = mix(c, vec3(1.0, 0.86, 0.62), smoothstep(0.4, 0.95, t));
-  c = mix(c, vec3(0.72, 0.86, 1.0), smoothstep(0.95, 1.8, t));
-  return c;
-}
-
-vec2 rot(vec2 p, float a) {
-  float s = sin(a), c = cos(a);
-  return vec2(c * p.x - s * p.y, s * p.x + c * p.y);
-}
-
-// Density pattern of the disk (in the plane). Differential rotation is blended between
-// two phase-shifted layers so the pattern never winds up into sub-pixel noise over time.
-float diskPattern(vec2 xz, float r) {
-  float omega = 1.9 * pow(r, -1.5);
-  float lr = log(r);
-  float sum = 0.0;
-  for (int k = 0; k < 2; k++) {
-    float ph = fract(uTime / 16.0 + 0.5 * float(k));
-    float w = 1.0 - abs(2.0 * ph - 1.0);
-    vec2 q = rot(xz, -omega * ph * 16.0);
-    float turb = 0.8 * fbm2(q * 0.9 + float(k) * 31.0) + 0.2 * noise2(q * vec2(5.0, 9.0) + float(k) * 7.0);
-    vec2 dq = q / r;
-    float arm = (dq.x * dq.x - dq.y * dq.y) * cos(3.2 * lr) + 2.0 * dq.x * dq.y * sin(3.2 * lr);
-    sum += w * (0.12 + 2.3 * turb * turb * turb + 0.16 * arm);
-  }
-  float rings = 0.62 + 0.38 * noise2(vec2(r * 3.0, 1.7));
-  return clamp(sum * rings, 0.0, 1.7);
-}
-
-// Colour of the emitting gas at radius r seen along ray direction v.
-vec3 diskColor(vec3 pos, float r, vec3 v) {
-  float temp = pow(R_IN / r, 0.75);
-  float beta = clamp(sqrt(0.5 / (r - 1.0)), 0.0, 0.62);
-  vec3 u = normalize(vec3(-pos.z, 0.0, pos.x)) * beta;      // orbital velocity of the gas
-  float g = 1.0 / max(0.25, 1.0 + dot(u, v));                // Doppler factor
-  g *= sqrt(max(0.0, 1.0 - 1.0 / length(pos)));              // gravitational redshift
-  return blackbody(temp * g) * pow(g, 3.0) * 1.5 * pow(R_IN / r, 0.9);
-}
-
-float diskEdge(float r) {
-  return smoothstep(R_IN, R_IN + 0.35, r) * (1.0 - smoothstep(R_OUT - 4.0, R_OUT, r));
-}
-
-// thin-sheet disk (used on low quality)
-void diskSheet(vec3 hit, vec3 v, inout vec3 col, inout float T) {
-  float r = length(hit.xz);
-  if (r < R_IN || r > R_OUT) return;
-  float e = diskEdge(r);
-  float d = diskPattern(hit.xz, r);
-  float a = clamp(d * e * 0.8, 0.0, 1.0);
-  col += T * diskColor(hit, r, v) * d * e * a;
-  T *= 1.0 - a;
-}
-
-float diskThickness(float r) { return 0.03 + 0.014 * r; }
-
-// volumetric disk: one ray-march sample of length dt
-void diskVolume(vec3 p, vec3 v, float dt, inout vec3 col, inout float T) {
-  float r = length(p.xz);
-  if (r < R_IN || r > R_OUT) return;
-  float H = diskThickness(r);
-  float y = p.y / H;
-  if (abs(y) > 3.0) return;
-  float vert = exp(-0.5 * y * y);
-  float e = diskEdge(r);
-  float d = diskPattern(p.xz, r);
-  float a = 1.0 - exp(-d * e * vert * dt * 0.8 / (2.5 * H));
-  col += T * diskColor(p, r, v) * d * e * a;
-  T *= 1.0 - a;
-}
-
-void main() {
-  vec2 uv = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y * 2.0;
-  vec3 v = normalize(uFwd + uRight * (uv.x * uFov) + uUp * (uv.y * uFov));
-  vec3 p = uCam;
-
-  vec3 L = cross(p, v);
-  float h2 = dot(L, L);                // squared angular momentum (conserved along the ray)
-
-  bool diskOn = uDisk > 0.5;
-  bool vol = uVol > 0.5;
-  vec3 col = vec3(0.0);
-  float T = 1.0;                       // remaining transmittance
-  float rmin = 1e9;
-  bool captured = false;
-
-  for (int i = 0; i < 420; i++) {
-    if (i >= uSteps) { captured = true; break; }
-    float r2 = dot(p, p);
-    float r = sqrt(r2);
-    rmin = min(rmin, r);
-    if (r < 1.0) { captured = true; break; }
-    if (r > 26.0 && dot(p, v) > 0.0) break;           // flying away: nothing left to bend
-
-    float dt = clamp(0.045 * r * (1.0 + 0.04 * r), 0.02, 3.0);   // big steps far away, fine near the hole
-    bool inSlab = false;
-    float rxz = length(p.xz);
-    if (diskOn && vol && rxz < R_OUT + 1.0) {
-      float H = diskThickness(rxz);
-      float dy = abs(p.y) - 3.0 * H;
-      if (dy > 0.0) {
-        if (p.y * v.y < 0.0 || r < 6.0) dt = min(dt, dy / max(abs(v.y), 0.02) + 0.08);
-      } else {
-        inSlab = true;
-        dt = min(dt, 0.05 + 0.3 * H);
-      }
-    }
-
-    // Schwarzschild null geodesic in Cartesian form: a = -1.5 * rs * h^2 * x / r^5
-    v += (-1.5 * h2 / (r2 * r2 * r)) * p * dt;
-    vec3 pn = p + v * dt;
-
-    if (diskOn) {
-      if (vol) {
-        if (inSlab) diskVolume(0.5 * (p + pn), normalize(v), dt, col, T);
-      } else if (p.y * pn.y < 0.0) {
-        diskSheet(mix(p, pn, p.y / (p.y - pn.y)), normalize(v), col, T);
-      }
-      if (T < 0.02) break;
-    }
-    p = pn;
-  }
-
-  if (!captured) {
-    vec3 d = normalize(v);
-    col += T * background(d);
-    // thin photon ring + soft halo from light skimming the photon sphere
-    float x = rmin - 1.5;
-    col += T * vec3(1.0, 0.78, 0.55) * (0.10 * exp(-x * 2.2) + 0.55 * exp(-x * 14.0)) * (0.4 + 0.6 * uDisk);
-  }
-
-  gl_FragColor = vec4(sqrt(clamp(col / 8.0, 0.0, 1.0)), 1.0);
-}
-</script>
-
-<!-- Pass 2: bright pass + 4x4 downsample -->
-<script id="fs-bright" type="x-shader/x-fragment">
-precision mediump float;
-uniform sampler2D uTex;
-uniform vec2 uTexel;       // texel size of the SOURCE texture
-varying vec2 vUv;
-vec3 dec(vec3 e) { return e * e * 8.0; }
-vec3 tap(vec2 uv) {
-  vec3 c = min(dec(texture2D(uTex, uv).rgb), vec3(6.0));
-  float l = max(max(c.r, c.g), c.b);
-  return c * smoothstep(0.45, 1.6, l);
-}
-void main() {
-  vec3 s = tap(vUv + uTexel * vec2(-1.0, -1.0)) + tap(vUv + uTexel * vec2(1.0, -1.0))
-         + tap(vUv + uTexel * vec2(-1.0, 1.0)) + tap(vUv + uTexel * vec2(1.0, 1.0));
-  gl_FragColor = vec4(sqrt(clamp(s * 0.25 / 8.0, 0.0, 1.0)), 1.0);
-}
-</script>
-
-<!-- plain 4x4 downsample (for the second, wider bloom level) -->
-<script id="fs-down" type="x-shader/x-fragment">
-precision mediump float;
-uniform sampler2D uTex;
-uniform vec2 uTexel;
-varying vec2 vUv;
-void main() {
-  vec3 s = texture2D(uTex, vUv + uTexel * vec2(-1.0, -1.0)).rgb + texture2D(uTex, vUv + uTexel * vec2(1.0, -1.0)).rgb
-         + texture2D(uTex, vUv + uTexel * vec2(-1.0, 1.0)).rgb + texture2D(uTex, vUv + uTexel * vec2(1.0, 1.0)).rgb;
-  gl_FragColor = vec4(s * 0.25, 1.0);
-}
-</script>
-
-<!-- Pass 3: separable gaussian blur (9 taps via 5 bilinear fetches) -->
-<script id="fs-blur" type="x-shader/x-fragment">
-precision mediump float;
-uniform sampler2D uTex;
-uniform vec2 uDir;         // texel size * blur direction
-varying vec2 vUv;
-vec3 dec(vec3 e) { return e * e * 8.0; }
-void main() {
-  vec3 c = dec(texture2D(uTex, vUv).rgb) * 0.2270270270;
-  c += (dec(texture2D(uTex, vUv + uDir * 1.3846153846).rgb) + dec(texture2D(uTex, vUv - uDir * 1.3846153846).rgb)) * 0.3162162162;
-  c += (dec(texture2D(uTex, vUv + uDir * 3.2307692308).rgb) + dec(texture2D(uTex, vUv - uDir * 3.2307692308).rgb)) * 0.0702702703;
-  gl_FragColor = vec4(sqrt(clamp(c / 8.0, 0.0, 1.0)), 1.0);
-}
-</script>
-
-<!-- Pass 4: composite to the screen: bloom, chromatic fringe, filmic tone mapping, grain -->
-<script id="fs-final" type="x-shader/x-fragment">
-precision highp float;
-uniform sampler2D uScene;
-uniform sampler2D uBloomA;
-uniform sampler2D uBloomB;
-uniform vec2  uRes;
-uniform float uTime;
-uniform float uFade;
-uniform float uBloom;
-varying vec2 vUv;
-
-vec3 dec(vec3 e) { return e * e * 8.0; }
-float hash(vec2 p) {
-  p = fract(p * vec2(123.34, 456.21));
-  p += dot(p, p + 45.32);
-  return fract(p.x * p.y);
-}
-vec3 aces(vec3 x) {
-  return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0);
-}
-void main() {
-  vec2 c = vUv - 0.5;
-  float ca = 0.002 * dot(c, c);
-  vec3 col;
-  col.r = dec(texture2D(uScene, vUv + c * ca * 6.0).rgb).r;
-  col.g = dec(texture2D(uScene, vUv).rgb).g;
-  col.b = dec(texture2D(uScene, vUv - c * ca * 6.0).rgb).b;
-
-  vec3 bloom = dec(texture2D(uBloomA, vUv).rgb) * 0.28 + dec(texture2D(uBloomB, vUv).rgb) * 0.45;
-  col += bloom * uBloom;
-
-  col = aces(col * 1.05);
-  col = pow(col, vec3(1.0 / 2.2));
-  col = mix(col, col * col * (3.0 - 2.0 * col), 0.18);           // gentle contrast
-  col *= 1.0 - 0.6 * dot(c, c) * 1.5;                             // vignette
-  col += (hash(gl_FragCoord.xy + fract(uTime) * 91.0) - 0.5) * (2.2 / 255.0);   // grain / dithering
-  gl_FragColor = vec4(col * uFade, 1.0);
-}
-</script>
-
-<script>
-(() => {
-  'use strict';
-  const $ = (id) => document.getElementById(id);
-  const canvas = $('c');
-  const gl = canvas.getContext('webgl', { antialias: false, alpha: false, depth: false, stencil: false, powerPreference: 'high-performance' })
-          || canvas.getContext('experimental-webgl');
-  const fail = (e) => { if (e) console.error(e); $('fallback').classList.add('show'); };
-  if (!gl) return fail();
-
-  // ---------------------------------------------------------------- GL helpers
-  const compile = (type, src) => {
-    const s = gl.createShader(type);
-    gl.shaderSource(s, src);
-    gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
-    return s;
-  };
-  const VS = `attribute vec2 aPos; varying vec2 vUv; void main() { vUv = aPos * 0.5 + 0.5; gl_Position = vec4(aPos, 0.0, 1.0); }`;
-  const makeProgram = (fsId) => {
-    const p = gl.createProgram();
-    // the scene shader has its own vertex shader (no varying needed)
-    gl.attachShader(p, compile(gl.VERTEX_SHADER, fsId === 'fs-scene' ? $('vs').textContent : VS));
-    gl.attachShader(p, compile(gl.FRAGMENT_SHADER, $(fsId).textContent));
-    gl.bindAttribLocation(p, 0, 'aPos');
-    gl.linkProgram(p);
-    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
-    const locs = {};
-    return { p, u: (n) => (n in locs ? locs[n] : (locs[n] = gl.getUniformLocation(p, n))) };
-  };
-
-  let scene, bright, down, blur, fin;
-  try {
-    scene = makeProgram('fs-scene');
-    bright = makeProgram('fs-bright');
-    down = makeProgram('fs-down');
-    blur = makeProgram('fs-blur');
-    fin = makeProgram('fs-final');
-  } catch (e) { return fail(e); }
-
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-  gl.enableVertexAttribArray(0);
-  gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-  gl.disable(gl.DEPTH_TEST);
-
-  function makeTarget(w, h) {
-    const tex = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, tex);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    const fb = gl.createFramebuffer();
-    gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
-    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
-    return { tex, fb, w, h };
-  }
-  const freeTarget = (t) => { if (t) { gl.deleteTexture(t.tex); gl.deleteFramebuffer(t.fb); } };
-
-  // render targets: S = scene, A1/A2 = bloom 1/4, B1/B2 = bloom 1/16
-  let S, A1, A2, B1, B2, sizeKey = '';
-  function ensureTargets(sw, sh) {
-    const key = sw + 'x' + sh;
-    if (key === sizeKey) return;
-    sizeKey = key;
-    [S, A1, A2, B1, B2].forEach(freeTarget);
-    const aw = Math.max(8, sw >> 2), ah = Math.max(8, sh >> 2);
-    const bw = Math.max(4, aw >> 2), bh = Math.max(4, ah >> 2);
-    S = makeTarget(sw, sh);
-    A1 = makeTarget(aw, ah); A2 = makeTarget(aw, ah);
-    B1 = makeTarget(bw, bh); B2 = makeTarget(bw, bh);
-  }
-
-  function pass(prog, target, textures, setup) {
-    gl.useProgram(prog.p);
-    gl.bindFramebuffer(gl.FRAMEBUFFER, target ? target.fb : null);
-    gl.viewport(0, 0, target ? target.w : canvas.width, target ? target.h : canvas.height);
-    textures.forEach((t, i) => {
-      gl.activeTexture(gl.TEXTURE0 + i);
-      gl.bindTexture(gl.TEXTURE_2D, t.tex);
-    });
-    setup(prog.u);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-  }
-
-  // ---------------------------------------------------------------- state
-  const HOME = { yaw: 0.6, pitch: 0.17, dist: 24 };
-  const cam = { ...HOME };
-  const target = { ...HOME };
-  const MIN_DIST = 4, MAX_DIST = 60, MAX_PITCH = 1.45;
-  const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
-  let autoRotate = true, disk = true, bloomOn = true, lastInput = -1e9;
-  const vel = { yaw: 0, pitch: 0 };
-
-  // quality ladder, best first
-  const LEVELS = [
-    { scale: 1.00, steps: 400, vol: 1 },
-    { scale: 0.85, steps: 340, vol: 1 },
-    { scale: 0.70, steps: 300, vol: 1 },
-    { scale: 0.60, steps: 300, vol: 1 },
-    { scale: 0.60, steps: 260, vol: 0 },
-    { scale: 0.50, steps: 220, vol: 0 },
-    { scale: 0.40, steps: 200, vol: 0 },
-    { scale: 0.33, steps: 180, vol: 0 },
-  ];
-  const PRESET = { low: 6, mid: 3, high: 0 };
-  const coarse = matchMedia('(pointer: coarse)').matches || Math.min(screen.width, screen.height) < 600;
-  let quality = 'auto', level = coarse ? 4 : 2;
-  const maxDpr = Math.min(window.devicePixelRatio || 1, 2);
-  const MAX_PIXELS = 3.5e6;
-
-  // ---------------------------------------------------------------- input
-  const pointers = new Map();
-  let pinchDist = 0;
-  const touched = () => { lastInput = performance.now(); };
-
-  canvas.addEventListener('pointerdown', (e) => {
-    canvas.setPointerCapture(e.pointerId);
-    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    canvas.classList.add('drag');
-    vel.yaw = vel.pitch = 0;
-    if (pointers.size === 2) {
-      const [a, b] = [...pointers.values()];
-      pinchDist = Math.hypot(a.x - b.x, a.y - b.y);
-    }
-    touched();
-  });
-  canvas.addEventListener('pointermove', (e) => {
-    const p = pointers.get(e.pointerId);
-    if (!p) return;
-    const dx = e.clientX - p.x, dy = e.clientY - p.y;
-    p.x = e.clientX; p.y = e.clientY;
-    if (pointers.size === 1) {
-      const dyaw = -dx * 0.006, dpitch = dy * 0.006;
-      target.yaw += dyaw;
-      target.pitch = clamp(target.pitch + dpitch, -MAX_PITCH, MAX_PITCH);
-      vel.yaw = vel.yaw * 0.6 + dyaw * 60 * 0.4;       // approx. rad/s, for inertia on release
-      vel.pitch = vel.pitch * 0.6 + dpitch * 60 * 0.4;
-    } else if (pointers.size === 2) {
-      const [a, b] = [...pointers.values()];
-      const d = Math.hypot(a.x - b.x, a.y - b.y);
-      if (pinchDist > 0) target.dist = clamp(target.dist * (pinchDist / d), MIN_DIST, MAX_DIST);
-      pinchDist = d;
-    }
-    touched();
-  });
-  const release = (e) => {
-    pointers.delete(e.pointerId);
-    if (pointers.size < 2) pinchDist = 0;
-    if (pointers.size === 0) canvas.classList.remove('drag');
-    else vel.yaw = vel.pitch = 0;
-    touched();
-  };
-  canvas.addEventListener('pointerup', release);
-  canvas.addEventListener('pointercancel', release);
-  canvas.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    target.dist = clamp(target.dist * Math.exp(e.deltaY * 0.0012), MIN_DIST, MAX_DIST);
-    touched();
-  }, { passive: false });
-  canvas.addEventListener('dblclick', () => Object.assign(target, HOME));
-
-  const setClean = (on) => {
-    document.body.classList.toggle('clean', on);
-    (on ? $('show') : $('hide')).focus({ preventScroll: true });
-  };
-  window.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    const k = e.key;
-    if (k === 'ArrowLeft') target.yaw += 0.08;
-    else if (k === 'ArrowRight') target.yaw -= 0.08;
-    else if (k === 'ArrowUp') target.pitch = clamp(target.pitch - 0.06, -MAX_PITCH, MAX_PITCH);
-    else if (k === 'ArrowDown') target.pitch = clamp(target.pitch + 0.06, -MAX_PITCH, MAX_PITCH);
-    else if (k === '+' || k === '=') target.dist = clamp(target.dist * 0.9, MIN_DIST, MAX_DIST);
-    else if (k === '-') target.dist = clamp(target.dist / 0.9, MIN_DIST, MAX_DIST);
-    else if (k === 'h' || k === 'H' || k === 'р' || k === 'Р') setClean(!document.body.classList.contains('clean'));
-    else return;
-    touched();
-  });
-
-  // ---------------------------------------------------------------- controls
-  const toggle = (btn, fn) => btn.addEventListener('click', () => {
-    const on = btn.getAttribute('aria-pressed') !== 'true';
-    btn.setAttribute('aria-pressed', String(on));
-    fn(on);
-  });
-  toggle($('rotate'), (on) => { autoRotate = on; });
-  toggle($('disk'), (on) => { disk = on; });
-  toggle($('bloom'), (on) => { bloomOn = on; });
-  let lockUntil = 0;
-  $('quality').addEventListener('change', (e) => {
-    quality = e.target.value;
-    level = quality === 'auto' ? (coarse ? 4 : 2) : PRESET[quality];
-    lockUntil = 0; slow = fast = 0;
-  });
-  $('reset').addEventListener('click', () => Object.assign(target, HOME));
-  $('hide').addEventListener('click', () => setClean(true));
-  $('show').addEventListener('click', () => setClean(false));
-  const fsBtn = $('full');
-  if (!document.documentElement.requestFullscreen) fsBtn.hidden = true;
-  fsBtn.addEventListener('click', () => {
-    if (document.fullscreenElement) document.exitFullscreen();
-    else document.documentElement.requestFullscreen().catch(() => {});
-  });
-
-  // ---------------------------------------------------------------- render loop
-  const stat = $('stat');
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const t0 = performance.now();
-  let prev = t0, ema = 16, slow = 0, fast = 0, statAt = 0, frames = 0, lockLen = 6000;
-  let lastUpgrade = 0;
-
-  function adapt(now) {
-    if (quality !== 'auto' || ++frames < 45 || document.hidden) return;
-    slow = ema > 21 ? slow + 1 : 0;
-    fast = ema < 18.5 ? fast + 1 : 0;
-    if (slow > 18 && level < LEVELS.length - 1) {
-      level++; slow = 0;
-      // a downgrade soon after an upgrade means that level is too heavy: wait longer before retrying
-      lockLen = now - lastUpgrade < 12000 ? Math.min(lockLen * 2, 60000) : 6000;
-      lockUntil = now + lockLen;
-    } else if (fast > 150 && level > 0 && now > lockUntil) {
-      level--; fast = 0; lastUpgrade = now;
-    }
-  }
-
-  function frame(now) {
-    requestAnimationFrame(frame);
-    const dt = Math.min(0.1, (now - prev) / 1000);
-    prev = now;
-    if (document.hidden || dt <= 0) return;
-    ema += (dt * 1000 - ema) * 0.08;
-    adapt(now);
-    const L = LEVELS[level];
-
-    // camera: inertia, auto-rotation, smoothing, intro zoom
-    if (pointers.size === 0) {
-      target.yaw += vel.yaw * dt;
-      target.pitch = clamp(target.pitch + vel.pitch * dt, -MAX_PITCH, MAX_PITCH);
-      const decay = Math.exp(-dt * 3.2);
-      vel.yaw *= decay; vel.pitch *= decay;
-    }
-    const idle = now - lastInput > 1500 && pointers.size === 0;
-    if (autoRotate && !reduceMotion && idle) target.yaw += dt * 0.1;
-    const k = 1 - Math.exp(-dt * 9);
-    cam.yaw += (target.yaw - cam.yaw) * k;
-    cam.pitch += (target.pitch - cam.pitch) * k;
-    cam.dist += (target.dist - cam.dist) * k;
-
-    const tIntro = reduceMotion ? 1 : clamp((now - t0) / 3200, 0, 1);
-    const ease = 1 - Math.pow(1 - tIntro, 3);
-    const dist = cam.dist * (1 + 1.4 * (1 - ease));
-    const fade = clamp((now - t0) / 900, 0, 1);
-    const sway = autoRotate && !reduceMotion && idle ? Math.sin(now / 5200) * 0.045 : 0;
-    const pitch = clamp(cam.pitch + sway, -MAX_PITCH, MAX_PITCH);
-
-    // sizes
-    const cw = canvas.clientWidth, ch = canvas.clientHeight;
-    if (!cw || !ch) return;
-    let dpr = maxDpr;
-    if (cw * ch * dpr * dpr > MAX_PIXELS) dpr = Math.sqrt(MAX_PIXELS / (cw * ch));
-    const W = Math.max(1, Math.round(cw * dpr)), H = Math.max(1, Math.round(ch * dpr));
-    if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
-    const sw = Math.max(16, Math.round(W * L.scale)), sh = Math.max(16, Math.round(H * L.scale));
-    ensureTargets(sw, sh);
-
-    // camera basis
-    const cp = Math.cos(pitch), sp = Math.sin(pitch);
-    const pos = [dist * cp * Math.sin(cam.yaw), dist * sp, dist * cp * Math.cos(cam.yaw)];
-    const fwd = pos.map((x) => -x / dist);
-    let right = [-fwd[2], 0, fwd[0]];
-    const rl = Math.hypot(right[0], right[2]) || 1;
-    right = [right[0] / rl, 0, right[2] / rl];
-    const up = [
-      right[1] * fwd[2] - right[2] * fwd[1],
-      right[2] * fwd[0] - right[0] * fwd[2],
-      right[0] * fwd[1] - right[1] * fwd[0],
-    ];
-    const fov = Math.tan(0.5 * (cw < ch ? 1.25 : 0.95));
-
-    // 1) ray-marched scene
-    pass(scene, S, [], (u) => {
-      gl.uniform2f(u('uRes'), sw, sh);
-      gl.uniform1f(u('uTime'), now / 1000);
-      gl.uniform3f(u('uCam'), pos[0], pos[1], pos[2]);
-      gl.uniform3f(u('uFwd'), fwd[0], fwd[1], fwd[2]);
-      gl.uniform3f(u('uRight'), right[0], right[1], right[2]);
-      gl.uniform3f(u('uUp'), up[0], up[1], up[2]);
-      gl.uniform1f(u('uFov'), fov);
-      gl.uniform1f(u('uPix'), (2 * fov) / sh);
-      gl.uniform1f(u('uDisk'), disk ? 1 : 0);
-      gl.uniform1f(u('uVol'), L.vol);
-      gl.uniform1i(u('uSteps'), L.steps);
-    });
-
-    // 2) bloom (two levels)
-    if (bloomOn) {
-      pass(bright, A1, [S], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uTexel'), 1 / S.w, 1 / S.h); });
-      pass(blur, A2, [A1], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uDir'), 1 / A1.w, 0); });
-      pass(blur, A1, [A2], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uDir'), 0, 1 / A1.h); });
-      pass(down, B1, [A1], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uTexel'), 1 / A1.w, 1 / A1.h); });
-      pass(blur, B2, [B1], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uDir'), 1 / B1.w, 0); });
-      pass(blur, B1, [B2], (u) => { gl.uniform1i(u('uTex'), 0); gl.uniform2f(u('uDir'), 0, 1 / B1.h); });
-    }
-
-    // 3) composite to the screen
-    pass(fin, null, [S, A1, B1], (u) => {
-      gl.uniform1i(u('uScene'), 0);
-      gl.uniform1i(u('uBloomA'), 1);
-      gl.uniform1i(u('uBloomB'), 2);
-      gl.uniform2f(u('uRes'), W, H);
-      gl.uniform1f(u('uTime'), now / 1000);
-      gl.uniform1f(u('uFade'), fade);
-      gl.uniform1f(u('uBloom'), bloomOn ? 1 : 0);
-    });
-
-    if (now - statAt > 500) {
-      statAt = now;
-      stat.textContent = `${Math.round(1000 / ema)} FPS · ${sw}×${sh} · r = ${cam.dist.toFixed(1)} rs`;
-    }
-  }
-  requestAnimationFrame(frame);
-
-  canvas.addEventListener('webglcontextlost', (e) => e.preventDefault());
-  canvas.addEventListener('webglcontextrestored', () => location.reload());
-})();
-</script>
+<script src="engine.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
