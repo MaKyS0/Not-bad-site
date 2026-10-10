@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Чёрная дыра — интерактивная 3D-модель</title>
+<meta name="description" content="Как устроена чёрная дыра: горизонт событий, фотонная сфера, аккреционный диск и гравитационное линзирование. Интерактивная 3D-модель в реальном времени — прямо в браузере.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Чёрная дыра — интерактивная 3D-модель">
+<meta property="og:description" content="Гравитационное линзирование, аккреционный диск и эффект Доплера — в реальном времени, в вашем браузере.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Cellipse cx='32' cy='33' rx='28' ry='8' fill='none' stroke='%23ffb869' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%23000' stroke='%23fff3dc' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="shade" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="В начало">
+    <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="33" rx="29" ry="9" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="32" cy="32" r="13" fill="#000" stroke="currentColor" stroke-width="3"/></svg>
+    <span>Чёрная дыра</span>
+  </a>
+  <nav aria-label="Разделы">
+    <a href="#about">Что это</a>
+    <a href="#anatomy">Устройство</a>
+    <a href="#scale">Масштабы</a>
+    <a href="#how">Как это сделано</a>
+  </nav>
+  <button class="btn primary" data-explore type="button">Исследовать в 3D</button>
+</header>
+
+<main id="content">
+  <!-- data-cam = "yaw pitch distance shiftX shiftY": where the camera goes when this block is in the middle of the screen -->
+  <section class="step hero" id="top" data-cam="0.6 0.17 26 0.30 0">
+    <div class="hero-text">
+      <p class="eyebrow">Интерактивная модель в реальном времени</p>
+      <h1>Чёрная дыра</h1>
+      <p class="lead">Место, где гравитация так сильна, что даже свет не может вернуться. Посмотрите, как она искривляет пространство и время — прямо в вашем браузере.</p>
+      <div class="cta">
+        <button class="btn primary big" data-explore type="button">Исследовать в 3D</button>
+        <a class="btn big" href="#about">Узнать больше</a>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#about" aria-label="Прокрутить вниз"><span></span>Листайте</a>
+  </section>
+
+  <section class="step right" id="about" data-cam="1.9 0.38 19 -0.30 0">
+    <article class="card reveal">
+      <h2>Что такое чёрная дыра</h2>
+      <p>Это область пространства-времени, из которой ничто — даже свет — не может вырваться наружу. Она рождается, когда очень много вещества сжимается в крошечном объёме, например при гибели массивной звезды.</p>
+      <p>Саму дыру увидеть нельзя. Мы замечаем её по тому, как она изгибает свет и разогревает падающий газ.</p>
+      <ul class="chips">
+        <li><b>2019</b> первое изображение — M87*</li>
+        <li><b>2022</b> Sgr A* в центре Млечного Пути</li>
+        <li><b>2,95&nbsp;км</b> радиус горизонта на каждую массу Солнца</li>
+      </ul>
+    </article>
+  </section>
+
+  <div class="section-head reveal" id="anatomy">
+    <p class="eyebrow">Устройство</p>
+    <h2>Из чего она состоит</h2>
+    <p>Листайте — камера подлетит к каждой части. Расстояния ниже измеряются в радиусах Шварцшильда (rs) — размерах самого горизонта.</p>
+  </div>
+
+  <section class="step left" data-cam="2.4 0.12 12 0.36 0">
+    <article class="card reveal">
+      <span class="tag">1 · 1 rs</span>
+      <h3>Горизонт событий</h3>
+      <p>Граница, за которой возврата нет. Её радиус называют радиусом Шварцшильда: <i>rs = 2GM/c²</i>.</p>
+      <p>Чёрный круг, который вы видите, — это «тень». Она примерно в 2,6 раза шире самого горизонта: гравитация затягивает и те лучи, что проходят рядом.</p>
+    </article>
+  </section>
+
+  <section class="step right" data-cam="2.9 0.05 8.5 -0.36 0">
+    <article class="card reveal">
+      <span class="tag">2 · 1,5 rs</span>
+      <h3>Фотонная сфера</h3>
+      <p>На этом расстоянии свет может двигаться по круговой орбите. Орбита неустойчива: лучи, подошедшие почти вплотную, делают виток вокруг дыры и улетают.</p>
+      <p>Они рисуют тонкое яркое кольцо вдоль края тени.</p>
+    </article>
+  </section>
+
+  <section class="step left" data-cam="3.6 0.55 18 0.34 0">
+    <article class="card reveal">
+      <span class="tag">3 · от 3 rs</span>
+      <h3>Аккреционный диск</h3>
+      <p>Падающий газ закручивается в диск и раскаляется. Внутренний край — ближайшая устойчивая орбита, 3&nbsp;rs. Ближе газ уже не может держаться на круговой орбите.</p>
+      <p>Газ летит с околосветовой скоростью, поэтому сторона, идущая на нас, ярче и голубее (эффект Доплера), а уходящая — тусклее. У самого центра свет ещё и краснеет, выбираясь из гравитационной ямы.</p>
+    </article>
+  </section>
+
+  <section class="step right" data-cam="4.3 0.02 21 -0.34 0">
+    <article class="card reveal">
+      <span class="tag">4 · везде</span>
+      <h3>Гравитационное линзирование</h3>
+      <p>Гравитация искривляет путь света. Поэтому диск, лежащий позади дыры, виден над ней и под ней: свет обходит её сверху и снизу.</p>
+      <p>Так же растягиваются в дуги звёзды на заднем плане — взгляните на них вокруг тени.</p>
+    </article>
+  </section>
+
+  <section class="step center" id="scale" data-cam="5.6 0.2 36 0 0.12">
+    <article class="card wide reveal">
+      <p class="eyebrow">Масштабы</p>
+      <h2>Размер зависит только от массы</h2>
+      <p>Радиус горизонта растёт прямо пропорционально массе: <i>rs ≈ 2,95&nbsp;км × M / M☉</i>. Передвиньте ползунок или выберите объект.</p>
+
+      <div class="calc" aria-live="polite">
+        <div class="calc-mass"><span id="mass-out">1 M☉</span><small>масса</small></div>
+        <input id="mass" type="range" min="-6" max="10" step="0.01" value="0" aria-label="Масса в массах Солнца (логарифмическая шкала)">
+        <div class="presets" role="group" aria-label="Примеры">
+          <button type="button" data-m="3.003e-6">Земля</button>
+          <button type="button" data-m="1">Солнце</button>
+          <button type="button" data-m="10">Звезда 10 M☉</button>
+          <button type="button" data-m="4.3e6">Sgr A*</button>
+          <button type="button" data-m="6.5e9">M87*</button>
+        </div>
+        <div class="calc-res">
+          <div><small>Радиус горизонта</small><strong id="r-out">2,95 км</strong></div>
+          <p id="r-note"></p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="step right" id="how" data-cam="0.9 0.3 21 -0.30 0">
+    <article class="card reveal">
+      <p class="eyebrow">Как это сделано</p>
+      <h2>Свет считается заново для каждого пикселя</h2>
+      <p>Страница рисуется на видеокарте через WebGL: из камеры в каждый пиксель выпускается луч света и прослеживается по уравнению геодезической в метрике Шварцшильда. Поверх — свечение, эффект Доплера и красное смещение.</p>
+      <p>Это приближённая визуализация, а не научная симуляция: дыра не вращается, а диск — художественная модель. Качество подстраивается под вашу видеокарту автоматически. Данные никуда не загружаются.</p>
+    </article>
+  </section>
+
+  <section class="step center end" data-cam="6.3 0.17 22 0 0.08">
+    <div class="final reveal">
+      <h2>Теперь ваша очередь</h2>
+      <p>Вращайте, приближайте, отключайте диск — и посмотрите на дыру со всех сторон.</p>
+      <button class="btn primary big" data-explore type="button">Исследовать в 3D</button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Чёрная дыра 3D · визуализация в реальном времени</span>
+  <span>Факты: Event Horizon Telescope — M87* (2019), Sgr A* (2022)</span>
+</footer>
+
+<!-- Explore mode: content fades away, the canvas takes over -->
+<div class="explore-ui" id="explore-ui">
+  <div class="panel hint">
+    <button id="back" class="btn" type="button">← Назад к сайту</button>
+    <p>Тяните, чтобы вращать · колесо / щипок — приближение · двойной клик — сброс</p>
+  </div>
+  <div class="panel stat" id="stat" aria-hidden="true"></div>
+  <div class="panel controls" role="toolbar" aria-label="Управление моделью">
+    <button id="rotate" aria-pressed="true" type="button">Автовращение</button>
+    <button id="disk" aria-pressed="true" type="button">Аккреционный диск</button>
+    <button id="bloom" aria-pressed="true" type="button">Свечение</button>
+    <select id="quality" aria-label="Качество">
+      <option value="auto">Качество: авто</option>
+      <option value="low">Низкое</option>
+      <option value="mid">Среднее</option>
+      <option value="high">Высокое</option>
+    </select>
+    <button id="reset" type="button">Сброс</button>
+    <button id="full" type="button">На весь экран</button>
+  </div>
+</div>
+
+<script src="engine.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

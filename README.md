@@ -15,6 +15,8 @@ Universal File Toolbox is a static web app (no backend, no database, no sign-up)
 - Dark / Light / System theme, global search in both languages (`/` or `Ctrl+K`), local history
 - Works on Windows, macOS, Linux, Android, iOS — desktop and mobile browsers
 
+- **Bonus:** a small website with an interactive 3D black hole (WebGL, no dependencies, Russian) at `/black-hole/` — files in `public/black-hole/` (`index.html`, `style.css`, `site.js`, `engine.js`); open it directly or via the built site
+
 ---
 
 ## Contents
