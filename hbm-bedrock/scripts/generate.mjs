@@ -51,12 +51,20 @@ const STORAGE_BLOCKS = [
 const terrain = {};
 const ORE_REPLACES = ["minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite"];
 
-/** `texture` covers every face; `up` and `down` override the top and bottom. */
+/** Break and step sounds per block, written to the resource pack's blocks.json. */
+const blockSounds = {};
+const SOUND_OF_TAG = { stone: "stone", metal: "metal", wood: "wood", dirt: "grass", explosive: "grass" };
+
+/**
+ * `texture` covers every face; `up` and `down` override the top and bottom. Blocks use our cube
+ * model rather than the default one: on the default cube the game ignored our textures and drew dirt.
+ */
 function simpleBlock(id, { en, ru, texture, up, down, seconds, resist, color, category, group, loot, tag = "stone" }) {
   name(`tile.hbm.${id}.name`, en, ru);
+  blockSounds[`hbm:${id}`] = { sound: SOUND_OF_TAG[tag] ?? "stone" };
+  const faceTexture = { "*": texture, north: texture, south: texture, east: texture, west: texture, up: up ?? texture, down: down ?? texture };
   const materials = {};
-  for (const [face, t] of [["*", texture], ["up", up], ["down", down]]) {
-    if (!t) continue;
+  for (const [face, t] of Object.entries(faceTexture)) {
     terrain[`hbm_${t}`] = { textures: `textures/blocks/${t}` };
     materials[face] = { texture: `hbm_${t}`, render_method: "opaque" };
   }
@@ -64,6 +72,7 @@ function simpleBlock(id, { en, ru, texture, up, down, seconds, resist, color, ca
     "minecraft:display_name": `tile.hbm.${id}.name`,
     "minecraft:destructible_by_mining": { seconds_to_destroy: seconds },
     "minecraft:destructible_by_explosion": { explosion_resistance: resist },
+    "minecraft:geometry": "geometry.hbm.machine",
     "minecraft:material_instances": materials,
     "minecraft:map_color": color,
     "tag:minecraft:is_pickaxe_item_destructible": {},
@@ -136,6 +145,7 @@ const ROTATIONS = { north: 0, west: 90, south: 180, east: -90 };
 
 function machineBlock(id, { en, ru, front, frontOn, side, top, bottom }) {
   name(`tile.hbm.${id}.name`, en, ru);
+  blockSounds[`hbm:${id}`] = { sound: "metal" };
   for (const t of [front, frontOn, side, top, bottom].filter(Boolean)) {
     terrain[`hbm_${t}`] = { textures: `textures/blocks/${t}` };
   }
@@ -247,6 +257,7 @@ simpleBlock("waste_log", { en: "Charred Log", ru: "Обугленное брев
 const CABLE_SIDES = ["n", "s", "e", "w", "u", "d"];
 function conduit(id, { en, ru, color }) {
   name(`tile.hbm.${id}.name`, en, ru);
+  blockSounds[`hbm:${id}`] = { sound: "metal" };
   terrain[`hbm_${id}`] = { textures: `textures/blocks/${id}` };
   write(join(BP, `blocks/${id}.json`), {
     format_version: "1.21.60",
@@ -275,6 +286,8 @@ function conduit(id, { en, ru, color }) {
 }
 conduit("red_cable", { en: "Red Copper Cable", ru: "Красный медный провод", color: "#b03a1a" });
 conduit("fluid_duct", { en: "Fluid Duct", ru: "Трубопровод", color: "#c8c8c8" });
+
+write(join(RP, "blocks.json"), { format_version: [1, 1, 0], ...blockSounds });
 
 write(join(RP, "textures/terrain_texture.json"), {
   resource_pack_name: "hbm",

@@ -15,8 +15,33 @@
       "minecraft:destructible_by_explosion": {
         "explosion_resistance": 10
       },
+      "minecraft:geometry": "geometry.hbm.machine",
       "minecraft:material_instances": {
         "*": {
+          "texture": "hbm_rbmk_debris",
+          "render_method": "opaque"
+        },
+        "north": {
+          "texture": "hbm_rbmk_debris",
+          "render_method": "opaque"
+        },
+        "south": {
+          "texture": "hbm_rbmk_debris",
+          "render_method": "opaque"
+        },
+        "east": {
+          "texture": "hbm_rbmk_debris",
+          "render_method": "opaque"
+        },
+        "west": {
+          "texture": "hbm_rbmk_debris",
+          "render_method": "opaque"
+        },
+        "up": {
+          "texture": "hbm_rbmk_debris",
+          "render_method": "opaque"
+        },
+        "down": {
           "texture": "hbm_rbmk_debris",
           "render_method": "opaque"
         }

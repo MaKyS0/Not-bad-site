@@ -1,0 +1,133 @@
+{
+  "format_version": [
+    1,
+    1,
+    0
+  ],
+  "hbm:ore_uranium": {
+    "sound": "stone"
+  },
+  "hbm:ore_titanium": {
+    "sound": "stone"
+  },
+  "hbm:ore_lead": {
+    "sound": "stone"
+  },
+  "hbm:ore_thorium": {
+    "sound": "stone"
+  },
+  "hbm:ore_tungsten": {
+    "sound": "stone"
+  },
+  "hbm:ore_aluminium": {
+    "sound": "stone"
+  },
+  "hbm:ore_beryllium": {
+    "sound": "stone"
+  },
+  "hbm:ore_sulfur": {
+    "sound": "stone"
+  },
+  "hbm:ore_niter": {
+    "sound": "stone"
+  },
+  "hbm:ore_fluorite": {
+    "sound": "stone"
+  },
+  "hbm:block_uranium": {
+    "sound": "stone"
+  },
+  "hbm:block_titanium": {
+    "sound": "stone"
+  },
+  "hbm:block_lead": {
+    "sound": "stone"
+  },
+  "hbm:machine_wood_burner": {
+    "sound": "metal"
+  },
+  "hbm:machine_electric_furnace": {
+    "sound": "metal"
+  },
+  "hbm:machine_shredder": {
+    "sound": "metal"
+  },
+  "hbm:machine_battery": {
+    "sound": "metal"
+  },
+  "hbm:machine_reactor": {
+    "sound": "metal"
+  },
+  "hbm:machine_press": {
+    "sound": "metal"
+  },
+  "hbm:machine_assembler": {
+    "sound": "metal"
+  },
+  "hbm:machine_pump": {
+    "sound": "metal"
+  },
+  "hbm:machine_derrick": {
+    "sound": "metal"
+  },
+  "hbm:machine_refinery": {
+    "sound": "metal"
+  },
+  "hbm:machine_diesel": {
+    "sound": "metal"
+  },
+  "hbm:machine_fluidtank": {
+    "sound": "metal"
+  },
+  "hbm:machine_turbine": {
+    "sound": "metal"
+  },
+  "hbm:rbmk_fuel": {
+    "sound": "metal"
+  },
+  "hbm:rbmk_control": {
+    "sound": "metal"
+  },
+  "hbm:rbmk_boiler": {
+    "sound": "metal"
+  },
+  "hbm:rbmk_moderator": {
+    "sound": "metal"
+  },
+  "hbm:rbmk_blank": {
+    "sound": "metal"
+  },
+  "hbm:rbmk_debris": {
+    "sound": "stone"
+  },
+  "hbm:launch_pad": {
+    "sound": "metal"
+  },
+  "hbm:ore_oil": {
+    "sound": "stone"
+  },
+  "hbm:ore_oil_empty": {
+    "sound": "stone"
+  },
+  "hbm:charge_semtex": {
+    "sound": "grass"
+  },
+  "hbm:det_charge": {
+    "sound": "grass"
+  },
+  "hbm:det_nuke": {
+    "sound": "grass"
+  },
+  "hbm:waste_earth": {
+    "sound": "grass"
+  },
+  "hbm:waste_log": {
+    "sound": "wood"
+  },
+  "hbm:red_cable": {
+    "sound": "metal"
+  },
+  "hbm:fluid_duct": {
+    "sound": "metal"
+  }
+}

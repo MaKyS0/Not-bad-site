@@ -15,8 +15,33 @@
       "minecraft:destructible_by_explosion": {
         "explosion_resistance": 6
       },
+      "minecraft:geometry": "geometry.hbm.machine",
       "minecraft:material_instances": {
         "*": {
+          "texture": "hbm_block_titanium",
+          "render_method": "opaque"
+        },
+        "north": {
+          "texture": "hbm_block_titanium",
+          "render_method": "opaque"
+        },
+        "south": {
+          "texture": "hbm_block_titanium",
+          "render_method": "opaque"
+        },
+        "east": {
+          "texture": "hbm_block_titanium",
+          "render_method": "opaque"
+        },
+        "west": {
+          "texture": "hbm_block_titanium",
+          "render_method": "opaque"
+        },
+        "up": {
+          "texture": "hbm_block_titanium",
+          "render_method": "opaque"
+        },
+        "down": {
           "texture": "hbm_block_titanium",
           "render_method": "opaque"
         }

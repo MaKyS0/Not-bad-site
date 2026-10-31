@@ -25,7 +25,7 @@ function jsonFiles(dir) {
 }
 
 const docs = new Map([...jsonFiles(BP), ...jsonFiles(RP)].map((p) => [p, readJson(p)]));
-const inDir = (dir) => [...docs].filter(([p]) => p.startsWith(join(BP, dir)) || p.startsWith(join(RP, dir)));
+const inDir = (dir) => [...docs].filter(([p]) => p.startsWith(join(BP, dir) + "/") || p.startsWith(join(RP, dir) + "/"));
 
 const ids = new Set();
 for (const [, doc] of [...inDir("blocks"), ...inDir("items")]) {
@@ -70,6 +70,8 @@ for (const [path, doc] of inDir("blocks")) {
   needLang(c["minecraft:display_name"], path);
 
   const geometry = c["minecraft:geometry"];
+  // On the default cube the game ignored our textures and drew dirt, so every block names a model.
+  if (!geometry) errors.push(`${path}: no minecraft:geometry`);
   if (geometry) {
     const id = typeof geometry === "string" ? geometry : geometry.identifier;
     const model = geometries.get(id);

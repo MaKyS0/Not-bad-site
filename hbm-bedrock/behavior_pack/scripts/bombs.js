@@ -16,15 +16,19 @@ const UNBREAKABLE = ["minecraft:bedrock", "minecraft:barrier", "minecraft:end_po
 
 const WOODS = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry"];
 /**
- * Around a blast: [blocks, replacement]. Each group is one fill; the plants that were renamed
- * between versions get their own, so an id the game does not know cannot spoil the rest.
+ * Around a blast: [blocks, replacement]. Each group is one fill, and a fill with an id the game
+ * does not know fails whole, so ids that differ between versions (leaves, short grass) get
+ * their own group, including the older merged ids.
  * @type {[string[], string][]}
  */
 const SCORCH = [
   [["minecraft:grass_block"], "hbm:waste_earth"],
   [WOODS.map((wood) => `minecraft:${wood}_log`), "hbm:waste_log"],
-  [[...WOODS.map((wood) => `minecraft:${wood}_leaves`), "minecraft:azalea_leaves"], "minecraft:air"],
+  ...[...WOODS, "azalea", "pale_oak"].map((wood) => /** @type {[string[], string]} */ ([[`minecraft:${wood}_leaves`], "minecraft:air"])),
+  [["minecraft:leaves"], "minecraft:air"],
+  [["minecraft:leaves2"], "minecraft:air"],
   [["minecraft:short_grass"], "minecraft:air"],
+  [["minecraft:tallgrass"], "minecraft:air"],
   [["minecraft:tall_grass"], "minecraft:air"],
   [["minecraft:fern"], "minecraft:air"],
   [["minecraft:large_fern"], "minecraft:air"],
