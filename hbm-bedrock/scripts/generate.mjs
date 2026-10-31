@@ -231,7 +231,8 @@ for (const [id, en, ru, front] of [
   ["machine_diesel", "Diesel Generator", "Дизельный генератор", "machine_diesel_front"],
   ["machine_fluidtank", "Fluid Tank", "Цистерна", "machine_fluidtank_front"],
 ]) {
-  machineBlock(id, { en, ru, front, side: "block_steel", top: "block_steel", bottom: "block_steel" });
+  // The face goes on every side, so each machine looks like itself in the inventory too.
+  machineBlock(id, { en, ru, front, side: front, top: "block_steel", bottom: "block_steel" });
 }
 machineBlock("machine_turbine", {
   en: "Steam Turbine", ru: "Паровая турбина",

@@ -18,23 +18,23 @@
       "minecraft:geometry": "geometry.hbm.machine",
       "minecraft:material_instances": {
         "*": {
-          "texture": "hbm_imp_hbm_blocks_pipe_top_green_rusty",
+          "texture": "hbm_imp_hbm_badges_deco_pipe_quad_green_rusted",
           "render_method": "alpha_test"
         },
         "north": {
-          "texture": "hbm_imp_hbm_blocks_pipe_top_green_rusty",
+          "texture": "hbm_imp_hbm_badges_deco_pipe_quad_green_rusted",
           "render_method": "alpha_test"
         },
         "south": {
-          "texture": "hbm_imp_hbm_blocks_pipe_top_green_rusty",
+          "texture": "hbm_imp_hbm_badges_deco_pipe_quad_green_rusted",
           "render_method": "alpha_test"
         },
         "east": {
-          "texture": "hbm_imp_hbm_blocks_pipe_top_green_rusty",
+          "texture": "hbm_imp_hbm_badges_deco_pipe_quad_green_rusted",
           "render_method": "alpha_test"
         },
         "west": {
-          "texture": "hbm_imp_hbm_blocks_pipe_top_green_rusty",
+          "texture": "hbm_imp_hbm_badges_deco_pipe_quad_green_rusted",
           "render_method": "alpha_test"
         },
         "up": {

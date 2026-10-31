@@ -26,7 +26,7 @@
       "minecraft:geometry": "geometry.hbm.machine",
       "minecraft:material_instances": {
         "*": {
-          "texture": "hbm_block_steel",
+          "texture": "hbm_machine_derrick_front",
           "render_method": "opaque"
         },
         "north": {
@@ -34,15 +34,15 @@
           "render_method": "opaque"
         },
         "south": {
-          "texture": "hbm_block_steel",
+          "texture": "hbm_machine_derrick_front",
           "render_method": "opaque"
         },
         "east": {
-          "texture": "hbm_block_steel",
+          "texture": "hbm_machine_derrick_front",
           "render_method": "opaque"
         },
         "west": {
-          "texture": "hbm_block_steel",
+          "texture": "hbm_machine_derrick_front",
           "render_method": "opaque"
         },
         "up": {

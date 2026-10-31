@@ -460,6 +460,9 @@
     "hbm_imp_hbm_blocks_block_niter": {
       "textures": "textures/imported/hbm/blocks/block_niter"
     },
+    "hbm_imp_hbm_badges_block_copper": {
+      "textures": "textures/imported/hbm/badges/block_copper"
+    },
     "hbm_imp_hbm_blocks_block_copper": {
       "textures": "textures/imported/hbm/blocks/block_copper"
     },
@@ -469,11 +472,17 @@
     "hbm_imp_hbm_blocks_block_tungsten": {
       "textures": "textures/imported/hbm/blocks/block_tungsten"
     },
+    "hbm_imp_hbm_badges_block_aluminium": {
+      "textures": "textures/imported/hbm/badges/block_aluminium"
+    },
     "hbm_imp_hbm_blocks_block_aluminium": {
       "textures": "textures/imported/hbm/blocks/block_aluminium"
     },
     "hbm_imp_hbm_blocks_block_fluorite": {
       "textures": "textures/imported/hbm/blocks/block_fluorite"
+    },
+    "hbm_imp_hbm_badges_block_steel": {
+      "textures": "textures/imported/hbm/badges/block_steel"
     },
     "hbm_imp_hbm_blocks_block_steel": {
       "textures": "textures/imported/hbm/blocks/block_steel"
@@ -685,8 +694,14 @@
     "hbm_imp_hbm_blocks_part_top": {
       "textures": "textures/imported/hbm/blocks/part_top"
     },
+    "hbm_imp_hbm_badges_bobblehead": {
+      "textures": "textures/imported/hbm/badges/bobblehead"
+    },
     "hbm_imp_hbm_blocks_glass_boron": {
       "textures": "textures/imported/hbm/blocks/glass_boron"
+    },
+    "hbm_imp_hbm_badges_vending_machine": {
+      "textures": "textures/imported/hbm/badges/vending_machine"
     },
     "hbm_imp_hbm_blocks_gravel_obsidian": {
       "textures": "textures/imported/hbm/blocks/gravel_obsidian"
@@ -733,6 +748,9 @@
     "hbm_imp_hbm_blocks_lamp_demon": {
       "textures": "textures/imported/hbm/blocks/lamp_demon"
     },
+    "hbm_imp_hbm_badges_lantern": {
+      "textures": "textures/imported/hbm/badges/lantern"
+    },
     "hbm_imp_hbm_blocks_cage_lamp": {
       "textures": "textures/imported/hbm/blocks/cage_lamp"
     },
@@ -742,14 +760,23 @@
     "hbm_imp_hbm_blocks_flood_lamp": {
       "textures": "textures/imported/hbm/blocks/flood_lamp"
     },
+    "hbm_imp_hbm_badges_floodlight": {
+      "textures": "textures/imported/hbm/badges/floodlight"
+    },
     "hbm_imp_hbm_blocks_rebar": {
       "textures": "textures/imported/hbm/blocks/rebar"
     },
     "hbm_imp_hbm_blocks_reinforced_stone": {
       "textures": "textures/imported/hbm/blocks/reinforced_stone"
     },
+    "hbm_imp_hbm_badges_concrete_smooth": {
+      "textures": "textures/imported/hbm/badges/concrete_smooth"
+    },
     "hbm_imp_hbm_blocks_concrete": {
       "textures": "textures/imported/hbm/blocks/concrete"
+    },
+    "hbm_imp_hbm_badges_concrete_colored": {
+      "textures": "textures/imported/hbm/badges/concrete_colored"
     },
     "hbm_imp_hbm_blocks_concrete_tile": {
       "textures": "textures/imported/hbm/blocks/concrete_tile"
@@ -801,6 +828,9 @@
     },
     "hbm_imp_hbm_blocks_brick_asbestos": {
       "textures": "textures/imported/hbm/blocks/brick_asbestos"
+    },
+    "hbm_imp_hbm_badges_brick_fire": {
+      "textures": "textures/imported/hbm/badges/brick_fire"
     },
     "hbm_imp_hbm_blocks_brick_fire": {
       "textures": "textures/imported/hbm/blocks/brick_fire"
@@ -898,6 +928,15 @@
     "hbm_imp_hbm_blocks_deco_computer": {
       "textures": "textures/imported/hbm/blocks/deco_computer"
     },
+    "hbm_imp_hbm_badges_deco_crt": {
+      "textures": "textures/imported/hbm/badges/deco_crt"
+    },
+    "hbm_imp_hbm_badges_deco_toaster": {
+      "textures": "textures/imported/hbm/badges/deco_toaster"
+    },
+    "hbm_imp_hbm_badges_filing_cabinet": {
+      "textures": "textures/imported/hbm/badges/filing_cabinet"
+    },
     "hbm_imp_hbm_blocks_deco_tape_recorder": {
       "textures": "textures/imported/hbm/blocks/deco_tape_recorder"
     },
@@ -919,23 +958,95 @@
     "hbm_imp_hbm_blocks_deco_steel_orig": {
       "textures": "textures/imported/hbm/blocks/deco_steel_orig"
     },
+    "hbm_imp_hbm_badges_deco_pipe": {
+      "textures": "textures/imported/hbm/badges/deco_pipe"
+    },
     "hbm_imp_hbm_blocks_pipe_top": {
       "textures": "textures/imported/hbm/blocks/pipe_top"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_rusted": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_rusted"
     },
     "hbm_imp_hbm_blocks_pipe_top_rusty": {
       "textures": "textures/imported/hbm/blocks/pipe_top_rusty"
     },
+    "hbm_imp_hbm_badges_deco_pipe_green": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_green"
+    },
     "hbm_imp_hbm_blocks_pipe_top_green": {
       "textures": "textures/imported/hbm/blocks/pipe_top_green"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_green_rusted": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_green_rusted"
     },
     "hbm_imp_hbm_blocks_pipe_top_green_rusty": {
       "textures": "textures/imported/hbm/blocks/pipe_top_green_rusty"
     },
+    "hbm_imp_hbm_badges_deco_pipe_red": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_red"
+    },
     "hbm_imp_hbm_blocks_pipe_top_red": {
       "textures": "textures/imported/hbm/blocks/pipe_top_red"
     },
+    "hbm_imp_hbm_badges_deco_pipe_marked": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_marked"
+    },
     "hbm_imp_hbm_blocks_pipe_top_marked": {
       "textures": "textures/imported/hbm/blocks/pipe_top_marked"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_rim": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_rim"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_rim_rusted": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_rim_rusted"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_rim_green": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_rim_green"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_rim_green_rusted": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_rim_green_rusted"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_rim_red": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_rim_red"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_rim_marked": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_rim_marked"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_framed": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_framed"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_framed_rusted": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_framed_rusted"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_framed_green": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_framed_green"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_framed_green_rusted": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_framed_green_rusted"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_framed_red": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_framed_red"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_framed_marked": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_framed_marked"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_quad": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_quad"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_quad_rusted": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_quad_rusted"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_quad_green": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_quad_green"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_quad_green_rusted": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_quad_green_rusted"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_quad_red": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_quad_red"
+    },
+    "hbm_imp_hbm_badges_deco_pipe_quad_marked": {
+      "textures": "textures/imported/hbm/badges/deco_pipe_quad_marked"
     },
     "hbm_imp_hbm_blocks_broadcaster_pc": {
       "textures": "textures/imported/hbm/blocks/broadcaster_pc"
@@ -1087,6 +1198,9 @@
     "hbm_imp_hbm_blocks_nuke_fstbmb": {
       "textures": "textures/imported/hbm/blocks/nuke_fstbmb"
     },
+    "hbm_imp_hbm_badges_bomb_multi": {
+      "textures": "textures/imported/hbm/badges/bomb_multi"
+    },
     "hbm_imp_hbm_blocks_therm_endo": {
       "textures": "textures/imported/hbm/blocks/therm_endo"
     },
@@ -1116,6 +1230,9 @@
     },
     "hbm_imp_hbm_blocks_barrel_taint": {
       "textures": "textures/imported/hbm/blocks/barrel_taint"
+    },
+    "hbm_imp_hbm_badges_crashed_bomb": {
+      "textures": "textures/imported/hbm/badges/crashed_bomb"
     },
     "hbm_imp_hbm_blocks_block_rust": {
       "textures": "textures/imported/hbm/blocks/block_rust"
@@ -1189,14 +1306,101 @@
     "hbm_imp_hbm_blocks_fissure_bomb_bottom": {
       "textures": "textures/imported/hbm/blocks/fissure_bomb_bottom"
     },
+    "hbm_imp_hbm_badges_pump_steam": {
+      "textures": "textures/imported/hbm/badges/pump_steam"
+    },
+    "hbm_imp_hbm_badges_pump_electric": {
+      "textures": "textures/imported/hbm/badges/pump_electric"
+    },
+    "hbm_imp_hbm_badges_heater_oven": {
+      "textures": "textures/imported/hbm/badges/heater_oven"
+    },
+    "hbm_imp_hbm_badges_heater_oilburner": {
+      "textures": "textures/imported/hbm/badges/heater_oilburner"
+    },
+    "hbm_imp_hbm_badges_heater_electric": {
+      "textures": "textures/imported/hbm/badges/heater_electric"
+    },
+    "hbm_imp_hbm_badges_heater_heatex": {
+      "textures": "textures/imported/hbm/badges/heater_heatex"
+    },
+    "hbm_imp_hbm_badges_furnace_iron": {
+      "textures": "textures/imported/hbm/badges/furnace_iron"
+    },
+    "hbm_imp_hbm_badges_furnace_steel": {
+      "textures": "textures/imported/hbm/badges/furnace_steel"
+    },
     "hbm_imp_hbm_blocks_brick_light_alt": {
       "textures": "textures/imported/hbm/blocks/brick_light_alt"
+    },
+    "hbm_imp_hbm_badges_machine_stirling": {
+      "textures": "textures/imported/hbm/badges/machine_stirling"
+    },
+    "hbm_imp_hbm_badges_machine_stirling_steel": {
+      "textures": "textures/imported/hbm/badges/machine_stirling_steel"
+    },
+    "hbm_imp_hbm_badges_machine_stirling_creative": {
+      "textures": "textures/imported/hbm/badges/machine_stirling_creative"
+    },
+    "hbm_imp_hbm_badges_machine_sawmill": {
+      "textures": "textures/imported/hbm/badges/machine_sawmill"
+    },
+    "hbm_imp_hbm_badges_machine_strand_caster": {
+      "textures": "textures/imported/hbm/badges/machine_strand_caster"
+    },
+    "hbm_imp_hbm_badges_machine_crucible": {
+      "textures": "textures/imported/hbm/badges/machine_crucible"
+    },
+    "hbm_imp_hbm_badges_machine_boiler": {
+      "textures": "textures/imported/hbm/badges/machine_boiler"
+    },
+    "hbm_imp_hbm_badges_machine_industrial_boiler": {
+      "textures": "textures/imported/hbm/badges/machine_industrial_boiler"
+    },
+    "hbm_imp_hbm_badges_foundry_mold": {
+      "textures": "textures/imported/hbm/badges/foundry_mold"
+    },
+    "hbm_imp_hbm_badges_foundry_basin": {
+      "textures": "textures/imported/hbm/badges/foundry_basin"
+    },
+    "hbm_imp_hbm_badges_foundry_channel": {
+      "textures": "textures/imported/hbm/badges/foundry_channel"
+    },
+    "hbm_imp_hbm_badges_foundry_tank": {
+      "textures": "textures/imported/hbm/badges/foundry_tank"
+    },
+    "hbm_imp_hbm_badges_foundry_outlet": {
+      "textures": "textures/imported/hbm/badges/foundry_outlet"
+    },
+    "hbm_imp_hbm_badges_foundry_slagtap": {
+      "textures": "textures/imported/hbm/badges/foundry_slagtap"
+    },
+    "hbm_imp_hbm_badges_machine_blast_furnace": {
+      "textures": "textures/imported/hbm/badges/machine_blast_furnace"
+    },
+    "hbm_imp_hbm_badges_machine_centrifuge": {
+      "textures": "textures/imported/hbm/badges/machine_centrifuge"
+    },
+    "hbm_imp_hbm_badges_machine_gascent": {
+      "textures": "textures/imported/hbm/badges/machine_gascent"
+    },
+    "hbm_imp_hbm_badges_machine_fel": {
+      "textures": "textures/imported/hbm/badges/machine_fel"
+    },
+    "hbm_imp_hbm_badges_machine_silex": {
+      "textures": "textures/imported/hbm/badges/machine_silex"
+    },
+    "hbm_imp_hbm_badges_machine_rotary_furnace": {
+      "textures": "textures/imported/hbm/badges/machine_rotary_furnace"
     },
     "hbm_imp_hbm_blocks_machine_crystallizer": {
       "textures": "textures/imported/hbm/blocks/machine_crystallizer"
     },
     "hbm_imp_hbm_blocks_cyclotron": {
       "textures": "textures/imported/hbm/blocks/cyclotron"
+    },
+    "hbm_imp_hbm_badges_machine_exposure_chamber": {
+      "textures": "textures/imported/hbm/badges/machine_exposure_chamber"
     },
     "hbm_imp_hbm_blocks_machine_radgen": {
       "textures": "textures/imported/hbm/blocks/machine_radgen"
@@ -1228,14 +1432,35 @@
     "hbm_imp_hbm_blocks_hadron_coil_mese": {
       "textures": "textures/imported/hbm/blocks/hadron_coil_mese"
     },
+    "hbm_imp_hbm_badges_machine_arc_furnace": {
+      "textures": "textures/imported/hbm/badges/machine_arc_furnace"
+    },
     "hbm_imp_hbm_blocks_machine_microwave": {
       "textures": "textures/imported/hbm/blocks/machine_microwave"
+    },
+    "hbm_imp_hbm_badges_machine_battery_socket": {
+      "textures": "textures/imported/hbm/badges/machine_battery_socket"
+    },
+    "hbm_imp_hbm_badges_machine_battery_redd": {
+      "textures": "textures/imported/hbm/badges/machine_battery_redd"
+    },
+    "hbm_imp_hbm_badges_capacitor_copper": {
+      "textures": "textures/imported/hbm/badges/capacitor_copper"
+    },
+    "hbm_imp_hbm_badges_machine_combustion_engine": {
+      "textures": "textures/imported/hbm/badges/machine_combustion_engine"
     },
     "hbm_imp_hbm_blocks_rtg": {
       "textures": "textures/imported/hbm/blocks/rtg"
     },
+    "hbm_imp_hbm_badges_machine_radiolysis": {
+      "textures": "textures/imported/hbm/badges/machine_radiolysis"
+    },
     "hbm_imp_hbm_blocks_block_steel_machine": {
       "textures": "textures/imported/hbm/blocks/block_steel_machine"
+    },
+    "hbm_imp_hbm_badges_machine_hephaestus": {
+      "textures": "textures/imported/hbm/badges/machine_hephaestus"
     },
     "hbm_imp_hbm_blocks_red_wire_coated": {
       "textures": "textures/imported/hbm/blocks/red_wire_coated"
@@ -1249,8 +1474,26 @@
     "hbm_imp_hbm_blocks_red_connector": {
       "textures": "textures/imported/hbm/blocks/red_connector"
     },
+    "hbm_imp_hbm_badges_red_pylon": {
+      "textures": "textures/imported/hbm/badges/red_pylon"
+    },
     "hbm_imp_hbm_blocks_red_pylon": {
       "textures": "textures/imported/hbm/blocks/red_pylon"
+    },
+    "hbm_imp_hbm_badges_red_pylon_steel": {
+      "textures": "textures/imported/hbm/badges/red_pylon_steel"
+    },
+    "hbm_imp_hbm_badges_red_pylon_medium_wood": {
+      "textures": "textures/imported/hbm/badges/red_pylon_medium_wood"
+    },
+    "hbm_imp_hbm_badges_red_pylon_medium_wood_transformer": {
+      "textures": "textures/imported/hbm/badges/red_pylon_medium_wood_transformer"
+    },
+    "hbm_imp_hbm_badges_red_pylon_medium_steel": {
+      "textures": "textures/imported/hbm/badges/red_pylon_medium_steel"
+    },
+    "hbm_imp_hbm_badges_red_pylon_medium_steel_transformer": {
+      "textures": "textures/imported/hbm/badges/red_pylon_medium_steel_transformer"
     },
     "hbm_imp_hbm_blocks_red_pylon_large": {
       "textures": "textures/imported/hbm/blocks/red_pylon_large"
@@ -1258,17 +1501,38 @@
     "hbm_imp_hbm_blocks_substation": {
       "textures": "textures/imported/hbm/blocks/substation"
     },
+    "hbm_imp_hbm_badges_network_separator": {
+      "textures": "textures/imported/hbm/badges/network_separator"
+    },
     "hbm_imp_hbm_blocks_machine_detector_off": {
       "textures": "textures/imported/hbm/blocks/machine_detector_off"
     },
+    "hbm_imp_hbm_badges_pipe_anchor_exhaust": {
+      "textures": "textures/imported/hbm/badges/pipe_anchor_exhaust"
+    },
+    "hbm_imp_hbm_badges_pipe_anchor_pneumatic": {
+      "textures": "textures/imported/hbm/badges/pipe_anchor_pneumatic"
+    },
+    "hbm_imp_hbm_badges_flow_control_pump": {
+      "textures": "textures/imported/hbm/badges/flow_control_pump"
+    },
+    "hbm_imp_hbm_badges_machine_drain": {
+      "textures": "textures/imported/hbm/badges/machine_drain"
+    },
     "hbm_imp_hbm_blocks_radio_telex": {
       "textures": "textures/imported/hbm/blocks/radio_telex"
+    },
+    "hbm_imp_hbm_badges_radio_autocal": {
+      "textures": "textures/imported/hbm/badges/radio_autocal"
     },
     "hbm_imp_hbm_blocks_crane_side": {
       "textures": "textures/imported/hbm/blocks/crane_side"
     },
     "hbm_imp_hbm_blocks_crane_partitioner_side": {
       "textures": "textures/imported/hbm/blocks/crane_partitioner_side"
+    },
+    "hbm_imp_hbm_badges_fan": {
+      "textures": "textures/imported/hbm/badges/fan"
     },
     "hbm_imp_hbm_blocks_drone_waypoint": {
       "textures": "textures/imported/hbm/blocks/drone_waypoint"
@@ -1345,6 +1609,12 @@
     "hbm_imp_hbm_blocks_machine_satlinker_side": {
       "textures": "textures/imported/hbm/blocks/machine_satlinker_side"
     },
+    "hbm_imp_hbm_badges_machine_satlink": {
+      "textures": "textures/imported/hbm/badges/machine_satlink"
+    },
+    "hbm_imp_hbm_badges_machine_tape_drive": {
+      "textures": "textures/imported/hbm/badges/machine_tape_drive"
+    },
     "hbm_imp_hbm_blocks_machine_keyforge_side": {
       "textures": "textures/imported/hbm/blocks/machine_keyforge_side"
     },
@@ -1390,6 +1660,9 @@
     "hbm_imp_hbm_blocks_pile_brick_top": {
       "textures": "textures/imported/hbm/blocks/pile_brick_top"
     },
+    "hbm_imp_hbm_badges_pile_device": {
+      "textures": "textures/imported/hbm/badges/pile_device"
+    },
     "hbm_imp_hbm_blocks_pwr_fuel_side": {
       "textures": "textures/imported/hbm/blocks/pwr_fuel_side"
     },
@@ -1423,6 +1696,39 @@
     "hbm_imp_hbm_blocks_fusion_component": {
       "textures": "textures/imported/hbm/blocks/fusion_component"
     },
+    "hbm_imp_hbm_badges_fusion_torus": {
+      "textures": "textures/imported/hbm/badges/fusion_torus"
+    },
+    "hbm_imp_hbm_badges_fusion_klystron": {
+      "textures": "textures/imported/hbm/badges/fusion_klystron"
+    },
+    "hbm_imp_hbm_badges_fusion_klystron_creative": {
+      "textures": "textures/imported/hbm/badges/fusion_klystron_creative"
+    },
+    "hbm_imp_hbm_badges_fusion_breeder": {
+      "textures": "textures/imported/hbm/badges/fusion_breeder"
+    },
+    "hbm_imp_hbm_badges_fusion_collector": {
+      "textures": "textures/imported/hbm/badges/fusion_collector"
+    },
+    "hbm_imp_hbm_badges_fusion_boiler": {
+      "textures": "textures/imported/hbm/badges/fusion_boiler"
+    },
+    "hbm_imp_hbm_badges_fusion_mhdt": {
+      "textures": "textures/imported/hbm/badges/fusion_mhdt"
+    },
+    "hbm_imp_hbm_badges_fusion_coupler": {
+      "textures": "textures/imported/hbm/badges/fusion_coupler"
+    },
+    "hbm_imp_hbm_badges_fusion_plasma_forge": {
+      "textures": "textures/imported/hbm/badges/fusion_plasma_forge"
+    },
+    "hbm_imp_hbm_badges_machine_icf_press": {
+      "textures": "textures/imported/hbm/badges/machine_icf_press"
+    },
+    "hbm_imp_hbm_badges_icf": {
+      "textures": "textures/imported/hbm/badges/icf"
+    },
     "hbm_imp_hbm_blocks_icf_component": {
       "textures": "textures/imported/hbm/blocks/icf_component"
     },
@@ -1437,6 +1743,12 @@
     },
     "hbm_imp_hbm_blocks_watz_casing": {
       "textures": "textures/imported/hbm/blocks/watz_casing"
+    },
+    "hbm_imp_hbm_badges_watz": {
+      "textures": "textures/imported/hbm/badges/watz"
+    },
+    "hbm_imp_hbm_badges_watz_pump": {
+      "textures": "textures/imported/hbm/badges/watz_pump"
     },
     "hbm_imp_hbm_blocks_machine_converter_he_rf": {
       "textures": "textures/imported/hbm/blocks/machine_converter_he_rf"
@@ -1465,6 +1777,9 @@
     "hbm_imp_hbm_blocks_seal_controller": {
       "textures": "textures/imported/hbm/blocks/seal_controller"
     },
+    "hbm_imp_hbm_badges_cargo_elevator": {
+      "textures": "textures/imported/hbm/badges/cargo_elevator"
+    },
     "hbm_imp_hbm_blocks_barbed_wire_model": {
       "textures": "textures/imported/hbm/blocks/barbed_wire_model"
     },
@@ -1486,11 +1801,29 @@
     "hbm_imp_hbm_blocks_spikes": {
       "textures": "textures/imported/hbm/blocks/spikes"
     },
+    "hbm_imp_hbm_badges_charger": {
+      "textures": "textures/imported/hbm/badges/charger"
+    },
+    "hbm_imp_hbm_badges_refueler": {
+      "textures": "textures/imported/hbm/badges/refueler"
+    },
     "hbm_imp_hbm_blocks_tesla": {
       "textures": "textures/imported/hbm/blocks/tesla"
     },
+    "hbm_imp_hbm_badges_launch_pad_rusted": {
+      "textures": "textures/imported/hbm/badges/launch_pad_rusted"
+    },
+    "hbm_imp_hbm_badges_launch_pad_large": {
+      "textures": "textures/imported/hbm/badges/launch_pad_large"
+    },
     "hbm_imp_hbm_blocks_machine_radar": {
       "textures": "textures/imported/hbm/blocks/machine_radar"
+    },
+    "hbm_imp_hbm_badges_machine_radar_large": {
+      "textures": "textures/imported/hbm/badges/machine_radar_large"
+    },
+    "hbm_imp_hbm_badges_radar_screen": {
+      "textures": "textures/imported/hbm/badges/radar_screen"
     },
     "hbm_imp_hbm_blocks_machine_missile_assembly": {
       "textures": "textures/imported/hbm/blocks/machine_missile_assembly"
@@ -1503,6 +1836,12 @@
     },
     "hbm_imp_hbm_blocks_soyuz_launcher": {
       "textures": "textures/imported/hbm/blocks/soyuz_launcher"
+    },
+    "hbm_imp_hbm_badges_launchpad_soyuz": {
+      "textures": "textures/imported/hbm/badges/launchpad_soyuz"
+    },
+    "hbm_imp_hbm_badges_launchpad_lambda": {
+      "textures": "textures/imported/hbm/badges/launchpad_lambda"
     },
     "hbm_imp_hbm_blocks_sat_dock": {
       "textures": "textures/imported/hbm/blocks/sat_dock"
@@ -1518,6 +1857,45 @@
     },
     "hbm_imp_hbm_blocks_crate_can_bottom": {
       "textures": "textures/imported/hbm/blocks/crate_can_bottom"
+    },
+    "hbm_imp_hbm_badges_turret_chekhov": {
+      "textures": "textures/imported/hbm/badges/turret_chekhov"
+    },
+    "hbm_imp_hbm_badges_turret_friendly": {
+      "textures": "textures/imported/hbm/badges/turret_friendly"
+    },
+    "hbm_imp_hbm_badges_turret_jeremy": {
+      "textures": "textures/imported/hbm/badges/turret_jeremy"
+    },
+    "hbm_imp_hbm_badges_turret_tauon": {
+      "textures": "textures/imported/hbm/badges/turret_tauon"
+    },
+    "hbm_imp_hbm_badges_turret_richard": {
+      "textures": "textures/imported/hbm/badges/turret_richard"
+    },
+    "hbm_imp_hbm_badges_turret_howard": {
+      "textures": "textures/imported/hbm/badges/turret_howard"
+    },
+    "hbm_imp_hbm_badges_turret_howard_damaged": {
+      "textures": "textures/imported/hbm/badges/turret_howard_damaged"
+    },
+    "hbm_imp_hbm_badges_turret_maxwell": {
+      "textures": "textures/imported/hbm/badges/turret_maxwell"
+    },
+    "hbm_imp_hbm_badges_turret_fritz": {
+      "textures": "textures/imported/hbm/badges/turret_fritz"
+    },
+    "hbm_imp_hbm_badges_turret_arty": {
+      "textures": "textures/imported/hbm/badges/turret_arty"
+    },
+    "hbm_imp_hbm_badges_turret_himars": {
+      "textures": "textures/imported/hbm/badges/turret_himars"
+    },
+    "hbm_imp_hbm_badges_turret_sentry": {
+      "textures": "textures/imported/hbm/badges/turret_sentry"
+    },
+    "hbm_imp_hbm_badges_turret_sentry_damaged": {
+      "textures": "textures/imported/hbm/badges/turret_sentry_damaged"
     },
     "hbm_imp_hbm_blocks_rbmk_element": {
       "textures": "textures/imported/hbm/blocks/rbmk_element"
@@ -1615,8 +1993,29 @@
     "hbm_imp_hbm_blocks_rbmk_crane_console": {
       "textures": "textures/imported/hbm/blocks/rbmk_crane_console"
     },
+    "hbm_imp_hbm_badges_rbmk_display": {
+      "textures": "textures/imported/hbm/badges/rbmk_display"
+    },
     "hbm_imp_hbm_blocks_rbmk_display": {
       "textures": "textures/imported/hbm/blocks/rbmk_display"
+    },
+    "hbm_imp_hbm_badges_rbmk_key_pad": {
+      "textures": "textures/imported/hbm/badges/rbmk_key_pad"
+    },
+    "hbm_imp_hbm_badges_rbmk_gauge": {
+      "textures": "textures/imported/hbm/badges/rbmk_gauge"
+    },
+    "hbm_imp_hbm_badges_rbmk_numitron": {
+      "textures": "textures/imported/hbm/badges/rbmk_numitron"
+    },
+    "hbm_imp_hbm_badges_rbmk_graph": {
+      "textures": "textures/imported/hbm/badges/rbmk_graph"
+    },
+    "hbm_imp_hbm_badges_rbmk_indicator": {
+      "textures": "textures/imported/hbm/badges/rbmk_indicator"
+    },
+    "hbm_imp_hbm_badges_rbmk_terminal": {
+      "textures": "textures/imported/hbm/badges/rbmk_terminal"
     },
     "hbm_imp_hbm_blocks_rbmk_autoloader": {
       "textures": "textures/imported/hbm/blocks/rbmk_autoloader"
@@ -1702,11 +2101,113 @@
     "hbm_imp_hbm_blocks_boxcar": {
       "textures": "textures/imported/hbm/blocks/boxcar"
     },
+    "hbm_imp_hbm_badges_machine_well": {
+      "textures": "textures/imported/hbm/badges/machine_well"
+    },
+    "hbm_imp_hbm_badges_machine_pumpjack": {
+      "textures": "textures/imported/hbm/badges/machine_pumpjack"
+    },
+    "hbm_imp_hbm_badges_machine_fracking_tower": {
+      "textures": "textures/imported/hbm/badges/machine_fracking_tower"
+    },
+    "hbm_imp_hbm_badges_machine_flare": {
+      "textures": "textures/imported/hbm/badges/machine_flare"
+    },
+    "hbm_imp_hbm_badges_chimney_brick": {
+      "textures": "textures/imported/hbm/badges/chimney_brick"
+    },
     "hbm_imp_hbm_blocks_concrete_colored_ext_machine": {
       "textures": "textures/imported/hbm/blocks/concrete_colored_ext.machine"
     },
+    "hbm_imp_hbm_badges_machine_vacuum_distill": {
+      "textures": "textures/imported/hbm/badges/machine_vacuum_distill"
+    },
+    "hbm_imp_hbm_badges_machine_fraction_tower": {
+      "textures": "textures/imported/hbm/badges/machine_fraction_tower"
+    },
+    "hbm_imp_hbm_badges_fraction_spacer": {
+      "textures": "textures/imported/hbm/badges/fraction_spacer"
+    },
+    "hbm_imp_hbm_badges_machine_catalytic_cracker": {
+      "textures": "textures/imported/hbm/badges/machine_catalytic_cracker"
+    },
+    "hbm_imp_hbm_badges_machine_catalytic_reformer": {
+      "textures": "textures/imported/hbm/badges/machine_catalytic_reformer"
+    },
+    "hbm_imp_hbm_badges_machine_hydrotreater": {
+      "textures": "textures/imported/hbm/badges/machine_hydrotreater"
+    },
+    "hbm_imp_hbm_badges_machine_coker": {
+      "textures": "textures/imported/hbm/badges/machine_coker"
+    },
+    "hbm_imp_hbm_badges_machine_pyrooven": {
+      "textures": "textures/imported/hbm/badges/machine_pyrooven"
+    },
+    "hbm_imp_hbm_badges_machine_autosaw": {
+      "textures": "textures/imported/hbm/badges/machine_autosaw"
+    },
+    "hbm_imp_hbm_badges_machine_thresher": {
+      "textures": "textures/imported/hbm/badges/machine_thresher"
+    },
+    "hbm_imp_hbm_badges_machine_excavator": {
+      "textures": "textures/imported/hbm/badges/machine_excavator"
+    },
+    "hbm_imp_hbm_badges_machine_ore_slopper": {
+      "textures": "textures/imported/hbm/badges/machine_ore_slopper"
+    },
+    "hbm_imp_hbm_badges_machine_annihilator": {
+      "textures": "textures/imported/hbm/badges/machine_annihilator"
+    },
+    "hbm_imp_hbm_badges_machine_rockmill": {
+      "textures": "textures/imported/hbm/badges/machine_rockmill"
+    },
     "hbm_imp_hbm_blocks_machine_mining_laser": {
       "textures": "textures/imported/hbm/blocks/machine_mining_laser"
+    },
+    "hbm_imp_hbm_badges_machine_assembly_machine": {
+      "textures": "textures/imported/hbm/badges/machine_assembly_machine"
+    },
+    "hbm_imp_hbm_badges_machine_assembly_factory": {
+      "textures": "textures/imported/hbm/badges/machine_assembly_factory"
+    },
+    "hbm_imp_hbm_badges_machine_precass": {
+      "textures": "textures/imported/hbm/badges/machine_precass"
+    },
+    "hbm_imp_hbm_badges_machine_arc_welder": {
+      "textures": "textures/imported/hbm/badges/machine_arc_welder"
+    },
+    "hbm_imp_hbm_badges_machine_soldering_station": {
+      "textures": "textures/imported/hbm/badges/machine_soldering_station"
+    },
+    "hbm_imp_hbm_badges_machine_chemical_factory": {
+      "textures": "textures/imported/hbm/badges/machine_chemical_factory"
+    },
+    "hbm_imp_hbm_badges_machine_purex": {
+      "textures": "textures/imported/hbm/badges/machine_purex"
+    },
+    "hbm_imp_hbm_badges_machine_mixer": {
+      "textures": "textures/imported/hbm/badges/machine_mixer"
+    },
+    "hbm_imp_hbm_badges_machine_supercomputer": {
+      "textures": "textures/imported/hbm/badges/machine_supercomputer"
+    },
+    "hbm_imp_hbm_badges_machine_bat9000": {
+      "textures": "textures/imported/hbm/badges/machine_bat9000"
+    },
+    "hbm_imp_hbm_badges_machine_bigasstank": {
+      "textures": "textures/imported/hbm/badges/machine_bigasstank"
+    },
+    "hbm_imp_hbm_badges_machine_orbus": {
+      "textures": "textures/imported/hbm/badges/machine_orbus"
+    },
+    "hbm_imp_hbm_badges_machine_turbofan": {
+      "textures": "textures/imported/hbm/badges/machine_turbofan"
+    },
+    "hbm_imp_hbm_badges_machine_turbinegas": {
+      "textures": "textures/imported/hbm/badges/machine_turbinegas"
+    },
+    "hbm_imp_hbm_badges_machine_lpw2": {
+      "textures": "textures/imported/hbm/badges/machine_lpw2"
     },
     "hbm_imp_hbm_blocks_press_preheater": {
       "textures": "textures/imported/hbm/blocks/press_preheater"
@@ -1714,14 +2215,59 @@
     "hbm_imp_hbm_blocks_machine_epress": {
       "textures": "textures/imported/hbm/blocks/machine_epress"
     },
+    "hbm_imp_hbm_badges_machine_conveyor_press": {
+      "textures": "textures/imported/hbm/badges/machine_conveyor_press"
+    },
+    "hbm_imp_hbm_badges_machine_ammo_press": {
+      "textures": "textures/imported/hbm/badges/machine_ammo_press"
+    },
     "hbm_imp_hbm_blocks_machine_reactor_small": {
       "textures": "textures/imported/hbm/blocks/machine_reactor_small"
+    },
+    "hbm_imp_hbm_badges_machine_zirnox": {
+      "textures": "textures/imported/hbm/badges/machine_zirnox"
+    },
+    "hbm_imp_hbm_badges_machine_steam_engine": {
+      "textures": "textures/imported/hbm/badges/machine_steam_engine"
     },
     "hbm_imp_hbm_blocks_machine_large_turbine": {
       "textures": "textures/imported/hbm/blocks/machine_large_turbine"
     },
+    "hbm_imp_hbm_badges_machine_industrial_turbine": {
+      "textures": "textures/imported/hbm/badges/machine_industrial_turbine"
+    },
+    "hbm_imp_hbm_badges_machine_chungus": {
+      "textures": "textures/imported/hbm/badges/machine_chungus"
+    },
     "hbm_imp_hbm_blocks_condenser": {
       "textures": "textures/imported/hbm/blocks/condenser"
+    },
+    "hbm_imp_hbm_badges_machine_tower_large": {
+      "textures": "textures/imported/hbm/badges/machine_tower_large"
+    },
+    "hbm_imp_hbm_badges_machine_condenser_powered": {
+      "textures": "textures/imported/hbm/badges/machine_condenser_powered"
+    },
+    "hbm_imp_hbm_badges_machine_deuterium_tower": {
+      "textures": "textures/imported/hbm/badges/machine_deuterium_tower"
+    },
+    "hbm_imp_hbm_badges_machine_liquefactor": {
+      "textures": "textures/imported/hbm/badges/machine_liquefactor"
+    },
+    "hbm_imp_hbm_badges_machine_solidifier": {
+      "textures": "textures/imported/hbm/badges/machine_solidifier"
+    },
+    "hbm_imp_hbm_badges_machine_intake": {
+      "textures": "textures/imported/hbm/badges/machine_intake"
+    },
+    "hbm_imp_hbm_badges_machine_compressor": {
+      "textures": "textures/imported/hbm/badges/machine_compressor"
+    },
+    "hbm_imp_hbm_badges_machine_compressor_compact": {
+      "textures": "textures/imported/hbm/badges/machine_compressor_compact"
+    },
+    "hbm_imp_hbm_badges_machine_electrolyser": {
+      "textures": "textures/imported/hbm/badges/machine_electrolyser"
     },
     "hbm_imp_hbm_blocks_machine_autocrafter_side": {
       "textures": "textures/imported/hbm/blocks/machine_autocrafter_side"
@@ -1915,17 +2461,26 @@
     "hbm_imp_ext_blocks_waste_ice": {
       "textures": "textures/imported/ext/blocks/waste_ice"
     },
-    "hbm_imp_ext_blocks_block_graphite": {
-      "textures": "textures/imported/ext/blocks/block_graphite"
+    "hbm_imp_ext_badges_block_graphite_drilled": {
+      "textures": "textures/imported/ext/badges/block_graphite_drilled"
     },
     "hbm_imp_ext_blocks_block_graphite_drilled": {
       "textures": "textures/imported/ext/blocks/block_graphite_drilled"
     },
+    "hbm_imp_ext_badges_block_graphite_fuel": {
+      "textures": "textures/imported/ext/badges/block_graphite_fuel"
+    },
     "hbm_imp_ext_blocks_block_graphite_fuel": {
       "textures": "textures/imported/ext/blocks/block_graphite_fuel"
     },
+    "hbm_imp_ext_badges_block_graphite_plutonium": {
+      "textures": "textures/imported/ext/badges/block_graphite_plutonium"
+    },
     "hbm_imp_ext_blocks_block_graphite_plutonium": {
       "textures": "textures/imported/ext/blocks/block_graphite_plutonium"
+    },
+    "hbm_imp_ext_badges_block_graphite_source": {
+      "textures": "textures/imported/ext/badges/block_graphite_source"
     },
     "hbm_imp_ext_blocks_block_graphite_source": {
       "textures": "textures/imported/ext/blocks/block_graphite_source"
@@ -1938,6 +2493,9 @@
     },
     "hbm_imp_ext_blocks_basalt_gem": {
       "textures": "textures/imported/ext/blocks/basalt_gem"
+    },
+    "hbm_imp_ext_badges_iter": {
+      "textures": "textures/imported/ext/badges/iter"
     },
     "hbm_imp_ext_blocks_block_steel": {
       "textures": "textures/imported/ext/blocks/block_steel"

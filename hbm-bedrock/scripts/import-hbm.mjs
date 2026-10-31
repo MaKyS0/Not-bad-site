@@ -329,6 +329,76 @@ function copyTexture(src, outName) {
   return `textures/imported/${outName}`;
 }
 
+// ---------- distinct faces for blocks that share a placeholder texture ----------
+// HBM gives many 3D-model machines the plain steel block as texture. Here such blocks get a badge on
+// their sides: a thumbnail of their model's texture sheet when there is one, otherwise a coloured
+// plate with two letters of their name.
+
+function loadRgba(path) {
+  const png = UPNG.decode(readFileSync(path));
+  return { w: png.width, h: png.height, rgba: new Uint8Array(UPNG.toRGBA8(png)[0]) };
+}
+
+/** Box-filtered resize, ignoring fully transparent pixels. */
+function shrink(img, size) {
+  const out = new Uint8Array(size * size * 4);
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const x0 = Math.floor((x * img.w) / size), x1 = Math.max(x0 + 1, Math.floor(((x + 1) * img.w) / size));
+      const y0 = Math.floor((y * img.h) / size), y1 = Math.max(y0 + 1, Math.floor(((y + 1) * img.h) / size));
+      let r = 0, g = 0, b = 0, n = 0;
+      for (let yy = y0; yy < y1; yy++) {
+        for (let xx = x0; xx < x1; xx++) {
+          const i = (yy * img.w + xx) * 4;
+          if (img.rgba[i + 3] < 16) continue;
+          r += img.rgba[i]; g += img.rgba[i + 1]; b += img.rgba[i + 2]; n++;
+        }
+      }
+      const o = (y * size + x) * 4;
+      if (n) out.set([r / n, g / n, b / n, 255], o);
+    }
+  }
+  return { w: size, h: size, rgba: out };
+}
+
+const FONT = {
+  A: "010101111101101", B: "110101110101110", C: "011100100100011", D: "110101101101110", E: "111100110100111", F: "111100110100100",
+  G: "011100101101011", H: "101101111101101", I: "111010010010111", J: "001001001101010", K: "101101110101101", L: "100100100100111",
+  M: "101111111101101", N: "110101101101101", O: "010101101101010", P: "110101110100100", Q: "010101101110011", R: "110101110101101",
+  S: "011100010001110", T: "111010010010010", U: "101101101101111", V: "101101101101010", W: "101101111111101", X: "101101010101101",
+  Y: "101101010010010", Z: "111001010100111", 0: "111101101101111", 1: "010110010010111", 2: "110001010100111", 3: "110001010001110",
+  4: "101101111001001", 5: "111100110001110", 6: "011100110101010", 7: "111001010010010", 8: "010101010101010", 9: "010101011001110",
+};
+
+/** The pack's own side face for `id`: the shared texture with a badge in its centre. */
+function badgeFace(baseFile, id, sheet, dest) {
+  const base = shrink(loadRgba(baseFile), 16);
+  const px = (x, y, c) => base.rgba.set([...c, 255], (y * 16 + x) * 4);
+  let hash = 0;
+  for (const ch of id) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+  const hue = [(hash >> 0) & 255, (hash >> 8) & 255, (hash >> 16) & 255].map((v) => 60 + (v % 160));
+  // frame
+  for (let i = 2; i < 14; i++) for (const [x, y] of [[i, 2], [i, 13], [2, i], [13, i]]) px(x, y, [30, 30, 34]);
+  if (sheet) {
+    const thumb = shrink(loadRgba(sheet), 10);
+    for (let y = 0; y < 10; y++) for (let x = 0; x < 10; x++) {
+      const i = (y * 10 + x) * 4;
+      px(3 + x, 3 + y, thumb.rgba[i + 3] ? [thumb.rgba[i], thumb.rgba[i + 1], thumb.rgba[i + 2]] : hue);
+    }
+  } else {
+    for (let y = 3; y < 13; y++) for (let x = 3; x < 13; x++) px(x, y, hue);
+    const words = id.replace(/^(machine|deco|turret|rbmk|fusion|foundry|red|heater)_/, "").split("_").filter(Boolean);
+    const letters = (words.length > 1 ? words[0][0] + words[1][0] : (words[0] ?? id).slice(0, 2)).toUpperCase();
+    [...letters].forEach((ch, n) => {
+      const glyph = FONT[ch];
+      if (!glyph) return;
+      for (let gy = 0; gy < 5; gy++) for (let gx = 0; gx < 3; gx++) if (glyph[gy * 3 + gx] === "1") px(4 + n * 4 + gx, 5 + gy, [20, 20, 24]);
+    });
+  }
+  mkdirSync(dirname(dest), { recursive: true });
+  writeFileSync(dest, Buffer.from(UPNG.encode([base.rgba.buffer], 16, 16, 0)));
+}
+
 /** HBM's autogen colouring: grey 0x505050..0xFFFFFF maps onto the material's dark..light colour. */
 function tint(src, dest, light, dark) {
   const png = UPNG.decode(readFileSync(src));
@@ -904,7 +974,20 @@ function readMod(repo, source) {
     const fm = /^hbmfluid\.(\w+)$/.exec(key);
     if (fm) fluidNames[fm[1]] = { en: value, ru: ru.get(key) ?? value };
   }
-  return { items, blocks, recipes, rads, seen, machineRecipes, fluidNames };
+  // Model texture sheets by file name, for badges on blocks that share a placeholder texture.
+  const sheets = new Map();
+  const texRoot = join(assets, "textures");
+  for (const f of readdirSync(texRoot, { recursive: true }).map(String)) {
+    if (!f.endsWith(".png") || /^(items|blocks|gui)[\\/]/.test(f)) continue;
+    const base = f.replace(/^.*[\\/]/, "").replace(/\.png$/, "").toLowerCase();
+    if (!sheets.has(base)) sheets.set(base, join(texRoot, f));
+  }
+  const sheetFor = (id) => {
+    const stem = id.replace(/^machine_/, "");
+    for (const name of [id, stem, `${stem}_base`, `${stem}_body`, `${stem}_tex`, `${stem}_new`]) if (sheets.has(name)) return sheets.get(name);
+    return undefined;
+  };
+  return { items, blocks, recipes, rads, seen, machineRecipes, fluidNames, sheetFor };
 }
 
 /** Top/side/bottom texture files for a block texture name, or undefined if there is none. */
@@ -1017,12 +1100,19 @@ const taken = new Set();
 
 /** @param {ReturnType<typeof readMod>} mod */
 function add(mod, source) {
+  const sharing = new Map();
+  for (const b of mod.blocks.values()) sharing.set(b.faces.side, (sharing.get(b.faces.side) ?? 0) + 1);
   for (const block of mod.blocks.values()) {
     if (taken.has(block.id) || HANDMADE.has(`hbm:${block.id}`)) continue;
     taken.add(block.id);
     const faces = Object.fromEntries(
       Object.entries(block.faces).map(([face, file]) => [face, copyTexture(file, `${source}/blocks/${relative(dirname(file), file).replace(/\.png$/, "")}`)])
     );
+    if ((sharing.get(block.faces.side) ?? 0) >= 3) {
+      const name = `${source}/badges/${block.id}`;
+      badgeFace(block.faces.side, block.id, mod.sheetFor?.(block.id), join(TEXTURE_OUT, `${name}.png`));
+      faces.side = `textures/imported/${name}`;
+    }
     catalog.blocks.push({ ...block, faces, source });
   }
   for (const item of mod.items.values()) {

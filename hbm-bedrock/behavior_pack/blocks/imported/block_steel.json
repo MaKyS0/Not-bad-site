@@ -18,23 +18,23 @@
       "minecraft:geometry": "geometry.hbm.machine",
       "minecraft:material_instances": {
         "*": {
-          "texture": "hbm_imp_hbm_blocks_block_steel",
+          "texture": "hbm_imp_hbm_badges_block_steel",
           "render_method": "alpha_test"
         },
         "north": {
-          "texture": "hbm_imp_hbm_blocks_block_steel",
+          "texture": "hbm_imp_hbm_badges_block_steel",
           "render_method": "alpha_test"
         },
         "south": {
-          "texture": "hbm_imp_hbm_blocks_block_steel",
+          "texture": "hbm_imp_hbm_badges_block_steel",
           "render_method": "alpha_test"
         },
         "east": {
-          "texture": "hbm_imp_hbm_blocks_block_steel",
+          "texture": "hbm_imp_hbm_badges_block_steel",
           "render_method": "alpha_test"
         },
         "west": {
-          "texture": "hbm_imp_hbm_blocks_block_steel",
+          "texture": "hbm_imp_hbm_badges_block_steel",
           "render_method": "alpha_test"
         },
         "up": {
