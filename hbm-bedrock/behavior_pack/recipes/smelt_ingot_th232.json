@@ -1,0 +1,14 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:smelt_ingot_th232"
+    },
+    "tags": [
+      "furnace",
+      "blast_furnace"
+    ],
+    "input": "hbm:ore_thorium",
+    "output": "hbm:ingot_th232"
+  }
+}

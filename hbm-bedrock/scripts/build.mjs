@@ -1,5 +1,5 @@
-// Packs the add-on into dist/: hbm-bedrock.mcaddon holds both packs, and each pack
-// also gets its own .mcpack, which some devices import more reliably.
+// Packs the add-on into dist/: hbm-bedrock.mcaddon holds both HBM packs, each pack also gets
+// its own .mcpack, which some devices import more reliably, and ClearLag ships on its own.
 import { readFileSync, readdirSync, mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -23,6 +23,7 @@ const outputs = {
   "hbm-bedrock.mcaddon": { hbm_behavior_pack: bp, hbm_resource_pack: rp },
   "hbm-bedrock-BP.mcpack": bp,
   "hbm-bedrock-RP.mcpack": rp,
+  "clearlag.mcpack": tree(join(root, "clearlag_pack")),
 };
 
 mkdirSync(join(root, "dist"), { recursive: true });

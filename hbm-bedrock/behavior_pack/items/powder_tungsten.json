@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:powder_tungsten",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_powder_tungsten"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.powder_tungsten.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

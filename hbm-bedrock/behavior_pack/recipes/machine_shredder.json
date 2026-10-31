@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:machine_shredder"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "ITI",
+      "PRP",
+      "ICI"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "T": {
+        "item": "hbm:ingot_tungsten"
+      },
+      "P": {
+        "item": "minecraft:piston"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      },
+      "C": {
+        "item": "minecraft:copper_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_shredder",
+      "count": 1
+    }
+  }
+}

@@ -21,7 +21,7 @@
           "render_method": "opaque"
         }
       },
-      "minecraft:map_color": "#3f5f2a",
+      "minecraft:map_color": "#9a9a9a",
       "tag:minecraft:is_pickaxe_item_destructible": {},
       "tag:stone": {}
     }

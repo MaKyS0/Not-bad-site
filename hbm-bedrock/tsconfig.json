@@ -9,8 +9,13 @@
     "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
-    "lib": ["ES2022"],
+    "lib": [
+      "ES2022"
+    ],
     "types": []
   },
-  "include": ["behavior_pack/scripts"]
+  "include": [
+    "behavior_pack/scripts",
+    "clearlag_pack/scripts"
+  ]
 }

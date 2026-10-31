@@ -1,0 +1,14 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:smelt_powder_beryllium"
+    },
+    "tags": [
+      "furnace",
+      "blast_furnace"
+    ],
+    "input": "hbm:powder_beryllium",
+    "output": "hbm:ingot_beryllium"
+  }
+}

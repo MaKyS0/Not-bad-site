@@ -13,6 +13,27 @@
     "hbm_ore_lead": {
       "textures": "textures/blocks/ore_lead"
     },
+    "hbm_ore_thorium": {
+      "textures": "textures/blocks/ore_thorium"
+    },
+    "hbm_ore_tungsten": {
+      "textures": "textures/blocks/ore_tungsten"
+    },
+    "hbm_ore_aluminium": {
+      "textures": "textures/blocks/ore_aluminium"
+    },
+    "hbm_ore_beryllium": {
+      "textures": "textures/blocks/ore_beryllium"
+    },
+    "hbm_ore_sulfur": {
+      "textures": "textures/blocks/ore_sulfur"
+    },
+    "hbm_ore_niter": {
+      "textures": "textures/blocks/ore_niter"
+    },
+    "hbm_ore_fluorite": {
+      "textures": "textures/blocks/ore_fluorite"
+    },
     "hbm_block_uranium": {
       "textures": "textures/blocks/block_uranium"
     },
@@ -21,6 +42,60 @@
     },
     "hbm_block_lead": {
       "textures": "textures/blocks/block_lead"
+    },
+    "hbm_machine_furnace_brick_front_off": {
+      "textures": "textures/blocks/machine_furnace_brick_front_off"
+    },
+    "hbm_machine_furnace_brick_front_on": {
+      "textures": "textures/blocks/machine_furnace_brick_front_on"
+    },
+    "hbm_machine_furnace_brick_side": {
+      "textures": "textures/blocks/machine_furnace_brick_side"
+    },
+    "hbm_machine_furnace_brick_top": {
+      "textures": "textures/blocks/machine_furnace_brick_top"
+    },
+    "hbm_machine_furnace_brick_bottom": {
+      "textures": "textures/blocks/machine_furnace_brick_bottom"
+    },
+    "hbm_machine_electric_furnace_front_off": {
+      "textures": "textures/blocks/machine_electric_furnace_front_off"
+    },
+    "hbm_machine_electric_furnace_front_on": {
+      "textures": "textures/blocks/machine_electric_furnace_front_on"
+    },
+    "hbm_machine_electric_furnace_side": {
+      "textures": "textures/blocks/machine_electric_furnace_side"
+    },
+    "hbm_machine_electric_furnace_top": {
+      "textures": "textures/blocks/machine_electric_furnace_top"
+    },
+    "hbm_machine_electric_furnace_bottom": {
+      "textures": "textures/blocks/machine_electric_furnace_bottom"
+    },
+    "hbm_machine_shredder_front_alt": {
+      "textures": "textures/blocks/machine_shredder_front_alt"
+    },
+    "hbm_machine_shredder_side_alt": {
+      "textures": "textures/blocks/machine_shredder_side_alt"
+    },
+    "hbm_machine_shredder_top_alt": {
+      "textures": "textures/blocks/machine_shredder_top_alt"
+    },
+    "hbm_machine_shredder_bottom_alt": {
+      "textures": "textures/blocks/machine_shredder_bottom_alt"
+    },
+    "hbm_battery_front_alt": {
+      "textures": "textures/blocks/battery_front_alt"
+    },
+    "hbm_battery_side_alt": {
+      "textures": "textures/blocks/battery_side_alt"
+    },
+    "hbm_battery_top": {
+      "textures": "textures/blocks/battery_top"
+    },
+    "hbm_red_cable": {
+      "textures": "textures/blocks/red_cable"
     }
   }
 }

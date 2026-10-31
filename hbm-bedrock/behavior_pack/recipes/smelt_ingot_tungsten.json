@@ -1,0 +1,14 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:smelt_ingot_tungsten"
+    },
+    "tags": [
+      "furnace",
+      "blast_furnace"
+    ],
+    "input": "hbm:ore_tungsten",
+    "output": "hbm:ingot_tungsten"
+  }
+}

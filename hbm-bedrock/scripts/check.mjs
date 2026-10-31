@@ -32,6 +32,10 @@ for (const [, doc] of [...inDir("blocks"), ...inDir("items")]) {
   ids.add((doc["minecraft:block"] ?? doc["minecraft:item"]).description.identifier);
 }
 
+const geometries = new Map(
+  inDir("models").flatMap(([, doc]) => doc["minecraft:geometry"].map((g) => [g.description.identifier, g]))
+);
+
 const terrain = docs.get(join(RP, "textures/terrain_texture.json")).texture_data;
 const itemTex = docs.get(join(RP, "textures/item_texture.json")).texture_data;
 for (const atlas of [terrain, itemTex]) {
@@ -57,10 +61,38 @@ const needLang = (key, where) => {
 
 for (const [path, doc] of inDir("blocks")) {
   const c = doc["minecraft:block"].components;
-  for (const { texture } of Object.values(c["minecraft:material_instances"])) {
-    if (!terrain[texture]) errors.push(`${path}: unknown terrain texture ${texture}`);
+  const variants = [c, ...(doc["minecraft:block"].permutations ?? []).map((p) => p.components)];
+  for (const variant of variants) {
+    for (const { texture } of Object.values(variant["minecraft:material_instances"] ?? {})) {
+      if (!terrain[texture]) errors.push(`${path}: unknown terrain texture ${texture}`);
+    }
   }
   needLang(c["minecraft:display_name"], path);
+
+  const geometry = c["minecraft:geometry"];
+  if (geometry) {
+    const id = typeof geometry === "string" ? geometry : geometry.identifier;
+    const model = geometries.get(id);
+    if (!model) {
+      errors.push(`${path}: unknown geometry ${id}`);
+    } else {
+      const states = Object.keys(doc["minecraft:block"].description.states ?? {});
+      for (const [bone, expr] of Object.entries(geometry.bone_visibility ?? {})) {
+        if (!model.bones.some((b) => b.name === bone)) errors.push(`${path}: geometry has no bone ${bone}`);
+        for (const [, state] of String(expr).matchAll(/q\.block_state\('([^']+)'\)/g)) {
+          if (!states.includes(state)) errors.push(`${path}: undeclared state ${state}`);
+        }
+      }
+    }
+  }
+  const loot = c["minecraft:loot"];
+  if (loot) {
+    const table = docs.get(join(BP, loot));
+    if (!table) errors.push(`${path}: missing ${loot}`);
+    for (const entry of table?.pools.flatMap((p) => p.entries) ?? []) {
+      if (!ids.has(entry.name)) errors.push(`${loot}: unknown item ${entry.name}`);
+    }
+  }
 }
 
 for (const [path, doc] of inDir("items")) {
@@ -112,19 +144,23 @@ for (const [name, def] of Object.entries(sounds)) {
   for (const file of def.sounds) if (!existsSync(join(RP, `${file}.ogg`))) errors.push(`sound ${name}: missing ${file}.ogg`);
 }
 
-// Ids, sounds and lang keys the script refers to by string.
-const script = readFileSync(join(BP, "scripts/main.js"), "utf8");
-for (const [, id] of script.matchAll(/"(hbm:[a-z_]+)"/g)) {
-  if (!ids.has(id) && !id.startsWith("hbm:rad") && id !== "hbm:setrads") errors.push(`main.js: unknown id ${id}`);
+// Ids, sounds and lang keys the scripts refer to by string. Property, state and event names are not items.
+const NOT_ITEMS = new Set(["hbm:rads", "hbm:radx_seconds", "hbm:radaway_left", "hbm:setrads", "hbm:lit"]);
+for (const file of readdirSync(join(BP, "scripts")).filter((f) => f.endsWith(".js"))) {
+  const script = readFileSync(join(BP, "scripts", file), "utf8");
+  for (const [, id] of script.matchAll(/"(hbm:[a-z0-9_]+)"/g)) {
+    if (!ids.has(id) && !NOT_ITEMS.has(id)) errors.push(`${file}: unknown id ${id}`);
+  }
+  for (const [, key] of script.matchAll(/translate: "([^"]+)"/g)) needLang(key, file);
 }
-for (const [, key] of script.matchAll(/translate: "([^"]+)"/g)) needLang(key, "main.js");
-for (const n of [1, 2, 3, 4, 5, 6]) if (!sounds[`hbm.geiger${n}`]) errors.push(`main.js: sound hbm.geiger${n} undefined`);
+for (const n of [1, 2, 3, 4, 5, 6]) if (!sounds[`hbm.geiger${n}`]) errors.push(`radiation.js: sound hbm.geiger${n} undefined`);
 
 const bp = docs.get(join(BP, "manifest.json"));
 const rp = docs.get(join(RP, "manifest.json"));
 if (!bp.dependencies.some((d) => d.uuid === rp.header.uuid)) errors.push("BP manifest does not depend on the RP");
 if (!rp.dependencies.some((d) => d.uuid === bp.header.uuid)) errors.push("RP manifest does not depend on the BP");
-const uuids = [bp.header, ...bp.modules, rp.header, ...rp.modules].map((m) => m.uuid);
+const clearlag = readJson(join(root, "clearlag_pack/manifest.json"));
+const uuids = [bp, rp, clearlag].flatMap((m) => [m.header, ...m.modules]).map((m) => m.uuid);
 if (new Set(uuids).size !== uuids.length) errors.push("manifest UUIDs are not unique");
 
 if (errors.length) {

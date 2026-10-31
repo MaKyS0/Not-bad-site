@@ -10,7 +10,7 @@
     "pattern": [
       "GTT",
       "RCT",
-      "RTT"
+      "RBB"
     ],
     "key": {
       "G": {
@@ -24,6 +24,9 @@
       },
       "C": {
         "item": "minecraft:copper_ingot"
+      },
+      "B": {
+        "item": "hbm:ingot_beryllium"
       }
     },
     "result": {

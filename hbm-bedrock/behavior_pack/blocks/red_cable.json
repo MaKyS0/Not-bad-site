@@ -1,0 +1,90 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:red_cable",
+      "menu_category": {
+        "category": "items"
+      },
+      "states": {
+        "hbm:n": [
+          false,
+          true
+        ],
+        "hbm:s": [
+          false,
+          true
+        ],
+        "hbm:e": [
+          false,
+          true
+        ],
+        "hbm:w": [
+          false,
+          true
+        ],
+        "hbm:u": [
+          false,
+          true
+        ],
+        "hbm:d": [
+          false,
+          true
+        ]
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.red_cable.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.5
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 5
+      },
+      "minecraft:geometry": {
+        "identifier": "geometry.hbm.cable",
+        "bone_visibility": {
+          "n": "q.block_state('hbm:n')",
+          "s": "q.block_state('hbm:s')",
+          "e": "q.block_state('hbm:e')",
+          "w": "q.block_state('hbm:w')",
+          "u": "q.block_state('hbm:u')",
+          "d": "q.block_state('hbm:d')"
+        }
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_red_cable",
+          "render_method": "opaque",
+          "ambient_occlusion": false
+        }
+      },
+      "minecraft:collision_box": {
+        "origin": [
+          -3,
+          5,
+          -3
+        ],
+        "size": [
+          6,
+          6,
+          6
+        ]
+      },
+      "minecraft:selection_box": {
+        "origin": [
+          -4,
+          4,
+          -4
+        ],
+        "size": [
+          8,
+          8,
+          8
+        ]
+      },
+      "minecraft:light_dampening": 0,
+      "minecraft:map_color": "#b03a1a"
+    }
+  }
+}

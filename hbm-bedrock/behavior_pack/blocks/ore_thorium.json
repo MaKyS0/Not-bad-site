@@ -1,0 +1,30 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:ore_thorium",
+      "menu_category": {
+        "category": "nature",
+        "group": "minecraft:itemGroup.name.ore"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.ore_thorium.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 3
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 3
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_ore_thorium",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#7a7a7a",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:stone": {}
+    }
+  }
+}

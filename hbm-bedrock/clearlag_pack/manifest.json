@@ -1,0 +1,30 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "ClearLag (Bedrock)",
+    "description": "Clears dropped items, XP orbs and arrows on a timer and reports TPS",
+    "uuid": "c1ff57f7-ff73-4661-a663-3187efee942c",
+    "version": [0, 1, 0],
+    "min_engine_version": [1, 21, 90]
+  },
+  "modules": [
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "282817b2-6be4-4f90-bd2d-e652496495de",
+      "entry": "scripts/main.js",
+      "version": [0, 1, 0]
+    },
+    {
+      "type": "data",
+      "uuid": "549054fe-9076-4569-af79-9378a3294940",
+      "version": [0, 1, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.0.0"
+    }
+  ]
+}

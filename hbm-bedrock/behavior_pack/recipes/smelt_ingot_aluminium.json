@@ -1,0 +1,14 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:smelt_ingot_aluminium"
+    },
+    "tags": [
+      "furnace",
+      "blast_furnace"
+    ],
+    "input": "hbm:ore_aluminium",
+    "output": "hbm:ingot_aluminium"
+  }
+}

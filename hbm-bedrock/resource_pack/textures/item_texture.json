@@ -5,14 +5,74 @@
     "hbm_ingot_uranium": {
       "textures": "textures/items/ingot_uranium"
     },
+    "hbm_powder_uranium": {
+      "textures": "textures/items/powder_uranium"
+    },
     "hbm_ingot_titanium": {
       "textures": "textures/items/ingot_titanium"
+    },
+    "hbm_powder_titanium": {
+      "textures": "textures/items/powder_titanium"
     },
     "hbm_ingot_lead": {
       "textures": "textures/items/ingot_lead"
     },
+    "hbm_powder_lead": {
+      "textures": "textures/items/powder_lead"
+    },
+    "hbm_ingot_th232": {
+      "textures": "textures/items/ingot_th232"
+    },
+    "hbm_powder_thorium": {
+      "textures": "textures/items/powder_thorium"
+    },
+    "hbm_ingot_tungsten": {
+      "textures": "textures/items/ingot_tungsten"
+    },
+    "hbm_powder_tungsten": {
+      "textures": "textures/items/powder_tungsten"
+    },
+    "hbm_ingot_aluminium": {
+      "textures": "textures/items/ingot_aluminium"
+    },
+    "hbm_powder_aluminium": {
+      "textures": "textures/items/powder_aluminium"
+    },
+    "hbm_ingot_beryllium": {
+      "textures": "textures/items/ingot_beryllium"
+    },
+    "hbm_powder_beryllium": {
+      "textures": "textures/items/powder_beryllium"
+    },
+    "hbm_sulfur": {
+      "textures": "textures/items/sulfur"
+    },
+    "hbm_niter": {
+      "textures": "textures/items/niter"
+    },
+    "hbm_fluorite": {
+      "textures": "textures/items/fluorite"
+    },
     "hbm_nugget_uranium": {
       "textures": "textures/items/nugget_uranium"
+    },
+    "hbm_ingot_steel": {
+      "textures": "textures/items/ingot_steel"
+    },
+    "hbm_powder_steel": {
+      "textures": "textures/items/powder_steel"
+    },
+    "hbm_powder_iron": {
+      "textures": "textures/items/powder_iron"
+    },
+    "hbm_powder_gold": {
+      "textures": "textures/items/powder_gold"
+    },
+    "hbm_powder_copper": {
+      "textures": "textures/items/powder_copper"
+    },
+    "hbm_powder_coal": {
+      "textures": "textures/items/powder_coal"
     },
     "hbm_hazmat_cloth": {
       "textures": "textures/items/hazmat_cloth"
