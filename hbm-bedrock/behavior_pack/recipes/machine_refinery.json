@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:machine_refinery"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PDP",
+      "PFP",
+      "MCM"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "D": {
+        "item": "hbm:fluid_duct"
+      },
+      "F": {
+        "item": "minecraft:furnace"
+      },
+      "M": {
+        "item": "hbm:motor"
+      },
+      "C": {
+        "item": "hbm:circuit"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_refinery",
+      "count": 1
+    }
+  }
+}

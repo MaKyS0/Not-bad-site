@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:machine_assembler"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SPS",
+      "CRC",
+      "SFS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "P": {
+        "item": "minecraft:piston"
+      },
+      "C": {
+        "item": "minecraft:copper_ingot"
+      },
+      "R": {
+        "item": "minecraft:redstone_block"
+      },
+      "F": {
+        "item": "minecraft:crafting_table"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_assembler",
+      "count": 1
+    }
+  }
+}

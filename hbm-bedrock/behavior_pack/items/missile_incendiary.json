@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:missile_incendiary",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_missile_incendiary"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.missile_incendiary.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:designator"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "TG",
+      "PC"
+    ],
+    "key": {
+      "T": {
+        "item": "minecraft:redstone_torch"
+      },
+      "G": {
+        "item": "minecraft:glass_pane"
+      },
+      "P": {
+        "item": "hbm:plate_iron"
+      },
+      "C": {
+        "item": "hbm:circuit"
+      }
+    },
+    "result": {
+      "item": "hbm:designator",
+      "count": 1
+    }
+  }
+}

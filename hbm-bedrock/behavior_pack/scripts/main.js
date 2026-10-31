@@ -3,9 +3,13 @@ import { world } from "@minecraft/server";
 import { startRadiation } from "./radiation.js";
 import { startMachines } from "./machines.js";
 import { startBombs } from "./bombs.js";
+import { startMissiles } from "./missiles.js";
+import { startWeapons } from "./weapons.js";
 
 world.afterEvents.worldLoad.subscribe(() => {
   startRadiation();
   startMachines();
   startBombs();
+  startMissiles();
+  startWeapons();
 });

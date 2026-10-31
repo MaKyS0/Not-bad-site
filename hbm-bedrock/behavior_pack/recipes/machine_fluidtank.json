@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:machine_fluidtank"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PDP",
+      "P P",
+      "PDP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "D": {
+        "item": "hbm:fluid_duct"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_fluidtank",
+      "count": 1
+    }
+  }
+}

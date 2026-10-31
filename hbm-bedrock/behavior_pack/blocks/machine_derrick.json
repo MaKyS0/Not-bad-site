@@ -1,0 +1,112 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:machine_derrick",
+      "menu_category": {
+        "category": "items"
+      },
+      "traits": {
+        "minecraft:placement_direction": {
+          "enabled_states": [
+            "minecraft:cardinal_direction"
+          ],
+          "y_rotation_offset": 180
+        }
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.machine_derrick.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 4
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 10
+      },
+      "minecraft:geometry": "geometry.hbm.machine",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_block_steel",
+          "render_method": "opaque"
+        },
+        "north": {
+          "texture": "hbm_machine_derrick_front",
+          "render_method": "opaque"
+        },
+        "south": {
+          "texture": "hbm_block_steel",
+          "render_method": "opaque"
+        },
+        "east": {
+          "texture": "hbm_block_steel",
+          "render_method": "opaque"
+        },
+        "west": {
+          "texture": "hbm_block_steel",
+          "render_method": "opaque"
+        },
+        "up": {
+          "texture": "hbm_block_steel",
+          "render_method": "opaque"
+        },
+        "down": {
+          "texture": "hbm_block_steel",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#8c8c8c",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:metal": {}
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              90,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              180,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              -90,
+              0
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

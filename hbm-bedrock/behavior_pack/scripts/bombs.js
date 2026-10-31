@@ -116,11 +116,12 @@ function detonate(dim, location, type) {
 
 /**
  * A nuclear blast of the given crater radius: flash, blast damage and radiation dose out to twice
- * the radius, a spherical crater, scorched land and a fallout zone of `fallout` RAD/s at the centre.
+ * the radius, a spherical crater, scorched land and a fallout zone of `fallout` RAD/s at the centre
+ * reaching `falloutRadius` blocks (twice the crater radius unless given).
  * @param {import("@minecraft/server").Dimension} dimension
  * @param {{x: number, y: number, z: number}} center
  */
-export function nuke(dimension, center, radius, { fallout }) {
+export function nuke(dimension, center, radius, { fallout, falloutRadius = radius * 2 }) {
   const reach = radius * 2;
   for (const entity of dimension.getEntities({ location: center, maxDistance: reach })) {
     const closeness = 1 - Math.hypot(entity.location.x - center.x, entity.location.y - center.y, entity.location.z - center.z) / reach;
@@ -138,7 +139,7 @@ export function nuke(dimension, center, radius, { fallout }) {
     player.playSound("ambient.weather.thunder", { volume: 4, pitch: 0.6 });
   }
   mushroomCloud(dimension, center, radius);
-  addFallout(dimension.id, center, reach, fallout);
+  addFallout(dimension.id, center, falloutRadius, fallout);
   system.runJob(blastJob(dimension, center, radius));
 }
 

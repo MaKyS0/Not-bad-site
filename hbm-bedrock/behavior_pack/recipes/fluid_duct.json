@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:fluid_duct"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "PGP",
+      " P "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_iron"
+      },
+      "G": {
+        "item": "minecraft:glass"
+      }
+    },
+    "result": {
+      "item": "hbm:fluid_duct",
+      "count": 8
+    }
+  }
+}

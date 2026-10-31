@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:rbmk_blank"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SPS",
+      "PGP",
+      "SPS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "G": {
+        "item": "hbm:ingot_graphite"
+      }
+    },
+    "result": {
+      "item": "hbm:rbmk_blank",
+      "count": 4
+    }
+  }
+}

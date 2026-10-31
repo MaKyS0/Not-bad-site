@@ -1,0 +1,33 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:oil_detector"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CP",
+      "RG"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:circuit"
+      },
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      },
+      "G": {
+        "item": "minecraft:glass_pane"
+      }
+    },
+    "result": {
+      "item": "hbm:oil_detector",
+      "count": 1
+    }
+  }
+}

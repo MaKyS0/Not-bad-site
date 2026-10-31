@@ -103,6 +103,78 @@
     "hbm_machine_reactor_top": {
       "textures": "textures/blocks/machine_reactor_top"
     },
+    "hbm_machine_press_front": {
+      "textures": "textures/blocks/machine_press_front"
+    },
+    "hbm_block_steel": {
+      "textures": "textures/blocks/block_steel"
+    },
+    "hbm_machine_assembler_front": {
+      "textures": "textures/blocks/machine_assembler_front"
+    },
+    "hbm_machine_pump_front": {
+      "textures": "textures/blocks/machine_pump_front"
+    },
+    "hbm_machine_derrick_front": {
+      "textures": "textures/blocks/machine_derrick_front"
+    },
+    "hbm_machine_refinery_front": {
+      "textures": "textures/blocks/machine_refinery_front"
+    },
+    "hbm_machine_diesel_front": {
+      "textures": "textures/blocks/machine_diesel_front"
+    },
+    "hbm_machine_fluidtank_front": {
+      "textures": "textures/blocks/machine_fluidtank_front"
+    },
+    "hbm_machine_turbine_base": {
+      "textures": "textures/blocks/machine_turbine_base"
+    },
+    "hbm_machine_turbine_top": {
+      "textures": "textures/blocks/machine_turbine_top"
+    },
+    "hbm_rbmk_element_side": {
+      "textures": "textures/blocks/rbmk_element_side"
+    },
+    "hbm_rbmk_element_top": {
+      "textures": "textures/blocks/rbmk_element_top"
+    },
+    "hbm_rbmk_blank_top": {
+      "textures": "textures/blocks/rbmk_blank_top"
+    },
+    "hbm_rbmk_control_side": {
+      "textures": "textures/blocks/rbmk_control_side"
+    },
+    "hbm_rbmk_control_top": {
+      "textures": "textures/blocks/rbmk_control_top"
+    },
+    "hbm_rbmk_boiler_side": {
+      "textures": "textures/blocks/rbmk_boiler_side"
+    },
+    "hbm_rbmk_boiler_top": {
+      "textures": "textures/blocks/rbmk_boiler_top"
+    },
+    "hbm_rbmk_moderator_side": {
+      "textures": "textures/blocks/rbmk_moderator_side"
+    },
+    "hbm_rbmk_moderator_top": {
+      "textures": "textures/blocks/rbmk_moderator_top"
+    },
+    "hbm_rbmk_blank_side": {
+      "textures": "textures/blocks/rbmk_blank_side"
+    },
+    "hbm_rbmk_debris": {
+      "textures": "textures/blocks/rbmk_debris"
+    },
+    "hbm_launch_pad_top": {
+      "textures": "textures/blocks/launch_pad_top"
+    },
+    "hbm_ore_oil": {
+      "textures": "textures/blocks/ore_oil"
+    },
+    "hbm_ore_oil_empty": {
+      "textures": "textures/blocks/ore_oil_empty"
+    },
     "hbm_semtex_side": {
       "textures": "textures/blocks/semtex_side"
     },
@@ -138,6 +210,9 @@
     },
     "hbm_red_cable": {
       "textures": "textures/blocks/red_cable"
+    },
+    "hbm_fluid_duct": {
+      "textures": "textures/blocks/fluid_duct"
     }
   }
 }

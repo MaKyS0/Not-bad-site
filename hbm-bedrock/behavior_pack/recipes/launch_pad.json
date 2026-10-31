@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:launch_pad"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PPP",
+      "SCS",
+      "SSS"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "C": {
+        "item": "hbm:circuit"
+      }
+    },
+    "result": {
+      "item": "hbm:launch_pad",
+      "count": 1
+    }
+  }
+}

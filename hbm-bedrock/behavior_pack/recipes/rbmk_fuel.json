@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:rbmk_fuel"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rbmk_blank"
+      },
+      {
+        "item": "hbm:rod_empty"
+      },
+      {
+        "item": "hbm:plate_lead"
+      }
+    ],
+    "result": {
+      "item": "hbm:rbmk_fuel",
+      "count": 1
+    }
+  }
+}

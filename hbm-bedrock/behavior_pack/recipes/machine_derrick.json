@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:machine_derrick"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "S S",
+      "SMS",
+      "PCP"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "M": {
+        "item": "hbm:motor"
+      },
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "C": {
+        "item": "hbm:circuit"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_derrick",
+      "count": 1
+    }
+  }
+}

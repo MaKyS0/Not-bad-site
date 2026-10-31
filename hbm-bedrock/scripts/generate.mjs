@@ -79,7 +79,7 @@ function simpleBlock(id, { en, ru, texture, up, down, seconds, resist, color, ca
   });
 }
 
-function oreGeneration(ore, { veins, size, y }) {
+function oreGeneration(ore, { veins, size, y, chance }) {
   write(join(BP, `features/${ore}_feature.json`), {
     format_version: "1.13.0",
     "minecraft:ore_feature": {
@@ -98,6 +98,7 @@ function oreGeneration(ore, { veins, size, y }) {
       },
       distribution: {
         iterations: veins,
+        ...(chance && { scatter_chance: { numerator: 1, denominator: chance } }),
         coordinate_eval_order: "zyx",
         x: { distribution: "uniform", extent: [0, 16] },
         y: { distribution: "uniform", extent: y },
@@ -202,6 +203,37 @@ machineBlock("machine_reactor", {
   side: "machine_reactor_top", top: "machine_reactor_top", bottom: "machine_reactor_top",
 });
 
+for (const [id, en, ru, front] of [
+  ["machine_press", "Electric Press", "Электропресс", "machine_press_front"],
+  ["machine_assembler", "Assembly Machine", "Сборочная машина", "machine_assembler_front"],
+  ["machine_pump", "Water Pump", "Водяной насос", "machine_pump_front"],
+  ["machine_derrick", "Oil Derrick", "Нефтяная вышка", "machine_derrick_front"],
+  ["machine_refinery", "Oil Refinery", "Нефтеперерабатывающий завод", "machine_refinery_front"],
+  ["machine_diesel", "Diesel Generator", "Дизельный генератор", "machine_diesel_front"],
+  ["machine_fluidtank", "Fluid Tank", "Цистерна", "machine_fluidtank_front"],
+]) {
+  machineBlock(id, { en, ru, front, side: "block_steel", top: "block_steel", bottom: "block_steel" });
+}
+machineBlock("machine_turbine", {
+  en: "Steam Turbine", ru: "Паровая турбина",
+  front: "machine_turbine_base", side: "machine_turbine_base", top: "machine_turbine_top", bottom: "machine_turbine_base",
+});
+for (const [id, en, ru, t] of [
+  ["rbmk_fuel", "RBMK Fuel Channel", "Топливный канал РБМК", "rbmk_element"],
+  ["rbmk_control", "RBMK Control Rod Channel", "Канал СУЗ РБМК", "rbmk_control"],
+  ["rbmk_boiler", "RBMK Boiler Channel", "Канал-кипятильник РБМК", "rbmk_boiler"],
+]) {
+  machineBlock(id, { en, ru, front: `${t}_side`, side: `${t}_side`, top: `${t}_top`, bottom: "rbmk_blank_top" });
+}
+simpleBlock("rbmk_moderator", { en: "RBMK Graphite Moderator", ru: "Графитовый замедлитель РБМК", texture: "rbmk_moderator_side", up: "rbmk_moderator_top", down: "rbmk_blank_top", seconds: 4, resist: 10, color: "#3a3a3a", category: "items", tag: "metal" });
+simpleBlock("rbmk_blank", { en: "RBMK Structural Channel", ru: "Пустой канал РБМК", texture: "rbmk_blank_side", up: "rbmk_blank_top", down: "rbmk_blank_top", seconds: 4, resist: 10, color: "#9a9a9a", category: "items", tag: "metal" });
+simpleBlock("rbmk_debris", { en: "RBMK Debris", ru: "Обломки РБМК", texture: "rbmk_debris", seconds: 3, resist: 10, color: "#2a2a2a", category: "nature" });
+simpleBlock("launch_pad", { en: "Missile Launch Pad", ru: "Стартовая площадка", texture: "block_steel", up: "launch_pad_top", seconds: 4, resist: 20, color: "#8c8c8c", category: "items", tag: "metal" });
+simpleBlock("ore_oil", { en: "Oil Deposit", ru: "Нефтяная залежь", texture: "ore_oil", seconds: 3, resist: 3, color: "#202020", category: "nature", group: ORE_GROUP });
+simpleBlock("ore_oil_empty", { en: "Empty Oil Deposit", ru: "Истощённая залежь", texture: "ore_oil_empty", seconds: 3, resist: 3, color: "#505050", category: "nature", group: ORE_GROUP });
+// HBM's oil sits in big pockets; here one pocket in roughly every sixth chunk.
+oreGeneration("ore_oil", { veins: 1, size: 40, y: [10, 40], chance: 6 });
+
 // Explosives: the script arms them with flint and steel or a redstone signal.
 simpleBlock("charge_semtex", { en: "Semtex", ru: "Семтекс", texture: "semtex_side", up: "semtex_top", down: "semtex_bottom", seconds: 1, resist: 0, color: "#d8a030", category: "items", tag: "explosive" });
 simpleBlock("det_charge", { en: "Detonation Charge", ru: "Подрывной заряд", texture: "det_charge", seconds: 1, resist: 0, color: "#c8a060", category: "items", tag: "explosive" });
@@ -211,34 +243,38 @@ simpleBlock("det_nuke", { en: "Nuclear Charge", ru: "Ядерный заряд",
 simpleBlock("waste_earth", { en: "Dead Grass", ru: "Мёртвая земля", texture: "waste_grass_side", up: "waste_grass_top", down: "waste_earth_bottom", seconds: 0.8, resist: 1, color: "#4a4a30", category: "nature", tag: "dirt" });
 simpleBlock("waste_log", { en: "Charred Log", ru: "Обугленное бревно", texture: "waste_log_side", up: "waste_log_top", down: "waste_log_top", seconds: 2, resist: 2, color: "#2a2a2a", category: "nature", tag: "wood" });
 
-// Cable: a core plus one arm per side; the script flips a state for each connected side.
+// Conduits (cable, fluid duct): a core plus one arm per side; the script flips a state per connected side.
 const CABLE_SIDES = ["n", "s", "e", "w", "u", "d"];
-name("tile.hbm.red_cable.name", "Red Copper Cable", "Красный медный провод");
-terrain.hbm_red_cable = { textures: "textures/blocks/red_cable" };
-write(join(BP, "blocks/red_cable.json"), {
-  format_version: "1.21.60",
-  "minecraft:block": {
-    description: {
-      identifier: "hbm:red_cable",
-      menu_category: { category: "items" },
-      states: Object.fromEntries(CABLE_SIDES.map((s) => [`hbm:${s}`, [false, true]])),
-    },
-    components: {
-      "minecraft:display_name": "tile.hbm.red_cable.name",
-      "minecraft:destructible_by_mining": { seconds_to_destroy: 0.5 },
-      "minecraft:destructible_by_explosion": { explosion_resistance: 5 },
-      "minecraft:geometry": {
-        identifier: "geometry.hbm.cable",
-        bone_visibility: Object.fromEntries(CABLE_SIDES.map((s) => [s, `q.block_state('hbm:${s}')`])),
+function conduit(id, { en, ru, color }) {
+  name(`tile.hbm.${id}.name`, en, ru);
+  terrain[`hbm_${id}`] = { textures: `textures/blocks/${id}` };
+  write(join(BP, `blocks/${id}.json`), {
+    format_version: "1.21.60",
+    "minecraft:block": {
+      description: {
+        identifier: `hbm:${id}`,
+        menu_category: { category: "items" },
+        states: Object.fromEntries(CABLE_SIDES.map((s) => [`hbm:${s}`, [false, true]])),
       },
-      "minecraft:material_instances": { "*": { texture: "hbm_red_cable", render_method: "opaque", ambient_occlusion: false } },
-      "minecraft:collision_box": { origin: [-3, 5, -3], size: [6, 6, 6] },
-      "minecraft:selection_box": { origin: [-4, 4, -4], size: [8, 8, 8] },
-      "minecraft:light_dampening": 0,
-      "minecraft:map_color": "#b03a1a",
+      components: {
+        "minecraft:display_name": `tile.hbm.${id}.name`,
+        "minecraft:destructible_by_mining": { seconds_to_destroy: 0.5 },
+        "minecraft:destructible_by_explosion": { explosion_resistance: 5 },
+        "minecraft:geometry": {
+          identifier: "geometry.hbm.cable",
+          bone_visibility: Object.fromEntries(CABLE_SIDES.map((s) => [s, `q.block_state('hbm:${s}')`])),
+        },
+        "minecraft:material_instances": { "*": { texture: `hbm_${id}`, render_method: "opaque", ambient_occlusion: false } },
+        "minecraft:collision_box": { origin: [-3, 5, -3], size: [6, 6, 6] },
+        "minecraft:selection_box": { origin: [-4, 4, -4], size: [8, 8, 8] },
+        "minecraft:light_dampening": 0,
+        "minecraft:map_color": color,
+      },
     },
-  },
-});
+  });
+}
+conduit("red_cable", { en: "Red Copper Cable", ru: "Красный медный провод", color: "#b03a1a" });
+conduit("fluid_duct", { en: "Fluid Duct", ru: "Трубопровод", color: "#c8c8c8" });
 
 write(join(RP, "textures/terrain_texture.json"), {
   resource_pack_name: "hbm",
@@ -340,6 +376,43 @@ item("red_cable", {
   components: { "minecraft:block_placer": { block: "hbm:red_cable", replace_block_item: true } },
 });
 item("hazmat_cloth", { en: "Hazmat Cloth", ru: "Ткань химзащиты" });
+
+for (const [metal, en, ru] of [
+  ["iron", "Iron", "Железная пластина"],
+  ["steel", "Steel", "Стальная пластина"],
+  ["copper", "Copper", "Медная пластина"],
+  ["gold", "Gold", "Золотая пластина"],
+  ["titanium", "Titanium", "Титановая пластина"],
+  ["lead", "Lead", "Свинцовая пластина"],
+  ["aluminium", "Aluminium", "Алюминиевая пластина"],
+]) {
+  item(`plate_${metal}`, { en: `${en} Plate`, ru });
+}
+item("ingot_graphite", { en: "Graphite Ingot", ru: "Графитовый слиток" });
+item("circuit", { en: "Basic Circuit", ru: "Микросхема" });
+item("coil_copper", { en: "Copper Coil", ru: "Медная катушка" });
+item("motor", { en: "Motor", ru: "Электромотор" });
+item("rbmk_fuel_ueu", { en: "RBMK Fuel Assembly (Natural Uranium)", ru: "ТВС РБМК (природный уран)", components: { "minecraft:max_stack_size": 1 } });
+item("rbmk_fuel_depleted", { en: "Spent RBMK Fuel Assembly", ru: "Отработанная ТВС РБМК", components: { "minecraft:max_stack_size": 1 } });
+item("fluid_duct", {
+  en: "Fluid Duct", ru: "Трубопровод",
+  components: { "minecraft:block_placer": { block: "hbm:fluid_duct", replace_block_item: true } },
+});
+for (const [id, en, ru] of [
+  ["missile_generic", "High Explosive Missile", "Фугасная ракета"],
+  ["missile_incendiary", "Incendiary Missile", "Зажигательная ракета"],
+  ["missile_nuclear", "Nuclear Missile", "Ядерная ракета"],
+]) {
+  item(id, { en, ru, category: "equipment", components: { "minecraft:max_stack_size": 1 } });
+}
+const tool = { "minecraft:max_stack_size": 1, "minecraft:hand_equipped": true };
+item("designator", { en: "Target Designator", ru: "Целеуказатель", category: "equipment", components: tool });
+item("oil_detector", { en: "Oil Detector", ru: "Нефтеискатель", category: "equipment", components: tool });
+item("gun_b92", { en: "B92 Energy Pistol", ru: "Энергопистолет B92", category: "equipment", components: tool });
+item("gun_rifle", { en: "Rifle", ru: "Винтовка", texture: "gun_darter", category: "equipment", components: tool });
+item("ammo_45", { en: ".45 Ammo", ru: "Патроны .45" });
+item("grenade_he", { en: "Grenade", ru: "Граната", category: "equipment", components: { "minecraft:max_stack_size": 16 } });
+item("grenade_nuclear", { en: "Mini-Nuke Grenade", ru: "Ядерная граната", category: "equipment", components: { "minecraft:max_stack_size": 16 } });
 item("iv_empty", { en: "IV Bag", ru: "Пакет для капельницы" });
 
 item("geiger_counter", {
@@ -477,7 +550,29 @@ shaped("machine_reactor", ["SLS", "LRL", "SCS"], { S: "hbm:ingot_steel", L: "hbm
 shaped("charge_semtex", ["NSN", "STS", "NSN"], { N: "hbm:niter", S: "hbm:sulfur", T: "minecraft:tnt" }, "hbm:charge_semtex", 2);
 shaped("det_charge", ["GTG", "TRT", "GTG"], { G: "minecraft:gunpowder", T: "minecraft:tnt", R: "minecraft:redstone" }, "hbm:det_charge");
 shaped("det_nuke", ["PDP", "DSD", "PDP"], { P: "hbm:ingot_pu239", D: "hbm:det_charge", S: "hbm:ingot_steel" }, "hbm:det_nuke");
-shaped("machine_battery",["LAL", "CRC", "LAL"], { L: "hbm:ingot_lead", A: "hbm:ingot_aluminium", C: "minecraft:copper_ingot", R: "minecraft:redstone_block" }, "hbm:machine_battery");
+// Plates come from the electric press and parts from the assembly machine (tables in recipes.js).
+furnace("smelt_ingot_graphite", "minecraft:coal", "hbm:ingot_graphite");
+shaped("machine_press", ["SPS", "SRS", "SCS"], { S: "hbm:ingot_steel", P: "minecraft:piston", R: "minecraft:redstone_block", C: "minecraft:copper_ingot" }, "hbm:machine_press");
+shaped("machine_assembler", ["SPS", "CRC", "SFS"], { S: "hbm:ingot_steel", P: "minecraft:piston", C: "minecraft:copper_ingot", R: "minecraft:redstone_block", F: "minecraft:crafting_table" }, "hbm:machine_assembler");
+shaped("coil_copper", ["CCC", "CIC", "CCC"], { C: "minecraft:copper_ingot", I: "minecraft:iron_ingot" }, "hbm:coil_copper", 2);
+shaped("fluid_duct", [" P ", "PGP", " P "], { P: "hbm:plate_iron", G: "minecraft:glass" }, "hbm:fluid_duct", 8);
+shaped("machine_pump", ["PMP", "PDP", "PCP"], { P: "hbm:plate_iron", M: "hbm:motor", D: "hbm:fluid_duct", C: "hbm:circuit" }, "hbm:machine_pump");
+shaped("machine_fluidtank", ["PDP", "P P", "PDP"], { P: "hbm:plate_steel", D: "hbm:fluid_duct" }, "hbm:machine_fluidtank");
+shaped("machine_derrick", ["S S", "SMS", "PCP"], { S: "hbm:ingot_steel", M: "hbm:motor", P: "hbm:plate_steel", C: "hbm:circuit" }, "hbm:machine_derrick");
+shaped("machine_refinery", ["PDP", "PFP", "MCM"], { P: "hbm:plate_steel", D: "hbm:fluid_duct", F: "minecraft:furnace", M: "hbm:motor", C: "hbm:circuit" }, "hbm:machine_refinery");
+shaped("machine_diesel", ["PPP", "DMD", "PCP"], { P: "hbm:plate_steel", D: "hbm:fluid_duct", M: "hbm:motor", C: "hbm:circuit" }, "hbm:machine_diesel");
+shaped("machine_turbine", ["PTP", "MCM", "PTP"], { P: "hbm:plate_steel", T: "hbm:plate_titanium", M: "hbm:motor", C: "hbm:circuit" }, "hbm:machine_turbine");
+shaped("rbmk_blank", ["SPS", "PGP", "SPS"], { S: "hbm:ingot_steel", P: "hbm:plate_steel", G: "hbm:ingot_graphite" }, "hbm:rbmk_blank", 4);
+shapeless("rbmk_fuel", ["hbm:rbmk_blank", "hbm:rod_empty", "hbm:plate_lead"], "hbm:rbmk_fuel");
+shapeless("rbmk_control", ["hbm:rbmk_blank", "hbm:rod_empty", "hbm:ingot_tungsten", "hbm:circuit"], "hbm:rbmk_control");
+shapeless("rbmk_boiler", ["hbm:rbmk_blank", "hbm:fluid_duct", "hbm:fluid_duct"], "hbm:rbmk_boiler");
+shapeless("rbmk_moderator", ["hbm:rbmk_blank", "hbm:ingot_graphite", "hbm:ingot_graphite", "hbm:ingot_graphite", "hbm:ingot_graphite"], "hbm:rbmk_moderator");
+shaped("launch_pad", ["PPP", "SCS", "SSS"], { P: "hbm:plate_steel", S: "hbm:ingot_steel", C: "hbm:circuit" }, "hbm:launch_pad");
+shaped("designator", ["TG", "PC"], { T: "minecraft:redstone_torch", G: "minecraft:glass_pane", P: "hbm:plate_iron", C: "hbm:circuit" }, "hbm:designator");
+shaped("oil_detector", ["CP", "RG"], { C: "hbm:circuit", P: "hbm:plate_steel", R: "minecraft:redstone", G: "minecraft:glass_pane" }, "hbm:oil_detector");
+shapeless("ammo_45", ["hbm:plate_copper", "minecraft:gunpowder", "hbm:ingot_lead"], "hbm:ammo_45", 8);
+shapeless("grenade_he", ["hbm:plate_iron", "minecraft:gunpowder", "minecraft:gunpowder", "minecraft:string"], "hbm:grenade_he", 2);
+shaped("machine_battery", ["LAL", "CRC", "LAL"], { L: "hbm:ingot_lead", A: "hbm:ingot_aluminium", C: "minecraft:copper_ingot", R: "minecraft:redstone_block" }, "hbm:machine_battery");
 
 // ---------- sounds and texts ----------
 
@@ -522,7 +617,45 @@ name("hbm.reactor.meltdown", "§4Reactor meltdown!", "§4Расплавлени�
 name("hbm.bomb.armed", "§cCharge armed: %s s", "§cЗаряд взведён: %s с");
 name("hbm.bomb.countdown", "§c§lDETONATION IN %s", "§c§lВЗРЫВ ЧЕРЕЗ %s");
 name("hbm.bomb.defused", "§aCharge defused", "§aЗаряд обезврежен");
-name("hbm.machine.hint","§7Tap with an item to load it. Sneak to place blocks against the machine.", "§7Нажмите предметом, чтобы загрузить его. Присядьте, чтобы ставить блоки рядом.");
+name("hbm.machine.pipes", "Machines on the pipes: %s", "Машин в трубопроводе: %s");
+name("hbm.fluid.water", "Water", "Вода");
+name("hbm.fluid.steam", "Steam", "Пар");
+name("hbm.fluid.oil", "Crude oil", "Нефть");
+name("hbm.fluid.diesel", "Diesel", "Дизтопливо");
+name("hbm.fluid.empty_tank", "Empty, holds %s mB of any fluid", "Пусто, вмещает %s mB любой жидкости");
+name("hbm.assembler.recipe", "Recipe: ", "Рецепт: ");
+name("hbm.assembler.needs", "  needs ", "  нужно ");
+name("hbm.assembler.loaded", "    loaded: %s", "    загружено: %s");
+name("hbm.assembler.no_recipe", "No recipe chosen", "Рецепт не выбран");
+name("hbm.assembler.choose", "Choose recipe", "Выбрать рецепт");
+name("hbm.assembler.take_stock", "Take loaded ingredients back", "Забрать загруженные детали");
+name("hbm.derrick.oil", "Oil found %s blocks below", "Нефть найдена на глубине %s");
+name("hbm.derrick.no_oil", "No oil straight below the derrick", "Прямо под вышкой нефти нет");
+name("hbm.detector.below", "§aOil right below you, %s blocks down", "§aНефть прямо под вами, глубина %s");
+name("hbm.detector.near", "§eOil %s blocks away, %s blocks down", "§eНефть в %s блоках от вас, глубина %s");
+name("hbm.detector.none", "§cNo oil nearby", "§cНефти поблизости нет");
+name("hbm.rbmk.heat", "Channel temperature: %s °C (explodes at 1500)", "Температура канала: %s °C (взрыв при 1500)");
+name("hbm.rbmk.flux", "Neutron flux: %s", "Нейтронный поток: %s");
+name("hbm.rbmk.rod", "Assembly: ", "Сборка: ");
+name("hbm.rbmk.burnup", "Burnup: %s", "Выгорание: %s");
+name("hbm.rbmk.insertion", "Control rod inserted: %s", "Стержень СУЗ опущен на: %s");
+name("hbm.rbmk.az5", "§cAZ-5: drop every control rod of the reactor", "§cАЗ-5: опустить все стержни СУЗ реактора");
+name("hbm.rbmk.take_rod", "Pull the assembly out", "Извлечь сборку");
+name("hbm.rbmk.take_spent", "Take spent assemblies", "Забрать отработанные сборки");
+name("hbm.rbmk.overheat", "§cRBMK channel overheating: %s °C", "§cПерегрев канала РБМК: %s °C");
+name("hbm.rbmk.meltdown", "§4The RBMK reactor has exploded!", "§4Реактор РБМК взорвался!");
+name("hbm.missile.loaded", "Missile: ", "Ракета: ");
+name("hbm.missile.target", "Target: %s", "Цель: %s");
+name("hbm.missile.no_target", "No target: aim the target designator at a block and use it", "Цель не задана: наведите целеуказатель на блок и нажмите");
+name("hbm.missile.launch", "§cLaunch", "§cПуск");
+name("hbm.missile.take", "Take the missile back", "Забрать ракету");
+name("hbm.missile.launched", "§6Missile launched at %s, impact in %s s", "§6Ракета запущена по %s, попадание через %s с");
+name("hbm.missile.incoming", "§c§lINCOMING MISSILE", "§c§lРАКЕТА НА ПОДЛЁТЕ");
+name("hbm.missile.lost", "§7The missile was lost: its target area could not be loaded", "§7Ракета потеряна: место цели не загрузилось");
+name("hbm.designator.set", "§aTarget set: %s", "§aЦель задана: %s");
+name("hbm.designator.miss", "§cNo block in sight (256 blocks max)", "§cНет блока в прицеле (до 256 блоков)");
+name("hbm.gun.no_ammo", "§cNo ammo", "§cНет боеприпасов");
+name("hbm.machine.hint", "§7Tap with an item to load it. Sneak to place blocks against the machine.", "§7Нажмите предметом, чтобы загрузить его. Присядьте, чтобы ставить блоки рядом.");
 
 for (const [code, entries] of Object.entries(lang)) {
   write(join(RP, `texts/${code}.lang`), Object.entries(entries).map(([k, v]) => `${k}=${v}`).join("\n") + "\n");

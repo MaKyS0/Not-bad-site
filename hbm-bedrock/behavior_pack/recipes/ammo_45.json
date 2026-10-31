@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:ammo_45"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:plate_copper"
+      },
+      {
+        "item": "minecraft:gunpowder"
+      },
+      {
+        "item": "hbm:ingot_lead"
+      }
+    ],
+    "result": {
+      "item": "hbm:ammo_45",
+      "count": 8
+    }
+  }
+}

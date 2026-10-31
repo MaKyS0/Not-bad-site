@@ -1,0 +1,37 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:rbmk_moderator",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.rbmk_moderator.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 4
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 10
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_rbmk_moderator_side",
+          "render_method": "opaque"
+        },
+        "up": {
+          "texture": "hbm_rbmk_moderator_top",
+          "render_method": "opaque"
+        },
+        "down": {
+          "texture": "hbm_rbmk_blank_top",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#3a3a3a",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:metal": {}
+    }
+  }
+}

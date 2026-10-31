@@ -19,6 +19,12 @@ const ITEM_RADS = {
   // Spent fuel is far hotter than fresh uranium, like HBM's depleted rods and nuclear waste.
   "hbm:rod_uranium_depleted": 5.0,
   "hbm:det_nuke": 5.0 * 4,
+  "hbm:missile_nuclear": 5.0 * 4,
+  "hbm:grenade_nuclear": 0.5 * 1.5,
+  "hbm:rbmk_fuel_ueu": 0.35 * 6,
+  "hbm:rbmk_fuel_depleted": 15.0,
+  // Reactor debris is the most radioactive thing in HBM; holding it is deadly within seconds.
+  "hbm:rbmk_debris": 100.0,
 };
 
 /** Hazmat resistance per piece: hazYellow (0.6) * slot share (HazmatRegistry). */

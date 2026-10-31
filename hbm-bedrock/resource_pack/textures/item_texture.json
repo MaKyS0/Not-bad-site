@@ -95,6 +95,78 @@
     "hbm_hazmat_cloth": {
       "textures": "textures/items/hazmat_cloth"
     },
+    "hbm_plate_iron": {
+      "textures": "textures/items/plate_iron"
+    },
+    "hbm_plate_steel": {
+      "textures": "textures/items/plate_steel"
+    },
+    "hbm_plate_copper": {
+      "textures": "textures/items/plate_copper"
+    },
+    "hbm_plate_gold": {
+      "textures": "textures/items/plate_gold"
+    },
+    "hbm_plate_titanium": {
+      "textures": "textures/items/plate_titanium"
+    },
+    "hbm_plate_lead": {
+      "textures": "textures/items/plate_lead"
+    },
+    "hbm_plate_aluminium": {
+      "textures": "textures/items/plate_aluminium"
+    },
+    "hbm_ingot_graphite": {
+      "textures": "textures/items/ingot_graphite"
+    },
+    "hbm_circuit": {
+      "textures": "textures/items/circuit"
+    },
+    "hbm_coil_copper": {
+      "textures": "textures/items/coil_copper"
+    },
+    "hbm_motor": {
+      "textures": "textures/items/motor"
+    },
+    "hbm_rbmk_fuel_ueu": {
+      "textures": "textures/items/rbmk_fuel_ueu"
+    },
+    "hbm_rbmk_fuel_depleted": {
+      "textures": "textures/items/rbmk_fuel_depleted"
+    },
+    "hbm_fluid_duct": {
+      "textures": "textures/items/fluid_duct"
+    },
+    "hbm_missile_generic": {
+      "textures": "textures/items/missile_generic"
+    },
+    "hbm_missile_incendiary": {
+      "textures": "textures/items/missile_incendiary"
+    },
+    "hbm_missile_nuclear": {
+      "textures": "textures/items/missile_nuclear"
+    },
+    "hbm_designator": {
+      "textures": "textures/items/designator"
+    },
+    "hbm_oil_detector": {
+      "textures": "textures/items/oil_detector"
+    },
+    "hbm_gun_b92": {
+      "textures": "textures/items/gun_b92"
+    },
+    "hbm_gun_rifle": {
+      "textures": "textures/items/gun_darter"
+    },
+    "hbm_ammo_45": {
+      "textures": "textures/items/ammo_45"
+    },
+    "hbm_grenade_he": {
+      "textures": "textures/items/grenade_he"
+    },
+    "hbm_grenade_nuclear": {
+      "textures": "textures/items/grenade_nuclear"
+    },
     "hbm_iv_empty": {
       "textures": "textures/items/iv_empty"
     },

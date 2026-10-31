@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:rbmk_boiler"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rbmk_blank"
+      },
+      {
+        "item": "hbm:fluid_duct"
+      },
+      {
+        "item": "hbm:fluid_duct"
+      }
+    ],
+    "result": {
+      "item": "hbm:rbmk_boiler",
+      "count": 1
+    }
+  }
+}

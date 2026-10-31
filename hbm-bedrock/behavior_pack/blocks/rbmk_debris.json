@@ -1,0 +1,29 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:rbmk_debris",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.rbmk_debris.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 3
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 10
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_rbmk_debris",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#2a2a2a",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:stone": {}
+    }
+  }
+}
