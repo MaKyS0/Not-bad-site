@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:charge_semtex"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "NSN",
+      "STS",
+      "NSN"
+    ],
+    "key": {
+      "N": {
+        "item": "hbm:niter"
+      },
+      "S": {
+        "item": "hbm:sulfur"
+      },
+      "T": {
+        "item": "minecraft:tnt"
+      }
+    },
+    "result": {
+      "item": "hbm:charge_semtex",
+      "count": 2
+    }
+  }
+}

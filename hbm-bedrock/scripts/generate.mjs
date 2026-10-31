@@ -51,17 +51,23 @@ const STORAGE_BLOCKS = [
 const terrain = {};
 const ORE_REPLACES = ["minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite"];
 
-function simpleBlock(id, { en, ru, texture, seconds, resist, color, category, group, loot }) {
+/** `texture` covers every face; `up` and `down` override the top and bottom. */
+function simpleBlock(id, { en, ru, texture, up, down, seconds, resist, color, category, group, loot, tag = "stone" }) {
   name(`tile.hbm.${id}.name`, en, ru);
-  terrain[`hbm_${texture}`] = { textures: `textures/blocks/${texture}` };
+  const materials = {};
+  for (const [face, t] of [["*", texture], ["up", up], ["down", down]]) {
+    if (!t) continue;
+    terrain[`hbm_${t}`] = { textures: `textures/blocks/${t}` };
+    materials[face] = { texture: `hbm_${t}`, render_method: "opaque" };
+  }
   const components = {
     "minecraft:display_name": `tile.hbm.${id}.name`,
     "minecraft:destructible_by_mining": { seconds_to_destroy: seconds },
     "minecraft:destructible_by_explosion": { explosion_resistance: resist },
-    "minecraft:material_instances": { "*": { texture: `hbm_${texture}`, render_method: "opaque" } },
+    "minecraft:material_instances": materials,
     "minecraft:map_color": color,
     "tag:minecraft:is_pickaxe_item_destructible": {},
-    "tag:stone": {},
+    [`tag:${tag}`]: {},
   };
   if (loot) components["minecraft:loot"] = loot;
   write(join(BP, `blocks/${id}.json`), {
@@ -190,6 +196,20 @@ machineBlock("machine_battery", {
   en: "Battery Block", ru: "Аккумуляторный блок",
   front: "battery_front_alt", side: "battery_side_alt", top: "battery_top", bottom: "battery_top",
 });
+machineBlock("machine_reactor", {
+  en: "Research Reactor", ru: "Исследовательский реактор",
+  front: "machine_reactor_front_off", frontOn: "machine_reactor_front_on",
+  side: "machine_reactor_top", top: "machine_reactor_top", bottom: "machine_reactor_top",
+});
+
+// Explosives: the script arms them with flint and steel or a redstone signal.
+simpleBlock("charge_semtex", { en: "Semtex", ru: "Семтекс", texture: "semtex_side", up: "semtex_top", down: "semtex_bottom", seconds: 1, resist: 0, color: "#d8a030", category: "items", tag: "explosive" });
+simpleBlock("det_charge", { en: "Detonation Charge", ru: "Подрывной заряд", texture: "det_charge", seconds: 1, resist: 0, color: "#c8a060", category: "items", tag: "explosive" });
+simpleBlock("det_nuke", { en: "Nuclear Charge", ru: "Ядерный заряд", texture: "det_nuke", up: "det_nuke_top", down: "det_nuke_top", seconds: 2, resist: 0, color: "#d0c020", category: "items", tag: "explosive" });
+
+// Fallout: what grass and logs turn into around a nuclear blast.
+simpleBlock("waste_earth", { en: "Dead Grass", ru: "Мёртвая земля", texture: "waste_grass_side", up: "waste_grass_top", down: "waste_earth_bottom", seconds: 0.8, resist: 1, color: "#4a4a30", category: "nature", tag: "dirt" });
+simpleBlock("waste_log", { en: "Charred Log", ru: "Обугленное бревно", texture: "waste_log_side", up: "waste_log_top", down: "waste_log_top", seconds: 2, resist: 2, color: "#2a2a2a", category: "nature", tag: "wood" });
 
 // Cable: a core plus one arm per side; the script flips a state for each connected side.
 const CABLE_SIDES = ["n", "s", "e", "w", "u", "d"];
@@ -309,6 +329,16 @@ item("powder_iron", { en: "Iron Powder", ru: "Железный порошок" }
 item("powder_gold", { en: "Gold Powder", ru: "Золотой порошок" });
 item("powder_copper", { en: "Copper Powder", ru: "Медный порошок" });
 item("powder_coal", { en: "Coal Powder", ru: "Угольный порошок" });
+item("nugget_pu239", { en: "Plutonium-239 Nugget", ru: "Самородок плутония-239" });
+item("ingot_pu239", { en: "Plutonium-239 Ingot", ru: "Слиток плутония-239" });
+item("rod_empty", { en: "Empty Rod", ru: "Пустой стержень" });
+item("rod_uranium", { en: "Uranium Fuel Rod", ru: "Урановый топливный стержень", components: { "minecraft:max_stack_size": 8 } });
+item("rod_uranium_depleted", { en: "Depleted Uranium Fuel Rod", ru: "Отработанный топливный стержень", components: { "minecraft:max_stack_size": 8 } });
+// The cable's block model shows only its core in the inventory, so the cable item gets HBM's flat icon.
+item("red_cable", {
+  en: "Red Copper Cable", ru: "Красный медный провод",
+  components: { "minecraft:block_placer": { block: "hbm:red_cable", replace_block_item: true } },
+});
 item("hazmat_cloth", { en: "Hazmat Cloth", ru: "Ткань химзащиты" });
 item("iv_empty", { en: "IV Bag", ru: "Пакет для капельницы" });
 
@@ -439,7 +469,15 @@ shaped("red_cable", [" L ", "CRC", " L "], { L: "hbm:ingot_lead", C: "minecraft:
 shaped("machine_wood_burner", ["BBB", "BFB", "CRC"], { B: "minecraft:brick", F: "minecraft:furnace", C: "minecraft:copper_ingot", R: "minecraft:redstone" }, "hbm:machine_wood_burner");
 shaped("machine_shredder", ["ITI", "PRP", "ICI"], { I: "minecraft:iron_ingot", T: "hbm:ingot_tungsten", P: "minecraft:piston", R: "minecraft:redstone", C: "minecraft:copper_ingot" }, "hbm:machine_shredder");
 shaped("machine_electric_furnace", ["SSS", "SFS", "CRC"], { S: "hbm:ingot_steel", F: "minecraft:furnace", C: "minecraft:copper_ingot", R: "minecraft:redstone_block" }, "hbm:machine_electric_furnace");
-shaped("machine_battery", ["LAL", "CRC", "LAL"], { L: "hbm:ingot_lead", A: "hbm:ingot_aluminium", C: "minecraft:copper_ingot", R: "minecraft:redstone_block" }, "hbm:machine_battery");
+shaped("rod_empty", ["S", "S", "S"], { S: "hbm:ingot_steel" }, "hbm:rod_empty", 2);
+shapeless("rod_uranium", ["hbm:rod_empty", "hbm:ingot_uranium", "hbm:ingot_uranium", "hbm:ingot_uranium"], "hbm:rod_uranium");
+shaped("ingot_pu239", ["###", "###", "###"], { "#": "hbm:nugget_pu239" }, "hbm:ingot_pu239");
+shapeless("nugget_pu239", ["hbm:ingot_pu239"], "hbm:nugget_pu239", 9);
+shaped("machine_reactor", ["SLS", "LRL", "SCS"], { S: "hbm:ingot_steel", L: "hbm:block_lead", R: "minecraft:redstone_block", C: "minecraft:copper_ingot" }, "hbm:machine_reactor");
+shaped("charge_semtex", ["NSN", "STS", "NSN"], { N: "hbm:niter", S: "hbm:sulfur", T: "minecraft:tnt" }, "hbm:charge_semtex", 2);
+shaped("det_charge", ["GTG", "TRT", "GTG"], { G: "minecraft:gunpowder", T: "minecraft:tnt", R: "minecraft:redstone" }, "hbm:det_charge");
+shaped("det_nuke", ["PDP", "DSD", "PDP"], { P: "hbm:ingot_pu239", D: "hbm:det_charge", S: "hbm:ingot_steel" }, "hbm:det_nuke");
+shaped("machine_battery",["LAL", "CRC", "LAL"], { L: "hbm:ingot_lead", A: "hbm:ingot_aluminium", C: "minecraft:copper_ingot", R: "minecraft:redstone_block" }, "hbm:machine_battery");
 
 // ---------- sounds and texts ----------
 
@@ -469,7 +507,22 @@ name("hbm.machine.close", "Close", "Закрыть");
 name("hbm.machine.inserted", "§aLoaded: %s", "§aЗагружено: %s шт.");
 name("hbm.machine.wrong_item", "§cThis item does not fit here", "§cЭтот предмет сюда не подходит");
 name("hbm.machine.slot_busy", "§cThe slot holds a different item", "§cВ слоте уже другой предмет");
-name("hbm.machine.hint", "§7Tap with an item to load it. Sneak to place blocks against the machine.", "§7Нажмите предметом, чтобы загрузить его. Присядьте, чтобы ставить блоки рядом.");
+name("hbm.reactor.heat", "Core temperature: %s °C (meltdown at 1000)", "Температура активной зоны: %s °C (расплав при 1000)");
+name("hbm.reactor.rods", "Fuel rods: %s, depleted: %s, rod burnup: %s", "Топливных стержней: %s, отработанных: %s, выгорание стержня: %s");
+name("hbm.reactor.control", "Control rods inserted: %s", "Управляющие стержни опущены на: %s");
+name("hbm.reactor.cooling", "Water around the reactor: %s of 6 sides", "Вода вокруг реактора: %s из 6 сторон");
+name("hbm.reactor.output", "Output: %s HE/s", "Мощность: %s HE/с");
+name("hbm.reactor.insert", "Lower control rods (+25%)", "Опустить управляющие стержни (+25%)");
+name("hbm.reactor.withdraw", "Raise control rods (-25%)", "Поднять управляющие стержни (−25%)");
+name("hbm.reactor.scram", "§cSCRAM: shut the reactor down", "§cАЗ-5: заглушить реактор");
+name("hbm.reactor.take_depleted", "Take depleted rods", "Забрать отработанные стержни");
+name("hbm.reactor.take_fuel", "Take fuel rods", "Забрать топливные стержни");
+name("hbm.reactor.overheat", "§cREACTOR OVERHEATING: %s °C", "§cПЕРЕГРЕВ РЕАКТОРА: %s °C");
+name("hbm.reactor.meltdown", "§4Reactor meltdown!", "§4Расплавление реактора!");
+name("hbm.bomb.armed", "§cCharge armed: %s s", "§cЗаряд взведён: %s с");
+name("hbm.bomb.countdown", "§c§lDETONATION IN %s", "§c§lВЗРЫВ ЧЕРЕЗ %s");
+name("hbm.bomb.defused", "§aCharge defused", "§aЗаряд обезврежен");
+name("hbm.machine.hint","§7Tap with an item to load it. Sneak to place blocks against the machine.", "§7Нажмите предметом, чтобы загрузить его. Присядьте, чтобы ставить блоки рядом.");
 
 for (const [code, entries] of Object.entries(lang)) {
   write(join(RP, `texts/${code}.lang`), Object.entries(entries).map(([k, v]) => `${k}=${v}`).join("\n") + "\n");

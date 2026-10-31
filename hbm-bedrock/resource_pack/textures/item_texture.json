@@ -74,6 +74,24 @@
     "hbm_powder_coal": {
       "textures": "textures/items/powder_coal"
     },
+    "hbm_nugget_pu239": {
+      "textures": "textures/items/nugget_pu239"
+    },
+    "hbm_ingot_pu239": {
+      "textures": "textures/items/ingot_pu239"
+    },
+    "hbm_rod_empty": {
+      "textures": "textures/items/rod_empty"
+    },
+    "hbm_rod_uranium": {
+      "textures": "textures/items/rod_uranium"
+    },
+    "hbm_rod_uranium_depleted": {
+      "textures": "textures/items/rod_uranium_depleted"
+    },
+    "hbm_red_cable": {
+      "textures": "textures/items/red_cable"
+    },
     "hbm_hazmat_cloth": {
       "textures": "textures/items/hazmat_cloth"
     },

@@ -1,0 +1,29 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:det_charge",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.det_charge.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 0
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_det_charge",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#c8a060",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:explosive": {}
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "hbm-bedrock",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Bedrock add-on port of HBM's Nuclear Tech Mod",
   "type": "module",
   "license": "LGPL-3.0-only",

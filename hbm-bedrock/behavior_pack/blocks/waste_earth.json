@@ -1,0 +1,37 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:waste_earth",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.waste_earth.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.8
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 1
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_waste_grass_side",
+          "render_method": "opaque"
+        },
+        "up": {
+          "texture": "hbm_waste_grass_top",
+          "render_method": "opaque"
+        },
+        "down": {
+          "texture": "hbm_waste_earth_bottom",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#4a4a30",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:dirt": {}
+    }
+  }
+}

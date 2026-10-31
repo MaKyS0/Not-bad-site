@@ -94,6 +94,48 @@
     "hbm_battery_top": {
       "textures": "textures/blocks/battery_top"
     },
+    "hbm_machine_reactor_front_off": {
+      "textures": "textures/blocks/machine_reactor_front_off"
+    },
+    "hbm_machine_reactor_front_on": {
+      "textures": "textures/blocks/machine_reactor_front_on"
+    },
+    "hbm_machine_reactor_top": {
+      "textures": "textures/blocks/machine_reactor_top"
+    },
+    "hbm_semtex_side": {
+      "textures": "textures/blocks/semtex_side"
+    },
+    "hbm_semtex_top": {
+      "textures": "textures/blocks/semtex_top"
+    },
+    "hbm_semtex_bottom": {
+      "textures": "textures/blocks/semtex_bottom"
+    },
+    "hbm_det_charge": {
+      "textures": "textures/blocks/det_charge"
+    },
+    "hbm_det_nuke": {
+      "textures": "textures/blocks/det_nuke"
+    },
+    "hbm_det_nuke_top": {
+      "textures": "textures/blocks/det_nuke_top"
+    },
+    "hbm_waste_grass_side": {
+      "textures": "textures/blocks/waste_grass_side"
+    },
+    "hbm_waste_grass_top": {
+      "textures": "textures/blocks/waste_grass_top"
+    },
+    "hbm_waste_earth_bottom": {
+      "textures": "textures/blocks/waste_earth_bottom"
+    },
+    "hbm_waste_log_side": {
+      "textures": "textures/blocks/waste_log_side"
+    },
+    "hbm_waste_log_top": {
+      "textures": "textures/blocks/waste_log_top"
+    },
     "hbm_red_cable": {
       "textures": "textures/blocks/red_cable"
     }

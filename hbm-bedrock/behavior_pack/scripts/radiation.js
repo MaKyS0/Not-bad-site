@@ -1,6 +1,7 @@
 // Radiation system ported from HBM's Nuclear Tech Mod (LGPL-3.0).
 // Numbers follow HazardRegistry, HazmatRegistry and EntityEffectHandler of the original.
 import { world, system, EquipmentSlot, EntityDamageCause } from "@minecraft/server";
+import { falloutRads } from "./fallout.js";
 
 /** RAD per second emitted by one item: isotope activity * form multiplier (HazardRegistry). */
 const ITEM_RADS = {
@@ -12,6 +13,12 @@ const ITEM_RADS = {
   "hbm:ore_thorium": 0.1,
   "hbm:ingot_th232": 0.1,
   "hbm:powder_thorium": 0.1 * 3,
+  "hbm:nugget_pu239": 0.5,
+  "hbm:ingot_pu239": 5.0,
+  "hbm:rod_uranium": 0.35 * 3,
+  // Spent fuel is far hotter than fresh uranium, like HBM's depleted rods and nuclear waste.
+  "hbm:rod_uranium_depleted": 5.0,
+  "hbm:det_nuke": 5.0 * 4,
 };
 
 /** Hazmat resistance per piece: hazYellow (0.6) * slot share (HazmatRegistry). */
@@ -35,6 +42,11 @@ const PROP_RADAWAY = "hbm:radaway_left";
 
 /** Incoming RAD/s per player id, read by the Geiger counter between radiation ticks. */
 const radRate = new Map();
+
+/** Adds a one-off dose, e.g. from a nuclear blast. @param {import("@minecraft/server").Player} player */
+export function addRads(player, amount) {
+  player.setDynamicProperty(PROP_RADS, Math.min(getNumber(player, PROP_RADS) + amount, MAX_RADS));
+}
 
 /** @param {import("@minecraft/server").Player} player @param {string} key */
 function getNumber(player, key) {
@@ -109,7 +121,8 @@ function applySickness(player, rads) {
 /** @param {import("@minecraft/server").Player} player */
 function radiationTick(player) {
   const { rads: emitted, hasGeiger } = inventoryRads(player);
-  const incoming = emitted * Math.pow(10, -resistance(player));
+  const ambient = falloutRads(player.dimension.id, player.location);
+  const incoming = (emitted + ambient) * Math.pow(10, -resistance(player));
   radRate.set(player.id, incoming);
 
   let rads = getNumber(player, PROP_RADS) + incoming;

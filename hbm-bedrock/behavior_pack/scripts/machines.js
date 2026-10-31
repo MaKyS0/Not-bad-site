@@ -3,6 +3,7 @@
 // Machines run once per second, so every per-tick number below is applied 20 times at once.
 import { world, system, ItemStack } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
+import { nuke } from "./bombs.js";
 
 const SECOND = 20;
 const STACK = 64;
@@ -80,6 +81,7 @@ const SHRED = {
   "minecraft:bone": ["minecraft:bone_meal", 4],
   "minecraft:blaze_rod": ["minecraft:blaze_powder", 3],
   "minecraft:glowstone": ["minecraft:glowstone_dust", 4],
+  "hbm:rod_uranium_depleted": ["hbm:nugget_pu239", 3],
 };
 
 for (const [ore, ingot, powder] of METALS) {
@@ -110,11 +112,12 @@ function fuelTicks(id) {
  * @typedef {{ id: string, n: number }} Slot
  * @typedef {{
  *   type: string, dim: string, x: number, y: number, z: number, energy: number,
- *   input?: Slot, output?: Slot, fuel?: Slot, progress: number, burn: number
+ *   input?: Slot, output?: Slot, fuel?: Slot, progress: number, burn: number,
+ *   heat?: number, control?: number, burnup?: number
  * }} Machine
  * @typedef {{ id: string, count: number }} Result
  * @typedef {{
- *   kind: "generator" | "consumer" | "storage", maxEnergy: number, lit?: boolean,
+ *   kind: "generator" | "consumer" | "storage" | "reactor", maxEnergy: number, lit?: boolean, maxInput?: number,
  *   perTick?: number, duration?: number, recipe?: (id: string) => Result | undefined
  * }} MachineDef
  */
@@ -141,7 +144,21 @@ const MACHINES = {
     recipe: (id) => (SHRED[id] ? { id: SHRED[id][0], count: SHRED[id][1] } : undefined),
   },
   "hbm:machine_battery": { kind: "storage", maxEnergy: 1_000_000 },
+  "hbm:machine_reactor": { kind: "reactor", maxEnergy: 100_000, lit: true, maxInput: 8 },
 };
+
+// Research reactor. Every rod not covered by control rods heats the core and makes power;
+// water on its sides carries the heat away. Spent rods come out ready for the shredder.
+const ROD_LIFE = 1200; // seconds of full power per rod
+const HEAT_PER_ROD = 5; // °C per second; 8 rods stay safe with water on 4 sides
+const COOLING_BASE = 2;
+const COOLING_PER_WATER = 8;
+const HEAT_LOSS = 0.01; // share of the heat above ambient lost each second
+const HE_PER_ROD = 2500; // per second
+const AMBIENT = 20;
+const OVERHEAT = 800;
+const MELTDOWN = 1000;
+const WATER = new Set(["minecraft:water", "minecraft:flowing_water"]);
 
 /** @type {[string, number, number, number][]} */
 const SIDES = [
@@ -320,6 +337,51 @@ function runRecipe(/** @type {Machine} */ m, /** @type {MachineDef} */ def) {
   return true;
 }
 
+function waterSides(block) {
+  let sides = 0;
+  for (const neighbour of [block.north(), block.south(), block.east(), block.west(), block.above(), block.below()]) {
+    if (neighbour && WATER.has(neighbour.typeId)) sides++;
+  }
+  return sides;
+}
+
+/** One second of the reactor; returns whether it is running and whether it melted down. */
+function runReactor(/** @type {Machine} */ m, /** @type {MachineDef} */ def, block) {
+  const rods = m.input?.n ?? 0;
+  const flux = rods * (1 - (m.control ?? 100) / 100);
+  const heat = m.heat ?? AMBIENT;
+  const cooling = COOLING_BASE + waterSides(block) * COOLING_PER_WATER + (heat - AMBIENT) * HEAT_LOSS;
+  m.heat = Math.max(AMBIENT, heat + flux * HEAT_PER_ROD - cooling);
+  m.energy = Math.min(def.maxEnergy, m.energy + flux * HE_PER_ROD);
+
+  m.burnup = (m.burnup ?? 0) + flux;
+  while (m.burnup >= ROD_LIFE && m.input) {
+    m.burnup -= ROD_LIFE;
+    m.input = take(m.input, 1);
+    m.output = { id: "hbm:rod_uranium_depleted", n: (m.output?.n ?? 0) + 1 };
+  }
+  if (!m.input) m.burnup = 0;
+
+  if (m.heat >= OVERHEAT) {
+    for (const player of world.getAllPlayers()) {
+      if (player.dimension.id === m.dim && Math.hypot(player.location.x - m.x, player.location.y - m.y, player.location.z - m.z) < 24) {
+        player.onScreenDisplay.setActionBar({ rawtext: [{ translate: "hbm.reactor.overheat", with: [String(Math.floor(m.heat))] }] });
+      }
+    }
+  }
+  return { running: flux > 0, meltdown: m.heat >= MELTDOWN };
+}
+
+function meltdown(key, /** @type {Machine} */ m) {
+  removeMachine(key);
+  const dimension = world.getDimension(m.dim);
+  for (const player of world.getAllPlayers()) {
+    if (player.dimension.id === m.dim) player.sendMessage({ translate: "hbm.reactor.meltdown" });
+  }
+  dimension.setBlockType({ x: m.x, y: m.y, z: m.z }, "minecraft:air");
+  nuke(dimension, { x: m.x + 0.5, y: m.y + 0.5, z: m.z + 0.5 }, 12, { fallout: 40 });
+}
+
 function take(/** @type {Slot} */ slot, n) {
   return slot.n > n ? { id: slot.id, n: slot.n - n } : undefined;
 }
@@ -351,6 +413,18 @@ function tick() {
     const before = JSON.stringify([m.energy, m.burn, m.fuel]);
     lit.set(machineKey(m), burnFuel(m, MACHINES[m.type]));
     if (JSON.stringify([m.energy, m.burn, m.fuel]) !== before) dirty.add(machineKey(m));
+    pushEnergy(m, ["consumer", "storage"], active);
+  }
+  for (const m of byKind("reactor")) {
+    const key = machineKey(m);
+    const { running, meltdown: melted } = runReactor(m, MACHINES[m.type], /** @type {import("@minecraft/server").Block} */ (blocks.get(key)));
+    dirty.add(key);
+    if (melted) {
+      meltdown(key, m);
+      active.delete(key);
+      continue;
+    }
+    lit.set(key, running);
     pushEnergy(m, ["consumer", "storage"], active);
   }
   for (const m of byKind("storage")) pushEnergy(m, ["consumer"], active);
@@ -423,6 +497,7 @@ function slotFor(/** @type {Machine} */ m, id) {
   const def = MACHINES[m.type];
   if (def.kind === "generator") return fuelTicks(id) > 0 ? "fuel" : undefined;
   if (def.kind === "consumer") return def.recipe?.(id) ? "input" : undefined;
+  if (def.kind === "reactor") return id === "hbm:rod_uranium" ? "input" : undefined;
   return undefined;
 }
 
@@ -447,7 +522,7 @@ function interact(player, dim, location, type) {
       player.onScreenDisplay.setActionBar({ translate: "hbm.machine.slot_busy" });
       return;
     }
-    const amount = Math.min(held.amount, STACK - (current?.n ?? 0));
+    const amount = Math.min(held.amount, (MACHINES[m.type].maxInput ?? STACK) - (current?.n ?? 0));
     if (amount <= 0) {
       player.onScreenDisplay.setActionBar({ translate: "hbm.machine.slot_busy" });
       return;
@@ -472,33 +547,55 @@ function showMachine(player, /** @type {Machine} */ m) {
   const key = machineKey(m);
   /** @type {import("@minecraft/server").RawMessage[]} */
   const body = [{ translate: "hbm.machine.energy", with: [formatNumber(m.energy), formatNumber(def.maxEnergy)] }, { text: "\n" }];
-  /** @type {("input" | "output" | "fuel")[]} */
-  const takeable = [];
+  /** @type {{ label: string, run: () => void }[]} */
+  const actions = [];
+  const takeAction = (label, /** @type {"input" | "output" | "fuel"} */ slot) =>
+    actions.push({
+      label,
+      run: () => {
+        give(player, m[slot]);
+        m[slot] = undefined;
+        if (slot === "input") m.progress = 0;
+      },
+    });
+  const line = (translate, ...values) => body.push({ translate, with: values.map(String) }, { text: "\n" });
 
   if (def.kind === "generator") {
     body.push(...slotLine("hbm.machine.fuel", m.fuel));
-    if (m.burn > 0) body.push({ translate: "hbm.machine.burning", with: [String(Math.ceil(m.burn / SECOND))] }, { text: "\n" });
-    if (m.fuel) takeable.push("fuel");
+    if (m.burn > 0) line("hbm.machine.burning", Math.ceil(m.burn / SECOND));
+    if (m.fuel) takeAction("hbm.machine.take_input", "fuel");
   } else if (def.kind === "consumer") {
     body.push(...slotLine("hbm.machine.input", m.input), ...slotLine("hbm.machine.output", m.output));
-    const percent = Math.floor((m.progress / (def.duration ?? 1)) * 100);
-    body.push({ translate: "hbm.machine.progress", with: [`${percent}%`] }, { text: "\n" });
-    if (m.output) takeable.push("output");
-    if (m.input) takeable.push("input");
+    line("hbm.machine.progress", `${Math.floor((m.progress / (def.duration ?? 1)) * 100)}%`);
+    if (m.output) takeAction("hbm.machine.take_output", "output");
+    if (m.input) takeAction("hbm.machine.take_input", "input");
+  } else if (def.kind === "reactor") {
+    const control = m.control ?? 100;
+    const rods = m.input?.n ?? 0;
+    const block = blockOf(m);
+    line("hbm.reactor.heat", Math.floor(m.heat ?? AMBIENT));
+    line("hbm.reactor.rods", rods, m.output?.n ?? 0, `${Math.floor(((m.burnup ?? 0) / ROD_LIFE) * 100)}%`);
+    line("hbm.reactor.control", `${control}%`);
+    line("hbm.reactor.cooling", block ? waterSides(block) : 0);
+    line("hbm.reactor.output", formatNumber(rods * (1 - control / 100) * HE_PER_ROD));
+    const setControl = (/** @type {number} */ value) => () => (m.control = Math.min(100, Math.max(0, value)));
+    if (control < 100) actions.push({ label: "hbm.reactor.insert", run: setControl(control + 25) });
+    if (control > 0) actions.push({ label: "hbm.reactor.withdraw", run: setControl(control - 25) });
+    if (control < 100) actions.push({ label: "hbm.reactor.scram", run: setControl(100) });
+    if (m.output) takeAction("hbm.reactor.take_depleted", "output");
+    if (m.input) takeAction("hbm.reactor.take_fuel", "input");
   }
   body.push({ translate: "hbm.machine.network", with: [String(networkOf(m).length)] }, { text: "\n\n" }, { translate: "hbm.machine.hint" });
 
   const form = new ActionFormData().title({ translate: `tile.hbm.${m.type.slice(4)}.name` }).body({ rawtext: body });
-  for (const slot of takeable) form.button({ translate: slot === "output" ? "hbm.machine.take_output" : "hbm.machine.take_input" });
+  for (const action of actions) form.button({ translate: action.label });
   form.button({ translate: "hbm.machine.close" });
 
   form.show(player).then((response) => {
-    const slot = response.selection === undefined ? undefined : takeable[response.selection];
+    const action = response.selection === undefined ? undefined : actions[response.selection];
     // The form stays open while the machine keeps running; act on its current state.
-    if (!slot || machines.get(key) !== m) return;
-    give(player, m[slot]);
-    m[slot] = undefined;
-    if (slot === "input") m.progress = 0;
+    if (!action || machines.get(key) !== m) return;
+    action.run();
     dirty.add(key);
     save();
   });

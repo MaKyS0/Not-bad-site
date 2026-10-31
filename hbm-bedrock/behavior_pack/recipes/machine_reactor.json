@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:machine_reactor"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SLS",
+      "LRL",
+      "SCS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "L": {
+        "item": "hbm:block_lead"
+      },
+      "R": {
+        "item": "minecraft:redstone_block"
+      },
+      "C": {
+        "item": "minecraft:copper_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_reactor",
+      "count": 1
+    }
+  }
+}
