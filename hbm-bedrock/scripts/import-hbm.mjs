@@ -11,6 +11,7 @@ import { readFileSync, readdirSync, existsSync, mkdirSync, writeFileSync, rmSync
 import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import UPNG from "upng-js";
+import { gunzipSync, constants as zlibConstants } from "node:zlib";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TEXTURE_OUT = join(root, "resource_pack/textures/imported");
@@ -914,6 +915,72 @@ function blockStats(text, creativeTab) {
   };
 }
 
+// ---------- structures ----------
+
+/** Reads a gzipped big-endian NBT file (Java's structure format). Trailing bytes are ignored. */
+function readNbt(path) {
+  const data = gunzipSync(readFileSync(path), { finishFlush: zlibConstants.Z_SYNC_FLUSH });
+  let pos = 0;
+  const u8 = () => data.readInt8(pos++);
+  const str = () => {
+    const n = data.readUInt16BE(pos);
+    pos += 2;
+    const v = data.toString("utf8", pos, pos + n);
+    pos += n;
+    return v;
+  };
+  const payload = (t) => {
+    switch (t) {
+      case 1: return u8();
+      case 2: { const v = data.readInt16BE(pos); pos += 2; return v; }
+      case 3: { const v = data.readInt32BE(pos); pos += 4; return v; }
+      case 4: { const v = Number(data.readBigInt64BE(pos)); pos += 8; return v; }
+      case 5: { const v = data.readFloatBE(pos); pos += 4; return v; }
+      case 6: { const v = data.readDoubleBE(pos); pos += 8; return v; }
+      case 7: { const n = data.readInt32BE(pos); pos += 4 + n; return null; }
+      case 8: return str();
+      case 9: { const et = u8(); const n = data.readInt32BE(pos); pos += 4; return Array.from({ length: n }, () => payload(et)); }
+      case 10: {
+        const o = {};
+        for (;;) {
+          const tt = u8();
+          if (tt === 0) return o;
+          const k = str();
+          o[k] = payload(tt);
+        }
+      }
+      case 11: { const n = data.readInt32BE(pos); pos += 4; const a = []; for (let i = 0; i < n; i++, pos += 4) a.push(data.readInt32BE(pos)); return a; }
+      case 12: { const n = data.readInt32BE(pos); pos += 4; pos += n * 8; return null; }
+      default: throw new Error(`bad NBT tag ${t}`);
+    }
+  };
+  const type = u8();
+  str();
+  return payload(type);
+}
+
+/** HBM's NBT structures as { name, size, palette: [javaName, meta], blocks: [x, y, z, paletteIndex] }. */
+function readStructures(repo) {
+  const dir = join(repo, "src/main/resources/assets/hbm/structures");
+  if (!existsSync(dir)) return [];
+  const out = [];
+  for (const f of readdirSync(dir, { recursive: true }).map(String)) {
+    if (!f.endsWith(".nbt") || /test/.test(f)) continue;
+    try {
+      const nbt = readNbt(join(dir, f));
+      out.push({
+        name: sanitize(f.replace(/\.nbt$/, "").replace(/[\\/]/g, "_")),
+        size: nbt.size,
+        palette: nbt.palette.map((p) => [p.Name, Number(p.Properties?.meta ?? 0)]),
+        blocks: nbt.blocks.map((b) => [...b.pos, b.state]),
+      });
+    } catch (e) {
+      console.error(`structure ${f}: ${e.message}`);
+    }
+  }
+  return out;
+}
+
 // ---------- run ----------
 
 const [hbmRepo, extRepo] = process.argv.slice(2);
@@ -956,6 +1023,7 @@ if (ext) catalog.recipes.push(...ext.recipes.filter((r) => !hbmIds.has(r.output)
 for (const [id, value] of [...(ext?.rads ?? []), ...hbm.rads]) catalog.rads[id] = Math.round(value * 1000) / 1000;
 catalog.machineRecipes = hbm.machineRecipes;
 catalog.fluids = hbm.fluidNames;
+catalog.structures = readStructures(hbmRepo);
 
 rmSync(AUTOGEN_TMP, { recursive: true, force: true });
 mkdirSync(join(root, "imported"), { recursive: true });
@@ -964,4 +1032,5 @@ const extItems = catalog.items.filter((i) => i.source === "ext").length;
 const extBlocks = catalog.blocks.filter((b) => b.source === "ext").length;
 console.log(`items: ${catalog.items.length} (${extItems} from Extended), blocks: ${catalog.blocks.length} (${extBlocks} from Extended)`);
 console.log(`machine recipes: ${Object.entries(catalog.machineRecipes).map(([k, v]) => `${k} ${v.length}`).join(", ")}`);
+console.log(`structures: ${catalog.structures.length}`);
 console.log(`recipes: ${catalog.recipes.length} resolved of ${hbm.seen + (ext?.seen ?? 0)} found, radiation entries: ${Object.keys(catalog.rads).length}`);

@@ -1,0 +1,15 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:structure_template_feature": {
+    "description": {
+      "identifier": "hbm:st_dead_dish_small_feature"
+    },
+    "structure_name": "hbm:dead_dish_small",
+    "adjustment_radius": 4,
+    "facing_direction": "random",
+    "constraints": {
+      "grounded": {},
+      "unburied": {}
+    }
+  }
+}

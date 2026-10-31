@@ -124,8 +124,14 @@ for (const [path, doc] of inDir("recipes")) {
   }
 }
 
-const features = new Set(inDir("features").map(([, d]) => d["minecraft:ore_feature"].description.identifier));
+const features = new Set(inDir("features").map(([, d]) => (d["minecraft:ore_feature"] ?? d["minecraft:structure_template_feature"]).description.identifier));
 for (const [path, doc] of inDir("features")) {
+  const structure = doc["minecraft:structure_template_feature"];
+  if (structure) {
+    const [ns, name] = structure.structure_name.split(":");
+    if (!existsSync(join(BP, `structures/${ns}/${name}.mcstructure`))) errors.push(`${path}: missing structure ${structure.structure_name}`);
+    continue;
+  }
   for (const rule of doc["minecraft:ore_feature"].replace_rules) {
     if (!ids.has(rule.places_block)) errors.push(`${path}: places unknown block ${rule.places_block}`);
   }

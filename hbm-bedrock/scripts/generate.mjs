@@ -4,6 +4,7 @@
 import { mkdirSync, writeFileSync, readFileSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeStructures } from "./structures.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const BP = join(root, "behavior_pack");
@@ -11,7 +12,7 @@ const RP = join(root, "resource_pack");
 
 function write(path, data) {
   mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, typeof data === "string" ? data : JSON.stringify(data, null, 2) + "\n");
+  writeFileSync(path, typeof data === "string" || Buffer.isBuffer(data) ? data : JSON.stringify(data, null, 2) + "\n");
 }
 
 const lang = { en_US: {}, ru_RU: {} };
@@ -695,6 +696,9 @@ for (const r of catalog.recipes) {
   }
 }
 const rads = Object.fromEntries(Object.entries(catalog.rads).filter(([id]) => known.has(id)));
+
+const structureStats = writeStructures(catalog, known, BP, write);
+console.log(`structures: ${structureStats.structures} files, ${structureStats.worldgen} in world generation, ${structureStats.unmapped.size} block types left out`);
 
 // Machine recipes, smelting/shredding extras and the imported weapons, for the scripts.
 // HBM heats oil before refining it; there is no heater here, so hot variants read as the plain fluid.
