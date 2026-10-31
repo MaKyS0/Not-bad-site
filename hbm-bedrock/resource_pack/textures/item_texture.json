@@ -95,6 +95,9 @@
     "hbm_hazmat_cloth": {
       "textures": "textures/items/hazmat_cloth"
     },
+    "hbm_recipe_book": {
+      "textures": "textures/items/recipe_book"
+    },
     "hbm_plate_iron": {
       "textures": "textures/items/plate_iron"
     },

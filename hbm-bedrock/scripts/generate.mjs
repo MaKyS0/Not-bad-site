@@ -1,7 +1,7 @@
 // Writes every data file of both packs from the tables below: blocks, items, recipes,
 // ore generation, armor attachables, texture atlases, sounds and both languages.
 // Textures and scripts are kept by hand. Run `npm run generate` after editing a table.
-import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -429,6 +429,10 @@ item("red_cable", {
   components: { "minecraft:block_placer": { block: "hbm:red_cable", replace_block_item: true } },
 });
 item("hazmat_cloth", { en: "Hazmat Cloth", ru: "Ткань химзащиты" });
+item("recipe_book", {
+  en: "Recipe Book", ru: "Справочник рецептов", category: "equipment",
+  components: { "minecraft:max_stack_size": 1, "minecraft:hand_equipped": true },
+});
 
 for (const [metal, en, ru] of [
   ["iron", "Iron", "Железная пластина"],
@@ -647,6 +651,7 @@ shaped("designator", ["TG", "PC"], { T: "minecraft:redstone_torch", G: "minecraf
 shaped("oil_detector", ["CP", "RG"], { C: "hbm:circuit", P: "hbm:plate_steel", R: "minecraft:redstone", G: "minecraft:glass_pane" }, "hbm:oil_detector");
 shapeless("ammo_45", ["hbm:plate_copper", "minecraft:gunpowder", "hbm:ingot_lead"], "hbm:ammo_45", 8);
 shapeless("grenade_he", ["hbm:plate_iron", "minecraft:gunpowder", "minecraft:gunpowder", "minecraft:string"], "hbm:grenade_he", 2);
+shapeless("recipe_book", ["minecraft:book", "minecraft:redstone"], "hbm:recipe_book");
 shaped("machine_battery", ["LAL", "CRC", "LAL"], { L: "hbm:ingot_lead", A: "hbm:ingot_aluminium", C: "minecraft:copper_ingot", R: "minecraft:redstone_block" }, "hbm:machine_battery");
 
 // ---------- imported recipes and radiation ----------
@@ -828,6 +833,33 @@ name("hbm.radar.contact", "%s: %s blocks, %s", "%s: %s блоков, %s");
 name("hbm.miner.depth", "Dug %s layers down", "Выкопано слоёв вниз: %s");
 name("hbm.machine.poured", "§aPoured in: ", "§aЗалито: ");
 name("hbm.detector.rads", "Radioactive items nearby: %s RAD/s", "Радиоактивных предметов рядом: %s РАД/с");
+name("hbm.book.title", "Recipe Book", "Справочник рецептов");
+name("hbm.book.body", "%s items. Find one to see how it is made and what it is used for.", "Предметов: %s. Найдите предмет, чтобы увидеть, как его сделать и где он нужен.");
+name("hbm.book.search", "Search", "Поиск");
+name("hbm.book.search_label", "Name or id (English or Russian)", "Название или id (по-русски или по-английски)");
+name("hbm.book.all", "All items", "Все предметы");
+name("hbm.book.held", "Item in hand", "Предмет в руке");
+name("hbm.book.page", "Page %s of %s", "Страница %s из %s");
+name("hbm.book.next", "Next page >", "Следующая страница >");
+name("hbm.book.prev", "< Previous page", "< Предыдущая страница");
+name("hbm.book.back", "Back", "Назад");
+name("hbm.book.none", "Nothing found", "Ничего не найдено");
+name("hbm.book.no_recipes", "No known way to make this; it may come from mining, mobs or loot.", "Способ получения неизвестен: возможно, добывается, выпадает с мобов или находится в мире.");
+name("hbm.book.no_uses", "Not used in any known recipe.", "Не используется в известных рецептах.");
+name("hbm.book.recipe_of", "Recipe %s of %s", "Способ %s из %s");
+name("hbm.book.use_of", "Use %s of %s", "Применение %s из %s");
+name("hbm.book.next_recipe", "Next >", "Следующий >");
+name("hbm.book.prev_recipe", "< Previous", "< Предыдущий");
+name("hbm.book.show_uses", "Where is it used?", "Где используется?");
+name("hbm.book.show_recipes", "How to make it?", "Как сделать?");
+name("hbm.book.crafting", "Crafting table:", "Верстак:");
+name("hbm.book.shapeless", "Crafting table, any arrangement:", "Верстак, в любом порядке:");
+name("hbm.book.furnace", "Furnace:", "Печь:");
+name("hbm.book.machine", "Machine: ", "Машина: ");
+name("hbm.book.gives", "Result: ", "Результат: ");
+name("hbm.book.time", "Time %s s, power %s HE/tick", "Время %s с, энергия %s HE/тик");
+name("hbm.book.stamp", "any %s stamp (stays in the press)", "любой штамп «%s» (не тратится)");
+name("hbm.book.random", "one of the results at random", "один из результатов случайно");
 name("hbm.machine.hint", "§7Tap with an item to load it. Sneak to place blocks against the machine.", "§7Нажмите предметом, чтобы загрузить его. Присядьте, чтобы ставить блоки рядом.");
 
 for (const [code, entries] of Object.entries(lang)) {
@@ -837,3 +869,46 @@ write(join(RP, "texts/languages.json"), Object.keys(lang));
 
 console.log(`generated: ${Object.keys(terrain).length} block textures, ${Object.keys(itemTextures).length} items, ${Object.keys(lang.en_US).length} strings`);
 console.log(`imported: ${importedBlocks.length} blocks, ${importedItems.length} items, ${importedRecipes} recipes, ${Object.keys(rads).length} radiation values`);
+
+// ---------- recipe book index ----------
+// Built from the files written above, so hand-made and imported content look the same to the book.
+
+function* jsonIn(dir) {
+  for (const f of readdirSync(dir, { recursive: true })) if (String(f).endsWith(".json")) yield JSON.parse(readFileSync(join(dir, String(f)), "utf8"));
+}
+const atlas = { ...terrain, ...itemTextures };
+const bookItems = [];
+for (const doc of jsonIn(join(BP, "items"))) {
+  const d = doc["minecraft:item"];
+  const id = d.description.identifier;
+  if (d.components["minecraft:block_placer"]) continue;
+  const key = d.components["minecraft:display_name"]?.value;
+  bookItems.push([id, key, atlas[d.components["minecraft:icon"]?.textures?.default]?.textures ?? ""]);
+}
+for (const doc of jsonIn(join(BP, "blocks"))) {
+  const d = doc["minecraft:block"];
+  const mats = d.components["minecraft:material_instances"] ?? {};
+  const tex = (mats.north ?? mats["*"])?.texture;
+  bookItems.push([d.description.identifier, d.components["minecraft:display_name"], atlas[tex]?.textures ?? ""]);
+}
+const names = Object.fromEntries(bookItems.map(([id, key]) => [id, [lang.en_US[key] ?? id, lang.ru_RU[key] ?? id]]));
+const bookRecipes = [];
+for (const doc of jsonIn(join(BP, "recipes"))) {
+  const shapedR = doc["minecraft:recipe_shaped"];
+  const shapelessR = doc["minecraft:recipe_shapeless"];
+  const furnaceR = doc["minecraft:recipe_furnace"];
+  if (shapedR) bookRecipes.push({ t: "shaped", p: shapedR.pattern, k: Object.fromEntries(Object.entries(shapedR.key).map(([c, v]) => [c, v.item])), o: shapedR.result.item, c: shapedR.result.count ?? 1 });
+  if (shapelessR) bookRecipes.push({ t: "shapeless", i: shapelessR.ingredients.map((v) => v.item), o: shapelessR.result.item, c: shapelessR.result.count ?? 1 });
+  if (furnaceR) bookRecipes.push({ t: "furnace", i: furnaceR.input, o: furnaceR.output, c: 1 });
+}
+for (const [machine, list] of Object.entries(machineRecipes)) {
+  for (const r of list) bookRecipes.push({ t: "machine", m: machine, i: r.inputs, o: r.outputs, tk: r.ticks, pw: r.power, pick: r.pick });
+}
+write(
+  join(BP, "scripts/recipe_index.js"),
+  `// @ts-nocheck: data only, too large for type inference.\n// Generated by scripts/generate.mjs: everything the recipe book shows.\n` +
+    `/** [id, lang key, icon texture] */\nexport const BOOK_ITEMS = ${JSON.stringify(bookItems)};\n` +
+    `/** id -> [English, Russian] for searching */\nexport const BOOK_NAMES = ${JSON.stringify(names)};\n` +
+    `/** @type {any[]} */\nexport const BOOK_RECIPES = ${JSON.stringify(bookRecipes)};\n`
+);
+console.log(`recipe book: ${bookItems.length} items, ${bookRecipes.length} recipes`);

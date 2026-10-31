@@ -147,7 +147,7 @@ for (const [name, def] of Object.entries(sounds)) {
 }
 
 // Ids, sounds and lang keys the scripts refer to by string. Property, state and event names are not items.
-const NOT_ITEMS = new Set(["hbm:rads", "hbm:radx_seconds", "hbm:radaway_left", "hbm:setrads", "hbm:lit", "hbm:fallout", "hbm:bombs", "hbm:target"]);
+const NOT_ITEMS = new Set(["hbm:rads", "hbm:radx_seconds", "hbm:radaway_left", "hbm:setrads", "hbm:lit", "hbm:fallout", "hbm:bombs", "hbm:target", "hbm:has_book", "hbm:book"]);
 for (const file of readdirSync(join(BP, "scripts")).filter((f) => f.endsWith(".js"))) {
   const script = readFileSync(join(BP, "scripts", file), "utf8");
   for (const [, id] of script.matchAll(/"(hbm:[a-z0-9_]+)"/g)) {

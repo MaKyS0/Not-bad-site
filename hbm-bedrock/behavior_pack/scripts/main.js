@@ -5,6 +5,7 @@ import { startMachines } from "./machines.js";
 import { startBombs } from "./bombs.js";
 import { startMissiles } from "./missiles.js";
 import { startWeapons } from "./weapons.js";
+import { startRecipeBook } from "./recipe_book.js";
 
 world.afterEvents.worldLoad.subscribe(() => {
   startRadiation();
@@ -12,4 +13,5 @@ world.afterEvents.worldLoad.subscribe(() => {
   startBombs();
   startMissiles();
   startWeapons();
+  startRecipeBook();
 });

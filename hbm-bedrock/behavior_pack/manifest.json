@@ -4,21 +4,21 @@
     "name": "HBM Nuclear Tech (Bedrock) BP",
     "description": "Port of HBM's Nuclear Tech Mod and NTM Extended: all items and blocks, machines, oil, RBMK, missiles, weapons, radiation. LGPL-3.0",
     "uuid": "021a114c-917d-4169-959b-6ed824153e30",
-    "version": [1, 3, 0],
+    "version": [1, 4, 0],
     "min_engine_version": [1, 21, 90]
   },
   "modules": [
     {
       "type": "data",
       "uuid": "4a9a6144-293d-4f8c-b242-f67ef5891681",
-      "version": [1, 3, 0]
+      "version": [1, 4, 0]
     },
     {
       "type": "script",
       "language": "javascript",
       "uuid": "91ba9922-70d6-4c44-aeb1-48de5d221f72",
       "entry": "scripts/main.js",
-      "version": [1, 3, 0]
+      "version": [1, 4, 0]
     }
   ],
   "dependencies": [
@@ -32,7 +32,7 @@
     },
     {
       "uuid": "8cfdf0f2-b838-4901-9d8e-9b159247b136",
-      "version": [1, 3, 0]
+      "version": [1, 4, 0]
     }
   ],
   "metadata": {
