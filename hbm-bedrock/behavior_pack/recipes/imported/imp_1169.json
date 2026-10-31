@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      " B ",
+      "BBB",
       "BAB",
-      " B "
+      "BBB"
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_556_du"
+        "item": "hbm:ammo_556"
       },
       "A": {
-        "item": "hbm:ingot_starmetal"
+        "item": "hbm:ingot_u238"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_star",
-      "count": 4
+      "item": "hbm:ammo_556_du",
+      "count": 8
     }
   }
 }

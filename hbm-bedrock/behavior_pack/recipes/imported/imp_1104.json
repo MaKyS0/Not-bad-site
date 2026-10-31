@@ -1,29 +1,31 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1104"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "hbm:ammo_12gauge"
-      },
-      {
-        "item": "hbm:ammo_12gauge"
-      },
-      {
-        "item": "hbm:ammo_12gauge"
-      },
-      {
-        "item": "hbm:ammo_12gauge"
-      }
+    "pattern": [
+      "IGI",
+      "IPI",
+      "IPI"
     ],
+    "key": {
+      "G": {
+        "item": "hbm:plate_gold"
+      },
+      "I": {
+        "item": "hbm:plate_iron"
+      },
+      "P": {
+        "item": "hbm:powder_power"
+      }
+    },
     "result": {
-      "item": "hbm:gun_jack_ammo",
-      "count": 1
+      "item": "hbm:gun_emp_ammo",
+      "count": 8
     }
   }
 }

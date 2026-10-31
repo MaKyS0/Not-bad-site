@@ -1,36 +1,40 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shaped": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "hbm:imp_1333"
     },
     "tags": [
       "crafting_table"
     ],
-    "pattern": [
-      "WWW",
-      "MCM",
-      "ISI"
-    ],
-    "key": {
-      "W": {
+    "ingredients": [
+      {
         "item": "minecraft:glass_pane"
       },
-      "M": {
-        "item": "hbm:motor"
+      {
+        "item": "minecraft:cocoa_beans"
       },
-      "C": {
-        "item": "hbm:circuit_vacuum_tube"
+      {
+        "item": "minecraft:milk_bucket"
       },
-      "I": {
-        "item": "hbm:block_copper"
+      {
+        "item": "hbm:block_niter"
       },
-      "S": {
-        "item": "hbm:block_steel"
+      {
+        "item": "hbm:sulfur"
+      },
+      {
+        "item": "hbm:sulfur"
+      },
+      {
+        "item": "hbm:sulfur"
+      },
+      {
+        "item": "hbm:powder_fire"
       }
-    },
+    ],
     "result": {
-      "item": "hbm:machine_assembler",
+      "item": "hbm:chocolate_milk",
       "count": 1
     }
   }

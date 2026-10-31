@@ -8,16 +8,14 @@
       "crafting_table"
     ],
     "pattern": [
-      " S ",
-      " R ",
-      " S "
+      "SRS"
     ],
     "key": {
       "S": {
         "item": "hbm:plate_steel"
       },
       "R": {
-        "item": "hbm:ingot_u238"
+        "item": "hbm:rod_uranium_fuel_depleted"
       }
     },
     "result": {

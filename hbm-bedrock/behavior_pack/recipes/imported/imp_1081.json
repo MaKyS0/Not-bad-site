@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_osipr"
+        "item": "hbm:clip_bolt_action"
       }
     ],
     "result": {
-      "item": "hbm:gun_osipr_ammo",
-      "count": 30
+      "item": "hbm:ammo_20gauge_slug",
+      "count": 24
     }
   }
 }

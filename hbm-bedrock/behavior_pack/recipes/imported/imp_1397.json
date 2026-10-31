@@ -14,17 +14,17 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_tcalloy"
+        "item": "minecraft:iron_ingot"
       },
       "C": {
-        "item": "hbm:ingot_polymer"
+        "item": "minecraft:copper_ingot"
       },
       "P": {
-        "item": "hbm:motor"
+        "item": "hbm:plate_iron"
       }
     },
     "result": {
-      "item": "hbm:piston_electro",
+      "item": "hbm:piston_pneumatic",
       "count": 4
     }
   }

@@ -8,24 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "RRR",
       "CCC",
-      "SSS"
+      "SSS",
+      "CCC"
     ],
     "key": {
       "C": {
-        "item": "hbm:coil_gold_torus"
+        "item": "hbm:coil_gold"
       },
       "S": {
         "item": "hbm:ingot_steel"
-      },
-      "R": {
-        "item": "hbm:rotor_steel"
       }
     },
     "result": {
-      "item": "hbm:generator_steel",
-      "count": 1
+      "item": "hbm:rotor_steel",
+      "count": 3
     }
   }
 }

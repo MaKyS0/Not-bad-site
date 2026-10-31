@@ -1,31 +1,29 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shaped": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "hbm:imp_1105"
     },
     "tags": [
       "crafting_table"
     ],
-    "pattern": [
-      "P",
-      "S",
-      "N"
-    ],
-    "key": {
-      "P": {
-        "item": "hbm:powder_poison"
+    "ingredients": [
+      {
+        "item": "hbm:ammo_12gauge"
       },
-      "N": {
-        "item": "hbm:niter"
+      {
+        "item": "hbm:ammo_12gauge"
       },
-      "S": {
-        "item": "hbm:syringe_metal_empty"
+      {
+        "item": "hbm:ammo_12gauge"
+      },
+      {
+        "item": "hbm:ammo_12gauge"
       }
-    },
+    ],
     "result": {
-      "item": "hbm:gun_euthanasia_ammo",
-      "count": 12
+      "item": "hbm:gun_jack_ammo",
+      "count": 1
     }
   }
 }

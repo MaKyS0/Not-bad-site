@@ -9,20 +9,17 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:bottle_quantum"
+        "item": "hbm:bottle_nuka"
       },
       {
         "item": "minecraft:carrot"
       },
       {
         "item": "minecraft:gold_nugget"
-      },
-      {
-        "item": "hbm:powder_radspice"
       }
     ],
     "result": {
-      "item": "hbm:bottle_rad",
+      "item": "hbm:bottle_sparkle",
       "count": 1
     }
   }

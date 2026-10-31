@@ -8,21 +8,27 @@
       "crafting_table"
     ],
     "pattern": [
-      "BBB",
-      "BAB",
-      "BBB"
+      " I",
+      "GC",
+      " P"
     ],
     "key": {
-      "B": {
-        "item": "hbm:ammo_12gauge"
+      "I": {
+        "item": "hbm:ingot_lead"
       },
-      "A": {
-        "item": "hbm:powder_fire"
+      "G": {
+        "item": "hbm:cordite"
+      },
+      "C": {
+        "item": "hbm:casing_50"
+      },
+      "P": {
+        "item": "hbm:primer_50"
       }
     },
     "result": {
-      "item": "hbm:ammo_12gauge_incendiary",
-      "count": 8
+      "item": "hbm:assembly_actionexpress",
+      "count": 12
     }
   }
 }

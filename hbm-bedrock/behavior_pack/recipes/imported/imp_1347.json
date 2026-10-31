@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:sat_foeq"
+        "item": "hbm:sat_resonator"
       }
     ],
     "result": {
-      "item": "hbm:sat_foeq",
+      "item": "hbm:sat_resonator",
       "count": 1
     }
   }

@@ -8,23 +8,18 @@
       "crafting_table"
     ],
     "pattern": [
-      " R ",
-      "III",
-      "SSS"
+      "PIP"
     ],
     "key": {
-      "R": {
-        "item": "minecraft:redstone"
+      "P": {
+        "item": "hbm:plate_schrabidium"
       },
       "I": {
-        "item": "minecraft:brick"
-      },
-      "S": {
-        "item": "hbm:ingot_schrabidium"
+        "item": "hbm:blades_schrabidium"
       }
     },
     "result": {
-      "item": "hbm:stamp_schrabidium_flat",
+      "item": "hbm:blades_schrabidium",
       "count": 1
     }
   }

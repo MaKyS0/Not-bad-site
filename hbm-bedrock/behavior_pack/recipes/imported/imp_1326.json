@@ -8,20 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "EEE",
-      "EPE",
-      "EEE"
+      "IBI",
+      "LBL",
+      "IBI"
     ],
     "key": {
-      "E": {
-        "item": "hbm:gadget_explosive"
+      "B": {
+        "item": "minecraft:book"
       },
-      "P": {
-        "item": "hbm:plate_aluminium"
+      "I": {
+        "item": "minecraft:ink_sac"
+      },
+      "L": {
+        "item": "minecraft:lapis_lazuli"
       }
     },
     "result": {
-      "item": "hbm:gadget_explosive8",
+      "item": "hbm:book_guide_book",
       "count": 1
     }
   }

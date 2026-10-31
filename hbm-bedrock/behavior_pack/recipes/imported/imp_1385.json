@@ -9,14 +9,17 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:injector_5htp"
+        "item": "hbm:five_htp"
       },
       {
-        "item": "minecraft:iron_sword"
+        "item": "hbm:circuit_basic"
+      },
+      {
+        "item": "hbm:plate_saturnite"
       }
     ],
     "result": {
-      "item": "hbm:injector_knife",
+      "item": "hbm:injector_5htp",
       "count": 1
     }
   }

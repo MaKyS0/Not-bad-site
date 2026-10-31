@@ -14,21 +14,21 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_lead"
+        "item": "hbm:ingot_desh"
       },
       "G": {
-        "item": "hbm:ballistite"
+        "item": "hbm:cordite"
       },
       "C": {
-        "item": "hbm:casing_9"
+        "item": "hbm:casing_357"
       },
       "P": {
-        "item": "hbm:primer_9"
+        "item": "hbm:primer_357"
       }
     },
     "result": {
-      "item": "hbm:assembly_smg",
-      "count": 32
+      "item": "hbm:assembly_desh",
+      "count": 24
     }
   }
 }

@@ -17,11 +17,11 @@
         "item": "hbm:ammo_50bmg"
       },
       "A": {
-        "item": "hbm:ingot_dura_steel"
+        "item": "hbm:ingot_semtex"
       }
     },
     "result": {
-      "item": "hbm:ammo_50bmg_ap",
+      "item": "hbm:ammo_50bmg_explosive",
       "count": 8
     }
   }

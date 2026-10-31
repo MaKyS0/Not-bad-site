@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "EEE",
-      "ETE",
-      "EEE"
+      " C ",
+      "CPC",
+      " C "
     ],
     "key": {
-      "E": {
-        "item": "minecraft:ice"
+      "P": {
+        "item": "hbm:plate_iron"
       },
-      "T": {
-        "item": "hbm:thermo_unit_empty"
+      "C": {
+        "item": "hbm:coil_advanced_alloy"
       }
     },
     "result": {
-      "item": "hbm:thermo_unit_endo",
-      "count": 1
+      "item": "hbm:coil_advanced_torus",
+      "count": 2
     }
   }
 }

@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "BBB",
+      " B ",
       "BAB",
-      "BBB"
+      " B "
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_44"
+        "item": "hbm:ammo_4gauge_kampf"
       },
       "A": {
-        "item": "hbm:pellet_chlorophyte"
+        "item": "hbm:pellet_canister"
       }
     },
     "result": {
-      "item": "hbm:ammo_44_chlorophyte",
-      "count": 8
+      "item": "hbm:ammo_4gauge_canister",
+      "count": 4
     }
   }
 }

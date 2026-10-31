@@ -17,12 +17,12 @@
         "item": "hbm:ammo_12gauge"
       },
       "A": {
-        "item": "hbm:coin_maskman"
+        "item": "hbm:ingot_u238"
       }
     },
     "result": {
-      "item": "hbm:ammo_12gauge_sleek",
-      "count": 64
+      "item": "hbm:ammo_12gauge_du",
+      "count": 8
     }
   }
 }

@@ -8,20 +8,27 @@
       "crafting_table"
     ],
     "pattern": [
-      "G",
-      "R"
+      " T ",
+      "GCG",
+      " P "
     ],
     "key": {
-      "G": {
+      "T": {
         "item": "hbm:ingot_semtex"
       },
-      "R": {
-        "item": "hbm:ammo_rocket"
+      "G": {
+        "item": "hbm:rocket_fuel"
+      },
+      "C": {
+        "item": "hbm:casing_50"
+      },
+      "P": {
+        "item": "hbm:primer_50"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_he",
-      "count": 1
+      "item": "hbm:ammo_rocket",
+      "count": 2
     }
   }
 }

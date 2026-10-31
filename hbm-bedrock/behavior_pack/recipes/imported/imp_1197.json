@@ -15,11 +15,11 @@
         "item": "hbm:ammo_grenade"
       },
       "I": {
-        "item": "hbm:powder_poison"
+        "item": "hbm:powder_fire"
       }
     },
     "result": {
-      "item": "hbm:ammo_grenade_toxic",
+      "item": "hbm:ammo_grenade_incendiary",
       "count": 2
     }
   }

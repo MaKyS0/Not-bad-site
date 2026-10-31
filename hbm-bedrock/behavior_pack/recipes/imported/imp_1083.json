@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_cryolator"
+        "item": "hbm:clip_immolator"
       }
     ],
     "result": {
-      "item": "hbm:gun_cryolator_ammo",
+      "item": "hbm:gun_immolator_ammo",
       "count": 64
     }
   }

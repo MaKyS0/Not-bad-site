@@ -17,7 +17,7 @@
         "item": "minecraft:tnt"
       },
       "G": {
-        "item": "hbm:ballistite"
+        "item": "minecraft:gunpowder"
       },
       "H": {
         "item": "hbm:hull_small_steel"
@@ -28,7 +28,7 @@
     },
     "result": {
       "item": "hbm:ammo_shell",
-      "count": 5
+      "count": 4
     }
   }
 }

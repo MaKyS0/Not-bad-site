@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_tungsten"
+        "item": "minecraft:gold_ingot"
       },
       "G": {
         "item": "hbm:cordite"
@@ -27,7 +27,7 @@
       }
     },
     "result": {
-      "item": "hbm:assembly_nightmare",
+      "item": "hbm:assembly_gold",
       "count": 24
     }
   }

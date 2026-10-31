@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "PDP",
-      "BDB",
-      "PDP"
+      "CPC",
+      "CDC",
+      "CPC"
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_steel"
+      "C": {
+        "item": "hbm:powder_coal"
       },
-      "B": {
-        "item": "hbm:bolt_steel"
+      "P": {
+        "item": "hbm:ingot_phosphorus"
       },
       "D": {
-        "item": "hbm:pellet_gas"
+        "item": "hbm:ammo_fuel"
       }
     },
     "result": {
-      "item": "hbm:ammo_fuel_gas",
+      "item": "hbm:ammo_fuel_phosphorus",
       "count": 1
     }
   }

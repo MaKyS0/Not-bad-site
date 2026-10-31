@@ -18,11 +18,14 @@
         "item": "minecraft:sugar"
       },
       {
-        "item": "hbm:powder_gold"
+        "item": "hbm:powder_tungsten"
+      },
+      {
+        "item": "hbm:powder_thorium"
       }
     ],
     "result": {
-      "item": "hbm:bottle2_sunset",
+      "item": "hbm:bottle2_fritz_special",
       "count": 1
     }
   }

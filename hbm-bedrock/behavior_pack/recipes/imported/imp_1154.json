@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "BBB",
+      " B ",
       "BAB",
-      "BBB"
+      " B "
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_9mm"
+        "item": "hbm:ammo_5mm_du"
       },
       "A": {
-        "item": "hbm:ingot_dura_steel"
+        "item": "hbm:ingot_starmetal"
       }
     },
     "result": {
-      "item": "hbm:ammo_9mm_ap",
-      "count": 8
+      "item": "hbm:ammo_5mm_star",
+      "count": 4
     }
   }
 }

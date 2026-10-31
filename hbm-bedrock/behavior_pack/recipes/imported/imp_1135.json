@@ -17,11 +17,11 @@
         "item": "hbm:ammo_12gauge"
       },
       "A": {
-        "item": "hbm:gravel_obsidian"
+        "item": "hbm:powder_fire"
       }
     },
     "result": {
-      "item": "hbm:ammo_12gauge_shrapnel",
+      "item": "hbm:ammo_12gauge_incendiary",
       "count": 8
     }
   }

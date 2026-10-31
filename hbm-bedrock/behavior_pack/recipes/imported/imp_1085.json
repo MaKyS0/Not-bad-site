@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_xvl1456"
+        "item": "hbm:clip_mp"
       }
     ],
     "result": {
-      "item": "hbm:gun_xvl1456_ammo",
-      "count": 64
+      "item": "hbm:gun_mp_ammo",
+      "count": 40
     }
   }
 }

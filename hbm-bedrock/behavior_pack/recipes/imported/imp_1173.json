@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "BBB",
+      " B ",
       "BAB",
-      "BBB"
+      " B "
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_556_flechette"
+        "item": "hbm:ammo_556"
       },
       "A": {
-        "item": "hbm:powder_fire"
+        "item": "hbm:pellet_flechette"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_flechette_incendiary",
-      "count": 8
+      "item": "hbm:ammo_556_flechette",
+      "count": 4
     }
   }
 }

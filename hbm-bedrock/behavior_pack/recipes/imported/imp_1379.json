@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "FPF",
-      "PIP",
-      "FPF"
+      " D ",
+      "DID",
+      " F "
     ],
     "key": {
-      "F": {
-        "item": "minecraft:poppy"
-      },
-      "P": {
-        "item": "hbm:armor_polish"
+      "D": {
+        "item": "hbm:ducttape"
       },
       "I": {
-        "item": "minecraft:black_dye"
+        "item": "hbm:ingot_biorubber"
+      },
+      "F": {
+        "item": "hbm:plate_iron"
       }
     },
     "result": {
-      "item": "hbm:ink",
+      "item": "hbm:attachment_mask_mono",
       "count": 1
     }
   }

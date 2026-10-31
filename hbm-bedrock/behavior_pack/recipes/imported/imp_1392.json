@@ -14,17 +14,17 @@
     ],
     "key": {
       "C": {
-        "item": "hbm:circuit_chip"
+        "item": "hbm:circuit_capacitor"
       },
       "P": {
-        "item": "hbm:piston_electro"
+        "item": "hbm:piston_hydraulic"
       },
       "U": {
-        "item": "hbm:upgrade_stack_2"
+        "item": "hbm:upgrade_stack_1"
       }
     },
     "result": {
-      "item": "hbm:upgrade_stack_3",
+      "item": "hbm:upgrade_stack_2",
       "count": 1
     }
   }

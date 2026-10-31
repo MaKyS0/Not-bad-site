@@ -8,23 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      " C ",
-      "LUL",
-      "LUL"
+      "EEE",
+      "ESE",
+      "EEE"
     ],
     "key": {
-      "C": {
-        "item": "hbm:plate_copper"
+      "E": {
+        "item": "hbm:man_explosive"
       },
-      "L": {
-        "item": "hbm:plate_lead"
-      },
-      "U": {
-        "item": "hbm:ingot_solinium"
+      "S": {
+        "item": "hbm:plate_steel"
       }
     },
     "result": {
-      "item": "hbm:custom_sol",
+      "item": "hbm:man_explosive8",
       "count": 1
     }
   }

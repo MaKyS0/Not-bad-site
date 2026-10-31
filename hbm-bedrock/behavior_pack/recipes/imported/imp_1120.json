@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_desh"
+        "item": "hbm:ingot_tungsten"
       },
       "G": {
         "item": "hbm:cordite"
@@ -27,7 +27,7 @@
       }
     },
     "result": {
-      "item": "hbm:assembly_desh",
+      "item": "hbm:assembly_nightmare",
       "count": 24
     }
   }

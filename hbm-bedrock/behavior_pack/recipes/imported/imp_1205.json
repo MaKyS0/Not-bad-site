@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_steel"
+        "item": "hbm:pellet_buckshot"
       },
       "G": {
         "item": "hbm:ballistite"
@@ -30,7 +30,7 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_slug",
+      "item": "hbm:ammo_4gauge",
       "count": 12
     }
   }

@@ -8,28 +8,26 @@
       "crafting_table"
     ],
     "pattern": [
-      "PPI",
-      "SWD"
+      "TTT",
+      "AAS",
+      " D "
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_saturnite"
+      "A": {
+        "item": "hbm:ingot_unobtainium"
       },
-      "I": {
-        "item": "hbm:mechanism_rifle_1"
+      "T": {
+        "item": "hbm:toothpicks"
       },
       "S": {
-        "item": "minecraft:stick"
+        "item": "hbm:gun_stinger"
       },
       "D": {
-        "item": "minecraft:oak_planks"
-      },
-      "W": {
-        "item": "hbm:wire_fine_tungsten"
+        "item": "hbm:ducttape"
       }
     },
     "result": {
-      "item": "hbm:gun_bolt_action_saturnite",
+      "item": "hbm:gun_skystinger",
       "count": 1
     }
   }

@@ -14,14 +14,14 @@
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_22lr"
+        "item": "hbm:ammo_9mm"
       },
       "A": {
-        "item": "hbm:ingot_dura_steel"
+        "item": "hbm:ingot_u238"
       }
     },
     "result": {
-      "item": "hbm:ammo_22lr_ap",
+      "item": "hbm:ammo_9mm_du",
       "count": 8
     }
   }

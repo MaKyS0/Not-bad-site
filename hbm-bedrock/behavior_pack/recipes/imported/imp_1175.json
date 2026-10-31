@@ -17,11 +17,11 @@
         "item": "hbm:ammo_556_flechette"
       },
       "A": {
-        "item": "hbm:ingot_u238"
+        "item": "hbm:ingot_phosphorus"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_flechette_du",
+      "item": "hbm:ammo_556_flechette_phosphorus",
       "count": 8
     }
   }

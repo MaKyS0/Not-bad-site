@@ -8,27 +8,18 @@
       "crafting_table"
     ],
     "pattern": [
-      " I",
-      "GC",
-      " P"
+      " L ",
+      " L ",
+      "LLL"
     ],
     "key": {
-      "I": {
-        "item": "minecraft:iron_ingot"
-      },
-      "G": {
-        "item": "hbm:cordite"
-      },
-      "C": {
-        "item": "hbm:casing_357"
-      },
-      "P": {
-        "item": "hbm:primer_357"
+      "L": {
+        "item": "hbm:nugget_lead"
       }
     },
     "result": {
-      "item": "hbm:assembly_iron",
-      "count": 24
+      "item": "hbm:pellet_flechette",
+      "count": 1
     }
   }
 }

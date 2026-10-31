@@ -17,11 +17,11 @@
         "item": "hbm:ammo_5mm"
       },
       "A": {
-        "item": "hbm:ingot_u238"
+        "item": "hbm:ingot_semtex"
       }
     },
     "result": {
-      "item": "hbm:ammo_5mm_du",
+      "item": "hbm:ammo_5mm_explosive",
       "count": 8
     }
   }

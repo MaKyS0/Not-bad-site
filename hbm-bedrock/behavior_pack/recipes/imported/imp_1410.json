@@ -8,24 +8,17 @@
       "crafting_table"
     ],
     "pattern": [
-      "BGB",
-      "GAG",
-      "BGB"
+      "##",
+      "##"
     ],
     "key": {
-      "B": {
-        "item": "hbm:egg_balefire_shard"
-      },
-      "G": {
-        "item": "minecraft:gold_ingot"
-      },
-      "A": {
-        "item": "minecraft:book"
+      "#": {
+        "item": "hbm:ingot_advanced_alloy"
       }
     },
     "result": {
-      "item": "hbm:book_of_",
-      "count": 1
+      "item": "hbm:plate_advanced_alloy",
+      "count": 4
     }
   }
 }

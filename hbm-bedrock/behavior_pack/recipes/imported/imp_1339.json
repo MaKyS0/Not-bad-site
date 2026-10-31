@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:sat_laser"
+        "item": "hbm:sat_radar"
       }
     ],
     "result": {
-      "item": "hbm:sat_laser",
+      "item": "hbm:sat_radar",
       "count": 1
     }
   }

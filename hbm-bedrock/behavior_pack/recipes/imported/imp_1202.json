@@ -8,21 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "GGG",
-      "GRG",
-      "GGG"
+      "G",
+      "R"
     ],
     "key": {
       "G": {
-        "item": "hbm:ammo_grenade"
+        "item": "hbm:ammo_rocket"
       },
       "R": {
-        "item": "hbm:coin_maskman"
+        "item": "hbm:ammo_grenade"
       }
     },
     "result": {
-      "item": "hbm:ammo_grenade_sleek",
-      "count": 64
+      "item": "hbm:ammo_grenade_kampf",
+      "count": 2
     }
   }
 }

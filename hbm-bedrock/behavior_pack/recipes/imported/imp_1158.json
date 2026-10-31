@@ -17,11 +17,11 @@
         "item": "hbm:ammo_50bmg"
       },
       "A": {
-        "item": "hbm:ingot_semtex"
+        "item": "hbm:powder_fire"
       }
     },
     "result": {
-      "item": "hbm:ammo_50bmg_explosive",
+      "item": "hbm:ammo_50bmg_incendiary",
       "count": 8
     }
   }

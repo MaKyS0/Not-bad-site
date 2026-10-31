@@ -8,20 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "G",
-      "R"
+      " B ",
+      "BAB",
+      " B "
     ],
     "key": {
-      "G": {
-        "item": "hbm:ammo_rocket"
-      },
-      "R": {
+      "B": {
         "item": "hbm:ammo_4gauge_explosive"
+      },
+      "A": {
+        "item": "hbm:egg_balefire_shard"
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_kampf",
-      "count": 2
+      "item": "hbm:ammo_4gauge_balefire",
+      "count": 4
     }
   }
 }

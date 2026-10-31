@@ -14,10 +14,10 @@
     ],
     "key": {
       "T": {
-        "item": "hbm:ingot_semtex"
+        "item": "minecraft:tnt"
       },
       "G": {
-        "item": "minecraft:gunpowder"
+        "item": "hbm:cordite"
       },
       "H": {
         "item": "hbm:hull_small_steel"
@@ -27,8 +27,8 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_shell_explosive",
-      "count": 4
+      "item": "hbm:ammo_shell",
+      "count": 6
     }
   }
 }

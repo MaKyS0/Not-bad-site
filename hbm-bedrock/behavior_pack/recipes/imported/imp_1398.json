@@ -8,24 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      "MCM",
-      "MKM",
-      "MMM"
+      " I ",
+      "CPC",
+      " I "
     ],
     "key": {
-      "M": {
-        "item": "hbm:ingot_meteorite_forged"
+      "I": {
+        "item": "hbm:ingot_tcalloy"
       },
       "C": {
-        "item": "hbm:coin_maskman"
+        "item": "hbm:ingot_polymer"
       },
-      "K": {
-        "item": "hbm:key"
+      "P": {
+        "item": "hbm:motor"
       }
     },
     "result": {
-      "item": "hbm:mech_key",
-      "count": 1
+      "item": "hbm:piston_electro",
+      "count": 4
     }
   }
 }

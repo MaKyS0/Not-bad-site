@@ -8,18 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      " L ",
-      " L ",
-      "LLL"
+      "PCP",
+      "DDD",
+      "PCP"
     ],
     "key": {
-      "L": {
-        "item": "hbm:nugget_lead"
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "C": {
+        "item": "hbm:coil_copper"
+      },
+      "D": {
+        "item": "hbm:powder_lithium"
       }
     },
     "result": {
-      "item": "hbm:pellet_flechette",
-      "count": 1
+      "item": "hbm:gun_defabricator_ammo",
+      "count": 16
     }
   }
 }

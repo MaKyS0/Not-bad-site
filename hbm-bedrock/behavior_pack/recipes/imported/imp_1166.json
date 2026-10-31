@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "BBB",
+      " B ",
       "BAB",
-      "BBB"
+      " B "
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_556"
+        "item": "hbm:ammo_50ae_du"
       },
       "A": {
-        "item": "hbm:ingot_phosphorus"
+        "item": "hbm:ingot_starmetal"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_phosphorus",
-      "count": 8
+      "item": "hbm:ammo_50ae_star",
+      "count": 4
     }
   }
 }

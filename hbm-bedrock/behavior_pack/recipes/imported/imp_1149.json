@@ -17,11 +17,11 @@
         "item": "hbm:ammo_44"
       },
       "A": {
-        "item": "hbm:ingot_u238"
+        "item": "hbm:ingot_dura_steel"
       }
     },
     "result": {
-      "item": "hbm:ammo_44_du",
+      "item": "hbm:ammo_44_ap",
       "count": 8
     }
   }

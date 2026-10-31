@@ -1,25 +1,36 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1350"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "hbm:bottle_nuka"
-      },
-      {
-        "item": "minecraft:carrot"
-      },
-      {
-        "item": "minecraft:gold_nugget"
-      }
+    "pattern": [
+      "PCE",
+      "SEB",
+      "PCE"
     ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_dineutronium"
+      },
+      "C": {
+        "item": "hbm:weaponized_starblaster_cell"
+      },
+      "E": {
+        "item": "hbm:component_emitter"
+      },
+      "B": {
+        "item": "hbm:gun_b92"
+      },
+      "S": {
+        "item": "hbm:singularity_spark"
+      }
+    },
     "result": {
-      "item": "hbm:bottle_sparkle",
+      "item": "hbm:gun_b93",
       "count": 1
     }
   }

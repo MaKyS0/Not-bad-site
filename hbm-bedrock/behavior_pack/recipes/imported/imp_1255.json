@@ -8,20 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "G",
-      "R"
+      "BBB",
+      "BAB",
+      "BBB"
     ],
     "key": {
-      "G": {
-        "item": "hbm:ingot_phosphorus"
+      "B": {
+        "item": "hbm:ammo_50bmg"
       },
-      "R": {
-        "item": "hbm:ammo_rocket"
+      "A": {
+        "item": "hbm:ingot_phosphorus"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_phosphorus",
-      "count": 1
+      "item": "hbm:ammo_50bmg_phosphorus",
+      "count": 8
     }
   }
 }

@@ -14,7 +14,7 @@
     ],
     "key": {
       "N": {
-        "item": "hbm:ammo_nuke_safe"
+        "item": "hbm:ammo_nuke_high"
       },
       "C": {
         "item": "hbm:cap_aluminium"
@@ -27,7 +27,7 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_mirv_safe",
+      "item": "hbm:ammo_mirv_high",
       "count": 1
     }
   }

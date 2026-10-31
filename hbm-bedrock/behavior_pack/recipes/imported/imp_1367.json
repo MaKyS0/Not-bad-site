@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "PCI",
-      "ISS",
-      "PCI"
+      "A A",
+      "PSP",
+      "PSP"
     ],
     "key": {
+      "A": {
+        "item": "hbm:plate_aluminium"
+      },
       "P": {
-        "item": "hbm:plate_desh"
-      },
-      "C": {
-        "item": "hbm:coil_advanced_alloy"
-      },
-      "I": {
-        "item": "hbm:ingot_starmetal"
+        "item": "hbm:plate_steel"
       },
       "S": {
-        "item": "hbm:circuit_advanced"
+        "item": "hbm:steel_scaffold"
       }
     },
     "result": {
-      "item": "hbm:mechanism_special",
+      "item": "hbm:mp_stability_15_thin",
       "count": 1
     }
   }

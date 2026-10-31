@@ -8,21 +8,27 @@
       "crafting_table"
     ],
     "pattern": [
-      "BBB",
-      "BAB",
-      "BBB"
+      "NNN",
+      "CDS",
+      "NNN"
     ],
     "key": {
-      "B": {
-        "item": "hbm:ammo_44"
+      "N": {
+        "item": "hbm:ammo_nuke_safe"
       },
-      "A": {
-        "item": "hbm:ingot_phosphorus"
+      "C": {
+        "item": "hbm:cap_aluminium"
+      },
+      "D": {
+        "item": "hbm:det_cord"
+      },
+      "S": {
+        "item": "hbm:hull_small_steel"
       }
     },
     "result": {
-      "item": "hbm:ammo_44_phosphorus",
-      "count": 8
+      "item": "hbm:ammo_mirv_safe",
+      "count": 1
     }
   }
 }

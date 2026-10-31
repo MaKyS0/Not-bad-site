@@ -14,10 +14,10 @@
     ],
     "key": {
       "I": {
-        "item": "minecraft:copper_ingot"
+        "item": "minecraft:iron_ingot"
       },
       "G": {
-        "item": "hbm:cordite"
+        "item": "hbm:ballistite"
       },
       "C": {
         "item": "hbm:casing_9"
@@ -27,7 +27,7 @@
       }
     },
     "result": {
-      "item": "hbm:assembly_lacunae",
+      "item": "hbm:assembly_uzi",
       "count": 32
     }
   }

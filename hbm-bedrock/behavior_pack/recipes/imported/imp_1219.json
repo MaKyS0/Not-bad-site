@@ -17,7 +17,7 @@
         "item": "hbm:ingot_semtex"
       },
       "G": {
-        "item": "hbm:cordite"
+        "item": "hbm:ballistite"
       },
       "H": {
         "item": "hbm:hull_small_steel"
@@ -28,7 +28,7 @@
     },
     "result": {
       "item": "hbm:ammo_shell_explosive",
-      "count": 6
+      "count": 5
     }
   }
 }

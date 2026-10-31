@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:pellet_flechette"
+        "item": "hbm:pellet_cluster"
       },
       "G": {
         "item": "hbm:ballistite"
@@ -30,7 +30,7 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_20gauge_flechette",
+      "item": "hbm:ammo_20gauge_explosive",
       "count": 12
     }
   }

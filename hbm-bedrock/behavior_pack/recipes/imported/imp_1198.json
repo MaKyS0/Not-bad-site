@@ -15,11 +15,11 @@
         "item": "hbm:ammo_grenade"
       },
       "I": {
-        "item": "minecraft:glowstone_dust"
+        "item": "hbm:powder_poison"
       }
     },
     "result": {
-      "item": "hbm:ammo_grenade_concussion",
+      "item": "hbm:ammo_grenade_toxic",
       "count": 2
     }
   }

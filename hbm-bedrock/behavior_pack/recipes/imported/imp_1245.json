@@ -1,20 +1,28 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1245"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "hbm:ammo_mirv"
-      }
+    "pattern": [
+      " T ",
+      "TST",
+      " T "
     ],
+    "key": {
+      "T": {
+        "item": "minecraft:tnt"
+      },
+      "S": {
+        "item": "hbm:assembly_nuke"
+      }
+    },
     "result": {
-      "item": "hbm:ammo_nuke",
-      "count": 6
+      "item": "hbm:ammo_nuke_pumpkin",
+      "count": 1
     }
   }
 }

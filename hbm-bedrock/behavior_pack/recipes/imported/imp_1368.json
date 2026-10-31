@@ -8,23 +8,26 @@
       "crafting_table"
     ],
     "pattern": [
-      "ACA",
-      "CXC",
-      "ACA"
+      "PCI",
+      "ISS",
+      "PCI"
     ],
     "key": {
-      "A": {
-        "item": "hbm:ingot_advanced_alloy"
+      "P": {
+        "item": "hbm:plate_desh"
       },
       "C": {
-        "item": "hbm:cinnebar"
+        "item": "hbm:coil_advanced_alloy"
       },
-      "X": {
-        "item": "minecraft:compass"
+      "I": {
+        "item": "hbm:ingot_starmetal"
+      },
+      "S": {
+        "item": "hbm:circuit_advanced"
       }
     },
     "result": {
-      "item": "hbm:coltass",
+      "item": "hbm:mechanism_special",
       "count": 1
     }
   }

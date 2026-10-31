@@ -14,18 +14,18 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_u238"
+        "item": "hbm:ingot_tungsten"
       },
       "G": {
-        "item": "minecraft:gunpowder"
+        "item": "hbm:cordite"
       },
       "C": {
         "item": "minecraft:copper_ingot"
       }
     },
     "result": {
-      "item": "hbm:ammo_shell_apfsds_du",
-      "count": 4
+      "item": "hbm:ammo_shell_apfsds_t",
+      "count": 6
     }
   }
 }

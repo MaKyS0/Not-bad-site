@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "S ",
-      "AA",
-      "AA"
+      "SSS",
+      "G G",
+      "SSS"
     ],
     "key": {
       "S": {
         "item": "hbm:plate_steel"
       },
-      "A": {
-        "item": "hbm:plate_aluminium"
+      "G": {
+        "item": "minecraft:glass_pane"
       }
     },
     "result": {
-      "item": "hbm:canister_fuel",
-      "count": 2
+      "item": "hbm:cell",
+      "count": 6
     }
   }
 }

@@ -17,12 +17,12 @@
         "item": "hbm:ammo_556"
       },
       "A": {
-        "item": "minecraft:redstone"
+        "item": "hbm:coin_maskman"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_tracer",
-      "count": 8
+      "item": "hbm:ammo_556_sleek",
+      "count": 64
     }
   }
 }

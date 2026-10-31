@@ -13,14 +13,14 @@
     ],
     "key": {
       "G": {
-        "item": "hbm:powder_fire"
+        "item": "hbm:ingot_semtex"
       },
       "R": {
         "item": "hbm:ammo_rocket"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_incendiary",
+      "item": "hbm:ammo_rocket_he",
       "count": 1
     }
   }

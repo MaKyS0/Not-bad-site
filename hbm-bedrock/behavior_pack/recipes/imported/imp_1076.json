@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_mp40"
+        "item": "hbm:clip_bf"
       }
     ],
     "result": {
-      "item": "hbm:ammo_9mm",
-      "count": 32
+      "item": "hbm:gun_bf_ammo",
+      "count": 2
     }
   }
 }

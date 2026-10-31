@@ -8,27 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "SS ",
-      "STI",
-      " IR"
+      "SSS",
+      " MW"
     ],
     "key": {
       "S": {
-        "item": "hbm:plate_steel"
+        "item": "hbm:hull_small_steel"
       },
-      "T": {
-        "item": "minecraft:tnt"
+      "W": {
+        "item": "hbm:plate_copper"
       },
-      "I": {
-        "item": "hbm:plate_aluminium"
-      },
-      "R": {
-        "item": "minecraft:redstone"
+      "M": {
+        "item": "hbm:mechanism_launcher_1"
       }
     },
     "result": {
-      "item": "hbm:gun_stinger_ammo",
-      "count": 4
+      "item": "hbm:gun_panzerschreck",
+      "count": 1
     }
   }
 }

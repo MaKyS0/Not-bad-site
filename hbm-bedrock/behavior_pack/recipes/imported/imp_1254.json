@@ -14,14 +14,14 @@
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_50bmg"
+        "item": "hbm:ammo_44"
       },
       "A": {
         "item": "hbm:ingot_phosphorus"
       }
     },
     "result": {
-      "item": "hbm:ammo_50bmg_phosphorus",
+      "item": "hbm:ammo_44_phosphorus",
       "count": 8
     }
   }

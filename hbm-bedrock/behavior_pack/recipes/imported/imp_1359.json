@@ -15,11 +15,11 @@
         "item": "minecraft:gold_nugget"
       },
       {
-        "item": "minecraft:green_dye"
+        "item": "minecraft:gray_dye"
       }
     ],
     "result": {
-      "item": "hbm:bobmazon_tools",
+      "item": "hbm:bobmazon_weapons",
       "count": 1
     }
   }

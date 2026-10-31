@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:pellet_flechette"
+        "item": "hbm:ingot_steel"
       },
       "G": {
         "item": "hbm:ballistite"
@@ -30,7 +30,7 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_flechette",
+      "item": "hbm:ammo_4gauge_slug",
       "count": 12
     }
   }

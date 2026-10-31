@@ -14,17 +14,17 @@
     ],
     "key": {
       "C": {
-        "item": "hbm:plate_saturnite"
+        "item": "hbm:plate_gold"
       },
       "P": {
         "item": "hbm:motor"
       },
       "U": {
-        "item": "hbm:upgrade_ejector_2"
+        "item": "hbm:upgrade_ejector_1"
       }
     },
     "result": {
-      "item": "hbm:upgrade_ejector_3",
+      "item": "hbm:upgrade_ejector_2",
       "count": 1
     }
   }

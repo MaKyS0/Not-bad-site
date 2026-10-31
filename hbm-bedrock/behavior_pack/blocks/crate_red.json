@@ -1,0 +1,55 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:crate_red",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.crate_red.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 1
+      },
+      "minecraft:geometry": "geometry.hbm.machine",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_crate_red",
+          "render_method": "opaque"
+        },
+        "north": {
+          "texture": "hbm_crate_red",
+          "render_method": "opaque"
+        },
+        "south": {
+          "texture": "hbm_crate_red",
+          "render_method": "opaque"
+        },
+        "east": {
+          "texture": "hbm_crate_red",
+          "render_method": "opaque"
+        },
+        "west": {
+          "texture": "hbm_crate_red",
+          "render_method": "opaque"
+        },
+        "up": {
+          "texture": "hbm_crate_red",
+          "render_method": "opaque"
+        },
+        "down": {
+          "texture": "hbm_crate_red",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:map_color": "#a02020",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:wood": {},
+      "minecraft:loot": "loot_tables/empty.json"
+    }
+  }
+}

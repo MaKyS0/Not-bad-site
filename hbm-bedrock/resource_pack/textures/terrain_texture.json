@@ -175,6 +175,12 @@
     "hbm_ore_oil_empty": {
       "textures": "textures/blocks/ore_oil_empty"
     },
+    "hbm_crate_red": {
+      "textures": "textures/blocks/crate_red"
+    },
+    "hbm_crate_starmetal": {
+      "textures": "textures/blocks/crate_starmetal"
+    },
     "hbm_semtex_side": {
       "textures": "textures/blocks/semtex_side"
     },

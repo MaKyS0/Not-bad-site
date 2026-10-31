@@ -8,30 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      " R ",
-      "BSK",
-      " Y "
+      "PCP",
+      "DDD",
+      "PCP"
     ],
     "key": {
-      "S": {
-        "item": "hbm:plate_steel"
+      "P": {
+        "item": "hbm:plate_lead"
       },
-      "K": {
-        "item": "minecraft:ink_sac"
+      "C": {
+        "item": "hbm:coil_gold"
       },
-      "R": {
-        "item": "minecraft:red_dye"
-      },
-      "B": {
-        "item": "minecraft:lapis_lazuli"
-      },
-      "Y": {
-        "item": "minecraft:yellow_dye"
+      "D": {
+        "item": "hbm:powder_power"
       }
     },
     "result": {
-      "item": "hbm:gun_hp_ammo",
-      "count": 8
+      "item": "hbm:gun_spark_ammo",
+      "count": 4
     }
   }
 }

@@ -9,14 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:redstone_depleted"
-      },
-      {
-        "item": "hbm:redstone_depleted"
+        "item": "hbm:chemistry_template"
       }
     ],
     "result": {
-      "item": "minecraft:redstone",
+      "item": "minecraft:paper",
       "count": 1
     }
   }

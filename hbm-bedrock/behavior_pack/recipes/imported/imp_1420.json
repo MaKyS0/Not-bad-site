@@ -7,7 +7,7 @@
     "tags": [
       "furnace"
     ],
-    "input": "hbm:casing_buckshot",
+    "input": "hbm:casing_50",
     "output": "minecraft:copper_ingot"
   }
 }

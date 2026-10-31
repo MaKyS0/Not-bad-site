@@ -8,19 +8,19 @@
       "crafting_table"
     ],
     "pattern": [
-      "R",
-      "P"
+      "P",
+      "R"
     ],
     "key": {
       "P": {
-        "item": "hbm:plate_copper"
+        "item": "hbm:plate_aluminium"
       },
       "R": {
         "item": "minecraft:redstone"
       }
     },
     "result": {
-      "item": "hbm:primer_buckshot",
+      "item": "hbm:primer_50",
       "count": 1
     }
   }

@@ -13,7 +13,7 @@
     ],
     "key": {
       "L": {
-        "item": "hbm:briquette_lignite"
+        "item": "hbm:lignite"
       },
       "S": {
         "item": "minecraft:stick"
@@ -21,7 +21,7 @@
     },
     "result": {
       "item": "minecraft:torch",
-      "count": 6
+      "count": 3
     }
   }
 }

@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_fatman"
+        "item": "hbm:clip_stinger"
       }
     ],
     "result": {
-      "item": "hbm:ammo_nuke",
+      "item": "hbm:gun_stinger_ammo",
       "count": 6
     }
   }

@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_jack"
+        "item": "hbm:clip_emp"
       }
     ],
     "result": {
-      "item": "hbm:gun_jack_ammo",
-      "count": 12
+      "item": "hbm:gun_emp_ammo",
+      "count": 6
     }
   }
 }

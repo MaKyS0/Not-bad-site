@@ -8,20 +8,19 @@
       "crafting_table"
     ],
     "pattern": [
-      " T ",
-      "TST",
-      " T "
+      "G",
+      "N"
     ],
     "key": {
-      "T": {
-        "item": "minecraft:tnt"
+      "G": {
+        "item": "minecraft:glowstone_dust"
       },
-      "S": {
-        "item": "hbm:assembly_nuke"
+      "N": {
+        "item": "hbm:ammo_nuke_low"
       }
     },
     "result": {
-      "item": "hbm:ammo_nuke_pumpkin",
+      "item": "hbm:ammo_nuke_safe",
       "count": 1
     }
   }

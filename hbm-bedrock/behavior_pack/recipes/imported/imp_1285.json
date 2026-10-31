@@ -12,14 +12,14 @@
     ],
     "key": {
       "P": {
-        "item": "hbm:plate_advanced_alloy"
+        "item": "hbm:plate_iron"
       },
       "I": {
-        "item": "hbm:blades_advanced_alloy"
+        "item": "hbm:blades_iron"
       }
     },
     "result": {
-      "item": "hbm:blades_advanced_alloy",
+      "item": "hbm:blades_iron",
       "count": 1
     }
   }

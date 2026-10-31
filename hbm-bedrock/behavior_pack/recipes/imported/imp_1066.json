@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_revolver_cursed"
+        "item": "hbm:clip_revolver_schrabidium"
       }
     ],
     "result": {
-      "item": "hbm:gun_revolver_cursed_ammo",
-      "count": 17
+      "item": "hbm:gun_revolver_schrabidium_ammo",
+      "count": 12
     }
   }
 }

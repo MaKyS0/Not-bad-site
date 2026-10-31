@@ -8,8 +8,8 @@
       "crafting_table"
     ],
     "pattern": [
-      " D ",
       "DID",
+      "IGI",
       " F "
     ],
     "key": {
@@ -19,12 +19,15 @@
       "I": {
         "item": "hbm:ingot_biorubber"
       },
+      "G": {
+        "item": "minecraft:glass_pane"
+      },
       "F": {
         "item": "hbm:plate_iron"
       }
     },
     "result": {
-      "item": "hbm:attachment_mask_mono",
+      "item": "hbm:attachment_mask",
       "count": 1
     }
   }

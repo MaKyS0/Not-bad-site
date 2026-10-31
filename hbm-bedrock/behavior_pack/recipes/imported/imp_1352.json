@@ -1,33 +1,28 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shaped": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "hbm:imp_1352"
     },
     "tags": [
       "crafting_table"
     ],
-    "pattern": [
-      "GAG",
-      "WTW",
-      "GAG"
-    ],
-    "key": {
-      "W": {
-        "item": "hbm:ingot_actinium"
+    "ingredients": [
+      {
+        "item": "hbm:bottle_quantum"
       },
-      "T": {
-        "item": "hbm:decon"
+      {
+        "item": "minecraft:carrot"
       },
-      "G": {
-        "item": "hbm:nugget_ra226"
+      {
+        "item": "minecraft:gold_nugget"
       },
-      "A": {
-        "item": "hbm:ingot_tcalloy"
+      {
+        "item": "hbm:powder_radspice"
       }
-    },
+    ],
     "result": {
-      "item": "hbm:decontamination_module",
+      "item": "hbm:bottle_rad",
       "count": 1
     }
   }

@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_defabricator"
+        "item": "hbm:clip_euthanasia"
       }
     ],
     "result": {
-      "item": "hbm:gun_defabricator_ammo",
+      "item": "hbm:gun_euthanasia_ammo",
       "count": 16
     }
   }

@@ -8,24 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      " S ",
-      "STS",
-      "SMS"
+      "BBB",
+      "BAB",
+      "BBB"
     ],
     "key": {
-      "S": {
-        "item": "hbm:ingot_starmetal"
+      "B": {
+        "item": "hbm:ammo_556_flechette"
       },
-      "T": {
-        "item": "hbm:powder_magic"
-      },
-      "M": {
-        "item": "hbm:block_meteor"
+      "A": {
+        "item": "hbm:coin_maskman"
       }
     },
     "result": {
-      "item": "hbm:folly_bullet",
-      "count": 1
+      "item": "hbm:ammo_556_flechette_sleek",
+      "count": 64
     }
   }
 }

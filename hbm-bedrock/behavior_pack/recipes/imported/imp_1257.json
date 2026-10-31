@@ -8,20 +8,18 @@
       "crafting_table"
     ],
     "pattern": [
-      " C ",
-      "CPC",
-      " C "
+      "GIG"
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_iron"
+      "G": {
+        "item": "hbm:ammo_grenade"
       },
-      "C": {
-        "item": "hbm:coil_advanced_alloy"
+      "I": {
+        "item": "hbm:ingot_phosphorus"
       }
     },
     "result": {
-      "item": "hbm:coil_advanced_torus",
+      "item": "hbm:ammo_grenade_phosphorus",
       "count": 2
     }
   }

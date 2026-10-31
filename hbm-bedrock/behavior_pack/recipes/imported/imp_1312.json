@@ -1,31 +1,29 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shaped": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "hbm:imp_1312"
     },
     "tags": [
       "crafting_table"
     ],
-    "pattern": [
-      "SSS",
-      "PMP",
-      "SSS"
-    ],
-    "key": {
-      "S": {
-        "item": "hbm:syringe_empty"
+    "ingredients": [
+      {
+        "item": "hbm:bottle2_empty"
       },
-      "P": {
-        "item": "minecraft:pumpkin_seeds"
+      {
+        "item": "minecraft:potion"
       },
-      "M": {
-        "item": "minecraft:milk_bucket"
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "hbm:powder_gold"
       }
-    },
+    ],
     "result": {
-      "item": "hbm:syringe_antidote",
-      "count": 6
+      "item": "hbm:bottle2_sunset",
+      "count": 1
     }
   }
 }

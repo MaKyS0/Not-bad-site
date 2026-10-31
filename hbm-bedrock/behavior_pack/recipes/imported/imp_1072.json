@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_stinger"
+        "item": "hbm:clip_rpg"
       }
     ],
     "result": {
-      "item": "hbm:gun_stinger_ammo",
+      "item": "hbm:ammo_rocket",
       "count": 6
     }
   }

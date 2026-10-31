@@ -14,7 +14,7 @@
     ],
     "key": {
       "B": {
-        "item": "hbm:folly_bullet_du"
+        "item": "hbm:folly_bullet_nuclear"
       },
       "E": {
         "item": "hbm:det_charge"
@@ -24,7 +24,7 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_folly_du",
+      "item": "hbm:ammo_folly_nuclear",
       "count": 1
     }
   }

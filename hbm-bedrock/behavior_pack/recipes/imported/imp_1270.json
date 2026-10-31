@@ -8,21 +8,18 @@
       "crafting_table"
     ],
     "pattern": [
-      "CCC",
-      "SSS",
-      "CCC"
+      "III",
+      "   ",
+      "III"
     ],
     "key": {
-      "C": {
-        "item": "hbm:coil_gold"
-      },
-      "S": {
-        "item": "hbm:ingot_steel"
+      "I": {
+        "item": "hbm:ingot_titanium"
       }
     },
     "result": {
-      "item": "hbm:rotor_steel",
-      "count": 3
+      "item": "hbm:hull_big_titanium",
+      "count": 1
     }
   }
 }

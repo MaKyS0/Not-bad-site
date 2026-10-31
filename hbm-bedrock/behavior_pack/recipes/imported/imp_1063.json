@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_revolver_gold"
+        "item": "hbm:clip_revolver"
       }
     ],
     "result": {
-      "item": "hbm:gun_revolver_gold_ammo",
+      "item": "hbm:gun_revolver_ammo",
       "count": 12
     }
   }

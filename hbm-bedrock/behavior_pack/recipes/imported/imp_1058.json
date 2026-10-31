@@ -8,33 +8,27 @@
       "crafting_table"
     ],
     "pattern": [
-      "WCC",
-      "PMT",
-      "WAA"
+      "SS ",
+      "STI",
+      " IR"
     ],
     "key": {
-      "W": {
-        "item": "hbm:wire_fine_gold"
-      },
-      "C": {
-        "item": "hbm:plate_copper"
-      },
-      "P": {
-        "item": "hbm:plate_advanced_alloy"
-      },
-      "M": {
-        "item": "hbm:mechanism_launcher_1"
+      "S": {
+        "item": "hbm:plate_steel"
       },
       "T": {
-        "item": "hbm:tank_steel"
+        "item": "minecraft:tnt"
       },
-      "A": {
-        "item": "hbm:plate_steel"
+      "I": {
+        "item": "hbm:plate_aluminium"
+      },
+      "R": {
+        "item": "minecraft:redstone"
       }
     },
     "result": {
-      "item": "hbm:gun_immolator",
-      "count": 1
+      "item": "hbm:gun_stinger_ammo",
+      "count": 4
     }
   }
 }

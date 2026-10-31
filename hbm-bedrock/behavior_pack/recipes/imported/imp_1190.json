@@ -8,20 +8,19 @@
       "crafting_table"
     ],
     "pattern": [
-      "GGG",
-      "GRG",
-      "GGG"
+      "G",
+      "R"
     ],
     "key": {
       "G": {
-        "item": "minecraft:redstone"
+        "item": "hbm:pellet_buckshot"
       },
       "R": {
         "item": "hbm:ammo_rocket"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_glare",
+      "item": "hbm:ammo_rocket_shrapnel",
       "count": 1
     }
   }

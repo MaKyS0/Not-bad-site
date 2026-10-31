@@ -8,20 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "ABA",
+      " B ",
       "BAB",
-      "ABA"
+      " B "
     ],
     "key": {
       "B": {
         "item": "hbm:ammo_4gauge"
       },
       "A": {
-        "item": "hbm:toothpicks"
+        "item": "hbm:pellet_claws"
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_vampire",
+      "item": "hbm:ammo_4gauge_claw",
       "count": 4
     }
   }

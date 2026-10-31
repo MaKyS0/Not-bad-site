@@ -8,29 +8,29 @@
       "crafting_table"
     ],
     "pattern": [
-      "PCE",
-      "SEB",
-      "PCE"
+      "ISI",
+      "PCP",
+      "PAP"
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_dineutronium"
-      },
-      "C": {
-        "item": "hbm:weaponized_starblaster_cell"
-      },
-      "E": {
-        "item": "hbm:component_emitter"
-      },
-      "B": {
-        "item": "hbm:gun_b92"
+      "I": {
+        "item": "hbm:ingot_steel"
       },
       "S": {
-        "item": "hbm:singularity_spark"
+        "item": "hbm:ingot_starmetal"
+      },
+      "P": {
+        "item": "hbm:plate_polymer"
+      },
+      "C": {
+        "item": "hbm:sat_chip"
+      },
+      "A": {
+        "item": "hbm:circuit_advanced"
       }
     },
     "result": {
-      "item": "hbm:gun_b93",
+      "item": "hbm:sat_interface",
       "count": 1
     }
   }

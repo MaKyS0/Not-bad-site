@@ -9,21 +9,22 @@
     ],
     "pattern": [
       "ASA",
+      " S ",
       "PSP"
     ],
     "key": {
       "A": {
-        "item": "hbm:plate_aluminium"
+        "item": "hbm:plate_titanium"
       },
       "P": {
-        "item": "hbm:ingot_steel"
+        "item": "hbm:plate_steel"
       },
       "S": {
         "item": "hbm:steel_scaffold"
       }
     },
     "result": {
-      "item": "hbm:mp_stability_10_space",
+      "item": "hbm:mp_stability_10_cruise",
       "count": 1
     }
   }

@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:sliding_blast_door_skin2"
+        "item": "hbm:sliding_blast_door_skin1"
       }
     ],
     "result": {
-      "item": "hbm:sliding_blast_door_skin0",
+      "item": "hbm:sliding_blast_door_skin2",
       "count": 1
     }
   }

@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "ICI",
-      "CMA",
-      "IAM"
+      " R ",
+      "III",
+      "SSS"
     ],
     "key": {
+      "R": {
+        "item": "minecraft:redstone"
+      },
       "I": {
-        "item": "hbm:plate_iron"
+        "item": "minecraft:brick"
       },
-      "C": {
-        "item": "minecraft:copper_ingot"
-      },
-      "A": {
-        "item": "hbm:ingot_aluminium"
-      },
-      "M": {
-        "item": "hbm:mechanism_revolver_1"
+      "S": {
+        "item": "hbm:ingot_schrabidium"
       }
     },
     "result": {
-      "item": "hbm:mechanism_rifle_1",
+      "item": "hbm:stamp_schrabidium_flat",
       "count": 1
     }
   }

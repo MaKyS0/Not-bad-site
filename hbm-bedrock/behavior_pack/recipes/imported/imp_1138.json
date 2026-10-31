@@ -14,15 +14,15 @@
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_20gauge"
+        "item": "hbm:ammo_12gauge"
       },
       "A": {
-        "item": "hbm:powder_fire"
+        "item": "hbm:coin_maskman"
       }
     },
     "result": {
-      "item": "hbm:ammo_20gauge_incendiary",
-      "count": 8
+      "item": "hbm:ammo_12gauge_sleek",
+      "count": 64
     }
   }
 }

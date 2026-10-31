@@ -8,23 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "OOO",
-      "PDP",
-      "OOO"
+      "B",
+      "W",
+      "B"
     ],
     "key": {
-      "O": {
-        "item": "minecraft:obsidian"
+      "B": {
+        "item": "hbm:ingot_boron"
       },
-      "P": {
-        "item": "hbm:plate_steel"
-      },
-      "D": {
-        "item": "hbm:ducttape"
+      "W": {
+        "item": "minecraft:oak_planks"
       }
     },
     "result": {
-      "item": "hbm:cladding_obsidian",
+      "item": "hbm:pile_rod_boron",
       "count": 1
     }
   }

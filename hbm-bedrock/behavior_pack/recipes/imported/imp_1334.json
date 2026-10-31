@@ -8,23 +8,29 @@
       "crafting_table"
     ],
     "pattern": [
-      "LPL",
-      "BPB",
-      "LPL"
+      "WWW",
+      "MCM",
+      "ISI"
     ],
     "key": {
-      "P": {
-        "item": "minecraft:paper"
+      "W": {
+        "item": "minecraft:glass_pane"
       },
-      "L": {
-        "item": "minecraft:blue_dye"
+      "M": {
+        "item": "hbm:motor"
       },
-      "B": {
-        "item": "minecraft:white_dye"
+      "C": {
+        "item": "hbm:circuit_vacuum_tube"
+      },
+      "I": {
+        "item": "hbm:block_copper"
+      },
+      "S": {
+        "item": "hbm:block_steel"
       }
     },
     "result": {
-      "item": "hbm:template_folder",
+      "item": "hbm:machine_assembler",
       "count": 1
     }
   }

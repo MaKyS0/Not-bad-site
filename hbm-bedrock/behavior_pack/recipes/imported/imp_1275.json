@@ -8,20 +8,26 @@
       "crafting_table"
     ],
     "pattern": [
-      "C",
-      "T",
-      "C"
+      "PTP",
+      "BMB",
+      "PTP"
     ],
     "key": {
-      "C": {
-        "item": "hbm:powder_coal"
+      "P": {
+        "item": "hbm:plate_titanium"
       },
       "T": {
-        "item": "hbm:bolt_steel"
+        "item": "hbm:turbine_titanium"
+      },
+      "B": {
+        "item": "hbm:tank_steel"
+      },
+      "M": {
+        "item": "hbm:motor"
       }
     },
     "result": {
-      "item": "hbm:arc_electrode",
+      "item": "hbm:machine_turbine",
       "count": 1
     }
   }

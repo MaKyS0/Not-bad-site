@@ -8,16 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      "##"
+      "SB ",
+      "BPB",
+      " BP"
     ],
     "key": {
-      "#": {
-        "item": "hbm:falloutitem"
+      "S": {
+        "item": "minecraft:string"
+      },
+      "B": {
+        "item": "minecraft:slime_ball"
+      },
+      "P": {
+        "item": "minecraft:paper"
       }
     },
     "result": {
-      "item": "hbm:falloutitem",
-      "count": 2
+      "item": "minecraft:name_tag",
+      "count": 1
     }
   }
 }

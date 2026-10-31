@@ -8,20 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "B",
-      "W",
-      "B"
+      " U ",
+      "PUP",
+      " U "
     ],
     "key": {
-      "B": {
-        "item": "hbm:ingot_boron"
+      "P": {
+        "item": "hbm:plate_iron"
       },
-      "W": {
-        "item": "minecraft:oak_planks"
+      "U": {
+        "item": "hbm:billet_ra226be"
       }
     },
     "result": {
-      "item": "hbm:pile_rod_boron",
+      "item": "hbm:pile_rod_source",
       "count": 1
     }
   }

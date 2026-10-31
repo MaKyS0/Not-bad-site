@@ -8,30 +8,18 @@
       "crafting_table"
     ],
     "pattern": [
-      " I ",
-      "GCL",
-      " P "
+      " X ",
+      "X X",
+      " XX"
     ],
     "key": {
-      "I": {
-        "item": "hbm:pellet_buckshot"
-      },
-      "G": {
-        "item": "hbm:ballistite"
-      },
-      "C": {
-        "item": "hbm:casing_50"
-      },
-      "P": {
-        "item": "hbm:primer_50"
-      },
-      "L": {
-        "item": "hbm:ingot_biorubber"
+      "X": {
+        "item": "hbm:plate_steel"
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge",
-      "count": 12
+      "item": "hbm:pellet_claws",
+      "count": 1
     }
   }
 }

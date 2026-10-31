@@ -8,21 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      "BBB",
-      "BAB",
-      "BBB"
+      "BCB",
+      "CAC",
+      "BCB"
     ],
     "key": {
       "B": {
         "item": "hbm:ammo_20gauge"
       },
       "A": {
-        "item": "hbm:coin_maskman"
+        "item": "minecraft:soul_sand"
+      },
+      "C": {
+        "item": "hbm:powder_coal"
       }
     },
     "result": {
-      "item": "hbm:ammo_20gauge_sleek",
-      "count": 64
+      "item": "hbm:ammo_20gauge_wither",
+      "count": 4
     }
   }
 }

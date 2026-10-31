@@ -14,14 +14,14 @@
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_50bmg"
+        "item": "hbm:ammo_22lr"
       },
       "A": {
-        "item": "hbm:powder_fire"
+        "item": "hbm:ingot_dura_steel"
       }
     },
     "result": {
-      "item": "hbm:ammo_50bmg_incendiary",
+      "item": "hbm:ammo_22lr_ap",
       "count": 8
     }
   }

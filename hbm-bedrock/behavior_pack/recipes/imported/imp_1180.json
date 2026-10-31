@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "IPI",
-      "IPI",
-      "IMI"
+      " U ",
+      "UDU",
+      "UTU"
     ],
     "key": {
-      "I": {
-        "item": "minecraft:iron_ingot"
+      "U": {
+        "item": "hbm:block_u238"
       },
-      "P": {
-        "item": "hbm:plate_iron"
+      "D": {
+        "item": "hbm:block_desh"
       },
-      "M": {
-        "item": "hbm:primer_50"
+      "T": {
+        "item": "hbm:block_tungsten"
       }
     },
     "result": {
-      "item": "hbm:folly_shell",
+      "item": "hbm:folly_bullet_du",
       "count": 1
     }
   }

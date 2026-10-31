@@ -8,21 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      "SSS",
-      "G G",
-      "SSS"
+      "PFP",
+      "FOF",
+      "PFP"
     ],
     "key": {
-      "S": {
-        "item": "hbm:plate_steel"
+      "P": {
+        "item": "hbm:powder_coal"
       },
-      "G": {
-        "item": "minecraft:glass_pane"
+      "F": {
+        "item": "minecraft:flint"
+      },
+      "O": {
+        "item": "hbm:gravel_obsidian"
       }
     },
     "result": {
-      "item": "hbm:cell",
-      "count": 6
+      "item": "hbm:pellet_coal",
+      "count": 1
     }
   }
 }

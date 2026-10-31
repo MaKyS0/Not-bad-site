@@ -17,12 +17,12 @@
         "item": "hbm:ammo_556_flechette"
       },
       "A": {
-        "item": "hbm:coin_maskman"
+        "item": "hbm:ingot_u238"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_flechette_sleek",
-      "count": 64
+      "item": "hbm:ammo_556_flechette_du",
+      "count": 8
     }
   }
 }

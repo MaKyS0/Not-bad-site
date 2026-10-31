@@ -8,29 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "TBT",
-      "SRS",
-      "SCS"
+      "ACA",
+      "CXC",
+      "ACA"
     ],
     "key": {
-      "T": {
-        "item": "hbm:nugget_tantalium"
-      },
-      "B": {
-        "item": "hbm:nugget_bismuth"
-      },
-      "S": {
-        "item": "hbm:ingot_tcalloy"
-      },
-      "R": {
-        "item": "hbm:reacher"
+      "A": {
+        "item": "hbm:ingot_advanced_alloy"
       },
       "C": {
-        "item": "hbm:circuit_chip"
+        "item": "hbm:cinnebar"
+      },
+      "X": {
+        "item": "minecraft:compass"
       }
     },
     "result": {
-      "item": "hbm:bismuth_tool",
+      "item": "hbm:coltass",
       "count": 1
     }
   }

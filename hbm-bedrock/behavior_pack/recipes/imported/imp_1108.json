@@ -8,24 +8,30 @@
       "crafting_table"
     ],
     "pattern": [
-      "PCP",
-      "DDD",
-      "PCP"
+      " R ",
+      "BSK",
+      " Y "
     ],
     "key": {
-      "P": {
+      "S": {
         "item": "hbm:plate_steel"
       },
-      "C": {
-        "item": "hbm:coil_copper"
+      "K": {
+        "item": "minecraft:ink_sac"
       },
-      "D": {
-        "item": "hbm:powder_lithium"
+      "R": {
+        "item": "minecraft:red_dye"
+      },
+      "B": {
+        "item": "minecraft:lapis_lazuli"
+      },
+      "Y": {
+        "item": "minecraft:yellow_dye"
       }
     },
     "result": {
-      "item": "hbm:gun_defabricator_ammo",
-      "count": 16
+      "item": "hbm:gun_hp_ammo",
+      "count": 8
     }
   }
 }

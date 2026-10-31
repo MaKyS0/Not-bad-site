@@ -9,19 +9,19 @@
     ],
     "pattern": [
       "EEE",
-      "ESE",
+      "EPE",
       "EEE"
     ],
     "key": {
       "E": {
-        "item": "hbm:man_explosive"
+        "item": "hbm:gadget_explosive"
       },
-      "S": {
-        "item": "hbm:plate_steel"
+      "P": {
+        "item": "hbm:plate_aluminium"
       }
     },
     "result": {
-      "item": "hbm:man_explosive8",
+      "item": "hbm:gadget_explosive8",
       "count": 1
     }
   }

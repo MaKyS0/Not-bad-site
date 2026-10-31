@@ -9,14 +9,14 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:radaway_strong"
+        "item": "hbm:radaway"
       },
       {
-        "item": "hbm:powder_iodine"
+        "item": "hbm:mush"
       }
     ],
     "result": {
-      "item": "hbm:radaway_flush",
+      "item": "hbm:radaway_strong",
       "count": 1
     }
   }

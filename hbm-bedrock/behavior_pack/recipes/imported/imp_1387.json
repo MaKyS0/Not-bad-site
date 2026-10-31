@@ -17,11 +17,11 @@
         "item": "hbm:fragment_meteorite"
       },
       "D": {
-        "item": "hbm:gem_volcanic"
+        "item": "minecraft:diamond"
       }
     },
     "result": {
-      "item": "hbm:meteor_charm",
+      "item": "hbm:protection_charm",
       "count": 1
     }
   }

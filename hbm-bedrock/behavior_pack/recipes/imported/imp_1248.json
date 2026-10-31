@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:ammo_mirv_safe"
+        "item": "hbm:ammo_mirv_high"
       }
     ],
     "result": {
-      "item": "hbm:ammo_nuke_safe",
+      "item": "hbm:ammo_nuke_high",
       "count": 6
     }
   }

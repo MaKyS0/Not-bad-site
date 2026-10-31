@@ -5,7 +5,7 @@ import { nuke } from "./bombs.js";
 import { IMPORTED_GUNS, IMPORTED_GRENADES, KNOWN_ITEMS } from "./imported_machines.js";
 
 /**
- * @typedef {{ ammo?: string, damage: number, range: number, cooldownMs: number, particle: string, sound: string, pitch: number,
+ * @typedef {{ ammo?: string | string[], damage: number, range: number, cooldownMs: number, particle: string, sound: string, pitch: number,
  *   pellets?: number, fire?: number, freeze?: boolean, explode?: number }} Gun
  * @type {Record<string, Gun>}
  */
@@ -37,6 +37,19 @@ const IMPORTED_GUN_STATS = {
   "hbm:gun_folly": { damage: 100, range: 128, cooldownMs: 5000, explode: 8, ...ENERGY },
   "hbm:gun_dampfmaschine": { damage: 8, range: 32, cooldownMs: 300, ...BULLET },
 };
+// HBM's newer guns, drawn for this pack, on HBM's standard ammo.
+const ammoOf = (...kinds) => kinds.map((k) => `hbm:ammo_standard_${k}`);
+Object.assign(GUNS, {
+  "hbm:gun_light_revolver": { damage: 10, range: 64, cooldownMs: 500, ...BULLET, ammo: ammoOf("m357_sp", "m357_fmj", "m357_jhp", "m357_ap", "m357_bp", "m357_express") },
+  "hbm:gun_heavy_revolver": { damage: 16, range: 64, cooldownMs: 800, ...BULLET, ammo: ammoOf("m44_sp", "m44_fmj", "m44_jhp", "m44_ap", "m44_bp", "m44_express") },
+  "hbm:gun_maresleg": { damage: 5, pellets: 6, range: 24, cooldownMs: 900, ...BULLET, ammo: ammoOf("g12", "g12_slug", "g12_bp", "g12_magnum", "g12_flechette") },
+  "hbm:gun_liberator": { damage: 5, pellets: 8, range: 24, cooldownMs: 700, ...BULLET, ammo: ammoOf("g12", "g12_slug", "g12_bp", "g12_magnum", "g12_flechette") },
+  "hbm:gun_greasegun": { damage: 6, range: 48, cooldownMs: 120, ...BULLET, ammo: ammoOf("p45_sp", "p45_fmj", "p45_jhp", "p45_ap") },
+  "hbm:gun_flaregun": { damage: 4, range: 48, cooldownMs: 1200, fire: 8, particle: "minecraft:basic_flame_particle", sound: "fire.ignite", pitch: 1, ammo: ammoOf("g26_flare", "g26_flare_supply", "g26_flare_weapon") },
+  "hbm:gun_panzerschreck": { damage: 20, range: 96, cooldownMs: 2500, explode: 4, ...BULLET, ammo: ammoOf("rocket_he", "rocket_heat", "rocket_demo", "rocket_inc") },
+  "hbm:gun_fliegerfaust": { damage: 12, range: 128, cooldownMs: 1500, explode: 3, ...BULLET, ammo: ammoOf("rocket_he", "rocket_heat", "rocket_micro") },
+});
+
 for (const id of IMPORTED_GUNS) {
   const ammo = KNOWN_ITEMS.has(`${id}_ammo`) ? `${id}_ammo` : undefined;
   GUNS[id] ??= { damage: 10, range: 64, cooldownMs: 600, ...BULLET, ...IMPORTED_GUN_STATS[id], ammo };
@@ -82,7 +95,8 @@ function useAmmo(player, id) {
 function shoot(player, gun) {
   const now = Date.now();
   if (now - (lastShot.get(player.id) ?? 0) < gun.cooldownMs) return;
-  if (gun.ammo && !useAmmo(player, gun.ammo)) {
+  const ammo = gun.ammo === undefined ? undefined : [gun.ammo].flat();
+  if (ammo && !ammo.some((id) => useAmmo(player, id))) {
     player.onScreenDisplay.setActionBar({ translate: "hbm.gun.no_ammo" });
     return;
   }

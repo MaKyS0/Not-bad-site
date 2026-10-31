@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      " N ",
-      "UTU",
-      "UTU"
+      " S ",
+      "STS",
+      "SMS"
     ],
     "key": {
-      "N": {
-        "item": "hbm:ammo_nuke"
-      },
-      "U": {
-        "item": "minecraft:iron_ingot"
+      "S": {
+        "item": "hbm:ingot_starmetal"
       },
       "T": {
-        "item": "hbm:block_tungsten"
+        "item": "hbm:powder_magic"
+      },
+      "M": {
+        "item": "hbm:block_meteor"
       }
     },
     "result": {
-      "item": "hbm:folly_bullet_nuclear",
+      "item": "hbm:folly_bullet",
       "count": 1
     }
   }

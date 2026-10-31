@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_revolver_pip"
+        "item": "hbm:clip_revolver_nightmare2"
       }
     ],
     "result": {
-      "item": "hbm:ammo_44_pip",
+      "item": "hbm:gun_revolver_nightmare2_ammo",
       "count": 6
     }
   }

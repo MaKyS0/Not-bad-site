@@ -8,19 +8,26 @@
       "crafting_table"
     ],
     "pattern": [
-      "R",
-      "P"
+      "TTT",
+      "SSS",
+      "BBI"
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_iron"
+      "T": {
+        "item": "hbm:plate_titanium"
       },
-      "R": {
-        "item": "minecraft:redstone"
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "B": {
+        "item": "hbm:bolt_steel"
+      },
+      "I": {
+        "item": "hbm:ingot_red_copper"
       }
     },
     "result": {
-      "item": "hbm:primer_357",
+      "item": "hbm:mechanism_launcher_1",
       "count": 1
     }
   }

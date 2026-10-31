@@ -13,14 +13,14 @@
     ],
     "key": {
       "G": {
-        "item": "hbm:powder_diamond"
+        "item": "hbm:powder_fire"
       },
       "R": {
         "item": "hbm:ammo_rocket"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_emp",
+      "item": "hbm:ammo_rocket_incendiary",
       "count": 1
     }
   }

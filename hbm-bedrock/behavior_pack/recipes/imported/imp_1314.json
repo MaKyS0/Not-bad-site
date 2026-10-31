@@ -8,9 +8,9 @@
       "crafting_table"
     ],
     "pattern": [
-      "SSS",
-      "PMP",
-      "SSS"
+      "SPS",
+      "SMS",
+      "SPS"
     ],
     "key": {
       "S": {
@@ -20,7 +20,7 @@
         "item": "minecraft:pumpkin_seeds"
       },
       "M": {
-        "item": "minecraft:sugar_cane"
+        "item": "minecraft:milk_bucket"
       }
     },
     "result": {

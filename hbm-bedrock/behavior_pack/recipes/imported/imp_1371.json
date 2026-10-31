@@ -17,11 +17,11 @@
         "item": "hbm:plate_iron"
       },
       "U": {
-        "item": "hbm:billet_plutonium"
+        "item": "hbm:billet_uranium"
       }
     },
     "result": {
-      "item": "hbm:pile_rod_plutonium",
+      "item": "hbm:pile_rod_uranium",
       "count": 1
     }
   }

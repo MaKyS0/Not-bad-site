@@ -17,11 +17,11 @@
         "item": "hbm:ammo_556"
       },
       "A": {
-        "item": "hbm:ingot_dura_steel"
+        "item": "hbm:ingot_phosphorus"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_ap",
+      "item": "hbm:ammo_556_phosphorus",
       "count": 8
     }
   }

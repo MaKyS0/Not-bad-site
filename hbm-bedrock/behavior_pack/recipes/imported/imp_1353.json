@@ -1,19 +1,33 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1353"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "hbm:assembly_template"
-      }
+    "pattern": [
+      "GAG",
+      "WTW",
+      "GAG"
     ],
+    "key": {
+      "W": {
+        "item": "hbm:ingot_actinium"
+      },
+      "T": {
+        "item": "hbm:decon"
+      },
+      "G": {
+        "item": "hbm:nugget_ra226"
+      },
+      "A": {
+        "item": "hbm:ingot_tcalloy"
+      }
+    },
     "result": {
-      "item": "minecraft:paper",
+      "item": "hbm:decontamination_module",
       "count": 1
     }
   }

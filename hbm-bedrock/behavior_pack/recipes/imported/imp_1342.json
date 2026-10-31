@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:sat_mapper"
+        "item": "hbm:sat_foeq"
       }
     ],
     "result": {
-      "item": "hbm:sat_mapper",
+      "item": "hbm:sat_foeq",
       "count": 1
     }
   }

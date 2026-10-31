@@ -8,19 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "G",
-      "R"
+      "GGG",
+      "GRG",
+      "GGG"
     ],
     "key": {
       "G": {
-        "item": "hbm:pellet_gas"
+        "item": "minecraft:redstone"
       },
       "R": {
         "item": "hbm:ammo_rocket"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_toxic",
+      "item": "hbm:ammo_rocket_glare",
       "count": 1
     }
   }

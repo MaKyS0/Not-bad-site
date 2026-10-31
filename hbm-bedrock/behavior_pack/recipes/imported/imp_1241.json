@@ -8,9 +8,8 @@
       "crafting_table"
     ],
     "pattern": [
-      "PPP",
-      "PSP",
-      "PPP"
+      "P",
+      "S"
     ],
     "key": {
       "P": {
@@ -21,7 +20,7 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_nuke_high",
+      "item": "hbm:ammo_nuke_low",
       "count": 1
     }
   }

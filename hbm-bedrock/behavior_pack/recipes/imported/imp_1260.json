@@ -8,23 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "PFP",
-      "FOF",
-      "PFP"
+      "LLL",
+      "LTL",
+      "LLL"
     ],
     "key": {
-      "P": {
-        "item": "hbm:powder_coal"
+      "L": {
+        "item": "minecraft:lava_bucket"
       },
-      "F": {
-        "item": "minecraft:flint"
-      },
-      "O": {
-        "item": "hbm:gravel_obsidian"
+      "T": {
+        "item": "hbm:thermo_unit_empty"
       }
     },
     "result": {
-      "item": "hbm:pellet_coal",
+      "item": "hbm:thermo_unit_exo",
       "count": 1
     }
   }

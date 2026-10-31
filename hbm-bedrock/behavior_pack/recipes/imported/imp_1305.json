@@ -18,11 +18,11 @@
         "item": "minecraft:sugar"
       },
       {
-        "item": "hbm:trinitite"
+        "item": "minecraft:redstone"
       }
     ],
     "result": {
-      "item": "hbm:bottle_quantum",
+      "item": "hbm:bottle_cherry",
       "count": 1
     }
   }

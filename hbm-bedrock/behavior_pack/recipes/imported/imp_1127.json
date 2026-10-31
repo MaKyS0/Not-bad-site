@@ -26,11 +26,11 @@
         "item": "hbm:primer_buckshot"
       },
       "L": {
-        "item": "hbm:plate_copper"
+        "item": "hbm:ingot_biorubber"
       }
     },
     "result": {
-      "item": "hbm:ammo_20gauge",
+      "item": "hbm:ammo_12gauge",
       "count": 12
     }
   }

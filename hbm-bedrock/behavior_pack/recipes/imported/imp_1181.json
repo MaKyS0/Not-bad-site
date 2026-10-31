@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      " B ",
-      "MEM",
-      " S "
+      "IPI",
+      "IPI",
+      "IMI"
     ],
     "key": {
-      "B": {
-        "item": "hbm:folly_bullet"
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "P": {
+        "item": "hbm:plate_iron"
       },
       "M": {
-        "item": "hbm:powder_magic"
-      },
-      "E": {
-        "item": "hbm:powder_power"
-      },
-      "S": {
-        "item": "hbm:folly_shell"
+        "item": "hbm:primer_50"
       }
     },
     "result": {
-      "item": "hbm:ammo_folly",
+      "item": "hbm:folly_shell",
       "count": 1
     }
   }

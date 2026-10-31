@@ -20,11 +20,11 @@
         "item": "hbm:plate_lead"
       },
       "U": {
-        "item": "hbm:ingot_euphemium"
+        "item": "hbm:ingot_solinium"
       }
     },
     "result": {
-      "item": "hbm:custom_euph",
+      "item": "hbm:custom_sol",
       "count": 1
     }
   }

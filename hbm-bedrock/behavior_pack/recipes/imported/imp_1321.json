@@ -1,23 +1,28 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1321"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "hbm:iv_empty"
-      },
-      {
-        "item": "hbm:powder_magic"
-      }
+    "pattern": [
+      "A",
+      "B",
+      "A"
     ],
+    "key": {
+      "A": {
+        "item": "hbm:ingot_biorubber"
+      },
+      "B": {
+        "item": "hbm:plate_iron"
+      }
+    },
     "result": {
-      "item": "hbm:iv_xp_empty",
-      "count": 1
+      "item": "hbm:iv_empty",
+      "count": 4
     }
   }
 }

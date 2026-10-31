@@ -9,7 +9,8 @@
     ],
     "pattern": [
       "P",
-      "S"
+      "S",
+      "P"
     ],
     "key": {
       "P": {
@@ -20,7 +21,7 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_nuke_low",
+      "item": "hbm:ammo_nuke",
       "count": 1
     }
   }

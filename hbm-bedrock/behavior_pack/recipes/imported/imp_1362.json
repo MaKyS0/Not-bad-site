@@ -8,20 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "PSP",
-      "P P"
+      "L",
+      "S"
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_steel"
+      "L": {
+        "item": "hbm:briquette_lignite"
       },
       "S": {
-        "item": "hbm:steel_scaffold"
+        "item": "minecraft:stick"
       }
     },
     "result": {
-      "item": "hbm:mp_stability_10_flat",
-      "count": 1
+      "item": "minecraft:torch",
+      "count": 6
     }
   }
 }

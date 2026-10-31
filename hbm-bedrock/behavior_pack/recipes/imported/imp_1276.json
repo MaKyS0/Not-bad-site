@@ -8,20 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      " P ",
-      "PIP",
-      " P "
+      "C",
+      "T",
+      "C"
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_aluminium"
+      "C": {
+        "item": "hbm:powder_coal"
       },
-      "I": {
-        "item": "hbm:ingot_aluminium"
+      "T": {
+        "item": "hbm:bolt_steel"
       }
     },
     "result": {
-      "item": "hbm:blades_aluminum",
+      "item": "hbm:arc_electrode",
       "count": 1
     }
   }

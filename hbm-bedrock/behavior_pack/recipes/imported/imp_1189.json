@@ -13,14 +13,14 @@
     ],
     "key": {
       "G": {
-        "item": "hbm:pellet_buckshot"
+        "item": "hbm:powder_diamond"
       },
       "R": {
         "item": "hbm:ammo_rocket"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_shrapnel",
+      "item": "hbm:ammo_rocket_emp",
       "count": 1
     }
   }

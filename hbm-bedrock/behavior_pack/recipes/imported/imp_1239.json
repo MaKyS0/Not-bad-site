@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "P",
-      "S",
-      "P"
+      " B ",
+      "BAB",
+      " B "
     ],
     "key": {
-      "P": {
-        "item": "hbm:nugget_pu239"
+      "B": {
+        "item": "hbm:ammo_4gauge"
       },
-      "S": {
-        "item": "hbm:assembly_nuke"
+      "A": {
+        "item": "hbm:pellet_charged"
       }
     },
     "result": {
-      "item": "hbm:ammo_nuke",
-      "count": 1
+      "item": "hbm:ammo_4gauge_void",
+      "count": 4
     }
   }
 }

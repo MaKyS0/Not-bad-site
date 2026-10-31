@@ -8,23 +8,29 @@
       "crafting_table"
     ],
     "pattern": [
-      "I",
-      "C",
-      "P"
+      " I ",
+      "GCL",
+      " P "
     ],
     "key": {
       "I": {
-        "item": "hbm:powder_power"
+        "item": "hbm:pellet_flechette"
+      },
+      "G": {
+        "item": "hbm:ballistite"
       },
       "C": {
         "item": "hbm:casing_buckshot"
       },
       "P": {
         "item": "hbm:primer_buckshot"
+      },
+      "L": {
+        "item": "hbm:plate_copper"
       }
     },
     "result": {
-      "item": "hbm:gun_revolver_nightmare2_ammo",
+      "item": "hbm:ammo_20gauge_flechette",
       "count": 12
     }
   }

@@ -8,27 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      " T ",
-      "GHG",
-      "CCC"
+      "PSP",
+      "SNS",
+      "PSP"
     ],
     "key": {
-      "T": {
-        "item": "minecraft:tnt"
+      "P": {
+        "item": "hbm:ingot_phosphorus"
       },
-      "G": {
-        "item": "minecraft:gunpowder"
+      "S": {
+        "item": "hbm:crystal_sulfur"
       },
-      "H": {
-        "item": "hbm:hull_small_steel"
-      },
-      "C": {
-        "item": "minecraft:copper_ingot"
+      "N": {
+        "item": "hbm:ammo_fuel_napalm"
       }
     },
     "result": {
-      "item": "hbm:ammo_shell",
-      "count": 4
+      "item": "hbm:ammo_fuel_vaporizer",
+      "count": 1
     }
   }
 }

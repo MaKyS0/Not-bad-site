@@ -7,7 +7,7 @@
     "tags": [
       "furnace"
     ],
-    "input": "minecraft:bone",
-    "output": "minecraft:slime_ball"
+    "input": "hbm:casing_buckshot",
+    "output": "minecraft:copper_ingot"
   }
 }

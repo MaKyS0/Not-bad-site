@@ -14,17 +14,17 @@
     ],
     "key": {
       "C": {
-        "item": "hbm:plate_copper"
+        "item": "hbm:circuit_chip"
       },
       "P": {
-        "item": "hbm:motor"
+        "item": "hbm:piston_electro"
       },
       "U": {
-        "item": "hbm:upgrade_template"
+        "item": "hbm:upgrade_stack_2"
       }
     },
     "result": {
-      "item": "hbm:upgrade_ejector_1",
+      "item": "hbm:upgrade_stack_3",
       "count": 1
     }
   }

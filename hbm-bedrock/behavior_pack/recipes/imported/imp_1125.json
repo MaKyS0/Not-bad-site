@@ -14,21 +14,21 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_lead"
+        "item": "minecraft:copper_ingot"
       },
       "G": {
-        "item": "hbm:ballistite"
+        "item": "hbm:cordite"
       },
       "C": {
-        "item": "hbm:casing_44"
+        "item": "hbm:casing_9"
       },
       "P": {
-        "item": "hbm:primer_44"
+        "item": "hbm:primer_9"
       }
     },
     "result": {
-      "item": "hbm:assembly_nopip",
-      "count": 24
+      "item": "hbm:assembly_lacunae",
+      "count": 32
     }
   }
 }

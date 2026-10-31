@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "WGW",
-      "WCW",
-      "WBW"
+      "CC ",
+      "GGS",
+      "SSS"
     ],
     "key": {
-      "W": {
-        "item": "hbm:ingot_aluminium"
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "S": {
+        "item": "hbm:plate_steel"
       },
       "G": {
-        "item": "hbm:gas_mask_filter"
-      },
-      "C": {
-        "item": "hbm:ingot_asbestos"
-      },
-      "B": {
-        "item": "hbm:circuit_analog"
+        "item": "hbm:plate_gold"
       }
     },
     "result": {
-      "item": "hbm:lung_diagnostic",
+      "item": "hbm:turret_biometry",
       "count": 1
     }
   }

@@ -1,28 +1,26 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1297"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "hbm:can_empty"
-      },
-      {
-        "item": "minecraft:potion"
-      },
-      {
-        "item": "minecraft:sugar"
-      },
-      {
-        "item": "hbm:niter"
-      }
+    "pattern": [
+      "R",
+      "P"
     ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_copper"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      }
+    },
     "result": {
-      "item": "hbm:can_smart",
+      "item": "hbm:primer_buckshot",
       "count": 1
     }
   }

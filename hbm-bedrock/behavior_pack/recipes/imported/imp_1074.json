@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_mirv"
+        "item": "hbm:clip_fatman"
       }
     ],
     "result": {
-      "item": "hbm:ammo_mirv",
-      "count": 3
+      "item": "hbm:ammo_nuke",
+      "count": 6
     }
   }
 }

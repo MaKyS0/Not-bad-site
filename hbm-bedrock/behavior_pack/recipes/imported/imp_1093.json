@@ -8,21 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      "SSS",
-      "SRS",
-      "SSS"
+      " S ",
+      "EBE",
+      " S "
     ],
     "key": {
       "S": {
-        "item": "hbm:plate_steel"
+        "item": "hbm:hull_small_steel"
       },
-      "R": {
-        "item": "hbm:rod_quad_uranium_fuel_depleted"
+      "E": {
+        "item": "hbm:powder_power"
+      },
+      "B": {
+        "item": "hbm:egg_balefire_shard"
       }
     },
     "result": {
-      "item": "hbm:gun_xvl1456_ammo",
-      "count": 64
+      "item": "hbm:gun_bf_ammo",
+      "count": 1
     }
   }
 }

@@ -17,11 +17,11 @@
         "item": "hbm:ammo_50ae"
       },
       "A": {
-        "item": "hbm:ingot_u238"
+        "item": "hbm:ingot_dura_steel"
       }
     },
     "result": {
-      "item": "hbm:ammo_50ae_du",
+      "item": "hbm:ammo_50ae_ap",
       "count": 8
     }
   }

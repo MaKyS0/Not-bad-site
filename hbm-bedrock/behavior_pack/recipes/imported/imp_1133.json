@@ -8,9 +8,9 @@
       "crafting_table"
     ],
     "pattern": [
-      " I",
-      "GC",
-      " P"
+      " I ",
+      "GCG",
+      " P "
     ],
     "key": {
       "I": {
@@ -27,7 +27,7 @@
       }
     },
     "result": {
-      "item": "hbm:assembly_actionexpress",
+      "item": "hbm:assembly_calamity",
       "count": 12
     }
   }

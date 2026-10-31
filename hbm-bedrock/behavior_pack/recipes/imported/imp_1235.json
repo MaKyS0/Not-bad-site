@@ -8,20 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "G",
-      "R"
+      "BBB",
+      "BAB",
+      "BBB"
     ],
     "key": {
-      "G": {
-        "item": "hbm:pellet_canister"
+      "B": {
+        "item": "hbm:ammo_556_flechette"
       },
-      "R": {
-        "item": "hbm:ammo_rocket"
+      "A": {
+        "item": "hbm:pellet_chlorophyte"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_canister",
-      "count": 1
+      "item": "hbm:ammo_556_flechette_chlorophyte",
+      "count": 8
     }
   }
 }

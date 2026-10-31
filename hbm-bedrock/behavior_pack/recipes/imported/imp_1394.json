@@ -14,17 +14,17 @@
     ],
     "key": {
       "C": {
-        "item": "hbm:plate_gold"
+        "item": "hbm:plate_copper"
       },
       "P": {
         "item": "hbm:motor"
       },
       "U": {
-        "item": "hbm:upgrade_ejector_1"
+        "item": "hbm:upgrade_template"
       }
     },
     "result": {
-      "item": "hbm:upgrade_ejector_2",
+      "item": "hbm:upgrade_ejector_1",
       "count": 1
     }
   }

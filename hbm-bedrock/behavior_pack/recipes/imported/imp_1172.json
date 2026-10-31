@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      " B ",
+      "BBB",
       "BAB",
-      " B "
+      "BBB"
     ],
     "key": {
       "B": {
         "item": "hbm:ammo_556"
       },
       "A": {
-        "item": "hbm:pellet_flechette"
+        "item": "minecraft:redstone"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_flechette",
-      "count": 4
+      "item": "hbm:ammo_556_tracer",
+      "count": 8
     }
   }
 }

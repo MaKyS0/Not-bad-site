@@ -14,20 +14,20 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:plate_advanced_alloy"
+        "item": "hbm:plate_iron"
       },
       "C": {
-        "item": "hbm:ingot_dura_steel"
+        "item": "minecraft:copper_ingot"
       },
       "A": {
-        "item": "hbm:ingot_tungsten"
+        "item": "hbm:ingot_aluminium"
       },
       "M": {
-        "item": "hbm:mechanism_revolver_2"
+        "item": "hbm:mechanism_revolver_1"
       }
     },
     "result": {
-      "item": "hbm:mechanism_rifle_2",
+      "item": "hbm:mechanism_rifle_1",
       "count": 1
     }
   }

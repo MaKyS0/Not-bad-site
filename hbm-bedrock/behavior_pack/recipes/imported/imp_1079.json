@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_lever_action"
+        "item": "hbm:clip_uboinik"
       }
     ],
     "result": {
-      "item": "hbm:ammo_20gauge",
+      "item": "hbm:ammo_12gauge",
       "count": 24
     }
   }

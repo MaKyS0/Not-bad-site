@@ -18,11 +18,11 @@
         "item": "minecraft:sugar"
       },
       {
-        "item": "hbm:powder_tungsten"
+        "item": "hbm:powder_copper"
       }
     ],
     "result": {
-      "item": "hbm:bottle2_fritz",
+      "item": "hbm:bottle2_korl",
       "count": 1
     }
   }

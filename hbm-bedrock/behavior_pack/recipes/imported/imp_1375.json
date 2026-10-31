@@ -14,17 +14,17 @@
     ],
     "key": {
       "O": {
-        "item": "hbm:plate_iron"
+        "item": "minecraft:obsidian"
       },
       "P": {
-        "item": "hbm:ingot_biorubber"
+        "item": "hbm:plate_steel"
       },
       "D": {
         "item": "hbm:ducttape"
       }
     },
     "result": {
-      "item": "hbm:cladding_iron",
+      "item": "hbm:cladding_obsidian",
       "count": 1
     }
   }

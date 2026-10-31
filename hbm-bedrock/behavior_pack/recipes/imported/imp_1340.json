@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:sat_resonator"
+        "item": "hbm:sat_laser"
       }
     ],
     "result": {
-      "item": "hbm:sat_resonator",
+      "item": "hbm:sat_laser",
       "count": 1
     }
   }

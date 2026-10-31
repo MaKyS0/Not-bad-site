@@ -18,11 +18,11 @@
         "item": "minecraft:sugar"
       },
       {
-        "item": "hbm:sulfur"
+        "item": "hbm:fluorite"
       }
     ],
     "result": {
-      "item": "hbm:can_overcharge",
+      "item": "hbm:can_mrsugar",
       "count": 1
     }
   }

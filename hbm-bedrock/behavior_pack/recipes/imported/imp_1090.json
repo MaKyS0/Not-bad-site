@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_euthanasia"
+        "item": "hbm:clip_hp"
       }
     ],
     "result": {
-      "item": "hbm:gun_euthanasia_ammo",
-      "count": 16
+      "item": "hbm:gun_hp_ammo",
+      "count": 12
     }
   }
 }

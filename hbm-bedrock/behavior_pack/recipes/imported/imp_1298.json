@@ -18,11 +18,11 @@
         "item": "minecraft:sugar"
       },
       {
-        "item": "hbm:pellet_cluster"
+        "item": "hbm:niter"
       }
     ],
     "result": {
-      "item": "hbm:can_redbomb",
+      "item": "hbm:can_smart",
       "count": 1
     }
   }

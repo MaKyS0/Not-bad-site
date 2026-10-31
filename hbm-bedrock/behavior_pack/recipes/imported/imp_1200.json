@@ -8,20 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      "G",
-      "R"
+      " P ",
+      "GIG",
+      " P "
     ],
     "key": {
       "G": {
-        "item": "minecraft:feather"
-      },
-      "R": {
         "item": "hbm:ammo_grenade"
+      },
+      "I": {
+        "item": "hbm:neutron_reflector"
+      },
+      "P": {
+        "item": "hbm:nugget_pu239"
       }
     },
     "result": {
-      "item": "hbm:ammo_grenade_finned",
-      "count": 1
+      "item": "hbm:ammo_grenade_nuclear",
+      "count": 2
     }
   }
 }

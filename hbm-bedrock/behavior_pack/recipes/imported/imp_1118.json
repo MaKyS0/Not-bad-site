@@ -14,20 +14,20 @@
     ],
     "key": {
       "I": {
-        "item": "minecraft:gold_ingot"
+        "item": "hbm:nuclear_waste_tiny"
       },
       "G": {
         "item": "hbm:cordite"
       },
       "C": {
-        "item": "hbm:casing_357"
+        "item": "minecraft:glass_pane"
       },
       "P": {
         "item": "hbm:primer_357"
       }
     },
     "result": {
-      "item": "hbm:assembly_gold",
+      "item": "hbm:assembly_lead",
       "count": 24
     }
   }

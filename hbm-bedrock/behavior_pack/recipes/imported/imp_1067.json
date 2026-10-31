@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_revolver_nightmare"
+        "item": "hbm:clip_revolver_cursed"
       }
     ],
     "result": {
-      "item": "hbm:gun_revolver_nightmare_ammo",
-      "count": 6
+      "item": "hbm:gun_revolver_cursed_ammo",
+      "count": 17
     }
   }
 }

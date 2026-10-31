@@ -8,17 +8,17 @@
       "crafting_table"
     ],
     "pattern": [
-      "III",
+      "PPP",
       "   ",
-      "III"
+      "PPP"
     ],
     "key": {
-      "I": {
-        "item": "hbm:ingot_steel"
+      "P": {
+        "item": "hbm:plate_aluminium"
       }
     },
     "result": {
-      "item": "hbm:hull_big_steel",
+      "item": "hbm:hull_small_aluminium",
       "count": 1
     }
   }

@@ -8,24 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      "SLS",
-      "LCL",
-      "SLS"
+      "SPS",
+      "SMS",
+      "SPS"
     ],
     "key": {
-      "C": {
+      "S": {
         "item": "hbm:syringe_empty"
       },
-      "S": {
-        "item": "minecraft:spider_eye"
+      "P": {
+        "item": "minecraft:pumpkin_seeds"
       },
-      "L": {
-        "item": "hbm:powder_lead"
+      "M": {
+        "item": "minecraft:sugar_cane"
       }
     },
     "result": {
-      "item": "hbm:syringe_poison",
-      "count": 1
+      "item": "hbm:syringe_antidote",
+      "count": 6
     }
   }
 }

@@ -1,27 +1,26 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shaped": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "hbm:imp_1360"
     },
     "tags": [
       "crafting_table"
     ],
-    "pattern": [
-      "L",
-      "S"
-    ],
-    "key": {
-      "L": {
-        "item": "hbm:lignite"
+    "ingredients": [
+      {
+        "item": "minecraft:book"
       },
-      "S": {
-        "item": "minecraft:stick"
+      {
+        "item": "minecraft:gold_nugget"
+      },
+      {
+        "item": "minecraft:green_dye"
       }
-    },
+    ],
     "result": {
-      "item": "minecraft:torch",
-      "count": 3
+      "item": "hbm:bobmazon_tools",
+      "count": 1
     }
   }
 }

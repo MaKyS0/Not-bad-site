@@ -8,21 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      " B ",
-      "BAB",
-      " B "
+      "G",
+      "R"
     ],
     "key": {
-      "B": {
-        "item": "hbm:ammo_4gauge"
+      "G": {
+        "item": "hbm:pellet_canister"
       },
-      "A": {
-        "item": "hbm:pellet_claws"
+      "R": {
+        "item": "hbm:ammo_rocket"
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_claw",
-      "count": 4
+      "item": "hbm:ammo_rocket_canister",
+      "count": 1
     }
   }
 }

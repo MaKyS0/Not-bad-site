@@ -8,19 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "G",
-      "N"
+      "PPP",
+      "PIP",
+      "PPP"
     ],
     "key": {
-      "G": {
-        "item": "minecraft:glowstone_dust"
+      "P": {
+        "item": "hbm:pellet_cluster"
       },
-      "N": {
-        "item": "hbm:ammo_nuke_low"
+      "I": {
+        "item": "hbm:ingot_pu239"
       }
     },
     "result": {
-      "item": "hbm:ammo_nuke_safe",
+      "item": "hbm:ammo_nuke_tots",
       "count": 1
     }
   }

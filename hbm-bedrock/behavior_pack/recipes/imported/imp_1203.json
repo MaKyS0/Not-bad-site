@@ -8,18 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      " X ",
-      "X X",
-      " XX"
+      "GGG",
+      "GRG",
+      "GGG"
     ],
     "key": {
-      "X": {
-        "item": "hbm:plate_steel"
+      "G": {
+        "item": "hbm:ammo_grenade"
+      },
+      "R": {
+        "item": "hbm:coin_maskman"
       }
     },
     "result": {
-      "item": "hbm:pellet_claws",
-      "count": 1
+      "item": "hbm:ammo_grenade_sleek",
+      "count": 64
     }
   }
 }

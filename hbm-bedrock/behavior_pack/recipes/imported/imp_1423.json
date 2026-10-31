@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_1423"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "minecraft:bone_meal",
+    "output": "minecraft:slime_ball"
+  }
+}

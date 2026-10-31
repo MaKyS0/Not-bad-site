@@ -9,17 +9,14 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:iv_blood"
+        "item": "hbm:iv_empty"
       },
       {
-        "item": "hbm:powder_coal"
-      },
-      {
-        "item": "minecraft:pumpkin_seeds"
+        "item": "hbm:powder_magic"
       }
     ],
     "result": {
-      "item": "hbm:radaway",
+      "item": "hbm:iv_xp_empty",
       "count": 1
     }
   }

@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "DID",
-      "IGI",
-      " F "
+      "MBM",
+      "PBP",
+      "MBM"
     ],
     "key": {
-      "D": {
-        "item": "hbm:ducttape"
+      "M": {
+        "item": "hbm:motor"
       },
-      "I": {
-        "item": "hbm:ingot_biorubber"
+      "B": {
+        "item": "hbm:bolt_steel"
       },
-      "G": {
-        "item": "minecraft:glass_pane"
-      },
-      "F": {
+      "P": {
         "item": "hbm:plate_iron"
       }
     },
     "result": {
-      "item": "hbm:attachment_mask",
+      "item": "hbm:servo_set",
       "count": 1
     }
   }

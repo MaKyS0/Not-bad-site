@@ -8,20 +8,29 @@
       "crafting_table"
     ],
     "pattern": [
-      " U ",
-      "PUP",
-      " U "
+      "TBT",
+      "SRS",
+      "SCS"
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_iron"
+      "T": {
+        "item": "hbm:nugget_tantalium"
       },
-      "U": {
-        "item": "hbm:billet_uranium"
+      "B": {
+        "item": "hbm:nugget_bismuth"
+      },
+      "S": {
+        "item": "hbm:ingot_tcalloy"
+      },
+      "R": {
+        "item": "hbm:reacher"
+      },
+      "C": {
+        "item": "hbm:circuit_chip"
       }
     },
     "result": {
-      "item": "hbm:pile_rod_uranium",
+      "item": "hbm:bismuth_tool",
       "count": 1
     }
   }

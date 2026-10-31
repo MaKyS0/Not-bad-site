@@ -17,11 +17,11 @@
         "item": "hbm:ammo_12gauge"
       },
       "A": {
-        "item": "hbm:ingot_u238"
+        "item": "hbm:gravel_obsidian"
       }
     },
     "result": {
-      "item": "hbm:ammo_12gauge_du",
+      "item": "hbm:ammo_12gauge_shrapnel",
       "count": 8
     }
   }

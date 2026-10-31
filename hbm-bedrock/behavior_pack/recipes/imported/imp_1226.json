@@ -8,21 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      " B ",
-      "BAB",
-      " B "
+      " I ",
+      "GIG",
+      "CCC"
     ],
     "key": {
-      "B": {
-        "item": "hbm:ammo_4gauge_kampf"
+      "I": {
+        "item": "hbm:ingot_u238"
       },
-      "A": {
-        "item": "hbm:pellet_canister"
+      "G": {
+        "item": "hbm:cordite"
+      },
+      "C": {
+        "item": "minecraft:copper_ingot"
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_canister",
-      "count": 4
+      "item": "hbm:ammo_shell_apfsds_du",
+      "count": 6
     }
   }
 }

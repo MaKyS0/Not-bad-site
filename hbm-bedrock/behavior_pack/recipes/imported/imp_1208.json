@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_semtex"
+        "item": "minecraft:tnt"
       },
       "G": {
         "item": "hbm:ballistite"
@@ -31,7 +31,7 @@
     },
     "result": {
       "item": "hbm:ammo_4gauge_explosive",
-      "count": 6
+      "count": 4
     }
   }
 }

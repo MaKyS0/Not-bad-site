@@ -9,17 +9,14 @@
     ],
     "ingredients": [
       {
-        "item": "minecraft:book"
+        "item": "hbm:redstone_depleted"
       },
       {
-        "item": "minecraft:gold_nugget"
-      },
-      {
-        "item": "minecraft:string"
+        "item": "hbm:redstone_depleted"
       }
     ],
     "result": {
-      "item": "hbm:bobmazon_materials",
+      "item": "minecraft:redstone",
       "count": 1
     }
   }

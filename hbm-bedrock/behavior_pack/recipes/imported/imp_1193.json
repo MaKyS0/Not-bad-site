@@ -8,26 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      " T ",
-      "GCI"
+      "GGG",
+      "GRG",
+      "GGG"
     ],
     "key": {
-      "T": {
-        "item": "hbm:ball_tnt"
-      },
       "G": {
-        "item": "hbm:ballistite"
+        "item": "hbm:ammo_rocket"
       },
-      "C": {
-        "item": "hbm:casing_50"
-      },
-      "I": {
-        "item": "hbm:plate_iron"
+      "R": {
+        "item": "hbm:coin_maskman"
       }
     },
     "result": {
-      "item": "hbm:ammo_grenade",
-      "count": 2
+      "item": "hbm:ammo_rocket_sleek",
+      "count": 64
     }
   }
 }

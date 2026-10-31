@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_revolver_schrabidium"
+        "item": "hbm:clip_revolver_lead"
       }
     ],
     "result": {
-      "item": "hbm:gun_revolver_schrabidium_ammo",
+      "item": "hbm:gun_revolver_lead_ammo",
       "count": 12
     }
   }

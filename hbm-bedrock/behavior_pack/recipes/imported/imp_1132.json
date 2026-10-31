@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      " I ",
-      "GCG",
-      " P "
+      "I",
+      "C",
+      "P"
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_lead"
-      },
-      "G": {
-        "item": "hbm:cordite"
+        "item": "hbm:powder_power"
       },
       "C": {
-        "item": "hbm:casing_50"
+        "item": "hbm:casing_buckshot"
       },
       "P": {
-        "item": "hbm:primer_50"
+        "item": "hbm:primer_buckshot"
       }
     },
     "result": {
-      "item": "hbm:assembly_calamity",
+      "item": "hbm:gun_revolver_nightmare2_ammo",
       "count": 12
     }
   }

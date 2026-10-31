@@ -8,23 +8,18 @@
       "crafting_table"
     ],
     "pattern": [
-      " P ",
-      "GIG",
-      " P "
+      "GIG"
     ],
     "key": {
       "G": {
         "item": "hbm:ammo_grenade"
       },
       "I": {
-        "item": "hbm:neutron_reflector"
-      },
-      "P": {
-        "item": "hbm:nugget_pu239"
+        "item": "minecraft:glowstone_dust"
       }
     },
     "result": {
-      "item": "hbm:ammo_grenade_nuclear",
+      "item": "hbm:ammo_grenade_concussion",
       "count": 2
     }
   }

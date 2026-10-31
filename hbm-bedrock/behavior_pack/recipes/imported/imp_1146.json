@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      " B ",
+      "BBB",
       "BAB",
-      " B "
+      "BBB"
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_4gauge_explosive"
+        "item": "hbm:ammo_4gauge_flechette"
       },
       "A": {
-        "item": "hbm:egg_balefire_shard"
+        "item": "hbm:ingot_phosphorus"
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_balefire",
-      "count": 4
+      "item": "hbm:ammo_4gauge_flechette_phosphorus",
+      "count": 8
     }
   }
 }

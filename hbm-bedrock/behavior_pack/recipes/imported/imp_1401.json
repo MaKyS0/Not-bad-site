@@ -1,28 +1,23 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shaped": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "hbm:imp_1401"
     },
     "tags": [
       "crafting_table"
     ],
-    "pattern": [
-      " C ",
-      "CPC",
-      " C "
-    ],
-    "key": {
-      "P": {
-        "item": "hbm:plate_steel"
+    "ingredients": [
+      {
+        "item": "hbm:capsule_empty"
       },
-      "C": {
-        "item": "hbm:coil_advanced_alloy"
+      {
+        "item": "hbm:crystal_xen"
       }
-    },
+    ],
     "result": {
-      "item": "hbm:coil_advanced_torus",
-      "count": 2
+      "item": "hbm:capsule_xen",
+      "count": 1
     }
   }
 }

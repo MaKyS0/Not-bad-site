@@ -95,6 +95,30 @@
     "hbm_hazmat_cloth": {
       "textures": "textures/items/hazmat_cloth"
     },
+    "hbm_gun_light_revolver": {
+      "textures": "textures/items/gun_light_revolver"
+    },
+    "hbm_gun_heavy_revolver": {
+      "textures": "textures/items/gun_heavy_revolver"
+    },
+    "hbm_gun_maresleg": {
+      "textures": "textures/items/gun_maresleg"
+    },
+    "hbm_gun_greasegun": {
+      "textures": "textures/items/gun_greasegun"
+    },
+    "hbm_gun_liberator": {
+      "textures": "textures/items/gun_liberator"
+    },
+    "hbm_gun_flaregun": {
+      "textures": "textures/items/gun_flaregun"
+    },
+    "hbm_gun_panzerschreck": {
+      "textures": "textures/items/gun_panzerschreck"
+    },
+    "hbm_gun_fliegerfaust": {
+      "textures": "textures/items/gun_fliegerfaust"
+    },
     "hbm_recipe_book": {
       "textures": "textures/items/recipe_book"
     },

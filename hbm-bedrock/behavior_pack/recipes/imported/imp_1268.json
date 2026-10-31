@@ -14,11 +14,11 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_aluminium"
+        "item": "hbm:ingot_steel"
       }
     },
     "result": {
-      "item": "hbm:hull_big_aluminium",
+      "item": "hbm:hull_big_steel",
       "count": 1
     }
   }

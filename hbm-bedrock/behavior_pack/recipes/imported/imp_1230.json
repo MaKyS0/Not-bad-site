@@ -14,14 +14,14 @@
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_22lr"
+        "item": "hbm:ammo_9mm"
       },
       "A": {
         "item": "hbm:pellet_chlorophyte"
       }
     },
     "result": {
-      "item": "hbm:ammo_22lr_chlorophyte",
+      "item": "hbm:ammo_9mm_chlorophyte",
       "count": 8
     }
   }

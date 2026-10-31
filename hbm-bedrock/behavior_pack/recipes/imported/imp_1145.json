@@ -14,15 +14,15 @@
     ],
     "key": {
       "B": {
-        "item": "hbm:ammo_4gauge_flechette"
+        "item": "hbm:ammo_4gauge"
       },
       "A": {
-        "item": "hbm:ingot_phosphorus"
+        "item": "hbm:coin_maskman"
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_flechette_phosphorus",
-      "count": 8
+      "item": "hbm:ammo_4gauge_sleek",
+      "count": 64
     }
   }
 }

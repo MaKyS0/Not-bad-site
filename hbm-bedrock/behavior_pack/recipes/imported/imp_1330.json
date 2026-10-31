@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "CC ",
-      "GGS",
-      "SSS"
+      " C ",
+      "LUL",
+      "LUL"
     ],
     "key": {
       "C": {
-        "item": "hbm:circuit_basic"
+        "item": "hbm:plate_copper"
       },
-      "S": {
-        "item": "hbm:plate_steel"
+      "L": {
+        "item": "hbm:plate_lead"
       },
-      "G": {
-        "item": "hbm:plate_gold"
+      "U": {
+        "item": "hbm:ingot_euphemium"
       }
     },
     "result": {
-      "item": "hbm:turret_biometry",
+      "item": "hbm:custom_euph",
       "count": 1
     }
   }

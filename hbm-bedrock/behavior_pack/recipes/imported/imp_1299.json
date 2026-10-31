@@ -18,11 +18,11 @@
         "item": "minecraft:sugar"
       },
       {
-        "item": "hbm:fluorite"
+        "item": "hbm:pellet_cluster"
       }
     ],
     "result": {
-      "item": "hbm:can_mrsugar",
+      "item": "hbm:can_redbomb",
       "count": 1
     }
   }

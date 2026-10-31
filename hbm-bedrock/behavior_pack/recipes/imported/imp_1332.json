@@ -1,40 +1,33 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1332"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "minecraft:glass_pane"
-      },
-      {
-        "item": "minecraft:cocoa_beans"
-      },
-      {
-        "item": "minecraft:milk_bucket"
-      },
-      {
-        "item": "hbm:block_niter"
-      },
-      {
-        "item": "hbm:sulfur"
-      },
-      {
-        "item": "hbm:sulfur"
-      },
-      {
-        "item": "hbm:sulfur"
-      },
-      {
-        "item": "hbm:powder_fire"
-      }
+    "pattern": [
+      "WGW",
+      "WCW",
+      "WBW"
     ],
+    "key": {
+      "W": {
+        "item": "hbm:ingot_aluminium"
+      },
+      "G": {
+        "item": "hbm:gas_mask_filter"
+      },
+      "C": {
+        "item": "hbm:ingot_asbestos"
+      },
+      "B": {
+        "item": "hbm:circuit_analog"
+      }
+    },
     "result": {
-      "item": "hbm:chocolate_milk",
+      "item": "hbm:lung_diagnostic",
       "count": 1
     }
   }

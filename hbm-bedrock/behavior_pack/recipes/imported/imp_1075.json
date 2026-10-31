@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_bf"
+        "item": "hbm:clip_mirv"
       }
     ],
     "result": {
-      "item": "hbm:gun_bf_ammo",
-      "count": 2
+      "item": "hbm:ammo_mirv",
+      "count": 3
     }
   }
 }

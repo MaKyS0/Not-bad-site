@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "CPC",
-      "CDC",
-      "CPC"
+      " P ",
+      "BDB",
+      " P "
     ],
     "key": {
-      "C": {
-        "item": "hbm:powder_coal"
-      },
       "P": {
-        "item": "hbm:ingot_phosphorus"
+        "item": "hbm:plate_steel"
+      },
+      "B": {
+        "item": "hbm:bolt_steel"
       },
       "D": {
-        "item": "hbm:ammo_fuel"
+        "item": "hbm:canister_napalm"
       }
     },
     "result": {
-      "item": "hbm:ammo_fuel_phosphorus",
+      "item": "hbm:ammo_fuel_napalm",
       "count": 1
     }
   }

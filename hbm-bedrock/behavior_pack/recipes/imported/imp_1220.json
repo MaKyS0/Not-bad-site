@@ -8,24 +8,27 @@
       "crafting_table"
     ],
     "pattern": [
-      " I ",
-      "GIG",
+      " T ",
+      "GHG",
       "CCC"
     ],
     "key": {
-      "I": {
-        "item": "hbm:ingot_tungsten"
+      "T": {
+        "item": "hbm:ingot_semtex"
       },
       "G": {
-        "item": "minecraft:gunpowder"
+        "item": "hbm:cordite"
+      },
+      "H": {
+        "item": "hbm:hull_small_steel"
       },
       "C": {
         "item": "minecraft:copper_ingot"
       }
     },
     "result": {
-      "item": "hbm:ammo_shell_apfsds_t",
-      "count": 4
+      "item": "hbm:ammo_shell_explosive",
+      "count": 6
     }
   }
 }

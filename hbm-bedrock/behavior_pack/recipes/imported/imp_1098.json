@@ -8,7 +8,9 @@
       "crafting_table"
     ],
     "pattern": [
-      "SRS"
+      " S ",
+      " R ",
+      " S "
     ],
     "key": {
       "S": {

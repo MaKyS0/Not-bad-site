@@ -1,29 +1,25 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1303"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "hbm:bottle_empty"
-      },
-      {
-        "item": "minecraft:potion"
-      },
-      {
-        "item": "minecraft:sugar"
-      },
-      {
-        "item": "hbm:powder_coal"
-      }
+    "pattern": [
+      " G ",
+      "G G",
+      "GGG"
     ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass_pane"
+      }
+    },
     "result": {
-      "item": "hbm:bottle_nuka",
-      "count": 1
+      "item": "hbm:bottle_empty",
+      "count": 6
     }
   }
 }

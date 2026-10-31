@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "SPS",
-      "NCN",
-      "SPS"
+      "SLS",
+      "LCL",
+      "SLS"
     ],
     "key": {
       "C": {
         "item": "hbm:syringe_empty"
       },
       "S": {
-        "item": "hbm:sulfur"
+        "item": "minecraft:spider_eye"
       },
-      "P": {
-        "item": "hbm:nugget_pu239"
-      },
-      "N": {
-        "item": "hbm:nugget_pu238"
+      "L": {
+        "item": "hbm:powder_poison"
       }
     },
     "result": {
-      "item": "hbm:syringe_awesome",
+      "item": "hbm:syringe_poison",
       "count": 1
     }
   }

@@ -253,6 +253,11 @@ simpleBlock("ore_oil_empty", { en: "Empty Oil Deposit", ru: "Истощённа�
 // HBM's oil sits in big pockets; here one pocket in roughly every sixth chunk.
 oreGeneration("ore_oil", { veins: 1, size: 40, y: [10, 40], chance: 6 });
 
+// Loot crates from HBM's meteorite dungeon; their contents come from crates.js when broken.
+write(join(BP, "loot_tables/empty.json"), { pools: [] });
+simpleBlock("crate_red", { en: "Red Crate", ru: "Красный ящик", texture: "crate_red", seconds: 1, resist: 1, color: "#a02020", category: "items", tag: "wood", loot: "loot_tables/empty.json" });
+simpleBlock("crate_starmetal", { en: "Starmetal Crate", ru: "Ящик из звёздного металла", texture: "crate_starmetal", seconds: 1.5, resist: 3, color: "#303060", category: "items", tag: "metal", loot: "loot_tables/empty.json" });
+
 // Explosives: the script arms them with flint and steel or a redstone signal.
 simpleBlock("charge_semtex", { en: "Semtex", ru: "Семтекс", texture: "semtex_side", up: "semtex_top", down: "semtex_bottom", seconds: 1, resist: 0, color: "#d8a030", category: "items", tag: "explosive" });
 simpleBlock("det_charge", { en: "Detonation Charge", ru: "Подрывной заряд", texture: "det_charge", seconds: 1, resist: 0, color: "#c8a060", category: "items", tag: "explosive" });
@@ -321,6 +326,7 @@ for (const b of importedBlocks) {
     [`tag:${TOOL_TAG[b.tool] ?? TOOL_TAG.pickaxe}`]: {},
   };
   if (b.light > 0) components["minecraft:light_emission"] = b.light;
+  if (/^crate(_(weapon|lead|metal|can|ammo|jungle))?$/.test(b.id)) components["minecraft:loot"] = "loot_tables/empty.json";
   write(join(BP, `blocks/imported/${b.id}.json`), {
     format_version: "1.21.60",
     "minecraft:block": { description: { identifier: `hbm:${b.id}`, menu_category: { category: b.category } }, components },
@@ -430,6 +436,19 @@ item("red_cable", {
   components: { "minecraft:block_placer": { block: "hbm:red_cable", replace_block_item: true } },
 });
 item("hazmat_cloth", { en: "Hazmat Cloth", ru: "Ткань химзащиты" });
+// HBM's newer guns exist only as 3D models; these get pixel icons drawn for this pack.
+for (const [id, en, ru] of [
+  ["gun_light_revolver", "Light Revolver", "Лёгкий револьвер"],
+  ["gun_heavy_revolver", "Heavy Revolver", "Тяжёлый револьвер"],
+  ["gun_maresleg", "Maresleg", "Обрез «Марслег»"],
+  ["gun_greasegun", "Grease Gun", "Пистолет-пулемёт «Грязевик»"],
+  ["gun_liberator", "Liberator", "Двустволка «Освободитель»"],
+  ["gun_flaregun", "Flare Gun", "Ракетница"],
+  ["gun_panzerschreck", "Panzerschreck", "Панцершрек"],
+  ["gun_fliegerfaust", "Fliegerfaust", "Фаустпатрон «Флигерфауст»"],
+]) {
+  item(id, { en, ru, category: "equipment", components: { "minecraft:max_stack_size": 1, "minecraft:hand_equipped": true } });
+}
 item("recipe_book", {
   en: "Recipe Book", ru: "Справочник рецептов", category: "equipment",
   components: { "minecraft:max_stack_size": 1, "minecraft:hand_equipped": true },
@@ -532,6 +551,8 @@ for (const [id, a] of Object.entries(ARMOR)) {
 // ---------- imported items ----------
 
 const importedItems = catalog.items.filter((i) => !defined.has(`hbm:${i.id}`));
+/** Food, drinks and injections from HBM; their effects live in crates.js. */
+const CONSUMABLE = /^(can_(smart|creature|redbomb|mrsugar|overcharge|luna|bepis|breen)|bottle_(nuka|cherry|quantum|sparkle|rad)|pudding|definitelyfood|pill_herbal|serum|syringe_(metal_(stimpak|medx|psycho|super)|antidote|awesome|poison))$/;
 for (const i of importedItems) {
   name(`item.hbm.${i.id}.name`, i.en, i.ru);
   itemTextures[importedTexture(i.texture)] = { textures: i.texture };
@@ -543,6 +564,11 @@ for (const i of importedItems) {
         "minecraft:icon": { textures: { default: importedTexture(i.texture) } },
         "minecraft:display_name": { value: `item.hbm.${i.id}.name` },
         "minecraft:max_stack_size": Math.max(1, Math.min(64, i.stack)),
+        ...(CONSUMABLE.test(i.id) && {
+          "minecraft:food": { can_always_eat: true, nutrition: /syringe|pill|serum/.test(i.id) ? 0 : 6, saturation_modifier: 0.6 },
+          "minecraft:use_animation": /can_|bottle_|syringe/.test(i.id) ? "drink" : "eat",
+          "minecraft:use_modifiers": { use_duration: 1.2, movement_modifier: 0.35 },
+        }),
       },
     },
   });

@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:det_miner"
+        "item": "hbm:ingot_semtex"
       },
       "G": {
         "item": "hbm:ballistite"
@@ -30,8 +30,8 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_semtex",
-      "count": 4
+      "item": "hbm:ammo_4gauge_explosive",
+      "count": 6
     }
   }
 }

@@ -12,14 +12,14 @@
     ],
     "key": {
       "P": {
-        "item": "hbm:plate_schrabidium"
+        "item": "hbm:plate_combine_steel"
       },
       "I": {
-        "item": "hbm:blades_schrabidium"
+        "item": "hbm:blades_combine_steel"
       }
     },
     "result": {
-      "item": "hbm:blades_schrabidium",
+      "item": "hbm:blades_combine_steel",
       "count": 1
     }
   }

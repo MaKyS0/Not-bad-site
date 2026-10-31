@@ -15,11 +15,11 @@
         "item": "minecraft:gold_nugget"
       },
       {
-        "item": "minecraft:red_dye"
+        "item": "minecraft:string"
       }
     ],
     "result": {
-      "item": "hbm:bobmazon_machines",
+      "item": "hbm:bobmazon_materials",
       "count": 1
     }
   }

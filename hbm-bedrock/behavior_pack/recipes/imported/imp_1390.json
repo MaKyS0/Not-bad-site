@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      " C ",
-      "PUP",
-      " C "
+      "A",
+      "B",
+      "C"
     ],
     "key": {
-      "C": {
+      "A": {
+        "item": "hbm:plate_gold"
+      },
+      "B": {
         "item": "hbm:circuit_vacuum_tube"
       },
-      "P": {
-        "item": "hbm:piston_pneumatic"
-      },
-      "U": {
-        "item": "hbm:upgrade_template"
+      "C": {
+        "item": "hbm:plate_iron"
       }
     },
     "result": {
-      "item": "hbm:upgrade_stack_1",
+      "item": "hbm:gas_sensor",
       "count": 1
     }
   }

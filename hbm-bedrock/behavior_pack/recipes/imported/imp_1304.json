@@ -18,11 +18,11 @@
         "item": "minecraft:sugar"
       },
       {
-        "item": "minecraft:redstone"
+        "item": "hbm:powder_coal"
       }
     ],
     "result": {
-      "item": "hbm:bottle_cherry",
+      "item": "hbm:bottle_nuka",
       "count": 1
     }
   }

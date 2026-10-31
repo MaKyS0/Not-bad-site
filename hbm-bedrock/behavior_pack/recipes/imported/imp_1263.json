@@ -8,21 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      " S ",
-      "S#S",
-      " S "
+      "S ",
+      "AA",
+      "AA"
     ],
     "key": {
-      "#": {
-        "item": "hbm:ball_tnt"
-      },
       "S": {
-        "item": "minecraft:sand"
+        "item": "hbm:plate_steel"
+      },
+      "A": {
+        "item": "hbm:plate_aluminium"
       }
     },
     "result": {
-      "item": "minecraft:tnt",
-      "count": 4
+      "item": "hbm:canister_fuel",
+      "count": 2
     }
   }
 }

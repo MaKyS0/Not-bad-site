@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_immolator"
+        "item": "hbm:clip_osipr"
       }
     ],
     "result": {
-      "item": "hbm:gun_immolator_ammo",
-      "count": 64
+      "item": "hbm:gun_osipr_ammo",
+      "count": 30
     }
   }
 }

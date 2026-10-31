@@ -8,24 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "IGI",
-      "IPI",
-      "IPI"
+      " F ",
+      "SFS",
+      " F "
     ],
     "key": {
-      "G": {
-        "item": "hbm:plate_gold"
+      "S": {
+        "item": "hbm:plate_steel"
       },
-      "I": {
-        "item": "hbm:plate_iron"
-      },
-      "P": {
-        "item": "hbm:powder_power"
+      "F": {
+        "item": "hbm:powder_ice"
       }
     },
     "result": {
-      "item": "hbm:gun_emp_ammo",
-      "count": 8
+      "item": "hbm:gun_cryolator_ammo",
+      "count": 16
     }
   }
 }

@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_revolver_nopip"
+        "item": "hbm:clip_revolver_pip"
       }
     ],
     "result": {
-      "item": "hbm:ammo_44",
-      "count": 12
+      "item": "hbm:ammo_44_pip",
+      "count": 6
     }
   }
 }

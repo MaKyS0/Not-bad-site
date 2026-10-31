@@ -8,24 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "PPP",
-      "PPP",
-      "WIW"
+      " C ",
+      "CPC",
+      " C "
     ],
     "key": {
       "P": {
-        "item": "minecraft:paper"
+        "item": "hbm:plate_steel"
       },
-      "W": {
-        "item": "minecraft:oak_planks"
-      },
-      "I": {
-        "item": "minecraft:iron_ingot"
+      "C": {
+        "item": "hbm:coil_advanced_alloy"
       }
     },
     "result": {
-      "item": "minecraft:firework_rocket",
-      "count": 1
+      "item": "hbm:coil_advanced_torus",
+      "count": 2
     }
   }
 }

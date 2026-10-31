@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "DGD",
-      "GTG",
-      "DGD"
+      "MWM",
+      "WBW",
+      "MWM"
     ],
     "key": {
-      "D": {
-        "item": "hbm:ducttape"
+      "M": {
+        "item": "hbm:block_corium_cobble"
       },
-      "G": {
-        "item": "hbm:wire_fine_gold"
+      "W": {
+        "item": "hbm:powder_radspice"
       },
-      "T": {
-        "item": "hbm:tesla"
+      "B": {
+        "item": "hbm:bathwater_mk2"
       }
     },
     "result": {
-      "item": "hbm:back_tesla",
+      "item": "hbm:bathwater_mk3",
       "count": 1
     }
   }

@@ -8,23 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "PSP",
-      "SCS",
-      "PSP"
+      " M ",
+      "MDM",
+      " M "
     ],
     "key": {
-      "P": {
-        "item": "hbm:ingot_polymer"
+      "M": {
+        "item": "hbm:fragment_meteorite"
       },
-      "S": {
-        "item": "hbm:ingot_starmetal"
-      },
-      "C": {
-        "item": "hbm:circuit_bismoid"
+      "D": {
+        "item": "hbm:gem_volcanic"
       }
     },
     "result": {
-      "item": "hbm:neutrino_lens",
+      "item": "hbm:meteor_charm",
       "count": 1
     }
   }

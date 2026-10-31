@@ -14,7 +14,7 @@
     ],
     "key": {
       "T": {
-        "item": "hbm:ingot_semtex"
+        "item": "minecraft:tnt"
       },
       "G": {
         "item": "hbm:rocket_fuel"
@@ -28,7 +28,7 @@
     },
     "result": {
       "item": "hbm:ammo_rocket",
-      "count": 2
+      "count": 1
     }
   }
 }

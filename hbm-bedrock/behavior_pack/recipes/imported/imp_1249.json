@@ -1,34 +1,20 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shaped": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "hbm:imp_1249"
     },
     "tags": [
       "crafting_table"
     ],
-    "pattern": [
-      "NNN",
-      "CDS",
-      "NNN"
-    ],
-    "key": {
-      "N": {
-        "item": "hbm:ammo_nuke"
-      },
-      "C": {
-        "item": "hbm:cap_aluminium"
-      },
-      "D": {
-        "item": "hbm:det_cord"
-      },
-      "S": {
-        "item": "hbm:hull_small_steel"
+    "ingredients": [
+      {
+        "item": "hbm:ammo_mirv_safe"
       }
-    },
+    ],
     "result": {
-      "item": "hbm:ammo_mirv",
-      "count": 1
+      "item": "hbm:ammo_nuke_safe",
+      "count": 6
     }
   }
 }

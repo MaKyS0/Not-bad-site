@@ -8,29 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "R12",
-      "PPI",
-      "  I"
+      "LPL",
+      "BPB",
+      "LPL"
     ],
     "key": {
-      "1": {
-        "item": "hbm:circuit_capacitor_board"
-      },
-      "2": {
-        "item": "hbm:circuit_advanced"
-      },
-      "R": {
-        "item": "minecraft:redstone"
-      },
       "P": {
-        "item": "hbm:plate_steel"
+        "item": "minecraft:paper"
       },
-      "I": {
-        "item": "hbm:ingot_steel"
+      "L": {
+        "item": "minecraft:blue_dye"
+      },
+      "B": {
+        "item": "minecraft:white_dye"
       }
     },
     "result": {
-      "item": "hbm:turret_control",
+      "item": "hbm:template_folder",
       "count": 1
     }
   }

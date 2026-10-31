@@ -9,12 +9,12 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_uboinik"
+        "item": "hbm:clip_uzi"
       }
     ],
     "result": {
-      "item": "hbm:ammo_12gauge",
-      "count": 24
+      "item": "hbm:ammo_22lr",
+      "count": 32
     }
   }
 }

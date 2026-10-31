@@ -1,34 +1,26 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shaped": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "hbm:imp_1274"
     },
     "tags": [
       "crafting_table"
     ],
-    "pattern": [
-      "PTP",
-      "BMB",
-      "PTP"
-    ],
-    "key": {
-      "P": {
-        "item": "hbm:plate_titanium"
+    "ingredients": [
+      {
+        "item": "minecraft:stick"
       },
-      "T": {
-        "item": "hbm:turbine_titanium"
+      {
+        "item": "minecraft:stick"
       },
-      "B": {
-        "item": "hbm:tank_steel"
-      },
-      "M": {
-        "item": "hbm:motor"
+      {
+        "item": "minecraft:stick"
       }
-    },
+    ],
     "result": {
-      "item": "hbm:machine_turbine",
-      "count": 1
+      "item": "hbm:toothpicks",
+      "count": 3
     }
   }
 }

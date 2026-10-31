@@ -9,11 +9,11 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:clip_uzi"
+        "item": "hbm:clip_mp40"
       }
     ],
     "result": {
-      "item": "hbm:ammo_22lr",
+      "item": "hbm:ammo_9mm",
       "count": 32
     }
   }

@@ -8,8 +8,8 @@
       "crafting_table"
     ],
     "pattern": [
-      "P",
-      "R"
+      "R",
+      "P"
     ],
     "key": {
       "P": {
@@ -20,7 +20,7 @@
       }
     },
     "result": {
-      "item": "hbm:primer_44",
+      "item": "hbm:primer_357",
       "count": 1
     }
   }

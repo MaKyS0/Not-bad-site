@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "MWM",
-      "WBW",
-      "MWM"
+      "FPF",
+      "PIP",
+      "FPF"
     ],
     "key": {
-      "M": {
-        "item": "hbm:bottle_mercury"
+      "F": {
+        "item": "minecraft:poppy"
       },
-      "W": {
-        "item": "hbm:nuclear_waste"
+      "P": {
+        "item": "hbm:armor_polish"
       },
-      "B": {
-        "item": "hbm:bathwater"
+      "I": {
+        "item": "minecraft:black_dye"
       }
     },
     "result": {
-      "item": "hbm:bathwater_mk2",
+      "item": "hbm:ink",
       "count": 1
     }
   }

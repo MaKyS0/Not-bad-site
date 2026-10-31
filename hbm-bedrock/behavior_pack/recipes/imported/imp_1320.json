@@ -8,21 +8,27 @@
       "crafting_table"
     ],
     "pattern": [
-      "A",
-      "B",
-      "A"
+      "SNS",
+      "PCP",
+      "SNS"
     ],
     "key": {
-      "A": {
-        "item": "hbm:ingot_biorubber"
+      "C": {
+        "item": "hbm:syringe_empty"
       },
-      "B": {
-        "item": "hbm:plate_iron"
+      "S": {
+        "item": "hbm:sulfur"
+      },
+      "P": {
+        "item": "hbm:nugget_pu239"
+      },
+      "N": {
+        "item": "hbm:nugget_pu238"
       }
     },
     "result": {
-      "item": "hbm:iv_empty",
-      "count": 4
+      "item": "hbm:syringe_awesome",
+      "count": 1
     }
   }
 }

@@ -8,24 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      "PCP",
-      "DDD",
-      "PCP"
+      "P",
+      "S",
+      "N"
     ],
     "key": {
       "P": {
-        "item": "hbm:plate_lead"
+        "item": "hbm:powder_poison"
       },
-      "C": {
-        "item": "hbm:coil_gold"
+      "N": {
+        "item": "hbm:niter"
       },
-      "D": {
-        "item": "hbm:powder_power"
+      "S": {
+        "item": "hbm:syringe_metal_empty"
       }
     },
     "result": {
-      "item": "hbm:gun_spark_ammo",
-      "count": 4
+      "item": "hbm:gun_euthanasia_ammo",
+      "count": 12
     }
   }
 }

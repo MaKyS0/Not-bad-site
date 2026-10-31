@@ -14,10 +14,10 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:ingot_steel"
+        "item": "hbm:ingot_lead"
       },
       "G": {
-        "item": "hbm:cordite"
+        "item": "hbm:ballistite"
       },
       "C": {
         "item": "hbm:casing_9"
@@ -27,7 +27,7 @@
       }
     },
     "result": {
-      "item": "hbm:assembly_556",
+      "item": "hbm:assembly_smg",
       "count": 32
     }
   }

@@ -8,19 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "PIP"
+      " S ",
+      "S#S",
+      " S "
     ],
     "key": {
-      "P": {
-        "item": "hbm:plate_aluminium"
+      "#": {
+        "item": "hbm:ball_tnt"
       },
-      "I": {
-        "item": "hbm:ingot_aluminium"
+      "S": {
+        "item": "minecraft:sand"
       }
     },
     "result": {
-      "item": "hbm:cap_aluminium",
-      "count": 1
+      "item": "minecraft:tnt",
+      "count": 4
     }
   }
 }

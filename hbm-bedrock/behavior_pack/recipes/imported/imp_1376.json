@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "MBM",
-      "PBP",
-      "MBM"
+      "OOO",
+      "PDP",
+      "OOO"
     ],
     "key": {
-      "M": {
-        "item": "hbm:motor"
-      },
-      "B": {
-        "item": "hbm:bolt_steel"
+      "O": {
+        "item": "hbm:plate_iron"
       },
       "P": {
-        "item": "hbm:plate_iron"
+        "item": "hbm:ingot_biorubber"
+      },
+      "D": {
+        "item": "hbm:ducttape"
       }
     },
     "result": {
-      "item": "hbm:servo_set",
+      "item": "hbm:cladding_iron",
       "count": 1
     }
   }

@@ -13,15 +13,15 @@
     ],
     "key": {
       "G": {
-        "item": "hbm:ammo_rocket"
+        "item": "minecraft:feather"
       },
       "R": {
         "item": "hbm:ammo_grenade"
       }
     },
     "result": {
-      "item": "hbm:ammo_grenade_kampf",
-      "count": 2
+      "item": "hbm:ammo_grenade_finned",
+      "count": 1
     }
   }
 }

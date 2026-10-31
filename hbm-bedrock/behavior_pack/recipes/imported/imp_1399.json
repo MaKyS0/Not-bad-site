@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "STS",
-      "GXG",
-      "STS"
+      "MCM",
+      "MKM",
+      "MMM"
     ],
     "key": {
-      "S": {
-        "item": "hbm:plate_armor_lunar"
+      "M": {
+        "item": "hbm:ingot_meteorite_forged"
       },
-      "T": {
-        "item": "hbm:coil_advanced_torus"
+      "C": {
+        "item": "hbm:coin_maskman"
       },
-      "G": {
-        "item": "hbm:ingot_gh336"
-      },
-      "X": {
-        "item": "hbm:particle_empty"
+      "K": {
+        "item": "hbm:key"
       }
     },
     "result": {
-      "item": "hbm:capsule_empty",
+      "item": "hbm:mech_key",
       "count": 1
     }
   }

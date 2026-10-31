@@ -9,18 +9,15 @@
     ],
     "ingredients": [
       {
-        "item": "minecraft:stick"
+        "item": "hbm:bolt_tungsten"
       },
       {
-        "item": "minecraft:stick"
-      },
-      {
-        "item": "minecraft:stick"
+        "item": "hbm:wrench"
       }
     ],
     "result": {
-      "item": "hbm:toothpicks",
-      "count": 3
+      "item": "hbm:cbt_device",
+      "count": 1
     }
   }
 }

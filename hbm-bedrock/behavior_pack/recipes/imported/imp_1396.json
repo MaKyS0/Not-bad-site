@@ -8,24 +8,24 @@
       "crafting_table"
     ],
     "pattern": [
-      " I ",
-      "CPC",
-      " I "
+      " C ",
+      "PUP",
+      " C "
     ],
     "key": {
-      "I": {
-        "item": "minecraft:iron_ingot"
-      },
       "C": {
-        "item": "minecraft:copper_ingot"
+        "item": "hbm:plate_saturnite"
       },
       "P": {
-        "item": "hbm:plate_iron"
+        "item": "hbm:motor"
+      },
+      "U": {
+        "item": "hbm:upgrade_ejector_2"
       }
     },
     "result": {
-      "item": "hbm:piston_pneumatic",
-      "count": 4
+      "item": "hbm:upgrade_ejector_3",
+      "count": 1
     }
   }
 }

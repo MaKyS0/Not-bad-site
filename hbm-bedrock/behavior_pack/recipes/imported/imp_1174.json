@@ -17,11 +17,11 @@
         "item": "hbm:ammo_556_flechette"
       },
       "A": {
-        "item": "hbm:ingot_phosphorus"
+        "item": "hbm:powder_fire"
       }
     },
     "result": {
-      "item": "hbm:ammo_556_flechette_phosphorus",
+      "item": "hbm:ammo_556_flechette_incendiary",
       "count": 8
     }
   }

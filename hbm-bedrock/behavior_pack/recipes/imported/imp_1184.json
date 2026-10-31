@@ -8,26 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      " T ",
-      "GCG",
-      " P "
+      " B ",
+      "EEE",
+      " S "
     ],
     "key": {
-      "T": {
-        "item": "minecraft:tnt"
+      "B": {
+        "item": "hbm:folly_bullet_du"
       },
-      "G": {
-        "item": "hbm:rocket_fuel"
+      "E": {
+        "item": "hbm:det_charge"
       },
-      "C": {
-        "item": "hbm:casing_50"
-      },
-      "P": {
-        "item": "hbm:primer_50"
+      "S": {
+        "item": "hbm:folly_shell"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket",
+      "item": "hbm:ammo_folly_du",
       "count": 1
     }
   }

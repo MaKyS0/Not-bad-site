@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "hbm:pellet_cluster"
+        "item": "hbm:ingot_lead"
       },
       "G": {
         "item": "hbm:ballistite"
@@ -30,7 +30,7 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_20gauge_explosive",
+      "item": "hbm:ammo_20gauge_slug",
       "count": 12
     }
   }

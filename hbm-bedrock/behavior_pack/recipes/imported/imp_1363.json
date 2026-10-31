@@ -8,14 +8,10 @@
       "crafting_table"
     ],
     "pattern": [
-      "ASA",
-      " S ",
-      "PSP"
+      "PSP",
+      "P P"
     ],
     "key": {
-      "A": {
-        "item": "hbm:plate_titanium"
-      },
       "P": {
         "item": "hbm:plate_steel"
       },
@@ -24,7 +20,7 @@
       }
     },
     "result": {
-      "item": "hbm:mp_stability_10_cruise",
+      "item": "hbm:mp_stability_10_flat",
       "count": 1
     }
   }

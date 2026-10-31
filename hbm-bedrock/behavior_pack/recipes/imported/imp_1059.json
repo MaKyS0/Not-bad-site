@@ -8,26 +8,32 @@
       "crafting_table"
     ],
     "pattern": [
-      "TTT",
-      "AAS",
-      " D "
+      "WCC",
+      "PMT",
+      "WAA"
     ],
     "key": {
-      "A": {
-        "item": "hbm:ingot_unobtainium"
+      "W": {
+        "item": "hbm:wire_fine_gold"
+      },
+      "C": {
+        "item": "hbm:plate_copper"
+      },
+      "P": {
+        "item": "hbm:plate_advanced_alloy"
+      },
+      "M": {
+        "item": "hbm:mechanism_launcher_1"
       },
       "T": {
-        "item": "hbm:toothpicks"
+        "item": "hbm:tank_steel"
       },
-      "S": {
-        "item": "hbm:gun_stinger"
-      },
-      "D": {
-        "item": "hbm:ducttape"
+      "A": {
+        "item": "hbm:plate_steel"
       }
     },
     "result": {
-      "item": "hbm:gun_skystinger",
+      "item": "hbm:gun_immolator",
       "count": 1
     }
   }

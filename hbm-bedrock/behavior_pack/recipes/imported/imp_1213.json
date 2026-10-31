@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "PSP",
-      "SNS",
-      "PSP"
+      "PDP",
+      "BDB",
+      "PDP"
     ],
     "key": {
       "P": {
-        "item": "hbm:ingot_phosphorus"
+        "item": "hbm:plate_steel"
       },
-      "S": {
-        "item": "hbm:crystal_sulfur"
+      "B": {
+        "item": "hbm:bolt_steel"
       },
-      "N": {
-        "item": "hbm:ammo_fuel_napalm"
+      "D": {
+        "item": "hbm:pellet_gas"
       }
     },
     "result": {
-      "item": "hbm:ammo_fuel_vaporizer",
+      "item": "hbm:ammo_fuel_gas",
       "count": 1
     }
   }

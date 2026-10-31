@@ -8,23 +8,23 @@
       "crafting_table"
     ],
     "pattern": [
-      "SPS",
-      "DPD",
-      "SPS"
+      "PPP",
+      "PPP",
+      "WIW"
     ],
     "key": {
       "P": {
         "item": "minecraft:paper"
       },
-      "D": {
-        "item": "hbm:cinnebar"
+      "W": {
+        "item": "minecraft:oak_planks"
       },
-      "S": {
-        "item": "hbm:plate_steel"
+      "I": {
+        "item": "minecraft:iron_ingot"
       }
     },
     "result": {
-      "item": "hbm:sliding_blast_door_skin0",
+      "item": "minecraft:firework_rocket",
       "count": 1
     }
   }

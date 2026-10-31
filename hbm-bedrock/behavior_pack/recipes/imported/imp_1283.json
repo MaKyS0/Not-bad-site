@@ -12,14 +12,14 @@
     ],
     "key": {
       "P": {
-        "item": "hbm:plate_gold"
+        "item": "hbm:plate_aluminium"
       },
       "I": {
-        "item": "hbm:blades_gold"
+        "item": "hbm:blades_aluminum"
       }
     },
     "result": {
-      "item": "hbm:blades_gold",
+      "item": "hbm:blades_aluminum",
       "count": 1
     }
   }

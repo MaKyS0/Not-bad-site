@@ -14,17 +14,17 @@
     ],
     "key": {
       "C": {
-        "item": "hbm:circuit_capacitor"
+        "item": "hbm:circuit_vacuum_tube"
       },
       "P": {
-        "item": "hbm:piston_hydraulic"
+        "item": "hbm:piston_pneumatic"
       },
       "U": {
-        "item": "hbm:upgrade_stack_1"
+        "item": "hbm:upgrade_template"
       }
     },
     "result": {
-      "item": "hbm:upgrade_stack_2",
+      "item": "hbm:upgrade_stack_1",
       "count": 1
     }
   }

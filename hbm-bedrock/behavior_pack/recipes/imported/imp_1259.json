@@ -8,20 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "LLL",
-      "LTL",
-      "LLL"
+      "EEE",
+      "ETE",
+      "EEE"
     ],
     "key": {
-      "L": {
-        "item": "minecraft:lava_bucket"
+      "E": {
+        "item": "minecraft:ice"
       },
       "T": {
         "item": "hbm:thermo_unit_empty"
       }
     },
     "result": {
-      "item": "hbm:thermo_unit_exo",
+      "item": "hbm:thermo_unit_endo",
       "count": 1
     }
   }

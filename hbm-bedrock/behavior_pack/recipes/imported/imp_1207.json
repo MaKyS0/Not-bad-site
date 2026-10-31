@@ -14,7 +14,7 @@
     ],
     "key": {
       "I": {
-        "item": "minecraft:tnt"
+        "item": "hbm:pellet_flechette"
       },
       "G": {
         "item": "hbm:ballistite"
@@ -30,8 +30,8 @@
       }
     },
     "result": {
-      "item": "hbm:ammo_4gauge_explosive",
-      "count": 4
+      "item": "hbm:ammo_4gauge_flechette",
+      "count": 12
     }
   }
 }

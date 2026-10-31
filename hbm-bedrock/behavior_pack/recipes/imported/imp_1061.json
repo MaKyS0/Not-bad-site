@@ -1,20 +1,36 @@
 {
   "format_version": "1.12",
-  "minecraft:recipe_shapeless": {
+  "minecraft:recipe_shaped": {
     "description": {
       "identifier": "hbm:imp_1061"
     },
     "tags": [
       "crafting_table"
     ],
-    "ingredients": [
-      {
-        "item": "hbm:clip_revolver_iron"
-      }
+    "pattern": [
+      "PPI",
+      "SWD"
     ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_saturnite"
+      },
+      "I": {
+        "item": "hbm:mechanism_rifle_1"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      },
+      "D": {
+        "item": "minecraft:oak_planks"
+      },
+      "W": {
+        "item": "hbm:wire_fine_tungsten"
+      }
+    },
     "result": {
-      "item": "hbm:gun_revolver_iron_ammo",
-      "count": 24
+      "item": "hbm:gun_bolt_action_saturnite",
+      "count": 1
     }
   }
 }

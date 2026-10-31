@@ -17,7 +17,7 @@
         "item": "hbm:ingot_u238"
       },
       "G": {
-        "item": "hbm:cordite"
+        "item": "hbm:ballistite"
       },
       "C": {
         "item": "minecraft:copper_ingot"
@@ -25,7 +25,7 @@
     },
     "result": {
       "item": "hbm:ammo_shell_apfsds_du",
-      "count": 6
+      "count": 5
     }
   }
 }

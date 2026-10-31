@@ -14,10 +14,10 @@
     ],
     "key": {
       "I": {
-        "item": "minecraft:iron_ingot"
+        "item": "hbm:ingot_steel"
       },
       "G": {
-        "item": "hbm:ballistite"
+        "item": "hbm:cordite"
       },
       "C": {
         "item": "hbm:casing_9"
@@ -27,7 +27,7 @@
       }
     },
     "result": {
-      "item": "hbm:assembly_uzi",
+      "item": "hbm:assembly_556",
       "count": 32
     }
   }

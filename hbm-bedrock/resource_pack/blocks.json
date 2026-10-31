@@ -109,6 +109,12 @@
   "hbm:ore_oil_empty": {
     "sound": "stone"
   },
+  "hbm:crate_red": {
+    "sound": "wood"
+  },
+  "hbm:crate_starmetal": {
+    "sound": "metal"
+  },
   "hbm:charge_semtex": {
     "sound": "grass"
   },

@@ -8,18 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "PIP"
+      " P ",
+      "PIP",
+      " P "
     ],
     "key": {
       "P": {
-        "item": "hbm:plate_aluminium"
+        "item": "hbm:plate_schrabidium"
       },
       "I": {
-        "item": "hbm:blades_aluminum"
+        "item": "hbm:ingot_schrabidium"
       }
     },
     "result": {
-      "item": "hbm:blades_aluminum",
+      "item": "hbm:blades_schrabidium",
       "count": 1
     }
   }

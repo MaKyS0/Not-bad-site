@@ -8,21 +8,20 @@
       "crafting_table"
     ],
     "pattern": [
-      "GGG",
-      "GRG",
-      "GGG"
+      "G",
+      "R"
     ],
     "key": {
       "G": {
-        "item": "hbm:ammo_rocket"
+        "item": "hbm:pellet_gas"
       },
       "R": {
-        "item": "hbm:coin_maskman"
+        "item": "hbm:ammo_rocket"
       }
     },
     "result": {
-      "item": "hbm:ammo_rocket_sleek",
-      "count": 64
+      "item": "hbm:ammo_rocket_toxic",
+      "count": 1
     }
   }
 }

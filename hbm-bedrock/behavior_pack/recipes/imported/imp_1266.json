@@ -14,11 +14,11 @@
     ],
     "key": {
       "P": {
-        "item": "hbm:plate_aluminium"
+        "item": "hbm:plate_steel"
       }
     },
     "result": {
-      "item": "hbm:hull_small_aluminium",
+      "item": "hbm:hull_small_steel",
       "count": 1
     }
   }

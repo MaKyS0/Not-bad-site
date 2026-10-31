@@ -16,14 +16,14 @@
         "item": "hbm:plate_aluminium"
       },
       "P": {
-        "item": "hbm:plate_steel"
+        "item": "hbm:ingot_steel"
       },
       "S": {
         "item": "hbm:steel_scaffold"
       }
     },
     "result": {
-      "item": "hbm:mp_stability_15_flat",
+      "item": "hbm:mp_stability_10_space",
       "count": 1
     }
   }

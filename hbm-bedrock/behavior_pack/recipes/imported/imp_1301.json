@@ -18,11 +18,11 @@
         "item": "minecraft:sugar"
       },
       {
-        "item": "hbm:powder_meteorite_tiny"
+        "item": "hbm:sulfur"
       }
     ],
     "result": {
-      "item": "hbm:can_luna",
+      "item": "hbm:can_overcharge",
       "count": 1
     }
   }

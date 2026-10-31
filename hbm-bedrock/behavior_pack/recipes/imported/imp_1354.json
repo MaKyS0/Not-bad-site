@@ -9,7 +9,7 @@
     ],
     "ingredients": [
       {
-        "item": "hbm:chemistry_template"
+        "item": "hbm:assembly_template"
       }
     ],
     "result": {

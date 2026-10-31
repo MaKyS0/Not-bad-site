@@ -8,24 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "SPS",
-      "PCP",
-      "SPS"
+      " F ",
+      "SFS",
+      " F "
     ],
     "key": {
       "S": {
         "item": "hbm:plate_steel"
       },
-      "C": {
-        "item": "hbm:niter"
-      },
-      "P": {
-        "item": "minecraft:snowball"
+      "F": {
+        "item": "hbm:canister_napalm"
       }
     },
     "result": {
-      "item": "hbm:gun_cryolator_ammo",
-      "count": 16
+      "item": "hbm:gun_immolator_ammo",
+      "count": 24
     }
   }
 }
