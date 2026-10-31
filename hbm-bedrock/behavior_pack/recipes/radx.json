@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:radx"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:coal"
+      },
+      {
+        "item": "minecraft:coal"
+      },
+      {
+        "item": "minecraft:quartz"
+      }
+    ],
+    "result": {
+      "item": "hbm:radx",
+      "count": 1
+    }
+  }
+}

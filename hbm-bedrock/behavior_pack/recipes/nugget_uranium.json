@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:nugget_uranium"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:ingot_uranium"
+      }
+    ],
+    "result": {
+      "item": "hbm:nugget_uranium",
+      "count": 9
+    }
+  }
+}

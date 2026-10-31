@@ -1,0 +1,26 @@
+{
+  "resource_pack_name": "hbm",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "hbm_ore_uranium": {
+      "textures": "textures/blocks/ore_uranium"
+    },
+    "hbm_ore_titanium": {
+      "textures": "textures/blocks/ore_titanium"
+    },
+    "hbm_ore_lead": {
+      "textures": "textures/blocks/ore_lead"
+    },
+    "hbm_block_uranium": {
+      "textures": "textures/blocks/block_uranium"
+    },
+    "hbm_block_titanium": {
+      "textures": "textures/blocks/block_titanium"
+    },
+    "hbm_block_lead": {
+      "textures": "textures/blocks/block_lead"
+    }
+  }
+}

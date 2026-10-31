@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:block_lead"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "###",
+      "###",
+      "###"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ingot_lead"
+      }
+    },
+    "result": {
+      "item": "hbm:block_lead",
+      "count": 1
+    }
+  }
+}

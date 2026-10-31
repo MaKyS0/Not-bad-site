@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:iv_empty"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "K",
+      "I",
+      "K"
+    ],
+    "key": {
+      "K": {
+        "item": "minecraft:dried_kelp"
+      },
+      "I": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:iv_empty",
+      "count": 4
+    }
+  }
+}

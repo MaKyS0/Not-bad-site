@@ -1,0 +1,17 @@
+{
+  "name": "hbm-bedrock",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Bedrock add-on port of HBM's Nuclear Tech Mod",
+  "type": "module",
+  "license": "LGPL-3.0-only",
+  "scripts": {
+    "check": "tsc -p . && node scripts/check.mjs",
+    "build": "npm run check && node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "@minecraft/server": "2.0.0",
+    "fflate": "^0.8.3",
+    "typescript": "^7.0.2"
+  }
+}

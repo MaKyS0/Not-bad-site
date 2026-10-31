@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:hazmat_helmet"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "EEE",
+      "EIE",
+      " P "
+    ],
+    "key": {
+      "E": {
+        "item": "hbm:hazmat_cloth"
+      },
+      "I": {
+        "item": "minecraft:glass_pane"
+      },
+      "P": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:hazmat_helmet",
+      "count": 1
+    }
+  }
+}

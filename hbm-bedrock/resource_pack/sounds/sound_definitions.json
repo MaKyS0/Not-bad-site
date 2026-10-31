@@ -1,0 +1,41 @@
+{
+  "format_version": "1.14.0",
+  "sound_definitions": {
+    "hbm.geiger1": {
+      "category": "player",
+      "sounds": [
+        "sounds/hbm/geiger1"
+      ]
+    },
+    "hbm.geiger2": {
+      "category": "player",
+      "sounds": [
+        "sounds/hbm/geiger2"
+      ]
+    },
+    "hbm.geiger3": {
+      "category": "player",
+      "sounds": [
+        "sounds/hbm/geiger3"
+      ]
+    },
+    "hbm.geiger4": {
+      "category": "player",
+      "sounds": [
+        "sounds/hbm/geiger4"
+      ]
+    },
+    "hbm.geiger5": {
+      "category": "player",
+      "sounds": [
+        "sounds/hbm/geiger5"
+      ]
+    },
+    "hbm.geiger6": {
+      "category": "player",
+      "sounds": [
+        "sounds/hbm/geiger6"
+      ]
+    }
+  }
+}

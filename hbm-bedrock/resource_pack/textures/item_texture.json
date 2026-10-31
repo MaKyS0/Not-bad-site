@@ -1,0 +1,45 @@
+{
+  "resource_pack_name": "hbm",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "hbm_ingot_uranium": {
+      "textures": "textures/items/ingot_uranium"
+    },
+    "hbm_ingot_titanium": {
+      "textures": "textures/items/ingot_titanium"
+    },
+    "hbm_ingot_lead": {
+      "textures": "textures/items/ingot_lead"
+    },
+    "hbm_nugget_uranium": {
+      "textures": "textures/items/nugget_uranium"
+    },
+    "hbm_hazmat_cloth": {
+      "textures": "textures/items/hazmat_cloth"
+    },
+    "hbm_iv_empty": {
+      "textures": "textures/items/iv_empty"
+    },
+    "hbm_geiger_counter": {
+      "textures": "textures/items/geiger_counter"
+    },
+    "hbm_radaway": {
+      "textures": "textures/items/radaway"
+    },
+    "hbm_radx": {
+      "textures": "textures/items/radx"
+    },
+    "hbm_hazmat_helmet": {
+      "textures": "textures/items/hazmat_helmet"
+    },
+    "hbm_hazmat_plate": {
+      "textures": "textures/items/hazmat_plate"
+    },
+    "hbm_hazmat_legs": {
+      "textures": "textures/items/hazmat_legs"
+    },
+    "hbm_hazmat_boots": {
+      "textures": "textures/items/hazmat_boots"
+    }
+  }
+}

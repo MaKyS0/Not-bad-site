@@ -1,0 +1,27 @@
+pack.name=HBM Nuclear Tech (Bedrock)
+pack.description=Port of HBM's Nuclear Tech Mod
+
+tile.hbm.ore_uranium.name=Uranium Ore
+tile.hbm.ore_titanium.name=Titanium Ore
+tile.hbm.ore_lead.name=Lead Ore
+tile.hbm.block_uranium.name=Block of Uranium
+tile.hbm.block_titanium.name=Block of Titanium
+tile.hbm.block_lead.name=Block of Lead
+
+item.hbm.ingot_uranium.name=Uranium Ingot
+item.hbm.ingot_titanium.name=Titanium Ingot
+item.hbm.ingot_lead.name=Lead Ingot
+item.hbm.nugget_uranium.name=Uranium Nugget
+item.hbm.hazmat_cloth.name=Hazmat Cloth
+item.hbm.iv_empty.name=IV Bag
+item.hbm.geiger_counter.name=Geiger Counter
+item.hbm.radaway.name=RadAway
+item.hbm.radx.name=Rad-X
+item.hbm.hazmat_helmet.name=Hazmat Helmet
+item.hbm.hazmat_plate.name=Hazmat Chestplate
+item.hbm.hazmat_legs.name=Hazmat Leggings
+item.hbm.hazmat_boots.name=Hazmat Boots
+
+hbm.geiger.actionbar=§eRadiation: §f%s RAD/s §7| §eDose: §f%s RAD
+hbm.geiger.report=§aGeiger counter:§r dose §e%s RAD§r, incoming §e%s RAD/s§r, protection §e%s
+hbm.radx.taken=§6Rad-X taken: radiation resistance for 3 minutes

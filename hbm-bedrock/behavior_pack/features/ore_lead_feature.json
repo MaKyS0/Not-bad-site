@@ -1,0 +1,20 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "hbm:ore_lead_feature"
+    },
+    "count": 9,
+    "replace_rules": [
+      {
+        "places_block": "hbm:ore_lead",
+        "may_replace": [
+          "minecraft:stone",
+          "minecraft:granite",
+          "minecraft:diorite",
+          "minecraft:andesite"
+        ]
+      }
+    ]
+  }
+}
