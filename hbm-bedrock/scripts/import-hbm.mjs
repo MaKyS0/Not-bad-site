@@ -565,6 +565,15 @@ function readMod(repo, source) {
   if (oreFile) for (const m of oreFile.text.matchAll(/static\s+final\s+String\s+(KEY_\w+)\s*=\s*"([^"]+)"/g)) keyConstants[m[1]] = m[2];
   const oreKey = (key) => VANILLA_KEYS[key] ?? oreKeys.get(key);
 
+  /** Numeric constants of the file being read, for amounts like oil_frac_heavy. */
+  let fileConstants = {};
+  const loadConstants = (text) => {
+    fileConstants = {};
+    for (const c of text.matchAll(/static\s+(?:final\s+)?(?:int|long|float|double)\s+(\w+)\s*=\s*([^;]+);/g)) {
+      const value = evaluate(c[2], fileConstants);
+      if (value !== undefined) fileConstants[c[1]] = value;
+    }
+  };
   /** Resolves an ingredient or output expression to [id, count]. */
   function resolve(expr) {
     expr = expr.trim();
@@ -586,6 +595,13 @@ function readMod(repo, source) {
       const inner = resolve(ref);
       return inner && [inner[0], count];
     }
+    if ((m = /^new\s+FluidStack\s*\(([\s\S]*)\)$/.exec(expr))) {
+      const [type, amount] = splitArgs(m[1]);
+      const fluid = /Fluids\.(\w+)/.exec(type ?? "")?.[1];
+      const n = evaluate(amount ?? "1000", { ...hazardConstants, ...fileConstants });
+      return fluid && n ? [`fluid:${fluid.toLowerCase()}`, n] : undefined;
+    }
+    if ((m = /^Fluids\.(\w+)$/.exec(expr))) return [`fluid:${m[1].toLowerCase()}`, 1000];
     if ((m = /^new\s+(ComparableStack|OreDictStack)\s*\(([\s\S]*)\)$/.exec(expr))) {
       const [ref, n, meta] = splitArgs(m[2]);
       if (meta !== undefined && m[1] === "ComparableStack") return resolve(`new ItemStack(${ref}, ${n}, ${meta})`);
@@ -679,17 +695,18 @@ function readMod(repo, source) {
   const stacks = (args) => args.map(resolve);
   const recipeFile = (name) => files.find((f) => f.path.endsWith(`inventory/recipes/${name}.java`));
   if (legacy) {
-    const GENERIC = { AssemblyMachineRecipes: "assembly", ChemicalPlantRecipes: "chemical", PrecAssRecipes: "precass", RockMillRecipes: "rockmill", SuperComputerRecipes: "supercomputer" };
+    const GENERIC = { AssemblyMachineRecipes: "assembly", ChemicalPlantRecipes: "chemical", PrecAssRecipes: "precass", RockMillRecipes: "rockmill", SuperComputerRecipes: "supercomputer", PUREXRecipes: "purex" };
     for (const [file, machine] of Object.entries(GENERIC)) {
       const f = recipeFile(file);
       if (!f) continue;
+      loadConstants(f.text);
       for (const call of calls(f.text, ["register", "registerPair"])) {
         const chain = call.args[0] ?? "";
-        if (!chain.startsWith("new GenericRecipe") || /Fluids?\(/.test(chain)) continue;
+        if (!/^(\(\w+\)\s*)?new\s+\w*Recipe\b/.test(chain)) continue;
         const part = (method) => [...chain.matchAll(new RegExp(`\\.${method}\\s*\\(`, "g"))].map((mm) => splitArgs(chain.slice(mm.index + mm[0].length, scanTo(chain, mm.index + mm[0].length, false))));
         const setup = part("setupNamed")[0] ?? part("setup")[0] ?? [];
-        const ins = stacks(part("inputItems")[0] ?? []);
-        const outs = stacks(part("outputItems")[0] ?? []);
+        const ins = stacks([...(part("inputItems")[0] ?? []), ...(part("inputFluids")[0] ?? [])]);
+        const outs = stacks([...(part("outputItems")[0] ?? []), ...(part("outputFluids")[0] ?? [])]);
         if (!ins.length || !outs.length || ins.some((x) => !x) || outs.some((x) => !x)) continue;
         addMachineRecipe(machine, {
           inputs: ins.map((x) => ({ id: x?.[0], n: x?.[1] })),
@@ -737,6 +754,105 @@ function readMod(repo, source) {
         addMachineRecipe("blast", { inputs: [{ id: a[0], n: a[1] }, { id: b[0], n: b[1] }], outputs: [out], ticks: 200, power: 0 });
       }
     }
+    /** Every stack-like expression inside a piece of source, in order. */
+    const stackExprs = (text) => {
+      const found = [];
+      const re = /new\s+(?:FluidStack|ItemStack|ComparableStack|OreDictStack)\s*\(|DictFrame\.fromOne\s*\(/g;
+      let mm;
+      while ((mm = re.exec(text))) {
+        const end = scanTo(text, mm.index + mm[0].length, false);
+        found.push(text.slice(mm.index, end + 1));
+        re.lastIndex = end + 1;
+      }
+      return found;
+    };
+    const isFluid = (r) => r[0].startsWith("fluid:");
+    /** input -> outputs tables written as recipes.put(IN, new Something(...outputs...)). */
+    const putTable = (file, machine, { ticks = 100, power = 100, inputAmount = 1000, pick = false, extraIn } = {}) => {
+      const f = recipeFile(file);
+      if (!f) return;
+      loadConstants(f.text);
+      for (const call of calls(f.text, ["recipes\\.put", "register", "registerRecipe"])) {
+        if (call.args.length < 2) continue;
+        let inExpr = call.args[0].replace(/^new\s+Pair\s*\(\s*([^,]+),[\s\S]*\)$/, "$1");
+        const input = resolve(inExpr);
+        const outs = stackExprs(call.args.slice(1).join(",")).map(resolve);
+        const bare = resolve(call.args[1]);
+        if (!outs.length && bare) outs.push(bare);
+        if (!input || !outs.length || outs.some((x) => !x)) continue;
+        const inN = isFluid(input) ? (/^Fluids\./.test(inExpr.trim()) ? inputAmount : input[1]) : input[1];
+        addMachineRecipe(machine, {
+          inputs: [{ id: input[0], n: inN }, ...(extraIn ?? [])],
+          outputs: outs.map((x) => [x?.[0], x?.[1]]),
+          ticks,
+          power,
+          ...(pick && { pick: true }),
+        });
+      }
+    };
+    putTable("RefineryRecipes", "refinery", { ticks: 20, power: 0, inputAmount: 100 });
+    putTable("HydrotreatingRecipes", "hydrotreating", { ticks: 20, power: 0, inputAmount: 100 });
+    putTable("ReformingRecipes", "reforming", { ticks: 20, power: 0, inputAmount: 100 });
+    putTable("LiquefactionRecipes", "liquefaction", { ticks: 100, power: 100 });
+    putTable("ElectrolyserFluidRecipes", "electrolysis", { ticks: 20, power: 200 });
+    putTable("ElectrolyserMetalRecipes", "electrolysis", { ticks: 100, power: 200 });
+    putTable("CompressorRecipes", "compressor", { ticks: 20, power: 100 });
+    putTable("OutgasserRecipes", "outgasser", { ticks: 200, power: 100 });
+    putTable("CombinationRecipes", "combination", { ticks: 100, power: 0 });
+    putTable("BreederRecipes", "breeder", { ticks: 400, power: 500 });
+    putTable("SILEXRecipes", "silex", { ticks: 200, power: 1000, pick: true });
+    putTable("CrystallizerRecipes", "crystallizer", { ticks: 200, power: 1000, extraIn: [{ id: "fluid:peroxide", n: 500 }] });
+    // Mixer: register(Fluids.OUT, new MixerRecipe(amount, ticks).setStack1(..).setStack2(..).setSolid(..))
+    const mixer = recipeFile("MixerRecipes");
+    if (mixer) {
+      for (const call of calls(mixer.text, ["register"])) {
+        const out = /Fluids\.(\w+)/.exec(call.args[0] ?? "")?.[1];
+        const head = /new\s+MixerRecipe\s*\(([^)]*)\)/.exec(call.args[1] ?? "");
+        if (!out || !head) continue;
+        const [amount, ticks] = splitArgs(head[1]).map((a) => num(a));
+        const ins = stackExprs(call.args[1]).map(resolve);
+        if (!ins.length || ins.some((x) => !x)) continue;
+        addMachineRecipe("mixer", { inputs: ins.map((x) => ({ id: x?.[0], n: x?.[1] })), outputs: [[`fluid:${out.toLowerCase()}`, amount || 1000]], ticks: ticks || 50, power: 100 });
+      }
+    }
+    // Two-input tables: cyclotron makeRecipe(A, B, OUT, ...), exposure chamber (A, B, OUT).
+    for (const [file, machine, fn, power] of [["CyclotronRecipes", "cyclotron", "makeRecipe", 1000], ["ExposureChamberRecipes", "exposure", "new ExposureChamberRecipe", 1000]]) {
+      const f = recipeFile(file);
+      if (!f) continue;
+      for (const call of calls(f.text, [fn.replace(/ /g, "\\s+")])) {
+        const [a, b, out] = call.args.slice(0, 3).map(resolve);
+        if (a && b && out) addMachineRecipe(machine, { inputs: [{ id: a[0], n: a[1] }, { id: b[0], n: b[1] }], outputs: [out], ticks: 200, power });
+      }
+    }
+    // Output first, then time and power, then inputs: arc welder, soldering station.
+    for (const [file, machine, fn] of [["ArcWelderRecipes", "arcwelder", "new\\s+ArcWelderRecipe"], ["SolderingRecipes", "soldering", "new\\s+SolderingRecipe"]]) {
+      const f = recipeFile(file);
+      if (!f) continue;
+      for (const call of calls(f.text, [fn])) {
+        const out = resolve(call.args[0] ?? "");
+        const ins = stackExprs(call.args.slice(3).join(",")).map(resolve);
+        if (!out || !ins.length || ins.some((x) => !x)) continue;
+        addMachineRecipe(machine, { inputs: ins.map((x) => ({ id: x?.[0], n: x?.[1] })), outputs: [out], ticks: num(call.args[1]) || 100, power: num(call.args[2]) || 100 });
+      }
+    }
+    // Ammo press: output, then a 3×3 grid of stacks (nulls are empty cells).
+    const ammo = recipeFile("AmmoPressRecipes");
+    if (ammo) {
+      const vars = new Map([...ammo.text.matchAll(/(\w+)\s*=\s*(new\s+(?:OreDictStack|ComparableStack)\s*\([^;]*\));/g)].map((v) => [v[1], v[2]]));
+      for (const call of calls(ammo.text, ["new\\s+AmmoPressRecipe"])) {
+        const out = resolve(call.args[0] ?? "");
+        const cells = call.args.slice(1).filter((a) => a !== "null").map((a) => {
+          const [, name, n] = /^(\w+)(?:\.copy\((\d*)\))?$/.exec(a) ?? [];
+          const base = name && vars.get(name) ? resolve(vars.get(name)) : resolve(a);
+          return base && [base[0], n ? Number(n) : base[1]];
+        });
+        if (!out || !cells.length || cells.some((x) => !x)) continue;
+        const merged = {};
+        for (const c of cells) merged[c?.[0] ?? ""] = (merged[c?.[0] ?? ""] ?? 0) + (c?.[1] ?? 1);
+        addMachineRecipe("ammopress", { inputs: Object.entries(merged).map(([id, n]) => ({ id, n })), outputs: [out], ticks: 20, power: 0 });
+      }
+    }
+
     for (const f of [recipeFile("ShredderRecipes")].filter(Boolean)) {
       for (const call of calls(/** @type {{text: string}} */ (f).text, ["setRecipe"])) {
         const input = resolve(call.args[0] ?? "");
@@ -763,7 +879,12 @@ function readMod(repo, source) {
     console.log(`--- ${source}: most common unresolved expressions`);
     for (const [expr, n] of top) console.log(String(n).padStart(4), expr.replace(/\s+/g, " ").slice(0, 110));
   }
-  return { items, blocks, recipes, rads, seen, machineRecipes };
+  const fluidNames = {};
+  for (const [key, value] of en) {
+    const fm = /^hbmfluid\.(\w+)$/.exec(key);
+    if (fm) fluidNames[fm[1]] = { en: value, ru: ru.get(key) ?? value };
+  }
+  return { items, blocks, recipes, rads, seen, machineRecipes, fluidNames };
 }
 
 /** Top/side/bottom texture files for a block texture name, or undefined if there is none. */
@@ -834,6 +955,7 @@ catalog.recipes.push(...hbm.recipes.map((r) => ({ ...r, source: "hbm" })));
 if (ext) catalog.recipes.push(...ext.recipes.filter((r) => !hbmIds.has(r.output)).map((r) => ({ ...r, source: "ext" })));
 for (const [id, value] of [...(ext?.rads ?? []), ...hbm.rads]) catalog.rads[id] = Math.round(value * 1000) / 1000;
 catalog.machineRecipes = hbm.machineRecipes;
+catalog.fluids = hbm.fluidNames;
 
 rmSync(AUTOGEN_TMP, { recursive: true, force: true });
 mkdirSync(join(root, "imported"), { recursive: true });

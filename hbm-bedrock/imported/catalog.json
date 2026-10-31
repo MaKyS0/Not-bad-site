@@ -63672,6 +63672,34 @@
    {
     "inputs": [
      {
+      "id": "hbm:plate_cast_durasteel",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 24
+     },
+     {
+      "id": "hbm:wire_dense_gold",
+      "n": 16
+     },
+     {
+      "id": "fluid:xenon",
+      "n": 8000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:entanglement_kit",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
       "id": "hbm:shell_steel",
       "n": 4
      },
@@ -65752,6 +65780,30 @@
    {
     "inputs": [
      {
+      "id": "hbm:plate_weaponsteel",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 16
+     },
+     {
+      "id": "fluid:deuterium",
+      "n": 10000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mike_deut",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
       "id": "hbm:plate_dura_steel",
       "n": 8
      },
@@ -67026,6 +67078,410 @@
    {
     "inputs": [
      {
+      "id": "minecraft:coal",
+      "n": 1
+     },
+     {
+      "id": "fluid:water",
+      "n": 8000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      500
+     ]
+    ],
+    "ticks": 20,
+    "power": 400
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fromall_coke__enumcoketype_class_",
+      "n": 1
+     },
+     {
+      "id": "fluid:water",
+      "n": 8000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      500
+     ]
+    ],
+    "ticks": 20,
+    "power": 400
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:air",
+      "n": 8000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:oxygen",
+      500
+     ]
+    ],
+    "ticks": 20,
+    "power": 400
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:air",
+      "n": 16000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:xenon",
+      50
+     ]
+    ],
+    "ticks": 300,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:air",
+      "n": 8000
+     },
+     {
+      "id": "fluid:oxygen",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:xenon",
+      50
+     ]
+    ],
+    "ticks": 20,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:moon_turf",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:helium3",
+      500
+     ]
+    ],
+    "ticks": 25,
+    "power": 2000
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:gas",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:carbondioxide",
+      1000
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fluorite",
+      "n": 1
+     },
+     {
+      "id": "fluid:petroleum",
+      "n": 1000
+     },
+     {
+      "id": "fluid:unsaturateds",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:perfluoromethyl",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:chlorocalcite_cleaned",
+      "n": 500
+     },
+     {
+      "id": "fluid:sulfuric_acid",
+      "n": 8000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:potassium_chloride",
+      250
+     ],
+     [
+      "fluid:calcium_chloride",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:dictframe_fromone_chunk_ore__enumchunktype_ilmenite_",
+      "n": 4
+     },
+     {
+      "id": "hbm:fromall_coke__enumcoketype_class_",
+      "n": 1
+     },
+     {
+      "id": "fluid:chlorine",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:titanium_tetrachloride",
+      4000
+     ]
+    ],
+    "ticks": 60,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sugar",
+      "n": 10
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:ethanol",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:biomass",
+      "n": 16
+     },
+     {
+      "id": "fluid:air",
+      "n": 4000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:biogas",
+      2000
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:biogas",
+      "n": 1500
+     },
+     {
+      "id": "fluid:ethanol",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:biofuel",
+      1000
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:smear",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:reclaimed",
+      800
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:naphtha",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:gasoline",
+      800
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:coalcreosote",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:lubricant",
+      1000
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:heavyoil",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:lubricant",
+      1000
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:gas",
+      "n": 100
+     },
+     {
+      "id": "fluid:hydrogen",
+      "n": 50
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fuel_additive_deicer",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 1000
+     },
+     {
+      "id": "fluid:lava",
+      "n": 25
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:cobblestone",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 1000
+     },
+     {
+      "id": "fluid:lava",
+      "n": 25
+     },
+     {
+      "id": "fluid:air",
+      "n": 4000
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:stone",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 1000
+     },
+     {
+      "id": "fluid:lava",
+      "n": 500
+     },
+     {
+      "id": "fluid:air",
+      "n": 4000
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:obsidian",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
       "id": "minecraft:cobblestone",
       "n": 16
      }
@@ -67046,6 +67502,342 @@
    {
     "inputs": [
      {
+      "id": "hbm:powder_cement",
+      "n": 1
+     },
+     {
+      "id": "minecraft:gravel",
+      "n": 8
+     },
+     {
+      "id": "minecraft:sand",
+      "n": 8
+     },
+     {
+      "id": "fluid:water",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:concrete_smooth",
+      16
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_cement",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_asbestos",
+      "n": 1
+     },
+     {
+      "id": "minecraft:sand",
+      "n": 8
+     },
+     {
+      "id": "fluid:water",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:concrete_asbestos",
+      16
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_cement",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_ferrouranium",
+      "n": 1
+     },
+     {
+      "id": "minecraft:sand",
+      "n": 8
+     },
+     {
+      "id": "fluid:water",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ducrete_smooth",
+      8
+     ]
+    ],
+    "ticks": 150,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_cement",
+      "n": 1
+     },
+     {
+      "id": "minecraft:gravel",
+      "n": 8
+     },
+     {
+      "id": "minecraft:sand",
+      "n": 8
+     },
+     {
+      "id": "fluid:water",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:concrete",
+      16000
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:gravel",
+      "n": 2
+     },
+     {
+      "id": "minecraft:sand",
+      "n": 6
+     },
+     {
+      "id": "fluid:bitumen",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:asphalt",
+      16
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coal",
+      "n": 2
+     },
+     {
+      "id": "hbm:fluorite",
+      "n": 1
+     },
+     {
+      "id": "fluid:petroleum",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_polymer",
+      4
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:aromatics",
+      "n": 500
+     },
+     {
+      "id": "fluid:petroleum",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_bakelite",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:sulfur",
+      "n": 1
+     },
+     {
+      "id": "fluid:unsaturateds",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_rubber",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:xylene",
+      "n": 500
+     },
+     {
+      "id": "fluid:phosgene",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_pc",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_cadmium",
+      "n": 1
+     },
+     {
+      "id": "fluid:unsaturateds",
+      "n": 250
+     },
+     {
+      "id": "fluid:chlorine",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_pvc",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:aromatics",
+      "n": 200
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 100
+     },
+     {
+      "id": "fluid:phosgene",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_kevlar",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 300
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:wheat",
+      "n": 1
+     },
+     {
+      "id": "minecraft:cocoa_beans",
+      "n": 2
+     },
+     {
+      "id": "fluid:lubricant",
+      "n": 400
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:chocolate",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 300
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_diamond",
+      "n": 1
+     },
+     {
+      "id": "fluid:xpjuice",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:enderjuice",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 300
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_steel",
+      "n": 8
+     },
+     {
+      "id": "fluid:water",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:deco_rusty_steel",
+      8
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
       "id": "hbm:biomass_compressed",
       "n": 4
      }
@@ -67057,6 +67849,302 @@
      ]
     ],
     "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:biomass_compressed",
+      "n": 2
+     },
+     {
+      "id": "fluid:heatingoil",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:solid_fuel",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:heatingoil",
+      "n": 4000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:arc_electrode",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:lubricant",
+      "n": 8000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:arc_electrode",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:peroxide",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:sulfur",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 1000
+     },
+     {
+      "id": "fluid:water",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sulfuric_acid",
+      2000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:niter",
+      "n": 1
+     },
+     {
+      "id": "fluid:sulfuric_acid",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:nitric_acid",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:air",
+      "n": 8000
+     },
+     {
+      "id": "fluid:water",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:nitric_acid",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:pellet_charged",
+      "n": 1
+     },
+     {
+      "id": "fluid:sas3",
+      "n": 2000
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:schrabidic",
+      2000
+     ]
+    ],
+    "ticks": 60,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_iron",
+      "n": 1
+     },
+     {
+      "id": "fluid:schrabidic",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_schrabidate",
+      1
+     ]
+    ],
+    "ticks": 150,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coltan_ore",
+      "n": 2
+     },
+     {
+      "id": "hbm:powder_coal",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 250
+     },
+     {
+      "id": "fluid:hydrogen",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_coltan",
+      1
+     ],
+     [
+      "hbm:powder_niobium",
+      1
+     ],
+     [
+      "hbm:dust",
+      1
+     ],
+     [
+      "fluid:water",
+      500
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coltan",
+      "n": 1
+     },
+     {
+      "id": "hbm:fluorite",
+      "n": 1
+     },
+     {
+      "id": "fluid:gas",
+      "n": 1000
+     },
+     {
+      "id": "fluid:oxygen",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:pain",
+      1000
+     ]
+    ],
+    "ticks": 120,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:pain",
+      "n": 1000
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:gem_tantalium",
+      1
+     ],
+     [
+      "hbm:dust",
+      3
+     ],
+     [
+      "fluid:water",
+      250
+     ]
+    ],
+    "ticks": 80,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:solid_fuel",
+      "n": 2
+     },
+     {
+      "id": "fluid:petroleum",
+      "n": 200
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:rocket_fuel",
+      4
+     ]
+    ],
+    "ticks": 200,
     "power": 100
    },
    {
@@ -67082,6 +68170,318 @@
     ],
     "ticks": 50,
     "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:niter",
+      "n": 1
+     },
+     {
+      "id": "fluid:aromatics",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ball_tnt",
+      4
+     ]
+    ],
+    "ticks": 100,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ball_tnt",
+      "n": 1
+     },
+     {
+      "id": "fluid:sourgas",
+      "n": 200
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 10
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ball_tatb",
+      1
+     ]
+    ],
+    "ticks": 50,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:niter",
+      "n": 1
+     },
+     {
+      "id": "fluid:unsaturateds",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_c4",
+      4
+     ]
+    ],
+    "ticks": 100,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:canister_empty",
+      "n": 1
+     },
+     {
+      "id": "fluid:gasoline",
+      "n": 100
+     },
+     {
+      "id": "fluid:aromatics",
+      "n": 50
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:canister_napalm",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:glass",
+      "n": 1
+     },
+     {
+      "id": "hbm:bolt_steel",
+      "n": 4
+     },
+     {
+      "id": "fluid:xylene",
+      "n": 50
+     },
+     {
+      "id": "fluid:phosgene",
+      "n": 50
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:reinforced_laminate",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:glass_pane",
+      "n": 1
+     },
+     {
+      "id": "fluid:petroleum",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:part_generic_glass_polarized",
+      16
+     ]
+    ],
+    "ticks": 100,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:billet_uranium",
+      "n": 2
+     },
+     {
+      "id": "hbm:sulfur",
+      "n": 2
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_yellowcake",
+      1
+     ]
+    ],
+    "ticks": 250,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_yellowcake",
+      "n": 1
+     },
+     {
+      "id": "hbm:fluorite",
+      "n": 4
+     },
+     {
+      "id": "fluid:water",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sulfur",
+      2
+     ],
+     [
+      "fluid:uf6",
+      1200
+     ]
+    ],
+    "ticks": 100,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_plutonium",
+      "n": 1
+     },
+     {
+      "id": "hbm:fluorite",
+      "n": 3
+     },
+     {
+      "id": "fluid:water",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:puf6",
+      900
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_schrabidium",
+      "n": 1
+     },
+     {
+      "id": "hbm:sulfur",
+      "n": 2
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sas3",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:egg_balefire_shard",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 6000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_balefire",
+      1
+     ],
+     [
+      "fluid:balefire",
+      8000
+     ]
+    ],
+    "ticks": 100,
+    "power": 10000
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:deuterium",
+      "n": 500
+     },
+     {
+      "id": "fluid:reformgas",
+      "n": 250
+     },
+     {
+      "id": "fluid:syngas",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:dhc",
+      500
+     ]
+    ],
+    "ticks": 400,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_paleogenite",
+      "n": 1
+     },
+     {
+      "id": "hbm:fluorite",
+      "n": 8
+     },
+     {
+      "id": "hbm:nugget_bismuth",
+      "n": 4
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:death",
+      1000
+     ]
+    ],
+    "ticks": 240,
+    "power": 1000
    }
   ],
   "precass": [
@@ -67136,6 +68536,786 @@
     ],
     "ticks": null,
     "power": 25000
+   }
+  ],
+  "rockmill": [
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sand",
+      "n": 2
+     },
+     {
+      "id": "fluid:colloid",
+      "n": 2500
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:clay_ball",
+      4
+     ]
+    ],
+    "ticks": null,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:colloid",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:sand",
+      1
+     ]
+    ],
+    "ticks": null,
+    "power": null
+   }
+  ],
+  "purex": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:billet_uranium_fuel",
+      "n": 1
+     },
+     {
+      "id": "hbm:billet_zirconium",
+      "n": 3
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 1000
+     },
+     {
+      "id": "fluid:hydrogen",
+      "n": 4000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:billet_uzh",
+      4
+     ]
+    ],
+    "ticks": 600,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:billet_au198",
+      "n": 1
+     },
+     {
+      "id": "hbm:pellet_charged",
+      "n": 1
+     },
+     {
+      "id": "fluid:amat",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:billet_balefire_gold",
+      2
+     ]
+    ],
+    "ticks": 600,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:billet_pb209",
+      "n": 1
+     },
+     {
+      "id": "hbm:billet_balefire_gold",
+      "n": 1
+     },
+     {
+      "id": "fluid:amat",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:billet_flashlead",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_natural_uranium",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_u238",
+      1
+     ],
+     [
+      "hbm:nugget_pu_mix",
+      2
+     ],
+     [
+      "hbm:nugget_pu239",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_uranium",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_pu_mix",
+      1
+     ],
+     [
+      "hbm:nugget_plutonium",
+      2
+     ],
+     [
+      "hbm:nugget_technetium",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_thorium",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_u238",
+      1
+     ],
+     [
+      "hbm:nugget_th232",
+      1
+     ],
+     [
+      "hbm:nugget_u233",
+      2
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_mox",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_pu_mix",
+      1
+     ],
+     [
+      "hbm:nugget_technetium",
+      1
+     ],
+     [
+      "hbm:nugget_u238",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plutonium",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_pu_mix",
+      2
+     ],
+     [
+      "hbm:nugget_technetium",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_u233",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_u235",
+      1
+     ],
+     [
+      "hbm:nugget_neptunium",
+      1
+     ],
+     [
+      "hbm:nugget_technetium",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_u235",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_pu238",
+      1
+     ],
+     [
+      "hbm:nugget_neptunium",
+      1
+     ],
+     [
+      "hbm:nugget_technetium",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_schrabidium",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_beryllium",
+      2
+     ],
+     [
+      "hbm:nugget_pu239",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_zfb_mox",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_zirconium",
+      3
+     ],
+     [
+      "hbm:nugget_technetium",
+      1
+     ],
+     [
+      "hbm:nugget_pu_mix",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plate_mox",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_sr90_tiny",
+      1
+     ],
+     [
+      "hbm:nugget_pu_mix",
+      3
+     ],
+     [
+      "hbm:powder_cs137_tiny",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      4
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plate_pu238be",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_beryllium",
+      1
+     ],
+     [
+      "hbm:nugget_pu238",
+      1
+     ],
+     [
+      "hbm:powder_coal_tiny",
+      2
+     ],
+     [
+      "hbm:nugget_lead",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plate_pu239",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_pu240",
+      2
+     ],
+     [
+      "hbm:nugget_technetium",
+      1
+     ],
+     [
+      "hbm:powder_cs137_tiny",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      5
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plate_ra226be",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_beryllium",
+      2
+     ],
+     [
+      "hbm:nugget_polonium",
+      2
+     ],
+     [
+      "hbm:powder_coal_tiny",
+      1
+     ],
+     [
+      "hbm:nugget_lead",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plate_sa326",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_solinium",
+      1
+     ],
+     [
+      "hbm:powder_neodymium_tiny",
+      1
+     ],
+     [
+      "hbm:nugget_tantalium",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      6
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plate_u233",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_u235",
+      1
+     ],
+     [
+      "hbm:powder_i131_tiny",
+      1
+     ],
+     [
+      "hbm:powder_sr90_tiny",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      6
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plate_u235",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 500
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_neptunium",
+      1
+     ],
+     [
+      "hbm:nugget_pu238",
+      1
+     ],
+     [
+      "hbm:nugget_technetium",
+      1
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      6
+     ]
+    ],
+    "ticks": 100,
+    "power": null
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:icf_pellet_depleted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:icf_pellet_empty",
+      1
+     ],
+     [
+      "hbm:pellet_charged",
+      1
+     ],
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "fluid:helium4",
+      1250
+     ]
+    ],
+    "ticks": 300,
+    "power": 10000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_schraranium",
+      "n": 1
+     },
+     {
+      "id": "fluid:kerosene",
+      "n": 2000
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_schrabidium",
+      3
+     ],
+     [
+      "hbm:nugget_uranium",
+      3
+     ],
+     [
+      "hbm:nugget_neptunium",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:waste_plutonium",
+      "n": 1
+     },
+     {
+      "id": "fluid:solvent",
+      "n": 4000
+     },
+     {
+      "id": "fluid:schrabidic",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_schrabidium",
+      1
+     ],
+     [
+      "hbm:nugget_technetium",
+      3
+     ],
+     [
+      "hbm:nuclear_waste_tiny",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 50000
    }
   ],
   "centrifuge": [
@@ -69221,6 +71401,5651 @@
      ]
     ],
     "ticks": 200,
+    "power": 0
+   }
+  ],
+  "refinery": [
+   {
+    "inputs": [
+     {
+      "id": "fluid:hotoil",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:heavyoil",
+      50
+     ],
+     [
+      "fluid:naphtha",
+      25
+     ],
+     [
+      "fluid:lightoil",
+      15
+     ],
+     [
+      "fluid:petroleum",
+      10
+     ],
+     [
+      "hbm:sulfur",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:hotcrackoil",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:naphtha_crack",
+      40
+     ],
+     [
+      "fluid:lightoil_crack",
+      30
+     ],
+     [
+      "fluid:aromatics",
+      15
+     ],
+     [
+      "fluid:unsaturateds",
+      15
+     ],
+     [
+      "hbm:oil_tar_crack",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:hotoil_ds",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:heavyoil",
+      30
+     ],
+     [
+      "fluid:naphtha_ds",
+      35
+     ],
+     [
+      "fluid:lightoil_ds",
+      20
+     ],
+     [
+      "fluid:unsaturateds",
+      15
+     ],
+     [
+      "hbm:oil_tar_paraffin",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:hotcrackoil_ds",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:naphtha_ds",
+      35
+     ],
+     [
+      "fluid:lightoil_ds",
+      35
+     ],
+     [
+      "fluid:aromatics",
+      15
+     ],
+     [
+      "fluid:unsaturateds",
+      15
+     ],
+     [
+      "hbm:oil_tar_paraffin",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   }
+  ],
+  "hydrotreating": [
+   {
+    "inputs": [
+     {
+      "id": "fluid:oil",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      5
+     ],
+     [
+      "fluid:oil_ds",
+      90
+     ],
+     [
+      "fluid:sourgas",
+      15
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:crackoil",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      5
+     ],
+     [
+      "fluid:crackoil_ds",
+      90
+     ],
+     [
+      "fluid:sourgas",
+      15
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:gas",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      5
+     ],
+     [
+      "fluid:petroleum",
+      80
+     ],
+     [
+      "fluid:sourgas",
+      15
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:diesel_crack",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      10
+     ],
+     [
+      "fluid:diesel",
+      80
+     ],
+     [
+      "fluid:sourgas",
+      30
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:diesel_crack_reform",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      10
+     ],
+     [
+      "fluid:diesel_reform",
+      80
+     ],
+     [
+      "fluid:sourgas",
+      30
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:coaloil",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      10
+     ],
+     [
+      "fluid:coalgas",
+      80
+     ],
+     [
+      "fluid:sourgas",
+      15
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   }
+  ],
+  "reforming": [
+   {
+    "inputs": [
+     {
+      "id": "fluid:heatingoil",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:naphtha",
+      50
+     ],
+     [
+      "fluid:petroleum",
+      15
+     ],
+     [
+      "fluid:hydrogen",
+      10
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:naphtha",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:reformate",
+      50
+     ],
+     [
+      "fluid:petroleum",
+      15
+     ],
+     [
+      "fluid:hydrogen",
+      10
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:naphtha_crack",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:reformate",
+      50
+     ],
+     [
+      "fluid:aromatics",
+      10
+     ],
+     [
+      "fluid:hydrogen",
+      5
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:naphtha_coker",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:reformate",
+      50
+     ],
+     [
+      "fluid:reformgas",
+      10
+     ],
+     [
+      "fluid:hydrogen",
+      5
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:lightoil",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:aromatics",
+      50
+     ],
+     [
+      "fluid:reformgas",
+      10
+     ],
+     [
+      "fluid:hydrogen",
+      15
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:lightoil_crack",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:aromatics",
+      50
+     ],
+     [
+      "fluid:reformgas",
+      5
+     ],
+     [
+      "fluid:hydrogen",
+      20
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:petroleum",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:unsaturateds",
+      85
+     ],
+     [
+      "fluid:reformgas",
+      10
+     ],
+     [
+      "fluid:hydrogen",
+      5
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:sourgas",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sulfuric_acid",
+      75
+     ],
+     [
+      "fluid:petroleum",
+      10
+     ],
+     [
+      "fluid:hydrogen",
+      15
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:cholesterol",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:estradiol",
+      50
+     ],
+     [
+      "fluid:reformgas",
+      35
+     ],
+     [
+      "fluid:hydrogen",
+      15
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   }
+  ],
+  "liquefaction": [
+   {
+    "inputs": [
+     {
+      "id": "minecraft:coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:coaloil",
+      250
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:coaloil",
+      250
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:lignite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:coaloil",
+      150
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lignite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:coaloil",
+      150
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:oak_log",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:mug",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_sodium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sodium",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_lead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:lead",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:lead",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:block_lead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:lead",
+      900
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sugar",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:ethanol",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:melon_slice",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:ethanol",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:biomass",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:biogas",
+      125
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:glyphid_gland_empty",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:biogas",
+      2000
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:wheat_seeds",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:seedslurry",
+      50
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:vine",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:seedslurry",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   }
+  ],
+  "electrolysis": [
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:hydrogen",
+      200
+     ],
+     [
+      "fluid:oxygen",
+      200
+     ]
+    ],
+    "ticks": 20,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:heavywater",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:deuterium",
+      200
+     ],
+     [
+      "fluid:oxygen",
+      200
+     ]
+    ],
+    "ticks": 20,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:vitriol",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sulfuric_acid",
+      500
+     ],
+     [
+      "fluid:chlorine",
+      500
+     ],
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "hbm:nugget_mercury",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:redmud",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:mercury",
+      150
+     ],
+     [
+      "fluid:lye",
+      50
+     ],
+     [
+      "hbm:powder_titanium",
+      3
+     ],
+     [
+      "hbm:powder_iron",
+      3
+     ],
+     [
+      "hbm:powder_aluminium",
+      2
+     ]
+    ],
+    "ticks": 20,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:calcium_chloride",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:chlorine",
+      125
+     ],
+     [
+      "fluid:calcium_solution",
+      125
+     ]
+    ],
+    "ticks": 20,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_iron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_gold",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ],
+     [
+      "hbm:nugget_mercury",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_uranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_thorium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_plutonium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_copper",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ],
+     [
+      "hbm:sulfur",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_tungsten",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_beryllium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ],
+     [
+      "hbm:powder_quartz",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_lead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_schraranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_neptunium",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_schrabidium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_rare",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_desh_mix",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_trixite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_niobium",
+      4
+     ],
+     [
+      "hbm:powder_nitan_mix",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_quartz",
+      2
+     ],
+     [
+      "hbm:fluorite",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_starmetal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_astatine",
+      3
+     ],
+     [
+      "hbm:nugget_mercury",
+      8
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_cobalt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_copper",
+      4
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 200
+   }
+  ],
+  "compressor": [
+   {
+    "inputs": [
+     {
+      "id": "fluid:petroleum",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:petroleum",
+      2000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:petroleum",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:lpg",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:blood",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:heavyoil",
+      250
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:perfluoromethyl",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:perfluoromethyl",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:perfluoromethyl",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:perfluoromethyl_cold",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:input",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:output",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   }
+  ],
+  "outgasser": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:block_lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:tritium",
+      10000
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:tritium",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:tritium",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lithium_tiny",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:tritium",
+      100
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:gold_ingot",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_au198",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:gold_nugget",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_au198",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_gold",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_au198",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_th232",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_thorium_fuel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_th232",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_thorium_fuel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:billet_th232",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:billet_thorium_fuel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:brown_mushroom",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mush",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:red_mushroom",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mush",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:mushroom_stew",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:glowing_stew",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:oil_tar_coal",
+      1
+     ],
+     [
+      "fluid:syngas",
+      50
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:oil_tar_coal",
+      1
+     ],
+     [
+      "fluid:syngas",
+      50
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:coal_block",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:oil_tar_coal",
+      9
+     ],
+     [
+      "fluid:syngas",
+      500
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_pvc",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_c4",
+      1
+     ],
+     [
+      "fluid:colloid",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:coaloil",
+      100
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_wax",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:radiosolvent",
+      100
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:input",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:or",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   }
+  ],
+  "combination": [
+   {
+    "inputs": [
+     {
+      "id": "minecraft:coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_coal",
+      1
+     ],
+     [
+      "fluid:coalcreosote",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_coal",
+      1
+     ],
+     [
+      "fluid:coalcreosote",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:briquette_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_coal",
+      1
+     ],
+     [
+      "fluid:coalcreosote",
+      150
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:lignite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_lignite",
+      1
+     ],
+     [
+      "fluid:coalcreosote",
+      50
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lignite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_lignite",
+      1
+     ],
+     [
+      "fluid:coalcreosote",
+      50
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:briquette_lignite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_lignite",
+      1
+     ],
+     [
+      "fluid:coalcreosote",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_chlorocalcite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_calcium",
+      1
+     ],
+     [
+      "fluid:chlorine",
+      250
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_molysite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:iron_ingot",
+      1
+     ],
+     [
+      "fluid:chlorine",
+      250
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cinnebar",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sulfur",
+      1
+     ],
+     [
+      "fluid:mercury",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:glowstone_dust",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sulfur",
+      1
+     ],
+     [
+      "fluid:chlorine",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:gem_sodalite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_sodium",
+      1
+     ],
+     [
+      "fluid:chlorine",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:chunk_ore_cryolite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_aluminium",
+      1
+     ],
+     [
+      "fluid:lye",
+      150
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_sodium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sodium",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_limestone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_calcium",
+      1
+     ],
+     [
+      "fluid:carbondioxide",
+      50
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:oak_log",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:charcoal",
+      1
+     ],
+     [
+      "fluid:woodoil",
+      250
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:oak_sapling",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_ash_wood",
+      1
+     ],
+     [
+      "fluid:woodoil",
+      50
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:briquette_wood",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:charcoal",
+      1
+     ],
+     [
+      "fluid:woodoil",
+      500
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_crude",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_petroleum",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_crack",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_petroleum",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_coal",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_wood",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:coke_coal",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sugar_cane",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:sugar",
+      2
+     ],
+     [
+      "fluid:ethanol",
+      50
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:clay",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:brick_block",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 0
+   }
+  ],
+  "breeder": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteorite_sword_etched",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:meteorite_sword_bred",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 500
+   }
+  ],
+  "silex": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_uranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_u235",
+      1
+     ],
+     [
+      "hbm:nugget_u238",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_pu_mix",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_pu239",
+      1
+     ],
+     [
+      "hbm:nugget_pu240",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_am_mix",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_am241",
+      1
+     ],
+     [
+      "hbm:nugget_am242",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_plutonium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_pu238",
+      1
+     ],
+     [
+      "hbm:nugget_pu239",
+      1
+     ],
+     [
+      "hbm:nugget_pu240",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_schraranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_schrabidium",
+      1
+     ],
+     [
+      "hbm:nugget_uranium",
+      1
+     ],
+     [
+      "hbm:nugget_neptunium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_australium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_australium_lesser",
+      1
+     ],
+     [
+      "hbm:nugget_australium_greater",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_schraranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_schrabidium",
+      1
+     ],
+     [
+      "hbm:nugget_uranium",
+      1
+     ],
+     [
+      "hbm:nugget_neptunium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_tikite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      1
+     ],
+     [
+      "hbm:powder_cobalt",
+      1
+     ],
+     [
+      "hbm:powder_niobium",
+      1
+     ],
+     [
+      "hbm:powder_nitan_mix",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_trixite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      1
+     ],
+     [
+      "hbm:powder_cobalt",
+      1
+     ],
+     [
+      "hbm:powder_niobium",
+      1
+     ],
+     [
+      "hbm:powder_nitan_mix",
+      1
+     ],
+     [
+      "hbm:powder_spark_mix",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:lapis_lazuli",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sulfur",
+      1
+     ],
+     [
+      "hbm:powder_aluminium",
+      1
+     ],
+     [
+      "hbm:powder_cobalt",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fallout",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:dust_tiny",
+      1
+     ],
+     [
+      "hbm:nugget_co60",
+      1
+     ],
+     [
+      "hbm:powder_sr90_tiny",
+      1
+     ],
+     [
+      "hbm:powder_i131_tiny",
+      1
+     ],
+     [
+      "hbm:powder_cs137_tiny",
+      1
+     ],
+     [
+      "hbm:nugget_au198",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:gravel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:flint",
+      1
+     ],
+     [
+      "hbm:powder_boron",
+      1
+     ],
+     [
+      "hbm:powder_lithium",
+      1
+     ],
+     [
+      "hbm:fluorite",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingredients",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:output",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000,
+    "pick": true
+   }
+  ],
+  "crystallizer": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_calcium",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cement",
+      8
+     ],
+     [
+      "fluid:redmud",
+      75
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:dictframe_fromone_chunk_ore__enumchunktype_malachite_",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sulfuric_acid",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_silicon",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:quartz",
+      2
+     ],
+     [
+      "fluid:oxygen",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cinnebar",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_mercury",
+      3
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_borax",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_boron_tiny",
+      3
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:bone_meal",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:slime_ball",
+      4
+     ],
+     [
+      "fluid:sulfuric_acid",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:bone",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:slime_ball",
+      16
+     ],
+     [
+      "fluid:sulfuric_acid",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plant_item_mustardwillow",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cadmium",
+      1
+     ],
+     [
+      "fluid:radiosolvent",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:scrap_oil",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_arsenic",
+      1
+     ],
+     [
+      "fluid:radiosolvent",
+      100
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_ash_fullerene",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_cft",
+      1
+     ],
+     [
+      "fluid:xylene",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lapis",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:lapis_lazuli",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_cadmium",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_rubber",
+      16
+     ],
+     [
+      "fluid:fishoil",
+      4000
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_biorubber",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sourgas",
+      25
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_sawdust",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:nitroglycerin",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:rebar",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:concrete",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_impure_osmiridium",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:schrabidic",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coal",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:chemical_dye_black",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_titanium",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:chemical_dye_white",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_iron",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:chemical_dye_red",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_tungsten",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:chemical_dye_yellow",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_copper",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:chemical_dye_green",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_cobalt",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:chemical_dye_blue",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_crude",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:oil_tar_wax",
+      1
+     ],
+     [
+      "fluid:chlorine",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_crack",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:oil_tar_wax",
+      1
+     ],
+     [
+      "fluid:chlorine",
+      100
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_paraffin",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:oil_tar_wax",
+      1
+     ],
+     [
+      "fluid:chlorine",
+      100
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_wax",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pellet_charged",
+      1
+     ],
+     [
+      "fluid:iongel",
+      500
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:oil_tar_paraffin",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pill_red",
+      1
+     ],
+     [
+      "fluid:estradiol",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sand",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:colloid",
+      1000
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_quartz",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ball_dynamite",
+      4
+     ],
+     [
+      "fluid:nitroglycerin",
+      250
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:input",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:peroxide",
+      500
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:input",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:recipe",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:input",
+      "n": 1
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:crecipe",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   }
+  ],
+  "mixer": [
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 1800
+     },
+     {
+      "id": "hbm:niter",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:coolant",
+      2000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:coolant",
+      "n": 1800
+     },
+     {
+      "id": "hbm:powder_ice",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:cryogel",
+      2000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:kerosene",
+      "n": 600
+     },
+     {
+      "id": "fluid:mercury",
+      "n": 200
+     },
+     {
+      "id": "hbm:powder_nitan_mix",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:nitan",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:sulfuric_acid",
+      "n": 900
+     },
+     {
+      "id": "fluid:petroleum",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:fracksol",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:xpjuice",
+      "n": 500
+     },
+     {
+      "id": "hbm:powder_diamond",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:enderjuice",
+      100
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:seedslurry",
+      "n": 500
+     },
+     {
+      "id": "fluid:blood",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:salient",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 500
+     },
+     {
+      "id": "hbm:dust",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:colloid",
+      500
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:unsaturateds",
+      "n": 500
+     },
+     {
+      "id": "fluid:chlorine",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:phosgene",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:reformgas",
+      "n": 750
+     },
+     {
+      "id": "fluid:chlorine",
+      "n": 250
+     },
+     {
+      "id": "hbm:sulfur",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:mustardgas",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 1000
+     },
+     {
+      "id": "fluid:hydrogen",
+      "n": 200
+     },
+     {
+      "id": "hbm:pellet_charged",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:iongel",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:radiosolvent",
+      "n": 500
+     },
+     {
+      "id": "minecraft:egg",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:egg",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:cod",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:fishoil",
+      100
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:radiosolvent",
+      "n": 500
+     },
+     {
+      "id": "hbm:powder_ash_soot",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:fullerene",
+      250
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:naphtha",
+      "n": 500
+     },
+     {
+      "id": "fluid:aromatics",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:solvent",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:peroxide",
+      "n": 800
+     },
+     {
+      "id": "hbm:sulfur",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:sulfuric_acid",
+      500
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:sulfuric_acid",
+      "n": 500
+     },
+     {
+      "id": "hbm:niter",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:nitric_acid",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:reformgas",
+      "n": 750
+     },
+     {
+      "id": "fluid:chlorine",
+      "n": 250
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:radiosolvent",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:sas3",
+      "n": 8000
+     },
+     {
+      "id": "fluid:peroxide",
+      "n": 6000
+     },
+     {
+      "id": "hbm:pellet_charged",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:schrabidic",
+      16000
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:reclaimed",
+      "n": 800
+     },
+     {
+      "id": "fluid:lubricant",
+      "n": 200
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:petroil",
+      1000
+     ]
+    ],
+    "ticks": 30,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:heatingoil",
+      "n": 500
+     },
+     {
+      "id": "fluid:unsaturateds",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:lubricant",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:fishoil",
+      "n": 500
+     },
+     {
+      "id": "fluid:woodoil",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:biofuel",
+      250
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:petroleum",
+      "n": 1000
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 1000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:nitroglycerin",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:chlorine",
+      "n": 1000
+     },
+     {
+      "id": "hbm:powder_thorium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:thorium_salt",
+      1000
+     ]
+    ],
+    "ticks": 30,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:coaloil",
+      "n": 500
+     },
+     {
+      "id": "fluid:steam",
+      "n": 500
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:syngas",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:hydrogen",
+      "n": 500
+     },
+     {
+      "id": "fluid:air",
+      "n": 2000
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:oxyhydrogen",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:petroil",
+      "n": 10000
+     },
+     {
+      "id": "hbm:fuel_additive",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:petroil_leaded",
+      12000
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:gasoline",
+      "n": 10000
+     },
+     {
+      "id": "hbm:fuel_additive",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:gasoline_leaded",
+      12000
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:coalgas",
+      "n": 10000
+     },
+     {
+      "id": "hbm:fuel_additive",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:coalgas_leaded",
+      12000
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:diesel",
+      "n": 900
+     },
+     {
+      "id": "fluid:reformate",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:diesel_reform",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:diesel_crack",
+      "n": 900
+     },
+     {
+      "id": "fluid:reformate",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:diesel_crack_reform",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:kerosene",
+      "n": 900
+     },
+     {
+      "id": "fluid:reformate",
+      "n": 100
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:kerosene_reform",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:water",
+      "n": 250
+     },
+     {
+      "id": "fluid:nitric_acid",
+      "n": 250
+     },
+     {
+      "id": "hbm:powder_chlorocalcite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:chlorocalcite_solution",
+      500
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:chlorocalcite_solution",
+      "n": 500
+     },
+     {
+      "id": "fluid:sulfuric_acid",
+      "n": 500
+     },
+     {
+      "id": "hbm:powder_flux",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:chlorocalcite_mix",
+      1000
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:pheromone",
+      "n": 1500
+     },
+     {
+      "id": "fluid:blood",
+      "n": 500
+     },
+     {
+      "id": "hbm:pill_herbal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:pheromone_m",
+      2000
+     ]
+    ],
+    "ticks": 10,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:sodium_aluminate",
+      "n": 150
+     },
+     {
+      "id": "hbm:fluorite",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:alumina",
+      200
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "fluid:petroleum",
+      "n": 1000
+     },
+     {
+      "id": "fluid:unsaturateds",
+      "n": 500
+     },
+     {
+      "id": "hbm:fluorite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "fluid:perfluoromethyl",
+      1000
+     ]
+    ],
+    "ticks": 20,
+    "power": 100
+   }
+  ],
+  "cyclotron": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_beryllium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_beryllium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_boron",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_boron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_coal",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_quartz",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_fire",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_iron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cobalt",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_strontium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_zirconium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_gold",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_mercury",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_uranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_neptunium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_lithium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_neptunium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_beryllium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_boron",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_beryllium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_quartz",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sulfur",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_beryllium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_iron",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_beryllium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_cobalt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_copper",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_beryllium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_strontium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_niobium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_beryllium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_cerium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_neodymium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_carbon",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_boron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_aluminium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_carbon",
+      "n": 1
+     },
+     {
+      "id": "hbm:sulfur",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_titanium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_carbon",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cobalt",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_carbon",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_caesium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lanthanium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_carbon",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_neodymium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_gold",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_carbon",
+      "n": 1
+     },
+     {
+      "id": "hbm:nugget_mercury",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_polonium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_carbon",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_lead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_ra226",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_carbon",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_astatine",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_actinium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_beryllium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_quartz",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_bromine",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_strontium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_iron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_niobium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_bromine",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_iodine",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_strontium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_neodymium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_niobium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_caesium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_iodine",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_polonium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_caesium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_actinium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_gold",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_uranium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_plutonium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_plutonium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_tennessine",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_plutonium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_tennessine",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_australium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:part_plutonium",
+      "n": 1
+     },
+     {
+      "id": "hbm:pellet_charged",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_schrabidium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   }
+  ],
+  "exposure": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:particle_higgs",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_uranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_schraranium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:particle_higgs",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_u238",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_schrabidium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:particle_dark",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_plutonium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_euphemium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:particle_sparkticle",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_schrabidate",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_dineutronium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:particle",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingredient",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:output",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 1000
+   }
+  ],
+  "arcwelder": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 2
+     },
+     {
+      "id": "hbm:wire_dense_mingrade",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:motor",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 400
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_fiberglass",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_pc",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:part_generic_lde",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_titanium",
+      "n": 2
+     },
+     {
+      "id": "hbm:ingot_fiberglass",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_pc",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:part_generic_lde",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 10000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_tungsten_carbide",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_dura_steel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:neutron_reflector",
+      2
+     ]
+    ],
+    "ticks": 400,
+    "power": 50000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:wire_fine_aluminum",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:thruster_small",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:motor",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_graphite",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:thruster_medium",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 2000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_dura_steel",
+      "n": 10
+     },
+     {
+      "id": "hbm:motor",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_tungsten_carbide",
+      "n": 12
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:thruster_large",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 6
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 4
+     },
+     {
+      "id": "hbm:steel_scaffold",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fuel_tank_small",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 1000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_aluminum",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 8
+     },
+     {
+      "id": "hbm:steel_scaffold",
+      "n": 12
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fuel_tank_medium",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 2000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_welded_aluminum",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_saturnite",
+      "n": 12
+     },
+     {
+      "id": "hbm:steel_scaffold",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fuel_tank_large",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ball_tnt",
+      "n": 3
+     },
+     {
+      "id": "hbm:missile_assembly",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_small",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_anti_ballistic",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_small",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_generic",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_incendiary_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_small",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_incendiary",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_cluster_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_small",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_cluster",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_buster_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_small",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_buster",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 5000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_small",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_decoy",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 2500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_strong",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 10000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_incendiary_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_incendiary_strong",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 10000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_cluster_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_cluster_strong",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 10000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_buster_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_buster_strong",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 10000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:emp_bomb",
+      "n": 3
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_emp_strong",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 10000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 2
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_burst",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 25000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_incendiary_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 2
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_inferno",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 25000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_cluster_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 2
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_rain",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 25000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_buster_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_medium",
+      "n": 2
+     },
+     {
+      "id": "hbm:thruster_medium",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_drill",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 25000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_nuclear",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_large",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_nuclear",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 50000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_mirv",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_large",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_nuclear_cluster",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 50000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_volcano",
+      "n": 1
+     },
+     {
+      "id": "hbm:fuel_tank_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:thruster_large",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:missile_volcano",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 50000
+   }
+  ],
+  "ammopress": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 2
+     },
+     {
+      "id": "hbm:canister_napalm",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_flame_napalm",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 2
+     },
+     {
+      "id": "hbm:billet_silicon",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_capacitor",
+      4
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 2
+     },
+     {
+      "id": "hbm:billet_silicon",
+      "n": 6
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_capacitor_overcharge",
+      4
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 2
+     },
+     {
+      "id": "hbm:ingot_niobium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_capacitor_ir",
+      4
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_lead",
+      "n": 2
+     },
+     {
+      "id": "hbm:ingot_u238",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_tau_uranium",
+      16
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_coil_tungsten",
+      4
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_ferrouranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_coil_ferrouranium",
+      4
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_pu239",
+      "n": 1
+     },
+     {
+      "id": "hbm:assembly_nuke",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_nuke_standard",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_pu239",
+      "n": 2
+     },
+     {
+      "id": "hbm:assembly_nuke",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_nuke_demo",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_pu239",
+      "n": 4
+     },
+     {
+      "id": "hbm:assembly_nuke",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_nuke_high",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_pu239",
+      "n": 2
+     },
+     {
+      "id": "hbm:ball_tatb",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_nuke_tots",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:egg_balefire_shard",
+      "n": 1
+     },
+     {
+      "id": "hbm:assembly_nuke",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_nuke_balefire",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:ballistite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_ct_hook",
+      16
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ball_tnt",
+      "n": 4
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:ballistite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_standard_ct_mortar",
+      4
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_steel",
+      "n": 5
+     },
+     {
+      "id": "hbm:ballistite",
+      "n": 5
+     },
+     {
+      "id": "hbm:plate_gunmetal",
+      "n": 5
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ammo_dgk",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:input",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:output",
+      1
+     ]
+    ],
+    "ticks": 20,
     "power": 0
    }
   ],
@@ -71802,5 +79627,635 @@
     "power": 5
    }
   ]
+ },
+ "fluids": {
+  "air": {
+   "en": "Compressed Air",
+   "ru": "Сжатый воздух"
+  },
+  "airblast": {
+   "en": "Hot Air Blast",
+   "ru": "Горячий воздух"
+  },
+  "alumina": {
+   "en": "Alumina",
+   "ru": "Глинозём"
+  },
+  "amat": {
+   "en": "Antimatter",
+   "ru": "Антиматерия"
+  },
+  "aromatics": {
+   "en": "Aromatic Hydrocarbons",
+   "ru": "Ароматические углеводороды"
+  },
+  "aschrab": {
+   "en": "Antischrabidium",
+   "ru": "Антишрабидий"
+  },
+  "balefire": {
+   "en": "BF Rocket Fuel",
+   "ru": "Ракетное жар-топливо"
+  },
+  "bauxite_solution": {
+   "en": "Bauxite Solution",
+   "ru": "Раствор боксита"
+  },
+  "biofuel": {
+   "en": "Biofuel",
+   "ru": "Биотопливо"
+  },
+  "biogas": {
+   "en": "Biogas",
+   "ru": "Биогаз"
+  },
+  "bitumen": {
+   "en": "Bitumen",
+   "ru": "Битум"
+  },
+  "blood": {
+   "en": "Blood",
+   "ru": "Кровь"
+  },
+  "blood_hot": {
+   "en": "Hot Blood",
+   "ru": "Горячая кровь"
+  },
+  "calcium_chloride": {
+   "en": "Calcium chloride Solution",
+   "ru": "Раствор хлорида кальция"
+  },
+  "calcium_solution": {
+   "en": "Calcium Solution",
+   "ru": "Раствор кальция"
+  },
+  "carbondioxide": {
+   "en": "Carbon Dioxide",
+   "ru": "Углекислый газ"
+  },
+  "chlorine": {
+   "en": "Chlorine Gas",
+   "ru": "Хлорный газ"
+  },
+  "chlorocalcite_cleaned": {
+   "en": "Cleaned Chlorocalcite Solution",
+   "ru": "Очищенный раствор хлоркальцита"
+  },
+  "chlorocalcite_mix": {
+   "en": "Mixed Chlorocalcite Solution",
+   "ru": "Смешанный раствор хлоркальцита"
+  },
+  "chlorocalcite_solution": {
+   "en": "Chlorocalcite Solution",
+   "ru": "Раствор хлоркальцита"
+  },
+  "cholesterol": {
+   "en": "Cholesterol Solution",
+   "ru": "Раствор холестерина"
+  },
+  "coalcreosote": {
+   "en": "Coal Tar Creosote",
+   "ru": "Креозот из угольной смолы"
+  },
+  "coalgas": {
+   "en": "Coal Gasoline",
+   "ru": "Угольный газ"
+  },
+  "coalgas_leaded": {
+   "en": "Leaded Coal Gasoline",
+   "ru": "Этилированный угольный газ"
+  },
+  "coaloil": {
+   "en": "Coal Oil",
+   "ru": "Фотоген"
+  },
+  "colloid": {
+   "en": "Colloid",
+   "ru": "Коллоидный раствор"
+  },
+  "concrete": {
+   "en": "Liquid Concrete",
+   "ru": "Цементный раствор"
+  },
+  "coolant": {
+   "en": "Coolant",
+   "ru": "Хладагент"
+  },
+  "coolant_hot": {
+   "en": "Hot Coolant",
+   "ru": "Горячий хладагент"
+  },
+  "crackoil": {
+   "en": "Cracked Oil",
+   "ru": "Крекированная нефть"
+  },
+  "crackoil_ds": {
+   "en": "Desulfurized Cracked Oil",
+   "ru": "Обессеренная крекированная нефть"
+  },
+  "cryogel": {
+   "en": "Cryogel",
+   "ru": "Криогель"
+  },
+  "death": {
+   "en": "Osmiridic Solution",
+   "ru": "Осмиридовый раствор"
+  },
+  "deuterium": {
+   "en": "Deuterium",
+   "ru": "Дейтерий"
+  },
+  "dhc": {
+   "en": "Deuterated Hydrocarbon",
+   "ru": "Дейтерированный углеводород"
+  },
+  "diesel": {
+   "en": "Diesel",
+   "ru": "Дизель"
+  },
+  "diesel_crack": {
+   "en": "Cracked Diesel",
+   "ru": "Крекированный дизель"
+  },
+  "diesel_crack_reform": {
+   "en": "High-Cetane Cracked Diesel",
+   "ru": "Высокоцетановый крекированный дизель"
+  },
+  "diesel_reform": {
+   "en": "High-Cetane Diesel",
+   "ru": "Высокоцетановый дизель"
+  },
+  "egg": {
+   "en": "Dissolved Egg",
+   "ru": "Растворенное яйцо"
+  },
+  "estradiol": {
+   "en": "Estradiol Solution",
+   "ru": "Раствор эстрадиола"
+  },
+  "ethanol": {
+   "en": "Ethanol",
+   "ru": "Этанол"
+  },
+  "enderjuice": {
+   "en": "Ender Juice",
+   "ru": "Эндер-сок"
+  },
+  "fishoil": {
+   "en": "Fish Oil",
+   "ru": "Рыбий жир"
+  },
+  "flue": {
+   "en": "Flue Gas",
+   "ru": "Дымовой газ"
+  },
+  "fracksol": {
+   "en": "Fracking Solution",
+   "ru": "Жидкость для гидроразрыва пласта"
+  },
+  "fullerene": {
+   "en": "Fullerene Solution",
+   "ru": "Раствор фуллерена"
+  },
+  "gas": {
+   "en": "Natural Gas",
+   "ru": "Природный газ"
+  },
+  "gas_coker": {
+   "en": "Coker Gas",
+   "ru": "Коксовый газ"
+  },
+  "gasoline": {
+   "en": "Gasoline",
+   "ru": "Газолин"
+  },
+  "gasoline_leaded": {
+   "en": "Leaded Gasoline",
+   "ru": "Этилированный газолин"
+  },
+  "heatingoil": {
+   "en": "Heating Oil",
+   "ru": "Мазут"
+  },
+  "heatingoil_vacuum": {
+   "en": "Heavy Heating Oil",
+   "ru": "Тяжёлый мазут"
+  },
+  "heavyoil": {
+   "en": "Heavy Oil",
+   "ru": "Тяжёлая нефть"
+  },
+  "heavyoil_vacuum": {
+   "en": "Vacuum Heavy Oil",
+   "ru": "Вакуумная тяжёлая нефть"
+  },
+  "heavywater": {
+   "en": "Heavy Water",
+   "ru": "Тяжёлая вода"
+  },
+  "heavywater_hot": {
+   "en": "Hot Heavy Water",
+   "ru": "Горячая тяжёлая вода"
+  },
+  "helium3": {
+   "en": "Helium-3",
+   "ru": "Гелий-3"
+  },
+  "helium4": {
+   "en": "Helium-4",
+   "ru": "Гелий-4"
+  },
+  "hotcrackoil": {
+   "en": "Hot Cracked Oil",
+   "ru": "Горячая крекированная нефть"
+  },
+  "hotcrackoil_ds": {
+   "en": "Desulfurized Hot Cracked Oil",
+   "ru": "Обессеренная горячая крекированная нефть"
+  },
+  "hotoil": {
+   "en": "Hot Crude Oil",
+   "ru": "Горячая сырая нефть"
+  },
+  "hotoil_ds": {
+   "en": "Desulfurized Hot Crude Oil",
+   "ru": "Обессеренная горячая сырая нефть"
+  },
+  "hotsteam": {
+   "en": "Dense Steam",
+   "ru": "Горячий пар"
+  },
+  "hydrogen": {
+   "en": "Liquid Hydrogen",
+   "ru": "Жидкий водород"
+  },
+  "iongel": {
+   "en": "Ionic Gel",
+   "ru": "Ионный гель"
+  },
+  "kerosene": {
+   "en": "Kerosene",
+   "ru": "Керосин"
+  },
+  "kerosene_reform": {
+   "en": "Jet Fuel",
+   "ru": "Авиационное топливо"
+  },
+  "lava": {
+   "en": "Lava",
+   "ru": "Лава"
+  },
+  "lead": {
+   "en": "Liquid Lead",
+   "ru": "Жидкий свинец"
+  },
+  "lead_hot": {
+   "en": "Hot Liquid Lead",
+   "ru": "Горячий жидкий свинец"
+  },
+  "lightoil": {
+   "en": "Light Oil",
+   "ru": "Лёгкая нефть"
+  },
+  "lightoil_crack": {
+   "en": "Cracked Light Oil",
+   "ru": "Крекированная лёгкая нефть"
+  },
+  "lightoil_ds": {
+   "en": "Desulfurized Light Oil",
+   "ru": "Обессеренная лёгкая нефть"
+  },
+  "lightoil_vacuum": {
+   "en": "Vacuum Light Oil",
+   "ru": "Вакуумная лёгкая нефть"
+  },
+  "lpg": {
+   "en": "LPG",
+   "ru": "Сжиженный попутный газ (СПГ)"
+  },
+  "lubricant": {
+   "en": "Engine Lubricant",
+   "ru": "Моторное масло"
+  },
+  "lye": {
+   "en": "Lye",
+   "ru": "Щёлок"
+  },
+  "mercury": {
+   "en": "Mercury",
+   "ru": "Ртуть"
+  },
+  "mug": {
+   "en": "Mug Root Beer",
+   "ru": "Квас \"Царские Припасы\""
+  },
+  "mug_hot": {
+   "en": "Hot Mug Root Beer",
+   "ru": "Горячий квас \"Царские Припасы\""
+  },
+  "mustardgas": {
+   "en": "Mustard Gas",
+   "ru": "Иприт"
+  },
+  "naphtha": {
+   "en": "Naphtha",
+   "ru": "Нафта"
+  },
+  "naphtha_coker": {
+   "en": "Coker Naphtha",
+   "ru": "Коксовая нафта"
+  },
+  "naphtha_crack": {
+   "en": "Cracked Naphtha",
+   "ru": "Крекированная нафта"
+  },
+  "naphtha_ds": {
+   "en": "Desulfurized Naphtha",
+   "ru": "Обессеренная нафта"
+  },
+  "nitan": {
+   "en": "NITAN© 100 Octane Super Fuel",
+   "ru": "100-октановое сверхтопливо NITAN©"
+  },
+  "nitric_acid": {
+   "en": "Nitric Acid",
+   "ru": "Азотная кислота"
+  },
+  "nitroglycerin": {
+   "en": "Nitroglycerin",
+   "ru": "Нитроглицерин"
+  },
+  "none": {
+   "en": "None",
+   "ru": "Ничего"
+  },
+  "oil": {
+   "en": "Crude Oil",
+   "ru": "Сырая нефть"
+  },
+  "oil_coker": {
+   "en": "Coker Oil",
+   "ru": "Коксовая нефть"
+  },
+  "oil_ds": {
+   "en": "Desulfurized Crude Oil",
+   "ru": "Обессеренная сырая нефть"
+  },
+  "oxygen": {
+   "en": "Liquid Oxygen",
+   "ru": "Жидкий кислород"
+  },
+  "oxyhydrogen": {
+   "en": "Oxyhydrogen",
+   "ru": "Гремучий газ"
+  },
+  "pain": {
+   "en": "Pandemonium(III)tantalite Solution",
+   "ru": "Пандемониум(III)Раствор танталита"
+  },
+  "perfluoromethyl": {
+   "en": "Perfluoromethyl",
+   "ru": "Перфторометан"
+  },
+  "perfluoromethyl_cold": {
+   "en": "Cold Perfluoromethyl",
+   "ru": "Холодный перфторометан"
+  },
+  "perfluoromethyl_hot": {
+   "en": "Hot Perfluoromethyl",
+   "ru": "Горячий перфторометан"
+  },
+  "peroxide": {
+   "en": "Hydrogen Peroxide",
+   "ru": "Пероксид водорода"
+  },
+  "petroil": {
+   "en": "Petroil",
+   "ru": "Бензин"
+  },
+  "petroil_leaded": {
+   "en": "Leaded Petroil",
+   "ru": "Этилированный бензин"
+  },
+  "petroleum": {
+   "en": "Petroleum Gas",
+   "ru": "Попутный нефтяной газ"
+  },
+  "pheromone": {
+   "en": "Booster Pheromone",
+   "ru": "Феромон-бустер"
+  },
+  "pheromone_m": {
+   "en": "Modified Booster Pheromone",
+   "ru": "Модифицированный феромон-бустер"
+  },
+  "phosgene": {
+   "en": "Phosgene",
+   "ru": "Фосген"
+  },
+  "plasma_bf": {
+   "en": "Balefire Plasma",
+   "ru": "Жар-плазма"
+  },
+  "plasma_dh3": {
+   "en": "Deuterium-Helium-3 Plasma",
+   "ru": "Дейтерий-Гелий-3 плазма"
+  },
+  "plasma_dt": {
+   "en": "Deuterium-Tritium Plasma",
+   "ru": "Дейтерий-Тритиевая плазма"
+  },
+  "plasma_hd": {
+   "en": "Hydrogen-Deuterium Plasma",
+   "ru": "Водород-Дейтериевая плазма"
+  },
+  "plasma_ht": {
+   "en": "Hydrogen-Tritium Plasma",
+   "ru": "Водород-Тритиевая плазма"
+  },
+  "plasma_xm": {
+   "en": "Helium-4-Oxygen Plasma",
+   "ru": "Гелий-4-Кислородная плазма"
+  },
+  "potassium_chloride": {
+   "en": "Potassium chloride Solution",
+   "ru": "Раствор хлорида калия"
+  },
+  "puf6": {
+   "en": "Plutonium Hexafluoride",
+   "ru": "Гексафторид плутония"
+  },
+  "radiosolvent": {
+   "en": "High-Performance Solvent",
+   "ru": "Высокоэффективный растворитель"
+  },
+  "reclaimed": {
+   "en": "Reclaimed Industrial Oil",
+   "ru": "Очищенное промышленное масло"
+  },
+  "redmud": {
+   "en": "Red Mud",
+   "ru": "Красный шлам"
+  },
+  "reformate": {
+   "en": "Reformate",
+   "ru": "Реформированное топливо"
+  },
+  "reformgas": {
+   "en": "Reformate Gas",
+   "ru": "Реформированный газ"
+  },
+  "salient": {
+   "en": "Salient Green",
+   "ru": "Зелёный сойлент"
+  },
+  "sas3": {
+   "en": "Schrabidium Trisulfide",
+   "ru": "Трисульфид шрабидия"
+  },
+  "schrabidic": {
+   "en": "Schrabidic Acid",
+   "ru": "Шрабидиевая кислота"
+  },
+  "seedslurry": {
+   "en": "Seeding Slurry",
+   "ru": "Жидкая рассада"
+  },
+  "slop": {
+   "en": "Ore Slop",
+   "ru": "Рудный шлам"
+  },
+  "smear": {
+   "en": "Industrial Oil",
+   "ru": "Промышленное масло"
+  },
+  "smoke": {
+   "en": "Smoke",
+   "ru": "Дым"
+  },
+  "smoke_leaded": {
+   "en": "Leaded Smoke",
+   "ru": "Свинцовый дым"
+  },
+  "smoke_poison": {
+   "en": "Poison Smoke",
+   "ru": "Ядовитый дым"
+  },
+  "sodium": {
+   "en": "Liquid Sodium",
+   "ru": "Жидкий натрий"
+  },
+  "sodium_hot": {
+   "en": "Hot Liquid Sodium",
+   "ru": "Горячий жидкий натрий"
+  },
+  "sodium_aluminate": {
+   "en": "Sodium Aluminate",
+   "ru": "Алюминат натрия"
+  },
+  "solvent": {
+   "en": "Solvent",
+   "ru": "Растворитель"
+  },
+  "sourgas": {
+   "en": "Sour Gas",
+   "ru": "Кислый газ"
+  },
+  "spentsteam": {
+   "en": "Low-Pressure Steam",
+   "ru": "Пар низкого давления"
+  },
+  "steam": {
+   "en": "Steam",
+   "ru": "Пар"
+  },
+  "stellar_flux": {
+   "en": "Stellar Flux",
+   "ru": "Звёздная материя"
+  },
+  "sulfuric_acid": {
+   "en": "Sulfuric Acid",
+   "ru": "Серная кислота"
+  },
+  "sunfloweroil": {
+   "en": "Sunflower Seed Oil",
+   "ru": "Подсолнечное масло"
+  },
+  "superhotsteam": {
+   "en": "Super Dense Steam",
+   "ru": "Перегретый пар"
+  },
+  "syngas": {
+   "en": "Syngas",
+   "ru": "Синтгаз"
+  },
+  "titanium_tetrachloride": {
+   "en": "Titanium Tetrachloride",
+   "ru": "Тетрахлорид титана"
+  },
+  "thorium_salt": {
+   "en": "Liquid Thorium Salt",
+   "ru": "Жидкая ториевая соль"
+  },
+  "thorium_salt_depleted": {
+   "en": "Depleted Liquid Thorium Salt",
+   "ru": "Обеднённая жидкая ториевая соль"
+  },
+  "thorium_salt_hot": {
+   "en": "Hot Liquid Thorium Salt",
+   "ru": "Горячая жидкая ториевая соль"
+  },
+  "tritium": {
+   "en": "Tritium",
+   "ru": "Тритий"
+  },
+  "uf6": {
+   "en": "Uranium Hexafluoride",
+   "ru": "Гексафторид урана"
+  },
+  "ultrahotsteam": {
+   "en": "Ultra Dense Steam",
+   "ru": "Раскалённый пар"
+  },
+  "unsaturateds": {
+   "en": "Unsaturated Hydrocarbons",
+   "ru": "Непредельные углеводороды"
+  },
+  "vitriol": {
+   "en": "Vitriol",
+   "ru": "Купорос"
+  },
+  "wastefluid": {
+   "en": "Liquid Nuclear Waste",
+   "ru": "Жидкие ядерные отходы"
+  },
+  "wastegas": {
+   "en": "Gaseous Nuclear Waste",
+   "ru": "Газовые ядерные отходы"
+  },
+  "water": {
+   "en": "Water",
+   "ru": "Вода"
+  },
+  "watz": {
+   "en": "Poisonous Mud",
+   "ru": "Токсичные отходы"
+  },
+  "woodoil": {
+   "en": "Wood Oil",
+   "ru": "Древесное масло"
+  },
+  "xenon": {
+   "en": "Xenon Gas",
+   "ru": "Ксеноновый газ"
+  },
+  "xpjuice": {
+   "en": "Experience Juice",
+   "ru": "Жидкий опыт"
+  },
+  "xylene": {
+   "en": "BTX",
+   "ru": "БТК"
+  }
  }
 }

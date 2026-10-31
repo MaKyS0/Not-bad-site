@@ -652,7 +652,7 @@ shaped("machine_battery", ["LAL", "CRC", "LAL"], { L: "hbm:ingot_lead", A: "hbm:
 // ---------- imported recipes and radiation ----------
 
 const known = new Set([...defined, ...importedBlocks.map((b) => `hbm:${b.id}`), ...importedItems.map((i) => `hbm:${i.id}`)]);
-const exists = (id) => id.startsWith("minecraft:") || known.has(id);
+const exists = (id) => id.startsWith("minecraft:") || id.startsWith("fluid:") || known.has(id);
 const smelted = new Set(handSmelted); // one furnace recipe per input; hand-made ones win
 let importedRecipes = 0;
 for (const r of catalog.recipes) {
@@ -692,12 +692,25 @@ for (const r of catalog.recipes) {
 const rads = Object.fromEntries(Object.entries(catalog.rads).filter(([id]) => known.has(id)));
 
 // Machine recipes, smelting/shredding extras and the imported weapons, for the scripts.
+// HBM heats oil before refining it; there is no heater here, so hot variants read as the plain fluid.
+const FLUID_ALIAS = { "fluid:hotoil": "fluid:oil", "fluid:hotcrackoil": "fluid:crackoil", "fluid:hotoil_ds": "fluid:oil_ds", "fluid:hotcrackoil_ds": "fluid:crackoil_ds" };
 const machineRecipes = Object.fromEntries(
   Object.entries(catalog.machineRecipes ?? {}).map(([machine, list]) => [
     machine,
-    list.filter((r) => r.inputs.every((i) => i.stamp || exists(i.id)) && r.outputs.every(([id]) => exists(id))),
+    list
+      .map((r) => ({ ...r, inputs: r.inputs.map((i) => (i.id && FLUID_ALIAS[i.id] ? { ...i, id: FLUID_ALIAS[i.id] } : i)) }))
+      .filter((r) => r.inputs.every((i) => i.stamp || exists(i.id)) && r.outputs.every(([id]) => exists(id))),
   ])
 );
+const fluidsUsed = new Set(["water", "steam", "oil", "diesel", "lava"]);
+for (const list of Object.values(machineRecipes)) {
+  for (const r of list) for (const id of [...r.inputs.map((i) => i.id), ...r.outputs.map(([id]) => id)]) if (id?.startsWith("fluid:")) fluidsUsed.add(id.slice(6));
+}
+for (const f of fluidsUsed) {
+  if (lang.en_US[`hbm.fluid.${f}`]) continue;
+  const n = catalog.fluids?.[f];
+  name(`hbm.fluid.${f}`, n?.en ?? f, n?.ru ?? n?.en ?? f);
+}
 const smeltExtra = Object.fromEntries(catalog.recipes.filter((r) => r.type === "furnace" && exists(r.input) && exists(r.output)).map((r) => [r.input, r.output]));
 const shredExtra = Object.fromEntries((machineRecipes.shredder ?? []).map((r) => [r.inputs[0].id, r.outputs[0]]));
 delete machineRecipes.shredder;
@@ -715,7 +728,8 @@ write(
     `export const IMPORTED_GRENADES = ${JSON.stringify(grenades)};\n` +
     `export const IMPORTED_MISSILES = ${JSON.stringify(missiles)};\n` +
     `export const KNOWN_ITEMS = new Set(${JSON.stringify(importedIds)});\n` +
-    `export const KNOWN_BLOCKS = new Set(${JSON.stringify([...known])});\n`
+    `export const KNOWN_BLOCKS = new Set(${JSON.stringify([...known])});\n` +
+    `export const FLUIDS = ${JSON.stringify([...fluidsUsed])};\n`
 );
 write(
   join(BP, "scripts/imported_rads.js"),
@@ -812,6 +826,8 @@ name("hbm.turret.ammo", "Ammo: ", "Боеприпасы: ");
 name("hbm.radar.count", "Contacts: %s within %s blocks", "Целей: %s в радиусе %s блоков");
 name("hbm.radar.contact", "%s: %s blocks, %s", "%s: %s блоков, %s");
 name("hbm.miner.depth", "Dug %s layers down", "Выкопано слоёв вниз: %s");
+name("hbm.machine.poured", "§aPoured in: ", "§aЗалито: ");
+name("hbm.detector.rads", "Radioactive items nearby: %s RAD/s", "Радиоактивных предметов рядом: %s РАД/с");
 name("hbm.machine.hint", "§7Tap with an item to load it. Sneak to place blocks against the machine.", "§7Нажмите предметом, чтобы загрузить его. Присядьте, чтобы ставить блоки рядом.");
 
 for (const [code, entries] of Object.entries(lang)) {

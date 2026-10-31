@@ -6,7 +6,7 @@ import { nuke } from "./bombs.js";
 import { SMELT, SHRED, PRESS, ASSEMBLY, fuelTicks } from "./recipes.js";
 import { RBMK, RBMK_TYPES, ROD_LIFE, RBMK_MELTDOWN, RBMK_OVERHEAT, runRbmk } from "./rbmk.js";
 import { isMissile, launchMissile, targetOf } from "./missiles.js";
-import { MACHINE_RECIPES, SMELT_EXTRA, SHRED_EXTRA, KNOWN_BLOCKS } from "./imported_machines.js";
+import { MACHINE_RECIPES, SMELT_EXTRA, SHRED_EXTRA, KNOWN_BLOCKS, FLUIDS } from "./imported_machines.js";
 import { IMPORTED_RADS } from "./imported_rads.js";
 
 const SECOND = 20;
@@ -17,7 +17,8 @@ const PROP_PREFIX = "hbm:machine:";
 /** Conduits and machines a single network search may visit. */
 const MAX_NETWORK = 512;
 const WATER_BLOCKS = new Set(["minecraft:water", "minecraft:flowing_water"]);
-const FLUID_NAMES = ["water", "steam", "oil", "diesel"];
+/** Every fluid some machine makes or uses; HBM has about 150. */
+const FLUID_NAMES = FLUIDS;
 
 /**
  * @typedef {{ id: string, n: number }} Slot
@@ -439,17 +440,37 @@ function shredResult(id) {
 const stampPattern = (type) => new RegExp(`^hbm:stamp_(\\w+_)?${type}$`);
 
 /** A machine fed through a shared stock that runs one of HBM's recipe tables. */
+const FLUID_TANK = 32_000;
+const fluidOf = (/** @type {string | undefined} */ id) => (id?.startsWith("fluid:") ? id.slice(6) : undefined);
+
 function recipeMachine(set, { speed = 1, power = true, maxEnergy = 200_000 } = {}) {
   const recipes = MACHINE_RECIPES[set] ?? [];
+  // A tank for every fluid the recipes use: inputs fill from pipes, outputs drain into them.
+  /** @type {Record<string, Tank>} */
+  const tanks = {};
+  for (const r of recipes) {
+    for (const i of r.inputs) if (fluidOf(i.id)) tanks[/** @type {string} */ (fluidOf(i.id))] = { cap: FLUID_TANK, role: "in" };
+  }
+  for (const r of recipes) {
+    for (const [id] of r.outputs) if (fluidOf(id) && !tanks[/** @type {string} */ (fluidOf(id))]) tanks[/** @type {string} */ (fluidOf(id))] = { cap: FLUID_TANK, role: "out" };
+  }
   const list = recipes.map((r) => ({ output: r.outputs[0][0], count: r.outputs[0][1] }));
   const matches = (input, id) => (input.stamp ? stampPattern(input.stamp).test(id) : input.id === id);
-  const has = (m, input) =>
-    input.stamp ? Object.entries(m.stock ?? {}).some(([id, n]) => n > 0 && matches(input, id)) : (m.stock?.[input.id] ?? 0) >= input.n;
-  const ready = (m, r) => r.inputs.every((i) => has(m, i)) && r.outputs.every(([id, n]) => (m.outbox?.[id] ?? 0) + n <= STACK * 4);
+  const has = (m, input) => {
+    if (input.stamp) return Object.entries(m.stock ?? {}).some(([id, n]) => n > 0 && matches(input, id));
+    const fluid = fluidOf(input.id);
+    return fluid ? tank(m, fluid) >= input.n : (m.stock?.[input.id] ?? 0) >= input.n;
+  };
+  const room = (m, id, n) => {
+    const fluid = fluidOf(id);
+    return fluid ? tank(m, fluid) + n <= FLUID_TANK : (m.outbox?.[id] ?? 0) + n <= STACK * 4;
+  };
+  const ready = (m, r) => r.inputs.every((i) => has(m, i)) && r.outputs.every(([id, n]) => room(m, id, n));
   /** @type {MachineDef} */
   const def = {
     power: power ? "use" : undefined,
     maxEnergy: power ? maxEnergy : undefined,
+    tanks: Object.keys(tanks).length ? tanks : undefined,
     recipeList: list,
     autoRecipe: true,
     stockAccepts: (id, m) => {
@@ -469,10 +490,21 @@ function recipeMachine(set, { speed = 1, power = true, maxEnergy = 200_000 } = {
       if (m.progress >= chosen.ticks) {
         m.progress = 0;
         const stock = { ...m.stock };
-        for (const i of chosen.inputs) if (!i.keep && i.id) stock[i.id] -= i.n;
+        for (const i of chosen.inputs) {
+          if (i.keep || !i.id) continue;
+          const fluid = fluidOf(i.id);
+          if (fluid) setTank(m, fluid, tank(m, fluid) - i.n);
+          else stock[i.id] -= i.n;
+        }
         m.stock = stock;
         const outbox = { ...m.outbox };
-        for (const [id, n] of chosen.outputs) outbox[id] = (outbox[id] ?? 0) + n;
+        // SILEX-style recipes yield one of their outputs at random.
+        const outputs = chosen.pick ? [chosen.outputs[Math.floor(Math.random() * chosen.outputs.length)]] : chosen.outputs;
+        for (const [id, n] of outputs) {
+          const fluid = fluidOf(id);
+          if (fluid) setTank(m, fluid, tank(m, fluid) + n);
+          else outbox[id] = (outbox[id] ?? 0) + n;
+        }
         m.outbox = outbox;
       }
       return true;
@@ -957,6 +989,137 @@ Object.assign(MACHINES, {
   "hbm:machine_autosaw": AUTOSAW,
   "hbm:machine_annihilator": ANNIHILATOR,
 });
+/**
+ * A machine that makes a fluid out of nothing but power or surroundings (air intake, geothermal...).
+ * @param {string} fluid
+ * @param {number} perSecond
+ * @param {{ powerPerSecond?: number, needs?: (block: import("@minecraft/server").Block) => boolean }} [options]
+ */
+function fluidSource(fluid, perSecond, { powerPerSecond = 0, needs } = {}) {
+  /** @type {MachineDef} */
+  const def = {
+    power: powerPerSecond ? "use" : undefined,
+    maxEnergy: powerPerSecond ? 100_000 : undefined,
+    tanks: { [fluid]: { cap: FLUID_TANK, role: "out" } },
+    run: (m, block) => {
+      if (needs && !needs(block)) return false;
+      if (m.energy < powerPerSecond) return false;
+      const made = Math.min(perSecond, FLUID_TANK - tank(m, fluid));
+      if (made <= 0) return false;
+      m.energy -= powerPerSecond;
+      setTank(m, fluid, tank(m, fluid) + made);
+      return true;
+    },
+  };
+  return def;
+}
+
+/** Drains and flare stacks: whatever fluid arrives is disposed of; a flare turns gas into a little power. */
+function sink(hePerMb) {
+  /** @type {MachineDef} */
+  const def = {
+    power: hePerMb ? "gen" : undefined,
+    maxEnergy: hePerMb ? 100_000 : undefined,
+    anyFluid: 16_000,
+    run: (m) => {
+      const held = Object.entries(m.tanks ?? {}).find(([, n]) => n > 0);
+      if (!held) return false;
+      const burned = Math.min(held[1], 1000);
+      setTank(m, held[0], held[1] - burned);
+      if (hePerMb) m.energy = Math.min(100_000, m.energy + burned * hePerMb);
+      return true;
+    },
+  };
+  return def;
+}
+
+const touches = (block, type) => [block.north(), block.south(), block.east(), block.west(), block.below()].some((b) => b?.typeId?.includes(type));
+
+/** Forcefield: shoves hostile mobs out of a 16-block bubble while powered. */
+/** @type {MachineDef} */
+const FORCEFIELD = {
+  power: "use",
+  maxEnergy: 200_000,
+  run: (m, block) => {
+    if (m.energy < 2000) return false;
+    const here = { x: m.x + 0.5, y: m.y + 0.5, z: m.z + 0.5 };
+    for (const e of block.dimension.getEntities({ location: here, maxDistance: 16, families: ["monster"] })) {
+      const dx = e.location.x - here.x;
+      const dz = e.location.z - here.z;
+      const d = Math.max(0.5, Math.hypot(dx, dz));
+      try {
+        e.applyImpulse({ x: (dx / d) * 1.5, y: 0.4, z: (dz / d) * 1.5 });
+      } catch {
+        // not pushable
+      }
+    }
+    m.energy -= 2000;
+    return true;
+  },
+};
+
+/** Siren: wails at everyone within 64 blocks while it gets a redstone signal. */
+/** @type {MachineDef} */
+const SIREN = {
+  run: (m, block) => {
+    const powered = (block.getRedstonePower() ?? 0) > 0 || [block.north(), block.south(), block.east(), block.west(), block.above(), block.below()].some((b) => (b?.getRedstonePower() ?? 0) > 0);
+    if (!powered) return false;
+    for (const player of world.getAllPlayers()) {
+      if (player.dimension.id === m.dim && Math.hypot(player.location.x - m.x, player.location.z - m.z) < 64) player.playSound("mob.wither.ambient", { volume: 0.6, pitch: 0.5 });
+    }
+    return true;
+  },
+};
+
+/** Radiation detector: the form shows the dose rate the radiation system reads here. */
+/** @type {MachineDef} */
+const DETECTOR = {
+  describe: (m, ctx) => {
+    let total = 0;
+    const block = blockOf(m);
+    for (const e of block?.dimension.getEntities({ type: "minecraft:item", location: { x: m.x, y: m.y, z: m.z }, maxDistance: 8 }) ?? []) {
+      const stack = e.getComponent("minecraft:item")?.itemStack;
+      if (stack) total += (IMPORTED_RADS[stack.typeId] ?? 0) * stack.amount;
+    }
+    ctx.line("hbm.detector.rads", total.toFixed(2));
+  },
+};
+
+Object.assign(MACHINES, {
+  "hbm:machine_chemical_factory": recipeMachine("chemical", { speed: 2 }),
+  "hbm:machine_purex": recipeMachine("purex"),
+  "hbm:machine_crystallizer": recipeMachine("crystallizer"),
+  "hbm:machine_liquefactor": recipeMachine("liquefaction"),
+  "hbm:machine_solidifier": recipeMachine("solidification"),
+  "hbm:machine_mixer": recipeMachine("mixer"),
+  "hbm:machine_electrolyser": recipeMachine("electrolysis"),
+  "hbm:machine_compressor": recipeMachine("compressor"),
+  "hbm:machine_compressor_compact": recipeMachine("compressor", { speed: 2 }),
+  "hbm:machine_cyclotron": recipeMachine("cyclotron"),
+  "hbm:machine_silex": recipeMachine("silex"),
+  "hbm:machine_exposure_chamber": recipeMachine("exposure"),
+  "hbm:machine_arc_welder": recipeMachine("arcwelder"),
+  "hbm:machine_soldering_station": recipeMachine("soldering"),
+  "hbm:machine_ammo_press": recipeMachine("ammopress", { power: false }),
+  "hbm:furnace_combination": recipeMachine("combination", { power: false }),
+  "hbm:machine_hydrotreater": recipeMachine("hydrotreating"),
+  "hbm:machine_catalytic_reformer": recipeMachine("reforming"),
+  "hbm:machine_fraction_tower": recipeMachine("refinery"),
+  "hbm:machine_vacuum_distill": recipeMachine("refinery"),
+  "hbm:machine_intake": fluidSource("air", 1000),
+  "hbm:machine_deuterium_tower": fluidSource("heavywater", 20, { powerPerSecond: 2000, needs: (b) => touches(b, "water") }),
+  "hbm:machine_hephaestus": fluidSource("lava", 100, { needs: (b) => touches(b, "lava") }),
+  "hbm:machine_drain": sink(0),
+  "hbm:machine_flare": sink(2),
+  "hbm:machine_forcefield": FORCEFIELD,
+  "hbm:machine_siren": SIREN,
+  "hbm:machine_detector": DETECTOR,
+  "hbm:machine_transformer": { power: "store", maxEnergy: 1_000_000 },
+  "hbm:machine_converter_he_rf": { power: "store", maxEnergy: 1_000_000 },
+  "hbm:machine_converter_rf_he": { power: "store", maxEnergy: 1_000_000 },
+  "hbm:machine_sawmill": processor({ maxEnergy: 20_000, perTick: 10, duration: 40, recipe: (id) => (/_log$|_stem$/.test(id) ? { id: id.replace(/^minecraft:(stripped_)?/, "minecraft:").replace(/_(log|stem)$/, "_planks"), count: 6 } : undefined) }),
+});
+
 // Only blocks that exist get behaviour.
 for (const id of Object.keys(MACHINES)) if (id.startsWith("hbm:") && !KNOWN_BLOCKS.has(id)) delete MACHINES[id];
 
@@ -1265,7 +1428,7 @@ function tick() {
   const live = [...active].map((k) => /** @type {Machine} */ (machines.get(k)));
   for (const m of live) if (MACHINES[m.type].power === "gen") pushEnergy(m, ["use", "store"], active);
   for (const m of live) if (MACHINES[m.type].power === "store") pushEnergy(m, ["use"], active);
-  for (const m of live) for (const fluid of FLUID_NAMES) pushFluid(m, fluid, active);
+  for (const m of live) for (const [fluid, amount] of Object.entries(m.tanks ?? {})) if (amount > 0) pushFluid(m, fluid, active);
 
   for (const [key, on] of lit) {
     const block = blocks.get(key);
@@ -1319,6 +1482,7 @@ const BLOCK_IDS = /^(ore_|block_|machine_|red_cable$|fluid_duct$|rbmk_(fuel|cont
 
 /** Our ids use the pack's language file; vanilla ids fall back to a readable form of the id. */
 function itemLabel(id) {
+  if (id.startsWith("fluid:")) return { translate: `hbm.fluid.${id.slice(6)}` };
   if (id.startsWith("hbm:")) {
     const short = id.slice(4);
     return { translate: BLOCK_IDS.test(short) ? `tile.hbm.${short}.name` : `item.hbm.${short}.name` };
@@ -1359,6 +1523,33 @@ function chooseRecipe(player, /** @type {Machine} */ m, /** @type {{ output: str
 function insert(player, /** @type {Machine} */ m, held, container) {
   const def = MACHINES[m.type];
   const say = (message) => player.onScreenDisplay.setActionBar(message);
+  // Buckets: pour water or lava into a tank that takes it, or scoop it out with an empty bucket.
+  const bucketFluid = { "minecraft:water_bucket": "water", "minecraft:lava_bucket": "lava" }[held.typeId];
+  if (bucketFluid) {
+    const t = tankOf(m, bucketFluid);
+    if (!t || t.role === "out" || tank(m, bucketFluid) + 1000 > t.cap) return false;
+    setTank(m, bucketFluid, tank(m, bucketFluid) + 1000);
+    container.setItem(player.selectedSlotIndex, new ItemStack("minecraft:bucket", 1));
+    dirty.add(machineKey(m));
+    save();
+    say({ rawtext: [{ translate: "hbm.machine.poured" }, { translate: `hbm.fluid.${bucketFluid}` }] });
+    return true;
+  }
+  if (held.typeId === "minecraft:bucket") {
+    const fluid = ["water", "lava"].find((f) => tank(m, f) >= 1000);
+    if (!fluid) return false;
+    setTank(m, fluid, tank(m, fluid) - 1000);
+    if (held.amount > 1) {
+      held.amount -= 1;
+      container.setItem(player.selectedSlotIndex, held);
+      give(player, { id: `minecraft:${fluid}_bucket`, n: 1 });
+    } else {
+      container.setItem(player.selectedSlotIndex, new ItemStack(`minecraft:${fluid}_bucket`, 1));
+    }
+    dirty.add(machineKey(m));
+    save();
+    return true;
+  }
   let amount = 0;
   if (def.stockAccepts) {
     if (!def.stockAccepts(held.typeId, m)) return false;
