@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_472"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rangefinder"
+      },
+      {
+        "item": "hbm:circuit_advanced"
+      },
+      {
+        "item": "hbm:ingot_polymer"
+      }
+    ],
+    "result": {
+      "item": "hbm:designator_arty_range",
+      "count": 1
+    }
+  }
+}

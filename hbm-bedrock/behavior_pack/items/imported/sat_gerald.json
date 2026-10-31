@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:sat_gerald",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_sat_gerald"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.sat_gerald.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_92"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "MWM",
+      "WBW",
+      "MWM"
+    ],
+    "key": {
+      "M": {
+        "item": "hbm:bottle_mercury"
+      },
+      "W": {
+        "item": "hbm:nuclear_waste"
+      },
+      "B": {
+        "item": "hbm:bathwater"
+      }
+    },
+    "result": {
+      "item": "hbm:bathwater_mk2",
+      "count": 1
+    }
+  }
+}

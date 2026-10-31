@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_669"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BHB"
+    ],
+    "key": {
+      "H": {
+        "item": "hbm:shell_steel"
+      },
+      "B": {
+        "item": "minecraft:iron_bars"
+      }
+    },
+    "result": {
+      "item": "hbm:fraction_spacer",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_12"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " S ",
+      "SPS",
+      " H "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:nugget_pu239"
+      },
+      "S": {
+        "item": "minecraft:sugar"
+      },
+      "H": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "hbm:cotton_candy",
+      "count": 2
+    }
+  }
+}

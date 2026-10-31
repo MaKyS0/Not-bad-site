@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_199"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:block_pu239"
+      }
+    },
+    "result": {
+      "item": "hbm:ingot_pu239",
+      "count": 9
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_774"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SFS",
+      "SFS"
+    ],
+    "key": {
+      "S": {
+        "item": "minecraft:oak_slab"
+      },
+      "F": {
+        "item": "minecraft:oak_fence"
+      }
+    },
+    "result": {
+      "item": "hbm:wood_barrier",
+      "count": 8
+    }
+  }
+}

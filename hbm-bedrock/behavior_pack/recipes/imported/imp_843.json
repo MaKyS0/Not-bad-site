@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_843"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "IIP",
+      "CHW",
+      "IIP"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:ingot_biorubber"
+      },
+      "P": {
+        "item": "hbm:plate_saturnite"
+      },
+      "C": {
+        "item": "hbm:circuit_advanced"
+      },
+      "H": {
+        "item": "hbm:shell_steel"
+      },
+      "W": {
+        "item": "hbm:coil_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:custom_fall",
+      "count": 1
+    }
+  }
+}

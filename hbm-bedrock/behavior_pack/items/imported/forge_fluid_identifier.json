@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:forge_fluid_identifier",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_forge_fluid_identifier"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.forge_fluid_identifier.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

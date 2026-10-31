@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_657"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "S S",
+      "S S",
+      " S "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "minecraft:hopper",
+      "count": 1
+    }
+  }
+}

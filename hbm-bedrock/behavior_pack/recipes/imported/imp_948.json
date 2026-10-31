@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_948"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SIS",
+      "ICI",
+      "SIS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "I": {
+        "item": "hbm:plate_iron"
+      },
+      "C": {
+        "item": "hbm:plate_cast_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_condenser",
+      "count": 1
+    }
+  }
+}

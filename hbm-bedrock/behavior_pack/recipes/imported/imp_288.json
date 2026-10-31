@@ -1,0 +1,29 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_288"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:clay_ball"
+      },
+      {
+        "item": "minecraft:clay_ball"
+      },
+      {
+        "item": "minecraft:clay_ball"
+      },
+      {
+        "item": "hbm:powder_aluminium"
+      }
+    ],
+    "result": {
+      "item": "hbm:ball_fireclay",
+      "count": 4
+    }
+  }
+}

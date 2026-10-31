@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1213"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PSP",
+      "SNS",
+      "PSP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:ingot_phosphorus"
+      },
+      "S": {
+        "item": "hbm:crystal_sulfur"
+      },
+      "N": {
+        "item": "hbm:ammo_fuel_napalm"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_fuel_vaporizer",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_761"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "TST",
+      "SSS"
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:ingot_tungsten"
+      },
+      "S": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:tape_recorder",
+      "count": 4
+    }
+  }
+}

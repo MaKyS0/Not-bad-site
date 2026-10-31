@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1052"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "I",
+      "F"
+    ],
+    "key": {
+      "F": {
+        "item": "hbm:filter_coal"
+      },
+      "I": {
+        "item": "hbm:plate_iron"
+      }
+    },
+    "result": {
+      "item": "hbm:gas_mask_filter",
+      "count": 1
+    }
+  }
+}

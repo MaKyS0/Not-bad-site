@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_419"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:ball_resin",
+    "output": "hbm:ingot_biorubber"
+  }
+}

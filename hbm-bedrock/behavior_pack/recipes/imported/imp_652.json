@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_652"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "I I",
+      "I I",
+      "IRI"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:plate_polymer"
+      },
+      "R": {
+        "item": "hbm:coil_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_battery_socket",
+      "count": 1
+    }
+  }
+}

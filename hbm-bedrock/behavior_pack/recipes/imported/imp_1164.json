@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1164"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BBB",
+      "BAB",
+      "BBB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_50ae"
+      },
+      "A": {
+        "item": "hbm:ingot_u238"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_50ae_du",
+      "count": 8
+    }
+  }
+}

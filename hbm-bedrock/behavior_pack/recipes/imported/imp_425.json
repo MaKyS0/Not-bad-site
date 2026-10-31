@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_425"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:rag_damp",
+    "output": "hbm:rag"
+  }
+}

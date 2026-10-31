@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:nitra_small",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_nitra_small"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.nitra_small.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

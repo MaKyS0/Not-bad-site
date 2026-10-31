@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_546"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " C ",
+      "LTL",
+      "LIL"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:plate_copper"
+      },
+      "L": {
+        "item": "hbm:plate_lead"
+      },
+      "I": {
+        "item": "hbm:plate_iron"
+      },
+      "T": {
+        "item": "hbm:cell_tritium"
+      }
+    },
+    "result": {
+      "item": "hbm:custom_hydro",
+      "count": 1
+    }
+  }
+}

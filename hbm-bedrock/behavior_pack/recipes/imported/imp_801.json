@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_801"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "LYL",
+      "EWE",
+      "LYL"
+    ],
+    "key": {
+      "E": {
+        "item": "hbm:ingot_euphemium"
+      },
+      "L": {
+        "item": "minecraft:blue_dye"
+      },
+      "W": {
+        "item": "minecraft:clock"
+      },
+      "Y": {
+        "item": "hbm:billet_yharonite"
+      }
+    },
+    "result": {
+      "item": "hbm:watch",
+      "count": 1
+    }
+  }
+}

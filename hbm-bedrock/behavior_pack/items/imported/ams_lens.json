@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:ams_lens",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_ams_lens"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.ams_lens.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

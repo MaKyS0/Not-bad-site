@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_908"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SCS",
+      "CBC",
+      "SCS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "C": {
+        "item": "hbm:plate_iron"
+      },
+      "B": {
+        "item": "hbm:tank_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:rbmk_steam_inlet",
+      "count": 1
+    }
+  }
+}

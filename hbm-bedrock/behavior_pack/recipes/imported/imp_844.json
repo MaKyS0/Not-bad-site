@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_844"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "LUL",
+      "UCU",
+      "LUL"
+    ],
+    "key": {
+      "L": {
+        "item": "hbm:plate_lead"
+      },
+      "U": {
+        "item": "hbm:ingot_ferrouranium"
+      },
+      "C": {
+        "item": "hbm:crate_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:containment_box",
+      "count": 1
+    }
+  }
+}

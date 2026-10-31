@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_20"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:med_ipecac"
+      }
+    ],
+    "result": {
+      "item": "hbm:med_ptsd",
+      "count": 1
+    }
+  }
+}

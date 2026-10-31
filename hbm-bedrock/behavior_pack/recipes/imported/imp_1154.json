@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1154"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BBB",
+      "BAB",
+      "BBB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_9mm"
+      },
+      "A": {
+        "item": "hbm:ingot_dura_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_9mm_ap",
+      "count": 8
+    }
+  }
+}

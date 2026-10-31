@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_578"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "STS",
+      "G G",
+      "STS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_cast_lead"
+      },
+      "T": {
+        "item": "hbm:coil_gold"
+      },
+      "G": {
+        "item": "minecraft:glass_pane"
+      }
+    },
+    "result": {
+      "item": "hbm:particle_empty",
+      "count": 2
+    }
+  }
+}

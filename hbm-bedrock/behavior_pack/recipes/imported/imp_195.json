@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_195"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:block_neptunium"
+      }
+    },
+    "result": {
+      "item": "hbm:ingot_neptunium",
+      "count": 9
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1147"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "G",
+      "R"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:ammo_rocket"
+      },
+      "R": {
+        "item": "hbm:ammo_4gauge_explosive"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_4gauge_kampf",
+      "count": 2
+    }
+  }
+}

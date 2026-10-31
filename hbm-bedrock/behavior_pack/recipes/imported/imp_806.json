@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_806"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "PBP",
+      "PPP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "B": {
+        "item": "hbm:bolt_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:padlock",
+      "count": 1
+    }
+  }
+}

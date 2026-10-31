@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_256"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ingot_australium"
+      }
+    },
+    "result": {
+      "item": "hbm:nugget_australium",
+      "count": 9
+    }
+  }
+}

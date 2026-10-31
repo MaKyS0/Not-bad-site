@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_645"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CCW",
+      "IIW",
+      "  S"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:coil_copper"
+      },
+      "W": {
+        "item": "hbm:pipe_steel"
+      },
+      "I": {
+        "item": "hbm:plate_polymer"
+      },
+      "S": {
+        "item": "minecraft:cobblestone"
+      }
+    },
+    "result": {
+      "item": "hbm:red_pylon_medium_steel",
+      "count": 2
+    }
+  }
+}

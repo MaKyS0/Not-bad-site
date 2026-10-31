@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_802"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "  B",
+      " B ",
+      "P  "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "B": {
+        "item": "hbm:bolt_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:key",
+      "count": 1
+    }
+  }
+}

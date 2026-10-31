@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_916"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:pipe_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:deco_pipe",
+      "count": 6
+    }
+  }
+}

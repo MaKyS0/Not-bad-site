@@ -1,0 +1,29 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_308"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_desh_mix"
+      },
+      {
+        "item": "hbm:nugget_mercury"
+      },
+      {
+        "item": "hbm:nugget_mercury"
+      },
+      {
+        "item": "hbm:powder_coal"
+      }
+    ],
+    "result": {
+      "item": "hbm:powder_desh_ready",
+      "count": 1
+    }
+  }
+}

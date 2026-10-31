@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_830"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DPD",
+      "PSP",
+      "DPD"
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:plate_dineutronium"
+      },
+      "P": {
+        "item": "hbm:powder_spark_mix"
+      },
+      "S": {
+        "item": "hbm:singularity"
+      }
+    },
+    "result": {
+      "item": "hbm:ams_core_wormhole",
+      "count": 1
+    }
+  }
+}

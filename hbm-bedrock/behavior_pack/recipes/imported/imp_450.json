@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_450"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:crystal_beryllium",
+    "output": "hbm:ingot_beryllium"
+  }
+}

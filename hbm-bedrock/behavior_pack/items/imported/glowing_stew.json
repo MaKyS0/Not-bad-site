@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:glowing_stew",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_glowing_stew"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.glowing_stew.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

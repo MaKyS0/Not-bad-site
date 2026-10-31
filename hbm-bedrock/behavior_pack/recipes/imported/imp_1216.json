@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1216"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " T ",
+      "GHG",
+      "CCC"
+    ],
+    "key": {
+      "T": {
+        "item": "minecraft:tnt"
+      },
+      "G": {
+        "item": "hbm:cordite"
+      },
+      "H": {
+        "item": "hbm:hull_small_steel"
+      },
+      "C": {
+        "item": "minecraft:copper_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_shell",
+      "count": 6
+    }
+  }
+}

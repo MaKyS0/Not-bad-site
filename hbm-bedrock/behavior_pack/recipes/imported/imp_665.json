@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_665"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "AAA",
+      " B ",
+      "SSS"
+    ],
+    "key": {
+      "A": {
+        "item": "hbm:plate_aluminium"
+      },
+      "B": {
+        "item": "hbm:steel_beam"
+      },
+      "S": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:solar_mirror",
+      "count": 3
+    }
+  }
+}

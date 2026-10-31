@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_965"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:parts_legendary_tier3"
+      }
+    ],
+    "result": {
+      "item": "hbm:parts_legendary_tier2",
+      "count": 3
+    }
+  }
+}

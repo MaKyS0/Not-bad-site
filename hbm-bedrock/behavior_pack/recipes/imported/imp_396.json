@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_396"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_magnetized_tungsten",
+    "output": "hbm:ingot_magnetized_tungsten"
+  }
+}

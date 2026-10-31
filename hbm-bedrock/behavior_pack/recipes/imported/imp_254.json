@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_254"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ingot_les"
+      }
+    },
+    "result": {
+      "item": "hbm:nugget_les",
+      "count": 9
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1179"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " U ",
+      "UDU",
+      "UTU"
+    ],
+    "key": {
+      "U": {
+        "item": "hbm:block_u238"
+      },
+      "D": {
+        "item": "hbm:block_desh"
+      },
+      "T": {
+        "item": "hbm:block_tungsten"
+      }
+    },
+    "result": {
+      "item": "hbm:folly_bullet_du",
+      "count": 1
+    }
+  }
+}

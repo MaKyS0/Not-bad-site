@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1203"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " X ",
+      "X X",
+      " XX"
+    ],
+    "key": {
+      "X": {
+        "item": "hbm:plate_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:pellet_claws",
+      "count": 1
+    }
+  }
+}

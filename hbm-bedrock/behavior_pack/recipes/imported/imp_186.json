@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_186"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:block_australium"
+      }
+    },
+    "result": {
+      "item": "hbm:ingot_australium",
+      "count": 9
+    }
+  }
+}

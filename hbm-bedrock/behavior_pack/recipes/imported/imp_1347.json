@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1347"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:sat_foeq"
+      }
+    ],
+    "result": {
+      "item": "hbm:sat_foeq",
+      "count": 1
+    }
+  }
+}

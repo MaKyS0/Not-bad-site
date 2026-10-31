@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_804"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "W ",
+      " W",
+      " W"
+    ],
+    "key": {
+      "W": {
+        "item": "hbm:wire_fine_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:pin",
+      "count": 1
+    }
+  }
+}

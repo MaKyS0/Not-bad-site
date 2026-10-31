@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_332"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "F",
+      "I",
+      "F"
+    ],
+    "key": {
+      "F": {
+        "item": "hbm:billet_u235"
+      },
+      "I": {
+        "item": "hbm:plate_polymer"
+      }
+    },
+    "result": {
+      "item": "hbm:pwr_fuel_heu235",
+      "count": 1
+    }
+  }
+}

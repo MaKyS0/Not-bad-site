@@ -1,0 +1,33 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_681"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " A ",
+      "CBS"
+    ],
+    "key": {
+      "A": {
+        "item": "hbm:plate_aluminium"
+      },
+      "C": {
+        "item": "hbm:plate_cast_steel"
+      },
+      "B": {
+        "item": "hbm:ingot_boron"
+      },
+      "S": {
+        "item": "hbm:shell_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:pile_device",
+      "count": 1
+    }
+  }
+}

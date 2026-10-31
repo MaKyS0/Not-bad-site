@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:generator_steel",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_generator_steel"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.generator_steel.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

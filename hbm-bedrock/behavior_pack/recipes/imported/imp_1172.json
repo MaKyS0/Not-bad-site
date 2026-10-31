@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1172"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " B ",
+      "BAB",
+      " B "
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_556"
+      },
+      "A": {
+        "item": "hbm:pellet_flechette"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_556_flechette",
+      "count": 4
+    }
+  }
+}

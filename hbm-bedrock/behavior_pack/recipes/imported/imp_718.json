@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_718"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " C ",
+      "C C",
+      " C "
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:brick_concrete_cracked"
+      }
+    },
+    "result": {
+      "item": "hbm:brick_concrete_broken",
+      "count": 6
+    }
+  }
+}

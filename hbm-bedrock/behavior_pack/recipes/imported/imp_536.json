@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_536"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "I",
+      "C",
+      "S"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:plate_polymer"
+      },
+      "C": {
+        "item": "hbm:ballistite"
+      },
+      "S": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:mine_ap",
+      "count": 4
+    }
+  }
+}

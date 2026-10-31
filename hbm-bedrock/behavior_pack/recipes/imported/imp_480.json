@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_480"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:geiger_counter"
+      },
+      {
+        "item": "hbm:billet_polonium"
+      },
+      {
+        "item": "hbm:ingot_asbestos"
+      }
+    ],
+    "result": {
+      "item": "hbm:digamma_diagnostic",
+      "count": 1
+    }
+  }
+}

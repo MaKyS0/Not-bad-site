@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_497"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "RDR",
+      "DWD",
+      "RDR"
+    ],
+    "key": {
+      "R": {
+        "item": "hbm:rebar"
+      },
+      "D": {
+        "item": "hbm:ducttape"
+      },
+      "W": {
+        "item": "hbm:wrench"
+      }
+    },
+    "result": {
+      "item": "hbm:rebar_placer",
+      "count": 1
+    }
+  }
+}

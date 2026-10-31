@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_476"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SWS",
+      " G ",
+      "PCP"
+    ],
+    "key": {
+      "W": {
+        "item": "hbm:wire_fine_gold"
+      },
+      "P": {
+        "item": "hbm:ingot_polymer"
+      },
+      "C": {
+        "item": "hbm:circuit_advanced"
+      },
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "G": {
+        "item": "minecraft:gold_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:survey_scanner",
+      "count": 1
+    }
+  }
+}

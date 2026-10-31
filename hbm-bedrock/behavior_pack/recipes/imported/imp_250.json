@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_250"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ingot_schrabidium_fuel"
+      }
+    },
+    "result": {
+      "item": "hbm:nugget_schrabidium_fuel",
+      "count": 9
+    }
+  }
+}

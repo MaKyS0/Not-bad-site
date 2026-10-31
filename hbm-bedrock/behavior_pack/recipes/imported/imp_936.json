@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_936"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PPP",
+      "PCP",
+      "PPP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:deco_pipe"
+      },
+      "C": {
+        "item": "minecraft:red_dye"
+      }
+    },
+    "result": {
+      "item": "hbm:deco_pipe_red",
+      "count": 8
+    }
+  }
+}

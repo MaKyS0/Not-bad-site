@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:wire_dense_copper",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_wire_dense_copper"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.wire_dense_copper.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

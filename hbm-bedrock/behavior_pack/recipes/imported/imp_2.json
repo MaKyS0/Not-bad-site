@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_2"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "TCT",
+      "MJM",
+      "B B"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:circuit_advanced"
+      },
+      "T": {
+        "item": "hbm:tank_steel"
+      },
+      "J": {
+        "item": "hbm:jetpack_break"
+      },
+      "M": {
+        "item": "hbm:motor"
+      },
+      "B": {
+        "item": "hbm:bolt_durasteel"
+      }
+    },
+    "result": {
+      "item": "hbm:jetpack_vector",
+      "count": 1
+    }
+  }
+}

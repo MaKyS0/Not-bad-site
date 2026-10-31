@@ -1,0 +1,44 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1045"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_co60_tiny"
+      },
+      {
+        "item": "hbm:powder_sr90_tiny"
+      },
+      {
+        "item": "hbm:powder_i131_tiny"
+      },
+      {
+        "item": "hbm:powder_cs137_tiny"
+      },
+      {
+        "item": "hbm:powder_xe135_tiny"
+      },
+      {
+        "item": "hbm:powder_au198_tiny"
+      },
+      {
+        "item": "hbm:powder_pb209_tiny"
+      },
+      {
+        "item": "hbm:powder_at209_tiny"
+      },
+      {
+        "item": "hbm:powder_ac227_tiny"
+      }
+    ],
+    "result": {
+      "item": "hbm:powder_radspice_tiny",
+      "count": 1
+    }
+  }
+}

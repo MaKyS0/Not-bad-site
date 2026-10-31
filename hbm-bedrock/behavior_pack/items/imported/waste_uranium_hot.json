@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:waste_uranium_hot",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_waste_uranium_hot"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.waste_uranium_hot.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

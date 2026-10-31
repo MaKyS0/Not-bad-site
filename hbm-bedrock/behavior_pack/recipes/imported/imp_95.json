@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_95"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:five_htp"
+      },
+      {
+        "item": "hbm:circuit_basic"
+      },
+      {
+        "item": "hbm:plate_saturnite"
+      }
+    ],
+    "result": {
+      "item": "hbm:injector_5htp",
+      "count": 1
+    }
+  }
+}

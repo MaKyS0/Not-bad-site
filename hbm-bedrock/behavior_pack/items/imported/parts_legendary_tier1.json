@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:parts_legendary_tier1",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_parts_legendary_tier1"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.parts_legendary_tier1.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

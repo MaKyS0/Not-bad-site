@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_3"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PCP",
+      "DJD",
+      "PAP"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:circuit_advanced"
+      },
+      "P": {
+        "item": "hbm:plate_saturnite"
+      },
+      "D": {
+        "item": "hbm:ingot_desh"
+      },
+      "J": {
+        "item": "hbm:jetpack_vector"
+      },
+      "A": {
+        "item": "hbm:plate_cast_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:jetpack_boost",
+      "count": 1
+    }
+  }
+}

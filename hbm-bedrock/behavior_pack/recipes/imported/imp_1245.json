@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1245"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:ammo_mirv"
+      }
+    ],
+    "result": {
+      "item": "hbm:ammo_nuke",
+      "count": 6
+    }
+  }
+}

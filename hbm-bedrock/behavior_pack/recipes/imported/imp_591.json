@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_591"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "###",
+      "###",
+      "###"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:wire_fine_carbon"
+      }
+    },
+    "result": {
+      "item": "hbm:ingot_graphite",
+      "count": 1
+    }
+  }
+}

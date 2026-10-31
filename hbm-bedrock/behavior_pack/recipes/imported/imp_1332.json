@@ -1,0 +1,41 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1332"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:glass_pane"
+      },
+      {
+        "item": "minecraft:cocoa_beans"
+      },
+      {
+        "item": "minecraft:milk_bucket"
+      },
+      {
+        "item": "hbm:block_niter"
+      },
+      {
+        "item": "hbm:sulfur"
+      },
+      {
+        "item": "hbm:sulfur"
+      },
+      {
+        "item": "hbm:sulfur"
+      },
+      {
+        "item": "hbm:powder_fire"
+      }
+    ],
+    "result": {
+      "item": "hbm:chocolate_milk",
+      "count": 1
+    }
+  }
+}

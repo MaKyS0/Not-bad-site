@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_492"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " GR",
+      " GR",
+      " G "
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass"
+      },
+      "R": {
+        "item": "hbm:ingot_biorubber"
+      }
+    },
+    "result": {
+      "item": "hbm:siphon",
+      "count": 1
+    }
+  }
+}

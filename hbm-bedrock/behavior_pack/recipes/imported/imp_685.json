@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_685"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:detonator"
+      },
+      {
+        "item": "hbm:defuser"
+      },
+      {
+        "item": "hbm:ducttape"
+      }
+    ],
+    "result": {
+      "item": "hbm:detonator_deadman",
+      "count": 1
+    }
+  }
+}

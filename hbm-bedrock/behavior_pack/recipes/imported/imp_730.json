@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_730"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CBC",
+      "CBC",
+      "CBC"
+    ],
+    "key": {
+      "C": {
+        "item": "minecraft:brick"
+      },
+      "B": {
+        "item": "hbm:ingot_asbestos"
+      }
+    },
+    "result": {
+      "item": "hbm:tile_lab",
+      "count": 4
+    }
+  }
+}

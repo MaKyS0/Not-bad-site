@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_112"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:billet_u238"
+      },
+      {
+        "item": "hbm:billet_u238"
+      },
+      {
+        "item": "hbm:billet_am_mix"
+      }
+    ],
+    "result": {
+      "item": "hbm:billet_americium_fuel",
+      "count": 3
+    }
+  }
+}

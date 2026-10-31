@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_947"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SW",
+      "WS"
+    ],
+    "key": {
+      "S": {
+        "item": "minecraft:string"
+      },
+      "W": {
+        "item": "minecraft:white_wool"
+      }
+    },
+    "result": {
+      "item": "hbm:rag",
+      "count": 4
+    }
+  }
+}

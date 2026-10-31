@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_649"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "RRR",
+      "WWW",
+      "III"
+    ],
+    "key": {
+      "R": {
+        "item": "minecraft:redstone"
+      },
+      "W": {
+        "item": "hbm:wire_fine_mingrade"
+      },
+      "I": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_converter_rf_he",
+      "count": 1
+    }
+  }
+}

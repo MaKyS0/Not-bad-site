@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_609"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "TST",
+      "SCS",
+      "TST"
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:ingot_tcalloy"
+      },
+      "S": {
+        "item": "hbm:sulfur"
+      },
+      "C": {
+        "item": "hbm:catalyst_clay"
+      }
+    },
+    "result": {
+      "item": "hbm:deuterium_filter",
+      "count": 1
+    }
+  }
+}

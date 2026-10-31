@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_807"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "PBP",
+      "PDP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_dura_steel"
+      },
+      "D": {
+        "item": "hbm:plate_desh"
+      },
+      "B": {
+        "item": "hbm:bolt_durasteel"
+      }
+    },
+    "result": {
+      "item": "hbm:padlock_reinforced",
+      "count": 1
+    }
+  }
+}

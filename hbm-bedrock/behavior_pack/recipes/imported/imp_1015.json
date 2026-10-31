@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1015"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rod_empty"
+      },
+      {
+        "item": "hbm:lithium"
+      }
+    ],
+    "result": {
+      "item": "hbm:rod_lithium",
+      "count": 1
+    }
+  }
+}

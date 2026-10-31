@@ -1,0 +1,32 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1309"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:bottle2_empty"
+      },
+      {
+        "item": "minecraft:potion"
+      },
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "hbm:powder_copper"
+      },
+      {
+        "item": "hbm:powder_strontium"
+      }
+    ],
+    "result": {
+      "item": "hbm:bottle2_korl_special",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1131"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "I",
+      "C",
+      "P"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:powder_power"
+      },
+      "C": {
+        "item": "hbm:casing_buckshot"
+      },
+      "P": {
+        "item": "hbm:primer_buckshot"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_revolver_nightmare2_ammo",
+      "count": 12
+    }
+  }
+}

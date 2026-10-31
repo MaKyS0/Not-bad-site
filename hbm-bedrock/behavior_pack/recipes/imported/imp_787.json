@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_787"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PDP",
+      "DTD",
+      "PDP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "D": {
+        "item": "hbm:det_cord"
+      },
+      "T": {
+        "item": "hbm:ingot_semtex"
+      }
+    },
+    "result": {
+      "item": "hbm:det_charge",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1322"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:iv_blood"
+      },
+      {
+        "item": "hbm:powder_coal"
+      },
+      {
+        "item": "minecraft:pumpkin_seeds"
+      }
+    ],
+    "result": {
+      "item": "hbm:radaway",
+      "count": 1
+    }
+  }
+}

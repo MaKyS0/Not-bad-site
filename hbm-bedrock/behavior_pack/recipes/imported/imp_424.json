@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_424"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:combine_scrap",
+    "output": "hbm:ingot_combine_steel"
+  }
+}

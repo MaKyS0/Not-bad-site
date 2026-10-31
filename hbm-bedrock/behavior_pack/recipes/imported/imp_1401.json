@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1401"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " C ",
+      "CPC",
+      " C "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "C": {
+        "item": "hbm:coil_advanced_alloy"
+      }
+    },
+    "result": {
+      "item": "hbm:coil_advanced_torus",
+      "count": 2
+    }
+  }
+}

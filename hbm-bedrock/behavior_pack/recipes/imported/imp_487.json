@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_487"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:sat_chip"
+      },
+      {
+        "item": "hbm:ducttape"
+      },
+      {
+        "item": "hbm:radar_linker"
+      }
+    ],
+    "result": {
+      "item": "hbm:sat_relay",
+      "count": 1
+    }
+  }
+}

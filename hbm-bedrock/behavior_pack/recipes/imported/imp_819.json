@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_819"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "LPL",
+      "BPB",
+      "LPL"
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:paper"
+      },
+      "L": {
+        "item": "hbm:chemical_dye"
+      },
+      "B": {
+        "item": "hbm:chemical_dye"
+      }
+    },
+    "result": {
+      "item": "hbm:template_folder",
+      "count": 1
+    }
+  }
+}

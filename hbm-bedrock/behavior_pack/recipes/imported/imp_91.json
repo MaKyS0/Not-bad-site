@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_91"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "FPF",
+      "PIP",
+      "FPF"
+    ],
+    "key": {
+      "F": {
+        "item": "minecraft:poppy"
+      },
+      "P": {
+        "item": "hbm:armor_polish"
+      },
+      "I": {
+        "item": "minecraft:black_dye"
+      }
+    },
+    "result": {
+      "item": "hbm:ink",
+      "count": 1
+    }
+  }
+}

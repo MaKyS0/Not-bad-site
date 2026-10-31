@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_620"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS",
+      "DTD",
+      "SSS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "D": {
+        "item": "hbm:block_desh"
+      },
+      "T": {
+        "item": "hbm:block_tungsten"
+      }
+    },
+    "result": {
+      "item": "hbm:shimmer_head",
+      "count": 1
+    }
+  }
+}

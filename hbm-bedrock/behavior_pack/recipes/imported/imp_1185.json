@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1185"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " T ",
+      "GCG",
+      " P "
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:ingot_semtex"
+      },
+      "G": {
+        "item": "hbm:rocket_fuel"
+      },
+      "C": {
+        "item": "hbm:casing_50"
+      },
+      "P": {
+        "item": "hbm:primer_50"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_rocket",
+      "count": 2
+    }
+  }
+}

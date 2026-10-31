@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:ammo_20gauge_incendiary",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_ammo_20gauge_incendiary"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.ammo_20gauge_incendiary.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

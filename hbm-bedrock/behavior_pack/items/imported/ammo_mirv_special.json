@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:ammo_mirv_special",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_ammo_mirv_special"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.ammo_mirv_special.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

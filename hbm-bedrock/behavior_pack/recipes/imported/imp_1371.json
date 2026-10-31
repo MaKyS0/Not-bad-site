@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1371"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " U ",
+      "PUP",
+      " U "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_iron"
+      },
+      "U": {
+        "item": "hbm:billet_plutonium"
+      }
+    },
+    "result": {
+      "item": "hbm:pile_rod_plutonium",
+      "count": 1
+    }
+  }
+}

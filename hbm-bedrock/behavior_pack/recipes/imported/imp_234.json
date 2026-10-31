@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_234"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ingot_polonium"
+      }
+    },
+    "result": {
+      "item": "hbm:nugget_polonium",
+      "count": 9
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1382"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DGD",
+      "GTG",
+      "DGD"
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:ducttape"
+      },
+      "G": {
+        "item": "hbm:wire_fine_gold"
+      },
+      "T": {
+        "item": "hbm:tesla"
+      }
+    },
+    "result": {
+      "item": "hbm:back_tesla",
+      "count": 1
+    }
+  }
+}

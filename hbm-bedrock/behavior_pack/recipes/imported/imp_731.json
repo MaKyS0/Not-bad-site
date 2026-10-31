@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_731"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " C ",
+      "C C",
+      " C "
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:tile_lab"
+      }
+    },
+    "result": {
+      "item": "hbm:tile_lab_cracked",
+      "count": 6
+    }
+  }
+}

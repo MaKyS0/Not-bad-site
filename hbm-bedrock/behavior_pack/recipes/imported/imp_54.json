@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_54"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "P",
+      "C",
+      "B"
+    ],
+    "key": {
+      "B": {
+        "item": "minecraft:iron_bars"
+      },
+      "C": {
+        "item": "hbm:rod_empty"
+      },
+      "P": {
+        "item": "hbm:plate_iron"
+      }
+    },
+    "result": {
+      "item": "hbm:syringe_metal_empty",
+      "count": 6
+    }
+  }
+}

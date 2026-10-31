@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_775"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "IBI",
+      "LBL",
+      "IBI"
+    ],
+    "key": {
+      "B": {
+        "item": "minecraft:book"
+      },
+      "I": {
+        "item": "minecraft:black_dye"
+      },
+      "L": {
+        "item": "minecraft:blue_dye"
+      }
+    },
+    "result": {
+      "item": "hbm:book_guide",
+      "count": 1
+    }
+  }
+}

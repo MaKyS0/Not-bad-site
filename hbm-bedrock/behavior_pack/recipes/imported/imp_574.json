@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_574"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PPP",
+      "CBB",
+      "PPP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:ingot_polymer"
+      },
+      "C": {
+        "item": "hbm:crt_display"
+      },
+      "B": {
+        "item": "hbm:circuit_pcb"
+      }
+    },
+    "result": {
+      "item": "hbm:circuit_controller_chassis",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1211"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CPC",
+      "CDC",
+      "CPC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:powder_coal"
+      },
+      "P": {
+        "item": "hbm:ingot_phosphorus"
+      },
+      "D": {
+        "item": "hbm:ammo_fuel"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_fuel_phosphorus",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_602"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "hbm:powder_sawdust"
+      },
+      {
+        "item": "hbm:powder_sawdust"
+      },
+      {
+        "item": "minecraft:cactus"
+      },
+      {
+        "item": "minecraft:cactus"
+      },
+      {
+        "item": "minecraft:cactus"
+      }
+    ],
+    "result": {
+      "item": "hbm:biomass",
+      "count": 4
+    }
+  }
+}

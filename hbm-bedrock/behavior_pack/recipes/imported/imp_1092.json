@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1092"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " S ",
+      "EBE",
+      " S "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:hull_small_steel"
+      },
+      "E": {
+        "item": "hbm:powder_power"
+      },
+      "B": {
+        "item": "hbm:egg_balefire_shard"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_bf_ammo",
+      "count": 1
+    }
+  }
+}

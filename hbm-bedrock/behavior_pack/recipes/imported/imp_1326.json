@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1326"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "EEE",
+      "EPE",
+      "EEE"
+    ],
+    "key": {
+      "E": {
+        "item": "hbm:gadget_explosive"
+      },
+      "P": {
+        "item": "hbm:plate_aluminium"
+      }
+    },
+    "result": {
+      "item": "hbm:gadget_explosive8",
+      "count": 1
+    }
+  }
+}

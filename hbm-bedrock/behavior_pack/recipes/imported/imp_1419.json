@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_1419"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:casing_50",
+    "output": "minecraft:copper_ingot"
+  }
+}

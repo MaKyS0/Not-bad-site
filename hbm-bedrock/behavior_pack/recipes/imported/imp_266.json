@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_266"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:powder_niobium"
+      }
+    },
+    "result": {
+      "item": "hbm:powder_niobium_tiny",
+      "count": 9
+    }
+  }
+}

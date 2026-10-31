@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_860"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rune_blank"
+      },
+      {
+        "item": "hbm:powder_spark_mix"
+      },
+      {
+        "item": "hbm:singularity_spark"
+      }
+    ],
+    "result": {
+      "item": "hbm:rune_jera",
+      "count": 1
+    }
+  }
+}

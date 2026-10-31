@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1262"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "S ",
+      "AA",
+      "AA"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "A": {
+        "item": "hbm:plate_aluminium"
+      }
+    },
+    "result": {
+      "item": "hbm:canister_fuel",
+      "count": 2
+    }
+  }
+}

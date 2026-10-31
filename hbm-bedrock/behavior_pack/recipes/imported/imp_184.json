@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_184"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:block_magnetized_tungsten"
+      }
+    },
+    "result": {
+      "item": "hbm:ingot_magnetized_tungsten",
+      "count": 9
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_466"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "II",
+      " I",
+      " I"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:pipe_lead"
+      }
+    },
+    "result": {
+      "item": "hbm:pipe_lead",
+      "count": 1
+    }
+  }
+}

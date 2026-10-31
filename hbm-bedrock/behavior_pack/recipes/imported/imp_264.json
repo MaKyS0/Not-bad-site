@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_264"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:powder_neodymium"
+      }
+    },
+    "result": {
+      "item": "hbm:powder_neodymium_tiny",
+      "count": 9
+    }
+  }
+}

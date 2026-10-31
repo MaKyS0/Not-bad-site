@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:bomb_caller",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_bomb_caller"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.bomb_caller.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

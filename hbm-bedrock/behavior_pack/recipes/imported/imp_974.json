@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_974"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:foundry_channel"
+      },
+      {
+        "item": "minecraft:stone_bricks"
+      }
+    ],
+    "result": {
+      "item": "hbm:foundry_slagtap",
+      "count": 1
+    }
+  }
+}

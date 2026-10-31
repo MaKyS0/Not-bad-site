@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1031"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rod_dual_thorium_fuel_depleted"
+      }
+    ],
+    "result": {
+      "item": "hbm:waste_thorium_hot",
+      "count": 2
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_706"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "III",
+      "SSS"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:brick"
+      },
+      "S": {
+        "item": "minecraft:obsidian"
+      }
+    },
+    "result": {
+      "item": "hbm:stamp_obsidian_flat",
+      "count": 1
+    }
+  }
+}

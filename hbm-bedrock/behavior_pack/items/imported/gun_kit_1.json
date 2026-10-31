@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:gun_kit_1",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_gun_kit_1"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.gun_kit_1.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

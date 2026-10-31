@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:gun_spark",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_gun_spark"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.gun_spark.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

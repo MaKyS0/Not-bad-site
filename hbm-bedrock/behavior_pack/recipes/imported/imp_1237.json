@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1237"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "ABA",
+      "BAB",
+      "ABA"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_4gauge"
+      },
+      "A": {
+        "item": "hbm:toothpicks"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_4gauge_vampire",
+      "count": 4
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_576"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " S ",
+      "G G",
+      " S "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "G": {
+        "item": "minecraft:glass_pane"
+      }
+    },
+    "result": {
+      "item": "hbm:cell_empty",
+      "count": 6
+    }
+  }
+}

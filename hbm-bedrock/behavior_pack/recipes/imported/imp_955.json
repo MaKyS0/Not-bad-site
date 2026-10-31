@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_955"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "G",
+      "T",
+      "C"
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:green_dye"
+      },
+      "T": {
+        "item": "minecraft:redstone_torch"
+      },
+      "C": {
+        "item": "hbm:circuit_basic"
+      }
+    },
+    "result": {
+      "item": "hbm:drone_waypoint",
+      "count": 4
+    }
+  }
+}

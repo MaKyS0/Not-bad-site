@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1186"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "G",
+      "R"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:ingot_semtex"
+      },
+      "R": {
+        "item": "hbm:ammo_rocket"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_rocket_he",
+      "count": 1
+    }
+  }
+}

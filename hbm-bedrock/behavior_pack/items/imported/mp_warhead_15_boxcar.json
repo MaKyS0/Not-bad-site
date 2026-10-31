@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:mp_warhead_15_boxcar",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_mp_warhead_15_boxcar"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.mp_warhead_15_boxcar.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

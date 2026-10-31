@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_894"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "LLL",
+      "BBB",
+      "P P"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "L": {
+        "item": "hbm:glass_lead"
+      },
+      "B": {
+        "item": "hbm:glass_boron"
+      }
+    },
+    "result": {
+      "item": "hbm:rbmk_lid_glass",
+      "count": 4
+    }
+  }
+}

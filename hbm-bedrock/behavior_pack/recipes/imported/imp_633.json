@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_633"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "WRW",
+      "RIR",
+      "WRW"
+    ],
+    "key": {
+      "W": {
+        "item": "hbm:plate_polymer"
+      },
+      "I": {
+        "item": "hbm:ingot_red_copper"
+      },
+      "R": {
+        "item": "hbm:wire_fine_mingrade"
+      }
+    },
+    "result": {
+      "item": "hbm:red_wire_coated",
+      "count": 16
+    }
+  }
+}

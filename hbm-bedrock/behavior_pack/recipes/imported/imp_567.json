@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_567"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "I",
+      "N",
+      "W"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:plate_polymer"
+      },
+      "N": {
+        "item": "hbm:nugget_niobium"
+      },
+      "W": {
+        "item": "hbm:wire_fine_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:circuit_capacitor",
+      "count": 1
+    }
+  }
+}

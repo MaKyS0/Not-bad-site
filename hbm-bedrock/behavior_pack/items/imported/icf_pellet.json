@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:icf_pellet",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_icf_pellet"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.icf_pellet.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

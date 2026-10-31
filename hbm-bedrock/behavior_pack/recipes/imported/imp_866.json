@@ -1,0 +1,44 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_866"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:ams_catalyst_blank"
+      },
+      {
+        "item": "hbm:rune_dagaz"
+      },
+      {
+        "item": "hbm:rune_dagaz"
+      },
+      {
+        "item": "hbm:rune_jera"
+      },
+      {
+        "item": "hbm:rune_jera"
+      },
+      {
+        "item": "hbm:powder_copper"
+      },
+      {
+        "item": "hbm:powder_copper"
+      },
+      {
+        "item": "hbm:powder_copper"
+      },
+      {
+        "item": "hbm:powder_copper"
+      }
+    ],
+    "result": {
+      "item": "hbm:ams_catalyst_copper",
+      "count": 1
+    }
+  }
+}

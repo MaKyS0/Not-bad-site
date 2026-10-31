@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_473"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "I I",
+      "ICI",
+      "GGG"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:plate_iron"
+      },
+      "G": {
+        "item": "hbm:plate_gold"
+      },
+      "C": {
+        "item": "hbm:circuit_advanced"
+      }
+    },
+    "result": {
+      "item": "hbm:linker",
+      "count": 1
+    }
+  }
+}

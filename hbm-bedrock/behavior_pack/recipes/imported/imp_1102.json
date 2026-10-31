@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1102"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " F ",
+      "SFS",
+      " F "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "F": {
+        "item": "hbm:powder_ice"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_cryolator_ammo",
+      "count": 16
+    }
+  }
+}

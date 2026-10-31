@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:laser_crystal_cmb",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_laser_crystal_cmb"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.laser_crystal_cmb.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_352"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:ore_nether_plutonium",
+    "output": "hbm:ingot_plutonium"
+  }
+}

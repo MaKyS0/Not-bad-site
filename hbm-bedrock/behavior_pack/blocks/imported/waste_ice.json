@@ -1,0 +1,52 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:waste_ice",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.waste_ice.name",
+      "minecraft:destructible_by_mining": false,
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 6
+      },
+      "minecraft:geometry": "geometry.hbm.machine",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_imp_ext_blocks_waste_ice",
+          "render_method": "alpha_test"
+        },
+        "north": {
+          "texture": "hbm_imp_ext_blocks_waste_ice",
+          "render_method": "alpha_test"
+        },
+        "south": {
+          "texture": "hbm_imp_ext_blocks_waste_ice",
+          "render_method": "alpha_test"
+        },
+        "east": {
+          "texture": "hbm_imp_ext_blocks_waste_ice",
+          "render_method": "alpha_test"
+        },
+        "west": {
+          "texture": "hbm_imp_ext_blocks_waste_ice",
+          "render_method": "alpha_test"
+        },
+        "up": {
+          "texture": "hbm_imp_ext_blocks_waste_ice",
+          "render_method": "alpha_test"
+        },
+        "down": {
+          "texture": "hbm_imp_ext_blocks_waste_ice",
+          "render_method": "alpha_test"
+        }
+      },
+      "minecraft:map_color": "#808080",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "minecraft:light_emission": 15
+    }
+  }
+}

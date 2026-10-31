@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_707"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BDB",
+      "DSD",
+      "BDB"
+    ],
+    "key": {
+      "B": {
+        "item": "minecraft:brick"
+      },
+      "D": {
+        "item": "hbm:ingot_desh"
+      },
+      "S": {
+        "item": "hbm:ingot_ferrouranium"
+      }
+    },
+    "result": {
+      "item": "hbm:stamp_desh_flat",
+      "count": 1
+    }
+  }
+}

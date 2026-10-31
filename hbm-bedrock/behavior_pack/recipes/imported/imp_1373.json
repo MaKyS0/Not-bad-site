@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1373"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "B",
+      "W",
+      "B"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ingot_boron"
+      },
+      "W": {
+        "item": "minecraft:oak_planks"
+      }
+    },
+    "result": {
+      "item": "hbm:pile_rod_boron",
+      "count": 1
+    }
+  }
+}

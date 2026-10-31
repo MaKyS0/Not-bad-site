@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_727"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CCC",
+      "CVC",
+      "CCC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:meteor_brick"
+      },
+      "V": {
+        "item": "minecraft:vine"
+      }
+    },
+    "result": {
+      "item": "hbm:meteor_brick_mossy",
+      "count": 8
+    }
+  }
+}

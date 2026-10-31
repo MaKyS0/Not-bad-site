@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:neutron_reflector",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_neutron_reflector"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.neutron_reflector.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

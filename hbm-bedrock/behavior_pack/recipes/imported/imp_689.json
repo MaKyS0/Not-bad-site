@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_689"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CTC",
+      "TST",
+      "CTC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:plate_saturnite"
+      },
+      "T": {
+        "item": "hbm:powder_power"
+      },
+      "S": {
+        "item": "hbm:singularity"
+      }
+    },
+    "result": {
+      "item": "hbm:singularity_super_heated",
+      "count": 1
+    }
+  }
+}

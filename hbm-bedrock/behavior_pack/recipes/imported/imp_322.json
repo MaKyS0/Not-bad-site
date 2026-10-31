@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_322"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BN",
+      "NB"
+    ],
+    "key": {
+      "B": {
+        "item": "minecraft:brick"
+      },
+      "N": {
+        "item": "minecraft:netherbrick"
+      }
+    },
+    "result": {
+      "item": "hbm:ingot_firebrick",
+      "count": 4
+    }
+  }
+}

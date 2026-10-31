@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_9"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "TTT",
+      "TRT",
+      "TTT"
+    ],
+    "key": {
+      "T": {
+        "item": "minecraft:tnt"
+      },
+      "R": {
+        "item": "hbm:rangefinder"
+      }
+    },
+    "result": {
+      "item": "hbm:bomb_caller",
+      "count": 1
+    }
+  }
+}

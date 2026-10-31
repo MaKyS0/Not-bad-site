@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_435"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:ingot_schraranium",
+    "output": "hbm:nugget_schrabidium"
+  }
+}

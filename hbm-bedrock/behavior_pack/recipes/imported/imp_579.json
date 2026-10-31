@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_579"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:particle_empty"
+      },
+      {
+        "item": "hbm:powder_copper"
+      },
+      {
+        "item": "hbm:pellet_charged"
+      }
+    ],
+    "result": {
+      "item": "hbm:particle_copper",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:waste_u233",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_waste_u233"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.waste_u233.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

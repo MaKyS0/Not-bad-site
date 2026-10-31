@@ -129,5 +129,2108 @@
   },
   "hbm:fluid_duct": {
     "sound": "metal"
+  },
+  "hbm:ore_uranium_scorched": {
+    "sound": "stone"
+  },
+  "hbm:ore_copper": {
+    "sound": "stone"
+  },
+  "hbm:ore_schrabidium": {
+    "sound": "stone"
+  },
+  "hbm:ore_lignite": {
+    "sound": "stone"
+  },
+  "hbm:ore_asbestos": {
+    "sound": "stone"
+  },
+  "hbm:cluster_iron": {
+    "sound": "stone"
+  },
+  "hbm:cluster_titanium": {
+    "sound": "stone"
+  },
+  "hbm:cluster_aluminium": {
+    "sound": "stone"
+  },
+  "hbm:cluster_copper": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_coal": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_smoldering": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_uranium": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_uranium_scorched": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_plutonium": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_tungsten": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_sulfur": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_fire": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_cobalt": {
+    "sound": "stone"
+  },
+  "hbm:ore_nether_schrabidium": {
+    "sound": "stone"
+  },
+  "hbm:stone_gneiss": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_iron": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_gold": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_uranium": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_uranium_scorched": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_copper": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_asbestos": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_lithium": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_schrabidium": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_rare": {
+    "sound": "stone"
+  },
+  "hbm:ore_gneiss_gas": {
+    "sound": "stone"
+  },
+  "hbm:gneiss_brick": {
+    "sound": "stone"
+  },
+  "hbm:gneiss_tile": {
+    "sound": "stone"
+  },
+  "hbm:gneiss_chiseled": {
+    "sound": "stone"
+  },
+  "hbm:stone_depth": {
+    "sound": "stone"
+  },
+  "hbm:ore_depth_cinnebar": {
+    "sound": "stone"
+  },
+  "hbm:ore_depth_zirconium": {
+    "sound": "stone"
+  },
+  "hbm:ore_depth_borax": {
+    "sound": "stone"
+  },
+  "hbm:cluster_depth_iron": {
+    "sound": "stone"
+  },
+  "hbm:cluster_depth_titanium": {
+    "sound": "stone"
+  },
+  "hbm:cluster_depth_tungsten": {
+    "sound": "stone"
+  },
+  "hbm:ore_alexandrite": {
+    "sound": "stone"
+  },
+  "hbm:depth_brick": {
+    "sound": "stone"
+  },
+  "hbm:depth_tiles": {
+    "sound": "stone"
+  },
+  "hbm:depth_nether_brick": {
+    "sound": "stone"
+  },
+  "hbm:depth_nether_tiles": {
+    "sound": "stone"
+  },
+  "hbm:depth_dnt": {
+    "sound": "stone"
+  },
+  "hbm:stone_depth_nether": {
+    "sound": "stone"
+  },
+  "hbm:ore_depth_nether_neodymium": {
+    "sound": "stone"
+  },
+  "hbm:stone_porous": {
+    "sound": "stone"
+  },
+  "hbm:basalt": {
+    "sound": "stone"
+  },
+  "hbm:basalt_smooth": {
+    "sound": "stone"
+  },
+  "hbm:basalt_brick": {
+    "sound": "stone"
+  },
+  "hbm:basalt_polished": {
+    "sound": "stone"
+  },
+  "hbm:basalt_tiles": {
+    "sound": "stone"
+  },
+  "hbm:ore_australium": {
+    "sound": "stone"
+  },
+  "hbm:ore_rare": {
+    "sound": "stone"
+  },
+  "hbm:ore_cobalt": {
+    "sound": "stone"
+  },
+  "hbm:ore_cinnebar": {
+    "sound": "stone"
+  },
+  "hbm:ore_coltan": {
+    "sound": "stone"
+  },
+  "hbm:ore_oil_sand": {
+    "sound": "gravel"
+  },
+  "hbm:ore_bedrock_oil": {
+    "sound": "stone"
+  },
+  "hbm:ore_tikite": {
+    "sound": "stone"
+  },
+  "hbm:block_u233": {
+    "sound": "stone"
+  },
+  "hbm:block_u235": {
+    "sound": "stone"
+  },
+  "hbm:block_u238": {
+    "sound": "stone"
+  },
+  "hbm:block_uranium_fuel": {
+    "sound": "stone"
+  },
+  "hbm:block_thorium": {
+    "sound": "stone"
+  },
+  "hbm:block_thorium_fuel": {
+    "sound": "stone"
+  },
+  "hbm:block_neptunium": {
+    "sound": "stone"
+  },
+  "hbm:block_polonium": {
+    "sound": "stone"
+  },
+  "hbm:block_mox_fuel": {
+    "sound": "stone"
+  },
+  "hbm:block_plutonium": {
+    "sound": "stone"
+  },
+  "hbm:block_pu238": {
+    "sound": "stone"
+  },
+  "hbm:block_pu239": {
+    "sound": "stone"
+  },
+  "hbm:block_pu240": {
+    "sound": "stone"
+  },
+  "hbm:block_pu_mix": {
+    "sound": "stone"
+  },
+  "hbm:block_plutonium_fuel": {
+    "sound": "stone"
+  },
+  "hbm:block_sulfur": {
+    "sound": "stone"
+  },
+  "hbm:block_niter": {
+    "sound": "stone"
+  },
+  "hbm:block_copper": {
+    "sound": "stone"
+  },
+  "hbm:block_red_copper": {
+    "sound": "stone"
+  },
+  "hbm:block_tungsten": {
+    "sound": "stone"
+  },
+  "hbm:block_aluminium": {
+    "sound": "stone"
+  },
+  "hbm:block_fluorite": {
+    "sound": "stone"
+  },
+  "hbm:block_steel": {
+    "sound": "stone"
+  },
+  "hbm:block_tcalloy": {
+    "sound": "stone"
+  },
+  "hbm:block_cdalloy": {
+    "sound": "stone"
+  },
+  "hbm:block_bismuth": {
+    "sound": "stone"
+  },
+  "hbm:block_cadmium": {
+    "sound": "stone"
+  },
+  "hbm:block_coltan": {
+    "sound": "stone"
+  },
+  "hbm:block_tantalium": {
+    "sound": "stone"
+  },
+  "hbm:block_niobium": {
+    "sound": "stone"
+  },
+  "hbm:block_trinitite": {
+    "sound": "stone"
+  },
+  "hbm:block_waste": {
+    "sound": "stone"
+  },
+  "hbm:block_waste_painted": {
+    "sound": "stone"
+  },
+  "hbm:block_waste_vitrified": {
+    "sound": "stone"
+  },
+  "hbm:ancient_scrap": {
+    "sound": "stone"
+  },
+  "hbm:block_corium": {
+    "sound": "stone"
+  },
+  "hbm:block_corium_cobble": {
+    "sound": "stone"
+  },
+  "hbm:block_scrap": {
+    "sound": "gravel"
+  },
+  "hbm:block_electrical_scrap": {
+    "sound": "stone"
+  },
+  "hbm:block_beryllium": {
+    "sound": "stone"
+  },
+  "hbm:block_schraranium": {
+    "sound": "stone"
+  },
+  "hbm:block_schrabidium": {
+    "sound": "stone"
+  },
+  "hbm:block_schrabidate": {
+    "sound": "stone"
+  },
+  "hbm:block_solinium": {
+    "sound": "stone"
+  },
+  "hbm:block_schrabidium_fuel": {
+    "sound": "stone"
+  },
+  "hbm:block_euphemium": {
+    "sound": "stone"
+  },
+  "hbm:block_dineutronium": {
+    "sound": "stone"
+  },
+  "hbm:block_schrabidium_cluster": {
+    "sound": "stone"
+  },
+  "hbm:block_euphemium_cluster": {
+    "sound": "stone"
+  },
+  "hbm:block_magnetized_tungsten": {
+    "sound": "stone"
+  },
+  "hbm:block_combine_steel": {
+    "sound": "stone"
+  },
+  "hbm:block_desh": {
+    "sound": "stone"
+  },
+  "hbm:block_dura_steel": {
+    "sound": "stone"
+  },
+  "hbm:block_starmetal": {
+    "sound": "stone"
+  },
+  "hbm:block_polymer": {
+    "sound": "stone"
+  },
+  "hbm:block_bakelite": {
+    "sound": "stone"
+  },
+  "hbm:block_rubber": {
+    "sound": "stone"
+  },
+  "hbm:block_yellowcake": {
+    "sound": "stone"
+  },
+  "hbm:block_insulator": {
+    "sound": "stone"
+  },
+  "hbm:block_fiberglass": {
+    "sound": "stone"
+  },
+  "hbm:block_asbestos": {
+    "sound": "stone"
+  },
+  "hbm:block_cobalt": {
+    "sound": "stone"
+  },
+  "hbm:block_lithium": {
+    "sound": "stone"
+  },
+  "hbm:block_zirconium": {
+    "sound": "stone"
+  },
+  "hbm:block_white_phosphorus": {
+    "sound": "stone"
+  },
+  "hbm:block_red_phosphorus": {
+    "sound": "stone"
+  },
+  "hbm:block_fallout": {
+    "sound": "stone"
+  },
+  "hbm:block_foam": {
+    "sound": "gravel"
+  },
+  "hbm:block_graphite": {
+    "sound": "stone"
+  },
+  "hbm:block_boron": {
+    "sound": "stone"
+  },
+  "hbm:block_lanthanium": {
+    "sound": "stone"
+  },
+  "hbm:block_ra226": {
+    "sound": "stone"
+  },
+  "hbm:block_actinium": {
+    "sound": "stone"
+  },
+  "hbm:block_tritium": {
+    "sound": "stone"
+  },
+  "hbm:block_semtex": {
+    "sound": "stone"
+  },
+  "hbm:block_c4": {
+    "sound": "stone"
+  },
+  "hbm:block_smore": {
+    "sound": "stone"
+  },
+  "hbm:block_slag": {
+    "sound": "stone"
+  },
+  "hbm:block_australium": {
+    "sound": "stone"
+  },
+  "hbm:deco_titanium": {
+    "sound": "stone"
+  },
+  "hbm:deco_red_copper": {
+    "sound": "stone"
+  },
+  "hbm:deco_tungsten": {
+    "sound": "stone"
+  },
+  "hbm:deco_aluminium": {
+    "sound": "stone"
+  },
+  "hbm:deco_steel": {
+    "sound": "stone"
+  },
+  "hbm:deco_rusty_steel": {
+    "sound": "stone"
+  },
+  "hbm:deco_lead": {
+    "sound": "stone"
+  },
+  "hbm:deco_beryllium": {
+    "sound": "stone"
+  },
+  "hbm:deco_asbestos": {
+    "sound": "stone"
+  },
+  "hbm:deco_rbmk": {
+    "sound": "stone"
+  },
+  "hbm:deco_rbmk_smooth": {
+    "sound": "stone"
+  },
+  "hbm:deco_emitter": {
+    "sound": "stone"
+  },
+  "hbm:part_emitter": {
+    "sound": "stone"
+  },
+  "hbm:bobblehead": {
+    "sound": "stone"
+  },
+  "hbm:snowglobe": {
+    "sound": "stone"
+  },
+  "hbm:plushie": {
+    "sound": "stone"
+  },
+  "hbm:vending_machine": {
+    "sound": "stone"
+  },
+  "hbm:gravel_obsidian": {
+    "sound": "stone"
+  },
+  "hbm:gravel_diamond": {
+    "sound": "gravel"
+  },
+  "hbm:asphalt": {
+    "sound": "stone"
+  },
+  "hbm:asphalt_light": {
+    "sound": "stone"
+  },
+  "hbm:sandbags": {
+    "sound": "gravel"
+  },
+  "hbm:wood_barrier": {
+    "sound": "wood"
+  },
+  "hbm:wood_structure": {
+    "sound": "wood"
+  },
+  "hbm:reinforced_brick": {
+    "sound": "stone"
+  },
+  "hbm:reinforced_glass": {
+    "sound": "stone"
+  },
+  "hbm:reinforced_light": {
+    "sound": "stone"
+  },
+  "hbm:reinforced_sand": {
+    "sound": "stone"
+  },
+  "hbm:reinforced_lamp_off": {
+    "sound": "stone"
+  },
+  "hbm:reinforced_laminate": {
+    "sound": "stone"
+  },
+  "hbm:lamp_tritium_green_off": {
+    "sound": "stone"
+  },
+  "hbm:lamp_tritium_blue_off": {
+    "sound": "stone"
+  },
+  "hbm:lamp_demon": {
+    "sound": "stone"
+  },
+  "hbm:lantern": {
+    "sound": "stone"
+  },
+  "hbm:spotlight_incandescent": {
+    "sound": "stone"
+  },
+  "hbm:spotlight_fluoro": {
+    "sound": "stone"
+  },
+  "hbm:spotlight_halogen": {
+    "sound": "stone"
+  },
+  "hbm:floodlight": {
+    "sound": "stone"
+  },
+  "hbm:rebar": {
+    "sound": "stone"
+  },
+  "hbm:reinforced_stone": {
+    "sound": "stone"
+  },
+  "hbm:concrete_smooth": {
+    "sound": "stone"
+  },
+  "hbm:concrete_colored": {
+    "sound": "stone"
+  },
+  "hbm:concrete": {
+    "sound": "stone"
+  },
+  "hbm:concrete_asbestos": {
+    "sound": "stone"
+  },
+  "hbm:concrete_rebar": {
+    "sound": "stone"
+  },
+  "hbm:concrete_super": {
+    "sound": "stone"
+  },
+  "hbm:concrete_super_broken": {
+    "sound": "stone"
+  },
+  "hbm:concrete_pillar": {
+    "sound": "stone"
+  },
+  "hbm:brick_concrete": {
+    "sound": "stone"
+  },
+  "hbm:brick_concrete_mossy": {
+    "sound": "stone"
+  },
+  "hbm:brick_concrete_cracked": {
+    "sound": "stone"
+  },
+  "hbm:brick_concrete_broken": {
+    "sound": "stone"
+  },
+  "hbm:brick_concrete_marked": {
+    "sound": "stone"
+  },
+  "hbm:brick_obsidian": {
+    "sound": "stone"
+  },
+  "hbm:brick_light": {
+    "sound": "stone"
+  },
+  "hbm:brick_compound": {
+    "sound": "stone"
+  },
+  "hbm:cmb_brick": {
+    "sound": "stone"
+  },
+  "hbm:cmb_brick_reinforced": {
+    "sound": "stone"
+  },
+  "hbm:brick_asbestos": {
+    "sound": "stone"
+  },
+  "hbm:brick_fire": {
+    "sound": "stone"
+  },
+  "hbm:ducrete_smooth": {
+    "sound": "stone"
+  },
+  "hbm:ducrete": {
+    "sound": "stone"
+  },
+  "hbm:brick_ducrete": {
+    "sound": "stone"
+  },
+  "hbm:reinforced_ducrete": {
+    "sound": "stone"
+  },
+  "hbm:tile_lab": {
+    "sound": "stone"
+  },
+  "hbm:tile_lab_cracked": {
+    "sound": "stone"
+  },
+  "hbm:tile_lab_broken": {
+    "sound": "stone"
+  },
+  "hbm:block_meteor": {
+    "sound": "stone"
+  },
+  "hbm:block_meteor_cobble": {
+    "sound": "stone"
+  },
+  "hbm:block_meteor_broken": {
+    "sound": "stone"
+  },
+  "hbm:block_meteor_molten": {
+    "sound": "stone"
+  },
+  "hbm:block_meteor_treasure": {
+    "sound": "stone"
+  },
+  "hbm:meteor_polished": {
+    "sound": "stone"
+  },
+  "hbm:meteor_brick": {
+    "sound": "stone"
+  },
+  "hbm:meteor_brick_mossy": {
+    "sound": "stone"
+  },
+  "hbm:meteor_brick_cracked": {
+    "sound": "stone"
+  },
+  "hbm:meteor_brick_chiseled": {
+    "sound": "stone"
+  },
+  "hbm:meteor_pillar": {
+    "sound": "stone"
+  },
+  "hbm:meteor_spawner": {
+    "sound": "stone"
+  },
+  "hbm:meteor_battery": {
+    "sound": "stone"
+  },
+  "hbm:moon_turf": {
+    "sound": "gravel"
+  },
+  "hbm:brick_jungle": {
+    "sound": "stone"
+  },
+  "hbm:brick_jungle_cracked": {
+    "sound": "stone"
+  },
+  "hbm:brick_jungle_fragile": {
+    "sound": "stone"
+  },
+  "hbm:brick_jungle_lava": {
+    "sound": "stone"
+  },
+  "hbm:brick_jungle_ooze": {
+    "sound": "stone"
+  },
+  "hbm:brick_jungle_mystic": {
+    "sound": "stone"
+  },
+  "hbm:brick_jungle_trap": {
+    "sound": "stone"
+  },
+  "hbm:brick_jungle_circle": {
+    "sound": "stone"
+  },
+  "hbm:deco_computer": {
+    "sound": "stone"
+  },
+  "hbm:deco_crt": {
+    "sound": "stone"
+  },
+  "hbm:deco_toaster": {
+    "sound": "stone"
+  },
+  "hbm:filing_cabinet": {
+    "sound": "stone"
+  },
+  "hbm:tape_recorder": {
+    "sound": "stone"
+  },
+  "hbm:steel_poles": {
+    "sound": "stone"
+  },
+  "hbm:pole_top": {
+    "sound": "stone"
+  },
+  "hbm:pole_satellite_receiver": {
+    "sound": "stone"
+  },
+  "hbm:steel_wall": {
+    "sound": "stone"
+  },
+  "hbm:steel_corner": {
+    "sound": "stone"
+  },
+  "hbm:steel_roof": {
+    "sound": "stone"
+  },
+  "hbm:steel_beam": {
+    "sound": "stone"
+  },
+  "hbm:steel_scaffold": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_rusted": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_green": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_green_rusted": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_red": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_marked": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_rim": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_rim_rusted": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_rim_green": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_rim_green_rusted": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_rim_red": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_rim_marked": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_framed": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_framed_rusted": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_framed_green": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_framed_green_rusted": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_framed_red": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_framed_marked": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_quad": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_quad_rusted": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_quad_green": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_quad_green_rusted": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_quad_red": {
+    "sound": "stone"
+  },
+  "hbm:deco_pipe_quad_marked": {
+    "sound": "stone"
+  },
+  "hbm:broadcaster_pc": {
+    "sound": "stone"
+  },
+  "hbm:geiger": {
+    "sound": "stone"
+  },
+  "hbm:hev_battery": {
+    "sound": "stone"
+  },
+  "hbm:ash_digamma": {
+    "sound": "gravel"
+  },
+  "hbm:glass_boron": {
+    "sound": "stone"
+  },
+  "hbm:glass_lead": {
+    "sound": "stone"
+  },
+  "hbm:glass_uranium": {
+    "sound": "stone"
+  },
+  "hbm:glass_trinitite": {
+    "sound": "stone"
+  },
+  "hbm:glass_polonium": {
+    "sound": "stone"
+  },
+  "hbm:glass_ash": {
+    "sound": "stone"
+  },
+  "hbm:glass_quartz": {
+    "sound": "stone"
+  },
+  "hbm:glass_polarized": {
+    "sound": "stone"
+  },
+  "hbm:mush": {
+    "sound": "wood"
+  },
+  "hbm:waste_mycelium": {
+    "sound": "gravel"
+  },
+  "hbm:waste_trinitite": {
+    "sound": "gravel"
+  },
+  "hbm:waste_trinitite_red": {
+    "sound": "gravel"
+  },
+  "hbm:waste_planks": {
+    "sound": "wood"
+  },
+  "hbm:frozen_dirt": {
+    "sound": "gravel"
+  },
+  "hbm:frozen_grass": {
+    "sound": "gravel"
+  },
+  "hbm:frozen_log": {
+    "sound": "wood"
+  },
+  "hbm:frozen_planks": {
+    "sound": "wood"
+  },
+  "hbm:fallout": {
+    "sound": "gravel"
+  },
+  "hbm:foam_layer": {
+    "sound": "gravel"
+  },
+  "hbm:sand_boron_layer": {
+    "sound": "gravel"
+  },
+  "hbm:leaves_layer": {
+    "sound": "wood"
+  },
+  "hbm:oil_spill": {
+    "sound": "gravel"
+  },
+  "hbm:tektite": {
+    "sound": "gravel"
+  },
+  "hbm:ore_tektite_osmiridium": {
+    "sound": "gravel"
+  },
+  "hbm:impact_dirt": {
+    "sound": "gravel"
+  },
+  "hbm:dirt_dead": {
+    "sound": "gravel"
+  },
+  "hbm:dirt_oily": {
+    "sound": "gravel"
+  },
+  "hbm:sand_dirty": {
+    "sound": "gravel"
+  },
+  "hbm:sand_dirty_red": {
+    "sound": "gravel"
+  },
+  "hbm:stone_cracked": {
+    "sound": "stone"
+  },
+  "hbm:sellafield_slaked": {
+    "sound": "stone"
+  },
+  "hbm:sellafield_bedrock": {
+    "sound": "stone"
+  },
+  "hbm:ore_sellafield_diamond": {
+    "sound": "stone"
+  },
+  "hbm:ore_sellafield_emerald": {
+    "sound": "stone"
+  },
+  "hbm:ore_sellafield_uranium_scorched": {
+    "sound": "stone"
+  },
+  "hbm:ore_sellafield_schrabidium": {
+    "sound": "stone"
+  },
+  "hbm:ore_sellafield_radgem": {
+    "sound": "stone"
+  },
+  "hbm:nuke_gadget": {
+    "sound": "stone"
+  },
+  "hbm:nuke_boy": {
+    "sound": "stone"
+  },
+  "hbm:nuke_man": {
+    "sound": "stone"
+  },
+  "hbm:nuke_mike": {
+    "sound": "stone"
+  },
+  "hbm:nuke_tsar": {
+    "sound": "stone"
+  },
+  "hbm:nuke_fleija": {
+    "sound": "stone"
+  },
+  "hbm:nuke_prototype": {
+    "sound": "stone"
+  },
+  "hbm:nuke_custom": {
+    "sound": "stone"
+  },
+  "hbm:nuke_solinium": {
+    "sound": "stone"
+  },
+  "hbm:nuke_n2": {
+    "sound": "stone"
+  },
+  "hbm:nuke_fstbmb": {
+    "sound": "stone"
+  },
+  "hbm:bomb_multi": {
+    "sound": "stone"
+  },
+  "hbm:therm_endo": {
+    "sound": "stone"
+  },
+  "hbm:therm_exo": {
+    "sound": "stone"
+  },
+  "hbm:det_cord": {
+    "sound": "stone"
+  },
+  "hbm:det_miner": {
+    "sound": "stone"
+  },
+  "hbm:red_barrel": {
+    "sound": "stone"
+  },
+  "hbm:pink_barrel": {
+    "sound": "stone"
+  },
+  "hbm:yellow_barrel": {
+    "sound": "stone"
+  },
+  "hbm:vitrified_barrel": {
+    "sound": "stone"
+  },
+  "hbm:lox_barrel": {
+    "sound": "stone"
+  },
+  "hbm:taint_barrel": {
+    "sound": "stone"
+  },
+  "hbm:crashed_bomb": {
+    "sound": "stone"
+  },
+  "hbm:charge_dynamite": {
+    "sound": "stone"
+  },
+  "hbm:charge_miner": {
+    "sound": "stone"
+  },
+  "hbm:charge_c4": {
+    "sound": "stone"
+  },
+  "hbm:mine_ap": {
+    "sound": "stone"
+  },
+  "hbm:mine_he": {
+    "sound": "stone"
+  },
+  "hbm:mine_shrap": {
+    "sound": "stone"
+  },
+  "hbm:mine_fat": {
+    "sound": "stone"
+  },
+  "hbm:mine_naval": {
+    "sound": "stone"
+  },
+  "hbm:dynamite": {
+    "sound": "stone"
+  },
+  "hbm:tnt_ntm": {
+    "sound": "stone"
+  },
+  "hbm:semtex": {
+    "sound": "stone"
+  },
+  "hbm:c4": {
+    "sound": "stone"
+  },
+  "hbm:fissure_bomb": {
+    "sound": "stone"
+  },
+  "hbm:pump_steam": {
+    "sound": "stone"
+  },
+  "hbm:pump_electric": {
+    "sound": "stone"
+  },
+  "hbm:heater_oven": {
+    "sound": "stone"
+  },
+  "hbm:heater_oilburner": {
+    "sound": "stone"
+  },
+  "hbm:heater_electric": {
+    "sound": "stone"
+  },
+  "hbm:heater_heatex": {
+    "sound": "stone"
+  },
+  "hbm:furnace_iron": {
+    "sound": "stone"
+  },
+  "hbm:furnace_steel": {
+    "sound": "stone"
+  },
+  "hbm:furnace_combination": {
+    "sound": "stone"
+  },
+  "hbm:machine_stirling": {
+    "sound": "stone"
+  },
+  "hbm:machine_stirling_steel": {
+    "sound": "stone"
+  },
+  "hbm:machine_stirling_creative": {
+    "sound": "stone"
+  },
+  "hbm:machine_sawmill": {
+    "sound": "stone"
+  },
+  "hbm:machine_strand_caster": {
+    "sound": "stone"
+  },
+  "hbm:machine_crucible": {
+    "sound": "stone"
+  },
+  "hbm:machine_boiler": {
+    "sound": "stone"
+  },
+  "hbm:machine_industrial_boiler": {
+    "sound": "stone"
+  },
+  "hbm:foundry_mold": {
+    "sound": "stone"
+  },
+  "hbm:foundry_basin": {
+    "sound": "stone"
+  },
+  "hbm:foundry_channel": {
+    "sound": "stone"
+  },
+  "hbm:foundry_tank": {
+    "sound": "stone"
+  },
+  "hbm:foundry_outlet": {
+    "sound": "stone"
+  },
+  "hbm:foundry_slagtap": {
+    "sound": "stone"
+  },
+  "hbm:machine_blast_furnace": {
+    "sound": "stone"
+  },
+  "hbm:machine_centrifuge": {
+    "sound": "stone"
+  },
+  "hbm:machine_gascent": {
+    "sound": "stone"
+  },
+  "hbm:machine_fel": {
+    "sound": "stone"
+  },
+  "hbm:machine_silex": {
+    "sound": "stone"
+  },
+  "hbm:machine_rotary_furnace": {
+    "sound": "stone"
+  },
+  "hbm:machine_crystallizer": {
+    "sound": "stone"
+  },
+  "hbm:machine_cyclotron": {
+    "sound": "stone"
+  },
+  "hbm:machine_exposure_chamber": {
+    "sound": "stone"
+  },
+  "hbm:machine_radgen": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_alloy": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_gold": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_neodymium": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_magtung": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_schrabidium": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_schrabidate": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_starmetal": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_chlorophyte": {
+    "sound": "stone"
+  },
+  "hbm:hadron_coil_mese": {
+    "sound": "stone"
+  },
+  "hbm:machine_arc_furnace": {
+    "sound": "stone"
+  },
+  "hbm:machine_microwave": {
+    "sound": "stone"
+  },
+  "hbm:machine_battery_socket": {
+    "sound": "stone"
+  },
+  "hbm:machine_battery_redd": {
+    "sound": "stone"
+  },
+  "hbm:capacitor_copper": {
+    "sound": "stone"
+  },
+  "hbm:machine_combustion_engine": {
+    "sound": "stone"
+  },
+  "hbm:machine_rtg_grey": {
+    "sound": "stone"
+  },
+  "hbm:machine_radiolysis": {
+    "sound": "stone"
+  },
+  "hbm:machine_hephaestus": {
+    "sound": "stone"
+  },
+  "hbm:red_wire_coated": {
+    "sound": "stone"
+  },
+  "hbm:red_cable_classic": {
+    "sound": "stone"
+  },
+  "hbm:red_cable_box": {
+    "sound": "stone"
+  },
+  "hbm:red_connector": {
+    "sound": "stone"
+  },
+  "hbm:red_connector_super": {
+    "sound": "stone"
+  },
+  "hbm:red_pylon": {
+    "sound": "stone"
+  },
+  "hbm:red_pylon_steel": {
+    "sound": "stone"
+  },
+  "hbm:red_pylon_medium_wood": {
+    "sound": "wood"
+  },
+  "hbm:red_pylon_medium_wood_transformer": {
+    "sound": "wood"
+  },
+  "hbm:red_pylon_medium_steel": {
+    "sound": "stone"
+  },
+  "hbm:red_pylon_medium_steel_transformer": {
+    "sound": "stone"
+  },
+  "hbm:red_pylon_large": {
+    "sound": "stone"
+  },
+  "hbm:substation": {
+    "sound": "stone"
+  },
+  "hbm:network_separator": {
+    "sound": "stone"
+  },
+  "hbm:machine_detector": {
+    "sound": "stone"
+  },
+  "hbm:pipe_anchor_exhaust": {
+    "sound": "stone"
+  },
+  "hbm:pipe_anchor_pneumatic": {
+    "sound": "stone"
+  },
+  "hbm:flow_control_pump": {
+    "sound": "stone"
+  },
+  "hbm:machine_drain": {
+    "sound": "stone"
+  },
+  "hbm:radio_telex": {
+    "sound": "stone"
+  },
+  "hbm:radio_autocal": {
+    "sound": "stone"
+  },
+  "hbm:crane_splitter": {
+    "sound": "stone"
+  },
+  "hbm:crane_partitioner": {
+    "sound": "stone"
+  },
+  "hbm:fan": {
+    "sound": "stone"
+  },
+  "hbm:drone_waypoint": {
+    "sound": "stone"
+  },
+  "hbm:drone_crate": {
+    "sound": "stone"
+  },
+  "hbm:drone_waypoint_request": {
+    "sound": "stone"
+  },
+  "hbm:drone_dock": {
+    "sound": "stone"
+  },
+  "hbm:drone_crate_provider": {
+    "sound": "stone"
+  },
+  "hbm:drone_crate_requester": {
+    "sound": "stone"
+  },
+  "hbm:pneumatic_tube": {
+    "sound": "stone"
+  },
+  "hbm:pneumatic_tube_paintable": {
+    "sound": "stone"
+  },
+  "hbm:pneumatic_storage_access": {
+    "sound": "stone"
+  },
+  "hbm:pneumatic_storage_clutter": {
+    "sound": "stone"
+  },
+  "hbm:pneumatic_storage_mono": {
+    "sound": "stone"
+  },
+  "hbm:pneumatic_storage_importer": {
+    "sound": "stone"
+  },
+  "hbm:pneumatic_storage_exporter": {
+    "sound": "stone"
+  },
+  "hbm:dungeon_chain": {
+    "sound": "stone"
+  },
+  "hbm:trapdoor_steel": {
+    "sound": "stone"
+  },
+  "hbm:machine_transformer": {
+    "sound": "stone"
+  },
+  "hbm:machine_satlinker": {
+    "sound": "stone"
+  },
+  "hbm:machine_satlink": {
+    "sound": "stone"
+  },
+  "hbm:machine_tape_drive": {
+    "sound": "stone"
+  },
+  "hbm:machine_keyforge": {
+    "sound": "stone"
+  },
+  "hbm:machine_solar_boiler": {
+    "sound": "stone"
+  },
+  "hbm:solar_mirror": {
+    "sound": "stone"
+  },
+  "hbm:struct_launcher": {
+    "sound": "stone"
+  },
+  "hbm:struct_scaffold": {
+    "sound": "stone"
+  },
+  "hbm:struct_launcher_core": {
+    "sound": "stone"
+  },
+  "hbm:struct_launcher_core_large": {
+    "sound": "stone"
+  },
+  "hbm:struct_soyuz_core": {
+    "sound": "stone"
+  },
+  "hbm:struct_torus_core": {
+    "sound": "stone"
+  },
+  "hbm:struct_watz_core": {
+    "sound": "stone"
+  },
+  "hbm:struct_icf_core": {
+    "sound": "stone"
+  },
+  "hbm:cm_flux": {
+    "sound": "stone"
+  },
+  "hbm:cm_heat": {
+    "sound": "stone"
+  },
+  "hbm:pile_brick": {
+    "sound": "stone"
+  },
+  "hbm:pile_device": {
+    "sound": "stone"
+  },
+  "hbm:pwr_fuel": {
+    "sound": "stone"
+  },
+  "hbm:pwr_control": {
+    "sound": "stone"
+  },
+  "hbm:pwr_channel": {
+    "sound": "stone"
+  },
+  "hbm:pwr_heatex": {
+    "sound": "stone"
+  },
+  "hbm:pwr_heatsink": {
+    "sound": "stone"
+  },
+  "hbm:pwr_neutron_source": {
+    "sound": "stone"
+  },
+  "hbm:pwr_reflector": {
+    "sound": "stone"
+  },
+  "hbm:pwr_casing": {
+    "sound": "stone"
+  },
+  "hbm:pwr_port": {
+    "sound": "stone"
+  },
+  "hbm:pwr_controller": {
+    "sound": "stone"
+  },
+  "hbm:fusion_component": {
+    "sound": "stone"
+  },
+  "hbm:fusion_torus": {
+    "sound": "stone"
+  },
+  "hbm:fusion_klystron": {
+    "sound": "stone"
+  },
+  "hbm:fusion_klystron_creative": {
+    "sound": "stone"
+  },
+  "hbm:fusion_breeder": {
+    "sound": "stone"
+  },
+  "hbm:fusion_collector": {
+    "sound": "stone"
+  },
+  "hbm:fusion_boiler": {
+    "sound": "stone"
+  },
+  "hbm:fusion_mhdt": {
+    "sound": "stone"
+  },
+  "hbm:fusion_coupler": {
+    "sound": "stone"
+  },
+  "hbm:fusion_plasma_forge": {
+    "sound": "stone"
+  },
+  "hbm:machine_icf_press": {
+    "sound": "stone"
+  },
+  "hbm:icf": {
+    "sound": "stone"
+  },
+  "hbm:icf_component": {
+    "sound": "stone"
+  },
+  "hbm:icf_controller": {
+    "sound": "stone"
+  },
+  "hbm:watz_element": {
+    "sound": "stone"
+  },
+  "hbm:watz_cooler": {
+    "sound": "stone"
+  },
+  "hbm:watz_end": {
+    "sound": "stone"
+  },
+  "hbm:watz": {
+    "sound": "stone"
+  },
+  "hbm:watz_pump": {
+    "sound": "stone"
+  },
+  "hbm:machine_converter_he_rf": {
+    "sound": "stone"
+  },
+  "hbm:machine_converter_rf_he": {
+    "sound": "stone"
+  },
+  "hbm:dfc_emitter": {
+    "sound": "stone"
+  },
+  "hbm:dfc_injector": {
+    "sound": "stone"
+  },
+  "hbm:dfc_receiver": {
+    "sound": "stone"
+  },
+  "hbm:dfc_stabilizer": {
+    "sound": "stone"
+  },
+  "hbm:dfc_core": {
+    "sound": "stone"
+  },
+  "hbm:seal_frame": {
+    "sound": "stone"
+  },
+  "hbm:seal_controller": {
+    "sound": "stone"
+  },
+  "hbm:cargo_elevator": {
+    "sound": "stone"
+  },
+  "hbm:barbed_wire": {
+    "sound": "stone"
+  },
+  "hbm:barbed_wire_fire": {
+    "sound": "stone"
+  },
+  "hbm:barbed_wire_poison": {
+    "sound": "stone"
+  },
+  "hbm:barbed_wire_acid": {
+    "sound": "stone"
+  },
+  "hbm:barbed_wire_wither": {
+    "sound": "stone"
+  },
+  "hbm:barbed_wire_ultradeath": {
+    "sound": "stone"
+  },
+  "hbm:spikes": {
+    "sound": "stone"
+  },
+  "hbm:charger": {
+    "sound": "stone"
+  },
+  "hbm:refueler": {
+    "sound": "stone"
+  },
+  "hbm:tesla": {
+    "sound": "stone"
+  },
+  "hbm:launch_pad_rusted": {
+    "sound": "stone"
+  },
+  "hbm:launch_pad_large": {
+    "sound": "stone"
+  },
+  "hbm:machine_radar": {
+    "sound": "stone"
+  },
+  "hbm:machine_radar_large": {
+    "sound": "stone"
+  },
+  "hbm:radar_screen": {
+    "sound": "stone"
+  },
+  "hbm:machine_missile_assembly": {
+    "sound": "stone"
+  },
+  "hbm:compact_launcher": {
+    "sound": "stone"
+  },
+  "hbm:launch_table": {
+    "sound": "stone"
+  },
+  "hbm:soyuz_launcher": {
+    "sound": "stone"
+  },
+  "hbm:launchpad_soyuz": {
+    "sound": "stone"
+  },
+  "hbm:launchpad_lambda": {
+    "sound": "stone"
+  },
+  "hbm:sat_dock": {
+    "sound": "stone"
+  },
+  "hbm:soyuz_capsule": {
+    "sound": "stone"
+  },
+  "hbm:crate_supply": {
+    "sound": "wood"
+  },
+  "hbm:turret_chekhov": {
+    "sound": "stone"
+  },
+  "hbm:turret_friendly": {
+    "sound": "stone"
+  },
+  "hbm:turret_jeremy": {
+    "sound": "stone"
+  },
+  "hbm:turret_tauon": {
+    "sound": "stone"
+  },
+  "hbm:turret_richard": {
+    "sound": "stone"
+  },
+  "hbm:turret_howard": {
+    "sound": "stone"
+  },
+  "hbm:turret_howard_damaged": {
+    "sound": "stone"
+  },
+  "hbm:turret_maxwell": {
+    "sound": "stone"
+  },
+  "hbm:turret_fritz": {
+    "sound": "stone"
+  },
+  "hbm:turret_arty": {
+    "sound": "stone"
+  },
+  "hbm:turret_himars": {
+    "sound": "stone"
+  },
+  "hbm:turret_sentry": {
+    "sound": "stone"
+  },
+  "hbm:turret_sentry_damaged": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_rod": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_rod_mod": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_rod_reasim": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_rod_reasim_mod": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_control_mod": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_control_auto": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_control_reasim": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_control_reasim_auto": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_reflector": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_absorber": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_outgasser": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_storage": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_cooler": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_heater": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_console": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_crane_console": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_display": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_key_pad": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_gauge": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_numitron": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_graph": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_indicator": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_terminal": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_autoloader": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_loader": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_steam_inlet": {
+    "sound": "stone"
+  },
+  "hbm:rbmk_steam_outlet": {
+    "sound": "stone"
+  },
+  "hbm:pribris": {
+    "sound": "stone"
+  },
+  "hbm:pribris_burning": {
+    "sound": "stone"
+  },
+  "hbm:pribris_radiating": {
+    "sound": "stone"
+  },
+  "hbm:pribris_digamma": {
+    "sound": "stone"
+  },
+  "hbm:crate": {
+    "sound": "wood"
+  },
+  "hbm:crate_weapon": {
+    "sound": "wood"
+  },
+  "hbm:crate_lead": {
+    "sound": "stone"
+  },
+  "hbm:crate_metal": {
+    "sound": "stone"
+  },
+  "hbm:crate_can": {
+    "sound": "wood"
+  },
+  "hbm:crate_ammo": {
+    "sound": "stone"
+  },
+  "hbm:crate_jungle": {
+    "sound": "stone"
+  },
+  "hbm:crate_iron": {
+    "sound": "stone"
+  },
+  "hbm:crate_steel": {
+    "sound": "stone"
+  },
+  "hbm:crate_desh": {
+    "sound": "stone"
+  },
+  "hbm:crate_tungsten": {
+    "sound": "stone"
+  },
+  "hbm:safe": {
+    "sound": "stone"
+  },
+  "hbm:mass_storage": {
+    "sound": "stone"
+  },
+  "hbm:boxcar": {
+    "sound": "stone"
+  },
+  "hbm:boat": {
+    "sound": "stone"
+  },
+  "hbm:machine_well": {
+    "sound": "stone"
+  },
+  "hbm:machine_pumpjack": {
+    "sound": "stone"
+  },
+  "hbm:machine_fracking_tower": {
+    "sound": "stone"
+  },
+  "hbm:machine_flare": {
+    "sound": "stone"
+  },
+  "hbm:chimney_brick": {
+    "sound": "stone"
+  },
+  "hbm:chimney_industrial": {
+    "sound": "stone"
+  },
+  "hbm:machine_vacuum_distill": {
+    "sound": "stone"
+  },
+  "hbm:machine_fraction_tower": {
+    "sound": "stone"
+  },
+  "hbm:fraction_spacer": {
+    "sound": "stone"
+  },
+  "hbm:machine_catalytic_cracker": {
+    "sound": "stone"
+  },
+  "hbm:machine_catalytic_reformer": {
+    "sound": "stone"
+  },
+  "hbm:machine_hydrotreater": {
+    "sound": "stone"
+  },
+  "hbm:machine_coker": {
+    "sound": "stone"
+  },
+  "hbm:machine_pyrooven": {
+    "sound": "stone"
+  },
+  "hbm:machine_autosaw": {
+    "sound": "stone"
+  },
+  "hbm:machine_thresher": {
+    "sound": "stone"
+  },
+  "hbm:machine_excavator": {
+    "sound": "stone"
+  },
+  "hbm:machine_ore_slopper": {
+    "sound": "stone"
+  },
+  "hbm:machine_annihilator": {
+    "sound": "stone"
+  },
+  "hbm:machine_rockmill": {
+    "sound": "stone"
+  },
+  "hbm:machine_mining_laser": {
+    "sound": "stone"
+  },
+  "hbm:machine_assembly_machine": {
+    "sound": "stone"
+  },
+  "hbm:machine_assembly_factory": {
+    "sound": "stone"
+  },
+  "hbm:machine_precass": {
+    "sound": "stone"
+  },
+  "hbm:machine_arc_welder": {
+    "sound": "stone"
+  },
+  "hbm:machine_soldering_station": {
+    "sound": "stone"
+  },
+  "hbm:machine_chemical_factory": {
+    "sound": "stone"
+  },
+  "hbm:machine_purex": {
+    "sound": "stone"
+  },
+  "hbm:machine_mixer": {
+    "sound": "stone"
+  },
+  "hbm:machine_supercomputer": {
+    "sound": "stone"
+  },
+  "hbm:machine_bat9000": {
+    "sound": "stone"
+  },
+  "hbm:machine_bigasstank": {
+    "sound": "stone"
+  },
+  "hbm:machine_orbus": {
+    "sound": "stone"
+  },
+  "hbm:machine_turbofan": {
+    "sound": "stone"
+  },
+  "hbm:machine_turbinegas": {
+    "sound": "stone"
+  },
+  "hbm:machine_lpw2": {
+    "sound": "stone"
+  },
+  "hbm:press_preheater": {
+    "sound": "stone"
+  },
+  "hbm:machine_epress": {
+    "sound": "stone"
+  },
+  "hbm:machine_conveyor_press": {
+    "sound": "stone"
+  },
+  "hbm:machine_ammo_press": {
+    "sound": "stone"
+  },
+  "hbm:machine_reactor_small": {
+    "sound": "stone"
+  },
+  "hbm:machine_zirnox": {
+    "sound": "stone"
+  },
+  "hbm:machine_steam_engine": {
+    "sound": "stone"
+  },
+  "hbm:machine_large_turbine": {
+    "sound": "stone"
+  },
+  "hbm:machine_industrial_turbine": {
+    "sound": "stone"
+  },
+  "hbm:machine_chungus": {
+    "sound": "stone"
+  },
+  "hbm:machine_condenser": {
+    "sound": "stone"
+  },
+  "hbm:machine_tower_small": {
+    "sound": "stone"
+  },
+  "hbm:machine_tower_large": {
+    "sound": "stone"
+  },
+  "hbm:machine_condenser_powered": {
+    "sound": "stone"
+  },
+  "hbm:machine_deuterium_tower": {
+    "sound": "stone"
+  },
+  "hbm:machine_liquefactor": {
+    "sound": "stone"
+  },
+  "hbm:machine_solidifier": {
+    "sound": "stone"
+  },
+  "hbm:machine_intake": {
+    "sound": "stone"
+  },
+  "hbm:machine_compressor": {
+    "sound": "stone"
+  },
+  "hbm:machine_compressor_compact": {
+    "sound": "stone"
+  },
+  "hbm:machine_electrolyser": {
+    "sound": "stone"
+  },
+  "hbm:machine_autocrafter": {
+    "sound": "stone"
+  },
+  "hbm:machine_funnel": {
+    "sound": "stone"
+  },
+  "hbm:anvil_iron": {
+    "sound": "stone"
+  },
+  "hbm:anvil_lead": {
+    "sound": "stone"
+  },
+  "hbm:anvil_steel": {
+    "sound": "stone"
+  },
+  "hbm:anvil_desh": {
+    "sound": "stone"
+  },
+  "hbm:anvil_ferrouranium": {
+    "sound": "stone"
+  },
+  "hbm:anvil_saturnite": {
+    "sound": "stone"
+  },
+  "hbm:anvil_bismuth_bronze": {
+    "sound": "stone"
+  },
+  "hbm:anvil_arsenic_bronze": {
+    "sound": "stone"
+  },
+  "hbm:anvil_schrabidate": {
+    "sound": "stone"
+  },
+  "hbm:anvil_dnt": {
+    "sound": "stone"
+  },
+  "hbm:anvil_osmiridium": {
+    "sound": "stone"
+  },
+  "hbm:anvil_murky": {
+    "sound": "stone"
+  },
+  "hbm:machine_waste_drum": {
+    "sound": "stone"
+  },
+  "hbm:machine_storage_drum": {
+    "sound": "stone"
+  },
+  "hbm:machine_siren": {
+    "sound": "stone"
+  },
+  "hbm:radiobox": {
+    "sound": "stone"
+  },
+  "hbm:radiorec": {
+    "sound": "stone"
+  },
+  "hbm:machine_forcefield": {
+    "sound": "stone"
+  },
+  "hbm:vent_chlorine": {
+    "sound": "stone"
+  },
+  "hbm:vent_cloud": {
+    "sound": "stone"
+  },
+  "hbm:vent_pink_cloud": {
+    "sound": "stone"
+  },
+  "hbm:vent_chlorine_seal": {
+    "sound": "stone"
+  },
+  "hbm:chlorine_gas": {
+    "sound": "stone"
+  },
+  "hbm:gas_radon": {
+    "sound": "stone"
+  },
+  "hbm:gas_radon_dense": {
+    "sound": "stone"
+  },
+  "hbm:gas_radon_tomb": {
+    "sound": "stone"
+  },
+  "hbm:gas_meltdown": {
+    "sound": "stone"
+  },
+  "hbm:gas_monoxide": {
+    "sound": "stone"
+  },
+  "hbm:gas_asbestos": {
+    "sound": "stone"
+  },
+  "hbm:gas_coal": {
+    "sound": "stone"
+  },
+  "hbm:gas_flammable": {
+    "sound": "stone"
+  },
+  "hbm:gas_explosive": {
+    "sound": "stone"
+  },
+  "hbm:decon": {
+    "sound": "stone"
+  },
+  "hbm:volcano_core": {
+    "sound": "stone"
+  },
+  "hbm:volcano_rad_core": {
+    "sound": "stone"
+  },
+  "hbm:ore_coal_oil": {
+    "sound": "stone"
+  },
+  "hbm:ore_coal_oil_burning": {
+    "sound": "stone"
+  },
+  "hbm:ore_reiium": {
+    "sound": "stone"
+  },
+  "hbm:ore_weidanium": {
+    "sound": "stone"
+  },
+  "hbm:ore_verticium": {
+    "sound": "stone"
+  },
+  "hbm:ore_unobtainium": {
+    "sound": "stone"
+  },
+  "hbm:ore_daffergon": {
+    "sound": "stone"
+  },
+  "hbm:ore_bedrock_coltan": {
+    "sound": "stone"
+  },
+  "hbm:ore_bedrock_block": {
+    "sound": "stone"
+  },
+  "hbm:ore_hematite": {
+    "sound": "stone"
+  },
+  "hbm:ore_malachite": {
+    "sound": "stone"
+  },
+  "hbm:ore_depth_nether_nitan": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_uranium": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_thorium": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_titanium": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_sulfur": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_copper": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_tungsten": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_aluminium": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_lead": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_lithium": {
+    "sound": "stone"
+  },
+  "hbm:ore_meteor_starmetal": {
+    "sound": "stone"
+  },
+  "hbm:waste_ice": {
+    "sound": "stone"
+  },
+  "hbm:block_graphite_drilled": {
+    "sound": "stone"
+  },
+  "hbm:block_graphite_fuel": {
+    "sound": "stone"
+  },
+  "hbm:block_graphite_plutonium": {
+    "sound": "stone"
+  },
+  "hbm:block_graphite_source": {
+    "sound": "stone"
+  },
+  "hbm:basalt_sulfur": {
+    "sound": "stone"
+  },
+  "hbm:basalt_fluorite": {
+    "sound": "stone"
+  },
+  "hbm:basalt_gem": {
+    "sound": "stone"
+  },
+  "hbm:iter": {
+    "sound": "stone"
+  },
+  "hbm:plasma_heater": {
+    "sound": "stone"
   }
 }

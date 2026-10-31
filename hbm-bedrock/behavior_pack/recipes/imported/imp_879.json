@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_879"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CCC",
+      "PIP",
+      "WTW"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:coil_copper"
+      },
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "P": {
+        "item": "hbm:ingot_polymer"
+      },
+      "T": {
+        "item": "hbm:machine_transformer"
+      },
+      "W": {
+        "item": "minecraft:oak_planks"
+      }
+    },
+    "result": {
+      "item": "hbm:tesla",
+      "count": 1
+    }
+  }
+}

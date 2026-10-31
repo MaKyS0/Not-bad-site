@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_886"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SUS",
+      "SCS",
+      "SUS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "U": {
+        "item": "hbm:upgrade_template"
+      },
+      "C": {
+        "item": "hbm:crystal_xen"
+      }
+    },
+    "result": {
+      "item": "hbm:upgrade_screm",
+      "count": 1
+    }
+  }
+}

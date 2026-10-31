@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:thermo_element",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_thermo_element"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.thermo_element.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

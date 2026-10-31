@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1199"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "GIG",
+      " P "
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:ammo_grenade"
+      },
+      "I": {
+        "item": "hbm:neutron_reflector"
+      },
+      "P": {
+        "item": "hbm:nugget_pu239"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_grenade_nuclear",
+      "count": 2
+    }
+  }
+}

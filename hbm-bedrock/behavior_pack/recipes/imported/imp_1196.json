@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1196"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GIG"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:ammo_grenade"
+      },
+      "I": {
+        "item": "hbm:powder_fire"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_grenade_incendiary",
+      "count": 2
+    }
+  }
+}

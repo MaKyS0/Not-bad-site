@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_272"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:powder_actinium"
+      }
+    },
+    "result": {
+      "item": "hbm:powder_actinium_tiny",
+      "count": 9
+    }
+  }
+}

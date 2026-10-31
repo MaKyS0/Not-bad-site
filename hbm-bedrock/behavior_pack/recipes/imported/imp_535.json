@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_535"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SUS",
+      "RPR",
+      "SUS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:semtex"
+      },
+      "U": {
+        "item": "hbm:block_u238"
+      },
+      "R": {
+        "item": "hbm:ingot_tantalium"
+      },
+      "P": {
+        "item": "hbm:billet_pu239"
+      }
+    },
+    "result": {
+      "item": "hbm:fissure_bomb",
+      "count": 1
+    }
+  }
+}

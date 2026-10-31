@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:casing_9",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_casing_9"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.casing_9.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

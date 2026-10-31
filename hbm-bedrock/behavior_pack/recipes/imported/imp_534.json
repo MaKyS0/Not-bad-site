@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_534"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DDD",
+      "DSD",
+      "DDD"
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:stick_c4"
+      },
+      "S": {
+        "item": "hbm:safety_fuse"
+      }
+    },
+    "result": {
+      "item": "hbm:c4",
+      "count": 1
+    }
+  }
+}

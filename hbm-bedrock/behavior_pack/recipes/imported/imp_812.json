@@ -1,0 +1,44 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_812"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_strontium"
+      },
+      {
+        "item": "hbm:powder_cobalt"
+      },
+      {
+        "item": "hbm:powder_bromine"
+      },
+      {
+        "item": "hbm:powder_niobium"
+      },
+      {
+        "item": "hbm:powder_tennessine"
+      },
+      {
+        "item": "hbm:powder_cerium"
+      },
+      {
+        "item": "hbm:block_meteor"
+      },
+      {
+        "item": "hbm:block_aluminium"
+      },
+      {
+        "item": "minecraft:water_bucket"
+      }
+    ],
+    "result": {
+      "item": "hbm:crystal_charred",
+      "count": 1
+    }
+  }
+}

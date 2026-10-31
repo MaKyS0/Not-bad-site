@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1192"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GGG",
+      "GRG",
+      "GGG"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:ammo_rocket"
+      },
+      "R": {
+        "item": "hbm:coin_maskman"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_rocket_sleek",
+      "count": 64
+    }
+  }
+}

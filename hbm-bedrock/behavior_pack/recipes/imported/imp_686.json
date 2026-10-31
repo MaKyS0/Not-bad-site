@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_686"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "T",
+      "D",
+      "T"
+    ],
+    "key": {
+      "T": {
+        "item": "minecraft:tnt"
+      },
+      "D": {
+        "item": "hbm:detonator_deadman"
+      }
+    },
+    "result": {
+      "item": "hbm:detonator_de",
+      "count": 1
+    }
+  }
+}

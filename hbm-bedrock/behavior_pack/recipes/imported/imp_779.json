@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_779"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " O ",
+      "DPD",
+      " O "
+    ],
+    "key": {
+      "D": {
+        "item": "minecraft:pink_dye"
+      },
+      "O": {
+        "item": "minecraft:yellow_dye"
+      },
+      "P": {
+        "item": "minecraft:paper"
+      }
+    },
+    "result": {
+      "item": "hbm:flame_pony",
+      "count": 1
+    }
+  }
+}

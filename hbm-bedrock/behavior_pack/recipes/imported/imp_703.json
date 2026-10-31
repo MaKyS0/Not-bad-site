@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_703"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "III",
+      "SSS"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:brick"
+      },
+      "S": {
+        "item": "minecraft:iron_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:stamp_iron_flat",
+      "count": 1
+    }
+  }
+}

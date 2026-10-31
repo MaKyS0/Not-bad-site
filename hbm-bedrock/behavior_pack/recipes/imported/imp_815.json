@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_815"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CRC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:plate_welded_copper"
+      },
+      "R": {
+        "item": "hbm:ingot_biorubber"
+      }
+    },
+    "result": {
+      "item": "hbm:pneumatic_tube",
+      "count": 24
+    }
+  }
+}

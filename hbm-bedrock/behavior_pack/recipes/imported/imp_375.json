@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_375"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:briquette_coal",
+    "output": "hbm:coke_coal"
+  }
+}

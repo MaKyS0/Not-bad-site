@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:circuit_bismoid",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_circuit_bismoid"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.circuit_bismoid.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

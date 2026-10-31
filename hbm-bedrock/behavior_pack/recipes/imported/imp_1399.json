@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1399"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "STS",
+      "GXG",
+      "STS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_armor_lunar"
+      },
+      "T": {
+        "item": "hbm:coil_advanced_torus"
+      },
+      "G": {
+        "item": "hbm:ingot_gh336"
+      },
+      "X": {
+        "item": "hbm:particle_empty"
+      }
+    },
+    "result": {
+      "item": "hbm:capsule_empty",
+      "count": 1
+    }
+  }
+}

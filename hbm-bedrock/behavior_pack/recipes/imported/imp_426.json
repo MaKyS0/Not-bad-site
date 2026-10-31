@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_426"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:rag_piss",
+    "output": "hbm:rag"
+  }
+}

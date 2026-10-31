@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_412"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_sr90",
+    "output": "hbm:ingot_sr90"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_544"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " C ",
+      "TIT",
+      "TIT"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:plate_copper"
+      },
+      "I": {
+        "item": "hbm:plate_iron"
+      },
+      "T": {
+        "item": "hbm:ball_tnt"
+      }
+    },
+    "result": {
+      "item": "hbm:custom_tnt",
+      "count": 1
+    }
+  }
+}

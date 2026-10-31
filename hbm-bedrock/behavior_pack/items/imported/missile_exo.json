@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:missile_exo",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_missile_exo"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.missile_exo.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

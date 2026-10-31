@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1080"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:clip_bolt_action"
+      }
+    ],
+    "result": {
+      "item": "hbm:ammo_20gauge_slug",
+      "count": 24
+    }
+  }
+}

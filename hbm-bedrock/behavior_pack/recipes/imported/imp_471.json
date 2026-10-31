@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_471"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "  A",
+      "#C#",
+      "#B#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ingot_polymer"
+      },
+      "A": {
+        "item": "hbm:plate_lead"
+      },
+      "B": {
+        "item": "hbm:circuit_advanced"
+      },
+      "C": {
+        "item": "hbm:designator"
+      }
+    },
+    "result": {
+      "item": "hbm:designator_manual",
+      "count": 1
+    }
+  }
+}

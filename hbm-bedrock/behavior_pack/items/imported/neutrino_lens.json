@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:neutrino_lens",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_neutrino_lens"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.neutrino_lens.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

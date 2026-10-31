@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1108"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PCP",
+      "DDD",
+      "PCP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "C": {
+        "item": "hbm:coil_copper"
+      },
+      "D": {
+        "item": "hbm:powder_lithium"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_defabricator_ammo",
+      "count": 16
+    }
+  }
+}

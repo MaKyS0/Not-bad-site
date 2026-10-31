@@ -1,0 +1,35 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_301"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_neptunium"
+      },
+      {
+        "item": "hbm:powder_iodine"
+      },
+      {
+        "item": "hbm:powder_thorium"
+      },
+      {
+        "item": "hbm:powder_astatine"
+      },
+      {
+        "item": "hbm:powder_neodymium"
+      },
+      {
+        "item": "hbm:powder_caesium"
+      }
+    ],
+    "result": {
+      "item": "hbm:powder_nitan_mix",
+      "count": 6
+    }
+  }
+}

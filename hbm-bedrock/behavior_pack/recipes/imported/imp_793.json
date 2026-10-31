@@ -1,0 +1,29 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_793"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:stick_semtex"
+      },
+      {
+        "item": "hbm:stick_semtex"
+      },
+      {
+        "item": "hbm:stick_semtex"
+      },
+      {
+        "item": "hbm:ducttape"
+      }
+    ],
+    "result": {
+      "item": "hbm:charge_semtex",
+      "count": 1
+    }
+  }
+}

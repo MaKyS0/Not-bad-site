@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:mech_key",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_mech_key"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.mech_key.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

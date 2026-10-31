@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_648"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "RRR",
+      "WWW",
+      "III"
+    ],
+    "key": {
+      "R": {
+        "item": "hbm:circuit_capacitor"
+      },
+      "W": {
+        "item": "minecraft:redstone"
+      },
+      "I": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_converter_he_rf",
+      "count": 1
+    }
+  }
+}

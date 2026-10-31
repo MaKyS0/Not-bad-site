@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_577"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DDD",
+      "DTD",
+      "DDD"
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:cell_empty"
+      },
+      "T": {
+        "item": "hbm:mike_deut"
+      }
+    },
+    "result": {
+      "item": "hbm:cell_deuterium",
+      "count": 8
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1271"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "RRR",
+      "CCC",
+      "SSS"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:coil_gold_torus"
+      },
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "R": {
+        "item": "hbm:rotor_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:generator_steel",
+      "count": 1
+    }
+  }
+}

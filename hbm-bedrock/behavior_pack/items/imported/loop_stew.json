@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:loop_stew",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_loop_stew"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.loop_stew.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

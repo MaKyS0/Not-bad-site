@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1153"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " B ",
+      "BAB",
+      " B "
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_5mm_du"
+      },
+      "A": {
+        "item": "hbm:ingot_starmetal"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_5mm_star",
+      "count": 4
+    }
+  }
+}

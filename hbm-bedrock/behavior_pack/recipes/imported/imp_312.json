@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_312"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_lead"
+      },
+      {
+        "item": "hbm:sulfur"
+      },
+      {
+        "item": "minecraft:sand"
+      }
+    ],
+    "result": {
+      "item": "hbm:powder_flux",
+      "count": 8
+    }
+  }
+}

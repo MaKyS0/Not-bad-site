@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_113"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:billet_am241"
+      },
+      {
+        "item": "hbm:billet_am242"
+      },
+      {
+        "item": "hbm:billet_am242"
+      }
+    ],
+    "result": {
+      "item": "hbm:billet_am_mix",
+      "count": 3
+    }
+  }
+}

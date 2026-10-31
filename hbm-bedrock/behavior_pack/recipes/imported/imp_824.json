@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_824"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BPB",
+      "PTP",
+      "BPB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:inf_water"
+      },
+      "P": {
+        "item": "hbm:pipe_steel"
+      },
+      "T": {
+        "item": "hbm:shell_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:inf_water_mk2",
+      "count": 1
+    }
+  }
+}

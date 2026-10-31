@@ -1,0 +1,35 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1012"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:nugget_radspice"
+      },
+      {
+        "item": "hbm:nugget_am_mix"
+      },
+      {
+        "item": "hbm:nugget_unobtainium_lesser"
+      },
+      {
+        "item": "hbm:nugget_unobtainium_greater"
+      },
+      {
+        "item": "hbm:nugget_unobtainium_greater"
+      },
+      {
+        "item": "hbm:nugget_unobtainium_greater"
+      }
+    ],
+    "result": {
+      "item": "hbm:billet_unobtainium",
+      "count": 1
+    }
+  }
+}

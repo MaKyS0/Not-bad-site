@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1266"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PPP",
+      "   ",
+      "PPP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_aluminium"
+      }
+    },
+    "result": {
+      "item": "hbm:hull_small_aluminium",
+      "count": 1
+    }
+  }
+}

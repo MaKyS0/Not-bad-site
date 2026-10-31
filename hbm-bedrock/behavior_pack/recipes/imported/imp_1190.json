@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1190"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GGG",
+      "GRG",
+      "GGG"
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:redstone"
+      },
+      "R": {
+        "item": "hbm:ammo_rocket"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_rocket_glare",
+      "count": 1
+    }
+  }
+}

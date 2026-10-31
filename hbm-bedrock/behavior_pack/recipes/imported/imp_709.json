@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_709"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "FBF",
+      "BFB",
+      "FBF"
+    ],
+    "key": {
+      "F": {
+        "item": "minecraft:cobblestone"
+      },
+      "B": {
+        "item": "minecraft:stone"
+      }
+    },
+    "result": {
+      "item": "hbm:reinforced_stone",
+      "count": 4
+    }
+  }
+}

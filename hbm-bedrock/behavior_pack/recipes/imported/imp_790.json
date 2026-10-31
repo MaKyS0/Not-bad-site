@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_790"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "FFF",
+      "ITI",
+      "ITI"
+    ],
+    "key": {
+      "F": {
+        "item": "minecraft:flint"
+      },
+      "I": {
+        "item": "hbm:plate_steel"
+      },
+      "T": {
+        "item": "hbm:ingot_semtex"
+      }
+    },
+    "result": {
+      "item": "hbm:det_miner",
+      "count": 12
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1287"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PIP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_schrabidium"
+      },
+      "I": {
+        "item": "hbm:blades_schrabidium"
+      }
+    },
+    "result": {
+      "item": "hbm:blades_schrabidium",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1280"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "PIP",
+      " P "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_combine_steel"
+      },
+      "I": {
+        "item": "hbm:ingot_combine_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:blades_combine_steel",
+      "count": 1
+    }
+  }
+}

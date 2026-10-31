@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_14"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS",
+      "SAS",
+      "SSS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:nugget_lead"
+      },
+      "A": {
+        "item": "minecraft:apple"
+      }
+    },
+    "result": {
+      "item": "hbm:apple_lead",
+      "count": 1
+    }
+  }
+}

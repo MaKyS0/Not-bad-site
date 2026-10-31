@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_813"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " G ",
+      "SMS",
+      " G "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:shell_steel"
+      },
+      "G": {
+        "item": "hbm:ingot_graphite"
+      },
+      "M": {
+        "item": "hbm:motor"
+      }
+    },
+    "result": {
+      "item": "hbm:flow_control_pump",
+      "count": 1
+    }
+  }
+}

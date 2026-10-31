@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1389"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "A",
+      "B",
+      "C"
+    ],
+    "key": {
+      "A": {
+        "item": "hbm:plate_gold"
+      },
+      "B": {
+        "item": "hbm:circuit_vacuum_tube"
+      },
+      "C": {
+        "item": "hbm:plate_iron"
+      }
+    },
+    "result": {
+      "item": "hbm:gas_sensor",
+      "count": 1
+    }
+  }
+}

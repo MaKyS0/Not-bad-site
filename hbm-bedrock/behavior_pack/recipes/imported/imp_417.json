@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_417"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_calcium",
+    "output": "hbm:ingot_calcium"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_768"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:steel_roof",
+      "count": 2
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_767"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:steel_wall"
+      },
+      {
+        "item": "hbm:steel_wall"
+      }
+    ],
+    "result": {
+      "item": "hbm:steel_corner",
+      "count": 1
+    }
+  }
+}

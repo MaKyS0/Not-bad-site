@@ -1,0 +1,33 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_468"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GRC",
+      "  S"
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass_pane"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      },
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "S": {
+        "item": "hbm:plate_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:rangefinder",
+      "count": 1
+    }
+  }
+}

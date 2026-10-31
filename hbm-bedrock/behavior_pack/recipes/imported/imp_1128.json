@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1128"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " I ",
+      "GCL",
+      " P "
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:ingot_lead"
+      },
+      "G": {
+        "item": "hbm:ballistite"
+      },
+      "C": {
+        "item": "hbm:casing_buckshot"
+      },
+      "P": {
+        "item": "hbm:primer_buckshot"
+      },
+      "L": {
+        "item": "hbm:plate_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_20gauge_slug",
+      "count": 12
+    }
+  }
+}

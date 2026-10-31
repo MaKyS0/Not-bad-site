@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1240"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "P",
+      "S"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:nugget_pu239"
+      },
+      "S": {
+        "item": "hbm:assembly_nuke"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_nuke_low",
+      "count": 1
+    }
+  }
+}

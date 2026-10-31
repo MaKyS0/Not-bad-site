@@ -1,0 +1,32 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1018"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rod_quad_empty"
+      },
+      {
+        "item": "hbm:egg_balefire_shard"
+      },
+      {
+        "item": "hbm:egg_balefire_shard"
+      },
+      {
+        "item": "hbm:egg_balefire_shard"
+      },
+      {
+        "item": "hbm:egg_balefire_shard"
+      }
+    ],
+    "result": {
+      "item": "hbm:rod_quad_balefire",
+      "count": 1
+    }
+  }
+}

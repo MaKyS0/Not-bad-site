@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:back_tesla",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_back_tesla"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.back_tesla.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

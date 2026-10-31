@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_500"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "P",
+      "C"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:ingot_polymer"
+      },
+      "C": {
+        "item": "hbm:casing_large"
+      }
+    },
+    "result": {
+      "item": "hbm:casing_buckshot",
+      "count": 2
+    }
+  }
+}

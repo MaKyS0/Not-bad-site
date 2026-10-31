@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_714"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " C ",
+      "CBC",
+      " C "
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:concrete_smooth"
+      },
+      "B": {
+        "item": "minecraft:clay_ball"
+      }
+    },
+    "result": {
+      "item": "hbm:brick_concrete",
+      "count": 4
+    }
+  }
+}

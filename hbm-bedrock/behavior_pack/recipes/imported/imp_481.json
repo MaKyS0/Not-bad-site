@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_481"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SFS",
+      "SCS",
+      " S "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "F": {
+        "item": "hbm:filter_coal"
+      },
+      "C": {
+        "item": "hbm:circuit_vacuum_tube"
+      }
+    },
+    "result": {
+      "item": "hbm:pollution_detector",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_506"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:ammo_standard_ct_mortar"
+      },
+      {
+        "item": "hbm:ammo_standard_ct_mortar"
+      },
+      {
+        "item": "hbm:ammo_standard_ct_mortar"
+      },
+      {
+        "item": "hbm:ammo_standard_ct_mortar"
+      },
+      {
+        "item": "hbm:ammo_standard_ct_mortar"
+      },
+      {
+        "item": "hbm:ammo_standard_ct_mortar"
+      },
+      {
+        "item": "hbm:ammo_standard_ct_mortar"
+      },
+      {
+        "item": "hbm:ducttape"
+      },
+      {
+        "item": "hbm:ducttape"
+      }
+    ],
+    "result": {
+      "item": "hbm:ammo_standard_ct_mortar_charge",
+      "count": 1
+    }
+  }
+}

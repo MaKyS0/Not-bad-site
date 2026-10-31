@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1369"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "TBT",
+      "SRS",
+      "SCS"
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:nugget_tantalium"
+      },
+      "B": {
+        "item": "hbm:nugget_bismuth"
+      },
+      "S": {
+        "item": "hbm:ingot_tcalloy"
+      },
+      "R": {
+        "item": "hbm:reacher"
+      },
+      "C": {
+        "item": "hbm:circuit_chip"
+      }
+    },
+    "result": {
+      "item": "hbm:bismuth_tool",
+      "count": 1
+    }
+  }
+}

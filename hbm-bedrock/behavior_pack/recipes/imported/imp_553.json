@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_553"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "C",
+      "R",
+      "C"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:hazmat_cloth"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      }
+    },
+    "result": {
+      "item": "hbm:hazmat_cloth_red",
+      "count": 1
+    }
+  }
+}

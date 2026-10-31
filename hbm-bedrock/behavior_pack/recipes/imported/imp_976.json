@@ -1,0 +1,24 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_976"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BB",
+      "BB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ingot_firebrick"
+      }
+    },
+    "result": {
+      "item": "hbm:brick_fire",
+      "count": 1
+    }
+  }
+}

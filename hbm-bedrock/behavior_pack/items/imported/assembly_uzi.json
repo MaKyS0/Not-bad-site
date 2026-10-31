@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:assembly_uzi",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_assembly_uzi"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.assembly_uzi.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

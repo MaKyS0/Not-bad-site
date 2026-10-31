@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_81"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:iv_empty"
+      },
+      {
+        "item": "hbm:powder_magic"
+      }
+    ],
+    "result": {
+      "item": "hbm:iv_xp_empty",
+      "count": 1
+    }
+  }
+}

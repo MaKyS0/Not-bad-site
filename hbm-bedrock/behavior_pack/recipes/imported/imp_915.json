@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_915"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "LLL",
+      "L#L",
+      "LLL"
+    ],
+    "key": {
+      "L": {
+        "item": "hbm:plate_lead"
+      },
+      "#": {
+        "item": "hbm:tank_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_storage_drum",
+      "count": 1
+    }
+  }
+}

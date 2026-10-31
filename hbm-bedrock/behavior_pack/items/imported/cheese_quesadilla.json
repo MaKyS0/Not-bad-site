@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:cheese_quesadilla",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_cheese_quesadilla"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.cheese_quesadilla.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

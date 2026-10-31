@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_526"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "PGP",
+      " P "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:ingot_pc"
+      },
+      "G": {
+        "item": "hbm:glass_boron"
+      }
+    },
+    "result": {
+      "item": "hbm:disperser_canister_empty",
+      "count": 4
+    }
+  }
+}

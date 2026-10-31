@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1149"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BBB",
+      "BAB",
+      "BBB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_44"
+      },
+      "A": {
+        "item": "hbm:ingot_u238"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_44_du",
+      "count": 8
+    }
+  }
+}

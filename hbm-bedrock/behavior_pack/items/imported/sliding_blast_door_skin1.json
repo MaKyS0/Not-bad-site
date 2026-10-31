@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:sliding_blast_door_skin1",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_sliding_blast_door_skin1"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.sliding_blast_door_skin1.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

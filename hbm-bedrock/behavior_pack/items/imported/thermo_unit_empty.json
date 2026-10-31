@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:thermo_unit_empty",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_thermo_unit_empty"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.thermo_unit_empty.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

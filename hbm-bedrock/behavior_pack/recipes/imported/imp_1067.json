@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1067"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:clip_revolver_nightmare"
+      }
+    ],
+    "result": {
+      "item": "hbm:gun_revolver_nightmare_ammo",
+      "count": 6
+    }
+  }
+}

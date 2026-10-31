@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_619"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BBB",
+      "BSB",
+      "BBB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:blade_titanium"
+      },
+      "S": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:turbine_titanium",
+      "count": 1
+    }
+  }
+}

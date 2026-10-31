@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_604"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "STS",
+      "S S",
+      "STS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "T": {
+        "item": "hbm:plate_titanium"
+      }
+    },
+    "result": {
+      "item": "hbm:tank_steel",
+      "count": 2
+    }
+  }
+}

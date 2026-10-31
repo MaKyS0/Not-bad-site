@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:crystal_schraranium",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_crystal_schraranium"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.crystal_schraranium.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

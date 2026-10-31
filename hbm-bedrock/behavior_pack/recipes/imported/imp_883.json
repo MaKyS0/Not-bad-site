@@ -1,0 +1,40 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_883"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PHP",
+      "CUC",
+      "DTD"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_copper"
+      },
+      "H": {
+        "item": "minecraft:hopper"
+      },
+      "C": {
+        "item": "hbm:coil_tungsten"
+      },
+      "U": {
+        "item": "hbm:upgrade_template"
+      },
+      "D": {
+        "item": "hbm:coil_copper"
+      },
+      "T": {
+        "item": "hbm:machine_transformer"
+      }
+    },
+    "result": {
+      "item": "hbm:upgrade_smelter",
+      "count": 1
+    }
+  }
+}

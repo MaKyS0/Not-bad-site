@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_763"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "T T",
+      "TRT",
+      "BBB"
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:ingot_tungsten"
+      },
+      "B": {
+        "item": "hbm:ingot_beryllium"
+      },
+      "R": {
+        "item": "hbm:ingot_red_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:pole_top",
+      "count": 1
+    }
+  }
+}

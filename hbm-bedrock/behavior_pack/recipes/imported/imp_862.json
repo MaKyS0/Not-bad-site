@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_862"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PDP",
+      "GDG",
+      "PDP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_dineutronium"
+      },
+      "G": {
+        "item": "hbm:reinforced_glass"
+      },
+      "D": {
+        "item": "minecraft:diamond_block"
+      }
+    },
+    "result": {
+      "item": "hbm:ams_lens",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1000"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "##",
+      "##"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ingot_tungsten"
+      }
+    },
+    "result": {
+      "item": "hbm:neutron_reflector",
+      "count": 4
+    }
+  }
+}

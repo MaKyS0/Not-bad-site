@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_507"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:missile_assembly"
+      },
+      {
+        "item": "hbm:ducttape"
+      },
+      {
+        "item": "hbm:ammo_standard_nuke_high"
+      }
+    ],
+    "result": {
+      "item": "hbm:missile_micro",
+      "count": 1
+    }
+  }
+}

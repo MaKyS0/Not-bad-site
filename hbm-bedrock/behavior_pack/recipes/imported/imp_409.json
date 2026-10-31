@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_409"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_zirconium",
+    "output": "hbm:ingot_zirconium"
+  }
+}

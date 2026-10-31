@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:can_creature",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_can_creature"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.can_creature.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

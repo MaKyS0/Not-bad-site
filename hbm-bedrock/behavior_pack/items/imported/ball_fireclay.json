@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:ball_fireclay",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_ball_fireclay"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.ball_fireclay.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

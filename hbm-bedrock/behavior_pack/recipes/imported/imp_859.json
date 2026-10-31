@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_859"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rune_blank"
+      },
+      {
+        "item": "hbm:powder_spark_mix"
+      },
+      {
+        "item": "hbm:singularity_super_heated"
+      }
+    ],
+    "result": {
+      "item": "hbm:rune_hagalaz",
+      "count": 1
+    }
+  }
+}

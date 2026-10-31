@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1220"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " I ",
+      "GIG",
+      "CCC"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:ingot_tungsten"
+      },
+      "G": {
+        "item": "minecraft:gunpowder"
+      },
+      "C": {
+        "item": "minecraft:copper_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_shell_apfsds_t",
+      "count": 4
+    }
+  }
+}

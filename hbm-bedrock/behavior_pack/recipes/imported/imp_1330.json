@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1330"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CC ",
+      "GGS",
+      "SSS"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "G": {
+        "item": "hbm:plate_gold"
+      }
+    },
+    "result": {
+      "item": "hbm:turret_biometry",
+      "count": 1
+    }
+  }
+}

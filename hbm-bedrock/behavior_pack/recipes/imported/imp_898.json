@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_898"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GGG",
+      "GRG",
+      "GGG"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:neutron_reflector"
+      },
+      "R": {
+        "item": "hbm:rbmk_blank"
+      }
+    },
+    "result": {
+      "item": "hbm:rbmk_reflector",
+      "count": 1
+    }
+  }
+}

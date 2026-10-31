@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_431"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:waste_trinitite",
+    "output": "hbm:glass_trinitite"
+  }
+}

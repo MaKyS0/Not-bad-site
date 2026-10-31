@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_622"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GP",
+      "GP",
+      "GP"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:plate_gold"
+      },
+      "P": {
+        "item": "hbm:ingot_polymer"
+      }
+    },
+    "result": {
+      "item": "hbm:shimmer_handle",
+      "count": 1
+    }
+  }
+}

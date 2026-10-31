@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1263"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " S ",
+      "S#S",
+      " S "
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ball_tnt"
+      },
+      "S": {
+        "item": "minecraft:sand"
+      }
+    },
+    "result": {
+      "item": "minecraft:tnt",
+      "count": 4
+    }
+  }
+}

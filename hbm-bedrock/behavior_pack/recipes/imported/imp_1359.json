@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1359"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:book"
+      },
+      {
+        "item": "minecraft:gold_nugget"
+      },
+      {
+        "item": "minecraft:green_dye"
+      }
+    ],
+    "result": {
+      "item": "hbm:bobmazon_tools",
+      "count": 1
+    }
+  }
+}

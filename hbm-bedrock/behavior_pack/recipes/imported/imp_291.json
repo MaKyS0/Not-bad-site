@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_291"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:solid_fuel"
+      },
+      {
+        "item": "hbm:cordite"
+      },
+      {
+        "item": "hbm:niter"
+      }
+    ],
+    "result": {
+      "item": "hbm:powder_semtex_mix",
+      "count": 3
+    }
+  }
+}

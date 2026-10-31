@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_979"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:upgrade_template"
+      },
+      {
+        "item": "hbm:gem_alexandrite"
+      }
+    ],
+    "result": {
+      "item": "hbm:upgrade_5g",
+      "count": 1
+    }
+  }
+}

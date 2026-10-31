@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1260"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PFP",
+      "FOF",
+      "PFP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:powder_coal"
+      },
+      "F": {
+        "item": "minecraft:flint"
+      },
+      "O": {
+        "item": "hbm:gravel_obsidian"
+      }
+    },
+    "result": {
+      "item": "hbm:pellet_coal",
+      "count": 1
+    }
+  }
+}

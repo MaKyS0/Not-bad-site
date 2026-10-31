@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_668"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "UUU",
+      "UAU",
+      "UUU"
+    ],
+    "key": {
+      "U": {
+        "item": "hbm:undefined"
+      },
+      "A": {
+        "item": "hbm:anvil_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:anvil_murky",
+      "count": 1
+    }
+  }
+}

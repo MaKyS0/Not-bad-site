@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_319"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_steel"
+      },
+      {
+        "item": "hbm:powder_cobalt"
+      }
+    ],
+    "result": {
+      "item": "hbm:powder_dura_steel",
+      "count": 2
+    }
+  }
+}

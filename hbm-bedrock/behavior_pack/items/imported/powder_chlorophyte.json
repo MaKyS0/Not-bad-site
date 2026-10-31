@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:powder_chlorophyte",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_powder_chlorophyte"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.powder_chlorophyte.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

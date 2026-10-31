@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:multi_kit",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_multi_kit"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.multi_kit.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

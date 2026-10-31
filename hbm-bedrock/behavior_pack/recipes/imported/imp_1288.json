@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1288"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " R ",
+      "III",
+      "SSS"
+    ],
+    "key": {
+      "R": {
+        "item": "minecraft:redstone"
+      },
+      "I": {
+        "item": "minecraft:brick"
+      },
+      "S": {
+        "item": "hbm:ingot_schrabidium"
+      }
+    },
+    "result": {
+      "item": "hbm:stamp_schrabidium_flat",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1084"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:clip_mp"
+      }
+    ],
+    "result": {
+      "item": "hbm:gun_mp_ammo",
+      "count": 40
+    }
+  }
+}

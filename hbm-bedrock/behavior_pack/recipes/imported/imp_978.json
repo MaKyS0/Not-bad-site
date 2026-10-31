@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_978"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PPP",
+      "T  ",
+      "PPP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_cast_steel"
+      },
+      "T": {
+        "item": "hbm:tank_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_drain",
+      "count": 1
+    }
+  }
+}

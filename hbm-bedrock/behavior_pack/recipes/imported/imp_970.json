@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_970"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "B B",
+      "BSB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ingot_firebrick"
+      },
+      "S": {
+        "item": "minecraft:smooth_stone_slab"
+      }
+    },
+    "result": {
+      "item": "hbm:foundry_mold",
+      "count": 1
+    }
+  }
+}

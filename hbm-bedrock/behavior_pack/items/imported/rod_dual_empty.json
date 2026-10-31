@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:rod_dual_empty",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_rod_dual_empty"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.rod_dual_empty.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

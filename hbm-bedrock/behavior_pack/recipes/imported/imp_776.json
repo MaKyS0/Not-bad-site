@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_776"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "AAD",
+      "CHF",
+      "AAD"
+    ],
+    "key": {
+      "A": {
+        "item": "hbm:wire_fine_aluminum"
+      },
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "H": {
+        "item": "hbm:shell_aluminum"
+      },
+      "F": {
+        "item": "hbm:fins_quad_titanium"
+      },
+      "D": {
+        "item": "minecraft:white_dye"
+      }
+    },
+    "result": {
+      "item": "hbm:bomb_multi",
+      "count": 1
+    }
+  }
+}

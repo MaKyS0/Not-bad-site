@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_495"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "  G",
+      " S ",
+      "S  "
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass_pane"
+      },
+      "S": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:analysis_tool",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_670"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "III",
+      "IFI",
+      "BBB"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "F": {
+        "item": "minecraft:furnace"
+      },
+      "B": {
+        "item": "minecraft:stone_bricks"
+      }
+    },
+    "result": {
+      "item": "hbm:furnace_iron",
+      "count": 1
+    }
+  }
+}

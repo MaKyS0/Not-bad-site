@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1005"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "C",
+      "R",
+      "C"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:shell_steel"
+      },
+      "R": {
+        "item": "hbm:rbmk_blank"
+      }
+    },
+    "result": {
+      "item": "hbm:rbmk_rod",
+      "count": 1
+    }
+  }
+}

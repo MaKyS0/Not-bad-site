@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_349"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:ore_uranium_scorched",
+    "output": "hbm:ingot_uranium"
+  }
+}

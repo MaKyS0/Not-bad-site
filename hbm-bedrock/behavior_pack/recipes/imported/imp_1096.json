@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1096"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SRS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "R": {
+        "item": "hbm:rod_uranium_fuel_depleted"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_xvl1456_ammo",
+      "count": 16
+    }
+  }
+}

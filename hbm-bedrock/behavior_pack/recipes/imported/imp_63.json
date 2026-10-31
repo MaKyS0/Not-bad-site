@@ -1,0 +1,35 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_63"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:bottle2_empty"
+      },
+      {
+        "item": "hbm:syringe_metal_empty"
+      },
+      {
+        "item": "hbm:ducttape"
+      },
+      {
+        "item": "hbm:powder_magic"
+      },
+      {
+        "item": "hbm:nugget_schrabidium"
+      },
+      {
+        "item": "minecraft:potion"
+      }
+    ],
+    "result": {
+      "item": "hbm:syringe_taint",
+      "count": 1
+    }
+  }
+}

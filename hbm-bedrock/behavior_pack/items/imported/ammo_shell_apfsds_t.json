@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:ammo_shell_apfsds_t",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_ammo_shell_apfsds_t"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.ammo_shell_apfsds_t.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

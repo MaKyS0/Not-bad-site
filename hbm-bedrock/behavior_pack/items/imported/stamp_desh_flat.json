@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:stamp_desh_flat",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_stamp_desh_flat"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.stamp_desh_flat.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

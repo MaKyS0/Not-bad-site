@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_614"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " PP",
+      "III",
+      " PP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_titanium"
+      },
+      "I": {
+        "item": "hbm:ingot_titanium"
+      }
+    },
+    "result": {
+      "item": "hbm:fins_quad_titanium",
+      "count": 1
+    }
+  }
+}

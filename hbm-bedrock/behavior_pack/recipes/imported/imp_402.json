@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_402"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_bakelite",
+    "output": "hbm:ingot_bakelite"
+  }
+}

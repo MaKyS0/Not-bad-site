@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_881"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PCP",
+      "PBP",
+      "PCP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:ingot_pc"
+      },
+      "C": {
+        "item": "hbm:powder_cobalt"
+      },
+      "B": {
+        "item": "hbm:ingot_bismuth"
+      }
+    },
+    "result": {
+      "item": "hbm:catalytic_converter",
+      "count": 1
+    }
+  }
+}

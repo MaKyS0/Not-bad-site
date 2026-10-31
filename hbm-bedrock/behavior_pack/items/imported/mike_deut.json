@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:mike_deut",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_mike_deut"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.mike_deut.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

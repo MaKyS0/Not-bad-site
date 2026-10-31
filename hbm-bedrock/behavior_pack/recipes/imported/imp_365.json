@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_365"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:ore_meteor_aluminium",
+    "output": "hbm:chunk_ore_cryolite"
+  }
+}

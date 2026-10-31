@@ -1,0 +1,30 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_568"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "IAI",
+      "W W"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:plate_polymer"
+      },
+      "A": {
+        "item": "hbm:powder_aluminium"
+      },
+      "W": {
+        "item": "hbm:wire_fine_aluminum"
+      }
+    },
+    "result": {
+      "item": "hbm:circuit_capacitor",
+      "count": 2
+    }
+  }
+}

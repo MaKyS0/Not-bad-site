@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1078"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:clip_uboinik"
+      }
+    ],
+    "result": {
+      "item": "hbm:ammo_12gauge",
+      "count": 24
+    }
+  }
+}

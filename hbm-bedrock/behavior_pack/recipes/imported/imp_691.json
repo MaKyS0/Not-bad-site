@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_691"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "EEE",
+      "EIE",
+      "EEE"
+    ],
+    "key": {
+      "E": {
+        "item": "hbm:powder_power"
+      },
+      "I": {
+        "item": "hbm:ingot_euphemium"
+      }
+    },
+    "result": {
+      "item": "hbm:crystal_xen",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_397"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_red_copper",
+    "output": "hbm:ingot_red_copper"
+  }
+}

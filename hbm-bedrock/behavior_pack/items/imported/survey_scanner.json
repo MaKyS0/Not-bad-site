@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:survey_scanner",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_survey_scanner"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.survey_scanner.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

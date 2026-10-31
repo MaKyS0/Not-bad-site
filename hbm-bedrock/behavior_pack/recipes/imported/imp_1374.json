@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1374"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "OOO",
+      "PDP",
+      "OOO"
+    ],
+    "key": {
+      "O": {
+        "item": "minecraft:obsidian"
+      },
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "D": {
+        "item": "hbm:ducttape"
+      }
+    },
+    "result": {
+      "item": "hbm:cladding_obsidian",
+      "count": 1
+    }
+  }
+}

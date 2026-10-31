@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_780"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " I ",
+      "IPI",
+      " I "
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:paper"
+      },
+      "I": {
+        "item": "minecraft:black_dye"
+      }
+    },
+    "result": {
+      "item": "hbm:flame_politics",
+      "count": 1
+    }
+  }
+}

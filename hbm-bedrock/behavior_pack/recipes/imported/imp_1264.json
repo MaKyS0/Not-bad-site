@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1264"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PIP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_aluminium"
+      },
+      "I": {
+        "item": "hbm:ingot_aluminium"
+      }
+    },
+    "result": {
+      "item": "hbm:cap_aluminium",
+      "count": 1
+    }
+  }
+}

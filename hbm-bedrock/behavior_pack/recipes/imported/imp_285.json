@@ -1,0 +1,24 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_285"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "##",
+      "##"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:powder_balefire"
+      }
+    },
+    "result": {
+      "item": "hbm:egg_balefire_shard",
+      "count": 1
+    }
+  }
+}

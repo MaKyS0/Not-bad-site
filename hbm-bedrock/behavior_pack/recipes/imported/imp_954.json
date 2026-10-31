@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_954"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "T",
+      "C"
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:drone_waypoint"
+      },
+      "C": {
+        "item": "hbm:circuit_basic"
+      }
+    },
+    "result": {
+      "item": "hbm:drone_linker",
+      "count": 1
+    }
+  }
+}

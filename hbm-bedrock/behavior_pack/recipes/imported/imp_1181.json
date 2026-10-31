@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1181"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " B ",
+      "MEM",
+      " S "
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:folly_bullet"
+      },
+      "M": {
+        "item": "hbm:powder_magic"
+      },
+      "E": {
+        "item": "hbm:powder_power"
+      },
+      "S": {
+        "item": "hbm:folly_shell"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_folly",
+      "count": 1
+    }
+  }
+}

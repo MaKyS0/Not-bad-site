@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_18"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:balefire_scrambled"
+      },
+      {
+        "item": "minecraft:cooked_beef"
+      }
+    ],
+    "result": {
+      "item": "hbm:balefire_and_ham",
+      "count": 1
+    }
+  }
+}

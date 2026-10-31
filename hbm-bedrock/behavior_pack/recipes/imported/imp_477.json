@@ -1,0 +1,40 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_477"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GPP",
+      "WCS",
+      "WBB"
+    ],
+    "key": {
+      "W": {
+        "item": "hbm:wire_fine_gold"
+      },
+      "P": {
+        "item": "hbm:ingot_biorubber"
+      },
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "G": {
+        "item": "minecraft:gold_ingot"
+      },
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "B": {
+        "item": "hbm:ingot_beryllium"
+      }
+    },
+    "result": {
+      "item": "hbm:geiger_counter",
+      "count": 1
+    }
+  }
+}

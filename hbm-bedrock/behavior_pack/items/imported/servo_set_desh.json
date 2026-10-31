@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:servo_set_desh",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_servo_set_desh"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.servo_set_desh.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

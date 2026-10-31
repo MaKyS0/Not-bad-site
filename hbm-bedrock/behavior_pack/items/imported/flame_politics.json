@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:flame_politics",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_flame_politics"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.flame_politics.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

@@ -1,7 +1,7 @@
 // Writes every data file of both packs from the tables below: blocks, items, recipes,
 // ore generation, armor attachables, texture atlases, sounds and both languages.
 // Textures and scripts are kept by hand. Run `npm run generate` after editing a table.
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,6 +15,12 @@ function write(path, data) {
 }
 
 const lang = { en_US: {}, ru_RU: {} };
+
+/** Ids defined by hand below; the imported catalog never replaces them. */
+const defined = new Set();
+/** Everything imported from HBM and NTM Extended by scripts/import-hbm.mjs. */
+const catalogPath = join(root, "imported/catalog.json");
+const catalog = existsSync(catalogPath) ? JSON.parse(readFileSync(catalogPath, "utf8")) : { items: [], blocks: [], recipes: [], rads: {} };
 function name(key, en, ru) {
   lang.en_US[key] = en;
   lang.ru_RU[key] = ru;
@@ -61,6 +67,7 @@ const SOUND_OF_TAG = { stone: "stone", metal: "metal", wood: "wood", dirt: "gras
  */
 function simpleBlock(id, { en, ru, texture, up, down, seconds, resist, color, category, group, loot, tag = "stone" }) {
   name(`tile.hbm.${id}.name`, en, ru);
+  defined.add(`hbm:${id}`);
   blockSounds[`hbm:${id}`] = { sound: SOUND_OF_TAG[tag] ?? "stone" };
   const faceTexture = { "*": texture, north: texture, south: texture, east: texture, west: texture, up: up ?? texture, down: down ?? texture };
   const materials = {};
@@ -145,6 +152,7 @@ const ROTATIONS = { north: 0, west: 90, south: 180, east: -90 };
 
 function machineBlock(id, { en, ru, front, frontOn, side, top, bottom }) {
   name(`tile.hbm.${id}.name`, en, ru);
+  defined.add(`hbm:${id}`);
   blockSounds[`hbm:${id}`] = { sound: "metal" };
   for (const t of [front, frontOn, side, top, bottom].filter(Boolean)) {
     terrain[`hbm_${t}`] = { textures: `textures/blocks/${t}` };
@@ -257,6 +265,7 @@ simpleBlock("waste_log", { en: "Charred Log", ru: "Обугленное брев
 const CABLE_SIDES = ["n", "s", "e", "w", "u", "d"];
 function conduit(id, { en, ru, color }) {
   name(`tile.hbm.${id}.name`, en, ru);
+  defined.add(`hbm:${id}`);
   blockSounds[`hbm:${id}`] = { sound: "metal" };
   terrain[`hbm_${id}`] = { textures: `textures/blocks/${id}` };
   write(join(BP, `blocks/${id}.json`), {
@@ -286,6 +295,36 @@ function conduit(id, { en, ru, color }) {
 }
 conduit("red_cable", { en: "Red Copper Cable", ru: "Красный медный провод", color: "#b03a1a" });
 conduit("fluid_duct", { en: "Fluid Duct", ru: "Трубопровод", color: "#c8c8c8" });
+
+// ---------- imported blocks ----------
+
+const importedTexture = (path) => `hbm_imp_${path.replace(/^textures\/imported\//, "").replace(/[^a-z0-9_]/gi, "_")}`;
+const TOOL_TAG = { pickaxe: "minecraft:is_pickaxe_item_destructible", axe: "minecraft:is_axe_item_destructible", shovel: "minecraft:is_shovel_item_destructible" };
+const SOUND_OF_TOOL = { pickaxe: "stone", axe: "wood", shovel: "gravel" };
+const importedBlocks = catalog.blocks.filter((b) => !defined.has(`hbm:${b.id}`));
+for (const b of importedBlocks) {
+  name(`tile.hbm.${b.id}.name`, b.en, b.ru);
+  blockSounds[`hbm:${b.id}`] = { sound: SOUND_OF_TOOL[b.tool] ?? "stone" };
+  const face = (path) => {
+    terrain[importedTexture(path)] = { textures: path };
+    return { texture: importedTexture(path), render_method: "alpha_test" };
+  };
+  const side = face(b.faces.side);
+  const components = {
+    "minecraft:display_name": `tile.hbm.${b.id}.name`,
+    "minecraft:destructible_by_mining": b.hardness < 0 ? false : { seconds_to_destroy: b.hardness },
+    "minecraft:destructible_by_explosion": { explosion_resistance: b.resistance },
+    "minecraft:geometry": "geometry.hbm.machine",
+    "minecraft:material_instances": { "*": side, north: side, south: side, east: side, west: side, up: face(b.faces.up), down: face(b.faces.down) },
+    "minecraft:map_color": "#808080",
+    [`tag:${TOOL_TAG[b.tool] ?? TOOL_TAG.pickaxe}`]: {},
+  };
+  if (b.light > 0) components["minecraft:light_emission"] = b.light;
+  write(join(BP, `blocks/imported/${b.id}.json`), {
+    format_version: "1.21.60",
+    "minecraft:block": { description: { identifier: `hbm:${b.id}`, menu_category: { category: b.category } }, components },
+  });
+}
 
 write(join(RP, "blocks.json"), { format_version: [1, 1, 0], ...blockSounds });
 
@@ -350,6 +389,7 @@ write(join(RP, "models/blocks/hbm_cable.geo.json"), {
 const itemTextures = {};
 function item(id, { en, ru, texture = id, category = "items", components = {} }) {
   name(`item.hbm.${id}.name`, en, ru);
+  defined.add(`hbm:${id}`);
   itemTextures[`hbm_${id}`] = { textures: `textures/items/${texture}` };
   write(join(BP, `items/${id}.json`), {
     format_version: "1.21.60",
@@ -484,6 +524,25 @@ for (const [id, a] of Object.entries(ARMOR)) {
   });
 }
 
+// ---------- imported items ----------
+
+const importedItems = catalog.items.filter((i) => !defined.has(`hbm:${i.id}`));
+for (const i of importedItems) {
+  name(`item.hbm.${i.id}.name`, i.en, i.ru);
+  itemTextures[importedTexture(i.texture)] = { textures: i.texture };
+  write(join(BP, `items/imported/${i.id}.json`), {
+    format_version: "1.21.60",
+    "minecraft:item": {
+      description: { identifier: `hbm:${i.id}`, menu_category: { category: i.category } },
+      components: {
+        "minecraft:icon": { textures: { default: importedTexture(i.texture) } },
+        "minecraft:display_name": { value: `item.hbm.${i.id}.name` },
+        "minecraft:max_stack_size": Math.max(1, Math.min(64, i.stack)),
+      },
+    },
+  });
+}
+
 write(join(RP, "textures/item_texture.json"), {
   resource_pack_name: "hbm",
   texture_name: "atlas.items",
@@ -492,7 +551,10 @@ write(join(RP, "textures/item_texture.json"), {
 
 // ---------- recipes ----------
 
+/** Inputs that already have a furnace recipe; the imported recipes skip them. */
+const handSmelted = new Set();
 function furnace(id, input, output) {
+  handSmelted.add(input);
   write(join(BP, `recipes/${id}.json`), {
     format_version: "1.12",
     "minecraft:recipe_furnace": { description: { identifier: `hbm:${id}` }, tags: ["furnace", "blast_furnace"], input, output },
@@ -587,6 +649,52 @@ shapeless("ammo_45", ["hbm:plate_copper", "minecraft:gunpowder", "hbm:ingot_lead
 shapeless("grenade_he", ["hbm:plate_iron", "minecraft:gunpowder", "minecraft:gunpowder", "minecraft:string"], "hbm:grenade_he", 2);
 shaped("machine_battery", ["LAL", "CRC", "LAL"], { L: "hbm:ingot_lead", A: "hbm:ingot_aluminium", C: "minecraft:copper_ingot", R: "minecraft:redstone_block" }, "hbm:machine_battery");
 
+// ---------- imported recipes and radiation ----------
+
+const known = new Set([...defined, ...importedBlocks.map((b) => `hbm:${b.id}`), ...importedItems.map((i) => `hbm:${i.id}`)]);
+const exists = (id) => id.startsWith("minecraft:") || known.has(id);
+const smelted = new Set(handSmelted); // one furnace recipe per input; hand-made ones win
+let importedRecipes = 0;
+for (const r of catalog.recipes) {
+  const ids = [r.output, r.input, ...(r.ingredients ?? []), ...Object.values(r.key ?? {})].filter(Boolean);
+  if (!ids.every(exists)) continue;
+  const id = `imp_${importedRecipes++}`;
+  if (r.type === "furnace") {
+    if (smelted.has(r.input)) continue;
+    smelted.add(r.input);
+    write(join(BP, `recipes/imported/${id}.json`), {
+      format_version: "1.12",
+      "minecraft:recipe_furnace": { description: { identifier: `hbm:${id}` }, tags: ["furnace"], input: r.input, output: r.output },
+    });
+  } else if (r.type === "shaped") {
+    write(join(BP, `recipes/imported/${id}.json`), {
+      format_version: "1.12",
+      "minecraft:recipe_shaped": {
+        description: { identifier: `hbm:${id}` },
+        tags: ["crafting_table"],
+        pattern: r.pattern,
+        key: Object.fromEntries(Object.entries(r.key).map(([k, v]) => [k, { item: v }])),
+        result: { item: r.output, count: r.count },
+      },
+    });
+  } else {
+    write(join(BP, `recipes/imported/${id}.json`), {
+      format_version: "1.12",
+      "minecraft:recipe_shapeless": {
+        description: { identifier: `hbm:${id}` },
+        tags: ["crafting_table"],
+        ingredients: r.ingredients.map((v) => ({ item: v })),
+        result: { item: r.output, count: r.count },
+      },
+    });
+  }
+}
+const rads = Object.fromEntries(Object.entries(catalog.rads).filter(([id]) => known.has(id)));
+write(
+  join(BP, "scripts/imported_rads.js"),
+  `// Generated by scripts/generate.mjs from HBM's hazard tables: RAD per second for one item.\nexport const IMPORTED_RADS = ${JSON.stringify(rads, null, 2)};\n`
+);
+
 // ---------- sounds and texts ----------
 
 write(join(RP, "sounds/sound_definitions.json"), {
@@ -676,3 +784,4 @@ for (const [code, entries] of Object.entries(lang)) {
 write(join(RP, "texts/languages.json"), Object.keys(lang));
 
 console.log(`generated: ${Object.keys(terrain).length} block textures, ${Object.keys(itemTextures).length} items, ${Object.keys(lang.en_US).length} strings`);
+console.log(`imported: ${importedBlocks.length} blocks, ${importedItems.length} items, ${importedRecipes} recipes, ${Object.keys(rads).length} radiation values`);

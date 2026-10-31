@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1314"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS",
+      "PMP",
+      "SSS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:syringe_empty"
+      },
+      "P": {
+        "item": "minecraft:pumpkin_seeds"
+      },
+      "M": {
+        "item": "minecraft:sugar_cane"
+      }
+    },
+    "result": {
+      "item": "hbm:syringe_antidote",
+      "count": 6
+    }
+  }
+}

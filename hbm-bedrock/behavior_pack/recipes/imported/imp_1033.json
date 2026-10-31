@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1033"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rod_plutonium_fuel_depleted"
+      }
+    ],
+    "result": {
+      "item": "hbm:waste_plutonium_hot",
+      "count": 1
+    }
+  }
+}

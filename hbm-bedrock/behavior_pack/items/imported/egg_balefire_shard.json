@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:egg_balefire_shard",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_egg_balefire_shard"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.egg_balefire_shard.name"
+      },
+      "minecraft:max_stack_size": 16
+    }
+  }
+}

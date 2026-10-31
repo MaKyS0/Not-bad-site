@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:mp_fuselage_15_solid",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_mp_fuselage_15_solid"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.mp_fuselage_15_solid.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

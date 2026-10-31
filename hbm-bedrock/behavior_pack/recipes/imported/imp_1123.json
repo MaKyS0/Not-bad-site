@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1123"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " I",
+      "GC",
+      " P"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "G": {
+        "item": "hbm:ballistite"
+      },
+      "C": {
+        "item": "hbm:casing_9"
+      },
+      "P": {
+        "item": "hbm:primer_9"
+      }
+    },
+    "result": {
+      "item": "hbm:assembly_uzi",
+      "count": 32
+    }
+  }
+}

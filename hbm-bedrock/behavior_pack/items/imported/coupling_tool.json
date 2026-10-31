@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:coupling_tool",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_coupling_tool"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.coupling_tool.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1310"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:bottle2_empty"
+      },
+      {
+        "item": "minecraft:potion"
+      },
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "hbm:powder_tungsten"
+      },
+      {
+        "item": "hbm:powder_thorium"
+      }
+    ],
+    "result": {
+      "item": "hbm:bottle2_fritz_special",
+      "count": 1
+    }
+  }
+}

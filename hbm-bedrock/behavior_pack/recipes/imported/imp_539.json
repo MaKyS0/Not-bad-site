@@ -1,0 +1,29 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_539"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CDN"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:circuit_analog"
+      },
+      "D": {
+        "item": "hbm:ducttape"
+      },
+      "N": {
+        "item": "hbm:ammo_standard_nuke_demo"
+      }
+    },
+    "result": {
+      "item": "hbm:mine_fat",
+      "count": 1
+    }
+  }
+}

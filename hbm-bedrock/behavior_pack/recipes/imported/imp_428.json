@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_428"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "minecraft:gravel",
+    "output": "minecraft:cobblestone"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_17"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:bowl"
+      },
+      {
+        "item": "hbm:egg_balefire"
+      }
+    ],
+    "result": {
+      "item": "hbm:balefire_scrambled",
+      "count": 1
+    }
+  }
+}

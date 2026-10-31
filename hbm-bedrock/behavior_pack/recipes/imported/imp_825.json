@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_825"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS",
+      "STS",
+      " D "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "T": {
+        "item": "hbm:ingot_tungsten"
+      },
+      "D": {
+        "item": "hbm:bolt_durasteel"
+      }
+    },
+    "result": {
+      "item": "hbm:piston_selenium",
+      "count": 1
+    }
+  }
+}

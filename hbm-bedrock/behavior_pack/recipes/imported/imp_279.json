@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_279"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "###",
+      "#B#",
+      "###"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:nugget_mercury"
+      },
+      "B": {
+        "item": "minecraft:glass_bottle"
+      }
+    },
+    "result": {
+      "item": "hbm:bottle_mercury",
+      "count": 1
+    }
+  }
+}

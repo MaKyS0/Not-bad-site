@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_679"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "C",
+      "T",
+      "C"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:ingot_desh"
+      },
+      "T": {
+        "item": "hbm:ingot_tungsten"
+      }
+    },
+    "result": {
+      "item": "hbm:arc_electrode_desh",
+      "count": 1
+    }
+  }
+}

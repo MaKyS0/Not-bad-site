@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1227"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BBB",
+      "BAB",
+      "BBB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_44"
+      },
+      "A": {
+        "item": "hbm:pellet_chlorophyte"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_44_chlorophyte",
+      "count": 8
+    }
+  }
+}

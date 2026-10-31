@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_880"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CBC",
+      "BHB",
+      "CBC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:circuit_advanced"
+      },
+      "B": {
+        "item": "hbm:plate_cast_tcalloy"
+      },
+      "H": {
+        "item": "hbm:watz_cooler"
+      }
+    },
+    "result": {
+      "item": "hbm:struct_watz_core",
+      "count": 1
+    }
+  }
+}

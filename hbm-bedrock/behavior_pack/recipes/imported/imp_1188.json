@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1188"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "G",
+      "R"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:powder_diamond"
+      },
+      "R": {
+        "item": "hbm:ammo_rocket"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_rocket_emp",
+      "count": 1
+    }
+  }
+}

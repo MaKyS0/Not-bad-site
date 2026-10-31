@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_515"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CCC",
+      "CTC",
+      "CCC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:plate_cast_copper"
+      },
+      "T": {
+        "item": "hbm:mp_thruster_15_balefire_large"
+      }
+    },
+    "result": {
+      "item": "hbm:mp_thruster_15_balefire_large_rad",
+      "count": 1
+    }
+  }
+}

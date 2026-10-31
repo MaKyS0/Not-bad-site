@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_853"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PP",
+      "SS",
+      "BB"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_titanium"
+      },
+      "S": {
+        "item": "hbm:steel_scaffold"
+      },
+      "B": {
+        "item": "hbm:steel_beam"
+      }
+    },
+    "result": {
+      "item": "hbm:seg_15",
+      "count": 1
+    }
+  }
+}

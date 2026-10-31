@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:designator_manual",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_designator_manual"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.designator_manual.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

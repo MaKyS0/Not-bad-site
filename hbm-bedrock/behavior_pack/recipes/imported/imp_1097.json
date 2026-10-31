@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1097"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " S ",
+      " R ",
+      " S "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "R": {
+        "item": "hbm:ingot_u238"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_xvl1456_ammo",
+      "count": 16
+    }
+  }
+}

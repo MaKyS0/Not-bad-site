@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_488"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "PCP",
+      "III"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_iron"
+      },
+      "C": {
+        "item": "hbm:circuit_analog"
+      },
+      "I": {
+        "item": "hbm:plate_polymer"
+      }
+    },
+    "result": {
+      "item": "hbm:settings_tool",
+      "count": 1
+    }
+  }
+}

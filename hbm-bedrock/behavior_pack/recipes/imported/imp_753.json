@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_753"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "G",
+      "M",
+      "A"
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass_pane"
+      },
+      "M": {
+        "item": "hbm:nugget_mercury"
+      },
+      "A": {
+        "item": "hbm:plate_aluminium"
+      }
+    },
+    "result": {
+      "item": "hbm:spotlight_fluoro",
+      "count": 8
+    }
+  }
+}

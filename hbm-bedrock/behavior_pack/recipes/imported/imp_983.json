@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_983"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "OOO",
+      "OBO",
+      "OOO"
+    ],
+    "key": {
+      "O": {
+        "item": "hbm:ore_uranium_scorched"
+      },
+      "B": {
+        "item": "minecraft:water_bucket"
+      }
+    },
+    "result": {
+      "item": "hbm:ore_uranium",
+      "count": 8
+    }
+  }
+}

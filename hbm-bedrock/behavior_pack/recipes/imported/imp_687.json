@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_687"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "ESE",
+      "SBS",
+      "ESE"
+    ],
+    "key": {
+      "E": {
+        "item": "hbm:nugget_euphemium"
+      },
+      "S": {
+        "item": "hbm:cell_anti_schrabidium"
+      },
+      "B": {
+        "item": "hbm:block_schrabidium"
+      }
+    },
+    "result": {
+      "item": "hbm:singularity",
+      "count": 1
+    }
+  }
+}

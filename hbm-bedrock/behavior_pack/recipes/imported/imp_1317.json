@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1317"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SLS",
+      "LCL",
+      "SLS"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:syringe_empty"
+      },
+      "S": {
+        "item": "minecraft:spider_eye"
+      },
+      "L": {
+        "item": "hbm:powder_poison"
+      }
+    },
+    "result": {
+      "item": "hbm:syringe_poison",
+      "count": 1
+    }
+  }
+}

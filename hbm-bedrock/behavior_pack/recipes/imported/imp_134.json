@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_134"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#S#",
+      "SXS",
+      "#S#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:ingot_schrabidium"
+      },
+      "S": {
+        "item": "hbm:ingot_starmetal"
+      },
+      "X": {
+        "item": "hbm:ingot_schrabidate"
+      }
+    },
+    "result": {
+      "item": "hbm:block_schrabidium_cluster",
+      "count": 1
+    }
+  }
+}

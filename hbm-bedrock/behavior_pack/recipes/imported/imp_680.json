@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_680"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "C",
+      "T",
+      "C"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:ingot_saturnite"
+      },
+      "T": {
+        "item": "hbm:ingot_niobium"
+      }
+    },
+    "result": {
+      "item": "hbm:arc_electrode_saturnite",
+      "count": 1
+    }
+  }
+}

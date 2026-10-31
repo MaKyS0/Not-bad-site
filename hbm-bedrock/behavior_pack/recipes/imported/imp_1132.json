@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1132"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " I ",
+      "GCG",
+      " P "
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:ingot_lead"
+      },
+      "G": {
+        "item": "hbm:cordite"
+      },
+      "C": {
+        "item": "hbm:casing_50"
+      },
+      "P": {
+        "item": "hbm:primer_50"
+      }
+    },
+    "result": {
+      "item": "hbm:assembly_calamity",
+      "count": 12
+    }
+  }
+}

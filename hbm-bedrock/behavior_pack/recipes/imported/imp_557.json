@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_557"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DD"
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:ingot_polymer"
+      }
+    },
+    "result": {
+      "item": "hbm:plate_polymer",
+      "count": 8
+    }
+  }
+}

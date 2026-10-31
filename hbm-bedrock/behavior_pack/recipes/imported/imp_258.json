@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_258"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:powder_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:powder_steel_tiny",
+      "count": 9
+    }
+  }
+}

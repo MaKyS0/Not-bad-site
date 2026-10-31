@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_696"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PIP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "I": {
+        "item": "hbm:blades_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:blades_steel",
+      "count": 1
+    }
+  }
+}

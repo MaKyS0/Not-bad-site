@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1142"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BCB",
+      "CAC",
+      "BCB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_20gauge"
+      },
+      "A": {
+        "item": "minecraft:soul_sand"
+      },
+      "C": {
+        "item": "hbm:powder_coal"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_20gauge_wither",
+      "count": 4
+    }
+  }
+}

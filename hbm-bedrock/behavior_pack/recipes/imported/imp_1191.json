@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1191"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "G",
+      "R"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:pellet_gas"
+      },
+      "R": {
+        "item": "hbm:ammo_rocket"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_rocket_toxic",
+      "count": 1
+    }
+  }
+}

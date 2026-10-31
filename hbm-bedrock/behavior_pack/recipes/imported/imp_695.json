@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_695"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "PBP",
+      " P "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_desh"
+      },
+      "B": {
+        "item": "hbm:blades_titanium"
+      }
+    },
+    "result": {
+      "item": "hbm:blades_desh",
+      "count": 1
+    }
+  }
+}

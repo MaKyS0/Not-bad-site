@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:debris_graphite",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_debris_graphite"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.debris_graphite.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

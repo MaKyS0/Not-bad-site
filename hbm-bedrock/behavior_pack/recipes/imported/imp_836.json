@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_836"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SII",
+      "SCA",
+      "SPP"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:ingot_steel"
+      },
+      "S": {
+        "item": "hbm:ingot_starmetal"
+      },
+      "P": {
+        "item": "hbm:plate_polymer"
+      },
+      "C": {
+        "item": "hbm:sat_chip"
+      },
+      "A": {
+        "item": "hbm:circuit_advanced"
+      }
+    },
+    "result": {
+      "item": "hbm:sat_coord",
+      "count": 1
+    }
+  }
+}

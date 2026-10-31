@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_832"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PSP",
+      "SCS",
+      "PSP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:ingot_tcalloy"
+      },
+      "S": {
+        "item": "hbm:ingot_polymer"
+      },
+      "C": {
+        "item": "hbm:sat_chip"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_satlinker",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_323"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS",
+      "L L",
+      "SSS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "L": {
+        "item": "hbm:plate_lead"
+      }
+    },
+    "result": {
+      "item": "hbm:rod_empty",
+      "count": 16
+    }
+  }
+}

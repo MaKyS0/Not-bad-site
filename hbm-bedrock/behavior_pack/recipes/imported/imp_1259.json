@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1259"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "LLL",
+      "LTL",
+      "LLL"
+    ],
+    "key": {
+      "L": {
+        "item": "minecraft:lava_bucket"
+      },
+      "T": {
+        "item": "hbm:thermo_unit_empty"
+      }
+    },
+    "result": {
+      "item": "hbm:thermo_unit_exo",
+      "count": 1
+    }
+  }
+}

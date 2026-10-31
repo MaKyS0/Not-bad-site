@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_771"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "S",
+      "S",
+      "S"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:steel_beam"
+      }
+    },
+    "result": {
+      "item": "hbm:dungeon_chain",
+      "count": 8
+    }
+  }
+}

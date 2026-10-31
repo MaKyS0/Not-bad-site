@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_823"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "121",
+      "1G1",
+      "121"
+    ],
+    "key": {
+      "1": {
+        "item": "hbm:plate_steel"
+      },
+      "2": {
+        "item": "hbm:plate_aluminium"
+      },
+      "G": {
+        "item": "minecraft:glass_pane"
+      }
+    },
+    "result": {
+      "item": "hbm:fluid_barrel_empty",
+      "count": 2
+    }
+  }
+}

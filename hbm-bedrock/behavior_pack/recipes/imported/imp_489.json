@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_489"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "  L",
+      " G ",
+      "G  "
+    ],
+    "key": {
+      "L": {
+        "item": "hbm:ingot_biorubber"
+      },
+      "G": {
+        "item": "minecraft:glass"
+      }
+    },
+    "result": {
+      "item": "hbm:pipette",
+      "count": 1
+    }
+  }
+}

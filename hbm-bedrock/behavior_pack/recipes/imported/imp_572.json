@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_572"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "I",
+      "P"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:plate_polymer"
+      },
+      "P": {
+        "item": "hbm:plate_copper"
+      }
+    },
+    "result": {
+      "item": "hbm:circuit_pcb",
+      "count": 1
+    }
+  }
+}

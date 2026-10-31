@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:glyphid_meat_grilled",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_glyphid_meat_grilled"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.glyphid_meat_grilled.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

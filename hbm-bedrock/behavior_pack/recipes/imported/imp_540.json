@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_540"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " D ",
+      "ERE",
+      " D "
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:ducttape"
+      },
+      "E": {
+        "item": "hbm:det_charge"
+      },
+      "R": {
+        "item": "minecraft:redstone_block"
+      }
+    },
+    "result": {
+      "item": "hbm:n2_charge",
+      "count": 1
+    }
+  }
+}

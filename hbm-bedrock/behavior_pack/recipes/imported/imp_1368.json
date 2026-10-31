@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1368"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "ACA",
+      "CXC",
+      "ACA"
+    ],
+    "key": {
+      "A": {
+        "item": "hbm:ingot_advanced_alloy"
+      },
+      "C": {
+        "item": "hbm:cinnebar"
+      },
+      "X": {
+        "item": "minecraft:compass"
+      }
+    },
+    "result": {
+      "item": "hbm:coltass",
+      "count": 1
+    }
+  }
+}

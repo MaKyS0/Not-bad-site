@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:pile_rod_plutonium",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_pile_rod_plutonium"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.pile_rod_plutonium.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_818"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "P",
+      "P",
+      "S"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_welded_copper"
+      },
+      "S": {
+        "item": "hbm:ingot_biorubber"
+      }
+    },
+    "result": {
+      "item": "hbm:pipe_anchor_pneumatic",
+      "count": 2
+    }
+  }
+}

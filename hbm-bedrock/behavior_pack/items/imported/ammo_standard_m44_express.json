@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:ammo_standard_m44_express",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_ammo_standard_m44_express"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.ammo_standard_m44_express.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

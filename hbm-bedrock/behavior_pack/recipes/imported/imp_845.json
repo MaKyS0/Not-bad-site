@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_845"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " L ",
+      "LGL",
+      " L "
+    ],
+    "key": {
+      "L": {
+        "item": "minecraft:leather"
+      },
+      "G": {
+        "item": "hbm:plate_gunmetal"
+      }
+    },
+    "result": {
+      "item": "hbm:casing_bag",
+      "count": 1
+    }
+  }
+}

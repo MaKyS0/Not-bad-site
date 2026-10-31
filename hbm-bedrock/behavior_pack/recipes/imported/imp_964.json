@@ -1,0 +1,29 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_964"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:ingot_chainsteel"
+      },
+      {
+        "item": "hbm:ingot_bismuth"
+      },
+      {
+        "item": "hbm:gem_alexandrite"
+      },
+      {
+        "item": "hbm:gem_alexandrite"
+      }
+    ],
+    "result": {
+      "item": "hbm:parts_legendary_tier2",
+      "count": 1
+    }
+  }
+}

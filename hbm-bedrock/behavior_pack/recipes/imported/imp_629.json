@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_629"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:powder_sawdust"
+      }
+    },
+    "result": {
+      "item": "minecraft:paper",
+      "count": 3
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:gun_jack_ammo",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_gun_jack_ammo"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.gun_jack_ammo.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

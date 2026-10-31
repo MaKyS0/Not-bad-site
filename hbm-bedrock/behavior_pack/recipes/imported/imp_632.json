@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_632"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "F",
+      "P",
+      "S"
+    ],
+    "key": {
+      "F": {
+        "item": "minecraft:string"
+      },
+      "S": {
+        "item": "minecraft:slime_ball"
+      },
+      "P": {
+        "item": "minecraft:paper"
+      }
+    },
+    "result": {
+      "item": "hbm:ducttape",
+      "count": 4
+    }
+  }
+}

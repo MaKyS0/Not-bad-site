@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_383"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_euphemium",
+    "output": "hbm:ingot_euphemium"
+  }
+}

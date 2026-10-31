@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:ingot_gh336",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_ingot_gh336"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.ingot_gh336.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

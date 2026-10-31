@@ -1,0 +1,29 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_320"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_iron"
+      },
+      {
+        "item": "hbm:powder_coal"
+      },
+      {
+        "item": "hbm:powder_tungsten"
+      },
+      {
+        "item": "hbm:powder_tungsten"
+      }
+    ],
+    "result": {
+      "item": "hbm:powder_dura_steel",
+      "count": 4
+    }
+  }
+}

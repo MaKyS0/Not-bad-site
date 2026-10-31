@@ -1,0 +1,44 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_811"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_neptunium"
+      },
+      {
+        "item": "hbm:powder_iodine"
+      },
+      {
+        "item": "hbm:powder_thorium"
+      },
+      {
+        "item": "hbm:powder_astatine"
+      },
+      {
+        "item": "hbm:powder_neodymium"
+      },
+      {
+        "item": "hbm:powder_caesium"
+      },
+      {
+        "item": "hbm:block_meteor"
+      },
+      {
+        "item": "hbm:gravel_obsidian"
+      },
+      {
+        "item": "minecraft:water_bucket"
+      }
+    ],
+    "result": {
+      "item": "hbm:crystal_horn",
+      "count": 1
+    }
+  }
+}

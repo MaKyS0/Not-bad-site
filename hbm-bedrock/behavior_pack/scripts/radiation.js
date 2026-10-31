@@ -2,9 +2,11 @@
 // Numbers follow HazardRegistry, HazmatRegistry and EntityEffectHandler of the original.
 import { world, system, EquipmentSlot, EntityDamageCause } from "@minecraft/server";
 import { falloutRads } from "./fallout.js";
+import { IMPORTED_RADS } from "./imported_rads.js";
 
 /** RAD per second emitted by one item: isotope activity * form multiplier (HazardRegistry). */
 const ITEM_RADS = {
+  ...IMPORTED_RADS,
   "hbm:ore_uranium": 0.35,
   "hbm:ingot_uranium": 0.35,
   "hbm:nugget_uranium": 0.035,

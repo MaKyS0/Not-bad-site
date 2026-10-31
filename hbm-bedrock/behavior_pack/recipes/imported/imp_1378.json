@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1378"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " D ",
+      "DID",
+      " F "
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:ducttape"
+      },
+      "I": {
+        "item": "hbm:ingot_biorubber"
+      },
+      "F": {
+        "item": "hbm:plate_iron"
+      }
+    },
+    "result": {
+      "item": "hbm:attachment_mask_mono",
+      "count": 1
+    }
+  }
+}

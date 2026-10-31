@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:balefire_and_steel",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_balefire_and_steel"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.balefire_and_steel.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1387"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " M ",
+      "MDM",
+      " M "
+    ],
+    "key": {
+      "M": {
+        "item": "hbm:fragment_meteorite"
+      },
+      "D": {
+        "item": "hbm:gem_volcanic"
+      }
+    },
+    "result": {
+      "item": "hbm:meteor_charm",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_863"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "TET",
+      "ETE",
+      "TET"
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:powder_tennessine"
+      },
+      "E": {
+        "item": "hbm:ingot_euphemium"
+      }
+    },
+    "result": {
+      "item": "hbm:ams_catalyst_blank",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_688"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CTC",
+      "TST",
+      "CTC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:plate_combine_steel"
+      },
+      "T": {
+        "item": "hbm:ingot_magnetized_tungsten"
+      },
+      "S": {
+        "item": "hbm:singularity"
+      }
+    },
+    "result": {
+      "item": "hbm:singularity_counter_resonant",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_659"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "LRL",
+      "BRB",
+      "LRL"
+    ],
+    "key": {
+      "L": {
+        "item": "hbm:ingot_lead"
+      },
+      "B": {
+        "item": "minecraft:iron_bars"
+      },
+      "R": {
+        "item": "hbm:rod_quad_empty"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_waste_drum",
+      "count": 1
+    }
+  }
+}

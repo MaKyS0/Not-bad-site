@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_0"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "ACA",
+      "TLT",
+      "D D"
+    ],
+    "key": {
+      "A": {
+        "item": "hbm:plate_aluminium"
+      },
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "T": {
+        "item": "hbm:tank_steel"
+      },
+      "L": {
+        "item": "minecraft:leather"
+      },
+      "D": {
+        "item": "hbm:thruster_small"
+      }
+    },
+    "result": {
+      "item": "hbm:jetpack_fly",
+      "count": 1
+    }
+  }
+}

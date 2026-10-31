@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:scrap_oil",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_scrap_oil"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.scrap_oil.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

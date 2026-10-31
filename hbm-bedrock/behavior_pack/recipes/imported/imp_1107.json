@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1107"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " R ",
+      "BSK",
+      " Y "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "K": {
+        "item": "minecraft:ink_sac"
+      },
+      "R": {
+        "item": "minecraft:red_dye"
+      },
+      "B": {
+        "item": "minecraft:lapis_lazuli"
+      },
+      "Y": {
+        "item": "minecraft:yellow_dye"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_hp_ammo",
+      "count": 8
+    }
+  }
+}

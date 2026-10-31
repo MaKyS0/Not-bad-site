@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_960"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "T",
+      "C",
+      "B"
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:drone_waypoint_request"
+      },
+      "C": {
+        "item": "hbm:crate_steel"
+      },
+      "B": {
+        "item": "hbm:circuit_advanced"
+      }
+    },
+    "result": {
+      "item": "hbm:drone_dock",
+      "count": 1
+    }
+  }
+}

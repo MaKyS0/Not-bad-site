@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_906"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "C",
+      "R",
+      "C"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:crate_steel"
+      },
+      "R": {
+        "item": "hbm:rbmk_blank"
+      }
+    },
+    "result": {
+      "item": "hbm:rbmk_storage",
+      "count": 1
+    }
+  }
+}

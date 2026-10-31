@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_798"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:hev_battery"
+      }
+    ],
+    "result": {
+      "item": "hbm:hev_battery",
+      "count": 1
+    }
+  }
+}

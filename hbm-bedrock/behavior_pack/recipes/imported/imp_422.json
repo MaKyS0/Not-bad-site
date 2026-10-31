@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_422"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:arc_electrode_burnt_desh",
+    "output": "hbm:ingot_desh"
+  }
+}

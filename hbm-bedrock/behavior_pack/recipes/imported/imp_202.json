@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_202"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:block_plutonium_fuel"
+      }
+    },
+    "result": {
+      "item": "hbm:ingot_plutonium_fuel",
+      "count": 9
+    }
+  }
+}

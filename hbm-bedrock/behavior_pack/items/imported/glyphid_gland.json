@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:glyphid_gland",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_glyphid_gland"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.glyphid_gland.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

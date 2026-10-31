@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_344"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "NFN",
+      "NIN",
+      "NBN"
+    ],
+    "key": {
+      "F": {
+        "item": "hbm:billet_pu241"
+      },
+      "I": {
+        "item": "hbm:plate_polymer"
+      },
+      "B": {
+        "item": "hbm:billet_bismuth"
+      },
+      "N": {
+        "item": "hbm:nugget_uranium_fuel"
+      }
+    },
+    "result": {
+      "item": "hbm:pwr_fuel_bfb_pu241",
+      "count": 1
+    }
+  }
+}

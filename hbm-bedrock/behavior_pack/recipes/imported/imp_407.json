@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_407"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_dineutronium",
+    "output": "hbm:ingot_dineutronium"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_713"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CBC",
+      "CBC",
+      "CBC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:concrete_smooth"
+      },
+      "B": {
+        "item": "minecraft:iron_bars"
+      }
+    },
+    "result": {
+      "item": "hbm:concrete_pillar",
+      "count": 6
+    }
+  }
+}

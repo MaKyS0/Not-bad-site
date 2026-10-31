@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_400"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_dura_steel",
+    "output": "hbm:ingot_dura_steel"
+  }
+}

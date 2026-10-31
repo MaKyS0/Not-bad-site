@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1349"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PCE",
+      "SEB",
+      "PCE"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_dineutronium"
+      },
+      "C": {
+        "item": "hbm:weaponized_starblaster_cell"
+      },
+      "E": {
+        "item": "hbm:component_emitter"
+      },
+      "B": {
+        "item": "hbm:gun_b92"
+      },
+      "S": {
+        "item": "hbm:singularity_spark"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_b93",
+      "count": 1
+    }
+  }
+}

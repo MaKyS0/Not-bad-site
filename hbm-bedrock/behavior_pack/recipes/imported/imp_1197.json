@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1197"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "GIG"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:ammo_grenade"
+      },
+      "I": {
+        "item": "hbm:powder_poison"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_grenade_toxic",
+      "count": 2
+    }
+  }
+}

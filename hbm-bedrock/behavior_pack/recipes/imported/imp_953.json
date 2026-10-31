@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_953"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "S",
+      "C",
+      "P"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:crt_display"
+      },
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "P": {
+        "item": "hbm:plate_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:radar_linker",
+      "count": 1
+    }
+  }
+}

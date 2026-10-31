@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_486"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "RRD",
+      "PIC",
+      "  P"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_gold"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      },
+      "C": {
+        "item": "hbm:circuit_advanced"
+      },
+      "D": {
+        "item": "hbm:sat_chip"
+      },
+      "I": {
+        "item": "minecraft:gold_ingot"
+      }
+    },
+    "result": {
+      "item": "hbm:sat_designator",
+      "count": 1
+    }
+  }
+}

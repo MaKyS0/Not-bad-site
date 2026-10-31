@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:rod_daffergon",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_rod_daffergon"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.rod_daffergon.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

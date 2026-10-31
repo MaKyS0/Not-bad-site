@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:powder_ac227",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_powder_ac227"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.powder_ac227.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

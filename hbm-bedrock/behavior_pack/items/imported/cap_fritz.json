@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:cap_fritz",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_cap_fritz"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.cap_fritz.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

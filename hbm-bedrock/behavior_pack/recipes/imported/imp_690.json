@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_690"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SSS",
+      "SCS",
+      "SSS"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:singularity"
+      },
+      "S": {
+        "item": "hbm:crystal_xen"
+      }
+    },
+    "result": {
+      "item": "hbm:black_hole",
+      "count": 1
+    }
+  }
+}

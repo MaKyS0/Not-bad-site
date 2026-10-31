@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_698"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "QUQ",
+      "BCB",
+      "QTQ"
+    ],
+    "key": {
+      "Q": {
+        "item": "hbm:glass_quartz"
+      },
+      "U": {
+        "item": "hbm:ingot_uranium"
+      },
+      "T": {
+        "item": "hbm:ingot_th232"
+      },
+      "B": {
+        "item": "hbm:nugget_bismuth"
+      },
+      "C": {
+        "item": "hbm:crystal_rare"
+      }
+    },
+    "result": {
+      "item": "hbm:laser_crystal_bismuth",
+      "count": 1
+    }
+  }
+}

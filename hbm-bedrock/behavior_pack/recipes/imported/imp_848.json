@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_848"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "II",
+      "SS",
+      "II"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:oak_planks"
+      },
+      "S": {
+        "item": "hbm:plate_iron"
+      }
+    },
+    "result": {
+      "item": "hbm:door_office",
+      "count": 1
+    }
+  }
+}

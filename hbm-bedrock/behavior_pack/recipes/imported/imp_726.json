@@ -1,0 +1,24 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_726"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CC",
+      "CC"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:meteor_polished"
+      }
+    },
+    "result": {
+      "item": "hbm:meteor_brick",
+      "count": 4
+    }
+  }
+}

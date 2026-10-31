@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:weapon_mod_generic_ferro_dura",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_weapon_mod_generic_ferro_dura"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.weapon_mod_generic_ferro_dura.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

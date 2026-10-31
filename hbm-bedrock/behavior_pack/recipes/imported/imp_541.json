@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_541"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " W ",
+      "DSD",
+      "DSD"
+    ],
+    "key": {
+      "W": {
+        "item": "hbm:wire_dense_magnetizedtungsten"
+      },
+      "D": {
+        "item": "hbm:plate_dineutronium"
+      },
+      "S": {
+        "item": "hbm:powder_spark_mix"
+      }
+    },
+    "result": {
+      "item": "hbm:battery_spark",
+      "count": 1
+    }
+  }
+}

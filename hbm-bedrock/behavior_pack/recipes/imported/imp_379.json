@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_379"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_neptunium",
+    "output": "hbm:ingot_neptunium"
+  }
+}

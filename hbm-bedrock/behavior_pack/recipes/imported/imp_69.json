@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_69"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:catalytic_converter"
+      }
+    ],
+    "result": {
+      "item": "hbm:crackpipe",
+      "count": 1
+    }
+  }
+}

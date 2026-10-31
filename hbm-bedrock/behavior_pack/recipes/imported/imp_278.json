@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_278"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "#"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:nuclear_waste"
+      }
+    },
+    "result": {
+      "item": "hbm:nuclear_waste_tiny",
+      "count": 9
+    }
+  }
+}

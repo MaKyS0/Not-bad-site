@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1006"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BGB",
+      "GRG",
+      "BGB"
+    ],
+    "key": {
+      "G": {
+        "item": "hbm:block_graphite"
+      },
+      "R": {
+        "item": "hbm:rbmk_rod"
+      },
+      "B": {
+        "item": "hbm:nugget_bismuth"
+      }
+    },
+    "result": {
+      "item": "hbm:rbmk_rod_mod",
+      "count": 1
+    }
+  }
+}

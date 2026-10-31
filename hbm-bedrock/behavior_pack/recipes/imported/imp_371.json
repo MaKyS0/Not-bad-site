@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_371"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:ore_gneiss_lithium",
+    "output": "hbm:lithium"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1242"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PPP",
+      "PIP",
+      "PPP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:pellet_cluster"
+      },
+      "I": {
+        "item": "hbm:ingot_pu239"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_nuke_tots",
+      "count": 1
+    }
+  }
+}

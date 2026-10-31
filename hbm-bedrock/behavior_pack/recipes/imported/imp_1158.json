@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1158"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BBB",
+      "BAB",
+      "BBB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_50bmg"
+      },
+      "A": {
+        "item": "hbm:ingot_semtex"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_50bmg_explosive",
+      "count": 8
+    }
+  }
+}

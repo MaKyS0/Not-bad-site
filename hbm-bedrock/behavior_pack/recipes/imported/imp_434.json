@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_434"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:basalt",
+    "output": "hbm:basalt_smooth"
+  }
+}

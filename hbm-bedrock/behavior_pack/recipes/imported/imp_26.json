@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_26"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:cheese"
+      },
+      {
+        "item": "hbm:cheese"
+      },
+      {
+        "item": "minecraft:bread"
+      }
+    ],
+    "result": {
+      "item": "hbm:cheese_quesadilla",
+      "count": 3
+    }
+  }
+}

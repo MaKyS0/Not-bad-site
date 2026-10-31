@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:part_stock",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_part_stock"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.part_stock.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

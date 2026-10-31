@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_475"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "WWW",
+      "CPC",
+      "WWW"
+    ],
+    "key": {
+      "W": {
+        "item": "hbm:wire_fine_gold"
+      },
+      "P": {
+        "item": "hbm:ingot_polymer"
+      },
+      "C": {
+        "item": "hbm:circuit_advanced"
+      }
+    },
+    "result": {
+      "item": "hbm:turret_chip",
+      "count": 1
+    }
+  }
+}

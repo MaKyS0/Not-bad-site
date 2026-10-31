@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1048"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "EEE",
+      "E E",
+      "E E"
+    ],
+    "key": {
+      "E": {
+        "item": "hbm:hazmat_cloth"
+      }
+    },
+    "result": {
+      "item": "hbm:hazmat_legs",
+      "count": 1
+    }
+  }
+}

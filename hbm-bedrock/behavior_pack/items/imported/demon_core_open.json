@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:demon_core_open",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_demon_core_open"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.demon_core_open.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

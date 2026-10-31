@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_479"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:geiger_counter"
+      }
+    ],
+    "result": {
+      "item": "hbm:geiger",
+      "count": 1
+    }
+  }
+}

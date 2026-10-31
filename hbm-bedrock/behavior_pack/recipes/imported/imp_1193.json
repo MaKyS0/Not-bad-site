@@ -1,0 +1,33 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1193"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " T ",
+      "GCI"
+    ],
+    "key": {
+      "T": {
+        "item": "hbm:ball_tnt"
+      },
+      "G": {
+        "item": "hbm:ballistite"
+      },
+      "C": {
+        "item": "hbm:casing_50"
+      },
+      "I": {
+        "item": "hbm:plate_iron"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_grenade",
+      "count": 2
+    }
+  }
+}

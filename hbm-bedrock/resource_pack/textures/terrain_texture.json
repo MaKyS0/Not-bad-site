@@ -213,6 +213,1731 @@
     },
     "hbm_fluid_duct": {
       "textures": "textures/blocks/fluid_duct"
+    },
+    "hbm_imp_hbm_blocks_ore_uranium_scorched": {
+      "textures": "textures/imported/hbm/blocks/ore_uranium_scorched"
+    },
+    "hbm_imp_hbm_blocks_ore_copper": {
+      "textures": "textures/imported/hbm/blocks/ore_copper"
+    },
+    "hbm_imp_hbm_blocks_ore_schrabidium": {
+      "textures": "textures/imported/hbm/blocks/ore_schrabidium"
+    },
+    "hbm_imp_hbm_blocks_ore_lignite": {
+      "textures": "textures/imported/hbm/blocks/ore_lignite"
+    },
+    "hbm_imp_hbm_blocks_ore_asbestos": {
+      "textures": "textures/imported/hbm/blocks/ore_asbestos"
+    },
+    "hbm_imp_hbm_blocks_cluster_iron": {
+      "textures": "textures/imported/hbm/blocks/cluster_iron"
+    },
+    "hbm_imp_hbm_blocks_cluster_titanium": {
+      "textures": "textures/imported/hbm/blocks/cluster_titanium"
+    },
+    "hbm_imp_hbm_blocks_cluster_aluminium": {
+      "textures": "textures/imported/hbm/blocks/cluster_aluminium"
+    },
+    "hbm_imp_hbm_blocks_cluster_copper": {
+      "textures": "textures/imported/hbm/blocks/cluster_copper"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_coal": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_coal"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_smoldering": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_smoldering"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_uranium": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_uranium"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_uranium_scorched": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_uranium_scorched"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_plutonium": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_plutonium"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_tungsten": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_tungsten"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_sulfur": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_sulfur"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_fire": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_fire"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_cobalt": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_cobalt"
+    },
+    "hbm_imp_hbm_blocks_ore_nether_schrabidium": {
+      "textures": "textures/imported/hbm/blocks/ore_nether_schrabidium"
+    },
+    "hbm_imp_hbm_blocks_stone_gneiss_var": {
+      "textures": "textures/imported/hbm/blocks/stone_gneiss_var"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_iron": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_iron"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_gold": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_gold"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_uranium": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_uranium"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_uranium_scorched": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_uranium_scorched"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_copper": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_copper"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_asbestos": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_asbestos"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_lithium": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_lithium"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_schrabidium": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_schrabidium"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_rare": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_rare"
+    },
+    "hbm_imp_hbm_blocks_ore_gneiss_gas": {
+      "textures": "textures/imported/hbm/blocks/ore_gneiss_gas"
+    },
+    "hbm_imp_hbm_blocks_gneiss_brick": {
+      "textures": "textures/imported/hbm/blocks/gneiss_brick"
+    },
+    "hbm_imp_hbm_blocks_gneiss_tile": {
+      "textures": "textures/imported/hbm/blocks/gneiss_tile"
+    },
+    "hbm_imp_hbm_blocks_gneiss_chiseled": {
+      "textures": "textures/imported/hbm/blocks/gneiss_chiseled"
+    },
+    "hbm_imp_hbm_blocks_stone_depth": {
+      "textures": "textures/imported/hbm/blocks/stone_depth"
+    },
+    "hbm_imp_hbm_blocks_ore_depth_cinnebar": {
+      "textures": "textures/imported/hbm/blocks/ore_depth_cinnebar"
+    },
+    "hbm_imp_hbm_blocks_ore_depth_zirconium": {
+      "textures": "textures/imported/hbm/blocks/ore_depth_zirconium"
+    },
+    "hbm_imp_hbm_blocks_ore_depth_borax": {
+      "textures": "textures/imported/hbm/blocks/ore_depth_borax"
+    },
+    "hbm_imp_hbm_blocks_cluster_depth_iron": {
+      "textures": "textures/imported/hbm/blocks/cluster_depth_iron"
+    },
+    "hbm_imp_hbm_blocks_cluster_depth_titanium": {
+      "textures": "textures/imported/hbm/blocks/cluster_depth_titanium"
+    },
+    "hbm_imp_hbm_blocks_cluster_depth_tungsten": {
+      "textures": "textures/imported/hbm/blocks/cluster_depth_tungsten"
+    },
+    "hbm_imp_hbm_blocks_ore_alexandrite": {
+      "textures": "textures/imported/hbm/blocks/ore_alexandrite"
+    },
+    "hbm_imp_hbm_blocks_depth_brick": {
+      "textures": "textures/imported/hbm/blocks/depth_brick"
+    },
+    "hbm_imp_hbm_blocks_depth_tiles": {
+      "textures": "textures/imported/hbm/blocks/depth_tiles"
+    },
+    "hbm_imp_hbm_blocks_depth_nether_brick": {
+      "textures": "textures/imported/hbm/blocks/depth_nether_brick"
+    },
+    "hbm_imp_hbm_blocks_depth_nether_tiles": {
+      "textures": "textures/imported/hbm/blocks/depth_nether_tiles"
+    },
+    "hbm_imp_hbm_blocks_depth_dnt": {
+      "textures": "textures/imported/hbm/blocks/depth_dnt"
+    },
+    "hbm_imp_hbm_blocks_stone_depth_nether": {
+      "textures": "textures/imported/hbm/blocks/stone_depth_nether"
+    },
+    "hbm_imp_hbm_blocks_ore_depth_nether_neodymium": {
+      "textures": "textures/imported/hbm/blocks/ore_depth_nether_neodymium"
+    },
+    "hbm_imp_hbm_blocks_stone_porous": {
+      "textures": "textures/imported/hbm/blocks/stone_porous"
+    },
+    "hbm_imp_hbm_blocks_basalt": {
+      "textures": "textures/imported/hbm/blocks/basalt"
+    },
+    "hbm_imp_hbm_blocks_basalt_top": {
+      "textures": "textures/imported/hbm/blocks/basalt_top"
+    },
+    "hbm_imp_hbm_blocks_basalt_smooth": {
+      "textures": "textures/imported/hbm/blocks/basalt_smooth"
+    },
+    "hbm_imp_hbm_blocks_basalt_brick": {
+      "textures": "textures/imported/hbm/blocks/basalt_brick"
+    },
+    "hbm_imp_hbm_blocks_basalt_polished": {
+      "textures": "textures/imported/hbm/blocks/basalt_polished"
+    },
+    "hbm_imp_hbm_blocks_basalt_tiles": {
+      "textures": "textures/imported/hbm/blocks/basalt_tiles"
+    },
+    "hbm_imp_hbm_blocks_ore_australium": {
+      "textures": "textures/imported/hbm/blocks/ore_australium"
+    },
+    "hbm_imp_hbm_blocks_ore_rare": {
+      "textures": "textures/imported/hbm/blocks/ore_rare"
+    },
+    "hbm_imp_hbm_blocks_ore_cobalt": {
+      "textures": "textures/imported/hbm/blocks/ore_cobalt"
+    },
+    "hbm_imp_hbm_blocks_ore_cinnebar": {
+      "textures": "textures/imported/hbm/blocks/ore_cinnebar"
+    },
+    "hbm_imp_hbm_blocks_ore_coltan": {
+      "textures": "textures/imported/hbm/blocks/ore_coltan"
+    },
+    "hbm_imp_hbm_blocks_ore_oil_sand_alt": {
+      "textures": "textures/imported/hbm/blocks/ore_oil_sand_alt"
+    },
+    "hbm_imp_hbm_blocks_ore_bedrock_oil": {
+      "textures": "textures/imported/hbm/blocks/ore_bedrock_oil"
+    },
+    "hbm_imp_hbm_blocks_ore_tikite_alt": {
+      "textures": "textures/imported/hbm/blocks/ore_tikite_alt"
+    },
+    "hbm_imp_hbm_blocks_block_u233": {
+      "textures": "textures/imported/hbm/blocks/block_u233"
+    },
+    "hbm_imp_hbm_blocks_block_u235": {
+      "textures": "textures/imported/hbm/blocks/block_u235"
+    },
+    "hbm_imp_hbm_blocks_block_u238": {
+      "textures": "textures/imported/hbm/blocks/block_u238"
+    },
+    "hbm_imp_hbm_blocks_block_uranium_fuel": {
+      "textures": "textures/imported/hbm/blocks/block_uranium_fuel"
+    },
+    "hbm_imp_hbm_blocks_block_thorium": {
+      "textures": "textures/imported/hbm/blocks/block_thorium"
+    },
+    "hbm_imp_hbm_blocks_block_thorium_fuel": {
+      "textures": "textures/imported/hbm/blocks/block_thorium_fuel"
+    },
+    "hbm_imp_hbm_blocks_block_neptunium": {
+      "textures": "textures/imported/hbm/blocks/block_neptunium"
+    },
+    "hbm_imp_hbm_blocks_block_polonium": {
+      "textures": "textures/imported/hbm/blocks/block_polonium"
+    },
+    "hbm_imp_hbm_blocks_block_mox_fuel": {
+      "textures": "textures/imported/hbm/blocks/block_mox_fuel"
+    },
+    "hbm_imp_hbm_blocks_block_plutonium": {
+      "textures": "textures/imported/hbm/blocks/block_plutonium"
+    },
+    "hbm_imp_hbm_blocks_block_pu238": {
+      "textures": "textures/imported/hbm/blocks/block_pu238"
+    },
+    "hbm_imp_hbm_blocks_block_pu239": {
+      "textures": "textures/imported/hbm/blocks/block_pu239"
+    },
+    "hbm_imp_hbm_blocks_block_pu240": {
+      "textures": "textures/imported/hbm/blocks/block_pu240"
+    },
+    "hbm_imp_hbm_blocks_block_pu_mix": {
+      "textures": "textures/imported/hbm/blocks/block_pu_mix"
+    },
+    "hbm_imp_hbm_blocks_block_plutonium_fuel": {
+      "textures": "textures/imported/hbm/blocks/block_plutonium_fuel"
+    },
+    "hbm_imp_hbm_blocks_block_sulfur": {
+      "textures": "textures/imported/hbm/blocks/block_sulfur"
+    },
+    "hbm_imp_hbm_blocks_block_niter": {
+      "textures": "textures/imported/hbm/blocks/block_niter"
+    },
+    "hbm_imp_hbm_blocks_block_copper": {
+      "textures": "textures/imported/hbm/blocks/block_copper"
+    },
+    "hbm_imp_hbm_blocks_block_red_copper": {
+      "textures": "textures/imported/hbm/blocks/block_red_copper"
+    },
+    "hbm_imp_hbm_blocks_block_tungsten": {
+      "textures": "textures/imported/hbm/blocks/block_tungsten"
+    },
+    "hbm_imp_hbm_blocks_block_aluminium": {
+      "textures": "textures/imported/hbm/blocks/block_aluminium"
+    },
+    "hbm_imp_hbm_blocks_block_fluorite": {
+      "textures": "textures/imported/hbm/blocks/block_fluorite"
+    },
+    "hbm_imp_hbm_blocks_block_steel": {
+      "textures": "textures/imported/hbm/blocks/block_steel"
+    },
+    "hbm_imp_hbm_blocks_block_tcalloy": {
+      "textures": "textures/imported/hbm/blocks/block_tcalloy"
+    },
+    "hbm_imp_hbm_blocks_block_cdalloy": {
+      "textures": "textures/imported/hbm/blocks/block_cdalloy"
+    },
+    "hbm_imp_hbm_blocks_block_bismuth": {
+      "textures": "textures/imported/hbm/blocks/block_bismuth"
+    },
+    "hbm_imp_hbm_blocks_block_cadmium": {
+      "textures": "textures/imported/hbm/blocks/block_cadmium"
+    },
+    "hbm_imp_hbm_blocks_block_coltan": {
+      "textures": "textures/imported/hbm/blocks/block_coltan"
+    },
+    "hbm_imp_hbm_blocks_block_tantalium": {
+      "textures": "textures/imported/hbm/blocks/block_tantalium"
+    },
+    "hbm_imp_hbm_blocks_block_niobium": {
+      "textures": "textures/imported/hbm/blocks/block_niobium"
+    },
+    "hbm_imp_hbm_blocks_block_trinitite": {
+      "textures": "textures/imported/hbm/blocks/block_trinitite"
+    },
+    "hbm_imp_hbm_blocks_block_waste": {
+      "textures": "textures/imported/hbm/blocks/block_waste"
+    },
+    "hbm_imp_hbm_blocks_block_waste_painted": {
+      "textures": "textures/imported/hbm/blocks/block_waste_painted"
+    },
+    "hbm_imp_hbm_blocks_block_waste_vitrified": {
+      "textures": "textures/imported/hbm/blocks/block_waste_vitrified"
+    },
+    "hbm_imp_hbm_blocks_ancient_scrap": {
+      "textures": "textures/imported/hbm/blocks/ancient_scrap"
+    },
+    "hbm_imp_hbm_blocks_block_corium": {
+      "textures": "textures/imported/hbm/blocks/block_corium"
+    },
+    "hbm_imp_hbm_blocks_block_corium_cobble": {
+      "textures": "textures/imported/hbm/blocks/block_corium_cobble"
+    },
+    "hbm_imp_hbm_blocks_block_scrap": {
+      "textures": "textures/imported/hbm/blocks/block_scrap"
+    },
+    "hbm_imp_hbm_blocks_electrical_scrap": {
+      "textures": "textures/imported/hbm/blocks/electrical_scrap"
+    },
+    "hbm_imp_hbm_blocks_block_beryllium": {
+      "textures": "textures/imported/hbm/blocks/block_beryllium"
+    },
+    "hbm_imp_hbm_blocks_block_schraranium": {
+      "textures": "textures/imported/hbm/blocks/block_schraranium"
+    },
+    "hbm_imp_hbm_blocks_block_schrabidium": {
+      "textures": "textures/imported/hbm/blocks/block_schrabidium"
+    },
+    "hbm_imp_hbm_blocks_block_schrabidate": {
+      "textures": "textures/imported/hbm/blocks/block_schrabidate"
+    },
+    "hbm_imp_hbm_blocks_block_solinium": {
+      "textures": "textures/imported/hbm/blocks/block_solinium"
+    },
+    "hbm_imp_hbm_blocks_block_schrabidium_fuel": {
+      "textures": "textures/imported/hbm/blocks/block_schrabidium_fuel"
+    },
+    "hbm_imp_hbm_blocks_block_euphemium": {
+      "textures": "textures/imported/hbm/blocks/block_euphemium"
+    },
+    "hbm_imp_hbm_blocks_block_dineutronium": {
+      "textures": "textures/imported/hbm/blocks/block_dineutronium"
+    },
+    "hbm_imp_hbm_blocks_block_schrabidium_cluster_side": {
+      "textures": "textures/imported/hbm/blocks/block_schrabidium_cluster_side"
+    },
+    "hbm_imp_hbm_blocks_block_euphemium_cluster_side": {
+      "textures": "textures/imported/hbm/blocks/block_euphemium_cluster_side"
+    },
+    "hbm_imp_hbm_blocks_block_magnetized_tungsten": {
+      "textures": "textures/imported/hbm/blocks/block_magnetized_tungsten"
+    },
+    "hbm_imp_hbm_blocks_block_combine_steel": {
+      "textures": "textures/imported/hbm/blocks/block_combine_steel"
+    },
+    "hbm_imp_hbm_blocks_block_desh": {
+      "textures": "textures/imported/hbm/blocks/block_desh"
+    },
+    "hbm_imp_hbm_blocks_block_dura_steel": {
+      "textures": "textures/imported/hbm/blocks/block_dura_steel"
+    },
+    "hbm_imp_hbm_blocks_block_starmetal": {
+      "textures": "textures/imported/hbm/blocks/block_starmetal"
+    },
+    "hbm_imp_hbm_blocks_block_polymer": {
+      "textures": "textures/imported/hbm/blocks/block_polymer"
+    },
+    "hbm_imp_hbm_blocks_block_bakelite": {
+      "textures": "textures/imported/hbm/blocks/block_bakelite"
+    },
+    "hbm_imp_hbm_blocks_block_rubber": {
+      "textures": "textures/imported/hbm/blocks/block_rubber"
+    },
+    "hbm_imp_hbm_blocks_block_yellowcake": {
+      "textures": "textures/imported/hbm/blocks/block_yellowcake"
+    },
+    "hbm_imp_hbm_blocks_block_insulator_side": {
+      "textures": "textures/imported/hbm/blocks/block_insulator_side"
+    },
+    "hbm_imp_hbm_blocks_block_fiberglass_side": {
+      "textures": "textures/imported/hbm/blocks/block_fiberglass_side"
+    },
+    "hbm_imp_hbm_blocks_block_asbestos": {
+      "textures": "textures/imported/hbm/blocks/block_asbestos"
+    },
+    "hbm_imp_hbm_blocks_block_cobalt": {
+      "textures": "textures/imported/hbm/blocks/block_cobalt"
+    },
+    "hbm_imp_hbm_blocks_block_lithium": {
+      "textures": "textures/imported/hbm/blocks/block_lithium"
+    },
+    "hbm_imp_hbm_blocks_block_zirconium": {
+      "textures": "textures/imported/hbm/blocks/block_zirconium"
+    },
+    "hbm_imp_hbm_blocks_block_white_phosphorus": {
+      "textures": "textures/imported/hbm/blocks/block_white_phosphorus"
+    },
+    "hbm_imp_hbm_blocks_block_red_phosphorus": {
+      "textures": "textures/imported/hbm/blocks/block_red_phosphorus"
+    },
+    "hbm_imp_hbm_blocks_ash": {
+      "textures": "textures/imported/hbm/blocks/ash"
+    },
+    "hbm_imp_hbm_blocks_foam": {
+      "textures": "textures/imported/hbm/blocks/foam"
+    },
+    "hbm_imp_hbm_blocks_block_graphite": {
+      "textures": "textures/imported/hbm/blocks/block_graphite"
+    },
+    "hbm_imp_hbm_blocks_block_boron": {
+      "textures": "textures/imported/hbm/blocks/block_boron"
+    },
+    "hbm_imp_hbm_blocks_block_lanthanium": {
+      "textures": "textures/imported/hbm/blocks/block_lanthanium"
+    },
+    "hbm_imp_hbm_blocks_block_ra226": {
+      "textures": "textures/imported/hbm/blocks/block_ra226"
+    },
+    "hbm_imp_hbm_blocks_block_actinium": {
+      "textures": "textures/imported/hbm/blocks/block_actinium"
+    },
+    "hbm_imp_hbm_blocks_block_tritium_side": {
+      "textures": "textures/imported/hbm/blocks/block_tritium_side"
+    },
+    "hbm_imp_hbm_blocks_block_semtex": {
+      "textures": "textures/imported/hbm/blocks/block_semtex"
+    },
+    "hbm_imp_hbm_blocks_block_c4": {
+      "textures": "textures/imported/hbm/blocks/block_c4"
+    },
+    "hbm_imp_hbm_blocks_block_smore_side": {
+      "textures": "textures/imported/hbm/blocks/block_smore_side"
+    },
+    "hbm_imp_hbm_blocks_block_slag": {
+      "textures": "textures/imported/hbm/blocks/block_slag"
+    },
+    "hbm_imp_hbm_blocks_block_australium": {
+      "textures": "textures/imported/hbm/blocks/block_australium"
+    },
+    "hbm_imp_hbm_blocks_deco_titanium": {
+      "textures": "textures/imported/hbm/blocks/deco_titanium"
+    },
+    "hbm_imp_hbm_blocks_deco_red_copper": {
+      "textures": "textures/imported/hbm/blocks/deco_red_copper"
+    },
+    "hbm_imp_hbm_blocks_deco_tungsten": {
+      "textures": "textures/imported/hbm/blocks/deco_tungsten"
+    },
+    "hbm_imp_hbm_blocks_deco_aluminium": {
+      "textures": "textures/imported/hbm/blocks/deco_aluminium"
+    },
+    "hbm_imp_hbm_blocks_deco_steel": {
+      "textures": "textures/imported/hbm/blocks/deco_steel"
+    },
+    "hbm_imp_hbm_blocks_deco_rusty_steel": {
+      "textures": "textures/imported/hbm/blocks/deco_rusty_steel"
+    },
+    "hbm_imp_hbm_blocks_deco_lead": {
+      "textures": "textures/imported/hbm/blocks/deco_lead"
+    },
+    "hbm_imp_hbm_blocks_deco_beryllium": {
+      "textures": "textures/imported/hbm/blocks/deco_beryllium"
+    },
+    "hbm_imp_hbm_blocks_deco_asbestos": {
+      "textures": "textures/imported/hbm/blocks/deco_asbestos"
+    },
+    "hbm_imp_hbm_blocks_rbmk_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_blank_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_blank_top"
+    },
+    "hbm_imp_hbm_blocks_emitter": {
+      "textures": "textures/imported/hbm/blocks/emitter"
+    },
+    "hbm_imp_hbm_blocks_part_top": {
+      "textures": "textures/imported/hbm/blocks/part_top"
+    },
+    "hbm_imp_hbm_blocks_glass_boron": {
+      "textures": "textures/imported/hbm/blocks/glass_boron"
+    },
+    "hbm_imp_hbm_blocks_gravel_obsidian": {
+      "textures": "textures/imported/hbm/blocks/gravel_obsidian"
+    },
+    "hbm_imp_hbm_blocks_gravel_diamond": {
+      "textures": "textures/imported/hbm/blocks/gravel_diamond"
+    },
+    "hbm_imp_hbm_blocks_asphalt": {
+      "textures": "textures/imported/hbm/blocks/asphalt"
+    },
+    "hbm_imp_hbm_blocks_asphalt_light": {
+      "textures": "textures/imported/hbm/blocks/asphalt_light"
+    },
+    "hbm_imp_hbm_blocks_sandbags": {
+      "textures": "textures/imported/hbm/blocks/sandbags"
+    },
+    "hbm_imp_hbm_blocks_wood_barrier": {
+      "textures": "textures/imported/hbm/blocks/wood_barrier"
+    },
+    "hbm_imp_hbm_blocks_reinforced_brick": {
+      "textures": "textures/imported/hbm/blocks/reinforced_brick"
+    },
+    "hbm_imp_hbm_blocks_reinforced_glass": {
+      "textures": "textures/imported/hbm/blocks/reinforced_glass"
+    },
+    "hbm_imp_hbm_blocks_reinforced_light": {
+      "textures": "textures/imported/hbm/blocks/reinforced_light"
+    },
+    "hbm_imp_hbm_blocks_reinforced_sand": {
+      "textures": "textures/imported/hbm/blocks/reinforced_sand"
+    },
+    "hbm_imp_hbm_blocks_reinforced_lamp_off": {
+      "textures": "textures/imported/hbm/blocks/reinforced_lamp_off"
+    },
+    "hbm_imp_hbm_blocks_reinforced_laminate": {
+      "textures": "textures/imported/hbm/blocks/reinforced_laminate"
+    },
+    "hbm_imp_hbm_blocks_lamp_tritium_green_off": {
+      "textures": "textures/imported/hbm/blocks/lamp_tritium_green_off"
+    },
+    "hbm_imp_hbm_blocks_lamp_tritium_blue_off": {
+      "textures": "textures/imported/hbm/blocks/lamp_tritium_blue_off"
+    },
+    "hbm_imp_hbm_blocks_lamp_demon": {
+      "textures": "textures/imported/hbm/blocks/lamp_demon"
+    },
+    "hbm_imp_hbm_blocks_cage_lamp": {
+      "textures": "textures/imported/hbm/blocks/cage_lamp"
+    },
+    "hbm_imp_hbm_blocks_fluorescent_lamp": {
+      "textures": "textures/imported/hbm/blocks/fluorescent_lamp"
+    },
+    "hbm_imp_hbm_blocks_flood_lamp": {
+      "textures": "textures/imported/hbm/blocks/flood_lamp"
+    },
+    "hbm_imp_hbm_blocks_rebar": {
+      "textures": "textures/imported/hbm/blocks/rebar"
+    },
+    "hbm_imp_hbm_blocks_reinforced_stone": {
+      "textures": "textures/imported/hbm/blocks/reinforced_stone"
+    },
+    "hbm_imp_hbm_blocks_concrete": {
+      "textures": "textures/imported/hbm/blocks/concrete"
+    },
+    "hbm_imp_hbm_blocks_concrete_tile": {
+      "textures": "textures/imported/hbm/blocks/concrete_tile"
+    },
+    "hbm_imp_hbm_blocks_concrete_asbestos": {
+      "textures": "textures/imported/hbm/blocks/concrete_asbestos"
+    },
+    "hbm_imp_hbm_blocks_concrete_rebar": {
+      "textures": "textures/imported/hbm/blocks/concrete_rebar"
+    },
+    "hbm_imp_hbm_blocks_concrete_super": {
+      "textures": "textures/imported/hbm/blocks/concrete_super"
+    },
+    "hbm_imp_hbm_blocks_concrete_super_broken": {
+      "textures": "textures/imported/hbm/blocks/concrete_super_broken"
+    },
+    "hbm_imp_hbm_blocks_concrete_pillar_side": {
+      "textures": "textures/imported/hbm/blocks/concrete_pillar_side"
+    },
+    "hbm_imp_hbm_blocks_brick_concrete": {
+      "textures": "textures/imported/hbm/blocks/brick_concrete"
+    },
+    "hbm_imp_hbm_blocks_brick_concrete_mossy": {
+      "textures": "textures/imported/hbm/blocks/brick_concrete_mossy"
+    },
+    "hbm_imp_hbm_blocks_brick_concrete_cracked": {
+      "textures": "textures/imported/hbm/blocks/brick_concrete_cracked"
+    },
+    "hbm_imp_hbm_blocks_brick_concrete_broken": {
+      "textures": "textures/imported/hbm/blocks/brick_concrete_broken"
+    },
+    "hbm_imp_hbm_blocks_brick_concrete_marked": {
+      "textures": "textures/imported/hbm/blocks/brick_concrete_marked"
+    },
+    "hbm_imp_hbm_blocks_brick_obsidian": {
+      "textures": "textures/imported/hbm/blocks/brick_obsidian"
+    },
+    "hbm_imp_hbm_blocks_brick_light": {
+      "textures": "textures/imported/hbm/blocks/brick_light"
+    },
+    "hbm_imp_hbm_blocks_brick_compound": {
+      "textures": "textures/imported/hbm/blocks/brick_compound"
+    },
+    "hbm_imp_hbm_blocks_cmb_brick": {
+      "textures": "textures/imported/hbm/blocks/cmb_brick"
+    },
+    "hbm_imp_hbm_blocks_cmb_brick_reinforced": {
+      "textures": "textures/imported/hbm/blocks/cmb_brick_reinforced"
+    },
+    "hbm_imp_hbm_blocks_brick_asbestos": {
+      "textures": "textures/imported/hbm/blocks/brick_asbestos"
+    },
+    "hbm_imp_hbm_blocks_brick_fire": {
+      "textures": "textures/imported/hbm/blocks/brick_fire"
+    },
+    "hbm_imp_hbm_blocks_ducrete": {
+      "textures": "textures/imported/hbm/blocks/ducrete"
+    },
+    "hbm_imp_hbm_blocks_ducrete_tile": {
+      "textures": "textures/imported/hbm/blocks/ducrete_tile"
+    },
+    "hbm_imp_hbm_blocks_brick_ducrete": {
+      "textures": "textures/imported/hbm/blocks/brick_ducrete"
+    },
+    "hbm_imp_hbm_blocks_reinforced_ducrete": {
+      "textures": "textures/imported/hbm/blocks/reinforced_ducrete"
+    },
+    "hbm_imp_hbm_blocks_tile_lab": {
+      "textures": "textures/imported/hbm/blocks/tile_lab"
+    },
+    "hbm_imp_hbm_blocks_tile_lab_cracked": {
+      "textures": "textures/imported/hbm/blocks/tile_lab_cracked"
+    },
+    "hbm_imp_hbm_blocks_tile_lab_broken": {
+      "textures": "textures/imported/hbm/blocks/tile_lab_broken"
+    },
+    "hbm_imp_hbm_blocks_meteor": {
+      "textures": "textures/imported/hbm/blocks/meteor"
+    },
+    "hbm_imp_hbm_blocks_meteor_cobble": {
+      "textures": "textures/imported/hbm/blocks/meteor_cobble"
+    },
+    "hbm_imp_hbm_blocks_meteor_crushed": {
+      "textures": "textures/imported/hbm/blocks/meteor_crushed"
+    },
+    "hbm_imp_hbm_blocks_meteor_cobble_molten": {
+      "textures": "textures/imported/hbm/blocks/meteor_cobble_molten"
+    },
+    "hbm_imp_hbm_blocks_meteor_treasure": {
+      "textures": "textures/imported/hbm/blocks/meteor_treasure"
+    },
+    "hbm_imp_hbm_blocks_meteor_polished": {
+      "textures": "textures/imported/hbm/blocks/meteor_polished"
+    },
+    "hbm_imp_hbm_blocks_meteor_brick": {
+      "textures": "textures/imported/hbm/blocks/meteor_brick"
+    },
+    "hbm_imp_hbm_blocks_meteor_brick_mossy": {
+      "textures": "textures/imported/hbm/blocks/meteor_brick_mossy"
+    },
+    "hbm_imp_hbm_blocks_meteor_brick_cracked": {
+      "textures": "textures/imported/hbm/blocks/meteor_brick_cracked"
+    },
+    "hbm_imp_hbm_blocks_meteor_brick_chiseled": {
+      "textures": "textures/imported/hbm/blocks/meteor_brick_chiseled"
+    },
+    "hbm_imp_hbm_blocks_meteor_pillar": {
+      "textures": "textures/imported/hbm/blocks/meteor_pillar"
+    },
+    "hbm_imp_hbm_blocks_meteor_pillar_top": {
+      "textures": "textures/imported/hbm/blocks/meteor_pillar_top"
+    },
+    "hbm_imp_hbm_blocks_meteor_spawner_side": {
+      "textures": "textures/imported/hbm/blocks/meteor_spawner_side"
+    },
+    "hbm_imp_hbm_blocks_meteor_spawner_top": {
+      "textures": "textures/imported/hbm/blocks/meteor_spawner_top"
+    },
+    "hbm_imp_hbm_blocks_moon_turf": {
+      "textures": "textures/imported/hbm/blocks/moon_turf"
+    },
+    "hbm_imp_hbm_blocks_brick_jungle": {
+      "textures": "textures/imported/hbm/blocks/brick_jungle"
+    },
+    "hbm_imp_hbm_blocks_brick_jungle_cracked": {
+      "textures": "textures/imported/hbm/blocks/brick_jungle_cracked"
+    },
+    "hbm_imp_hbm_blocks_brick_jungle_fragile": {
+      "textures": "textures/imported/hbm/blocks/brick_jungle_fragile"
+    },
+    "hbm_imp_hbm_blocks_brick_jungle_lava": {
+      "textures": "textures/imported/hbm/blocks/brick_jungle_lava"
+    },
+    "hbm_imp_hbm_blocks_brick_jungle_ooze": {
+      "textures": "textures/imported/hbm/blocks/brick_jungle_ooze"
+    },
+    "hbm_imp_hbm_blocks_brick_jungle_mystic": {
+      "textures": "textures/imported/hbm/blocks/brick_jungle_mystic"
+    },
+    "hbm_imp_hbm_blocks_brick_jungle_trap": {
+      "textures": "textures/imported/hbm/blocks/brick_jungle_trap"
+    },
+    "hbm_imp_hbm_blocks_brick_jungle_circle": {
+      "textures": "textures/imported/hbm/blocks/brick_jungle_circle"
+    },
+    "hbm_imp_hbm_blocks_deco_computer": {
+      "textures": "textures/imported/hbm/blocks/deco_computer"
+    },
+    "hbm_imp_hbm_blocks_deco_tape_recorder": {
+      "textures": "textures/imported/hbm/blocks/deco_tape_recorder"
+    },
+    "hbm_imp_hbm_blocks_steel_beam": {
+      "textures": "textures/imported/hbm/blocks/steel_beam"
+    },
+    "hbm_imp_hbm_blocks_deco_pole_top": {
+      "textures": "textures/imported/hbm/blocks/deco_pole_top"
+    },
+    "hbm_imp_hbm_blocks_deco_satellite_receiver": {
+      "textures": "textures/imported/hbm/blocks/deco_satellite_receiver"
+    },
+    "hbm_imp_hbm_blocks_steel_wall": {
+      "textures": "textures/imported/hbm/blocks/steel_wall"
+    },
+    "hbm_imp_hbm_blocks_steel_roof": {
+      "textures": "textures/imported/hbm/blocks/steel_roof"
+    },
+    "hbm_imp_hbm_blocks_deco_steel_orig": {
+      "textures": "textures/imported/hbm/blocks/deco_steel_orig"
+    },
+    "hbm_imp_hbm_blocks_pipe_top": {
+      "textures": "textures/imported/hbm/blocks/pipe_top"
+    },
+    "hbm_imp_hbm_blocks_pipe_top_rusty": {
+      "textures": "textures/imported/hbm/blocks/pipe_top_rusty"
+    },
+    "hbm_imp_hbm_blocks_pipe_top_green": {
+      "textures": "textures/imported/hbm/blocks/pipe_top_green"
+    },
+    "hbm_imp_hbm_blocks_pipe_top_green_rusty": {
+      "textures": "textures/imported/hbm/blocks/pipe_top_green_rusty"
+    },
+    "hbm_imp_hbm_blocks_pipe_top_red": {
+      "textures": "textures/imported/hbm/blocks/pipe_top_red"
+    },
+    "hbm_imp_hbm_blocks_pipe_top_marked": {
+      "textures": "textures/imported/hbm/blocks/pipe_top_marked"
+    },
+    "hbm_imp_hbm_blocks_broadcaster_pc": {
+      "textures": "textures/imported/hbm/blocks/broadcaster_pc"
+    },
+    "hbm_imp_hbm_blocks_geiger": {
+      "textures": "textures/imported/hbm/blocks/geiger"
+    },
+    "hbm_imp_hbm_blocks_hev_battery": {
+      "textures": "textures/imported/hbm/blocks/hev_battery"
+    },
+    "hbm_imp_hbm_blocks_ash_digamma": {
+      "textures": "textures/imported/hbm/blocks/ash_digamma"
+    },
+    "hbm_imp_hbm_blocks_glass_lead": {
+      "textures": "textures/imported/hbm/blocks/glass_lead"
+    },
+    "hbm_imp_hbm_blocks_glass_uranium": {
+      "textures": "textures/imported/hbm/blocks/glass_uranium"
+    },
+    "hbm_imp_hbm_blocks_glass_trinitite": {
+      "textures": "textures/imported/hbm/blocks/glass_trinitite"
+    },
+    "hbm_imp_hbm_blocks_glass_polonium": {
+      "textures": "textures/imported/hbm/blocks/glass_polonium"
+    },
+    "hbm_imp_hbm_blocks_glass_ash": {
+      "textures": "textures/imported/hbm/blocks/glass_ash"
+    },
+    "hbm_imp_hbm_blocks_glass_quartz": {
+      "textures": "textures/imported/hbm/blocks/glass_quartz"
+    },
+    "hbm_imp_hbm_blocks_glass_polarized": {
+      "textures": "textures/imported/hbm/blocks/glass_polarized"
+    },
+    "hbm_imp_hbm_blocks_mush": {
+      "textures": "textures/imported/hbm/blocks/mush"
+    },
+    "hbm_imp_hbm_blocks_waste_mycelium_side": {
+      "textures": "textures/imported/hbm/blocks/waste_mycelium_side"
+    },
+    "hbm_imp_hbm_blocks_waste_trinitite": {
+      "textures": "textures/imported/hbm/blocks/waste_trinitite"
+    },
+    "hbm_imp_hbm_blocks_waste_trinitite_red": {
+      "textures": "textures/imported/hbm/blocks/waste_trinitite_red"
+    },
+    "hbm_imp_hbm_blocks_waste_planks": {
+      "textures": "textures/imported/hbm/blocks/waste_planks"
+    },
+    "hbm_imp_hbm_blocks_frozen_dirt": {
+      "textures": "textures/imported/hbm/blocks/frozen_dirt"
+    },
+    "hbm_imp_hbm_blocks_frozen_grass_side": {
+      "textures": "textures/imported/hbm/blocks/frozen_grass_side"
+    },
+    "hbm_imp_hbm_blocks_frozen_grass_top": {
+      "textures": "textures/imported/hbm/blocks/frozen_grass_top"
+    },
+    "hbm_imp_hbm_blocks_frozen_log": {
+      "textures": "textures/imported/hbm/blocks/frozen_log"
+    },
+    "hbm_imp_hbm_blocks_frozen_log_top": {
+      "textures": "textures/imported/hbm/blocks/frozen_log_top"
+    },
+    "hbm_imp_hbm_blocks_frozen_planks": {
+      "textures": "textures/imported/hbm/blocks/frozen_planks"
+    },
+    "hbm_imp_hbm_blocks_sand_boron": {
+      "textures": "textures/imported/hbm/blocks/sand_boron"
+    },
+    "hbm_imp_hbm_blocks_waste_leaves": {
+      "textures": "textures/imported/hbm/blocks/waste_leaves"
+    },
+    "hbm_imp_hbm_blocks_oil_spill": {
+      "textures": "textures/imported/hbm/blocks/oil_spill"
+    },
+    "hbm_imp_hbm_blocks_tektite": {
+      "textures": "textures/imported/hbm/blocks/tektite"
+    },
+    "hbm_imp_hbm_blocks_ore_tektite_osmiridium": {
+      "textures": "textures/imported/hbm/blocks/ore_tektite_osmiridium"
+    },
+    "hbm_imp_hbm_blocks_waste_earth_bottom": {
+      "textures": "textures/imported/hbm/blocks/waste_earth_bottom"
+    },
+    "hbm_imp_hbm_blocks_dirt_dead": {
+      "textures": "textures/imported/hbm/blocks/dirt_dead"
+    },
+    "hbm_imp_hbm_blocks_dirt_oily": {
+      "textures": "textures/imported/hbm/blocks/dirt_oily"
+    },
+    "hbm_imp_hbm_blocks_sand_dirty": {
+      "textures": "textures/imported/hbm/blocks/sand_dirty"
+    },
+    "hbm_imp_hbm_blocks_sand_dirty_red": {
+      "textures": "textures/imported/hbm/blocks/sand_dirty_red"
+    },
+    "hbm_imp_hbm_blocks_stone_cracked": {
+      "textures": "textures/imported/hbm/blocks/stone_cracked"
+    },
+    "hbm_imp_hbm_blocks_sellafield_slaked": {
+      "textures": "textures/imported/hbm/blocks/sellafield_slaked"
+    },
+    "hbm_imp_hbm_blocks_ore_overlay_diamond": {
+      "textures": "textures/imported/hbm/blocks/ore_overlay_diamond"
+    },
+    "hbm_imp_hbm_blocks_ore_overlay_emerald": {
+      "textures": "textures/imported/hbm/blocks/ore_overlay_emerald"
+    },
+    "hbm_imp_hbm_blocks_ore_overlay_uranium_scorched": {
+      "textures": "textures/imported/hbm/blocks/ore_overlay_uranium_scorched"
+    },
+    "hbm_imp_hbm_blocks_ore_overlay_schrabidium": {
+      "textures": "textures/imported/hbm/blocks/ore_overlay_schrabidium"
+    },
+    "hbm_imp_hbm_blocks_ore_overlay_radgem": {
+      "textures": "textures/imported/hbm/blocks/ore_overlay_radgem"
+    },
+    "hbm_imp_hbm_blocks_theGadget": {
+      "textures": "textures/imported/hbm/blocks/theGadget"
+    },
+    "hbm_imp_hbm_blocks_lilBoy": {
+      "textures": "textures/imported/hbm/blocks/lilBoy"
+    },
+    "hbm_imp_hbm_blocks_fatMan": {
+      "textures": "textures/imported/hbm/blocks/fatMan"
+    },
+    "hbm_imp_hbm_blocks_ivyMike": {
+      "textures": "textures/imported/hbm/blocks/ivyMike"
+    },
+    "hbm_imp_hbm_blocks_tsarBomba": {
+      "textures": "textures/imported/hbm/blocks/tsarBomba"
+    },
+    "hbm_imp_hbm_blocks_fleija": {
+      "textures": "textures/imported/hbm/blocks/fleija"
+    },
+    "hbm_imp_hbm_blocks_prototype": {
+      "textures": "textures/imported/hbm/blocks/prototype"
+    },
+    "hbm_imp_hbm_blocks_custom": {
+      "textures": "textures/imported/hbm/blocks/custom"
+    },
+    "hbm_imp_hbm_blocks_nuke_solinium": {
+      "textures": "textures/imported/hbm/blocks/nuke_solinium"
+    },
+    "hbm_imp_hbm_blocks_nuke_n2": {
+      "textures": "textures/imported/hbm/blocks/nuke_n2"
+    },
+    "hbm_imp_hbm_blocks_nuke_fstbmb": {
+      "textures": "textures/imported/hbm/blocks/nuke_fstbmb"
+    },
+    "hbm_imp_hbm_blocks_therm_endo": {
+      "textures": "textures/imported/hbm/blocks/therm_endo"
+    },
+    "hbm_imp_hbm_blocks_therm_exo": {
+      "textures": "textures/imported/hbm/blocks/therm_exo"
+    },
+    "hbm_imp_hbm_blocks_det_cord": {
+      "textures": "textures/imported/hbm/blocks/det_cord"
+    },
+    "hbm_imp_hbm_blocks_det_miner_side": {
+      "textures": "textures/imported/hbm/blocks/det_miner_side"
+    },
+    "hbm_imp_hbm_blocks_barrel_red": {
+      "textures": "textures/imported/hbm/blocks/barrel_red"
+    },
+    "hbm_imp_hbm_blocks_barrel_pink": {
+      "textures": "textures/imported/hbm/blocks/barrel_pink"
+    },
+    "hbm_imp_hbm_blocks_barrel_yellow": {
+      "textures": "textures/imported/hbm/blocks/barrel_yellow"
+    },
+    "hbm_imp_hbm_blocks_barrel_vitrified": {
+      "textures": "textures/imported/hbm/blocks/barrel_vitrified"
+    },
+    "hbm_imp_hbm_blocks_barrel_lox": {
+      "textures": "textures/imported/hbm/blocks/barrel_lox"
+    },
+    "hbm_imp_hbm_blocks_barrel_taint": {
+      "textures": "textures/imported/hbm/blocks/barrel_taint"
+    },
+    "hbm_imp_hbm_blocks_block_rust": {
+      "textures": "textures/imported/hbm/blocks/block_rust"
+    },
+    "hbm_imp_hbm_blocks_charge_dynamite": {
+      "textures": "textures/imported/hbm/blocks/charge_dynamite"
+    },
+    "hbm_imp_hbm_blocks_charge_miner": {
+      "textures": "textures/imported/hbm/blocks/charge_miner"
+    },
+    "hbm_imp_hbm_blocks_charge_c4": {
+      "textures": "textures/imported/hbm/blocks/charge_c4"
+    },
+    "hbm_imp_hbm_blocks_mine_ap": {
+      "textures": "textures/imported/hbm/blocks/mine_ap"
+    },
+    "hbm_imp_hbm_blocks_mine_he": {
+      "textures": "textures/imported/hbm/blocks/mine_he"
+    },
+    "hbm_imp_hbm_blocks_mine_shrap": {
+      "textures": "textures/imported/hbm/blocks/mine_shrap"
+    },
+    "hbm_imp_hbm_blocks_mine_fat": {
+      "textures": "textures/imported/hbm/blocks/mine_fat"
+    },
+    "hbm_imp_hbm_blocks_mine_naval": {
+      "textures": "textures/imported/hbm/blocks/mine_naval"
+    },
+    "hbm_imp_hbm_blocks_dynamite_side": {
+      "textures": "textures/imported/hbm/blocks/dynamite_side"
+    },
+    "hbm_imp_hbm_blocks_dynamite_top": {
+      "textures": "textures/imported/hbm/blocks/dynamite_top"
+    },
+    "hbm_imp_hbm_blocks_dynamite_bottom": {
+      "textures": "textures/imported/hbm/blocks/dynamite_bottom"
+    },
+    "hbm_imp_hbm_blocks_tnt_side": {
+      "textures": "textures/imported/hbm/blocks/tnt_side"
+    },
+    "hbm_imp_hbm_blocks_tnt_top": {
+      "textures": "textures/imported/hbm/blocks/tnt_top"
+    },
+    "hbm_imp_hbm_blocks_tnt_bottom": {
+      "textures": "textures/imported/hbm/blocks/tnt_bottom"
+    },
+    "hbm_imp_hbm_blocks_semtex_side": {
+      "textures": "textures/imported/hbm/blocks/semtex_side"
+    },
+    "hbm_imp_hbm_blocks_semtex_top": {
+      "textures": "textures/imported/hbm/blocks/semtex_top"
+    },
+    "hbm_imp_hbm_blocks_semtex_bottom": {
+      "textures": "textures/imported/hbm/blocks/semtex_bottom"
+    },
+    "hbm_imp_hbm_blocks_c4_side": {
+      "textures": "textures/imported/hbm/blocks/c4_side"
+    },
+    "hbm_imp_hbm_blocks_c4_top": {
+      "textures": "textures/imported/hbm/blocks/c4_top"
+    },
+    "hbm_imp_hbm_blocks_c4_bottom": {
+      "textures": "textures/imported/hbm/blocks/c4_bottom"
+    },
+    "hbm_imp_hbm_blocks_fissure_bomb_side": {
+      "textures": "textures/imported/hbm/blocks/fissure_bomb_side"
+    },
+    "hbm_imp_hbm_blocks_fissure_bomb_top": {
+      "textures": "textures/imported/hbm/blocks/fissure_bomb_top"
+    },
+    "hbm_imp_hbm_blocks_fissure_bomb_bottom": {
+      "textures": "textures/imported/hbm/blocks/fissure_bomb_bottom"
+    },
+    "hbm_imp_hbm_blocks_brick_light_alt": {
+      "textures": "textures/imported/hbm/blocks/brick_light_alt"
+    },
+    "hbm_imp_hbm_blocks_machine_crystallizer": {
+      "textures": "textures/imported/hbm/blocks/machine_crystallizer"
+    },
+    "hbm_imp_hbm_blocks_cyclotron": {
+      "textures": "textures/imported/hbm/blocks/cyclotron"
+    },
+    "hbm_imp_hbm_blocks_machine_radgen": {
+      "textures": "textures/imported/hbm/blocks/machine_radgen"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_alloy": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_alloy"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_gold": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_gold"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_neodymium": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_neodymium"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_magtung": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_magtung"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_schrabidium": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_schrabidium"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_schrabidate": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_schrabidate"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_starmetal": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_starmetal"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_chlorophyte": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_chlorophyte"
+    },
+    "hbm_imp_hbm_blocks_hadron_coil_mese": {
+      "textures": "textures/imported/hbm/blocks/hadron_coil_mese"
+    },
+    "hbm_imp_hbm_blocks_machine_microwave": {
+      "textures": "textures/imported/hbm/blocks/machine_microwave"
+    },
+    "hbm_imp_hbm_blocks_rtg": {
+      "textures": "textures/imported/hbm/blocks/rtg"
+    },
+    "hbm_imp_hbm_blocks_block_steel_machine": {
+      "textures": "textures/imported/hbm/blocks/block_steel_machine"
+    },
+    "hbm_imp_hbm_blocks_red_wire_coated": {
+      "textures": "textures/imported/hbm/blocks/red_wire_coated"
+    },
+    "hbm_imp_hbm_blocks_red_cable_classic": {
+      "textures": "textures/imported/hbm/blocks/red_cable_classic"
+    },
+    "hbm_imp_hbm_blocks_fluid_duct_box": {
+      "textures": "textures/imported/hbm/blocks/fluid_duct_box"
+    },
+    "hbm_imp_hbm_blocks_red_connector": {
+      "textures": "textures/imported/hbm/blocks/red_connector"
+    },
+    "hbm_imp_hbm_blocks_red_pylon": {
+      "textures": "textures/imported/hbm/blocks/red_pylon"
+    },
+    "hbm_imp_hbm_blocks_red_pylon_large": {
+      "textures": "textures/imported/hbm/blocks/red_pylon_large"
+    },
+    "hbm_imp_hbm_blocks_substation": {
+      "textures": "textures/imported/hbm/blocks/substation"
+    },
+    "hbm_imp_hbm_blocks_machine_detector_off": {
+      "textures": "textures/imported/hbm/blocks/machine_detector_off"
+    },
+    "hbm_imp_hbm_blocks_radio_telex": {
+      "textures": "textures/imported/hbm/blocks/radio_telex"
+    },
+    "hbm_imp_hbm_blocks_crane_side": {
+      "textures": "textures/imported/hbm/blocks/crane_side"
+    },
+    "hbm_imp_hbm_blocks_crane_partitioner_side": {
+      "textures": "textures/imported/hbm/blocks/crane_partitioner_side"
+    },
+    "hbm_imp_hbm_blocks_drone_waypoint": {
+      "textures": "textures/imported/hbm/blocks/drone_waypoint"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_side": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_side"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_top": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_top"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_bottom": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_bottom"
+    },
+    "hbm_imp_hbm_blocks_drone_waypoint_request": {
+      "textures": "textures/imported/hbm/blocks/drone_waypoint_request"
+    },
+    "hbm_imp_hbm_blocks_drone_dock_side": {
+      "textures": "textures/imported/hbm/blocks/drone_dock_side"
+    },
+    "hbm_imp_hbm_blocks_drone_dock_top": {
+      "textures": "textures/imported/hbm/blocks/drone_dock_top"
+    },
+    "hbm_imp_hbm_blocks_drone_dock_bottom": {
+      "textures": "textures/imported/hbm/blocks/drone_dock_bottom"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_provider_side": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_provider_side"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_provider_top": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_provider_top"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_provider_bottom": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_provider_bottom"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_requester_side": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_requester_side"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_requester_top": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_requester_top"
+    },
+    "hbm_imp_hbm_blocks_drone_crate_requester_bottom": {
+      "textures": "textures/imported/hbm/blocks/drone_crate_requester_bottom"
+    },
+    "hbm_imp_hbm_blocks_pneumatic_tube": {
+      "textures": "textures/imported/hbm/blocks/pneumatic_tube"
+    },
+    "hbm_imp_hbm_blocks_pneumatic_tube_paintable": {
+      "textures": "textures/imported/hbm/blocks/pneumatic_tube_paintable"
+    },
+    "hbm_imp_hbm_blocks_pneumatic_storage_access": {
+      "textures": "textures/imported/hbm/blocks/pneumatic_storage_access"
+    },
+    "hbm_imp_hbm_blocks_pneumatic_storage_clutter": {
+      "textures": "textures/imported/hbm/blocks/pneumatic_storage_clutter"
+    },
+    "hbm_imp_hbm_blocks_pneumatic_storage_mono": {
+      "textures": "textures/imported/hbm/blocks/pneumatic_storage_mono"
+    },
+    "hbm_imp_hbm_blocks_pneumatic_storage_importer": {
+      "textures": "textures/imported/hbm/blocks/pneumatic_storage_importer"
+    },
+    "hbm_imp_hbm_blocks_pneumatic_storage_exporter": {
+      "textures": "textures/imported/hbm/blocks/pneumatic_storage_exporter"
+    },
+    "hbm_imp_hbm_blocks_chain": {
+      "textures": "textures/imported/hbm/blocks/chain"
+    },
+    "hbm_imp_hbm_blocks_trapdoor_steel": {
+      "textures": "textures/imported/hbm/blocks/trapdoor_steel"
+    },
+    "hbm_imp_hbm_blocks_machine_transformer_iron": {
+      "textures": "textures/imported/hbm/blocks/machine_transformer_iron"
+    },
+    "hbm_imp_hbm_blocks_machine_satlinker_side": {
+      "textures": "textures/imported/hbm/blocks/machine_satlinker_side"
+    },
+    "hbm_imp_hbm_blocks_machine_keyforge_side": {
+      "textures": "textures/imported/hbm/blocks/machine_keyforge_side"
+    },
+    "hbm_imp_hbm_blocks_machine_solar_boiler": {
+      "textures": "textures/imported/hbm/blocks/machine_solar_boiler"
+    },
+    "hbm_imp_hbm_blocks_solar_mirror": {
+      "textures": "textures/imported/hbm/blocks/solar_mirror"
+    },
+    "hbm_imp_hbm_blocks_struct_launcher": {
+      "textures": "textures/imported/hbm/blocks/struct_launcher"
+    },
+    "hbm_imp_hbm_blocks_struct_scaffold": {
+      "textures": "textures/imported/hbm/blocks/struct_scaffold"
+    },
+    "hbm_imp_hbm_blocks_struct_launcher_core": {
+      "textures": "textures/imported/hbm/blocks/struct_launcher_core"
+    },
+    "hbm_imp_hbm_blocks_struct_launcher_core_large": {
+      "textures": "textures/imported/hbm/blocks/struct_launcher_core_large"
+    },
+    "hbm_imp_hbm_blocks_struct_soyuz_core": {
+      "textures": "textures/imported/hbm/blocks/struct_soyuz_core"
+    },
+    "hbm_imp_hbm_blocks_struct_torus_core": {
+      "textures": "textures/imported/hbm/blocks/struct_torus_core"
+    },
+    "hbm_imp_hbm_blocks_struct_watz_core": {
+      "textures": "textures/imported/hbm/blocks/struct_watz_core"
+    },
+    "hbm_imp_hbm_blocks_struct_icf_core": {
+      "textures": "textures/imported/hbm/blocks/struct_icf_core"
+    },
+    "hbm_imp_hbm_blocks_cm_flux_side": {
+      "textures": "textures/imported/hbm/blocks/cm_flux_side"
+    },
+    "hbm_imp_hbm_blocks_cm_heat_side": {
+      "textures": "textures/imported/hbm/blocks/cm_heat_side"
+    },
+    "hbm_imp_hbm_blocks_pile_brick": {
+      "textures": "textures/imported/hbm/blocks/pile_brick"
+    },
+    "hbm_imp_hbm_blocks_pile_brick_top": {
+      "textures": "textures/imported/hbm/blocks/pile_brick_top"
+    },
+    "hbm_imp_hbm_blocks_pwr_fuel_side": {
+      "textures": "textures/imported/hbm/blocks/pwr_fuel_side"
+    },
+    "hbm_imp_hbm_blocks_pwr_control_side": {
+      "textures": "textures/imported/hbm/blocks/pwr_control_side"
+    },
+    "hbm_imp_hbm_blocks_pwr_channel_side": {
+      "textures": "textures/imported/hbm/blocks/pwr_channel_side"
+    },
+    "hbm_imp_hbm_blocks_pwr_heatex": {
+      "textures": "textures/imported/hbm/blocks/pwr_heatex"
+    },
+    "hbm_imp_hbm_blocks_pwr_heatsink": {
+      "textures": "textures/imported/hbm/blocks/pwr_heatsink"
+    },
+    "hbm_imp_hbm_blocks_pwr_neutron_source": {
+      "textures": "textures/imported/hbm/blocks/pwr_neutron_source"
+    },
+    "hbm_imp_hbm_blocks_pwr_reflector": {
+      "textures": "textures/imported/hbm/blocks/pwr_reflector"
+    },
+    "hbm_imp_hbm_blocks_pwr_casing": {
+      "textures": "textures/imported/hbm/blocks/pwr_casing"
+    },
+    "hbm_imp_hbm_blocks_pwr_port": {
+      "textures": "textures/imported/hbm/blocks/pwr_port"
+    },
+    "hbm_imp_hbm_blocks_pwr_casing_blank": {
+      "textures": "textures/imported/hbm/blocks/pwr_casing_blank"
+    },
+    "hbm_imp_hbm_blocks_fusion_component": {
+      "textures": "textures/imported/hbm/blocks/fusion_component"
+    },
+    "hbm_imp_hbm_blocks_icf_component": {
+      "textures": "textures/imported/hbm/blocks/icf_component"
+    },
+    "hbm_imp_hbm_blocks_icf_casing": {
+      "textures": "textures/imported/hbm/blocks/icf_casing"
+    },
+    "hbm_imp_hbm_blocks_watz_element_side": {
+      "textures": "textures/imported/hbm/blocks/watz_element_side"
+    },
+    "hbm_imp_hbm_blocks_watz_cooler_side": {
+      "textures": "textures/imported/hbm/blocks/watz_cooler_side"
+    },
+    "hbm_imp_hbm_blocks_watz_casing": {
+      "textures": "textures/imported/hbm/blocks/watz_casing"
+    },
+    "hbm_imp_hbm_blocks_machine_converter_he_rf": {
+      "textures": "textures/imported/hbm/blocks/machine_converter_he_rf"
+    },
+    "hbm_imp_hbm_blocks_machine_converter_rf_he": {
+      "textures": "textures/imported/hbm/blocks/machine_converter_rf_he"
+    },
+    "hbm_imp_hbm_blocks_dfc_emitter": {
+      "textures": "textures/imported/hbm/blocks/dfc_emitter"
+    },
+    "hbm_imp_hbm_blocks_dfc_injector": {
+      "textures": "textures/imported/hbm/blocks/dfc_injector"
+    },
+    "hbm_imp_hbm_blocks_dfc_receiver": {
+      "textures": "textures/imported/hbm/blocks/dfc_receiver"
+    },
+    "hbm_imp_hbm_blocks_dfc_stabilizer": {
+      "textures": "textures/imported/hbm/blocks/dfc_stabilizer"
+    },
+    "hbm_imp_hbm_blocks_dfc_core": {
+      "textures": "textures/imported/hbm/blocks/dfc_core"
+    },
+    "hbm_imp_hbm_blocks_seal_frame": {
+      "textures": "textures/imported/hbm/blocks/seal_frame"
+    },
+    "hbm_imp_hbm_blocks_seal_controller": {
+      "textures": "textures/imported/hbm/blocks/seal_controller"
+    },
+    "hbm_imp_hbm_blocks_barbed_wire_model": {
+      "textures": "textures/imported/hbm/blocks/barbed_wire_model"
+    },
+    "hbm_imp_hbm_blocks_barbed_wire_fire_model": {
+      "textures": "textures/imported/hbm/blocks/barbed_wire_fire_model"
+    },
+    "hbm_imp_hbm_blocks_barbed_wire_poison_model": {
+      "textures": "textures/imported/hbm/blocks/barbed_wire_poison_model"
+    },
+    "hbm_imp_hbm_blocks_barbed_wire_acid_model": {
+      "textures": "textures/imported/hbm/blocks/barbed_wire_acid_model"
+    },
+    "hbm_imp_hbm_blocks_barbed_wire_wither_model": {
+      "textures": "textures/imported/hbm/blocks/barbed_wire_wither_model"
+    },
+    "hbm_imp_hbm_blocks_barbed_wire_ultradeath_model": {
+      "textures": "textures/imported/hbm/blocks/barbed_wire_ultradeath_model"
+    },
+    "hbm_imp_hbm_blocks_spikes": {
+      "textures": "textures/imported/hbm/blocks/spikes"
+    },
+    "hbm_imp_hbm_blocks_tesla": {
+      "textures": "textures/imported/hbm/blocks/tesla"
+    },
+    "hbm_imp_hbm_blocks_machine_radar": {
+      "textures": "textures/imported/hbm/blocks/machine_radar"
+    },
+    "hbm_imp_hbm_blocks_machine_missile_assembly": {
+      "textures": "textures/imported/hbm/blocks/machine_missile_assembly"
+    },
+    "hbm_imp_hbm_blocks_compact_launcher": {
+      "textures": "textures/imported/hbm/blocks/compact_launcher"
+    },
+    "hbm_imp_hbm_blocks_launch_table": {
+      "textures": "textures/imported/hbm/blocks/launch_table"
+    },
+    "hbm_imp_hbm_blocks_soyuz_launcher": {
+      "textures": "textures/imported/hbm/blocks/soyuz_launcher"
+    },
+    "hbm_imp_hbm_blocks_sat_dock": {
+      "textures": "textures/imported/hbm/blocks/sat_dock"
+    },
+    "hbm_imp_hbm_blocks_soyuz_capsule": {
+      "textures": "textures/imported/hbm/blocks/soyuz_capsule"
+    },
+    "hbm_imp_hbm_blocks_crate_can": {
+      "textures": "textures/imported/hbm/blocks/crate_can"
+    },
+    "hbm_imp_hbm_blocks_crate_can_top": {
+      "textures": "textures/imported/hbm/blocks/crate_can_top"
+    },
+    "hbm_imp_hbm_blocks_crate_can_bottom": {
+      "textures": "textures/imported/hbm/blocks/crate_can_bottom"
+    },
+    "hbm_imp_hbm_blocks_rbmk_element": {
+      "textures": "textures/imported/hbm/blocks/rbmk_element"
+    },
+    "hbm_imp_hbm_blocks_rbmk_element_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_element_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_element_mod_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_element_mod_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_element_mod_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_element_mod_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_element_reasim_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_element_reasim_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_element_reasim_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_element_reasim_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_element_reasim_mod_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_element_reasim_mod_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_element_reasim_mod_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_element_reasim_mod_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_mod_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_mod_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_mod_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_mod_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_auto": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_auto"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_auto_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_auto_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_reasim_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_reasim_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_reasim_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_reasim_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_reasim_bottom": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_reasim_bottom"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_reasim_auto_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_reasim_auto_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_reasim_auto_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_reasim_auto_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_control_reasim_auto_bottom": {
+      "textures": "textures/imported/hbm/blocks/rbmk_control_reasim_auto_bottom"
+    },
+    "hbm_imp_hbm_blocks_rbmk_reflector_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_reflector_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_reflector_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_reflector_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_absorber_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_absorber_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_absorber_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_absorber_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_outgasser_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_outgasser_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_outgasser_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_outgasser_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_storage_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_storage_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_storage_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_storage_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_cooler_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_cooler_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_cooler_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_cooler_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_heater_side": {
+      "textures": "textures/imported/hbm/blocks/rbmk_heater_side"
+    },
+    "hbm_imp_hbm_blocks_rbmk_heater_top": {
+      "textures": "textures/imported/hbm/blocks/rbmk_heater_top"
+    },
+    "hbm_imp_hbm_blocks_rbmk_console": {
+      "textures": "textures/imported/hbm/blocks/rbmk_console"
+    },
+    "hbm_imp_hbm_blocks_rbmk_crane_console": {
+      "textures": "textures/imported/hbm/blocks/rbmk_crane_console"
+    },
+    "hbm_imp_hbm_blocks_rbmk_display": {
+      "textures": "textures/imported/hbm/blocks/rbmk_display"
+    },
+    "hbm_imp_hbm_blocks_rbmk_autoloader": {
+      "textures": "textures/imported/hbm/blocks/rbmk_autoloader"
+    },
+    "hbm_imp_hbm_blocks_rbmk_loader": {
+      "textures": "textures/imported/hbm/blocks/rbmk_loader"
+    },
+    "hbm_imp_hbm_blocks_rbmk_steam_inlet": {
+      "textures": "textures/imported/hbm/blocks/rbmk_steam_inlet"
+    },
+    "hbm_imp_hbm_blocks_rbmk_steam_outlet": {
+      "textures": "textures/imported/hbm/blocks/rbmk_steam_outlet"
+    },
+    "hbm_imp_hbm_blocks_rbmk_debris": {
+      "textures": "textures/imported/hbm/blocks/rbmk_debris"
+    },
+    "hbm_imp_hbm_blocks_rbmk_debris_burning": {
+      "textures": "textures/imported/hbm/blocks/rbmk_debris_burning"
+    },
+    "hbm_imp_hbm_blocks_rbmk_debris_radiating": {
+      "textures": "textures/imported/hbm/blocks/rbmk_debris_radiating"
+    },
+    "hbm_imp_hbm_blocks_rbmk_debris_digamma": {
+      "textures": "textures/imported/hbm/blocks/rbmk_debris_digamma"
+    },
+    "hbm_imp_hbm_blocks_crate": {
+      "textures": "textures/imported/hbm/blocks/crate"
+    },
+    "hbm_imp_hbm_blocks_crate_weapon": {
+      "textures": "textures/imported/hbm/blocks/crate_weapon"
+    },
+    "hbm_imp_hbm_blocks_crate_lead": {
+      "textures": "textures/imported/hbm/blocks/crate_lead"
+    },
+    "hbm_imp_hbm_blocks_crate_metal": {
+      "textures": "textures/imported/hbm/blocks/crate_metal"
+    },
+    "hbm_imp_hbm_blocks_crate_ammo_side": {
+      "textures": "textures/imported/hbm/blocks/crate_ammo_side"
+    },
+    "hbm_imp_hbm_blocks_crate_ammo_top": {
+      "textures": "textures/imported/hbm/blocks/crate_ammo_top"
+    },
+    "hbm_imp_hbm_blocks_crate_ammo_bottom": {
+      "textures": "textures/imported/hbm/blocks/crate_ammo_bottom"
+    },
+    "hbm_imp_hbm_blocks_crate_jungle": {
+      "textures": "textures/imported/hbm/blocks/crate_jungle"
+    },
+    "hbm_imp_hbm_blocks_crate_iron_side": {
+      "textures": "textures/imported/hbm/blocks/crate_iron_side"
+    },
+    "hbm_imp_hbm_blocks_crate_iron_top": {
+      "textures": "textures/imported/hbm/blocks/crate_iron_top"
+    },
+    "hbm_imp_hbm_blocks_crate_steel_side": {
+      "textures": "textures/imported/hbm/blocks/crate_steel_side"
+    },
+    "hbm_imp_hbm_blocks_crate_steel_top": {
+      "textures": "textures/imported/hbm/blocks/crate_steel_top"
+    },
+    "hbm_imp_hbm_blocks_crate_desh_side": {
+      "textures": "textures/imported/hbm/blocks/crate_desh_side"
+    },
+    "hbm_imp_hbm_blocks_crate_desh_top": {
+      "textures": "textures/imported/hbm/blocks/crate_desh_top"
+    },
+    "hbm_imp_hbm_blocks_crate_tungsten_side": {
+      "textures": "textures/imported/hbm/blocks/crate_tungsten_side"
+    },
+    "hbm_imp_hbm_blocks_crate_tungsten_top": {
+      "textures": "textures/imported/hbm/blocks/crate_tungsten_top"
+    },
+    "hbm_imp_hbm_blocks_safe_side": {
+      "textures": "textures/imported/hbm/blocks/safe_side"
+    },
+    "hbm_imp_hbm_blocks_mass_storage_side": {
+      "textures": "textures/imported/hbm/blocks/mass_storage_side"
+    },
+    "hbm_imp_hbm_blocks_mass_storage_top": {
+      "textures": "textures/imported/hbm/blocks/mass_storage_top"
+    },
+    "hbm_imp_hbm_blocks_boxcar": {
+      "textures": "textures/imported/hbm/blocks/boxcar"
+    },
+    "hbm_imp_hbm_blocks_concrete_colored_ext_machine": {
+      "textures": "textures/imported/hbm/blocks/concrete_colored_ext.machine"
+    },
+    "hbm_imp_hbm_blocks_machine_mining_laser": {
+      "textures": "textures/imported/hbm/blocks/machine_mining_laser"
+    },
+    "hbm_imp_hbm_blocks_press_preheater": {
+      "textures": "textures/imported/hbm/blocks/press_preheater"
+    },
+    "hbm_imp_hbm_blocks_machine_epress": {
+      "textures": "textures/imported/hbm/blocks/machine_epress"
+    },
+    "hbm_imp_hbm_blocks_machine_reactor_small": {
+      "textures": "textures/imported/hbm/blocks/machine_reactor_small"
+    },
+    "hbm_imp_hbm_blocks_machine_large_turbine": {
+      "textures": "textures/imported/hbm/blocks/machine_large_turbine"
+    },
+    "hbm_imp_hbm_blocks_condenser": {
+      "textures": "textures/imported/hbm/blocks/condenser"
+    },
+    "hbm_imp_hbm_blocks_machine_autocrafter_side": {
+      "textures": "textures/imported/hbm/blocks/machine_autocrafter_side"
+    },
+    "hbm_imp_hbm_blocks_machine_autocrafter_top": {
+      "textures": "textures/imported/hbm/blocks/machine_autocrafter_top"
+    },
+    "hbm_imp_hbm_blocks_machine_autocrafter_bottom": {
+      "textures": "textures/imported/hbm/blocks/machine_autocrafter_bottom"
+    },
+    "hbm_imp_hbm_blocks_machine_funnel": {
+      "textures": "textures/imported/hbm/blocks/machine_funnel"
+    },
+    "hbm_imp_hbm_blocks_machine_funnel_top": {
+      "textures": "textures/imported/hbm/blocks/machine_funnel_top"
+    },
+    "hbm_imp_hbm_blocks_machine_funnel_bottom": {
+      "textures": "textures/imported/hbm/blocks/machine_funnel_bottom"
+    },
+    "hbm_imp_hbm_blocks_anvil_iron": {
+      "textures": "textures/imported/hbm/blocks/anvil_iron"
+    },
+    "hbm_imp_hbm_blocks_anvil_lead": {
+      "textures": "textures/imported/hbm/blocks/anvil_lead"
+    },
+    "hbm_imp_hbm_blocks_anvil_steel": {
+      "textures": "textures/imported/hbm/blocks/anvil_steel"
+    },
+    "hbm_imp_hbm_blocks_anvil_desh": {
+      "textures": "textures/imported/hbm/blocks/anvil_desh"
+    },
+    "hbm_imp_hbm_blocks_anvil_ferrouranium": {
+      "textures": "textures/imported/hbm/blocks/anvil_ferrouranium"
+    },
+    "hbm_imp_hbm_blocks_anvil_saturnite": {
+      "textures": "textures/imported/hbm/blocks/anvil_saturnite"
+    },
+    "hbm_imp_hbm_blocks_anvil_bismuth_bronze": {
+      "textures": "textures/imported/hbm/blocks/anvil_bismuth_bronze"
+    },
+    "hbm_imp_hbm_blocks_anvil_arsenic_bronze": {
+      "textures": "textures/imported/hbm/blocks/anvil_arsenic_bronze"
+    },
+    "hbm_imp_hbm_blocks_anvil_schrabidate": {
+      "textures": "textures/imported/hbm/blocks/anvil_schrabidate"
+    },
+    "hbm_imp_hbm_blocks_anvil_dnt": {
+      "textures": "textures/imported/hbm/blocks/anvil_dnt"
+    },
+    "hbm_imp_hbm_blocks_anvil_osmiridium": {
+      "textures": "textures/imported/hbm/blocks/anvil_osmiridium"
+    },
+    "hbm_imp_hbm_blocks_waste_drum": {
+      "textures": "textures/imported/hbm/blocks/waste_drum"
+    },
+    "hbm_imp_hbm_blocks_machine_storage_drum": {
+      "textures": "textures/imported/hbm/blocks/machine_storage_drum"
+    },
+    "hbm_imp_hbm_blocks_machine_siren": {
+      "textures": "textures/imported/hbm/blocks/machine_siren"
+    },
+    "hbm_imp_hbm_blocks_radiobox": {
+      "textures": "textures/imported/hbm/blocks/radiobox"
+    },
+    "hbm_imp_hbm_blocks_radiorec": {
+      "textures": "textures/imported/hbm/blocks/radiorec"
+    },
+    "hbm_imp_hbm_blocks_machine_forcefield": {
+      "textures": "textures/imported/hbm/blocks/machine_forcefield"
+    },
+    "hbm_imp_hbm_blocks_vent_chlorine": {
+      "textures": "textures/imported/hbm/blocks/vent_chlorine"
+    },
+    "hbm_imp_hbm_blocks_vent_cloud": {
+      "textures": "textures/imported/hbm/blocks/vent_cloud"
+    },
+    "hbm_imp_hbm_blocks_vent_pink_cloud": {
+      "textures": "textures/imported/hbm/blocks/vent_pink_cloud"
+    },
+    "hbm_imp_hbm_blocks_vent_chlorine_seal_side": {
+      "textures": "textures/imported/hbm/blocks/vent_chlorine_seal_side"
+    },
+    "hbm_imp_hbm_blocks_vent_chlorine_seal_top": {
+      "textures": "textures/imported/hbm/blocks/vent_chlorine_seal_top"
+    },
+    "hbm_imp_hbm_blocks_chlorine_gas": {
+      "textures": "textures/imported/hbm/blocks/chlorine_gas"
+    },
+    "hbm_imp_hbm_blocks_gas_radon": {
+      "textures": "textures/imported/hbm/blocks/gas_radon"
+    },
+    "hbm_imp_hbm_blocks_gas_radon_dense": {
+      "textures": "textures/imported/hbm/blocks/gas_radon_dense"
+    },
+    "hbm_imp_hbm_blocks_gas_radon_tomb": {
+      "textures": "textures/imported/hbm/blocks/gas_radon_tomb"
+    },
+    "hbm_imp_hbm_blocks_gas_meltdown": {
+      "textures": "textures/imported/hbm/blocks/gas_meltdown"
+    },
+    "hbm_imp_hbm_blocks_gas_monoxide": {
+      "textures": "textures/imported/hbm/blocks/gas_monoxide"
+    },
+    "hbm_imp_hbm_blocks_gas_asbestos": {
+      "textures": "textures/imported/hbm/blocks/gas_asbestos"
+    },
+    "hbm_imp_hbm_blocks_gas_coal": {
+      "textures": "textures/imported/hbm/blocks/gas_coal"
+    },
+    "hbm_imp_hbm_blocks_gas_flammable": {
+      "textures": "textures/imported/hbm/blocks/gas_flammable"
+    },
+    "hbm_imp_hbm_blocks_gas_explosive": {
+      "textures": "textures/imported/hbm/blocks/gas_explosive"
+    },
+    "hbm_imp_hbm_blocks_decon_side": {
+      "textures": "textures/imported/hbm/blocks/decon_side"
+    },
+    "hbm_imp_hbm_blocks_volcano_core": {
+      "textures": "textures/imported/hbm/blocks/volcano_core"
+    },
+    "hbm_imp_hbm_blocks_volcano_rad_core": {
+      "textures": "textures/imported/hbm/blocks/volcano_rad_core"
+    },
+    "hbm_imp_ext_blocks_ore_coal_oil": {
+      "textures": "textures/imported/ext/blocks/ore_coal_oil"
+    },
+    "hbm_imp_ext_blocks_ore_coal_oil_burning": {
+      "textures": "textures/imported/ext/blocks/ore_coal_oil_burning"
+    },
+    "hbm_imp_ext_blocks_ore_reiium": {
+      "textures": "textures/imported/ext/blocks/ore_reiium"
+    },
+    "hbm_imp_ext_blocks_ore_weidanium": {
+      "textures": "textures/imported/ext/blocks/ore_weidanium"
+    },
+    "hbm_imp_ext_blocks_ore_verticium": {
+      "textures": "textures/imported/ext/blocks/ore_verticium"
+    },
+    "hbm_imp_ext_blocks_ore_unobtainium": {
+      "textures": "textures/imported/ext/blocks/ore_unobtainium"
+    },
+    "hbm_imp_ext_blocks_ore_daffergon": {
+      "textures": "textures/imported/ext/blocks/ore_daffergon"
+    },
+    "hbm_imp_ext_blocks_ore_bedrock_coltan": {
+      "textures": "textures/imported/ext/blocks/ore_bedrock_coltan"
+    },
+    "hbm_imp_ext_blocks_ore_bedrock_block": {
+      "textures": "textures/imported/ext/blocks/ore_bedrock_block"
+    },
+    "hbm_imp_ext_blocks_ore_hematite": {
+      "textures": "textures/imported/ext/blocks/ore_hematite"
+    },
+    "hbm_imp_ext_blocks_ore_malachite": {
+      "textures": "textures/imported/ext/blocks/ore_malachite"
+    },
+    "hbm_imp_ext_blocks_ore_depth_nether_nitan": {
+      "textures": "textures/imported/ext/blocks/ore_depth_nether_nitan"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_uranium": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_uranium"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_thorium": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_thorium"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_titanium": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_titanium"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_sulfur": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_sulfur"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_copper": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_copper"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_tungsten": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_tungsten"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_aluminium": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_aluminium"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_lead": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_lead"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_lithium": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_lithium"
+    },
+    "hbm_imp_ext_blocks_ore_meteor_starmetal": {
+      "textures": "textures/imported/ext/blocks/ore_meteor_starmetal"
+    },
+    "hbm_imp_ext_blocks_waste_ice": {
+      "textures": "textures/imported/ext/blocks/waste_ice"
+    },
+    "hbm_imp_ext_blocks_block_graphite": {
+      "textures": "textures/imported/ext/blocks/block_graphite"
+    },
+    "hbm_imp_ext_blocks_block_graphite_drilled": {
+      "textures": "textures/imported/ext/blocks/block_graphite_drilled"
+    },
+    "hbm_imp_ext_blocks_block_graphite_fuel": {
+      "textures": "textures/imported/ext/blocks/block_graphite_fuel"
+    },
+    "hbm_imp_ext_blocks_block_graphite_plutonium": {
+      "textures": "textures/imported/ext/blocks/block_graphite_plutonium"
+    },
+    "hbm_imp_ext_blocks_block_graphite_source": {
+      "textures": "textures/imported/ext/blocks/block_graphite_source"
+    },
+    "hbm_imp_ext_blocks_basalt_sulfur": {
+      "textures": "textures/imported/ext/blocks/basalt_sulfur"
+    },
+    "hbm_imp_ext_blocks_basalt_fluorite": {
+      "textures": "textures/imported/ext/blocks/basalt_fluorite"
+    },
+    "hbm_imp_ext_blocks_basalt_gem": {
+      "textures": "textures/imported/ext/blocks/basalt_gem"
+    },
+    "hbm_imp_ext_blocks_block_steel": {
+      "textures": "textures/imported/ext/blocks/block_steel"
+    },
+    "hbm_imp_ext_blocks_plasma_heater": {
+      "textures": "textures/imported/ext/blocks/plasma_heater"
     }
   }
 }

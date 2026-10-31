@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_808"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " S ",
+      "SDS",
+      " S "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_polymer"
+      },
+      "D": {
+        "item": "hbm:powder_lapis"
+      }
+    },
+    "result": {
+      "item": "hbm:record_lc",
+      "count": 1
+    }
+  }
+}

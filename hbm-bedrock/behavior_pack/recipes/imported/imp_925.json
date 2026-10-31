@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_925"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PPP",
+      "PCP",
+      "PPP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:deco_pipe_rim"
+      },
+      "C": {
+        "item": "hbm:powder_iron"
+      }
+    },
+    "result": {
+      "item": "hbm:deco_pipe_rim_rusted",
+      "count": 8
+    }
+  }
+}

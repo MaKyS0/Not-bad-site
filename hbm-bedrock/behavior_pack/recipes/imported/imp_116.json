@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_116"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:billet_uranium_fuel"
+      },
+      {
+        "item": "hbm:billet_u238"
+      }
+    ],
+    "result": {
+      "item": "hbm:billet_uranium",
+      "count": 2
+    }
+  }
+}

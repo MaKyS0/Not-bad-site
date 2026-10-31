@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_675"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "WIW",
+      "PCP",
+      "WIW"
+    ],
+    "key": {
+      "W": {
+        "item": "hbm:wire_fine_copper"
+      },
+      "I": {
+        "item": "hbm:ingot_polymer"
+      },
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "P": {
+        "item": "hbm:plate_polymer"
+      }
+    },
+    "result": {
+      "item": "hbm:upgrade_template",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:wire_fine_zirconium",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_wire_fine_zirconium"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.wire_fine_zirconium.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

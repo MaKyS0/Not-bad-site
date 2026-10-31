@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_440"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:crystal_uranium",
+    "output": "hbm:ingot_uranium"
+  }
+}

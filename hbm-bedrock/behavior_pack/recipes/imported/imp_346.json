@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_346"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:glyphid_meat",
+    "output": "hbm:glyphid_meat_grilled"
+  }
+}

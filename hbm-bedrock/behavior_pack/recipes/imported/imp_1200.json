@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1200"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "G",
+      "R"
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:feather"
+      },
+      "R": {
+        "item": "hbm:ammo_grenade"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_grenade_finned",
+      "count": 1
+    }
+  }
+}

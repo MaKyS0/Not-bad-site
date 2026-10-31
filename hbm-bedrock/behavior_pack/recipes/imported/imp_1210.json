@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1210"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " P ",
+      "BDB",
+      " P "
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "B": {
+        "item": "hbm:bolt_steel"
+      },
+      "D": {
+        "item": "hbm:canister_napalm"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_fuel_napalm",
+      "count": 1
+    }
+  }
+}

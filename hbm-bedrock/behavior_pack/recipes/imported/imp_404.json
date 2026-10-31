@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_404"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_actinium",
+    "output": "hbm:ingot_actinium"
+  }
+}

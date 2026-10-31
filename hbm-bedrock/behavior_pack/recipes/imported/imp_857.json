@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_857"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:rune_blank"
+      },
+      {
+        "item": "hbm:powder_spark_mix"
+      },
+      {
+        "item": "hbm:singularity_counter_resonant"
+      }
+    ],
+    "result": {
+      "item": "hbm:rune_isa",
+      "count": 1
+    }
+  }
+}

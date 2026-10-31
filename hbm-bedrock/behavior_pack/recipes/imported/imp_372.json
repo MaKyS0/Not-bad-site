@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_372"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:ore_gneiss_schrabidium",
+    "output": "hbm:ingot_schrabidium"
+  }
+}

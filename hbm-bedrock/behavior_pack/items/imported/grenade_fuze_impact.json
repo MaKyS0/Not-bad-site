@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:grenade_fuze_impact",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_grenade_fuze_impact"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.grenade_fuze_impact.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

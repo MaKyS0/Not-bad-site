@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1366"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "A A",
+      "PSP",
+      "PSP"
+    ],
+    "key": {
+      "A": {
+        "item": "hbm:plate_aluminium"
+      },
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "S": {
+        "item": "hbm:steel_scaffold"
+      }
+    },
+    "result": {
+      "item": "hbm:mp_stability_15_thin",
+      "count": 1
+    }
+  }
+}

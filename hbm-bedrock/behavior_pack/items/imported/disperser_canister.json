@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:disperser_canister",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_disperser_canister"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.disperser_canister.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

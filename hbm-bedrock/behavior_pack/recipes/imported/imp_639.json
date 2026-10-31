@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_639"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "C",
+      "I",
+      "S"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:coil_copper"
+      },
+      "I": {
+        "item": "hbm:plate_polymer"
+      },
+      "S": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:red_connector",
+      "count": 4
+    }
+  }
+}

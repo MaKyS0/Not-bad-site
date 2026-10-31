@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:pill_herbal",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_pill_herbal"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.pill_herbal.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

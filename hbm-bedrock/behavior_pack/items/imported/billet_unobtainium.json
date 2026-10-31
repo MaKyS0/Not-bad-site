@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:billet_unobtainium",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_billet_unobtainium"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.billet_unobtainium.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

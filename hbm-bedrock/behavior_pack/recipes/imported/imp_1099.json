@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1099"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SPS",
+      "PCP",
+      "SPS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:plate_steel"
+      },
+      "C": {
+        "item": "hbm:powder_coal"
+      },
+      "P": {
+        "item": "hbm:powder_fire"
+      }
+    },
+    "result": {
+      "item": "hbm:gun_immolator_ammo",
+      "count": 16
+    }
+  }
+}

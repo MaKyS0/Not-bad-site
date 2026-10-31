@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_562"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BB"
+    ],
+    "key": {
+      "B": {
+        "item": "minecraft:brick"
+      }
+    },
+    "result": {
+      "item": "hbm:plate_polymer",
+      "count": 4
+    }
+  }
+}

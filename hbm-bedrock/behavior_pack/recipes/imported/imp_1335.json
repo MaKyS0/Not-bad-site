@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1335"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "R12",
+      "PPI",
+      "  I"
+    ],
+    "key": {
+      "1": {
+        "item": "hbm:circuit_capacitor_board"
+      },
+      "2": {
+        "item": "hbm:circuit_advanced"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      },
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "I": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:turret_control",
+      "count": 1
+    }
+  }
+}

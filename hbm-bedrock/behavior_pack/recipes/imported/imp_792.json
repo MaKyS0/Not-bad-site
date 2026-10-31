@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_792"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " F ",
+      "FCF",
+      " F "
+    ],
+    "key": {
+      "F": {
+        "item": "minecraft:flint"
+      },
+      "C": {
+        "item": "hbm:charge_dynamite"
+      }
+    },
+    "result": {
+      "item": "hbm:charge_miner",
+      "count": 1
+    }
+  }
+}

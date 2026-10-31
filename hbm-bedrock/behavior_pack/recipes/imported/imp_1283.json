@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1283"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PIP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_gold"
+      },
+      "I": {
+        "item": "hbm:blades_gold"
+      }
+    },
+    "result": {
+      "item": "hbm:blades_gold",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_621"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PII",
+      "PBB",
+      "PII"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "B": {
+        "item": "hbm:block_desh"
+      },
+      "I": {
+        "item": "hbm:ingot_tungsten"
+      }
+    },
+    "result": {
+      "item": "hbm:shimmer_axe_head",
+      "count": 1
+    }
+  }
+}

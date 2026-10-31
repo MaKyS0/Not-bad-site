@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "ICI",
+      "TJT",
+      "I I"
+    ],
+    "key": {
+      "C": {
+        "item": "hbm:circuit_basic"
+      },
+      "T": {
+        "item": "hbm:ingot_dura_steel"
+      },
+      "J": {
+        "item": "hbm:jetpack_fly"
+      },
+      "I": {
+        "item": "hbm:plate_polymer"
+      }
+    },
+    "result": {
+      "item": "hbm:jetpack_break",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_654"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " L ",
+      "ICI",
+      " I "
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:ingot_titanium"
+      },
+      "C": {
+        "item": "hbm:crate_steel"
+      },
+      "L": {
+        "item": "hbm:circuit_vacuum_tube"
+      }
+    },
+    "result": {
+      "item": "hbm:mass_storage",
+      "count": 1
+    }
+  }
+}

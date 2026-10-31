@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_533"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DDD",
+      "DSD",
+      "DDD"
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:stick_semtex"
+      },
+      "S": {
+        "item": "hbm:safety_fuse"
+      }
+    },
+    "result": {
+      "item": "hbm:semtex",
+      "count": 1
+    }
+  }
+}

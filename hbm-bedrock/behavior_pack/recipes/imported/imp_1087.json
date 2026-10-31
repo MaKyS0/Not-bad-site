@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_1087"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:clip_jack"
+      }
+    ],
+    "result": {
+      "item": "hbm:gun_jack_ammo",
+      "count": 12
+    }
+  }
+}

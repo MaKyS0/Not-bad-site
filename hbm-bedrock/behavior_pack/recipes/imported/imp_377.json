@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_377"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:briquette_wood",
+    "output": "minecraft:charcoal"
+  }
+}

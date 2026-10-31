@@ -1,0 +1,44 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_873"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:ams_catalyst_blank"
+      },
+      {
+        "item": "hbm:rune_hagalaz"
+      },
+      {
+        "item": "hbm:rune_hagalaz"
+      },
+      {
+        "item": "hbm:rune_jera"
+      },
+      {
+        "item": "hbm:rune_thurisaz"
+      },
+      {
+        "item": "hbm:powder_cerium"
+      },
+      {
+        "item": "hbm:powder_cerium"
+      },
+      {
+        "item": "hbm:powder_cerium"
+      },
+      {
+        "item": "hbm:powder_cerium"
+      }
+    ],
+    "result": {
+      "item": "hbm:ams_catalyst_cerium",
+      "count": 1
+    }
+  }
+}

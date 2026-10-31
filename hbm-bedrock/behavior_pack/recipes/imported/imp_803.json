@@ -1,0 +1,37 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_803"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "RCA",
+      "CIC",
+      "KCR"
+    ],
+    "key": {
+      "R": {
+        "item": "minecraft:red_dye"
+      },
+      "C": {
+        "item": "hbm:wire_dense_starmetal"
+      },
+      "A": {
+        "item": "hbm:gem_alexandrite"
+      },
+      "I": {
+        "item": "hbm:ingot_chainsteel"
+      },
+      "K": {
+        "item": "hbm:key"
+      }
+    },
+    "result": {
+      "item": "hbm:key_red",
+      "count": 1
+    }
+  }
+}

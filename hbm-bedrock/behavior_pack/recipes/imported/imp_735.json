@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_735"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:concrete_colored"
+      }
+    ],
+    "result": {
+      "item": "hbm:concrete_smooth",
+      "count": 1
+    }
+  }
+}

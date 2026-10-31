@@ -1,0 +1,44 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_306"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:powder_boron_tiny"
+      },
+      {
+        "item": "hbm:powder_boron_tiny"
+      },
+      {
+        "item": "hbm:powder_lanthanium_tiny"
+      },
+      {
+        "item": "hbm:powder_lanthanium_tiny"
+      },
+      {
+        "item": "hbm:powder_cerium_tiny"
+      },
+      {
+        "item": "hbm:powder_cobalt_tiny"
+      },
+      {
+        "item": "hbm:powder_lithium_tiny"
+      },
+      {
+        "item": "hbm:powder_neodymium_tiny"
+      },
+      {
+        "item": "hbm:powder_niobium_tiny"
+      }
+    ],
+    "result": {
+      "item": "hbm:powder_desh_mix",
+      "count": 1
+    }
+  }
+}

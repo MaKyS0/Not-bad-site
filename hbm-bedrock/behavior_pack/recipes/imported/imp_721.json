@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_721"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CDC",
+      "DLD",
+      "CDC"
+    ],
+    "key": {
+      "D": {
+        "item": "hbm:ducrete"
+      },
+      "C": {
+        "item": "minecraft:clay_ball"
+      },
+      "L": {
+        "item": "hbm:plate_lead"
+      }
+    },
+    "result": {
+      "item": "hbm:brick_ducrete",
+      "count": 4
+    }
+  }
+}

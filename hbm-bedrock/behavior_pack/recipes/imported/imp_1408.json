@@ -1,0 +1,23 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1408"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "##"
+    ],
+    "key": {
+      "#": {
+        "item": "hbm:falloutitem"
+      }
+    },
+    "result": {
+      "item": "hbm:falloutitem",
+      "count": 2
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_429"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:gravel_obsidian",
+    "output": "minecraft:obsidian"
+  }
+}

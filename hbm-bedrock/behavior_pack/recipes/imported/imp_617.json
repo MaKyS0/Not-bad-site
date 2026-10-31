@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_617"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " D ",
+      "DSD",
+      " D "
+    ],
+    "key": {
+      "D": {
+        "item": "minecraft:yellow_dye"
+      },
+      "S": {
+        "item": "minecraft:stone"
+      }
+    },
+    "result": {
+      "item": "hbm:lemon",
+      "count": 1
+    }
+  }
+}

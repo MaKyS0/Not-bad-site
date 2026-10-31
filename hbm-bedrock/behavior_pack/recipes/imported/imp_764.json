@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_764"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SS ",
+      "SCR",
+      "SS "
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "C": {
+        "item": "hbm:circuit_vacuum_tube"
+      },
+      "R": {
+        "item": "hbm:wire_fine_mingrade"
+      }
+    },
+    "result": {
+      "item": "hbm:pole_satellite_receiver",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:watz_pellet",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_ext_items_watz_pellet"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.watz_pellet.name"
+      },
+      "minecraft:max_stack_size": 1
+    }
+  }
+}

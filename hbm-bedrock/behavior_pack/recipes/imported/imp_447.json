@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_447"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:crystal_tungsten",
+    "output": "hbm:ingot_tungsten"
+  }
+}

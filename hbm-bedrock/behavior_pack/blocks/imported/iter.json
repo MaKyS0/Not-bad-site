@@ -1,0 +1,52 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:iter",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.iter.name",
+      "minecraft:destructible_by_mining": false,
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 3600
+      },
+      "minecraft:geometry": "geometry.hbm.machine",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_imp_ext_blocks_block_steel",
+          "render_method": "alpha_test"
+        },
+        "north": {
+          "texture": "hbm_imp_ext_blocks_block_steel",
+          "render_method": "alpha_test"
+        },
+        "south": {
+          "texture": "hbm_imp_ext_blocks_block_steel",
+          "render_method": "alpha_test"
+        },
+        "east": {
+          "texture": "hbm_imp_ext_blocks_block_steel",
+          "render_method": "alpha_test"
+        },
+        "west": {
+          "texture": "hbm_imp_ext_blocks_block_steel",
+          "render_method": "alpha_test"
+        },
+        "up": {
+          "texture": "hbm_imp_ext_blocks_block_steel",
+          "render_method": "alpha_test"
+        },
+        "down": {
+          "texture": "hbm_imp_ext_blocks_block_steel",
+          "render_method": "alpha_test"
+        }
+      },
+      "minecraft:map_color": "#808080",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "minecraft:light_emission": 15
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1051"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "LEL",
+      "EWE",
+      "LEL"
+    ],
+    "key": {
+      "E": {
+        "item": "hbm:ingot_euphemium"
+      },
+      "L": {
+        "item": "minecraft:lapis_lazuli"
+      },
+      "W": {
+        "item": "minecraft:clock"
+      }
+    },
+    "result": {
+      "item": "hbm:watch",
+      "count": 1
+    }
+  }
+}

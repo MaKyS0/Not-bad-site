@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1146"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " B ",
+      "BAB",
+      " B "
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:ammo_4gauge_explosive"
+      },
+      "A": {
+        "item": "hbm:egg_balefire_shard"
+      }
+    },
+    "result": {
+      "item": "hbm:ammo_4gauge_balefire",
+      "count": 4
+    }
+  }
+}

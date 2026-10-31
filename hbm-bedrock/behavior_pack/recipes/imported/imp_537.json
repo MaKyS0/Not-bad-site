@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_537"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "L",
+      "M"
+    ],
+    "key": {
+      "M": {
+        "item": "hbm:mine_ap"
+      },
+      "L": {
+        "item": "hbm:pellet_buckshot"
+      }
+    },
+    "result": {
+      "item": "hbm:mine_shrap",
+      "count": 1
+    }
+  }
+}

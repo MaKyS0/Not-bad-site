@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_842"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BBB",
+      "BBB",
+      "TTT"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:bolt_steel"
+      },
+      "T": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:spikes",
+      "count": 4
+    }
+  }
+}

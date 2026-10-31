@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:drive_disk_empty",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_drive_disk_empty"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.drive_disk_empty.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

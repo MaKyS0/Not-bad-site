@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_437"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:crystal_gold",
+    "output": "minecraft:gold_ingot"
+  }
+}

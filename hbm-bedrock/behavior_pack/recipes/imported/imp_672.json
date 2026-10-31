@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_672"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BPB",
+      "PRP",
+      "BPB"
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:bolt_steel"
+      },
+      "P": {
+        "item": "hbm:plate_iron"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      }
+    },
+    "result": {
+      "item": "hbm:fan",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "hbm:particle_hydrogen",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "hbm_imp_hbm_items_particle_hydrogen"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.hbm.particle_hydrogen.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

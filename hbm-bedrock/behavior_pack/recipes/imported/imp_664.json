@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_664"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SHS",
+      "DHD",
+      "SHS"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:ingot_steel"
+      },
+      "H": {
+        "item": "hbm:shell_steel"
+      },
+      "D": {
+        "item": "minecraft:black_dye"
+      }
+    },
+    "result": {
+      "item": "hbm:machine_solar_boiler",
+      "count": 1
+    }
+  }
+}

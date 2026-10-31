@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_852"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "P",
+      "S",
+      "B"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_aluminium"
+      },
+      "S": {
+        "item": "hbm:steel_scaffold"
+      },
+      "B": {
+        "item": "hbm:steel_beam"
+      }
+    },
+    "result": {
+      "item": "hbm:seg_10",
+      "count": 1
+    }
+  }
+}

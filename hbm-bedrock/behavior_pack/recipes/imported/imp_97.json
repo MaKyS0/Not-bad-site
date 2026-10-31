@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_97"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "CIC",
+      "C C",
+      "I I"
+    ],
+    "key": {
+      "I": {
+        "item": "hbm:ingot_chainsteel"
+      },
+      "C": {
+        "item": "hbm:dungeon_chain"
+      }
+    },
+    "result": {
+      "item": "hbm:shackles",
+      "count": 1
+    }
+  }
+}

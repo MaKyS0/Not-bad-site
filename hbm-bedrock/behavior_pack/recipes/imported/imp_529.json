@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_529"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " S ",
+      "PDP",
+      "PDP"
+    ],
+    "key": {
+      "S": {
+        "item": "hbm:det_cord"
+      },
+      "P": {
+        "item": "minecraft:paper"
+      },
+      "D": {
+        "item": "hbm:ingot_semtex"
+      }
+    },
+    "result": {
+      "item": "hbm:stick_semtex",
+      "count": 4
+    }
+  }
+}

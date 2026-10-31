@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_711"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " A ",
+      "ABA",
+      " A "
+    ],
+    "key": {
+      "B": {
+        "item": "hbm:brick_light"
+      },
+      "A": {
+        "item": "hbm:ingot_asbestos"
+      }
+    },
+    "result": {
+      "item": "hbm:brick_asbestos",
+      "count": 2
+    }
+  }
+}

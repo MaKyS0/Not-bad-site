@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_615"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PIP",
+      "I I",
+      "PIP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_steel"
+      },
+      "I": {
+        "item": "hbm:ingot_steel"
+      }
+    },
+    "result": {
+      "item": "hbm:sphere_steel",
+      "count": 1
+    }
+  }
+}

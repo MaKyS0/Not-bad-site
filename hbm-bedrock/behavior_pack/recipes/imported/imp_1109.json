@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1109"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " L ",
+      " L ",
+      "LLL"
+    ],
+    "key": {
+      "L": {
+        "item": "hbm:nugget_lead"
+      }
+    },
+    "result": {
+      "item": "hbm:pellet_flechette",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_922"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PPP",
+      "PCP",
+      "PPP"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:deco_pipe"
+      },
+      "C": {
+        "item": "minecraft:iron_bars"
+      }
+    },
+    "result": {
+      "item": "hbm:deco_pipe_framed",
+      "count": 8
+    }
+  }
+}

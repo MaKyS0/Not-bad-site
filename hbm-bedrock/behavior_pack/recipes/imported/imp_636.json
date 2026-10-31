@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_636"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " W ",
+      "RRR",
+      " W "
+    ],
+    "key": {
+      "W": {
+        "item": "hbm:plate_polymer"
+      },
+      "R": {
+        "item": "hbm:wire_fine_mingrade"
+      }
+    },
+    "result": {
+      "item": "hbm:red_cable",
+      "count": 16
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_1367"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PCI",
+      "ISS",
+      "PCI"
+    ],
+    "key": {
+      "P": {
+        "item": "hbm:plate_desh"
+      },
+      "C": {
+        "item": "hbm:coil_advanced_alloy"
+      },
+      "I": {
+        "item": "hbm:ingot_starmetal"
+      },
+      "S": {
+        "item": "hbm:circuit_advanced"
+      }
+    },
+    "result": {
+      "item": "hbm:mechanism_special",
+      "count": 1
+    }
+  }
+}

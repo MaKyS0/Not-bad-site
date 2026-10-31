@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_738"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "hbm:gneiss_tile"
+      }
+    ],
+    "result": {
+      "item": "hbm:gneiss_chiseled",
+      "count": 1
+    }
+  }
+}

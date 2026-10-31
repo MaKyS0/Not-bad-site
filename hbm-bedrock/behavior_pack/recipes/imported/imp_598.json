@@ -1,0 +1,44 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "hbm:imp_598"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:sugar"
+      },
+      {
+        "item": "hbm:powder_sawdust"
+      },
+      {
+        "item": "hbm:powder_sawdust"
+      },
+      {
+        "item": "minecraft:oak_sapling"
+      },
+      {
+        "item": "minecraft:oak_sapling"
+      },
+      {
+        "item": "minecraft:oak_sapling"
+      },
+      {
+        "item": "minecraft:oak_sapling"
+      },
+      {
+        "item": "minecraft:oak_sapling"
+      },
+      {
+        "item": "minecraft:oak_sapling"
+      }
+    ],
+    "result": {
+      "item": "hbm:biomass",
+      "count": 4
+    }
+  }
+}

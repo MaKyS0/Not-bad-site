@@ -1,0 +1,53 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "hbm:tektite",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.hbm.tektite.name",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.5
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 1.5
+      },
+      "minecraft:geometry": "geometry.hbm.machine",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "hbm_imp_hbm_blocks_tektite",
+          "render_method": "alpha_test"
+        },
+        "north": {
+          "texture": "hbm_imp_hbm_blocks_tektite",
+          "render_method": "alpha_test"
+        },
+        "south": {
+          "texture": "hbm_imp_hbm_blocks_tektite",
+          "render_method": "alpha_test"
+        },
+        "east": {
+          "texture": "hbm_imp_hbm_blocks_tektite",
+          "render_method": "alpha_test"
+        },
+        "west": {
+          "texture": "hbm_imp_hbm_blocks_tektite",
+          "render_method": "alpha_test"
+        },
+        "up": {
+          "texture": "hbm_imp_hbm_blocks_tektite",
+          "render_method": "alpha_test"
+        },
+        "down": {
+          "texture": "hbm_imp_hbm_blocks_tektite",
+          "render_method": "alpha_test"
+        }
+      },
+      "minecraft:map_color": "#808080",
+      "tag:minecraft:is_shovel_item_destructible": {}
+    }
+  }
+}

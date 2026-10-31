@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "hbm:imp_86"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "OOO",
+      "PDP",
+      "OOO"
+    ],
+    "key": {
+      "O": {
+        "item": "hbm:plate_iron"
+      },
+      "P": {
+        "item": "hbm:plate_polymer"
+      },
+      "D": {
+        "item": "hbm:ducttape"
+      }
+    },
+    "result": {
+      "item": "hbm:cladding_iron",
+      "count": 1
+    }
+  }
+}

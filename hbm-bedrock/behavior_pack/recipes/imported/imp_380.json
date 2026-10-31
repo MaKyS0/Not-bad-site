@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "hbm:imp_380"
+    },
+    "tags": [
+      "furnace"
+    ],
+    "input": "hbm:powder_polonium",
+    "output": "hbm:ingot_polonium"
+  }
+}
