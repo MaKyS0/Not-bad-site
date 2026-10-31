@@ -8,6 +8,7 @@ import { RBMK, RBMK_TYPES, ROD_LIFE, RBMK_MELTDOWN, RBMK_OVERHEAT, runRbmk } fro
 import { isMissile, launchMissile, targetOf } from "./missiles.js";
 import { MACHINE_RECIPES, SMELT_EXTRA, SHRED_EXTRA, KNOWN_BLOCKS, FLUIDS } from "./imported_machines.js";
 import { IMPORTED_RADS } from "./imported_rads.js";
+import { BOOK_ITEMS } from "./recipe_index.js";
 
 const SECOND = 20;
 const STACK = 64;
@@ -1378,14 +1379,29 @@ function setLit(block, lit) {
   }
 }
 
+/** Reports a failure once per kind, so one broken machine cannot stop or flood the rest. */
+const reported = new Set();
+function guard(label, fn) {
+  try {
+    return fn();
+  } catch (e) {
+    const message = `[HBM] ${label}: ${e}`;
+    if (!reported.has(message)) {
+      reported.add(message);
+      /** @type {any} */ (globalThis).console?.warn(message);
+    }
+    return undefined;
+  }
+}
+
 function tick() {
   /** @type {Map<string, import("@minecraft/server").Block>} */
   const blocks = new Map();
   for (const [key, m] of machines) {
     const block = blockOf(m);
     if (!block) continue;
-    if (block.typeId !== m.type) {
-      removeMachine(key, block);
+    if (block.typeId !== m.type || !MACHINES[m.type]) {
+      guard("remove", () => removeMachine(key, block));
       continue;
     }
     blocks.set(key, block);
@@ -1398,13 +1414,13 @@ function tick() {
     const m = /** @type {Machine} */ (machines.get(key));
     const run = MACHINES[m.type].run;
     if (!run) continue;
-    lit.set(key, run(m, /** @type {import("@minecraft/server").Block} */ (blocks.get(key)), key));
+    lit.set(key, guard(m.type, () => run(m, /** @type {import("@minecraft/server").Block} */ (blocks.get(key)), key)) ?? false);
     dirty.add(key);
     if (!machines.has(key)) active.delete(key);
   }
 
   const columns = [...active].map((k) => /** @type {Machine} */ (machines.get(k))).filter((m) => RBMK_TYPES.has(m.type));
-  if (columns.length) {
+  if (columns.length) guard("rbmk", () => {
     const machineAt = (dim, x, y, z) => (active.has(keyOf(dim, x, y, z)) ? machines.get(keyOf(dim, x, y, z)) : undefined);
     const typeAt = (dim, x, y, z) => {
       try {
@@ -1423,18 +1439,20 @@ function tick() {
       rbmkExplosion(failed);
       for (const key of [...active]) if (!machines.has(key)) active.delete(key);
     }
-  }
+  });
 
   const live = [...active].map((k) => /** @type {Machine} */ (machines.get(k)));
-  for (const m of live) if (MACHINES[m.type].power === "gen") pushEnergy(m, ["use", "store"], active);
-  for (const m of live) if (MACHINES[m.type].power === "store") pushEnergy(m, ["use"], active);
-  for (const m of live) for (const [fluid, amount] of Object.entries(m.tanks ?? {})) if (amount > 0) pushFluid(m, fluid, active);
+  for (const m of live) if (MACHINES[m.type]?.power === "gen") guard("energy", () => pushEnergy(m, ["use", "store"], active));
+  for (const m of live) if (MACHINES[m.type]?.power === "store") guard("energy", () => pushEnergy(m, ["use"], active));
+  for (const m of live) {
+    for (const [fluid, amount] of Object.entries(m.tanks ?? {})) if (amount > 0) guard("fluids", () => pushFluid(m, fluid, active));
+  }
 
   for (const [key, on] of lit) {
     const block = blocks.get(key);
-    if (block && machines.has(key) && MACHINES[block.typeId]?.lit) setLit(block, on);
+    if (block && machines.has(key) && MACHINES[block.typeId]?.lit) guard("lit", () => setLit(block, on));
   }
-  save();
+  guard("save", save);
 }
 
 // ---------- conduits ----------
@@ -1480,9 +1498,13 @@ const formatNumber = (n) => String(Math.floor(n)).replace(/\B(?=(\d{3})+(?!\d))/
 
 const BLOCK_IDS = /^(ore_|block_|machine_|red_cable$|fluid_duct$|rbmk_(fuel|control|boiler|moderator|blank|debris)$|launch_pad$|det_|charge_|waste_)/;
 
+/** Language keys of every block and item of the pack, as the recipe book knows them. */
+const LABEL_KEYS = new Map(BOOK_ITEMS.map(([id, key]) => [id, key]));
+
 /** Our ids use the pack's language file; vanilla ids fall back to a readable form of the id. */
 function itemLabel(id) {
   if (id.startsWith("fluid:")) return { translate: `hbm.fluid.${id.slice(6)}` };
+  if (LABEL_KEYS.get(id)) return { translate: /** @type {string} */ (LABEL_KEYS.get(id)) };
   if (id.startsWith("hbm:")) {
     const short = id.slice(4);
     return { translate: BLOCK_IDS.test(short) ? `tile.hbm.${short}.name` : `item.hbm.${short}.name` };

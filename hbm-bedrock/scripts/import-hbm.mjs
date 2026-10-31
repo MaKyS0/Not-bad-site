@@ -295,18 +295,37 @@ function category(tab) {
 
 // ---------- textures ----------
 
-/** Copies a texture; animated strips keep their first frame. Returns the atlas path. */
+/**
+ * Copies a texture; animated strips keep their first frame, and odd sizes (model sheets of 55 or
+ * 96 pixels) are scaled to 16×16, since the game's atlas expects square power-of-two images.
+ * Returns the atlas path.
+ */
 function copyTexture(src, outName) {
   const dest = join(TEXTURE_OUT, `${outName}.png`);
   mkdirSync(dirname(dest), { recursive: true });
   const png = UPNG.decode(readFileSync(src));
-  let data = readFileSync(src);
-  if (png.height > png.width && png.height % png.width === 0) {
-    const rgba = new Uint8Array(UPNG.toRGBA8(png)[0]);
-    const frame = rgba.slice(0, png.width * png.width * 4);
-    data = Buffer.from(UPNG.encode([frame.buffer], png.width, png.width, 0));
+  let width = png.width;
+  let height = png.height;
+  let rgba = new Uint8Array(UPNG.toRGBA8(png)[0]);
+  if (height > width && height % width === 0) {
+    rgba = rgba.slice(0, width * width * 4);
+    height = width;
   }
-  writeFileSync(dest, data);
+  const pow2 = (n) => n > 0 && (n & (n - 1)) === 0;
+  if (width !== height || !pow2(width) || width > 64) {
+    const size = 16;
+    const scaled = new Uint8Array(size * size * 4);
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        const sx = Math.floor((x * width) / size);
+        const sy = Math.floor((y * height) / size);
+        scaled.set(rgba.subarray((sy * width + sx) * 4, (sy * width + sx) * 4 + 4), (y * size + x) * 4);
+      }
+    }
+    rgba = scaled;
+    width = height = size;
+  }
+  writeFileSync(dest, Buffer.from(UPNG.encode([rgba.buffer], width, height, 0)));
   return `textures/imported/${outName}`;
 }
 
