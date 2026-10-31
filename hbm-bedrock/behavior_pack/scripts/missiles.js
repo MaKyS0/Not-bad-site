@@ -3,6 +3,7 @@
 // with a ticking area just long enough for the warhead to go off.
 import { world, system } from "@minecraft/server";
 import { nuke } from "./bombs.js";
+import { IMPORTED_MISSILES } from "./imported_machines.js";
 
 const PROP_TARGET = "hbm:target";
 const MAX_FLIGHT = 30; // seconds
@@ -23,6 +24,34 @@ export const MISSILES = {
     return 40;
   },
 };
+
+/**
+ * Warheads for the missiles imported from HBM, by kind: [blast power or crater radius, nuclear?, fire?].
+ * Nuclear radii are scaled down like the nuclear charge's.
+ * @type {[RegExp, number, boolean, boolean][]}
+ */
+const IMPORTED_WARHEADS = [
+  [/doomsday|n2/, 60, true, false],
+  [/nuclear|volcano|schrabidium|bhole|taint/, 40, true, false],
+  [/inferno|incendiary/, 12, false, true],
+  [/strong|buster|burst|cluster|rain|drill/, 20, false, false],
+  [/emp|decoy|anti_ballistic/, 0, false, false],
+];
+for (const id of IMPORTED_MISSILES) {
+  if (MISSILES[id]) continue;
+  const [, power, nuclear, fire] = IMPORTED_WARHEADS.find(([re]) => re.test(id)) ?? [/./, 15, false, false];
+  MISSILES[id] = (dimension, at) => {
+    if (nuclear) {
+      nuke(dimension, at, power, { fallout: 20 });
+      return power;
+    }
+    if (power > 0) dimension.createExplosion(at, power, { breaksBlocks: true, causesFire: fire });
+    else dimension.createExplosion(at, 4, { breaksBlocks: false });
+    return 2;
+  };
+}
+
+export const isMissile = (/** @type {string} */ id) => id in MISSILES;
 
 let launches = 0;
 

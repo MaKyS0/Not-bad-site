@@ -1,11 +1,13 @@
 // Machines, the HE power grid and the fluid network, after HBM's TileEntityMachine* classes.
 // Machines run once per second, so every per-tick number below is applied 20 times at once.
-import { world, system, ItemStack } from "@minecraft/server";
+import { world, system, ItemStack, EntityDamageCause } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
 import { nuke } from "./bombs.js";
 import { SMELT, SHRED, PRESS, ASSEMBLY, fuelTicks } from "./recipes.js";
 import { RBMK, RBMK_TYPES, ROD_LIFE, RBMK_MELTDOWN, RBMK_OVERHEAT, runRbmk } from "./rbmk.js";
-import { MISSILES, launchMissile, targetOf } from "./missiles.js";
+import { isMissile, launchMissile, targetOf } from "./missiles.js";
+import { MACHINE_RECIPES, SMELT_EXTRA, SHRED_EXTRA, KNOWN_BLOCKS } from "./imported_machines.js";
+import { IMPORTED_RADS } from "./imported_rads.js";
 
 const SECOND = 20;
 const STACK = 64;
@@ -25,7 +27,7 @@ const FLUID_NAMES = ["water", "steam", "oil", "diesel"];
  *   input?: Slot, output?: Slot, fuel?: Slot, progress: number, burn: number,
  *   heat?: number, control?: number, burnup?: number, flux?: number,
  *   tanks?: Record<string, number>, recipe?: number, stock?: Record<string, number>,
- *   oilY?: number, oilRetry?: number
+ *   oilY?: number, oilRetry?: number, outbox?: Record<string, number>, mineY?: number, mineIndex?: number
  * }} Machine
  * @typedef {{ cap: number, role: "in" | "out" | "store" }} Tank
  * @typedef {{
@@ -39,7 +41,7 @@ const FLUID_NAMES = ["water", "steam", "oil", "diesel"];
  *   power?: "gen" | "use" | "store", maxEnergy?: number, lit?: boolean,
  *   tanks?: Record<string, Tank>, anyFluid?: number,
  *   accepts?: Partial<Record<SlotName, (id: string) => boolean>>, maxInput?: number,
- *   assembler?: boolean,
+ *   stockAccepts?: (id: string, m: Machine) => boolean, recipeList?: { output: string, count: number }[], autoRecipe?: boolean,
  *   run?: (m: Machine, block: import("@minecraft/server").Block, key: string) => boolean,
  *   describe?: (m: Machine, ctx: FormContext) => void
  * }} MachineDef
@@ -240,16 +242,13 @@ const MACHINES = {
     perTick: 50,
     duration: 100,
     lit: true,
-    recipe: (id) => {
-      const out = SMELT[id] ?? (charcoal(id) ? "minecraft:charcoal" : undefined);
-      return out ? { id: out, count: 1 } : undefined;
-    },
+    recipe: smeltResult,
   }),
   "hbm:machine_shredder": processor({
     maxEnergy: 10_000,
     perTick: 5,
     duration: 60,
-    recipe: (id) => (SHRED[id] ? { id: SHRED[id][0], count: SHRED[id][1] } : undefined),
+    recipe: (id) => shredResult(id),
   }),
   "hbm:machine_press": processor({
     maxEnergy: 50_000,
@@ -282,7 +281,8 @@ const MACHINES = {
   "hbm:machine_assembler": {
     power: "use",
     maxEnergy: 100_000,
-    assembler: true,
+    stockAccepts: (id, m) => !!ASSEMBLY[m.recipe ?? -1]?.input[id],
+    recipeList: ASSEMBLY,
     run: runAssembler,
     describe: (m, ctx) => {
       const recipe = ASSEMBLY[m.recipe ?? -1];
@@ -297,7 +297,7 @@ const MACHINES = {
         ctx.line("hbm.assembler.no_recipe");
       }
       ctx.slot("hbm.machine.output", m.output);
-      ctx.action("hbm.assembler.choose", () => chooseRecipe(ctx.player, m));
+      ctx.action("hbm.assembler.choose", () => chooseRecipe(ctx.player, m, ASSEMBLY, false));
       if (m.output) ctx.take("hbm.machine.take_output", "output");
       if (Object.values(m.stock ?? {}).some((n) => n > 0)) ctx.action("hbm.assembler.take_stock", () => returnStock(ctx.player, m));
     },
@@ -381,7 +381,7 @@ const MACHINES = {
   },
   "hbm:launch_pad": {
     maxInput: 1,
-    accepts: { input: (id) => id in MISSILES },
+    accepts: { input: isMissile },
     describe: (m, ctx) => {
       ctx.slot("hbm.missile.loaded", m.input);
       const target = targetOf(ctx.player);
@@ -421,6 +421,544 @@ const MACHINES = {
     describe: (m, ctx) => ctx.line("hbm.rbmk.heat", Math.floor(m.heat ?? AMBIENT)),
   },
 };
+
+// ---------- machines imported from HBM ----------
+// The blocks come from scripts/import-hbm.mjs; here each family gets behaviour, with HBM's
+// recipe tables where the original has them and the logic of the hand-made machines otherwise.
+
+function smeltResult(id) {
+  const out = SMELT[id] ?? SMELT_EXTRA[id] ?? (charcoal(id) ? "minecraft:charcoal" : undefined);
+  return out ? { id: out, count: 1 } : undefined;
+}
+function shredResult(id) {
+  if (SHRED[id]) return { id: SHRED[id][0], count: SHRED[id][1] };
+  const extra = SHRED_EXTRA[id];
+  return extra ? { id: extra[0], count: extra[1] } : undefined;
+}
+
+const stampPattern = (type) => new RegExp(`^hbm:stamp_(\\w+_)?${type}$`);
+
+/** A machine fed through a shared stock that runs one of HBM's recipe tables. */
+function recipeMachine(set, { speed = 1, power = true, maxEnergy = 200_000 } = {}) {
+  const recipes = MACHINE_RECIPES[set] ?? [];
+  const list = recipes.map((r) => ({ output: r.outputs[0][0], count: r.outputs[0][1] }));
+  const matches = (input, id) => (input.stamp ? stampPattern(input.stamp).test(id) : input.id === id);
+  const has = (m, input) =>
+    input.stamp ? Object.entries(m.stock ?? {}).some(([id, n]) => n > 0 && matches(input, id)) : (m.stock?.[input.id] ?? 0) >= input.n;
+  const ready = (m, r) => r.inputs.every((i) => has(m, i)) && r.outputs.every(([id, n]) => (m.outbox?.[id] ?? 0) + n <= STACK * 4);
+  /** @type {MachineDef} */
+  const def = {
+    power: power ? "use" : undefined,
+    maxEnergy: power ? maxEnergy : undefined,
+    recipeList: list,
+    autoRecipe: true,
+    stockAccepts: (id, m) => {
+      const pool = (m.recipe ?? -1) >= 0 ? [recipes[m.recipe ?? 0]].filter(Boolean) : recipes;
+      return pool.some((r) => r.inputs.some((i) => matches(i, id)));
+    },
+    run: (m) => {
+      const chosen = (m.recipe ?? -1) >= 0 ? recipes[m.recipe ?? 0] : recipes.find((r) => ready(m, r));
+      if (!chosen || !ready(m, chosen)) {
+        m.progress = 0;
+        return false;
+      }
+      const cost = power ? chosen.power * SECOND : 0;
+      if (m.energy < cost) return false;
+      m.energy -= cost;
+      m.progress += SECOND * speed;
+      if (m.progress >= chosen.ticks) {
+        m.progress = 0;
+        const stock = { ...m.stock };
+        for (const i of chosen.inputs) if (!i.keep && i.id) stock[i.id] -= i.n;
+        m.stock = stock;
+        const outbox = { ...m.outbox };
+        for (const [id, n] of chosen.outputs) outbox[id] = (outbox[id] ?? 0) + n;
+        m.outbox = outbox;
+      }
+      return true;
+    },
+    describe: (m, ctx) => {
+      const chosen = (m.recipe ?? -1) >= 0 ? recipes[m.recipe ?? 0] : undefined;
+      if (chosen) ctx.slot("hbm.assembler.recipe", { id: chosen.outputs[0][0], n: chosen.outputs[0][1] });
+      else ctx.line("hbm.assembler.auto_line", recipes.length);
+      if (chosen) for (const i of chosen.inputs) if (i.id) ctx.slot("hbm.assembler.needs", { id: i.id, n: i.n });
+      for (const [id, n] of Object.entries(m.stock ?? {})) if (n > 0) ctx.slot("hbm.assembler.stock", { id, n });
+      for (const [id, n] of Object.entries(m.outbox ?? {})) if (n > 0) ctx.slot("hbm.machine.output", { id, n });
+      ctx.line("hbm.machine.progress", `${Math.floor(m.progress / SECOND)} / ${Math.ceil((chosen?.ticks ?? 0) / SECOND)} s`);
+      ctx.action("hbm.assembler.choose", () => chooseRecipe(ctx.player, m, list, true));
+      if (Object.values(m.outbox ?? {}).some((n) => n > 0)) ctx.action("hbm.machine.take_output", () => takeOutbox(ctx.player, m));
+      if (Object.values(m.stock ?? {}).some((n) => n > 0)) ctx.action("hbm.assembler.take_stock", () => returnStock(ctx.player, m));
+    },
+  };
+  return def;
+}
+
+function takeOutbox(player, /** @type {Machine} */ m) {
+  for (const [id, n] of Object.entries(m.outbox ?? {})) if (n > 0) give(player, { id, n });
+  m.outbox = {};
+}
+
+/** Fuel-fired furnace (HBM's iron, steel and combination furnaces). */
+function fuelFurnace(speed) {
+  /** @type {MachineDef} */
+  const def = {
+    accepts: { fuel: (id) => fuelTicks(id) > 0 && !smeltResult(id), input: (id) => smeltResult(id) !== undefined },
+    run: (m) => {
+      const result = m.input && smeltResult(m.input.id);
+      if (!result || !fits(m.output, result.id, 1)) return m.burn > 0 && (m.burn = Math.max(0, m.burn - SECOND)) > 0;
+      if (m.burn <= 0) {
+        if (!m.fuel) return false;
+        m.burn = fuelTicks(m.fuel.id);
+        m.fuel = take(m.fuel, 1);
+      }
+      m.burn -= SECOND;
+      m.progress += SECOND * speed;
+      if (m.progress >= 200) {
+        m.progress = 0;
+        m.input = take(/** @type {Slot} */ (m.input), 1);
+        m.output = add(m.output, result.id, 1);
+      }
+      return true;
+    },
+    describe: (m, ctx) => {
+      ctx.slot("hbm.machine.fuel", m.fuel);
+      ctx.slot("hbm.machine.input", m.input);
+      ctx.slot("hbm.machine.output", m.output);
+      ctx.line("hbm.machine.progress", `${Math.floor((m.progress / 200) * 100)}%`);
+      if (m.output) ctx.take("hbm.machine.take_output", "output");
+      if (m.input) ctx.take("hbm.machine.take_input", "input");
+      if (m.fuel) ctx.take("hbm.machine.take_fuel", "fuel");
+    },
+  };
+  return def;
+}
+
+/** Burns solid fuel into HE (Stirling engines and the like). */
+function burnerGenerator(hePerTick, maxEnergy = 100_000) {
+  /** @type {MachineDef} */
+  const def = {
+    power: "gen",
+    maxEnergy,
+    accepts: { fuel: (id) => fuelTicks(id) > 0 },
+    run: (m) => {
+      if (m.energy >= maxEnergy) return m.burn > 0;
+      if (m.burn <= 0) {
+        if (!m.fuel) return false;
+        m.burn = fuelTicks(m.fuel.id);
+        m.fuel = take(m.fuel, 1);
+      }
+      const burned = Math.min(SECOND, m.burn);
+      m.burn -= burned;
+      m.energy = Math.min(maxEnergy, m.energy + burned * hePerTick);
+      return true;
+    },
+    describe: (m, ctx) => {
+      ctx.slot("hbm.machine.fuel", m.fuel);
+      if (m.burn > 0) ctx.line("hbm.machine.burning", Math.ceil(m.burn / SECOND));
+      if (m.fuel) ctx.take("hbm.machine.take_input", "fuel");
+    },
+  };
+  return def;
+}
+
+/** Burns a fluid fuel from its tank into HE. */
+function fluidGenerator(fluid, perSecond, hePerSecond, maxEnergy = 200_000) {
+  /** @type {MachineDef} */
+  const def = {
+    power: "gen",
+    maxEnergy,
+    tanks: { [fluid]: { cap: 32_000, role: "in" } },
+    run: (m) => {
+      if (tank(m, fluid) < perSecond || m.energy >= maxEnergy) return false;
+      setTank(m, fluid, tank(m, fluid) - perSecond);
+      m.energy = Math.min(maxEnergy, m.energy + hePerSecond);
+      return true;
+    },
+  };
+  return def;
+}
+
+/** Steam turbines of every size: steam in, condensate out, 5 HE per mB. */
+function turbine(rate, maxEnergy = 1_000_000) {
+  /** @type {MachineDef} */
+  const def = {
+    power: "gen",
+    maxEnergy,
+    tanks: { steam: { cap: rate * 8, role: "in" }, water: { cap: rate * 8, role: "out" } },
+    run: (m) => {
+      const used = Math.min(tank(m, "steam"), rate);
+      if (used <= 0) return false;
+      setTank(m, "steam", tank(m, "steam") - used);
+      setTank(m, "water", Math.min(rate * 8, tank(m, "water") + used));
+      m.energy = Math.min(maxEnergy, m.energy + used * 5);
+      return true;
+    },
+  };
+  return def;
+}
+
+/** Boilers: water in, steam out; heated by fuel, or by the sun for the solar boiler. */
+function boiler(rate, solar = false) {
+  /** @type {MachineDef} */
+  const def = {
+    tanks: { water: { cap: rate * 8, role: "in" }, steam: { cap: rate * 8, role: "out" } },
+    accepts: solar ? undefined : { fuel: (id) => fuelTicks(id) > 0 },
+    run: (m) => {
+      if (solar) {
+        const time = world.getTimeOfDay();
+        if (time > 12_500) return false;
+      } else if (m.burn <= 0) {
+        if (!m.fuel) return false;
+        m.burn = fuelTicks(m.fuel.id);
+        m.fuel = take(m.fuel, 1);
+      }
+      if (!solar) m.burn = Math.max(0, m.burn - SECOND);
+      const boiled = Math.min(rate, tank(m, "water"), rate * 8 - tank(m, "steam"));
+      setTank(m, "water", tank(m, "water") - boiled);
+      setTank(m, "steam", tank(m, "steam") + boiled);
+      return boiled > 0;
+    },
+    describe: solar
+      ? undefined
+      : (m, ctx) => {
+          ctx.slot("hbm.machine.fuel", m.fuel);
+          if (m.fuel) ctx.take("hbm.machine.take_input", "fuel");
+        },
+  };
+  return def;
+}
+
+/** Condensers and cooling towers: steam back to water. */
+function condenser(rate) {
+  /** @type {MachineDef} */
+  const def = {
+    tanks: { steam: { cap: rate * 8, role: "in" }, water: { cap: rate * 8, role: "out" } },
+    run: (m) => {
+      const done = Math.min(rate, tank(m, "steam"), rate * 8 - tank(m, "water"));
+      setTank(m, "steam", tank(m, "steam") - done);
+      setTank(m, "water", tank(m, "water") + done);
+      return done > 0;
+    },
+  };
+  return def;
+}
+
+/** RTG: each pellet gives a steady trickle of power forever, as in HBM. */
+const RTG_PELLET = /^hbm:pellet_rtg/;
+function rtg(perPellet, maxPellets) {
+  /** @type {MachineDef} */
+  const def = {
+    power: "gen",
+    maxEnergy: 100_000,
+    maxInput: maxPellets,
+    accepts: { input: (id) => RTG_PELLET.test(id) },
+    run: (m) => {
+      const pellets = m.input?.n ?? 0;
+      m.energy = Math.min(100_000, m.energy + pellets * perPellet);
+      return pellets > 0;
+    },
+    describe: (m, ctx) => {
+      ctx.slot("hbm.machine.fuel", m.input);
+      if (m.input) ctx.take("hbm.machine.take_input", "input");
+    },
+  };
+  return def;
+}
+
+/** Radiation generator: eats radioactive items, more power the hotter they are. */
+const radioactivity = (id) => IMPORTED_RADS[id] ?? 0;
+/** @type {MachineDef} */
+const RADGEN = {
+  power: "gen",
+  maxEnergy: 500_000,
+  accepts: { fuel: (id) => radioactivity(id) > 0 },
+  run: (m) => {
+    if (m.burn <= 0) {
+      if (!m.fuel) return false;
+      m.burn = 10 * SECOND;
+      m.progress = radioactivity(m.fuel.id);
+      m.fuel = take(m.fuel, 1);
+    }
+    m.burn -= SECOND;
+    m.energy = Math.min(500_000, m.energy + Math.ceil(m.progress * 200));
+    return true;
+  },
+  describe: (m, ctx) => {
+    ctx.slot("hbm.machine.fuel", m.fuel);
+    if (m.fuel) ctx.take("hbm.machine.take_input", "fuel");
+  },
+};
+
+/** Oil wells, pumpjacks and fracking towers: the derrick, faster. */
+function derrick(speed) {
+  const base = MACHINES["hbm:machine_derrick"];
+  /** @type {MachineDef} */
+  const def = {
+    ...base,
+    run: (m, block, key) => {
+      let ok = false;
+      for (let i = 0; i < speed; i++) ok = (base.run?.(m, block, key) ?? false) || ok;
+      return ok;
+    },
+  };
+  return def;
+}
+
+/** Turrets shoot the nearest hostile mob; most need ammo, all need power. */
+const AMMO = /^hbm:(ammo_|gun_\w+_ammo|.*bullet|.*shell)|^minecraft:arrow$/;
+function turret({ damage, range, shots = 1, ammo = true, explode = 0, fire = 0, freeze = false, particle = "minecraft:basic_crit_particle" }) {
+  /** @type {MachineDef} */
+  const def = {
+    power: "use",
+    maxEnergy: 100_000,
+    accepts: ammo ? { input: (id) => AMMO.test(id) } : undefined,
+    run: (m, block) => {
+      let fired = false;
+      const from = { x: m.x + 0.5, y: m.y + 1.2, z: m.z + 0.5 };
+      for (let shot = 0; shot < shots; shot++) {
+        if (m.energy < 200 || (ammo && !m.input)) break;
+        const target = block.dimension.getEntities({ location: from, maxDistance: range, families: ["monster"], closest: 1 })[0];
+        if (!target) break;
+        const to = target.location;
+        const length = Math.max(1, Math.hypot(to.x - from.x, to.y + 1 - from.y, to.z - from.z));
+        for (let d = 0; d < length; d += 1.5) {
+          const t = d / length;
+          try {
+            block.dimension.spawnParticle(particle, { x: from.x + (to.x - from.x) * t, y: from.y + (to.y + 1 - from.y) * t, z: from.z + (to.z - from.z) * t });
+          } catch {
+            break;
+          }
+        }
+        try {
+          target.applyDamage(damage, { cause: EntityDamageCause.entityAttack });
+          if (fire) target.setOnFire(fire, true);
+          if (freeze) target.addEffect("slowness", 100, { amplifier: 3 });
+          if (explode) block.dimension.createExplosion(to, explode, { breaksBlocks: false });
+        } catch {
+          // the target is gone
+        }
+        m.energy -= 200;
+        if (ammo) m.input = take(/** @type {Slot} */ (m.input), 1);
+        fired = true;
+      }
+      return fired;
+    },
+    describe: (m, ctx) => {
+      ctx.line("hbm.turret.stats", damage, range, shots);
+      if (ammo) ctx.slot("hbm.turret.ammo", m.input);
+      if (m.input) ctx.take("hbm.machine.take_input", "input");
+    },
+  };
+  return def;
+}
+
+/** Radar: lists every creature and player in range with distance and bearing. */
+function radar(range) {
+  /** @type {MachineDef} */
+  const def = {
+    power: "use",
+    maxEnergy: 50_000,
+    describe: (m, ctx) => {
+      const block = blockOf(m);
+      if (!block) return;
+      const here = { x: m.x + 0.5, y: m.y, z: m.z + 0.5 };
+      const contacts = block.dimension
+        .getEntities({ location: here, maxDistance: range, excludeTypes: ["minecraft:item", "minecraft:xp_orb", "minecraft:arrow"] })
+        .filter((e) => e.typeId === "minecraft:player" || e.matches({ families: ["monster"] }) || e.matches({ families: ["mob"] }))
+        .slice(0, 20);
+      ctx.line("hbm.radar.count", contacts.length, range);
+      for (const e of contacts) {
+        const dx = e.location.x - here.x;
+        const dz = e.location.z - here.z;
+        const bearing = Math.abs(dx) > Math.abs(dz) ? (dx > 0 ? "E" : "W") : dz > 0 ? "S" : "N";
+        const label = e.typeId === "minecraft:player" ? /** @type {any} */ (e).name ?? "player" : e.typeId.replace(/^minecraft:/, "");
+        ctx.line("hbm.radar.contact", label, Math.round(Math.hypot(dx, dz)), bearing);
+      }
+    },
+  };
+  return def;
+}
+
+/** Mining laser / excavator: digs out a square shaft below itself, layer by layer. */
+function miner(size, perSecond) {
+  /** @type {MachineDef} */
+  const def = {
+    power: "use",
+    maxEnergy: 500_000,
+    run: (m, block) => {
+      const dimension = block.dimension;
+      const half = Math.floor(size / 2);
+      let mined = 0;
+      let checked = 0;
+      m.mineY ??= m.y - 1;
+      m.mineIndex ??= 0;
+      while (mined < perSecond && checked < size * size * 2 && m.mineY > dimension.heightRange.min && m.energy >= 1000) {
+        checked++;
+        const dx = (m.mineIndex % size) - half;
+        const dz = Math.floor(m.mineIndex / size) - half;
+        const at = { x: m.x + dx, y: m.mineY, z: m.z + dz };
+        m.mineIndex++;
+        if (m.mineIndex >= size * size) {
+          m.mineIndex = 0;
+          m.mineY--;
+        }
+        let type;
+        try {
+          type = dimension.getBlock(at)?.typeId;
+        } catch {
+          return mined > 0;
+        }
+        if (!type || /air|water|lava|bedrock|barrier/.test(type)) continue;
+        dimension.runCommand(`setblock ${at.x} ${at.y} ${at.z} air destroy`);
+        m.energy -= 1000;
+        mined++;
+      }
+      // Bring the drops up to the machine so nothing is left at the bottom of the shaft.
+      if (mined) {
+        system.runTimeout(() => {
+          try {
+            for (const item of dimension.getEntities({ type: "minecraft:item", location: { x: m.x, y: m.mineY ?? m.y, z: m.z }, maxDistance: size + 4 })) {
+              item.teleport({ x: m.x + 0.5, y: m.y + 1.5, z: m.z + 0.5 });
+            }
+          } catch {
+            // unloaded
+          }
+        }, 5);
+      }
+      return mined > 0;
+    },
+    describe: (m, ctx) => ctx.line("hbm.miner.depth", m.y - (m.mineY ?? m.y - 1)),
+  };
+  return def;
+}
+
+/** Autosaw: fells logs within reach and drops them by the machine. */
+/** @type {MachineDef} */
+const AUTOSAW = {
+  power: "use",
+  maxEnergy: 50_000,
+  run: (m, block) => {
+    if (m.energy < 500) return false;
+    for (let dy = 0; dy <= 8; dy++) {
+      for (let dx = -5; dx <= 5; dx++) {
+        for (let dz = -5; dz <= 5; dz++) {
+          const at = { x: m.x + dx, y: m.y + dy, z: m.z + dz };
+          let type;
+          try {
+            type = block.dimension.getBlock(at)?.typeId;
+          } catch {
+            continue;
+          }
+          if (!type || !/_(log|stem)$/.test(type)) continue;
+          block.dimension.runCommand(`setblock ${at.x} ${at.y} ${at.z} air destroy`);
+          m.energy -= 500;
+          return true;
+        }
+      }
+    }
+    return false;
+  },
+};
+
+/** Annihilator: destroys whatever is put into it. */
+/** @type {MachineDef} */
+const ANNIHILATOR = {
+  accepts: { input: () => true },
+  run: (m) => {
+    m.input = undefined;
+    return false;
+  },
+};
+
+const researchReactor = MACHINES["hbm:machine_reactor"];
+/** ZIRNOX runs on its own rods; spent ones come out as their depleted variant when HBM has one. */
+/** @type {MachineDef} */
+const ZIRNOX = {
+  ...researchReactor,
+  accepts: { input: (id) => /^hbm:rod_zirnox_/.test(id) && !/depleted/.test(id) },
+};
+
+const assembler = recipeMachine("assembly");
+const launchPad = MACHINES["hbm:launch_pad"];
+Object.assign(MACHINES, {
+  "hbm:machine_assembly_machine": assembler,
+  "hbm:machine_assembly_factory": recipeMachine("assembly", { speed: 4, maxEnergy: 1_000_000 }),
+  "hbm:machine_chemical_factory": recipeMachine("chemical", { speed: 2 }),
+  "hbm:machine_precass": recipeMachine("precass"),
+  "hbm:machine_rockmill": recipeMachine("rockmill", { power: false }),
+  "hbm:machine_supercomputer": recipeMachine("supercomputer"),
+  "hbm:machine_centrifuge": recipeMachine("centrifuge"),
+  "hbm:machine_epress": recipeMachine("press"),
+  "hbm:machine_conveyor_press": recipeMachine("press", { speed: 2 }),
+  "hbm:machine_blast_furnace": recipeMachine("blast", { power: false }),
+  "hbm:furnace_iron": fuelFurnace(1),
+  "hbm:furnace_steel": fuelFurnace(2),
+  "hbm:furnace_combination": fuelFurnace(3),
+  "hbm:machine_arc_furnace": processor({ maxEnergy: 500_000, perTick: 200, duration: 20, recipe: smeltResult }),
+  "hbm:machine_rotary_furnace": processor({ maxEnergy: 200_000, perTick: 100, duration: 40, recipe: smeltResult }),
+  "hbm:machine_microwave": processor({ maxEnergy: 50_000, perTick: 50, duration: 40, recipe: smeltResult }),
+  "hbm:machine_stirling": burnerGenerator(50),
+  "hbm:machine_stirling_steel": burnerGenerator(150),
+  "hbm:machine_stirling_creative": { power: "gen", maxEnergy: 1_000_000, run: (m) => ((m.energy = 1_000_000), true) },
+  "hbm:machine_combustion_engine": fluidGenerator("diesel", 10, 3000),
+  "hbm:machine_turbofan": fluidGenerator("diesel", 40, 15_000, 1_000_000),
+  "hbm:machine_turbinegas": fluidGenerator("diesel", 25, 9000, 500_000),
+  "hbm:machine_rtg_grey": rtg(100, 15),
+  "hbm:machine_radgen": RADGEN,
+  "hbm:machine_steam_engine": turbine(500),
+  "hbm:machine_large_turbine": turbine(4000, 5_000_000),
+  "hbm:machine_industrial_turbine": turbine(10_000, 10_000_000),
+  "hbm:machine_chungus": turbine(40_000, 100_000_000),
+  "hbm:machine_boiler": boiler(1000),
+  "hbm:machine_industrial_boiler": boiler(8000),
+  "hbm:machine_solar_boiler": boiler(1500, true),
+  "hbm:machine_condenser": condenser(2000),
+  "hbm:machine_condenser_powered": condenser(10_000),
+  "hbm:machine_tower_small": condenser(5000),
+  "hbm:machine_tower_large": condenser(20_000),
+  "hbm:machine_battery_socket": { power: "store", maxEnergy: 5_000_000 },
+  "hbm:machine_battery_redd": { power: "store", maxEnergy: 100_000_000 },
+  "hbm:machine_bat9000": { anyFluid: 2_048_000 },
+  "hbm:machine_bigasstank": { anyFluid: 512_000 },
+  "hbm:machine_orbus": { anyFluid: 1_024_000 },
+  "hbm:machine_storage_drum": { anyFluid: 128_000 },
+  "hbm:machine_well": derrick(1),
+  "hbm:machine_pumpjack": derrick(3),
+  "hbm:machine_fracking_tower": derrick(6),
+  "hbm:machine_fraction_tower": MACHINES["hbm:machine_refinery"],
+  "hbm:machine_catalytic_cracker": MACHINES["hbm:machine_refinery"],
+  "hbm:machine_vacuum_distill": MACHINES["hbm:machine_refinery"],
+  "hbm:machine_hydrotreater": MACHINES["hbm:machine_refinery"],
+  "hbm:machine_catalytic_reformer": MACHINES["hbm:machine_refinery"],
+  "hbm:machine_coker": MACHINES["hbm:machine_refinery"],
+  "hbm:machine_reactor_small": researchReactor,
+  "hbm:machine_zirnox": ZIRNOX,
+  "hbm:launch_pad_rusted": launchPad,
+  "hbm:launch_pad_large": launchPad,
+  "hbm:compact_launcher": launchPad,
+  "hbm:launch_table": launchPad,
+  "hbm:turret_chekhov": turret({ damage: 6, range: 48, shots: 4 }),
+  "hbm:turret_friendly": turret({ damage: 6, range: 48, shots: 4 }),
+  "hbm:turret_jeremy": turret({ damage: 25, range: 64, explode: 2 }),
+  "hbm:turret_tauon": turret({ damage: 15, range: 48, shots: 2, ammo: false, particle: "minecraft:electric_spark_particle" }),
+  "hbm:turret_richard": turret({ damage: 10, range: 64, explode: 3 }),
+  "hbm:turret_howard": turret({ damage: 3, range: 32, shots: 10 }),
+  "hbm:turret_howard_damaged": turret({ damage: 3, range: 32, shots: 5 }),
+  "hbm:turret_maxwell": turret({ damage: 12, range: 32, ammo: false, fire: 4, particle: "minecraft:basic_flame_particle" }),
+  "hbm:turret_fritz": turret({ damage: 4, range: 16, shots: 3, fire: 8, particle: "minecraft:basic_flame_particle" }),
+  "hbm:turret_arty": turret({ damage: 20, range: 128, explode: 4 }),
+  "hbm:turret_himars": turret({ damage: 15, range: 128, shots: 3, explode: 3 }),
+  "hbm:turret_sentry": turret({ damage: 5, range: 32, shots: 2 }),
+  "hbm:turret_sentry_damaged": turret({ damage: 5, range: 24 }),
+  "hbm:machine_radar": radar(128),
+  "hbm:machine_radar_large": radar(256),
+  "hbm:machine_mining_laser": miner(9, 4),
+  "hbm:machine_excavator": miner(5, 2),
+  "hbm:machine_autosaw": AUTOSAW,
+  "hbm:machine_annihilator": ANNIHILATOR,
+});
+// Only blocks that exist get behaviour.
+for (const id of Object.keys(MACHINES)) if (id.startsWith("hbm:") && !KNOWN_BLOCKS.has(id)) delete MACHINES[id];
 
 // ---------- registry and persistence ----------
 
@@ -494,7 +1032,7 @@ function removeMachine(key, dropAt) {
   const m = machines.get(key);
   if (!m) return;
   if (dropAt) {
-    const stock = Object.entries(m.stock ?? {}).map(([id, n]) => ({ id, n }));
+    const stock = Object.entries({ ...m.stock, ...m.outbox }).map(([id, n]) => ({ id, n }));
     for (const slot of [m.input, m.output, m.fuel, ...stock]) {
       for (const stack of stacksOf(slot)) dropAt.dimension.spawnItem(stack, dropAt.location);
     }
@@ -670,7 +1208,9 @@ function rbmkExplosion(/** @type {Machine} */ m) {
 // ---------- tick ----------
 
 function setLit(block, lit) {
-  if (block.permutation.getState("hbm:lit") !== lit) {
+  const current = block.permutation.getState("hbm:lit");
+  // Imported blocks have no lit state even when they share a hand-made machine's behaviour.
+  if (current !== undefined && current !== lit) {
     block.setPermutation(block.permutation.withState("hbm:lit", lit));
   }
 }
@@ -801,13 +1341,15 @@ function returnStock(player, /** @type {Machine} */ m) {
   m.progress = 0;
 }
 
-function chooseRecipe(player, /** @type {Machine} */ m) {
+/** Recipe picker; with `auto`, the first button lets the machine pick whatever its stock allows. */
+function chooseRecipe(player, /** @type {Machine} */ m, /** @type {{ output: string, count: number }[]} */ list, auto) {
   const form = new ActionFormData().title({ translate: "hbm.assembler.choose" });
-  for (const recipe of ASSEMBLY) form.button({ rawtext: [itemLabel(recipe.output), { text: ` ×${recipe.count}` }] });
+  if (auto) form.button({ translate: "hbm.assembler.auto" });
+  for (const recipe of list) form.button({ rawtext: [itemLabel(recipe.output), { text: ` ×${recipe.count}` }] });
   form.show(player).then((response) => {
     if (response.selection === undefined || machines.get(machineKey(m)) !== m) return;
-    returnStock(player, m);
-    m.recipe = response.selection;
+    if (!auto) returnStock(player, m);
+    m.recipe = auto ? response.selection - 1 : response.selection;
     dirty.add(machineKey(m));
     save();
   });
@@ -818,8 +1360,8 @@ function insert(player, /** @type {Machine} */ m, held, container) {
   const def = MACHINES[m.type];
   const say = (message) => player.onScreenDisplay.setActionBar(message);
   let amount = 0;
-  if (def.assembler) {
-    if (!ASSEMBLY[m.recipe ?? -1]?.input[held.typeId]) return false;
+  if (def.stockAccepts) {
+    if (!def.stockAccepts(held.typeId, m)) return false;
     const stock = m.stock ?? {};
     amount = Math.min(held.amount, STACK - (stock[held.typeId] ?? 0));
     if (amount > 0) m.stock = { ...stock, [held.typeId]: (stock[held.typeId] ?? 0) + amount };

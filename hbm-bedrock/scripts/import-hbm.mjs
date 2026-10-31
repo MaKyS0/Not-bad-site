@@ -586,6 +586,12 @@ function readMod(repo, source) {
       const inner = resolve(ref);
       return inner && [inner[0], count];
     }
+    if ((m = /^new\s+(ComparableStack|OreDictStack)\s*\(([\s\S]*)\)$/.exec(expr))) {
+      const [ref, n, meta] = splitArgs(m[2]);
+      if (meta !== undefined && m[1] === "ComparableStack") return resolve(`new ItemStack(${ref}, ${n}, ${meta})`);
+      const inner = resolve(ref);
+      return inner && [inner[0], n && /^\d+$/.test(n.trim()) ? Number(n) : 1];
+    }
     if ((m = /^DictFrame\.fromOne\s*\(([\s\S]*)\)$/.exec(expr))) {
       const [ref, en, n] = splitArgs(m[1]);
       const field = ref.trim().replace(/^(ModItems|ModBlocks)\./, "");
@@ -666,6 +672,80 @@ function readMod(repo, source) {
     }
   }
 
+  // ---------- machine recipes ----------
+  /** machine -> [{ inputs: [{ id?, stamp?, n, keep? }], outputs: [[id, n]], ticks, power }] */
+  const machineRecipes = {};
+  const addMachineRecipe = (machine, recipe) => (machineRecipes[machine] ??= []).push(recipe);
+  const stacks = (args) => args.map(resolve);
+  const recipeFile = (name) => files.find((f) => f.path.endsWith(`inventory/recipes/${name}.java`));
+  if (legacy) {
+    const GENERIC = { AssemblyMachineRecipes: "assembly", ChemicalPlantRecipes: "chemical", PrecAssRecipes: "precass", RockMillRecipes: "rockmill", SuperComputerRecipes: "supercomputer" };
+    for (const [file, machine] of Object.entries(GENERIC)) {
+      const f = recipeFile(file);
+      if (!f) continue;
+      for (const call of calls(f.text, ["register", "registerPair"])) {
+        const chain = call.args[0] ?? "";
+        if (!chain.startsWith("new GenericRecipe") || /Fluids?\(/.test(chain)) continue;
+        const part = (method) => [...chain.matchAll(new RegExp(`\\.${method}\\s*\\(`, "g"))].map((mm) => splitArgs(chain.slice(mm.index + mm[0].length, scanTo(chain, mm.index + mm[0].length, false))));
+        const setup = part("setupNamed")[0] ?? part("setup")[0] ?? [];
+        const ins = stacks(part("inputItems")[0] ?? []);
+        const outs = stacks(part("outputItems")[0] ?? []);
+        if (!ins.length || !outs.length || ins.some((x) => !x) || outs.some((x) => !x)) continue;
+        addMachineRecipe(machine, {
+          inputs: ins.map((x) => ({ id: x?.[0], n: x?.[1] })),
+          outputs: outs.map((x) => [x?.[0], x?.[1]]),
+          ticks: num(setup[0] ?? 100),
+          power: num(setup[1] ?? 100),
+        });
+      }
+    }
+    const centrifuge = recipeFile("CentrifugeRecipes");
+    if (centrifuge) {
+      for (const call of calls(centrifuge.text, ["recipes\\.put"])) {
+        const input = resolve(call.args[0] ?? "");
+        const arr = /^new\s+ItemStack\s*\[\s*\]\s*\{([\s\S]*)\}$/.exec(call.args[1] ?? "");
+        const outs = arr ? stacks(splitArgs(arr[1])) : [];
+        if (!input || !outs.length || outs.some((x) => !x)) continue;
+        addMachineRecipe("centrifuge", { inputs: [{ id: input[0], n: input[1] }], outputs: outs.map((x) => [x?.[0], x?.[1]]), ticks: 200, power: 200 });
+      }
+    }
+    const STAMPS = { FLAT: "flat", PLATE: "plate", WIRE: "wire", CIRCUIT: "circuit", C357: "357", THREEFIFESEVEN: "357", C44: "44", FORTYFOUR: "44", C9: "9", NINE: "9", C50: "50", FIFTY: "50" };
+    const press = recipeFile("PressRecipes");
+    if (press) {
+      for (const call of calls(press.text, ["makeRecipe"])) {
+        const stamp = STAMPS[/StampType\.(\w+)/.exec(call.args[0] ?? "")?.[1] ?? ""];
+        const input = resolve(call.args[1] ?? "");
+        const output = resolve(call.args[2] ?? "");
+        if (!stamp || !input || !output) continue;
+        addMachineRecipe("press", { inputs: [{ id: input[0], n: input[1] }, { stamp, n: 1, keep: true }], outputs: [output], ticks: 40, power: 20 });
+      }
+    }
+    const blast = recipeFile("BlastFurnaceRecipes");
+    if (blast) {
+      // Frames stand for their ingot, gem or dust, whichever the material has.
+      const frameItem = (expr) => {
+        const frame = frames.get(expr.trim());
+        const id = frame && ["ingot", "gem", "dust", "crystal"].map((f) => frame.forms.get(f)).find(Boolean);
+        return id ? [id, 1] : frame?.name && VANILLA_KEYS[`ingot${frame.name}`] ? [VANILLA_KEYS[`ingot${frame.name}`], 1] : frame?.name === "Coal" ? ["minecraft:coal", 1] : resolve(expr);
+      };
+      for (const call of calls(blast.text, ["addRecipe"])) {
+        if (call.args.length !== 3) continue;
+        const a = frameItem(call.args[0]);
+        const b = frameItem(call.args[1]);
+        const out = resolve(call.args[2]);
+        if (!a || !b || !out) continue;
+        addMachineRecipe("blast", { inputs: [{ id: a[0], n: a[1] }, { id: b[0], n: b[1] }], outputs: [out], ticks: 200, power: 0 });
+      }
+    }
+    for (const f of [recipeFile("ShredderRecipes")].filter(Boolean)) {
+      for (const call of calls(/** @type {{text: string}} */ (f).text, ["setRecipe"])) {
+        const input = resolve(call.args[0] ?? "");
+        const output = resolve(call.args[1] ?? "");
+        if (input && output) addMachineRecipe("shredder", { inputs: [{ id: input[0], n: 1 }], outputs: [output], ticks: 60, power: 5 });
+      }
+    }
+  }
+
   // ---------- explicit radiation entries ----------
   if (hazardFile) {
     for (const call of calls(hazardFile.text, ["HazardSystem\\.register"])) {
@@ -683,7 +763,7 @@ function readMod(repo, source) {
     console.log(`--- ${source}: most common unresolved expressions`);
     for (const [expr, n] of top) console.log(String(n).padStart(4), expr.replace(/\s+/g, " ").slice(0, 110));
   }
-  return { items, blocks, recipes, rads, seen };
+  return { items, blocks, recipes, rads, seen, machineRecipes };
 }
 
 /** Top/side/bottom texture files for a block texture name, or undefined if there is none. */
@@ -725,7 +805,7 @@ rmSync(TEXTURE_OUT, { recursive: true, force: true });
 const hbm = readMod(hbmRepo, "hbm");
 const ext = extRepo ? readMod(extRepo, "ext") : undefined;
 
-const catalog = { items: [], blocks: [], recipes: [], rads: {} };
+const catalog = { items: [], blocks: [], recipes: [], rads: {}, machineRecipes: {} };
 const taken = new Set();
 
 /** @param {ReturnType<typeof readMod>} mod */
@@ -753,6 +833,7 @@ catalog.recipes.push(...hbm.recipes.map((r) => ({ ...r, source: "hbm" })));
 // From Extended only what makes its own things; HBM's recipes stay authoritative for shared items.
 if (ext) catalog.recipes.push(...ext.recipes.filter((r) => !hbmIds.has(r.output)).map((r) => ({ ...r, source: "ext" })));
 for (const [id, value] of [...(ext?.rads ?? []), ...hbm.rads]) catalog.rads[id] = Math.round(value * 1000) / 1000;
+catalog.machineRecipes = hbm.machineRecipes;
 
 rmSync(AUTOGEN_TMP, { recursive: true, force: true });
 mkdirSync(join(root, "imported"), { recursive: true });
@@ -760,4 +841,5 @@ writeFileSync(join(root, "imported/catalog.json"), JSON.stringify(catalog, null,
 const extItems = catalog.items.filter((i) => i.source === "ext").length;
 const extBlocks = catalog.blocks.filter((b) => b.source === "ext").length;
 console.log(`items: ${catalog.items.length} (${extItems} from Extended), blocks: ${catalog.blocks.length} (${extBlocks} from Extended)`);
+console.log(`machine recipes: ${Object.entries(catalog.machineRecipes).map(([k, v]) => `${k} ${v.length}`).join(", ")}`);
 console.log(`recipes: ${catalog.recipes.length} resolved of ${hbm.seen + (ext?.seen ?? 0)} found, radiation entries: ${Object.keys(catalog.rads).length}`);

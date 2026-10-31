@@ -2,19 +2,59 @@
 // Grenades fly as thrown snowballs and go off where they land.
 import { world, system, EntityDamageCause } from "@minecraft/server";
 import { nuke } from "./bombs.js";
+import { IMPORTED_GUNS, IMPORTED_GRENADES, KNOWN_ITEMS } from "./imported_machines.js";
 
-/** @type {Record<string, { ammo: string, damage: number, range: number, cooldownMs: number, particle: string, sound: string, pitch: number }>} */
+/**
+ * @typedef {{ ammo?: string, damage: number, range: number, cooldownMs: number, particle: string, sound: string, pitch: number,
+ *   pellets?: number, fire?: number, freeze?: boolean, explode?: number }} Gun
+ * @type {Record<string, Gun>}
+ */
 const GUNS = {
   // B92 energy pistol: a red beam fed by redstone.
   "hbm:gun_b92": { ammo: "minecraft:redstone", damage: 16, range: 64, cooldownMs: 500, particle: "minecraft:redstone_wire_dust_particle", sound: "beacon.power", pitch: 2 },
   "hbm:gun_rifle": { ammo: "hbm:ammo_45", damage: 12, range: 96, cooldownMs: 700, particle: "minecraft:basic_smoke_particle", sound: "random.explode", pitch: 2 },
 };
 
+// HBM's own guns, from the import. Ammo is the gun's own "<gun>_ammo" item when HBM has one.
+const BULLET = { particle: "minecraft:basic_smoke_particle", sound: "random.explode", pitch: 2 };
+const ENERGY = { particle: "minecraft:electric_spark_particle", sound: "beacon.power", pitch: 2 };
+/** @type {Record<string, Partial<Gun>>} */
+const IMPORTED_GUN_STATS = {
+  "hbm:gun_b93": { damage: 30, range: 96, cooldownMs: 400, ...ENERGY },
+  "hbm:gun_spark": { damage: 20, range: 48, cooldownMs: 600, ...ENERGY },
+  "hbm:gun_hp": { damage: 14, range: 48, cooldownMs: 300, ...ENERGY },
+  "hbm:gun_defabricator": { damage: 40, range: 32, cooldownMs: 1500, ...ENERGY },
+  "hbm:gun_euthanasia": { damage: 24, range: 64, cooldownMs: 500, ...ENERGY },
+  "hbm:gun_stinger": { damage: 15, range: 96, cooldownMs: 2000, explode: 3, ...BULLET },
+  "hbm:gun_skystinger": { damage: 20, range: 128, cooldownMs: 1500, explode: 4, ...BULLET },
+  "hbm:gun_cryolator": { damage: 4, range: 16, cooldownMs: 150, freeze: true, particle: "minecraft:snowflake_particle", sound: "random.fizz", pitch: 1.5 },
+  "hbm:gun_jack": { damage: 6, range: 24, cooldownMs: 900, pellets: 6, ...BULLET },
+  "hbm:gun_immolator": { damage: 3, range: 12, cooldownMs: 100, fire: 6, particle: "minecraft:basic_flame_particle", sound: "fire.ignite", pitch: 1 },
+  "hbm:gun_super_shotgun": { damage: 5, range: 24, cooldownMs: 1200, pellets: 10, ...BULLET },
+  "hbm:gun_revolver_inverted": { damage: 15, range: 64, cooldownMs: 700, ...BULLET },
+  "hbm:gun_lever_action_sonata": { damage: 16, range: 96, cooldownMs: 900, ...BULLET },
+  "hbm:gun_bolt_action_saturnite": { damage: 30, range: 128, cooldownMs: 1500, ...BULLET },
+  "hbm:gun_folly": { damage: 100, range: 128, cooldownMs: 5000, explode: 8, ...ENERGY },
+  "hbm:gun_dampfmaschine": { damage: 8, range: 32, cooldownMs: 300, ...BULLET },
+};
+for (const id of IMPORTED_GUNS) {
+  const ammo = KNOWN_ITEMS.has(`${id}_ammo`) ? `${id}_ammo` : undefined;
+  GUNS[id] ??= { damage: 10, range: 64, cooldownMs: 600, ...BULLET, ...IMPORTED_GUN_STATS[id], ammo };
+}
+
 /** @type {Record<string, (dimension: import("@minecraft/server").Dimension, at: {x: number, y: number, z: number}) => void>} */
 const GRENADES = {
   "hbm:grenade_he": (dimension, at) => dimension.createExplosion(at, 4.5, { breaksBlocks: true }),
   "hbm:grenade_nuclear": (dimension, at) => nuke(dimension, at, 8, { fallout: 10 }),
 };
+
+for (const id of IMPORTED_GRENADES) {
+  if (GRENADES[id]) continue;
+  if (/nuclear|nuke|schrabidium|mk2|zomg|black_hole/.test(id)) GRENADES[id] = (dimension, at) => nuke(dimension, at, 6, { fallout: 8 });
+  else if (/fire|napalm|phosphorus|incendiary/.test(id)) GRENADES[id] = (dimension, at) => dimension.createExplosion(at, 2.5, { breaksBlocks: false, causesFire: true });
+  else if (/strong|cluster|lemon|frag|gascan/.test(id)) GRENADES[id] = (dimension, at) => dimension.createExplosion(at, 5.5, { breaksBlocks: true });
+  else GRENADES[id] = (dimension, at) => dimension.createExplosion(at, 3.5, { breaksBlocks: true });
+}
 
 /** @type {Map<string, number>} player id -> time of the last shot */
 const lastShot = new Map();
@@ -42,7 +82,7 @@ function useAmmo(player, id) {
 function shoot(player, gun) {
   const now = Date.now();
   if (now - (lastShot.get(player.id) ?? 0) < gun.cooldownMs) return;
-  if (!useAmmo(player, gun.ammo)) {
+  if (gun.ammo && !useAmmo(player, gun.ammo)) {
     player.onScreenDisplay.setActionBar({ translate: "hbm.gun.no_ammo" });
     return;
   }
@@ -65,10 +105,16 @@ function shoot(player, gun) {
   }
   if (hit) {
     try {
-      hit.entity.applyDamage(gun.damage, { cause: EntityDamageCause.entityAttack, damagingEntity: player });
+      hit.entity.applyDamage(gun.damage * (gun.pellets ?? 1), { cause: EntityDamageCause.entityAttack, damagingEntity: player });
+      if (gun.fire) hit.entity.setOnFire(gun.fire, true);
+      if (gun.freeze) hit.entity.addEffect("slowness", 100, { amplifier: 4 });
     } catch {
       // not a creature
     }
+  }
+  if (gun.explode) {
+    const at = { x: eye.x + dir.x * reach, y: eye.y + dir.y * reach, z: eye.z + dir.z * reach };
+    player.dimension.createExplosion(at, gun.explode, { breaksBlocks: true, source: player });
   }
 }
 

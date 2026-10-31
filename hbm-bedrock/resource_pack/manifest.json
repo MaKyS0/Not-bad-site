@@ -4,20 +4,20 @@
     "name": "HBM Nuclear Tech (Bedrock) RP",
     "description": "Textures and sounds from HBM's Nuclear Tech Mod. LGPL-3.0",
     "uuid": "8cfdf0f2-b838-4901-9d8e-9b159247b136",
-    "version": [1, 1, 0],
+    "version": [1, 2, 0],
     "min_engine_version": [1, 21, 90]
   },
   "modules": [
     {
       "type": "resources",
       "uuid": "3b9e4ee7-fb56-4112-bbbd-7edd745b72f3",
-      "version": [1, 1, 0]
+      "version": [1, 2, 0]
     }
   ],
   "dependencies": [
     {
       "uuid": "021a114c-917d-4169-959b-6ed824153e30",
-      "version": [1, 1, 0]
+      "version": [1, 2, 0]
     }
   ],
   "metadata": {

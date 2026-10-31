@@ -63090,5 +63090,8717 @@
   "hbm:tsar_core": 7.5,
   "hbm:fleija_core": 10,
   "hbm:solinium_core": 14
+ },
+ "machineRecipes": {
+  "assembly": [
+   {
+    "inputs": [
+     {
+      "id": "minecraft:iron_ingot",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_iron",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:gold_ingot",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_gold",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_titanium",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_aluminium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_aluminium",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_steel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_lead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_lead",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:copper_ingot",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_copper",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_schrabidium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_schrabidium",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_combine_steel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_combine_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_gunmetal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_gunmetal",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_weaponsteel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_weaponsteel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_saturnite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_saturnite",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_dura_steel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_dura_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_copper",
+      "n": 2
+     },
+     {
+      "id": "hbm:neutron_reflector",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_saturnite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_mixed",
+      4
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:block_meteor",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_dalekanium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_desh",
+      "n": 4
+     },
+     {
+      "id": "hbm:powder_polymer",
+      "n": 2
+     },
+     {
+      "id": "hbm:ingot_dura_steel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_desh",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_bismuth",
+      "n": 2
+     },
+     {
+      "id": "hbm:billet_u238",
+      "n": 2
+     },
+     {
+      "id": "hbm:powder_niobium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_bismuth",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lead",
+      "n": 4
+     },
+     {
+      "id": "minecraft:string",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:hazmat_cloth",
+      4
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_asbestos",
+      "n": 1
+     },
+     {
+      "id": "minecraft:string",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:asbestos_cloth",
+      4
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coal",
+      "n": 4
+     },
+     {
+      "id": "minecraft:string",
+      "n": 2
+     },
+     {
+      "id": "minecraft:paper",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:filter_coal",
+      1
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_pc",
+      "n": 2
+     },
+     {
+      "id": "hbm:wire_dense_bscco",
+      "n": 1
+     },
+     {
+      "id": "hbm:pellet_charged",
+      "n": 1
+     },
+     {
+      "id": "hbm:wire_fine_gold",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:circuit_chip_quantum",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 15000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_iron",
+      "n": 4
+     },
+     {
+      "id": "hbm:wire_fine_copper",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:circuit_basic",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 20000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_dura_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:centrifuge_element",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_lead",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_beryllium",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_dura_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:ingot_asbestos",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:reactor_core",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:wire_fine_mingrade",
+      "n": 2
+     },
+     {
+      "id": "hbm:powder_quartz",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:thermo_element",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:wire_fine_gold",
+      "n": 2
+     },
+     {
+      "id": "hbm:billet_silicon",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:thermo_element",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_lead",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 4
+     },
+     {
+      "id": "hbm:thermo_element",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:rtg_unit",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_copper",
+      "n": 3
+     },
+     {
+      "id": "hbm:wire_fine_tungsten",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:magnetron",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_durasteel",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:drill_titanium",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:shell_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_cast_lead",
+      "n": 4
+     },
+     {
+      "id": "hbm:rod_quad_empty",
+      "n": 10
+     },
+     {
+      "id": "minecraft:brown_dye",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:dysfunctional_reactor",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:part_lithium",
+      8
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_beryllium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:part_beryllium",
+      8
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:part_carbon",
+      8
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_copper",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:part_copper",
+      8
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_plutonium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:part_plutonium",
+      8
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_magnetized_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:ducrete",
+      "n": 4
+     },
+     {
+      "id": "hbm:cmb_brick",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:cmb_brick_reinforced",
+      8
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_dura_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:wire_dense_mingrade",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:seal_frame",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_dura_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 4
+     },
+     {
+      "id": "hbm:wire_dense_mingrade",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:seal_controller",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:tank_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_lead",
+      "n": 2
+     },
+     {
+      "id": "hbm:nuclear_waste",
+      "n": 10
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:yellow_barrel",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 400
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:tank_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_lead",
+      "n": 2
+     },
+     {
+      "id": "hbm:nuclear_waste_vitrified",
+      "n": 10
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:vitrified_barrel",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 400
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_steel",
+      "n": 32
+     },
+     {
+      "id": "hbm:ingot_dura_steel",
+      "n": 32
+     },
+     {
+      "id": "hbm:plate_cast_lead",
+      "n": 8
+     },
+     {
+      "id": "hbm:ingot_biorubber",
+      "n": 12
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 32
+     },
+     {
+      "id": "hbm:motor",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:vault_door",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_steel",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_lead",
+      "n": 6
+     },
+     {
+      "id": "hbm:ingot_biorubber",
+      "n": 2
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 8
+     },
+     {
+      "id": "hbm:motor",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:blast_door",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 8
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fire_door",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cmb_brick_reinforced",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 64
+     },
+     {
+      "id": "hbm:ingot_biorubber",
+      "n": 36
+     },
+     {
+      "id": "hbm:block_steel",
+      "n": 32
+     },
+     {
+      "id": "hbm:motor_desh",
+      "n": 16
+     },
+     {
+      "id": "minecraft:yellow_dye",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:transition_seal",
+      1
+     ]
+    ],
+    "ticks": 1200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:reinforced_glass",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_biorubber",
+      "n": 4
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 16
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sliding_blast_door",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 4
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 16
+     },
+     {
+      "id": "minecraft:green_dye",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:large_vehicle_door",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 4
+     },
+     {
+      "id": "minecraft:red_dye",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:water_door",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 6
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 8
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 32
+     },
+     {
+      "id": "minecraft:black_dye",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:qe_containment",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 4
+     },
+     {
+      "id": "minecraft:white_dye",
+      "n": 4
+     },
+     {
+      "id": "minecraft:glass",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:qe_sliding_door",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 16
+     },
+     {
+      "id": "hbm:motor",
+      "n": 4
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 16
+     },
+     {
+      "id": "minecraft:green_dye",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:round_airlock_door",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 8
+     },
+     {
+      "id": "hbm:motor",
+      "n": 4
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 32
+     },
+     {
+      "id": "minecraft:red_dye",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:secure_access_door",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 4
+     },
+     {
+      "id": "minecraft:white_dye",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sliding_seal_door",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_welded_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     },
+     {
+      "id": "hbm:bolt_steel",
+      "n": 16
+     },
+     {
+      "id": "minecraft:green_dye",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:silo_hatch",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_welded_steel",
+      "n": 6
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 8
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     },
+     {
+      "id": "hbm:bolt_steel",
+      "n": 16
+     },
+     {
+      "id": "minecraft:green_dye",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:silo_hatch_large",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_beam",
+      "n": 32
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:bolt_durasteel",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     },
+     {
+      "id": "minecraft:gray_dye",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:cargo_door",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cap_nuka",
+      "n": 64
+     },
+     {
+      "id": "hbm:cap_nuka",
+      "n": 64
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:block_cap_nuka",
+      1
+     ]
+    ],
+    "ticks": 10,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cap_quantum",
+      "n": 64
+     },
+     {
+      "id": "hbm:cap_quantum",
+      "n": 64
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:block_cap_quantum",
+      1
+     ]
+    ],
+    "ticks": 10,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cap_sparkle",
+      "n": 64
+     },
+     {
+      "id": "hbm:cap_sparkle",
+      "n": 64
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:block_cap_sparkle",
+      1
+     ]
+    ],
+    "ticks": 10,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cap_rad",
+      "n": 64
+     },
+     {
+      "id": "hbm:cap_rad",
+      "n": 64
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:block_cap_rad",
+      1
+     ]
+    ],
+    "ticks": 10,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cap_fritz",
+      "n": 64
+     },
+     {
+      "id": "hbm:cap_fritz",
+      "n": 64
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:block_cap_fritz",
+      1
+     ]
+    ],
+    "ticks": 10,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cap_korl",
+      "n": 64
+     },
+     {
+      "id": "hbm:cap_korl",
+      "n": 64
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:block_cap_korl",
+      1
+     ]
+    ],
+    "ticks": 10,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_shredder",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:rtg_unit",
+      "n": 3
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:wire_fine_mingrade",
+      "n": 16
+     },
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_rtg_grey",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_cast_copper",
+      "n": 2
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 1
+     },
+     {
+      "id": "hbm:drill_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_well",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_dura_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_welded_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 12
+     },
+     {
+      "id": "hbm:motor_desh",
+      "n": 1
+     },
+     {
+      "id": "hbm:drill_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_pumpjack",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 4
+     },
+     {
+      "id": "hbm:shell_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:thermo_element",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_flare",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_scaffold",
+      "n": 16
+     },
+     {
+      "id": "hbm:shell_steel",
+      "n": 6
+     },
+     {
+      "id": "hbm:ingot_desh",
+      "n": 12
+     },
+     {
+      "id": "hbm:ingot_niobium",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_catalytic_cracker",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:shell_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_tcalloy",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_lead",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_cast_copper",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 8
+     },
+     {
+      "id": "hbm:thermo_element",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_radiolysis",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_welded_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:shell_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 8
+     },
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_niobium",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_coker",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:glass_quartz",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:ingot_desh",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 8
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_silex",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:shell_titanium",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_dura_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:crystal_redstone",
+      "n": 3
+     },
+     {
+      "id": "minecraft:diamond",
+      "n": 3
+     },
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 8
+     },
+     {
+      "id": "hbm:motor",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_mining_laser",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:shell_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_cast_copper",
+      "n": 2
+     },
+     {
+      "id": "hbm:coil_copper",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_diesel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:pipe_steel",
+      "n": 12
+     },
+     {
+      "id": "hbm:ingot_steel",
+      "n": 24
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 24
+     },
+     {
+      "id": "hbm:ingot_niobium",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 12
+     },
+     {
+      "id": "hbm:glass_quartz",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_hephaestus",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:shell_steel",
+      "n": 6
+     },
+     {
+      "id": "hbm:plate_welded_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 12
+     },
+     {
+      "id": "hbm:ingot_tcalloy",
+      "n": 16
+     },
+     {
+      "id": "hbm:turbine_tungsten",
+      "n": 5
+     },
+     {
+      "id": "hbm:turbine_titanium",
+      "n": 3
+     },
+     {
+      "id": "hbm:flywheel_beryllium",
+      "n": 1
+     },
+     {
+      "id": "hbm:wire_dense_gold",
+      "n": 48
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 16
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_chungus",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:shell_steel",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_fluidtank",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_welded_tcalloy",
+      "n": 4
+     },
+     {
+      "id": "hbm:steel_scaffold",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:machine_bigasstank",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 16
+     },
+     {
+      "id": "hbm:wire_dense_gold",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pa_beamline",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:pa_beamline",
+      "n": 3
+     },
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 64
+     },
+     {
+      "id": "hbm:ingot_pc",
+      "n": 16
+     },
+     {
+      "id": "hbm:magnetron",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pa_rfc",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:oak_planks",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_graphite",
+      "n": 2
+     },
+     {
+      "id": "hbm:bolt_steel",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pile_brick",
+      1
+     ]
+    ],
+    "ticks": 20,
+    "power": 250
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:concrete_asbestos",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:rbmk_blank",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_welded_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_cast_lead",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_boron",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:rbmk_autoloader",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_lead",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_welded_zirconium",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pwr_fuel",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 2
+     },
+     {
+      "id": "hbm:ingot_boron",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pwr_control",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:pipe_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pwr_channel",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_copper",
+      "n": 4
+     },
+     {
+      "id": "hbm:motor",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pwr_heatex",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_saturnite",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_cast_copper",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pwr_heatsink",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 2
+     },
+     {
+      "id": "hbm:neutron_reflector",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pwr_reflector",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_weaponsteel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pwr_reflector",
+      4
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_welded_zirconium",
+      "n": 1
+     },
+     {
+      "id": "hbm:billet_ra226be",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pwr_neutron_source",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:wire_dense_bscco",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_copper",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_tcalloy",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fusion_component",
+      2
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_tcalloy",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     },
+     {
+      "id": "hbm:ingot_graphite",
+      "n": 16
+     },
+     {
+      "id": "hbm:ingot_pc",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fusion_collector",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_tcalloy",
+      "n": 4
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_boron",
+      "n": 16
+     },
+     {
+      "id": "hbm:ingot_pc",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fusion_breeder",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_tcalloy",
+      "n": 16
+     },
+     {
+      "id": "hbm:shell_copper",
+      "n": 16
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:ingot_pc",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fusion_boiler",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 2
+     },
+     {
+      "id": "hbm:ingot_zirconium",
+      "n": 2
+     },
+     {
+      "id": "hbm:ingot_saturnite",
+      "n": 2
+     },
+     {
+      "id": "hbm:ingot_pc",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:watz_element",
+      3
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_cast_steel",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_cast_copper",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:watz_cooler",
+      3
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_welded_tcalloy",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_boron",
+      "n": 3
+     },
+     {
+      "id": "hbm:plate_welded_steel",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:watz_end",
+      3
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_welded_titanium",
+      "n": 32
+     },
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 64
+     },
+     {
+      "id": "hbm:motor",
+      "n": 64
+     },
+     {
+      "id": "hbm:wire_dense_gold",
+      "n": 64
+     },
+     {
+      "id": "hbm:block_u238",
+      "n": 10
+     },
+     {
+      "id": "hbm:mech_key",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:spawn_worm",
+      1
+     ]
+    ],
+    "ticks": 1200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:ball_tnt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pellet_cluster",
+      1
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_lead",
+      "n": 6
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:pellet_buckshot",
+      1
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 8
+     },
+     {
+      "id": "hbm:det_cord",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_saturnite",
+      "n": 2
+     },
+     {
+      "id": "hbm:ball_tnt",
+      "n": 20
+     },
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:early_explosive_lenses",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 8
+     },
+     {
+      "id": "hbm:ingot_semtex",
+      "n": 4
+     },
+     {
+      "id": "hbm:neutron_reflector",
+      "n": 2
+     },
+     {
+      "id": "hbm:ball_tatb",
+      "n": 16
+     },
+     {
+      "id": "hbm:ingot_rubber",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:explosive_lenses",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:wire_fine_gold",
+      "n": 24
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:gadget_wireing",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_pu239",
+      "n": 7
+     },
+     {
+      "id": "hbm:nugget_u238",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:gadget_core",
+      1
+     ]
+    ],
+    "ticks": 1200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:neutron_reflector",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:boy_shielding",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_u235",
+      "n": 18
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:boy_target",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_u235",
+      "n": 9
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:boy_bullet",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:cordite",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_iron",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 4
+     },
+     {
+      "id": "hbm:wire_fine_mingrade",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:boy_propellant",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_pu239",
+      "n": 8
+     },
+     {
+      "id": "hbm:nugget_beryllium",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:man_core",
+      1
+     ]
+    ],
+    "ticks": 1200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_u238",
+      "n": 24
+     },
+     {
+      "id": "hbm:plate_lead",
+      "n": 6
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mike_core",
+      1
+     ]
+    ],
+    "ticks": 1200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_dura_steel",
+      "n": 8
+     },
+     {
+      "id": "hbm:coil_copper",
+      "n": 5
+     },
+     {
+      "id": "hbm:coil_tungsten",
+      "n": 5
+     },
+     {
+      "id": "hbm:motor",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mike_cooling_unit",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_u235",
+      "n": 8
+     },
+     {
+      "id": "hbm:nugget_neptunium",
+      "n": 2
+     },
+     {
+      "id": "hbm:nugget_beryllium",
+      "n": 4
+     },
+     {
+      "id": "hbm:coil_copper",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fleija_core",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ball_tnt",
+      "n": 3
+     },
+     {
+      "id": "hbm:plate_schrabidium",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fleija_propellant",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:nugget_solinium",
+      "n": 9
+     },
+     {
+      "id": "hbm:nugget_euphemium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:solinium_core",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ball_tnt",
+      "n": 3
+     },
+     {
+      "id": "hbm:neutron_reflector",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_polymer",
+      "n": 6
+     },
+     {
+      "id": "hbm:wire_fine_tungsten",
+      "n": 6
+     },
+     {
+      "id": "hbm:biomass_compressed",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:solinium_propellant",
+      1
+     ]
+    ],
+    "ticks": 300,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_fire",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_incendiary_small",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_fire",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_incendiary_medium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_fire",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_incendiary_large",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:pellet_cluster",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_cluster_small",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:pellet_cluster",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_cluster_medium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:pellet_cluster",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_cluster_large",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_small",
+      "n": 1
+     },
+     {
+      "id": "hbm:ball_tnt",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_buster_small",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_medium",
+      "n": 1
+     },
+     {
+      "id": "hbm:ball_tnt",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_buster_medium",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:warhead_generic_large",
+      "n": 1
+     },
+     {
+      "id": "hbm:ball_tnt",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:warhead_buster_large",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_dura_steel",
+      "n": 32
+     },
+     {
+      "id": "hbm:ingot_boron",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_lead",
+      "n": 16
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:thruster_nuclear",
+      1
+     ]
+    ],
+    "ticks": 600,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_10_kerosene",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_10_solid",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_dura_steel",
+      "n": 4
+     },
+     {
+      "id": "hbm:arc_electrode",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_10_xenon",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 3
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_kerosene",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 3
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_kerosene_dual",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 3
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_kerosene_triple",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 3
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_solid",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 3
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_solid_hexdecuple",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 3
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:ingot_desh",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_hydrogen",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 3
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:ingot_desh",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_hydrogen_dual",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 5
+     },
+     {
+      "id": "hbm:plate_cast_tungsten",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_saturnite",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_balefire_short",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 5
+     },
+     {
+      "id": "hbm:plate_cast_tungsten",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_saturnite",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_balefire",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 10
+     },
+     {
+      "id": "hbm:plate_cast_tungsten",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_saturnite",
+      "n": 24
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_15_balefire_large",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_20",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 6
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_20_kerosene",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_20",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 6
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_20_kerosene_dual",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_20",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_steel",
+      "n": 6
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_20_kerosene_triple",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_20",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 6
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_20_solid",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_20",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 6
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_20_solid_multi",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_20",
+      "n": 1
+     },
+     {
+      "id": "hbm:pipe_durasteel",
+      "n": 6
+     },
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_thruster_20_solid_multier",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_kerosene",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 6
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_long_kerosene",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_solid",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 16
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 6
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_long_solid",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 3
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_xenon",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 1
+     },
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 24
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_15_kerosene",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 1
+     },
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 24
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_15_solid",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 1
+     },
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 24
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_15_hydrogen",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 1
+     },
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_saturnite",
+      "n": 24
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_10_15_balefire",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 32
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 12
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_15_kerosene",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 32
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 12
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_15_solid",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 2
+     },
+     {
+      "id": "hbm:plate_copper",
+      "n": 32
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 12
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_15_hydrogen",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:seg_20",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_aluminium",
+      "n": 48
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_15_20_kerosene",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_15",
+      "n": 1
+     },
+     {
+      "id": "hbm:seg_20",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_titanium",
+      "n": 48
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_fuselage_15_20_solid",
+      1
+     ]
+    ],
+    "ticks": 400,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:seg_10",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_steel",
+      "n": 12
+     },
+     {
+      "id": "hbm:det_cord",
+      "n": 2
+     },
+     {
+      "id": "hbm:powder_magic",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:mp_warhead_10_cloud",
+      1
+     ]
+    ],
+    "ticks": 100,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_titanium",
+      "n": 4
+     },
+     {
+      "id": "hbm:ingot_polymer",
+      "n": 2
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fluid_pack_empty",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   }
+  ],
+  "chemical": [
+   {
+    "inputs": [
+     {
+      "id": "minecraft:cobblestone",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      8
+     ],
+     [
+      "minecraft:sand",
+      8
+     ]
+    ],
+    "ticks": 320,
+    "power": 500
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:biomass_compressed",
+      "n": 4
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:solid_fuel",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 100
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sugar",
+      "n": 1
+     },
+     {
+      "id": "hbm:niter",
+      "n": 1
+     },
+     {
+      "id": "minecraft:sand",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ball_dynamite",
+      2
+     ]
+    ],
+    "ticks": 50,
+    "power": 100
+   }
+  ],
+  "precass": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_armor_ajr",
+      "n": 24
+     },
+     {
+      "id": "hbm:plate_cast_saturnite",
+      "n": 8
+     },
+     {
+      "id": "hbm:motor_desh",
+      "n": 8
+     },
+     {
+      "id": "hbm:plate_kevlar",
+      "n": 16
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:rpa_legs",
+      1
+     ]
+    ],
+    "ticks": null,
+    "power": 25000
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_armor_ajr",
+      "n": 12
+     },
+     {
+      "id": "hbm:plate_cast_saturnite",
+      "n": 4
+     },
+     {
+      "id": "hbm:plate_kevlar",
+      "n": 8
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:rpa_boots",
+      1
+     ]
+    ],
+    "ticks": null,
+    "power": 25000
+   }
+  ],
+  "centrifuge": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:chunk_ore_rare",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cobalt_tiny",
+      2
+     ],
+     [
+      "hbm:powder_boron_tiny",
+      2
+     ],
+     [
+      "hbm:powder_niobium_tiny",
+      2
+     ],
+     [
+      "hbm:nugget_zirconium",
+      3
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_lignite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lignite",
+      2
+     ],
+     [
+      "hbm:powder_lignite",
+      2
+     ],
+     [
+      "hbm:powder_lignite",
+      2
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_gneiss_iron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:gravel_diamond",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_diamond",
+      1
+     ],
+     [
+      "hbm:powder_diamond",
+      1
+     ],
+     [
+      "hbm:powder_diamond",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_sellafield_emerald",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_emerald",
+      1
+     ],
+     [
+      "hbm:powder_emerald",
+      1
+     ],
+     [
+      "hbm:powder_emerald",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:blocks_quartz_ore",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_quartz",
+      1
+     ],
+     [
+      "hbm:powder_quartz",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ],
+     [
+      "minecraft:netherrack",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_schrabidium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_schrabidium",
+      1
+     ],
+     [
+      "hbm:powder_schrabidium",
+      1
+     ],
+     [
+      "hbm:nugget_solinium",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_rare",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_desh_mix",
+      1
+     ],
+     [
+      "hbm:nugget_zirconium",
+      1
+     ],
+     [
+      "hbm:nugget_zirconium",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_nether_plutonium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      1
+     ],
+     [
+      "hbm:powder_plutonium",
+      1
+     ],
+     [
+      "hbm:nugget_polonium",
+      3
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_thorium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_thorium",
+      1
+     ],
+     [
+      "hbm:powder_thorium",
+      1
+     ],
+     [
+      "hbm:powder_uranium",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_beryllium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_beryllium",
+      1
+     ],
+     [
+      "hbm:powder_beryllium",
+      1
+     ],
+     [
+      "hbm:powder_emerald",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_fluorite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fluorite",
+      3
+     ],
+     [
+      "hbm:fluorite",
+      3
+     ],
+     [
+      "hbm:gem_sodalite",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_tikite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      1
+     ],
+     [
+      "hbm:powder_cobalt",
+      2
+     ],
+     [
+      "hbm:powder_niobium",
+      2
+     ],
+     [
+      "minecraft:end_stone",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:block_euphemium_cluster",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_euphemium",
+      7
+     ],
+     [
+      "hbm:powder_schrabidium",
+      4
+     ],
+     [
+      "hbm:ingot_starmetal",
+      2
+     ],
+     [
+      "hbm:nugget_solinium",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_nether_fire",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:blaze_powder",
+      2
+     ],
+     [
+      "hbm:powder_fire",
+      2
+     ],
+     [
+      "hbm:ingot_phosphorus",
+      1
+     ],
+     [
+      "minecraft:netherrack",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_cobalt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cobalt",
+      2
+     ],
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "hbm:powder_copper",
+      1
+     ],
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_tektite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite_tiny",
+      1
+     ],
+     [
+      "hbm:powder_paleogenite_tiny",
+      1
+     ],
+     [
+      "hbm:powder_meteorite_tiny",
+      1
+     ],
+     [
+      "hbm:dust",
+      6
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:block_slag",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ],
+     [
+      "hbm:powder_fire",
+      1
+     ],
+     [
+      "hbm:powder_calcium",
+      1
+     ],
+     [
+      "hbm:dust",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:blaze_rod",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:blaze_powder",
+      1
+     ],
+     [
+      "minecraft:blaze_powder",
+      1
+     ],
+     [
+      "hbm:powder_fire",
+      1
+     ],
+     [
+      "hbm:powder_fire",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_coal",
+      3
+     ],
+     [
+      "hbm:powder_coal",
+      3
+     ],
+     [
+      "hbm:powder_coal",
+      3
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_iron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_iron",
+      2
+     ],
+     [
+      "hbm:powder_iron",
+      2
+     ],
+     [
+      "hbm:powder_titanium",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_gold",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_gold",
+      2
+     ],
+     [
+      "hbm:powder_gold",
+      2
+     ],
+     [
+      "hbm:nugget_mercury",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_redstone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:redstone",
+      3
+     ],
+     [
+      "minecraft:redstone",
+      3
+     ],
+     [
+      "minecraft:redstone",
+      3
+     ],
+     [
+      "hbm:nugget_mercury",
+      3
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_lapis",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lapis",
+      4
+     ],
+     [
+      "hbm:powder_lapis",
+      4
+     ],
+     [
+      "hbm:powder_cobalt",
+      1
+     ],
+     [
+      "hbm:gem_sodalite",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_diamond",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_diamond",
+      1
+     ],
+     [
+      "hbm:powder_diamond",
+      1
+     ],
+     [
+      "hbm:powder_diamond",
+      1
+     ],
+     [
+      "hbm:powder_diamond",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_uranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_uranium",
+      2
+     ],
+     [
+      "hbm:powder_uranium",
+      2
+     ],
+     [
+      "hbm:nugget_ra226",
+      2
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_thorium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_thorium",
+      2
+     ],
+     [
+      "hbm:powder_thorium",
+      2
+     ],
+     [
+      "hbm:powder_uranium",
+      1
+     ],
+     [
+      "hbm:nugget_ra226",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_plutonium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      2
+     ],
+     [
+      "hbm:powder_plutonium",
+      2
+     ],
+     [
+      "hbm:powder_polonium",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_titanium",
+      2
+     ],
+     [
+      "hbm:powder_titanium",
+      2
+     ],
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_sulfur",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sulfur",
+      4
+     ],
+     [
+      "hbm:sulfur",
+      4
+     ],
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "hbm:nugget_mercury",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_niter",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:niter",
+      3
+     ],
+     [
+      "hbm:niter",
+      3
+     ],
+     [
+      "hbm:niter",
+      3
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_copper",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_copper",
+      2
+     ],
+     [
+      "hbm:powder_copper",
+      2
+     ],
+     [
+      "hbm:sulfur",
+      1
+     ],
+     [
+      "hbm:powder_cobalt_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_tungsten",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_tungsten",
+      2
+     ],
+     [
+      "hbm:powder_tungsten",
+      2
+     ],
+     [
+      "hbm:powder_iron",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_fluorite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fluorite",
+      4
+     ],
+     [
+      "hbm:fluorite",
+      4
+     ],
+     [
+      "hbm:gem_sodalite",
+      2
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_beryllium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_beryllium",
+      2
+     ],
+     [
+      "hbm:powder_beryllium",
+      2
+     ],
+     [
+      "hbm:powder_quartz",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_lead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lead",
+      2
+     ],
+     [
+      "hbm:powder_lead",
+      2
+     ],
+     [
+      "hbm:powder_gold",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_schraranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_schrabidium",
+      2
+     ],
+     [
+      "hbm:nugget_schrabidium",
+      2
+     ],
+     [
+      "hbm:nugget_uranium",
+      2
+     ],
+     [
+      "hbm:nugget_neptunium",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_schrabidium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_schrabidium",
+      2
+     ],
+     [
+      "hbm:powder_schrabidium",
+      2
+     ],
+     [
+      "hbm:powder_plutonium",
+      1
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_rare",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_desh_mix",
+      1
+     ],
+     [
+      "hbm:powder_desh_mix",
+      1
+     ],
+     [
+      "hbm:nugget_zirconium",
+      2
+     ],
+     [
+      "hbm:nugget_zirconium",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_phosphorus",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_fire",
+      3
+     ],
+     [
+      "hbm:powder_fire",
+      3
+     ],
+     [
+      "hbm:ingot_phosphorus",
+      2
+     ],
+     [
+      "minecraft:blaze_powder",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_trixite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      2
+     ],
+     [
+      "hbm:powder_cobalt",
+      3
+     ],
+     [
+      "hbm:powder_niobium",
+      2
+     ],
+     [
+      "hbm:powder_nitan_mix",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium",
+      2
+     ],
+     [
+      "hbm:powder_lithium",
+      2
+     ],
+     [
+      "hbm:powder_quartz",
+      1
+     ],
+     [
+      "hbm:fluorite",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_starmetal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_dura_steel",
+      3
+     ],
+     [
+      "hbm:powder_cobalt",
+      3
+     ],
+     [
+      "hbm:powder_astatine",
+      2
+     ],
+     [
+      "hbm:nugget_mercury",
+      5
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_cobalt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cobalt",
+      2
+     ],
+     [
+      "hbm:powder_iron",
+      3
+     ],
+     [
+      "hbm:powder_copper",
+      3
+     ],
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 200
+   }
+  ],
+  "press": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_quartz",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:quartz",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lapis",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:lapis_lazuli",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_diamond",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:diamond",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_emerald",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:emerald",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:biomass",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:biomass_compressed",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fromall_coke__enumcoketype_class_",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_graphite",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteorite_sword_reforged",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:meteorite_sword_hardened",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_coal",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:briquette_coal",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_lignite",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:briquette_lignite",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_sawdust",
+      "n": 1
+     },
+     {
+      "stamp": "flat",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:briquette_wood",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:iron_ingot",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_iron",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:gold_ingot",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_gold",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_titanium",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_titanium",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_aluminium",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_aluminium",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_steel",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_steel",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_lead",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_lead",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:copper_ingot",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_copper",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_schrabidium",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_schrabidium",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_combine_steel",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_combine_steel",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_gunmetal",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_gunmetal",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_weaponsteel",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_weaponsteel",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_saturnite",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_saturnite",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_dura_steel",
+      "n": 1
+     },
+     {
+      "stamp": "plate",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_dura_steel",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_gunmetal",
+      "n": 1
+     },
+     {
+      "stamp": "9",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:casing_small",
+      4
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_gunmetal",
+      "n": 1
+     },
+     {
+      "stamp": "50",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:casing_large",
+      2
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_weaponsteel",
+      "n": 1
+     },
+     {
+      "stamp": "9",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:casing_small_steel",
+      4
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_weaponsteel",
+      "n": 1
+     },
+     {
+      "stamp": "50",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:casing_large_steel",
+      2
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:billet_silicon",
+      "n": 1
+     },
+     {
+      "stamp": "circuit",
+      "n": 1,
+      "keep": true
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:circuit_silicon",
+      1
+     ]
+    ],
+    "ticks": 40,
+    "power": 20
+   }
+  ],
+  "blast": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_iron",
+      "n": 1
+     },
+     {
+      "id": "hbm:items_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_steel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:powder_iron",
+      "n": 1
+     },
+     {
+      "id": "hbm:fromall_coke__enumcoketype_class_",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_steel",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_gneiss_iron",
+      "n": 1
+     },
+     {
+      "id": "hbm:items_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_steel",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_gneiss_iron",
+      "n": 1
+     },
+     {
+      "id": "hbm:fromall_coke__enumcoketype_class_",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_steel",
+      3
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_gneiss_iron",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_flux",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_steel",
+      3
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:copper_ingot",
+      "n": 1
+     },
+     {
+      "id": "minecraft:redstone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_red_copper",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_tungsten",
+      "n": 1
+     },
+     {
+      "id": "hbm:nugget_schrabidium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_magnetized_tungsten",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_steel",
+      "n": 1
+     },
+     {
+      "id": "hbm:nugget_technetium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_tcalloy",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plate_gold",
+      "n": 1
+     },
+     {
+      "id": "hbm:plate_mixed",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:plate_paa",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_saturnite",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_meteorite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_starmetal",
+      2
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_cobalt",
+      "n": 1
+     },
+     {
+      "id": "hbm:powder_meteorite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:ingot_meteorite",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteorite_sword_hardened",
+      "n": 1
+     },
+     {
+      "id": "hbm:ingot_cobalt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:meteorite_sword_alloyed",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:input1",
+      "n": 1
+     },
+     {
+      "id": "hbm:input2",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:output",
+      1
+     ]
+    ],
+    "ticks": 200,
+    "power": 0
+   }
+  ],
+  "shredder": [
+   {
+    "inputs": [
+     {
+      "id": "hbm:in",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:dust",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:scrap",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:dust",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:dust",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:dust",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:dust_tiny",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:dust_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:glowstone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:glowstone_dust",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:quartz_block",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_quartz",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:quartz",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_quartz",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:quartz_ore",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_quartz",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_nether_fire",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_fire",
+      6
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:packed_ice",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_ice",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:brick_light",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:clay_ball",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:concrete",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:concrete_smooth",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:brick_concrete",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:brick_concrete_mossy",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:brick_concrete_cracked",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:brick_concrete_broken",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:brick_obsidian",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:gravel_obsidian",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:obsidian",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:gravel_obsidian",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:stone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_oil_empty",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:cobblestone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:stone_bricks",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:gravel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:sand",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:brick_block",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:clay_ball",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:brick",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:clay_ball",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sandstone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:sand",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:clay",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:clay_ball",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:hardened_clay",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:clay_ball",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:tnt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gunpowder",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:stone_resource_limestone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_limestone",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:stone_gneiss",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fragment_neodymium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_neodymium_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fragment_cobalt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cobalt_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fragment_niobium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_niobium_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fragment_cerium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cerium_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fragment_lanthanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lanthanium_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fragment_actinium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_actinium_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fragment_boron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_boron_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:fragment_meteorite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:block_meteor",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite",
+      10
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:enchanted_book",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_magic",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteor_polished",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteor_brick",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteor_brick_mossy",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteor_brick_cracked",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteor_brick_chiseled",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:meteor_pillar",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_meteorite",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_rare",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_desh_mix",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:diamond_ore",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:gravel_diamond",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_sellafield_diamond",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:gravel_diamond",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:boxcar",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      32
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_schrabidate",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_schrabidate",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:block_schrabidate",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_schrabidate",
+      9
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:coal_infernal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_coal",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:fermented_spider_eye",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_poison",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:poisonous_potato",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_poison",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_tektite_osmiridium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_tektite",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:dirt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:dust",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sugar_cane",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:sugar",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:apple",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:sugar",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:carrot",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:sugar",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:can_empty",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_aluminium",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:chunk_ore_rare",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_desh_mix",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:sand",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:dust",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:block_slag",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cement",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ore_aluminium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:chunk_ore_cryolite",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:oak_log",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_sawdust",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:plank",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_sawdust",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:oak_sapling",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:stick",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:dust",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cobalt_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:ingot_schraranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_schrabidium",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_coal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_coal",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_iron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_iron",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_gold",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_gold",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_redstone",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:redstone",
+      8
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_lapis",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lapis",
+      8
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_diamond",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_diamond",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_uranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_uranium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_plutonium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_thorium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_thorium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_titanium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_titanium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_sulfur",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:sulfur",
+      8
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_niter",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:niter",
+      8
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_copper",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_copper",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_tungsten",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_tungsten",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_aluminium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_aluminium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_fluorite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:fluorite",
+      8
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_beryllium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_beryllium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_lead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lead",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_schraranium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:nugget_schrabidium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_schrabidium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_schrabidium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_rare",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_desh_mix",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_phosphorus",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_fire",
+      8
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_trixite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_plutonium",
+      6
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_lithium",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_lithium",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_starmetal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_dura_steel",
+      6
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crystal_cobalt",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_cobalt",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_poles",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_roof",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      9
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_wall",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      9
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_corner",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      18
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_beam",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_scaffold",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:coil_copper",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_red_copper",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:coil_copper_torus",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_red_copper",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:coil_gold",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_gold",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:coil_gold_torus",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_gold",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:coil_tungsten",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_tungsten",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:coil_magnetized_tungsten",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_magnetized_tungsten",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crate_iron",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_iron",
+      8
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crate_steel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      8
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:crate_tungsten",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_tungsten",
+      36
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "minecraft:anvil",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_iron",
+      31
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:dungeon_chain",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:steel_grate",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:pipes_steel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      27
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:bedrock_ore",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:sellafield_slaked",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "minecraft:gravel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:sellafield",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_nuclear",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:dirt_dead",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_oil",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:dirt_oily",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_oil",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:sand_dirty",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_oil",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:sand_dirty_red",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_oil",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:stone_cracked",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_oil",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:stone_porous",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_oil",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_rusted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_green",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_green_rusted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_red",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_marked",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_rim",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_rim_rusted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_rim_green",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_rim_green_rusted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_rim_red",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_rim_marked",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_quad",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_quad_rusted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_quad_green",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_quad_green_rusted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_quad_red",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_quad_marked",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_framed",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_framed_rusted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_framed_green",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_framed_green_rusted",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_framed_red",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:deco_pipe_framed_marked",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:debris_concrete",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_nuclear",
+      2
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:debris_shrapnel",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      5
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:debris_exchanger",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:debris_element",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:scrap_nuclear",
+      4
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:debris_metal",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_steel_tiny",
+      3
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:debris_graphite",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:powder_coal",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:armoonturf",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:moon_turf",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:armoonturfdark",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:moon_turf",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:in",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:out",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:in",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:out",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   },
+   {
+    "inputs": [
+     {
+      "id": "hbm:in",
+      "n": 1
+     }
+    ],
+    "outputs": [
+     [
+      "hbm:out",
+      1
+     ]
+    ],
+    "ticks": 60,
+    "power": 5
+   }
+  ]
  }
 }
