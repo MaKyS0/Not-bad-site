@@ -1,72 +1,67 @@
 #!/usr/bin/env python3
-"""Draws src/main/resources/sprites/mega-wall.png: a 3x3 wall (96x96 px, 32 px per tile).
+"""Draws src/main/resources/sprites/mega-wall.png: one symmetric block for the whole 3x3 wall.
+
+The 96x96 image is a single steel plate without seams between the nine tiles. Every feature
+(hazard frame, groove, rivets, gold emblem, shading) depends only on the distance from the
+centre, so the picture stays the same after a horizontal or vertical mirror and after a
+90-degree turn. No randomness and no directional light are used.
 
 Usage:  python3 -I tools/make_sprite.py src/main/resources/sprites/mega-wall.png
 Only the Python standard library is used; the output is deterministic.
 """
+import math
 import struct
 import sys
 import zlib
 
-SIZE = 96   # 3 tiles x 32 px, the same scale Mindustry uses for 3x3 blocks
-TILE = 32
+SIZE = 96           # 3 tiles x 32 px: the scale Mindustry uses for 3x3 blocks
+CENTRE = SIZE / 2   # 48: the centre lies on the border between pixels 47 and 48
 
-STEEL_TOP = (72, 80, 91)
-STEEL_BOTTOM = (52, 58, 67)
-SEAM = (28, 33, 39)
-BEVEL_LIGHT = (100, 110, 122)
-BEVEL_DARK = (36, 41, 48)
-RIVET = (170, 180, 193)
-RIVET_SHADE = (84, 92, 104)
+FRAME_FROM = 41.5   # hazard frame: the outer 6 px (distance from the centre >= 41.5)
+GROOVE_FROM = 39.5  # dark groove between the frame and the plate
+GOLD_RING = (13.5, 16.5)
+GOLD_CORE = 4.5
+RIVET_RADIUS = 2.2
+RIVET_RIM = 3.0
+# Rivet centres in (|dx|, |dy|) space. The set does not change when dx and dy are swapped,
+# so together with abs() this gives 8 rivets: 4 corners and 4 side centres.
+RIVET_CENTRES = ((32.5, 32.5), (32.5, 0.5), (0.5, 32.5))
+
+PLATE_CENTRE = (70, 78, 89)
+PLATE_EDGE = (52, 58, 67)
+GROOVE = (30, 34, 40)
 HAZARD_YELLOW = (222, 166, 28)
 HAZARD_BLACK = (30, 30, 30)
 GOLD = (196, 156, 46)
-RIVETS = ((7, 7), (24, 7), (7, 24), (24, 24))
-
-
-def clamp(value):
-    return max(0, min(255, int(value)))
-
-
-def noise(x, y):
-    """Deterministic value in [-3, 3]: makes the plates look worn instead of flat."""
-    h = (x * 73856093) ^ (y * 19349663)
-    h = ((h ^ (h >> 13)) * 1274126177) & 0xFFFFFFFF
-    return (h % 7) - 3
+RIVET = (176, 186, 199)
+RIVET_OUTLINE = (84, 92, 104)
 
 
 def mix(a, b, t):
-    return tuple(clamp(a[i] + (b[i] - a[i]) * t) for i in range(3))
+    t = max(0.0, min(1.0, t))
+    return tuple(int(round(a[i] + (b[i] - a[i]) * t)) for i in range(3))
 
 
 def pixel(x, y):
-    # Outer frame: 3 px of diagonal hazard stripes, makes the wall look heavy.
-    edge = min(x, y, SIZE - 1 - x, SIZE - 1 - y)
-    if edge < 3:
-        return HAZARD_YELLOW if ((x + y) // 4) % 2 == 0 else HAZARD_BLACK
+    # abs() folds the image into one quadrant, so mirrored and turned pixels get equal values.
+    dx = abs(x + 0.5 - CENTRE)
+    dy = abs(y + 0.5 - CENTRE)
+    m = max(dx, dy)  # square distance from the centre: the frame and the rings are squares
 
-    lx, ly = x % TILE, y % TILE
-    # Seams between the nine plates.
-    if lx < 2 or ly < 2:
-        return SEAM
-    # Bevel: light on the top/left edge of each plate, dark on the bottom/right edge.
-    if lx == 2 or ly == 2:
-        return BEVEL_LIGHT
-    if lx == TILE - 1 or ly == TILE - 1:
-        return BEVEL_DARK
-    # Rivets in the corners of each plate.
-    for rx, ry in RIVETS:
-        dx, dy = lx - rx, ly - ry
-        if dx * dx + dy * dy <= 3:
-            return RIVET if dx + dy <= 0 else RIVET_SHADE
-    # The centre plate carries a gold frame: the "core" of the mega wall.
-    if x // TILE == 1 and y // TILE == 1:
-        r = max(abs(lx - 15.5), abs(ly - 15.5))
-        if 5.5 <= r < 6.5 or r < 2.0:
-            return GOLD
-    base = mix(STEEL_TOP, STEEL_BOTTOM, ly / TILE)
-    n = noise(x, y)
-    return tuple(clamp(c + n) for c in base)
+    if m >= FRAME_FROM:
+        # Chevrons: the stripes meet on the middle lines of the block.
+        return HAZARD_YELLOW if (int(dx + dy) // 6) % 2 == 0 else HAZARD_BLACK
+    if m >= GROOVE_FROM:
+        return GROOVE
+    for cx, cy in RIVET_CENTRES:
+        d = math.hypot(dx - cx, dy - cy)
+        if d < RIVET_RADIUS:
+            return RIVET
+        if d < RIVET_RIM:
+            return RIVET_OUTLINE
+    if m < GOLD_CORE or GOLD_RING[0] <= m < GOLD_RING[1]:
+        return GOLD
+    return mix(PLATE_CENTRE, PLATE_EDGE, m / GROOVE_FROM)
 
 
 def png(width, height, rows):

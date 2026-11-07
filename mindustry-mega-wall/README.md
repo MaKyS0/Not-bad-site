@@ -40,7 +40,7 @@ python3 -I tools/make_sprite.py src/main/resources/sprites/mega-wall.png
 | `src/main/java/megawall/MegaWallMod.java` | Точка входа мода: регистрирует блок. |
 | `src/main/java/megawall/MegaWall.java` | Блок 3×3, стоимость и класс строения `MegaWallBuild`, который переопределяет все методы урона и `kill()`. |
 | `src/main/resources/mod.hjson` | Метаданные мода. Поле `java: true` говорит игре, что внутри есть код. |
-| `src/main/resources/sprites/mega-wall.png` | Спрайт 96×96 (3×3 тайла по 32 px). |
+| `src/main/resources/sprites/mega-wall.png` | Спрайт 96×96: один симметричный блок без швов между тайлами. |
 | `src/main/resources/bundles/` | Названия и описания на английском и русском. |
 | `dist/megawall.jar` | Готовый мод. Содержит `.class` для ПК и `classes.dex` для Android. |
 
