@@ -1,0 +1,8 @@
+name: "megawall"
+displayName: "Мега-стена"
+author: "MaKyS0"
+description: "Неубиваемая стена 3×3. Враги и взрывы её не портят, снести её можно вручную."
+version: "1.0"
+minGameVersion: "160"
+main: "megawall.MegaWallMod"
+java: true
