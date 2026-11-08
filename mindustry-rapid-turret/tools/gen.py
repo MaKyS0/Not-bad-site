@@ -77,6 +77,7 @@ name: {NAMES[t]} Turret
 description: Tier {t} rapid-fire turret. Fires {n} barrels at extreme speed. Feed it copper, graphite or silicon.
 category: turret
 alwaysUnlocked: true
+playerControllable: true
 requirements: [{c['req']}]
 size: {c['size']}
 health: {c['health']}

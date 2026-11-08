@@ -3,6 +3,7 @@ name: Rapid II Turret
 description: Tier 2 rapid-fire turret. Fires 3 barrels at extreme speed. Feed it copper, graphite or silicon.
 category: turret
 alwaysUnlocked: true
+playerControllable: true
 requirements: [copper/120, graphite/100, silicon/80, titanium/60]
 size: 2
 health: 1100

@@ -3,6 +3,7 @@ name: Rapid III Turret
 description: Tier 3 rapid-fire turret. Fires 3 barrels at extreme speed. Feed it copper, graphite or silicon.
 category: turret
 alwaysUnlocked: true
+playerControllable: true
 requirements: [copper/200, graphite/180, silicon/150, titanium/150, thorium/60]
 size: 3
 health: 2000

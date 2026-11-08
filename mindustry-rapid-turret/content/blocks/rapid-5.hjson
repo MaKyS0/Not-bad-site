@@ -3,6 +3,7 @@ name: Rapid V Turret
 description: Tier 5 rapid-fire turret. Fires 5 barrels at extreme speed. Feed it copper, graphite or silicon.
 category: turret
 alwaysUnlocked: true
+playerControllable: true
 requirements: [graphite/500, silicon/450, titanium/400, thorium/300, plastanium/200, surge-alloy/150]
 size: 5
 health: 6500

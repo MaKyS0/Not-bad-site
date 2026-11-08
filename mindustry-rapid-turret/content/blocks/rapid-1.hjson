@@ -3,6 +3,7 @@ name: Rapid I Turret
 description: Tier 1 rapid-fire turret. Fires 2 barrels at extreme speed. Feed it copper, graphite or silicon.
 category: turret
 alwaysUnlocked: true
+playerControllable: true
 requirements: [copper/80, graphite/60, silicon/40]
 size: 2
 health: 800
