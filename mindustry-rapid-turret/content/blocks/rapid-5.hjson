@@ -1,0 +1,59 @@
+type: ItemTurret
+name: Rapid V Turret
+description: Tier 5 rapid-fire turret. Fires 5 barrels at extreme speed. Feed it copper, graphite or silicon.
+category: turret
+alwaysUnlocked: true
+requirements: [graphite/500, silicon/450, titanium/400, thorium/300, plastanium/200, surge-alloy/150]
+size: 5
+health: 6500
+range: 300
+reload: 1.0
+inaccuracy: 2
+rotateSpeed: 24
+recoil: 0.9
+shootY: 10
+maxAmmo: 140
+targetAir: true
+targetGround: true
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.5
+}
+shoot: {
+  type: ShootAlternate
+  spread: 8
+  barrels: 5
+}
+ammoTypes: {
+  copper: {
+    type: BasicBulletType
+    damage: 28
+    speed: 4
+    lifetime: 83
+    width: 10
+    height: 14
+    ammoMultiplier: 3
+  }
+  graphite: {
+    type: BasicBulletType
+    damage: 50
+    speed: 4.4
+    lifetime: 76
+    width: 11
+    height: 16
+    reloadMultiplier: 0.85
+    ammoMultiplier: 4
+  }
+  silicon: {
+    type: BasicBulletType
+    damage: 36
+    speed: 4.4
+    lifetime: 76
+    width: 10
+    height: 15
+    homingPower: 0.08
+    homingRange: 70
+    reloadMultiplier: 1.3
+    ammoMultiplier: 5
+  }
+}
