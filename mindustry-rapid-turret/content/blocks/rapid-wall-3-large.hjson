@@ -1,0 +1,12 @@
+type: Wall
+name: Large Rapid Wall III
+description: Thorium-armoured wall that shrugs off weak bullets. Covers 2x2 tiles.
+category: defense
+research: rapid-wall-3
+requirements: [
+  thorium/24
+  titanium/16
+]
+size: 2
+health: 3680
+armor: 2

@@ -1,4 +1,4 @@
-# Rapid Turrets (Mindustry mod)
+# Rapid Arsenal (Mindustry mod): turrets, walls, drills, mechs
 
 ![tiers](preview.png)
 
@@ -36,6 +36,48 @@ In sandbox everything is available right away.
 
 You can take direct control of any tier: tap/click the turret (no build tool selected) and
 aim/shoot yourself.
+
+## Walls
+
+Ten walls (Defense tab): `Rapid Wall I-V` (1x1) and `Large Rapid Wall I-V` (2x2, 4x health and 4x cost).
+
+| Tier | Health / tile | Armor | Cost / tile | Special |
+|------|---------------|-------|-------------|---------|
+| I | 420 | 0 | 6 copper, 2 graphite | - |
+| II | 640 | 0 | 6 titanium, 3 silicon | - |
+| III | 920 | 2 | 6 thorium, 4 titanium | - |
+| IV | 1250 | 4 | 5 plastanium, 5 thorium | absorbs lasers, insulated |
+| V | 1700 | 6 | 6 surge alloy, 3 phase fabric | deflects bullets, arcs lightning |
+
+Research: Rapid Wall I after the Copper Wall, every tier after the previous one, large walls after their small wall.
+
+## Drills
+
+Five drills (Production tab), all accept water as an optional booster.
+
+| Tier | Size | Mines up to hardness | Drill time | Power | Water / tick | Cost |
+|------|------|----------------------|------------|-------|--------------|------|
+| I | 2x2 | 2 | 430 | - | 0.05 | 30 copper, 15 graphite |
+| II | 2x2 | 3 | 320 | - | 0.06 | 45 copper, 30 graphite, 15 silicon |
+| III | 3x3 | 4 | 230 | 1.5 | 0.09 | 60 copper, 50 graphite, 45 silicon, 35 titanium |
+| IV | 4x4 | 5 | 190 | 4 | 0.12 | 110 copper, 90 silicon, 80 titanium, 90 thorium |
+| V | 5x5 | 6 | 150 | 8 | 0.16 | 200 copper, 180 silicon, 150 titanium, 150 thorium, 60 plastanium, 40 surge alloy |
+
+Research: Rapid Drill I after the Mechanical Drill, then in order.
+
+## Mech units and the Rapid Forge
+
+The **Rapid Forge** (5x5, Units tab, 2.5 power/tick; cost 350 copper, 250 lead, 150 graphite, 200 silicon; researched after the Ground Factory) builds five ground mechs with rapid-fire guns.
+
+| Tier | Unit | Health | Armor | Speed | Gun reload | Bullet damage | Build time (s) | Build cost |
+|------|------|--------|-------|-------|-----------|---------------|----------------|-----------|
+| 1 | Pellet | 170 | 0 | 0.55 | 8 | 5 | 20 | 25 silicon, 15 lead, 10 graphite |
+| 2 | Burst | 620 | 3 | 0.5 | 6 | 9 | 40 | 80 silicon, 50 graphite, 30 titanium |
+| 3 | Volley | 1200 | 6 | 0.43 | 5 | 14 | 70 | 220 silicon, 160 titanium, 120 graphite, 40 thorium |
+| 4 | Barrage | 8500 | 9 | 0.36 | 4 | 27 | 150 | 900 silicon, 750 titanium, 450 plastanium, 300 thorium |
+| 5 | Storm | 22000 | 14 | 0.32 | 3 | 48 | 240 | 1400 silicon, 800 plastanium, 600 surge alloy, 500 thorium, 350 phase fabric |
+
+Unit research: Pellet after the Rapid Forge, every unit after the previous one (research costs are set per unit).
 
 Pure JSON (hjson) mod with no Java/JS, so it also works on **iOS**.
 

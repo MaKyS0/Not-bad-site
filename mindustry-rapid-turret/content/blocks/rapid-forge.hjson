@@ -1,0 +1,67 @@
+type: UnitFactory
+name: Rapid Forge
+description: Builds the Rapid mechs. Each unit tier needs more expensive materials.
+category: units
+research: ground-factory
+requirements: [
+  copper/350
+  lead/250
+  graphite/150
+  silicon/200
+]
+size: 5
+health: 1600
+consumes: {
+  power: 2.5
+}
+plans: [
+  {
+    unit: pellet
+    time: 1200
+    requirements: [
+      silicon/25
+      lead/15
+      graphite/10
+    ]
+  }
+  {
+    unit: burst
+    time: 2400
+    requirements: [
+      silicon/80
+      graphite/50
+      titanium/30
+    ]
+  }
+  {
+    unit: volley
+    time: 4200
+    requirements: [
+      silicon/220
+      titanium/160
+      graphite/120
+      thorium/40
+    ]
+  }
+  {
+    unit: barrage
+    time: 9000
+    requirements: [
+      silicon/900
+      titanium/750
+      plastanium/450
+      thorium/300
+    ]
+  }
+  {
+    unit: storm
+    time: 14400
+    requirements: [
+      silicon/1400
+      plastanium/800
+      surge-alloy/600
+      thorium/500
+      phase-fabric/350
+    ]
+  }
+]

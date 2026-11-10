@@ -1,0 +1,22 @@
+type: Drill
+name: Rapid Drill I
+description: Mines ore up to hardness 2 (copper, lead, sand, coal). Water speeds it up.
+category: production
+research: mechanical-drill
+requirements: [
+  copper/30
+  graphite/15
+]
+size: 2
+health: 360
+tier: 2
+drillTime: 430
+rotateSpeed: 2.5
+consumes: {
+  liquid: {
+    liquid: water
+    amount: 0.05
+    optional: true
+    booster: true
+  }
+}

@@ -1,0 +1,25 @@
+type: Drill
+name: Rapid Drill IV
+description: Heavy powered drill that mines ore up to hardness 5. Water speeds it up.
+category: production
+research: rapid-drill-3
+requirements: [
+  copper/110
+  silicon/90
+  titanium/80
+  thorium/90
+]
+size: 4
+health: 1440
+tier: 5
+drillTime: 190
+rotateSpeed: 5.5
+consumes: {
+  power: 4
+  liquid: {
+    liquid: water
+    amount: 0.12
+    optional: true
+    booster: true
+  }
+}

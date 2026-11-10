@@ -1,0 +1,14 @@
+type: Wall
+name: Large Rapid Wall IV
+description: Absorbs lasers and blocks power node links. Covers 2x2 tiles.
+category: defense
+research: rapid-wall-4
+requirements: [
+  plastanium/20
+  thorium/20
+]
+size: 2
+health: 5000
+armor: 4
+absorbLasers: true
+insulated: true

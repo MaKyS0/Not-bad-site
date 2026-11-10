@@ -1,0 +1,55 @@
+type: mech
+name: Storm
+description: Tier 5 mech. A colossal walker whose four-barrel guns pierce armour.
+research: {
+  parent: barrage
+  requirements: [
+    silicon/20000
+    plastanium/12000
+    surge-alloy/9000
+    thorium/7000
+    phase-fabric/5000
+  ]
+}
+health: 22000
+armor: 14
+speed: 0.32
+hitSize: 30
+rotateSpeed: 2.5
+canDrown: false
+mechFrontSway: 1.9
+mechSideSway: 0.6
+mechStepParticles: true
+stepShake: 0.25
+weapons: [
+  {
+    name: storm-gun
+    x: 15.5
+    y: 2
+    top: false
+    mirror: true
+    alternate: true
+    reload: 3
+    recoil: 2.4
+    shootY: 10.0
+    inaccuracy: 2
+    ejectEffect: casing3
+    bullet: {
+      type: BasicBulletType
+      damage: 48
+      speed: 5.5
+      lifetime: 44
+      width: 10
+      height: 15.5
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 8
+      trailWidth: 1.8
+      trailColor: "ff543c"
+      pierce: true
+      pierceCap: 2
+    }
+  }
+]

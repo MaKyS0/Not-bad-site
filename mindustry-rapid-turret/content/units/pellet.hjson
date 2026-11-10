@@ -1,0 +1,43 @@
+type: mech
+name: Pellet
+description: Tier 1 mech. A light scout with twin rapid-fire guns.
+research: {
+  parent: rapid-forge
+  requirements: [
+    silicon/500
+    lead/300
+    graphite/200
+  ]
+}
+health: 170
+armor: 0
+speed: 0.55
+hitSize: 8
+rotateSpeed: 6
+weapons: [
+  {
+    name: pellet-gun
+    x: 4.75
+    y: 0.5
+    top: false
+    mirror: true
+    alternate: true
+    reload: 8
+    recoil: 0.8
+    shootY: 2.5
+    inaccuracy: 4
+    ejectEffect: casing1
+    bullet: {
+      type: BasicBulletType
+      damage: 5
+      speed: 3.5
+      lifetime: 32
+      width: 6
+      height: 9.5
+      frontColor: "ffecca"
+      backColor: "ffbe50"
+      hitEffect: hitBulletSmall
+      despawnEffect: hitBulletSmall
+    }
+  }
+]

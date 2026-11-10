@@ -1,0 +1,18 @@
+type: Wall
+name: Large Rapid Wall V
+description: Deflects bullets and arcs lightning at attackers. Covers 2x2 tiles.
+category: defense
+research: rapid-wall-5
+requirements: [
+  surge-alloy/24
+  phase-fabric/12
+]
+size: 2
+health: 6800
+armor: 6
+lightningChance: 0.05
+lightningDamage: 25
+lightningLength: 17
+lightningColor: "ff543c"
+chanceDeflect: 10
+flashHit: true

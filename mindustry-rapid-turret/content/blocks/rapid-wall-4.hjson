@@ -1,0 +1,14 @@
+type: Wall
+name: Rapid Wall IV
+description: Absorbs lasers and blocks power node links.
+category: defense
+research: rapid-wall-3
+requirements: [
+  plastanium/5
+  thorium/5
+]
+size: 1
+health: 1250
+armor: 4
+absorbLasers: true
+insulated: true

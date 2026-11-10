@@ -1,0 +1,25 @@
+type: Drill
+name: Rapid Drill III
+description: Powered drill that mines ore up to hardness 4, including thorium. Water speeds it up.
+category: production
+research: rapid-drill-2
+requirements: [
+  copper/60
+  graphite/50
+  silicon/45
+  titanium/35
+]
+size: 3
+health: 810
+tier: 4
+drillTime: 230
+rotateSpeed: 4.5
+consumes: {
+  power: 1.5
+  liquid: {
+    liquid: water
+    amount: 0.09
+    optional: true
+    booster: true
+  }
+}

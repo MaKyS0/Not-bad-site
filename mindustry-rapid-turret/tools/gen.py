@@ -12,6 +12,8 @@ Sprite notes (how Mindustry draws a turret):
 import os
 from PIL import Image, ImageDraw, ImageChops, ImageFilter
 
+from art import Art, shade, mix, hexc, outlined
+
 MARGIN = 5
 
 # Build-cost balance. Each price is (best sustained DPS) x (cost per DPS), where cost is counted in
@@ -71,71 +73,6 @@ EN_DESC = {
     5: "Tier 5 rapid-fire turret. Five barrels, one shot every tick.",
     6: "Top of the line. Six barrels, two shots per tick, surge rounds arc lightning.",
 }
-
-
-def shade(c, k):
-    return tuple(max(0, min(255, int(round(v * k)))) for v in c[:3])
-
-
-def mix(a, b, k):
-    return tuple(int(round(a[i] * (1 - k) + b[i] * k)) for i in range(3))
-
-
-def hexc(c):
-    return '"%02x%02x%02x"' % tuple(c[:3])   # quoted, so hjson never reads it as a number
-
-
-class Art:
-    """Tiny pixel-art helper: everything is mirrored left<->right and gets a vertical bevel."""
-
-    def __init__(self, S):
-        self.S = S
-        self.im = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-
-    def mask(self):
-        m = Image.new("L", (self.S, self.S), 0)
-        return m, ImageDraw.Draw(m)
-
-    def sym(self, m):
-        return ImageChops.lighter(m, m.transpose(Image.FLIP_LEFT_RIGHT))
-
-    def shift(self, m, dy):
-        out = Image.new("L", m.size, 0)
-        out.paste(m, (0, dy))
-        return out
-
-    def fill(self, m, col):
-        self.im.paste(tuple(col[:3]) + (255,), mask=m)
-
-    def plate(self, m, col, depth=2, hi=1):
-        """Fill mask: dark rim at the bottom edge, light rim at the top edge."""
-        m = self.sym(m)
-        self.fill(m, shade(col, 0.70))
-        self.fill(ImageChops.multiply(m, self.shift(m, -depth)), col)
-        if hi:
-            self.fill(ImageChops.multiply(m, ImageChops.invert(self.shift(m, hi))), shade(col, 1.2))
-        return m
-
-    def flat(self, m, col):
-        m = self.sym(m)
-        self.fill(m, col)
-        return m
-
-    # shapes take pixel coords of the LEFT half (x measured from the left edge)
-    def poly(self, pts):
-        m, d = self.mask()
-        d.polygon([(int(round(x)), int(round(y))) for x, y in pts], fill=255)
-        return m
-
-    def rect(self, x0, y0, x1, y1):
-        m, d = self.mask()
-        d.rectangle((int(round(x0)), int(round(y0)), int(round(x1)), int(round(y1))), fill=255)
-        return m
-
-    def disc(self, cx, cy, r):
-        m, d = self.mask()
-        d.ellipse((cx - r, cy - r, cx + r - 1, cy + r - 1), fill=255)
-        return m
 
 
 def barrel_xs(c, S):
@@ -393,7 +330,7 @@ ammoTypes: {{
 
 def main():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    for sub in ("content/blocks", "sprites/blocks", "bundles"):
+    for sub in ("content/blocks", "content/units", "sprites/blocks", "sprites/units", "bundles"):
         os.makedirs(f"{root}/{sub}", exist_ok=True)
     en, ru = [], []
     for t, c in T.items():
@@ -406,6 +343,11 @@ def main():
         key = f"block.rapid-turret-{name}"
         en += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {EN_DESC[t]}"]
         ru += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {RU_DESC[t]}"]
+    import walls, drills, forge, units
+    for mod in (walls, drills, forge, units):
+        e, r = mod.build(root)
+        en += e
+        ru += r
     open(f"{root}/bundles/bundle.properties", "w").write("\n".join(en) + "\n")
     open(f"{root}/bundles/bundle_ru.properties", "w", encoding="utf-8").write("\n".join(ru) + "\n")
 
@@ -416,16 +358,6 @@ def main():
     icon = base(6, c).copy()
     icon.alpha_composite(outlined(g))
     icon.save(f"{root}/icon.png")
-
-
-def outlined(g, radius=4, col=(64, 64, 73)):
-    """Approximates the outline Mindustry generates around turret sprites (preview/icon only)."""
-    alpha = g.getchannel("A").point(lambda v: 255 if v > 0 else 0)
-    grown = alpha.filter(ImageFilter.MaxFilter(radius * 2 + 1))
-    out = Image.new("RGBA", g.size, (0, 0, 0, 0))
-    out.paste(col + (255,), mask=grown)
-    out.alpha_composite(g)
-    return out
 
 
 def dps(c, item):

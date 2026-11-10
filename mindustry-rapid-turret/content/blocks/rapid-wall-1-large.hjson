@@ -1,0 +1,12 @@
+type: Wall
+name: Large Rapid Wall I
+description: Basic reinforced wall. Cheap and sturdy. Covers 2x2 tiles.
+category: defense
+research: rapid-wall-1
+requirements: [
+  copper/24
+  graphite/8
+]
+size: 2
+health: 1680
+armor: 0

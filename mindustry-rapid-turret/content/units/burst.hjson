@@ -1,0 +1,43 @@
+type: mech
+name: Burst
+description: Tier 2 mech. Fires fast bursts from double-barrelled guns.
+research: {
+  parent: pellet
+  requirements: [
+    silicon/1500
+    graphite/1000
+    titanium/600
+  ]
+}
+health: 620
+armor: 3
+speed: 0.5
+hitSize: 10
+rotateSpeed: 5
+weapons: [
+  {
+    name: burst-gun
+    x: 5.75
+    y: 0.5
+    top: false
+    mirror: true
+    alternate: true
+    reload: 6
+    recoil: 1
+    shootY: 3.25
+    inaccuracy: 3.5
+    ejectEffect: casing1
+    bullet: {
+      type: BasicBulletType
+      damage: 9
+      speed: 3.8
+      lifetime: 35
+      width: 7
+      height: 11.0
+      frontColor: "cef3ff"
+      backColor: "5ad7ff"
+      hitEffect: hitBulletSmall
+      despawnEffect: hitBulletSmall
+    }
+  }
+]

@@ -1,0 +1,48 @@
+type: mech
+name: Volley
+description: Tier 3 mech. An armoured line fighter that fires tracer rounds.
+research: {
+  parent: burst
+  requirements: [
+    silicon/4000
+    titanium/3000
+    graphite/2500
+    thorium/800
+  ]
+}
+health: 1200
+armor: 6
+speed: 0.43
+hitSize: 13
+rotateSpeed: 4
+canDrown: false
+weapons: [
+  {
+    name: volley-gun
+    x: 7.5
+    y: 1
+    top: false
+    mirror: true
+    alternate: true
+    reload: 5
+    recoil: 1.3
+    shootY: 4.5
+    inaccuracy: 3
+    ejectEffect: casing2
+    bullet: {
+      type: BasicBulletType
+      damage: 14
+      speed: 4.2
+      lifetime: 39
+      width: 8
+      height: 12.5
+      frontColor: "d6ffe0"
+      backColor: "78ff96"
+      hitEffect: hitBulletSmall
+      despawnEffect: hitBulletSmall
+      trailLength: 6
+      trailWidth: 1.4
+      trailColor: "78ff96"
+    }
+  }
+]

@@ -1,0 +1,51 @@
+type: mech
+name: Barrage
+description: Tier 4 mech. A heavy assault walker with triple-barrel guns.
+research: {
+  parent: volley
+  requirements: [
+    silicon/12000
+    titanium/10000
+    plastanium/6000
+    thorium/4000
+  ]
+}
+health: 8500
+armor: 9
+speed: 0.36
+hitSize: 22
+rotateSpeed: 3
+canDrown: false
+mechFrontSway: 1.0
+mechStepParticles: true
+stepShake: 0.15
+weapons: [
+  {
+    name: barrage-gun
+    x: 12
+    y: 1.5
+    top: false
+    mirror: true
+    alternate: true
+    reload: 4
+    recoil: 1.8
+    shootY: 7.5
+    inaccuracy: 2.5
+    ejectEffect: casing2
+    bullet: {
+      type: BasicBulletType
+      damage: 27
+      speed: 4.8
+      lifetime: 42
+      width: 9
+      height: 14.0
+      frontColor: "ffd4f3"
+      backColor: "ff6ed7"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 7
+      trailWidth: 1.6
+      trailColor: "ff6ed7"
+    }
+  }
+]

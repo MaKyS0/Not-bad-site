@@ -1,0 +1,18 @@
+type: Wall
+name: Rapid Wall V
+description: Deflects bullets and arcs lightning at attackers.
+category: defense
+research: rapid-wall-4
+requirements: [
+  surge-alloy/6
+  phase-fabric/3
+]
+size: 1
+health: 1700
+armor: 6
+lightningChance: 0.05
+lightningDamage: 25
+lightningLength: 17
+lightningColor: "ff543c"
+chanceDeflect: 10
+flashHit: true

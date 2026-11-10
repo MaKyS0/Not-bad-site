@@ -1,0 +1,23 @@
+type: Drill
+name: Rapid Drill II
+description: Mines ore up to hardness 3, including titanium. Water speeds it up.
+category: production
+research: rapid-drill-1
+requirements: [
+  copper/45
+  graphite/30
+  silicon/15
+]
+size: 2
+health: 360
+tier: 3
+drillTime: 320
+rotateSpeed: 3.5
+consumes: {
+  liquid: {
+    liquid: water
+    amount: 0.06
+    optional: true
+    booster: true
+  }
+}

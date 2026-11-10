@@ -1,0 +1,12 @@
+type: Wall
+name: Rapid Wall II
+description: Titanium-plated wall with much more health.
+category: defense
+research: rapid-wall-1
+requirements: [
+  titanium/6
+  silicon/3
+]
+size: 1
+health: 640
+armor: 0

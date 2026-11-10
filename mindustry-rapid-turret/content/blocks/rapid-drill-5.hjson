@@ -1,0 +1,27 @@
+type: Drill
+name: Rapid Drill V
+description: Top-tier powered drill that mines ore up to hardness 6. Water speeds it up.
+category: production
+research: rapid-drill-4
+requirements: [
+  copper/200
+  silicon/180
+  titanium/150
+  thorium/150
+  plastanium/60
+  surge-alloy/40
+]
+size: 5
+health: 2250
+tier: 6
+drillTime: 150
+rotateSpeed: 7
+consumes: {
+  power: 8
+  liquid: {
+    liquid: water
+    amount: 0.16
+    optional: true
+    booster: true
+  }
+}

@@ -1,0 +1,12 @@
+type: Wall
+name: Rapid Wall I
+description: Basic reinforced wall. Cheap and sturdy.
+category: defense
+research: copper-wall
+requirements: [
+  copper/6
+  graphite/2
+]
+size: 1
+health: 420
+armor: 0
