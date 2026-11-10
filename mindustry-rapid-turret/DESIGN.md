@@ -707,3 +707,11 @@ Large walls: the small wall's sentence + " Covers 2x2 tiles." / " Занимае
    PowerTurret has `consumes.power > 0`; every `MendProjector` has the three mandatory values of note 3; `-glow`/`-top` exist, have the tile
    size and are NOT opaque; walls' main sprites are opaque; large = 4× small for health and cost; bundles have both keys for all 22 blocks.
 9. Add the 22 blocks to `tools/preview.py` (guns composited on their base with `outlined()`), and `lead: 1` to `VALUE` for `--balance`.
+
+## 18. Rapid wall redesign (replaces the sprite steps of section 2)
+
+The Rapid walls now share the frame and socket of the Aegis/Regen walls (section 15.3): steps 1, 2, 5, 7 of section 2
+(`walls2.frame`), then an `Art.octagon(c, c, 9k)` socket drawn with `Art.sunk` in steel, a raised metal plug
+`Art.octagon(c, c − k/2, 6.5k)` (`Art.plate`, depth `k`), and the emblem (`w = 6k`, `t = k`) in the tier accent on the plug.
+Tier 4: accent lines `k` thick, `6k` long, `k` px inside the top and bottom straight edges of the socket; tier 5: also left and right.
+Stats are unchanged.

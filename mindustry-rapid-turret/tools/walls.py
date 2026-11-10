@@ -1,6 +1,4 @@
 """Rapid walls I-V, small (1x1) and large (2x2). DESIGN.md section 2."""
-from PIL import ImageChops
-
 from art import Art, TIER, shade, hexc, emblem, ROMAN
 
 # health per tile, armor, cost per tile
@@ -29,35 +27,25 @@ RU = {
 
 
 def sprite(n, large):
+    """Same frame and octagon socket as the Aegis/Regen walls (DESIGN.md 15.3); the socket holds a raised armour plug
+    with the emblem instead of a crystal. Tier 4: accent lines on the top/bottom socket edges, tier 5: on all four."""
+    from walls2 import frame
     k = 2 if large else 1
     S = 32 * k
+    c = S / 2
     acc, metal, steel = TIER[n]
-    a = Art(S)
-    a.box(0, 0, S - 1, S - 1, steel)
-    ring = ImageChops.subtract(a.rect(0, 0, S - 1, S - 1), a.rect(k, k, S - 1 - k, S - 1 - k))
-    a.flat(ring, shade(steel, 0.7))
-    # metal plate, chamfered
-    a.plate(a.cham(2 * k, 2 * k, S - 1 - 2 * k, S - 1 - 2 * k, 2 * k), metal, 2 * k, k)
-    if large:   # seam cross (2px so it stays mirror symmetric), only through the metal plate
-        seam = shade(metal, 0.5)
-        a.box(2 * k, S // 2 - 1, S - 1 - 2 * k, S // 2, seam)
-        a.box(S // 2 - 1, 2 * k, S // 2, S - 1 - 2 * k, seam)
-    # recessed panel
-    p0, p1 = 8 * k, S - 1 - 8 * k
-    a.sunk(a.rect(p0, p0, p1, p1), steel, k)
-    emblem(a, S / 2, S / 2, 8 * k, k, acc)
-    # rivets
-    riv = shade(metal, 0.62)
-    for x in (4 * k, S - 5 * k):
-        for y in (4 * k, S - 5 * k):
-            a.box(x, y, x + k - 1, y + k - 1, riv)
-    # energy shielding lines
+    a = frame(n, k)
+    a.sunk(a.octagon(c, c, 9 * k), steel, k)
+    a.plate(a.octagon(c, c - k / 2, 6.5 * k), metal, k, k)
+    emblem(a, c, c, 6 * k, k, acc)
+    L = 6 * k
+    edge = int(c - 9 * k + k)
     if n >= 4:
-        a.box(p0 + 2 * k, p0 + k, p1 - 2 * k, p0 + 2 * k - 1, acc)
-        a.box(p0 + 2 * k, p1 - 2 * k + 1, p1 - 2 * k, p1 - k, acc)
+        a.box(c - L / 2, edge, c + L / 2 - 1, edge + k - 1, acc)
+        a.box(c - L / 2, S - edge - k, c + L / 2 - 1, S - 1 - edge, acc)
     if n >= 5:
-        a.box(p0 + k, p0 + 2 * k, p0 + 2 * k - 1, p1 - 2 * k, acc)
-        a.box(p1 - 2 * k + 1, p0 + 2 * k, p1 - k, p1 - 2 * k, acc)
+        a.box(edge, c - L / 2, edge + k - 1, c + L / 2 - 1, acc)
+        a.box(S - edge - k, c - L / 2, S - 1 - edge, c + L / 2 - 1, acc)
     return a.im
 
 
