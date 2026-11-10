@@ -1,6 +1,6 @@
 type: ItemTurret
 name: Rapid VI
-description: Top of the line. Six barrels, two shots per tick, surge rounds arc lightning.
+description: Top of the line. Six barrels, surge rounds arc lightning.
 category: turret
 research: rapid-5
 playerControllable: true
@@ -19,7 +19,7 @@ researchCostMultiplier: 0.2
 size: 6
 health: 12000
 range: 340
-reload: 1.0
+reload: 3
 inaccuracy: 1.5
 rotateSpeed: 26
 recoil: 2.4
@@ -31,7 +31,6 @@ targetGround: true
 heatColor: "9678ff"
 shootEffect: shootBig
 smokeEffect: shootBigSmoke
-ammoUseEffect: casing3
 coolant: {
   type: ConsumeCoolant
   amount: 0.6
@@ -40,12 +39,12 @@ shoot: {
   type: ShootAlternate
   barrels: 6
   spread: 5.0
-  shots: 2
+  shots: 1
 }
 ammoTypes: {
   copper: {
     type: BasicBulletType
-    damage: 36
+    damage: 216
     speed: 4.0
     lifetime: 93
     width: 11
@@ -54,14 +53,11 @@ ammoTypes: {
     backColor: "9678ff"
     hitEffect: hitBulletBig
     despawnEffect: hitBulletBig
-    trailLength: 10
-    trailWidth: 2.4
-    trailColor: "9678ff"
     ammoMultiplier: 3
   }
   graphite: {
     type: BasicBulletType
-    damage: 64
+    damage: 384
     speed: 4.4
     lifetime: 85
     width: 12
@@ -70,15 +66,12 @@ ammoTypes: {
     backColor: "9678ff"
     hitEffect: hitBulletBig
     despawnEffect: hitBulletBig
-    trailLength: 10
-    trailWidth: 2.4
-    trailColor: "9678ff"
     ammoMultiplier: 4
     reloadMultiplier: 0.85
   }
   silicon: {
     type: BasicBulletType
-    damage: 46
+    damage: 276
     speed: 4.4
     lifetime: 85
     width: 11
@@ -87,9 +80,6 @@ ammoTypes: {
     backColor: "9678ff"
     hitEffect: hitBulletBig
     despawnEffect: hitBulletBig
-    trailLength: 10
-    trailWidth: 2.4
-    trailColor: "9678ff"
     ammoMultiplier: 5
     reloadMultiplier: 1.3
     homingPower: 0.08
@@ -97,7 +87,7 @@ ammoTypes: {
   }
   thorium: {
     type: BasicBulletType
-    damage: 90
+    damage: 540
     speed: 5.0
     lifetime: 76
     width: 13
@@ -106,9 +96,6 @@ ammoTypes: {
     backColor: "9678ff"
     hitEffect: hitBulletBig
     despawnEffect: hitBulletBig
-    trailLength: 10
-    trailWidth: 2.4
-    trailColor: "9678ff"
     ammoMultiplier: 4
     pierce: true
     pierceCap: 3
@@ -116,7 +103,7 @@ ammoTypes: {
   }
   surge-alloy: {
     type: BasicBulletType
-    damage: 80
+    damage: 480
     speed: 5.4
     lifetime: 70
     width: 13
@@ -125,15 +112,12 @@ ammoTypes: {
     backColor: "9678ff"
     hitEffect: hitBulletBig
     despawnEffect: hitBulletBig
-    trailLength: 10
-    trailWidth: 2.4
-    trailColor: "9678ff"
     ammoMultiplier: 5
     pierce: true
     pierceCap: 2
     lightning: 2
     lightningLength: 7
-    lightningDamage: 26
+    lightningDamage: 160
     lightningColor: "9678ff"
   }
 }

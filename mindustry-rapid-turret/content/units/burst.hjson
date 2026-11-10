@@ -22,14 +22,13 @@ weapons: [
     top: false
     mirror: true
     alternate: true
-    reload: 6
+    reload: 8
     recoil: 1
     shootY: 3.25
     inaccuracy: 3.5
-    ejectEffect: casing1
     bullet: {
       type: BasicBulletType
-      damage: 9
+      damage: 12
       speed: 3.8
       lifetime: 35
       width: 7

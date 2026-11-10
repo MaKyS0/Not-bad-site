@@ -31,11 +31,10 @@ weapons: [
     mirror: false
     rotate: true
     rotateSpeed: 4
-    reload: 6
+    reload: 8
     recoil: 1.8
     shootY: 6
     inaccuracy: 2.5
-    ejectEffect: casing2
     shoot: {
       type: ShootAlternate
       barrels: 3
@@ -43,7 +42,7 @@ weapons: [
     }
     bullet: {
       type: BasicBulletType
-      damage: 21
+      damage: 28
       speed: 4.8
       lifetime: 53
       width: 9
@@ -52,9 +51,6 @@ weapons: [
       backColor: "ff6ed7"
       hitEffect: hitBulletBig
       despawnEffect: hitBulletBig
-      trailLength: 7
-      trailWidth: 1.6
-      trailColor: "ff6ed7"
     }
   }
   {
@@ -65,11 +61,10 @@ weapons: [
     mirror: false
     rotate: true
     rotateSpeed: 4
-    reload: 6
+    reload: 8
     recoil: 1.8
     shootY: 6
     inaccuracy: 2.5
-    ejectEffect: casing2
     shoot: {
       type: ShootAlternate
       barrels: 3
@@ -77,7 +72,7 @@ weapons: [
     }
     bullet: {
       type: BasicBulletType
-      damage: 21
+      damage: 28
       speed: 4.8
       lifetime: 53
       width: 9
@@ -86,9 +81,6 @@ weapons: [
       backColor: "ff6ed7"
       hitEffect: hitBulletBig
       despawnEffect: hitBulletBig
-      trailLength: 7
-      trailWidth: 1.6
-      trailColor: "ff6ed7"
     }
   }
   {

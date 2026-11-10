@@ -28,7 +28,6 @@ heatColor: "ff8c28"
 shootSound: shotgun
 shootEffect: shootSmall
 smokeEffect: shootSmallSmoke
-ammoUseEffect: casing2
 coolant: {
   type: ConsumeCoolant
   amount: 0.1

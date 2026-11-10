@@ -1,6 +1,6 @@
 type: PowerTurret
 name: Pulse III
-description: Three emitters; bolts pierce through two targets.
+description: Three emitters, 20 bolts a second; bolts pierce through two targets.
 category: turret
 research: rapid-pulse-2
 playerControllable: true
@@ -16,7 +16,7 @@ researchCostMultiplier: 0.8
 size: 3
 health: 1900
 range: 215
-reload: 2
+reload: 3
 inaccuracy: 0
 rotateSpeed: 18
 recoil: 1.0
@@ -41,7 +41,7 @@ shoot: {
 }
 shootType: {
   type: LaserBoltBulletType
-  damage: 17
+  damage: 26
   speed: 9
   lifetime: 26
   width: 3

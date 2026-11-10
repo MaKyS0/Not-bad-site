@@ -30,6 +30,10 @@ UNITS = [
          en_d="Tier 5 mech. A colossal walker whose four-barrel guns pierce armour.",
          ru_d="Мех 5 тира. Колоссальный шагоход, чьи четырёхствольные пушки пробивают броню."),
 ]
+
+import perf   # noqa: E402  fewer, heavier bullets (same DPS)
+perf.apply_units(UNITS)
+
 RECIPES = {   # factory plans: time, requirements
     "pellet": (1200, [("silicon", 25), ("lead", 15), ("graphite", 10)]),
     "burst": (2400, [("silicon", 80), ("graphite", 50), ("titanium", 30)]),
@@ -247,7 +251,6 @@ def hjson(u):
     W, H, n, bw = u['gun']
     shoot_y = round(H / 2 / 4 - 1, 2)
     eff = "hitBulletSmall" if T <= 3 else "hitBulletBig"
-    casing = "casing1" if T <= 2 else "casing2" if T <= 4 else "casing3"
     bl = [
         "type: BasicBulletType",
         f"damage: {u['dmg']}",
@@ -260,8 +263,6 @@ def hjson(u):
         f"hitEffect: {eff}",
         f"despawnEffect: {eff}",
     ]
-    if T >= 3:
-        bl += [f"trailLength: {3 + T}", f"trailWidth: {round(0.8 + 0.2 * T, 2)}", f"trailColor: {hexc(acc)}"]
     if T == 5:
         bl += ["pierce: true", "pierceCap: 2"]
     wl = [
@@ -275,7 +276,6 @@ def hjson(u):
         f"recoil: {[0.8, 1, 1.3, 1.8, 2.4][T - 1]}",
         f"shootY: {shoot_y}",
         f"inaccuracy: {[4, 3.5, 3, 2.5, 2][T - 1]}",
-        f"ejectEffect: {casing}",
         "bullet: {",
     ] + ["  " + l for l in bl] + ["}"]
     lines = [
