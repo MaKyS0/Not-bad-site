@@ -20,7 +20,7 @@ MARGIN = 5
 # "copper equivalents" (VALUE below) and cost per DPS climbs with the tier the way it does in vanilla
 # (Duo ~1, Salvo ~2.6, Spectre ~10): 2.8, 3.5, 6, 8, 9, 9 for tiers I-VI. `python3 tools/gen.py --balance`
 # prints the table. build_mult / research_mult keep build time and research cost of the big tiers sane.
-VALUE = {"copper": 1, "graphite": 2, "silicon": 2.5, "titanium": 3, "thorium": 5, "plastanium": 8,
+VALUE = {"copper": 1, "lead": 1, "graphite": 2, "silicon": 2.5, "titanium": 3, "thorium": 5, "plastanium": 8,
          "surge-alloy": 12, "phase-fabric": 10}
 RELOAD_MULT = {"copper": 1, "graphite": 0.85, "silicon": 1.3, "thorium": 1, "surge-alloy": 1}
 
@@ -343,8 +343,8 @@ def main():
         key = f"block.rapid-turret-{name}"
         en += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {EN_DESC[t]}"]
         ru += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {RU_DESC[t]}"]
-    import walls, drills, forge, units, conveyors, air, hangar
-    for mod in (walls, drills, forge, units, conveyors, air, hangar):
+    import walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2
+    for mod in (walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2):
         e, r = mod.build(root)
         en += e
         ru += r
@@ -375,6 +375,10 @@ def balance():
         best = max(dps(c, i) for i in c['dmg'])
         secs = sum(cost[i] * int(n) for i, n in req) * 1.4 * c['build_mult'] / 60
         print(f"{ROMAN[t]:>4} {value:>7.0f} {best:>9.0f} {value / best:>9.1f} {secs:>8.0f}")
+    import turrets2
+    print("\nturret         value  best DPS  value/DPS")
+    for name, value, best in turrets2.balance_rows():
+        print(f"{name:<13} {value:>6.0f} {best:>9.0f} {value / best:>9.1f}")
 
 
 if __name__ == "__main__":

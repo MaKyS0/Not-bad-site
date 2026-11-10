@@ -1,0 +1,70 @@
+type: ItemTurret
+name: Buckshot I
+description: Tiny rapid shotgun. Short range, three pellets per shot. Accepts scrap.
+category: turret
+research: hail
+playerControllable: true
+requirements: [
+  copper/80
+  lead/60
+  graphite/40
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 1
+size: 1
+health: 420
+range: 95
+reload: 12
+inaccuracy: 3
+velocityRnd: 0.15
+rotateSpeed: 12
+recoil: 1.5
+shake: 0.5
+shootY: 2.75
+maxAmmo: 30
+targetAir: true
+targetGround: true
+heatColor: "ff8c28"
+shootSound: shotgun
+shootEffect: shootSmall
+smokeEffect: shootSmallSmoke
+ammoUseEffect: casing2
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.1
+}
+shoot: {
+  type: ShootSpread
+  shots: 3
+  spread: 9
+}
+ammoTypes: {
+  scrap: {
+    type: BasicBulletType
+    damage: 7
+    speed: 5.5
+    lifetime: 19
+    width: 6
+    height: 8
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletSmall
+    despawnEffect: hitBulletSmall
+    ammoMultiplier: 2
+    knockback: 0.2
+  }
+  graphite: {
+    type: BasicBulletType
+    damage: 10
+    speed: 5.5
+    lifetime: 19
+    width: 6
+    height: 8
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletSmall
+    despawnEffect: hitBulletSmall
+    ammoMultiplier: 3
+    knockback: 0.4
+  }
+}

@@ -1,0 +1,20 @@
+type: ShieldWall
+name: Large Aegis Wall II
+description: Titanium shield wall with a stronger, faster shield. Covers 2x2 tiles.
+category: defense
+research: rapid-shield-wall-2
+requirements: [
+  titanium/24
+  silicon/16
+]
+size: 2
+health: 1920
+armor: 0
+shieldHealth: 880
+regenSpeed: 1.4
+breakCooldown: 420
+conductivePower: true
+glowColor: "5ad7ff80"
+consumes: {
+  power: 0.12
+}

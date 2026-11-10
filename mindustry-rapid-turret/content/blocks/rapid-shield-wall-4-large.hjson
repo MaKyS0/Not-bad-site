@@ -1,0 +1,23 @@
+type: ShieldWall
+name: Large Aegis Wall IV
+description: The strongest shield; the wall under it also deflects bullets. Covers 2x2 tiles.
+category: defense
+research: rapid-shield-wall-4
+requirements: [
+  surge-alloy/24
+  phase-fabric/12
+  silicon/16
+]
+size: 2
+health: 4000
+armor: 4
+shieldHealth: 2400
+regenSpeed: 3.6
+breakCooldown: 300
+conductivePower: true
+glowColor: "ff6ed780"
+consumes: {
+  power: 0.32
+}
+chanceDeflect: 8
+flashHit: true

@@ -1,0 +1,21 @@
+type: ShieldWall
+name: Aegis Wall III
+description: Armoured thorium shield wall.
+category: defense
+research: rapid-shield-wall-2
+requirements: [
+  thorium/6
+  plastanium/2
+  silicon/4
+]
+size: 1
+health: 700
+armor: 2
+shieldHealth: 380
+regenSpeed: 0.55
+breakCooldown: 360
+conductivePower: true
+glowColor: "78ff9680"
+consumes: {
+  power: 0.05
+}

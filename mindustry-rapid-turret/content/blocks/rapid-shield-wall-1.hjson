@@ -1,0 +1,20 @@
+type: ShieldWall
+name: Aegis Wall I
+description: Wall with a small energy shield. Needs power and passes it to neighbouring shield walls.
+category: defense
+research: rapid-wall-1
+requirements: [
+  copper/6
+  silicon/3
+]
+size: 1
+health: 300
+armor: 0
+shieldHealth: 120
+regenSpeed: 0.2
+breakCooldown: 480
+conductivePower: true
+glowColor: "ffbe5080"
+consumes: {
+  power: 0.02
+}

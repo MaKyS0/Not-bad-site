@@ -1,0 +1,71 @@
+type: ItemTurret
+name: Buckshot II
+description: Four pellets per shot, devastating up close.
+category: turret
+research: rapid-buckshot-1
+playerControllable: true
+requirements: [
+  copper/250
+  lead/150
+  graphite/120
+  titanium/70
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 1
+size: 2
+health: 1300
+range: 115
+reload: 9
+inaccuracy: 3
+velocityRnd: 0.15
+rotateSpeed: 13
+recoil: 2.0
+shake: 1
+shootY: 6.75
+maxAmmo: 40
+targetAir: true
+targetGround: true
+heatColor: "ff8c28"
+shootSound: shotgun
+shootEffect: shootSmall
+smokeEffect: shootSmallSmoke
+ammoUseEffect: casing2
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.2
+}
+shoot: {
+  type: ShootSpread
+  shots: 4
+  spread: 8
+}
+ammoTypes: {
+  scrap: {
+    type: BasicBulletType
+    damage: 11
+    speed: 5.5
+    lifetime: 23
+    width: 7
+    height: 9
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletSmall
+    despawnEffect: hitBulletSmall
+    ammoMultiplier: 2
+    knockback: 0.2
+  }
+  graphite: {
+    type: BasicBulletType
+    damage: 16
+    speed: 5.5
+    lifetime: 23
+    width: 7
+    height: 9
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletSmall
+    despawnEffect: hitBulletSmall
+    ammoMultiplier: 3
+    knockback: 0.4
+  }
+}

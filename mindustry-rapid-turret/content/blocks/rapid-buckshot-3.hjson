@@ -1,0 +1,87 @@
+type: ItemTurret
+name: Buckshot III
+description: Five pellets per shot; thorium pellets pierce and push enemies back.
+category: turret
+research: rapid-buckshot-2
+playerControllable: true
+requirements: [
+  copper/600
+  graphite/400
+  titanium/350
+  thorium/220
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 0.8
+size: 3
+health: 2600
+range: 135
+reload: 7
+inaccuracy: 3
+velocityRnd: 0.15
+rotateSpeed: 14
+recoil: 2.5
+shake: 1.5
+shootY: 10.75
+maxAmmo: 50
+targetAir: true
+targetGround: true
+heatColor: "ff8c28"
+shootSound: shotgun
+shootEffect: shootBig
+smokeEffect: shootBigSmoke
+ammoUseEffect: casing3
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.3
+}
+shoot: {
+  type: ShootSpread
+  shots: 5
+  spread: 7
+}
+ammoTypes: {
+  scrap: {
+    type: BasicBulletType
+    damage: 17
+    speed: 5.5
+    lifetime: 27
+    width: 8
+    height: 10
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletBig
+    despawnEffect: hitBulletBig
+    ammoMultiplier: 2
+    knockback: 0.2
+  }
+  graphite: {
+    type: BasicBulletType
+    damage: 24
+    speed: 5.5
+    lifetime: 27
+    width: 8
+    height: 10
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletBig
+    despawnEffect: hitBulletBig
+    ammoMultiplier: 3
+    knockback: 0.4
+  }
+  thorium: {
+    type: BasicBulletType
+    damage: 30
+    speed: 5.5
+    lifetime: 27
+    width: 8
+    height: 10
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletBig
+    despawnEffect: hitBulletBig
+    ammoMultiplier: 3
+    knockback: 0.8
+    pierce: true
+    pierceCap: 2
+  }
+}

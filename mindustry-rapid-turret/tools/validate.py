@@ -154,6 +154,34 @@ def main():
         if u['turret']:
             sprite(f"sprites/units/{n}-turret.png", u['turret'][:2], border=4)
 
+    # Part 3: Pulse / Buckshot turrets, Aegis / Regen walls
+    import turrets2
+    import walls2
+    for line, table in (("pulse", turrets2.PULSE), ("buckshot", turrets2.BUCK)):
+        for n, p in table.items():
+            S = p['size'] * 32
+            sprite(f"sprites/blocks/rapid-{line}-{n}.png", (S, S), border=5)
+            sprite(f"sprites/blocks/rapid-{line}-{n}-heat.png", (S, S), border=5)
+            sprite(f"sprites/blocks/rapid-{line}-{n}-base.png", (S, S))
+    for fam, table, layer in (("shield", walls2.AEGIS, "-glow"), ("regen", walls2.REGEN, "-top")):
+        for n in table:
+            for sfx, S in (("", 32), ("-large", 64)):
+                name = f"rapid-{fam}-wall-{n}{sfx}"
+                sprite(f"sprites/blocks/{name}.png", (S, S), opaque=True)
+                sprite(f"sprites/blocks/{name}{layer}.png", (S, S))
+                p = f"{ROOT}/sprites/blocks/{name}{layer}.png"
+                if os.path.exists(p) and Image.open(p).convert("RGBA").getchannel("A").getextrema()[0] == 255:
+                    err(f"{name}{layer}: overlay layer is fully opaque")
+            small = data.get(f"{ROOT}/content/blocks/rapid-{fam}-wall-{n}.hjson")
+            large = data.get(f"{ROOT}/content/blocks/rapid-{fam}-wall-{n}-large.hjson")
+            if small and large:
+                if large["health"] != 4 * small["health"]:
+                    err(f"rapid-{fam}-wall-{n}-large: health is not 4x the small wall")
+                sc = {e.split("/")[0]: int(e.split("/")[1]) for e in small["requirements"]}
+                lc = {e.split("/")[0]: int(e.split("/")[1]) for e in large["requirements"]}
+                if lc != {k: 4 * v for k, v in sc.items()}:
+                    err(f"rapid-{fam}-wall-{n}-large: cost is not 4x the small wall")
+
     # bundles
     bundles = {}
     for b in ("bundle.properties", "bundle_ru.properties"):
@@ -212,7 +240,14 @@ CLASSES = {"Wall": "mindustry.world.blocks.defense.Wall", "Drill": "mindustry.wo
            "UnitFactory": "mindustry.world.blocks.units.UnitFactory",
            "ItemTurret": "mindustry.world.blocks.defense.turrets.ItemTurret",
            "mech": "mindustry.type.UnitType", "flying": "mindustry.type.UnitType",
-           "Conveyor": "mindustry.world.blocks.distribution.Conveyor"}
+           "Conveyor": "mindustry.world.blocks.distribution.Conveyor",
+           "PowerTurret": "mindustry.world.blocks.defense.turrets.PowerTurret",
+           "ShieldWall": "mindustry.world.blocks.defense.ShieldWall",
+           "MendProjector": "mindustry.world.blocks.defense.MendProjector"}
+BULLETS = {"BasicBulletType": "mindustry.entities.bullet.BasicBulletType",
+           "LaserBoltBulletType": "mindustry.entities.bullet.LaserBoltBulletType"}
+PATTERN = "mindustry.entities.pattern."
+EFFECT_KEYS = {"shootEffect", "smokeEffect", "ammoUseEffect", "hitEffect", "despawnEffect", "ejectEffect"}
 WEAPON = "mindustry.type.Weapon"
 BULLET = "mindustry.entities.bullet.BasicBulletType"
 
@@ -239,9 +274,48 @@ def check_fields(data):
             check_keys(w, WEAPON, rel + " weapon")
             if isinstance(w.get("bullet"), dict):
                 check_keys(w["bullet"], BULLET, rel + " weapon bullet")
+        bullets = []
         if d.get("type") == "ItemTurret":
-            for item, b in d.get("ammoTypes", {}).items():
-                check_keys(b, BULLET, f"{rel} ammo {item}")
+            bullets = [(f"ammo {i}", b) for i, b in d.get("ammoTypes", {}).items()]
+            items = static_names("mindustry.content.Items")
+            for i in d.get("ammoTypes", {}):
+                if i.replace("-", "") not in {x.lower() for x in items}:
+                    err(f"{rel}: ammo key {i!r} is not an item")
+        if d.get("type") == "PowerTurret":
+            bullets = [("shootType", d.get("shootType", {}))]
+            if not d.get("consumes", {}).get("power", 0) > 0:
+                err(f"{rel}: PowerTurret without consumes.power")
+        for label, b in bullets:
+            check_keys(b, BULLETS.get(b.get("type"), BULLET), f"{rel} {label}")
+            if "turret" in d.get("category", "") and b.get("speed", 0) * b.get("lifetime", 0) < d.get("range", 0) * 0.98:
+                err(f"{rel} {label}: speed*lifetime {b.get('speed', 0) * b.get('lifetime', 0)} < range {d.get('range')}")
+        if isinstance(d.get("shoot"), dict):
+            check_keys(d["shoot"], PATTERN + d["shoot"].get("type", "ShootPattern"), rel + " shoot")
+        fx, snd = static_names("mindustry.content.Fx"), static_names("mindustry.gen.Sounds")
+        def walk(o):
+            if isinstance(o, dict):
+                for k, v in o.items():
+                    if k in EFFECT_KEYS and isinstance(v, str) and v not in fx:
+                        err(f"{rel}: effect {v!r} does not exist")
+                    if k == "shootSound" and v not in snd:
+                        err(f"{rel}: sound {v!r} does not exist")
+                    walk(v)
+            elif isinstance(o, list):
+                for e in o:
+                    walk(e)
+        walk(d)
+        if d.get("type") == "MendProjector":
+            for k, v in (("range", 2), ("phaseBoost", 0), ("phaseRangeBoost", 0)):
+                if d.get(k) != v:
+                    err(f"{rel}: MendProjector wall needs {k}: {v}")
+
+
+def static_names(cls):
+    """Public static field names of a game class (javap, static inspection only)."""
+    if cls not in _cache:
+        out = subprocess.run(["javap", "-p", "-cp", JAR, cls], capture_output=True, text=True).stdout
+        _cache[cls] = ({m.group(1) for m in re.finditer(r"static\b.*?(\w+);", out)}, None)
+    return _cache[cls][0]
 
 
 if __name__ == "__main__":

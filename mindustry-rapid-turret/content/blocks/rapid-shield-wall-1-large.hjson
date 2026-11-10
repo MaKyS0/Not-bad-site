@@ -1,0 +1,20 @@
+type: ShieldWall
+name: Large Aegis Wall I
+description: Wall with a small energy shield. Needs power and passes it to neighbouring shield walls. Covers 2x2 tiles.
+category: defense
+research: rapid-shield-wall-1
+requirements: [
+  copper/24
+  silicon/12
+]
+size: 2
+health: 1200
+armor: 0
+shieldHealth: 480
+regenSpeed: 0.8
+breakCooldown: 480
+conductivePower: true
+glowColor: "ffbe5080"
+consumes: {
+  power: 0.08
+}

@@ -1,0 +1,49 @@
+type: PowerTurret
+name: Pulse I
+description: Tiny laser turret. Needs power instead of ammo and fires 12 bolts a second.
+category: turret
+research: arc
+playerControllable: true
+requirements: [
+  copper/90
+  lead/90
+  silicon/40
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 1
+size: 1
+health: 320
+range: 130
+reload: 5
+inaccuracy: 0
+rotateSpeed: 14
+recoil: 0.5
+shake: 0
+shootY: 2.75
+targetAir: true
+targetGround: true
+heatColor: "ffe860"
+shootSound: lasershoot
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.1
+}
+consumes: {
+  power: 2.5
+}
+shootType: {
+  type: LaserBoltBulletType
+  damage: 9
+  speed: 7
+  lifetime: 21
+  width: 2
+  height: 8
+  backColor: "ffe860"
+  frontColor: "ffffff"
+  hitColor: "ffe860"
+  lightColor: "ffe860"
+  hitEffect: hitLaserColor
+  despawnEffect: hitLaserColor
+  smokeEffect: none
+  shootEffect: shootSmallColor
+}

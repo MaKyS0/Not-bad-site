@@ -1,0 +1,59 @@
+type: PowerTurret
+name: Pulse III
+description: Three emitters; bolts pierce through two targets.
+category: turret
+research: rapid-pulse-2
+playerControllable: true
+requirements: [
+  copper/400
+  lead/400
+  silicon/320
+  titanium/260
+  thorium/100
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 0.8
+size: 3
+health: 1900
+range: 215
+reload: 2
+inaccuracy: 0
+rotateSpeed: 18
+recoil: 1.0
+shake: 0
+shootY: 10.75
+targetAir: true
+targetGround: true
+heatColor: "ffe860"
+shootSound: lasershoot
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.3
+}
+consumes: {
+  power: 13
+}
+shoot: {
+  type: ShootAlternate
+  barrels: 3
+  spread: 4.5
+  shots: 1
+}
+shootType: {
+  type: LaserBoltBulletType
+  damage: 17
+  speed: 9
+  lifetime: 26
+  width: 3
+  height: 12
+  backColor: "ffe860"
+  frontColor: "ffffff"
+  hitColor: "ffe860"
+  lightColor: "ffe860"
+  hitEffect: hitLaserColor
+  despawnEffect: hitLaserColor
+  smokeEffect: none
+  shootEffect: shootBigColor
+  pierce: true
+  pierceCap: 2
+}

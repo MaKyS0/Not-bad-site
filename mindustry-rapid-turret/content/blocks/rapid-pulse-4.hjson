@@ -1,0 +1,61 @@
+type: PowerTurret
+name: Pulse IV
+description: Four emitters, a bolt every tick, pierces three targets. Very power hungry.
+category: turret
+research: rapid-pulse-3
+playerControllable: true
+requirements: [
+  copper/1000
+  lead/900
+  silicon/800
+  titanium/700
+  thorium/350
+  plastanium/200
+  surge-alloy/100
+]
+buildCostMultiplier: 0.7
+researchCostMultiplier: 0.5
+size: 4
+health: 3400
+range: 250
+reload: 1
+inaccuracy: 0
+rotateSpeed: 20
+recoil: 1.2
+shake: 0
+shootY: 14.75
+targetAir: true
+targetGround: true
+heatColor: "ffe860"
+shootSound: lasershoot
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.4
+}
+consumes: {
+  power: 26
+}
+shoot: {
+  type: ShootAlternate
+  barrels: 4
+  spread: 5
+  shots: 1
+}
+shootType: {
+  type: LaserBoltBulletType
+  damage: 20
+  speed: 10
+  lifetime: 27
+  width: 3.5
+  height: 14
+  backColor: "ffe860"
+  frontColor: "ffffff"
+  hitColor: "ffe860"
+  lightColor: "ffe860"
+  hitEffect: hitLaserColor
+  despawnEffect: hitLaserColor
+  smokeEffect: none
+  shootEffect: shootBigColor
+  pierce: true
+  pierceCap: 3
+}

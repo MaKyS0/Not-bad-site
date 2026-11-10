@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Design-review previews: python3 tools/preview.py <output dir>
 
-Writes walls.png, drills.png, units.png, forge.png, conveyors.png, air.png, hangar.png (each scaled 4x, NEAREST, dark background)."""
+Writes walls.png, drills.png, units.png, forge.png, conveyors.png, air.png, hangar.png,
+turrets2.png, walls2.png (each scaled 4x, NEAREST, dark background)."""
 import os
 import sys
 from PIL import Image
@@ -178,6 +179,52 @@ def hangar(out):
     sheet([[up(base), up(comp)]]).save(out)
 
 
+def turrets2(out):
+    """Pulse and Buckshot: gun outlined on its base, then the same with the heat layer lit in the line glow colour."""
+    import turrets2 as t2
+    rows = []
+    for line, table, glow in (("pulse", t2.PULSE, t2.P_GLOW), ("buckshot", t2.BUCK, t2.B_GLOW)):
+        row = []
+        for n in table:
+            name = f"sprites/blocks/rapid-{line}-{n}"
+            img = load(f"{name}-base.png")
+            img.alpha_composite(outlined(load(f"{name}.png")))
+            hot = img.copy()
+            heat = Image.new("RGBA", img.size, glow + (0,))
+            heat.putalpha(load(f"{name}-heat.png").getchannel("A"))
+            hot.alpha_composite(heat)
+            row += [up(img), up(hot)]
+        rows.append(row)
+    sheet(rows).save(out)
+
+
+def walls2(out):
+    """Aegis and Regen walls: small, large, each with its overlay lit; plus a 3x2 run of tier-2 small walls."""
+    import walls2 as w2
+    rows = []
+    for fam, table, layer, col in (("shield", w2.AEGIS, "-glow", None), ("regen", w2.REGEN, "-top", w2.HEAL)):
+        row = []
+        for n in table:
+            for sfx in ("", "-large"):
+                name = f"sprites/blocks/rapid-{fam}-wall-{n}{sfx}"
+                img = load(f"{name}.png")
+                lit = img.copy()
+                ov = load(f"{name}{layer}.png")
+                c = col or w2.TIER[n][0]
+                glow = Image.new("RGBA", img.size, c + (0,))
+                glow.putalpha(ov.getchannel("A").point(lambda v: v // 2))
+                lit.alpha_composite(glow)
+                row += [up(img), up(lit)]
+        rows.append(row)
+    for fam in ("shield", "regen"):
+        run = Image.new("RGBA", (96, 64), BG)
+        for x in range(3):
+            for y in range(2):
+                run.alpha_composite(load(f"sprites/blocks/rapid-{fam}-wall-2.png"), (x * 32, y * 32))
+        rows.append([up(run)])
+    sheet(rows).save(out)
+
+
 def main():
     d = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(d, exist_ok=True)
@@ -188,6 +235,8 @@ def main():
     conveyors(f"{d}/conveyors.png")
     airs(f"{d}/air.png")
     hangar(f"{d}/hangar.png")
+    turrets2(f"{d}/turrets2.png")
+    walls2(f"{d}/walls2.png")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,56 @@
+type: PowerTurret
+name: Pulse II
+description: Twin emitters, 20 laser bolts a second, no ammo needed.
+category: turret
+research: rapid-pulse-1
+playerControllable: true
+requirements: [
+  copper/150
+  lead/150
+  silicon/120
+  titanium/80
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 1
+size: 2
+health: 1000
+range: 175
+reload: 3
+inaccuracy: 0
+rotateSpeed: 16
+recoil: 0.8
+shake: 0
+shootY: 6.75
+targetAir: true
+targetGround: true
+heatColor: "ffe860"
+shootSound: lasershoot
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.2
+}
+consumes: {
+  power: 6
+}
+shoot: {
+  type: ShootAlternate
+  barrels: 2
+  spread: 3.5
+  shots: 1
+}
+shootType: {
+  type: LaserBoltBulletType
+  damage: 13
+  speed: 8
+  lifetime: 24
+  width: 2.5
+  height: 10
+  backColor: "ffe860"
+  frontColor: "ffffff"
+  hitColor: "ffe860"
+  lightColor: "ffe860"
+  hitEffect: hitLaserColor
+  despawnEffect: hitLaserColor
+  smokeEffect: none
+  shootEffect: shootSmallColor
+}

@@ -1,0 +1,89 @@
+type: ItemTurret
+name: Buckshot IV
+description: Seven pellets twelve times a second. Shreds anything that gets close.
+category: turret
+research: rapid-buckshot-3
+playerControllable: true
+requirements: [
+  copper/1400
+  graphite/900
+  titanium/800
+  thorium/600
+  plastanium/350
+  surge-alloy/150
+]
+buildCostMultiplier: 0.7
+researchCostMultiplier: 0.5
+size: 4
+health: 4800
+range: 160
+reload: 5
+inaccuracy: 3
+velocityRnd: 0.15
+rotateSpeed: 15
+recoil: 3.0
+shake: 2
+shootY: 14.75
+maxAmmo: 60
+targetAir: true
+targetGround: true
+heatColor: "ff8c28"
+shootSound: shotgun
+shootEffect: shootBig
+smokeEffect: shootBigSmoke
+ammoUseEffect: casing3
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.4
+}
+shoot: {
+  type: ShootSpread
+  shots: 7
+  spread: 6
+}
+ammoTypes: {
+  scrap: {
+    type: BasicBulletType
+    damage: 21
+    speed: 5.5
+    lifetime: 31
+    width: 9
+    height: 11
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletBig
+    despawnEffect: hitBulletBig
+    ammoMultiplier: 2
+    knockback: 0.2
+  }
+  graphite: {
+    type: BasicBulletType
+    damage: 30
+    speed: 5.5
+    lifetime: 31
+    width: 9
+    height: 11
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletBig
+    despawnEffect: hitBulletBig
+    ammoMultiplier: 3
+    knockback: 0.4
+  }
+  thorium: {
+    type: BasicBulletType
+    damage: 38
+    speed: 5.5
+    lifetime: 31
+    width: 9
+    height: 11
+    frontColor: "fff2d8"
+    backColor: "ff8c28"
+    hitEffect: hitBulletBig
+    despawnEffect: hitBulletBig
+    ammoMultiplier: 3
+    knockback: 0.8
+    pierce: true
+    pierceCap: 3
+  }
+}
