@@ -1,0 +1,85 @@
+type: naval
+name: Cutter
+description: Tier 2 warship. A twin turret on the bow and a flak gun on the stern that shoots down aircraft.
+research: {
+  parent: skiff
+  requirements: [
+    silicon/1800
+    metaglass/1200
+    titanium/900
+  ]
+}
+health: 900
+armor: 5
+speed: 0.9
+accel: 0.3
+drag: 0.15
+rotateSpeed: 2.6
+hitSize: 13
+faceTarget: false
+trailLength: 20
+waveTrailX: 4
+waveTrailY: -7
+trailScl: 1.7
+weapons: [
+  {
+    name: cutter-turret
+    x: 0
+    y: 4
+    top: true
+    mirror: false
+    rotate: true
+    rotateSpeed: 7
+    reload: 5
+    recoil: 1
+    shootY: 3
+    inaccuracy: 3.5
+    ejectEffect: casing1
+    shoot: {
+      type: ShootAlternate
+      barrels: 2
+      spread: 1.5
+    }
+    bullet: {
+      type: BasicBulletType
+      damage: 8
+      speed: 3.8
+      lifetime: 47
+      width: 7
+      height: 11.0
+      frontColor: "cef3ff"
+      backColor: "5ad7ff"
+      hitEffect: hitBulletSmall
+      despawnEffect: hitBulletSmall
+    }
+  }
+  {
+    name: cutter-flak
+    x: 0
+    y: -6
+    top: true
+    mirror: false
+    rotate: true
+    rotateSpeed: 9
+    controllable: false
+    autoTarget: true
+    reload: 12
+    recoil: 0.5
+    shootY: 1.75
+    inaccuracy: 6
+    shootSound: shootSnap
+    bullet: {
+      type: FlakBulletType
+      damage: 3
+      speed: 4.2
+      lifetime: 45
+      splashDamage: 18
+      splashDamageRadius: 16
+      width: 6
+      height: 8
+      frontColor: "cef3ff"
+      backColor: "5ad7ff"
+      hitEffect: flakExplosion
+    }
+  }
+]

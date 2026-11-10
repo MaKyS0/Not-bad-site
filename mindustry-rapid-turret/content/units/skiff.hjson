@@ -1,0 +1,51 @@
+type: naval
+name: Skiff
+description: Tier 1 warship. A small patrol boat with one rapid-fire turret.
+research: {
+  parent: rapid-shipyard
+  requirements: [
+    silicon/600
+    metaglass/500
+    lead/300
+  ]
+}
+health: 350
+armor: 2
+speed: 1.05
+accel: 0.4
+drag: 0.13
+rotateSpeed: 3.3
+hitSize: 10
+faceTarget: false
+trailLength: 16
+waveTrailX: 3
+waveTrailY: -5
+trailScl: 1.3
+weapons: [
+  {
+    name: skiff-turret
+    x: 0
+    y: 1.5
+    top: true
+    mirror: false
+    rotate: true
+    rotateSpeed: 8
+    reload: 7
+    recoil: 0.8
+    shootY: 2.5
+    inaccuracy: 4
+    ejectEffect: casing1
+    bullet: {
+      type: BasicBulletType
+      damage: 5
+      speed: 3.5
+      lifetime: 43
+      width: 6
+      height: 9.5
+      frontColor: "ffecca"
+      backColor: "ffbe50"
+      hitEffect: hitBulletSmall
+      despawnEffect: hitBulletSmall
+    }
+  }
+]

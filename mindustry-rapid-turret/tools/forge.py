@@ -32,6 +32,24 @@ def base(acc=ORANGE, pad="octagon"):
                 d.line((x, 0, x, S - 1), fill=255)
                 d.line((0, x, S - 1, x), fill=255)
         a.flat(ImageChops.multiply(grid, pad_m), shade(STEEL, 0.55))
+    elif pad == "basin":
+        # water basin (shipyard), DESIGN.md 22.6
+        water = (40, 66, 104)
+        a.flat(a.cham(29, 29, 130, 130, 10), shade(STEEL, 0.62))
+        a.flat(a.cham(32, 32, 127, 127, 8), water)
+        a.flat(a.cham(40, 40, 119, 119, 6), shade(water, 0.85))
+        wave = shade(water, 1.3)
+        for y in (48, 80, 112):
+            for x in (52, 100):
+                a.box(x, y, x + 7, y, wave)
+        for y in (64, 96):
+            for x in (68, 84):
+                a.box(x, y, x + 7, y, wave)
+        for x in (67, 91):
+            a.box(x, 34, x + 1, 41, acc)
+            a.box(x, 118, x + 1, 125, acc)
+            a.box(34, x, 41, x + 1, acc)
+            a.box(118, x, 125, x + 1, acc)
     else:
         # landing pad (hangar): round lip + disc, thin inner ring, four landing ticks
         r = 0.32 * S
@@ -106,7 +124,7 @@ def notch(side, acc=ORANGE):
 
 
 def hjson(name="Rapid Forge", desc=EN, research="ground-factory", reqs=(("copper", 350), ("lead", 250), ("graphite", 150),
-          ("silicon", 200)), power=2.5, plans=None):
+          ("silicon", 200)), power=2.5, plans=None, health=1600, extra=()):
     lines = [
         "type: UnitFactory",
         f"name: {name}",
@@ -117,7 +135,8 @@ def hjson(name="Rapid Forge", desc=EN, research="ground-factory", reqs=(("copper
     ] + [f"  {i}/{n}" for i, n in reqs] + [
         "]",
         "size: 5",
-        "health: 1600",
+    ] + list(extra) + [
+        f"health: {health}",
         "consumes: {",
         f"  power: {power}",
         "}",

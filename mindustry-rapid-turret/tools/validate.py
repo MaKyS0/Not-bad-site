@@ -182,6 +182,10 @@ def main():
                 if lc != {k: 4 * v for k, v in sc.items()}:
                     err(f"rapid-{fam}-wall-{n}-large: cost is not 4x the small wall")
 
+    # Part 4: warships and the shipyard
+    import naval
+    check_naval(naval, data)
+
     # bundles
     bundles = {}
     for b in ("bundle.properties", "bundle_ru.properties"):
@@ -208,6 +212,85 @@ def main():
 
     print(f"{len(data)} hjson files checked, {len(errors)} problems")
     return 1 if errors else 0
+
+
+def symmetric(im):
+    return im.tobytes() == im.transpose(Image.FLIP_LEFT_RIGHT).tobytes()
+
+
+def check_naval(naval, data):
+    for u in naval.UNITS:
+        n, W, H = u['name'], u['W'], u['H']
+        files = [(f"sprites/units/{n}.png", (W, H)), (f"sprites/units/{n}-cell.png", (W, H)),
+                 (f"sprites/units/{n}-turret.png", (u['tur']['W'], u['tur']['H']))]
+        if u['flak']:
+            files.append((f"sprites/units/{n}-flak.png", (20, 30) if u['T'] >= 4 else (14, 22)))
+        for path, size in files:
+            sprite(path, size, border=4)
+            p = f"{ROOT}/{path}"
+            if os.path.exists(p) and not symmetric(Image.open(p).convert("RGBA")):
+                err(f"{path}: not mirror symmetric")
+        d = data.get(f"{ROOT}/content/units/{n}.hjson")
+        if not d:
+            err(f"content/units/{n}.hjson missing")
+            continue
+        if d.get("type") != "naval" or d.get("faceTarget") is not False:
+            err(f"{n}: needs type: naval and faceTarget: false")
+        for bad in ("naval", "flying", "canDrown", "engineOffset", "engineSize"):
+            if bad in d:
+                err(f"{n}: must not set {bad}")
+        p = f"{ROOT}/sprites/units/{n}.png"
+        if not os.path.exists(p):
+            continue
+        body = Image.open(p).convert("RGBA")
+        cellim = Image.open(f"{ROOT}/sprites/units/{n}-cell.png").convert("RGBA")
+        hw, ys, yt, yb, sw = u['hull'][:5]
+        row = lambda y: sum(1 for x in range(W) if body.getpixel((x, y))[3])   # noqa: E731
+        if not 2 <= row(4) <= 4 or not 2 * sw - 2 <= row(yb) <= 2 * sw or row(ys) != 2 * hw:
+            err(f"{n}: hull outline rows wrong (bow {row(4)}, stern {row(yb)}, beam {row(ys)})")
+        dark = naval.colours(u)[4]
+        for x in range(W):
+            for y in range(H):
+                if cellim.getpixel((x, y))[3] and body.getpixel((x, y))[:3] != dark:
+                    err(f"{n}-cell: pixel {(x, y)} is not over the dark bridge socket")
+                    break
+            else:
+                continue
+            break
+        for w in d.get("weapons", []):
+            if w.get("rotate") is not True:
+                err(f"{n}: weapon {w.get('name')} without rotate: true")
+            if w.get("x") == 0 and w.get("mirror") is not False:
+                err(f"{n}: centreline weapon {w.get('name')} must have mirror: false")
+            b = w.get("bullet", {})
+            if b.get("type") == "FlakBulletType":
+                if w.get("controllable") is not False or w.get("autoTarget") is not True or "collidesGround" in b:
+                    err(f"{n}: flak weapon needs controllable: false, autoTarget: true and no collidesGround")
+            mx, my = naval.mount_px(u, w.get("x", 0), w.get("y", 0))
+            if not body.getpixel((int(mx), int(my)))[3]:
+                err(f"{n}: weapon {w.get('name')} mount {(mx, my)} is not on the hull")
+            sp = f"{ROOT}/sprites/units/{w.get('name')}.png"
+            if os.path.exists(sp):
+                hgt = Image.open(sp).height
+                if abs(w.get("shootY", 0) - (hgt / 2 - 4) / 4) > 1e-6:
+                    err(f"{n}: {w.get('name')} shootY {w.get('shootY')} != (height/2-4)/4")
+        if u['spread']:
+            bars = u['tur']['bars']
+            centres = sorted({(b[0] + b[1]) / 2 for b in bars} | {u['tur']['W'] - 1 - (b[0] + b[1]) / 2 for b in bars})
+            gaps = {round(centres[i + 1] - centres[i], 3) for i in range(len(centres) - 1)}
+            if gaps != {u['spread'] * 4}:
+                err(f"{n}: barrel spacing {gaps} px does not match spread {u['spread']}")
+    y = data.get(f"{ROOT}/content/blocks/rapid-shipyard.hjson")
+    if not y:
+        err("rapid-shipyard.hjson missing")
+        return
+    if y.get("floating") is not True or "requiresWater" in y or y.get("research") != "naval-factory":
+        err("rapid-shipyard: needs floating: true, no requiresWater, research naval-factory")
+    if [p.get("unit") for p in y.get("plans", [])] != [u['name'] for u in naval.UNITS]:
+        err("rapid-shipyard: plans do not list the five warships in order")
+    sprite("sprites/blocks/rapid-shipyard.png", (160, 160), opaque=True)
+    for sfx in ("-top", "-out", "-in"):
+        sprite(f"sprites/blocks/rapid-shipyard{sfx}.png", (160, 160))
 
 
 _cache = {}
@@ -239,13 +322,14 @@ SKIP = {"type", "name", "description", "research", "consumes", "requirements", "
 CLASSES = {"Wall": "mindustry.world.blocks.defense.Wall", "Drill": "mindustry.world.blocks.production.Drill",
            "UnitFactory": "mindustry.world.blocks.units.UnitFactory",
            "ItemTurret": "mindustry.world.blocks.defense.turrets.ItemTurret",
-           "mech": "mindustry.type.UnitType", "flying": "mindustry.type.UnitType",
+           "mech": "mindustry.type.UnitType", "flying": "mindustry.type.UnitType", "naval": "mindustry.type.UnitType",
            "Conveyor": "mindustry.world.blocks.distribution.Conveyor",
            "PowerTurret": "mindustry.world.blocks.defense.turrets.PowerTurret",
            "ShieldWall": "mindustry.world.blocks.defense.ShieldWall",
            "MendProjector": "mindustry.world.blocks.defense.MendProjector"}
 BULLETS = {"BasicBulletType": "mindustry.entities.bullet.BasicBulletType",
-           "LaserBoltBulletType": "mindustry.entities.bullet.LaserBoltBulletType"}
+           "LaserBoltBulletType": "mindustry.entities.bullet.LaserBoltBulletType",
+           "FlakBulletType": "mindustry.entities.bullet.FlakBulletType"}
 PATTERN = "mindustry.entities.pattern."
 EFFECT_KEYS = {"shootEffect", "smokeEffect", "ammoUseEffect", "hitEffect", "despawnEffect", "ejectEffect"}
 WEAPON = "mindustry.type.Weapon"
@@ -273,7 +357,9 @@ def check_fields(data):
         for w in d.get("weapons", []):
             check_keys(w, WEAPON, rel + " weapon")
             if isinstance(w.get("bullet"), dict):
-                check_keys(w["bullet"], BULLET, rel + " weapon bullet")
+                check_keys(w["bullet"], BULLETS.get(w["bullet"].get("type"), BULLET), rel + " weapon bullet")
+            if isinstance(w.get("shoot"), dict):
+                check_keys(w["shoot"], PATTERN + w["shoot"].get("type", "ShootPattern"), rel + " weapon shoot")
         bullets = []
         if d.get("type") == "ItemTurret":
             bullets = [(f"ammo {i}", b) for i, b in d.get("ammoTypes", {}).items()]

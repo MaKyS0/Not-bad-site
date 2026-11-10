@@ -2,7 +2,7 @@
 """Design-review previews: python3 tools/preview.py <output dir>
 
 Writes walls.png, drills.png, units.png, forge.png, conveyors.png, air.png, hangar.png,
-turrets2.png, walls2.png (each scaled 4x, NEAREST, dark background)."""
+turrets2.png, walls2.png, naval.png, shipyard.png (each scaled 4x, NEAREST, dark background)."""
 import os
 import sys
 from PIL import Image
@@ -225,6 +225,46 @@ def walls2(out):
     sheet(rows).save(out)
 
 
+def assemble_ship(u, outline=3):
+    """Body + tinted cell + every weapon sprite at its mount (barrels up), with a simulated outline."""
+    import naval
+    W, H = u['W'], u['H']
+    pad = 16
+    img = Image.new("RGBA", (W + 2 * pad, H + 2 * pad), (0, 0, 0, 0))
+    img.alpha_composite(load(f"sprites/units/{u['name']}.png"), (pad, pad))
+    img.alpha_composite(tint(load(f"sprites/units/{u['name']}-cell.png"), (255, 211, 127)), (pad, pad))
+    mounts = [(f"{u['name']}-turret", 0, y) for y in u['guns']]
+    mounts += [(f"{u['name']}-flak", x, y) for x, y in naval.flak_mounts(u)]
+    for name, x, y in mounts:
+        w = load(f"sprites/units/{name}.png")
+        mx, my = naval.mount_px(u, x, y)
+        img.alpha_composite(w, (int(pad + mx - w.width / 2), int(pad + my - w.height / 2)))
+    return outlined(img, outline)
+
+
+def ships(out):
+    import naval
+    row = [up(assemble_ship(u)) for u in naval.UNITS]
+    raw = []
+    for u in naval.UNITS:
+        for sfx in ("", "-cell", "-turret", "-flak"):
+            p = f"sprites/units/{u['name']}{sfx}.png"
+            if os.path.exists(f"{ROOT}/{p}"):
+                raw.append(up(on_bg(load(p))))
+    sheet([row, raw]).save(out)
+
+
+def shipyard(out):
+    import naval
+    base = load("sprites/blocks/rapid-shipyard.png")
+    full = base.copy()
+    full.alpha_composite(load("sprites/blocks/rapid-shipyard-out.png"))
+    ship = assemble_ship(naval.BY_NAME["corvette"])
+    full.alpha_composite(ship, (80 - ship.width // 2, 80 - ship.height // 2))
+    full.alpha_composite(load("sprites/blocks/rapid-shipyard-top.png"))
+    sheet([[up(base), up(full)]]).save(out)
+
+
 def main():
     d = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(d, exist_ok=True)
@@ -237,6 +277,8 @@ def main():
     hangar(f"{d}/hangar.png")
     turrets2(f"{d}/turrets2.png")
     walls2(f"{d}/walls2.png")
+    ships(f"{d}/naval.png")
+    shipyard(f"{d}/shipyard.png")
 
 
 if __name__ == "__main__":

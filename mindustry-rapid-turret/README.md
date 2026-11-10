@@ -149,3 +149,16 @@ in-game: Mods -> Import Mod/File.
 | III | 680 | 4 %/s | 6 thorium, 2 phase fabric, 4 silicon |
 
 Every wall comes in 1x1 and 2x2. Research: Pulse from Arc, Buckshot from Hail, Aegis from Rapid Wall I, Regen from Mender.
+
+## Warships (built in the Rapid Shipyard, water only)
+
+| Tier | Ship | Health | Armor | Main guns | Flak (air only) |
+|------|------|--------|-------|-----------|-----------------|
+| 1 | Skiff       | 350   | 2  | 1 turret, 1 barrel | — |
+| 2 | Cutter      | 900   | 5  | 1 turret, 2 barrels | 1 |
+| 3 | Corvette    | 1700  | 8  | 2 turrets, 2 barrels | 2 |
+| 4 | Frigate     | 13000 | 13 | 2 turrets, 3 barrels | 4 |
+| 5 | Dreadnought | 30000 | 18 | 3 turrets, 4 barrels, piercing | 4 heavy |
+
+The Rapid Shipyard (5x5, 210 power/s) floats like the vanilla naval factory: build it on shallow water or on
+deep water next to the shore, with the exit facing water. Research: shipyard from Naval Factory, ships in a chain from the shipyard.

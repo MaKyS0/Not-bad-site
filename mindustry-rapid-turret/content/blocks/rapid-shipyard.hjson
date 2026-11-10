@@ -1,0 +1,69 @@
+type: UnitFactory
+name: Rapid Shipyard
+description: Builds the Rapid warships. Can stand on deep water near the shore; the exit must face water.
+category: units
+research: naval-factory
+requirements: [
+  copper/350
+  lead/300
+  metaglass/250
+  silicon/220
+  graphite/150
+]
+size: 5
+floating: true
+health: 1800
+consumes: {
+  power: 3.5
+}
+plans: [
+  {
+    unit: skiff
+    time: 1500
+    requirements: [
+      silicon/30
+      metaglass/30
+      lead/20
+    ]
+  }
+  {
+    unit: cutter
+    time: 2700
+    requirements: [
+      silicon/100
+      metaglass/60
+      titanium/50
+    ]
+  }
+  {
+    unit: corvette
+    time: 4800
+    requirements: [
+      silicon/260
+      titanium/200
+      metaglass/150
+      thorium/60
+    ]
+  }
+  {
+    unit: frigate
+    time: 10200
+    requirements: [
+      silicon/1100
+      titanium/900
+      plastanium/550
+      thorium/400
+    ]
+  }
+  {
+    unit: dreadnought
+    time: 16200
+    requirements: [
+      silicon/1700
+      plastanium/1000
+      surge-alloy/750
+      thorium/650
+      phase-fabric/400
+    ]
+  }
+]

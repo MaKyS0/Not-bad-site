@@ -1,0 +1,195 @@
+type: naval
+name: Dreadnought
+description: Tier 5 warship. Three quad turrets fire piercing rounds while four heavy flak guns clear the sky.
+research: {
+  parent: frigate
+  requirements: [
+    silicon/24000
+    plastanium/14000
+    surge-alloy/11000
+    thorium/9000
+    phase-fabric/6000
+  ]
+}
+health: 30000
+armor: 18
+speed: 0.56
+accel: 0.19
+drag: 0.18
+rotateSpeed: 0.9
+hitSize: 56
+faceTarget: false
+trailLength: 66
+waveTrailX: 12.5
+waveTrailY: -26
+trailScl: 3.6
+weapons: [
+  {
+    name: dreadnought-turret
+    x: 0
+    y: 20
+    top: true
+    mirror: false
+    rotate: true
+    rotateSpeed: 3
+    reload: 5
+    recoil: 2.4
+    shootY: 7.5
+    inaccuracy: 2
+    ejectEffect: casing3
+    shoot: {
+      type: ShootAlternate
+      barrels: 4
+      spread: 2
+    }
+    bullet: {
+      type: BasicBulletType
+      damage: 27
+      speed: 5.5
+      lifetime: 55
+      width: 10
+      height: 15.5
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 8
+      trailWidth: 1.8
+      trailColor: "ff543c"
+      pierce: true
+      pierceCap: 2
+    }
+  }
+  {
+    name: dreadnought-turret
+    x: 0
+    y: 11
+    top: true
+    mirror: false
+    rotate: true
+    rotateSpeed: 3
+    reload: 5
+    recoil: 2.4
+    shootY: 7.5
+    inaccuracy: 2
+    ejectEffect: casing3
+    shoot: {
+      type: ShootAlternate
+      barrels: 4
+      spread: 2
+    }
+    bullet: {
+      type: BasicBulletType
+      damage: 27
+      speed: 5.5
+      lifetime: 55
+      width: 10
+      height: 15.5
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 8
+      trailWidth: 1.8
+      trailColor: "ff543c"
+      pierce: true
+      pierceCap: 2
+    }
+  }
+  {
+    name: dreadnought-turret
+    x: 0
+    y: -18
+    top: true
+    mirror: false
+    rotate: true
+    rotateSpeed: 3
+    reload: 5
+    recoil: 2.4
+    shootY: 7.5
+    inaccuracy: 2
+    ejectEffect: casing3
+    shoot: {
+      type: ShootAlternate
+      barrels: 4
+      spread: 2
+    }
+    bullet: {
+      type: BasicBulletType
+      damage: 27
+      speed: 5.5
+      lifetime: 55
+      width: 10
+      height: 15.5
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 8
+      trailWidth: 1.8
+      trailColor: "ff543c"
+      pierce: true
+      pierceCap: 2
+    }
+  }
+  {
+    name: dreadnought-flak
+    x: 11.5
+    y: 1
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 9
+    controllable: false
+    autoTarget: true
+    reload: 8
+    recoil: 1
+    shootY: 2.75
+    inaccuracy: 6
+    shootSound: shootSnap
+    bullet: {
+      type: FlakBulletType
+      damage: 5
+      speed: 5.5
+      lifetime: 58
+      splashDamage: 52
+      splashDamageRadius: 26
+      width: 6
+      height: 8
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: flakExplosionBig
+    }
+  }
+  {
+    name: dreadnought-flak
+    x: 11.5
+    y: -8
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 9
+    controllable: false
+    autoTarget: true
+    reload: 8
+    recoil: 1
+    shootY: 2.75
+    inaccuracy: 6
+    shootSound: shootSnap
+    bullet: {
+      type: FlakBulletType
+      damage: 5
+      speed: 5.5
+      lifetime: 58
+      splashDamage: 52
+      splashDamageRadius: 26
+      width: 6
+      height: 8
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: flakExplosionBig
+    }
+  }
+]

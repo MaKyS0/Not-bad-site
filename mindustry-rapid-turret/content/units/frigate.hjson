@@ -1,0 +1,154 @@
+type: naval
+name: Frigate
+description: Tier 4 warship. A floating fortress with two triple turrets and four flak guns.
+research: {
+  parent: corvette
+  requirements: [
+    silicon/14000
+    titanium/12000
+    plastanium/7500
+    thorium/5000
+  ]
+}
+health: 13000
+armor: 13
+speed: 0.68
+accel: 0.2
+drag: 0.17
+rotateSpeed: 1.3
+hitSize: 38
+faceTarget: false
+trailLength: 46
+waveTrailX: 9
+waveTrailY: -18
+trailScl: 3
+weapons: [
+  {
+    name: frigate-turret
+    x: 0
+    y: 10
+    top: true
+    mirror: false
+    rotate: true
+    rotateSpeed: 4
+    reload: 6
+    recoil: 1.8
+    shootY: 6
+    inaccuracy: 2.5
+    ejectEffect: casing2
+    shoot: {
+      type: ShootAlternate
+      barrels: 3
+      spread: 2
+    }
+    bullet: {
+      type: BasicBulletType
+      damage: 21
+      speed: 4.8
+      lifetime: 53
+      width: 9
+      height: 14.0
+      frontColor: "ffd4f3"
+      backColor: "ff6ed7"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 7
+      trailWidth: 1.6
+      trailColor: "ff6ed7"
+    }
+  }
+  {
+    name: frigate-turret
+    x: 0
+    y: -13
+    top: true
+    mirror: false
+    rotate: true
+    rotateSpeed: 4
+    reload: 6
+    recoil: 1.8
+    shootY: 6
+    inaccuracy: 2.5
+    ejectEffect: casing2
+    shoot: {
+      type: ShootAlternate
+      barrels: 3
+      spread: 2
+    }
+    bullet: {
+      type: BasicBulletType
+      damage: 21
+      speed: 4.8
+      lifetime: 53
+      width: 9
+      height: 14.0
+      frontColor: "ffd4f3"
+      backColor: "ff6ed7"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 7
+      trailWidth: 1.6
+      trailColor: "ff6ed7"
+    }
+  }
+  {
+    name: frigate-flak
+    x: 8
+    y: 2
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 9
+    controllable: false
+    autoTarget: true
+    reload: 10
+    recoil: 1
+    shootY: 2.75
+    inaccuracy: 6
+    shootSound: shootSnap
+    bullet: {
+      type: FlakBulletType
+      damage: 4
+      speed: 5
+      lifetime: 54
+      splashDamage: 36
+      splashDamageRadius: 22
+      width: 6
+      height: 8
+      frontColor: "ffd4f3"
+      backColor: "ff6ed7"
+      hitEffect: flakExplosionBig
+    }
+  }
+  {
+    name: frigate-flak
+    x: 8
+    y: -5
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 9
+    controllable: false
+    autoTarget: true
+    reload: 10
+    recoil: 1
+    shootY: 2.75
+    inaccuracy: 6
+    shootSound: shootSnap
+    bullet: {
+      type: FlakBulletType
+      damage: 4
+      speed: 5
+      lifetime: 54
+      splashDamage: 36
+      splashDamageRadius: 22
+      width: 6
+      height: 8
+      frontColor: "ffd4f3"
+      backColor: "ff6ed7"
+      hitEffect: flakExplosionBig
+    }
+  }
+]
