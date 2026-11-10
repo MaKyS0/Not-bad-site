@@ -1,0 +1,67 @@
+type: UnitFactory
+name: Rapid Hangar
+description: Builds the Rapid gunships. Each unit tier needs more expensive materials.
+category: units
+research: air-factory
+requirements: [
+  copper/300
+  lead/300
+  graphite/150
+  silicon/220
+  metaglass/100
+]
+size: 5
+health: 1600
+consumes: {
+  power: 3
+}
+plans: [
+  {
+    unit: dart
+    time: 900
+    requirements: [
+      silicon/20
+      lead/10
+    ]
+  }
+  {
+    unit: swift
+    time: 2100
+    requirements: [
+      silicon/60
+      graphite/45
+      titanium/20
+    ]
+  }
+  {
+    unit: falcon
+    time: 3900
+    requirements: [
+      silicon/200
+      titanium/140
+      graphite/100
+      metaglass/60
+    ]
+  }
+  {
+    unit: tempest
+    time: 8400
+    requirements: [
+      silicon/950
+      titanium/800
+      plastanium/600
+      thorium/250
+    ]
+  }
+  {
+    unit: hurricane
+    time: 13800
+    requirements: [
+      silicon/1500
+      plastanium/850
+      surge-alloy/600
+      phase-fabric/400
+      thorium/400
+    ]
+  }
+]

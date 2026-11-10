@@ -1,0 +1,14 @@
+type: Conveyor
+name: Rapid Conveyor II
+description: Tier 2 conveyor. Moves 12 items per second.
+category: distribution
+research: rapid-conveyor-1
+requirements: [
+  copper/1
+  lead/1
+  titanium/1
+  silicon/1
+]
+health: 70
+speed: 0.085
+displayedSpeed: 12

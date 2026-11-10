@@ -1,0 +1,52 @@
+type: flying
+flying: true
+name: Falcon
+description: Tier 3 gunship. An armoured fighter that fires tracer rounds from low altitude.
+research: {
+  parent: swift
+  requirements: [
+    silicon/3800
+    titanium/2800
+    graphite/2000
+    metaglass/1200
+  ]
+}
+health: 750
+armor: 5
+speed: 1.7
+accel: 0.05
+drag: 0.02
+hitSize: 20
+lowAltitude: true
+engineOffset: 11.5
+engineSize: 3.2
+weapons: [
+  {
+    name: falcon-gun
+    x: 7
+    y: 1
+    top: false
+    mirror: true
+    alternate: true
+    reload: 5
+    recoil: 1.3
+    shootY: 7
+    inaccuracy: 3
+    ejectEffect: casing2
+    bullet: {
+      type: BasicBulletType
+      damage: 13
+      speed: 4.2
+      lifetime: 36
+      width: 8
+      height: 12.5
+      frontColor: "d6ffe0"
+      backColor: "78ff96"
+      hitEffect: hitBulletSmall
+      despawnEffect: hitBulletSmall
+      trailLength: 6
+      trailWidth: 1.4
+      trailColor: "78ff96"
+    }
+  }
+]

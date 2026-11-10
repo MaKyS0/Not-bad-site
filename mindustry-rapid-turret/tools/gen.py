@@ -343,8 +343,8 @@ def main():
         key = f"block.rapid-turret-{name}"
         en += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {EN_DESC[t]}"]
         ru += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {RU_DESC[t]}"]
-    import walls, drills, forge, units
-    for mod in (walls, drills, forge, units):
+    import walls, drills, forge, units, conveyors, air, hangar
+    for mod in (walls, drills, forge, units, conveyors, air, hangar):
         e, r = mod.build(root)
         en += e
         ru += r

@@ -72,10 +72,39 @@ def sprite(path, size, border=None, opaque=False):
                     return
 
 
+def check_conveyor(n):
+    def ld(sh, f):
+        p = f"{ROOT}/sprites/blocks/rapid-conveyor-{n}-{sh}-{f}.png"
+        return Image.open(p).convert("RGBA") if os.path.exists(p) else None
+    for sh in range(5):
+        for f in range(4):
+            im = ld(sh, f)
+            if im is None or im.size != (32, 32):
+                return
+            px = im.load()
+            clear = {(x, y) for x in range(32) for y in range(32) if px[x, y][3] == 0}
+            if sh != 1 and clear:
+                err(f"rapid-conveyor-{n}-{sh}-{f}: has transparent pixels")
+            if sh == 1:
+                bad = [p for p in clear if p[1] - p[0] < 23]
+                if bad or not clear:
+                    err(f"rapid-conveyor-{n}-1-{f}: transparency must be only the bottom-left cut corner ({bad[:3]})")
+    for f in range(4):
+        a, b = ld(0, f), ld(0, (f + 1) % 4)
+        if a is None or b is None or a.size != (32, 32) or b.size != (32, 32):
+            return
+        for y in range(4, 28):
+            for x in range(32):
+                if a.getpixel(((x - 4) % 32, y)) != b.getpixel((x, y)):
+                    err(f"rapid-conveyor-{n}-0: frame {f} shifted 4px does not give frame {(f + 1) % 4} (pixel {(x, y)})")
+                    return
+
+
 def main():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import drills
     import units
+    import air
 
     files = sorted(glob.glob(f"{ROOT}/content/blocks/*.hjson") + glob.glob(f"{ROOT}/content/units/*.hjson"))
     data = {}
@@ -106,6 +135,24 @@ def main():
             sprite(f"sprites/units/{n}{s}.png", (C, C), border=4)
         W, H = u['gun'][:2]
         sprite(f"sprites/units/{n}-gun.png", (W, H), border=4)
+
+    # conveyors
+    for n in range(1, 6):
+        for sh in range(5):
+            for f in range(4):
+                sprite(f"sprites/blocks/rapid-conveyor-{n}-{sh}-{f}.png", (32, 32), opaque=sh != 1)
+        check_conveyor(n)
+    # hangar
+    sprite("sprites/blocks/rapid-hangar.png", (160, 160), opaque=True)
+    for s in ("-top", "-out", "-in"):
+        sprite(f"sprites/blocks/rapid-hangar{s}.png", (160, 160))
+    # air units
+    for u in air.UNITS:
+        n, C = u['name'], u['C']
+        for s in ("", "-cell"):
+            sprite(f"sprites/units/{n}{s}.png", (C, C), border=4)
+        if u['turret']:
+            sprite(f"sprites/units/{n}-turret.png", u['turret'][:2], border=4)
 
     # bundles
     bundles = {}
@@ -164,7 +211,8 @@ SKIP = {"type", "name", "description", "research", "consumes", "requirements", "
 CLASSES = {"Wall": "mindustry.world.blocks.defense.Wall", "Drill": "mindustry.world.blocks.production.Drill",
            "UnitFactory": "mindustry.world.blocks.units.UnitFactory",
            "ItemTurret": "mindustry.world.blocks.defense.turrets.ItemTurret",
-           "mech": "mindustry.type.UnitType"}
+           "mech": "mindustry.type.UnitType", "flying": "mindustry.type.UnitType",
+           "Conveyor": "mindustry.world.blocks.distribution.Conveyor"}
 WEAPON = "mindustry.type.Weapon"
 BULLET = "mindustry.entities.bullet.BasicBulletType"
 

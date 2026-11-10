@@ -1,0 +1,13 @@
+type: Conveyor
+name: Rapid Conveyor V
+description: Tier 5 conveyor. Moves 26 items per second.
+category: distribution
+research: rapid-conveyor-4
+requirements: [
+  plastanium/1
+  surge-alloy/1
+  phase-fabric/1
+]
+health: 190
+speed: 0.19
+displayedSpeed: 26

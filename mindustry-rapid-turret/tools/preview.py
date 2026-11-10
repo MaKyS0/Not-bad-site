@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Design-review previews: python3 tools/preview.py <output dir>
 
-Writes walls.png, drills.png, units.png, forge.png (each scaled 4x, NEAREST, dark background)."""
+Writes walls.png, drills.png, units.png, forge.png, conveyors.png, air.png, hangar.png (each scaled 4x, NEAREST, dark background)."""
 import os
 import sys
 from PIL import Image
@@ -9,6 +9,7 @@ from PIL import Image
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from art import outlined   # noqa: E402
 from units import UNITS    # noqa: E402
+import air                 # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BG = (46, 48, 58, 255)
@@ -119,6 +120,64 @@ def forge(out):
     sheet([[up(base), up(comp)]]).save(out)
 
 
+def conveyors(out):
+    rows = []
+    for n in range(1, 6):
+        p = f"sprites/blocks/rapid-conveyor-{n}"
+        ld = lambda sh, f: load(f"{p}-{sh}-{f}.png")
+        row = [up(on_bg(ld(sh, 0))) for sh in range(5)]
+        row += [up(on_bg(ld(0, f))) for f in range(4)]
+        # demo track: straight tile turned 90 degrees clockwise (output down) -> curve (input top, output right) -> two straights
+        track = Image.new("RGBA", (96, 64), BG)
+        track.alpha_composite(ld(0, 0).rotate(-90), (0, 0))
+        track.alpha_composite(ld(1, 0), (0, 32))
+        track.alpha_composite(ld(0, 0), (32, 32))
+        track.alpha_composite(ld(0, 0), (64, 32))
+        rows.append(row + [up(track)])
+    sheet(rows).save(out)
+
+
+def assemble_air(u, pad=32, outline=3):
+    """Body + tinted cell + turrets (right and mirrored left) with a simulated outline."""
+    n, C = u['name'], u['C']
+    body, cell = load(f"sprites/units/{n}.png"), load(f"sprites/units/{n}-cell.png")
+    W = C + 2 * pad
+    cv = Image.new("RGBA", (W, W), (0, 0, 0, 0))
+    cv.alpha_composite(body, (pad, pad))
+    cv.alpha_composite(tint(cell, (255, 211, 127)), (pad, pad))
+    if u['turret']:
+        t = load(f"sprites/units/{n}-turret.png")
+        tl = t.transpose(Image.FLIP_LEFT_RIGHT)
+        for mx, my in air.mounts(u):
+            for im, sx in ((t, 1), (tl, -1)):
+                cv.alpha_composite(im, (W // 2 + sx * mx - im.width // 2, W // 2 - my - im.height // 2))
+    return outlined(cv, outline)
+
+
+def airs(out):
+    rows = []
+    for u in air.UNITS:
+        n = u['name']
+        raw = [load(f"sprites/units/{n}{s}.png") for s in ("", "-cell")]
+        if u['turret']:
+            raw.append(load(f"sprites/units/{n}-turret.png"))
+        rows.append([up(assemble_air(u))] + [up(on_bg(i)) for i in raw])
+    sheet(rows).save(out)
+
+
+def hangar(out):
+    p = "sprites/blocks/rapid-hangar"
+    base, o, top = load(f"{p}.png"), load(f"{p}-out.png"), load(f"{p}-top.png")
+    comp = base.copy()
+    comp.alpha_composite(o)
+    fal = assemble_air([u for u in air.UNITS if u['name'] == "falcon"][0])
+    cv = Image.new("RGBA", (400, 400), (0, 0, 0, 0))
+    cv.alpha_composite(fal, (200 - fal.width // 2, 200 - fal.height // 2))
+    comp.alpha_composite(cv.crop((120, 120, 280, 280)))
+    comp.alpha_composite(top)
+    sheet([[up(base), up(comp)]]).save(out)
+
+
 def main():
     d = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(d, exist_ok=True)
@@ -126,6 +185,9 @@ def main():
     drills(f"{d}/drills.png")
     units(f"{d}/units.png")
     forge(f"{d}/forge.png")
+    conveyors(f"{d}/conveyors.png")
+    airs(f"{d}/air.png")
+    hangar(f"{d}/hangar.png")
 
 
 if __name__ == "__main__":

@@ -13,26 +13,38 @@ EN = "Builds the Rapid mechs. Each unit tier needs more expensive materials."
 RU = "Строит мехов Rapid. Каждый следующий тир требует более дорогих материалов."
 
 
-def base():
+def base(acc=ORANGE, pad="octagon"):
     a = Art(S)
     a.box(0, 0, S - 1, S - 1, shade(STEEL, 0.7))
     a.box(2, 2, S - 3, S - 3, STEEL)
     a.plate(a.cham(4, 4, S - 5, S - 5, 6), METAL, 3, 1)
     c = S / 2
-    half = 0.30 * S
-    # build pad: lip + dark octagon
-    a.flat(a.octagon(c, c, half + 3), shade(STEEL, 0.62))
-    pad = a.octagon(c, c, half)
-    a.flat(pad, shade(STEEL, 0.45))
-    # faint grid inside the pad (centre line is 2px wide to stay mirror symmetric)
-    grid, d = a.mask()
-    for k in range(0, 6):
-        for x in (79 - 16 * k, 80 + 16 * k):
-            d.line((x, 0, x, S - 1), fill=255)
-            d.line((0, x, S - 1, x), fill=255)
-    a.flat(ImageChops.multiply(grid, pad), shade(STEEL, 0.55))
+    if pad == "octagon":
+        half = 0.30 * S
+        # build pad: lip + dark octagon
+        a.flat(a.octagon(c, c, half + 3), shade(STEEL, 0.62))
+        pad_m = a.octagon(c, c, half)
+        a.flat(pad_m, shade(STEEL, 0.45))
+        # faint grid inside the pad (centre line is 2px wide to stay mirror symmetric)
+        grid, d = a.mask()
+        for k in range(0, 6):
+            for x in (79 - 16 * k, 80 + 16 * k):
+                d.line((x, 0, x, S - 1), fill=255)
+                d.line((0, x, S - 1, x), fill=255)
+        a.flat(ImageChops.multiply(grid, pad_m), shade(STEEL, 0.55))
+    else:
+        # landing pad (hangar): round lip + disc, thin inner ring, four landing ticks
+        r = 0.32 * S
+        a.flat(a.round_disc(c, c, r + 3), shade(STEEL, 0.62))
+        a.flat(a.round_disc(c, c, r), shade(STEEL, 0.45))
+        ri = 0.22 * S
+        a.flat(a.where(lambda x, y: abs(((x - c) ** 2 + (y - c) ** 2) ** 0.5 - ri) <= 0.5), shade(STEEL, 0.6))
+        # ticks: 2px x 8px, centred between the ring (r 35) and the lip (r 51)
+        a.box(79, 33, 80, 40, acc)                               # top
+        a.box(79, 119, 80, 126, acc)                             # bottom
+        a.box(33, 79, 40, 80, acc)                               # left
+        a.box(119, 79, 126, 80, acc)                             # right
     # corner blocks: rivet pair + accent L tick
-    acc = ORANGE
     riv = shade(METAL, 0.62)
     for fx in (0, 1):
         for fy in (0, 1):
@@ -79,7 +91,7 @@ def clamps():
     return a.im
 
 
-def notch(side):
+def notch(side, acc=ORANGE):
     a = Art(S)
     depth, h = int(0.10 * S), int(0.30 * S)
     y0 = S // 2 - h // 2
@@ -89,34 +101,31 @@ def notch(side):
     cx = x0 + (depth - 4 if side == "right" else depth - 3)
     for dy in range(-10, 11):
         x = cx - abs(dy) + 1
-        a.box(x - 1, S // 2 + dy, x, S // 2 + dy, ORANGE)
+        a.box(x - 1, S // 2 + dy, x, S // 2 + dy, acc)
     return a.im
 
 
-def hjson():
+def hjson(name="Rapid Forge", desc=EN, research="ground-factory", reqs=(("copper", 350), ("lead", 250), ("graphite", 150),
+          ("silicon", 200)), power=2.5, plans=None):
     lines = [
         "type: UnitFactory",
-        "name: Rapid Forge",
-        f"description: {EN}",
+        f"name: {name}",
+        f"description: {desc}",
         "category: units",
-        "research: ground-factory",
+        f"research: {research}",
         "requirements: [",
-        "  copper/350",
-        "  lead/250",
-        "  graphite/150",
-        "  silicon/200",
+    ] + [f"  {i}/{n}" for i, n in reqs] + [
         "]",
         "size: 5",
         "health: 1600",
         "consumes: {",
-        "  power: 2.5",
+        f"  power: {power}",
         "}",
         "plans: [",
     ]
-    for u in UNITS:
-        t, reqs = RECIPES[u['name']]
-        lines += ["  {", f"    unit: {u['name']}", f"    time: {t}", "    requirements: ["]
-        lines += [f"      {i}/{n}" for i, n in reqs]
+    for u, t, rq in plans or [(u['name'],) + RECIPES[u['name']] for u in UNITS]:
+        lines += ["  {", f"    unit: {u}", f"    time: {t}", "    requirements: ["]
+        lines += [f"      {i}/{n}" for i, n in rq]
         lines += ["    ]", "  }"]
     lines.append("]")
     return "\n".join(lines) + "\n"

@@ -1,0 +1,48 @@
+type: flying
+flying: true
+name: Swift
+description: Tier 2 gunship. A quick strafing fighter with heavier guns.
+research: {
+  parent: dart
+  requirements: [
+    silicon/1300
+    graphite/900
+    titanium/500
+  ]
+}
+health: 360
+armor: 2
+speed: 2.0
+accel: 0.08
+drag: 0.03
+hitSize: 12
+circleTarget: true
+engineOffset: 7.5
+engineSize: 2.5
+weapons: [
+  {
+    name: swift-gun
+    x: 4.5
+    y: 0.5
+    top: false
+    mirror: true
+    alternate: true
+    reload: 7
+    recoil: 1
+    shootY: 5
+    inaccuracy: 3.5
+    ejectEffect: casing1
+    bullet: {
+      type: BasicBulletType
+      damage: 8
+      speed: 3.8
+      lifetime: 32
+      width: 7
+      height: 11.0
+      frontColor: "cef3ff"
+      backColor: "5ad7ff"
+      hitEffect: hitBulletSmall
+      despawnEffect: hitBulletSmall
+    }
+  }
+]

@@ -1,0 +1,13 @@
+type: Conveyor
+name: Rapid Conveyor IV
+description: Tier 4 conveyor. Moves 21 items per second.
+category: distribution
+research: rapid-conveyor-3
+requirements: [
+  plastanium/1
+  thorium/1
+  silicon/1
+]
+health: 140
+speed: 0.15
+displayedSpeed: 21

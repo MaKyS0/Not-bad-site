@@ -1,0 +1,12 @@
+type: Conveyor
+name: Rapid Conveyor I
+description: Tier 1 conveyor. Moves 7 items per second.
+category: distribution
+research: conveyor
+requirements: [
+  copper/1
+  graphite/1
+]
+health: 50
+speed: 0.05
+displayedSpeed: 7

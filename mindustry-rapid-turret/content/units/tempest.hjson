@@ -1,0 +1,55 @@
+type: flying
+flying: true
+name: Tempest
+description: Tier 4 gunship. A heavy gunship carrying two turning turrets.
+research: {
+  parent: falcon
+  requirements: [
+    silicon/12000
+    titanium/10000
+    plastanium/7000
+    thorium/3500
+  ]
+}
+health: 7200
+armor: 9
+speed: 0.85
+accel: 0.04
+drag: 0.04
+rotateSpeed: 1.9
+hitSize: 40
+lowAltitude: true
+engineOffset: 20
+engineSize: 5
+weapons: [
+  {
+    name: tempest-turret
+    x: 9.5
+    y: -1
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 4
+    reload: 4
+    recoil: 1.8
+    shootY: 3.5
+    inaccuracy: 2.5
+    ejectEffect: casing2
+    bullet: {
+      type: BasicBulletType
+      damage: 25
+      speed: 4.8
+      lifetime: 40
+      width: 9
+      height: 14.0
+      frontColor: "ffd4f3"
+      backColor: "ff6ed7"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 7
+      trailWidth: 1.6
+      trailColor: "ff6ed7"
+    }
+  }
+]

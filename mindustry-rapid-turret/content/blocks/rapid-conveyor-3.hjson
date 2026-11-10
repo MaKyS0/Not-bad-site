@@ -1,0 +1,13 @@
+type: Conveyor
+name: Rapid Conveyor III
+description: Tier 3 conveyor. Moves 16 items per second.
+category: distribution
+research: rapid-conveyor-2
+requirements: [
+  titanium/1
+  silicon/1
+  thorium/1
+]
+health: 100
+speed: 0.115
+displayedSpeed: 16

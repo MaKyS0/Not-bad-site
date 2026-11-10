@@ -2,8 +2,8 @@
   "name": "rapid-turret",
   "displayName": "Rapid Arsenal",
   "author": "MaKyS0",
-  "description": "Rapid-fire turrets (Rapid I - VI, hand-controllable), five tiers of walls, five tiers of drills and five tiers of Rapid mech units built in the Rapid Forge. Pure JSON mod (no Java/JS), so it works on desktop, Android and iOS.",
-  "version": "3.0",
+  "description": "Rapid-fire turrets (Rapid I - VI, hand-controllable), five tiers of walls, drills and conveyors, five tiers of Rapid mech units built in the Rapid Forge and five tiers of Rapid air units built in the Rapid Hangar. Pure JSON mod (no Java/JS), so it works on desktop, Android and iOS.",
+  "version": "4.0",
   "minGameVersion": "146",
   "hidden": false
 }

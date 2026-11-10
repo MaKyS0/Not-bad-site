@@ -1,0 +1,90 @@
+type: flying
+flying: true
+name: Hurricane
+description: Tier 5 gunship. A colossal gunship with four turning turrets whose rounds pierce armour.
+research: {
+  parent: tempest
+  requirements: [
+    silicon/20000
+    plastanium/12000
+    surge-alloy/9000
+    thorium/6000
+    phase-fabric/5500
+  ]
+}
+health: 22000
+armor: 13
+speed: 0.55
+accel: 0.04
+drag: 0.04
+rotateSpeed: 1
+hitSize: 54
+lowAltitude: true
+engineOffset: 28
+engineSize: 7
+weapons: [
+  {
+    name: hurricane-turret
+    x: 9.5
+    y: 6
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 3
+    reload: 4
+    recoil: 2.4
+    shootY: 4.5
+    inaccuracy: 2
+    ejectEffect: casing3
+    bullet: {
+      type: BasicBulletType
+      damage: 34
+      speed: 5.5
+      lifetime: 42
+      width: 10
+      height: 15.5
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 8
+      trailWidth: 1.8
+      trailColor: "ff543c"
+      pierce: true
+      pierceCap: 2
+    }
+  }
+  {
+    name: hurricane-turret
+    x: 17
+    y: -5
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 3
+    reload: 4
+    recoil: 2.4
+    shootY: 4.5
+    inaccuracy: 2
+    ejectEffect: casing3
+    bullet: {
+      type: BasicBulletType
+      damage: 34
+      speed: 5.5
+      lifetime: 42
+      width: 10
+      height: 15.5
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: hitBulletBig
+      despawnEffect: hitBulletBig
+      trailLength: 8
+      trailWidth: 1.8
+      trailColor: "ff543c"
+      pierce: true
+      pierceCap: 2
+    }
+  }
+]
