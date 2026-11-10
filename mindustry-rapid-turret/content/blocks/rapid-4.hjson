@@ -2,7 +2,7 @@ type: ItemTurret
 name: Rapid IV
 description: Tier 4 rapid-fire turret. Four barrels, accepts thorium.
 category: turret
-alwaysUnlocked: true
+research: rapid-3
 playerControllable: true
 requirements: [
   graphite/300

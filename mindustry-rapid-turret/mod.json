@@ -3,7 +3,7 @@
   "displayName": "Rapid Turrets",
   "author": "MaKyS0",
   "description": "Six tiers of extremely fast-firing turrets (Rapid I - VI) that you can also control by hand. Pure JSON mod (no Java/JS), so it works on desktop, Android and iOS.",
-  "version": "2.0",
+  "version": "2.1",
   "minGameVersion": "146",
   "hidden": false
 }

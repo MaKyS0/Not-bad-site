@@ -2,7 +2,7 @@ type: ItemTurret
 name: Rapid I
 description: Tier 1 rapid-fire turret. Two barrels and a huge rate of fire.
 category: turret
-alwaysUnlocked: true
+research: duo
 playerControllable: true
 requirements: [
   copper/80

@@ -2,7 +2,7 @@
 
 ![tiers](preview.png)
 
-Six tiers of extremely fast turrets (Turrets tab, all unlocked from the start):
+Six tiers of extremely fast turrets (Turrets tab):
 
 | Tier | Size | Barrels | Shots / second | Range | Ammo |
 |------|------|---------|----------------|-------|------|
@@ -15,6 +15,10 @@ Six tiers of extremely fast turrets (Turrets tab, all unlocked from the start):
 
 Graphite hits harder, silicon homes in and fires faster. Water/cryofluid cooling boosts fire rate.
 Barrels glow in the tier colour while firing.
+
+Research: Rapid I sits under the Duo in the Serpulo tech tree, and every tier unlocks the next one
+(Duo -> I -> II -> III -> IV -> V -> VI). Research cost is derived from the build cost.
+In sandbox everything is available right away.
 
 You can take direct control of any tier: tap/click the turret (no build tool selected) and
 aim/shoot yourself.

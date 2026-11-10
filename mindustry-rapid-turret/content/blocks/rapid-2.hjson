@@ -2,7 +2,7 @@ type: ItemTurret
 name: Rapid II
 description: Tier 2 rapid-fire turret. Three barrels, more damage and range.
 category: turret
-alwaysUnlocked: true
+research: rapid-1
 playerControllable: true
 requirements: [
   copper/120

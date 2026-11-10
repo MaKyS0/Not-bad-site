@@ -2,7 +2,7 @@ type: ItemTurret
 name: Rapid V
 description: Tier 5 rapid-fire turret. Five barrels, one shot every tick.
 category: turret
-alwaysUnlocked: true
+research: rapid-4
 playerControllable: true
 requirements: [
   graphite/500

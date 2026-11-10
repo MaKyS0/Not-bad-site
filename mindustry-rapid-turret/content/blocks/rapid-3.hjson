@@ -2,7 +2,7 @@ type: ItemTurret
 name: Rapid III
 description: Tier 3 rapid-fire turret. Heavy barrels and tracer rounds.
 category: turret
-alwaysUnlocked: true
+research: rapid-2
 playerControllable: true
 requirements: [
   copper/200

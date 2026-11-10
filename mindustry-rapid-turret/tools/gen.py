@@ -338,7 +338,7 @@ def hjson(t, c):
 name: Rapid {ROMAN[t]}
 description: {EN_DESC[t]}
 category: turret
-alwaysUnlocked: true
+research: {'duo' if t == 1 else f'rapid-{t - 1}'}
 playerControllable: true
 requirements: [
 {reqs}

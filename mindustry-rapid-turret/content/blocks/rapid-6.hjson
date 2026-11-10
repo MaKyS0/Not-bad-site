@@ -2,7 +2,7 @@ type: ItemTurret
 name: Rapid VI
 description: Top of the line. Six barrels, two shots per tick, surge rounds arc lightning.
 category: turret
-alwaysUnlocked: true
+research: rapid-5
 playerControllable: true
 requirements: [
   silicon/700
