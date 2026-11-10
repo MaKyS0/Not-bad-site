@@ -5,10 +5,12 @@ category: turret
 research: duo
 playerControllable: true
 requirements: [
-  copper/80
-  graphite/60
-  silicon/40
+  copper/250
+  graphite/120
+  silicon/100
 ]
+buildCostMultiplier: 1
+researchCostMultiplier: 1
 size: 2
 health: 800
 range: 190

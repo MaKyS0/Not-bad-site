@@ -5,12 +5,14 @@ category: turret
 research: rapid-2
 playerControllable: true
 requirements: [
-  copper/200
-  graphite/180
-  silicon/150
-  titanium/150
-  thorium/60
+  copper/800
+  graphite/450
+  silicon/400
+  titanium/350
+  thorium/200
 ]
+buildCostMultiplier: 1
+researchCostMultiplier: 0.8
 size: 3
 health: 2000
 range: 235

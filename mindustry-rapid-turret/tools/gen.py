@@ -14,30 +14,44 @@ from PIL import Image, ImageDraw, ImageChops, ImageFilter
 
 MARGIN = 5
 
+# Build-cost balance. Each price is (best sustained DPS) x (cost per DPS), where cost is counted in
+# "copper equivalents" (VALUE below) and cost per DPS climbs with the tier the way it does in vanilla
+# (Duo ~1, Salvo ~2.6, Spectre ~10): 2.8, 3.5, 6, 8, 9, 9 for tiers I-VI. `python3 tools/gen.py --balance`
+# prints the table. build_mult / research_mult keep build time and research cost of the big tiers sane.
+VALUE = {"copper": 1, "graphite": 2, "silicon": 2.5, "titanium": 3, "thorium": 5, "plastanium": 8,
+         "surge-alloy": 12, "phase-fabric": 10}
+RELOAD_MULT = {"copper": 1, "graphite": 0.85, "silicon": 1.3, "thorium": 1, "surge-alloy": 1}
+
 T = {
     1: dict(size=2, n=2, bw=6, pitch=12, step=0, reload=3.0, shots=1, health=800, range=190,
             dmg=dict(copper=8, graphite=14, silicon=10),
-            req="copper/80, graphite/60, silicon/40",
+            req="copper/250, graphite/120, silicon/100",
+            build_mult=1, research_mult=1,
             metal=(152, 154, 164), steel=(110, 112, 128), acc=(255, 190, 80), trim=None, coolant=0.2),
     2: dict(size=2, n=3, bw=6, pitch=10, step=3, reload=2.4, shots=1, health=1100, range=210,
             dmg=dict(copper=11, graphite=19, silicon=14),
-            req="copper/120, graphite/100, silicon/80, titanium/60",
+            req="copper/400, graphite/220, silicon/180, titanium/100",
+            build_mult=1, research_mult=1,
             metal=(146, 158, 176), steel=(98, 108, 132), acc=(90, 215, 255), trim=None, coolant=0.25),
     3: dict(size=3, n=3, bw=8, pitch=15, step=5, reload=1.9, shots=1, health=2000, range=235,
             dmg=dict(copper=15, graphite=26, silicon=19),
-            req="copper/200, graphite/180, silicon/150, titanium/150, thorium/60",
+            req="copper/800, graphite/450, silicon/400, titanium/350, thorium/200",
+            build_mult=1, research_mult=0.8,
             metal=(150, 164, 156), steel=(96, 114, 110), acc=(120, 255, 150), trim=None, coolant=0.3),
     4: dict(size=4, n=4, bw=10, pitch=17, step=5, reload=1.5, shots=1, health=3600, range=265,
             dmg=dict(copper=20, graphite=36, silicon=26, thorium=48),
-            req="graphite/300, silicon/250, titanium/250, thorium/150, plastanium/80",
+            req="copper/1500, graphite/800, silicon/700, titanium/700, thorium/600, plastanium/450, surge-alloy/150",
+            build_mult=0.7, research_mult=0.5,
             metal=(160, 152, 172), steel=(104, 94, 124), acc=(255, 110, 215), trim=None, coolant=0.4),
     5: dict(size=5, n=5, bw=10, pitch=19, step=6, reload=1.0, shots=1, health=6500, range=300,
             dmg=dict(copper=28, graphite=50, silicon=36, thorium=66),
-            req="graphite/500, silicon/450, titanium/400, thorium/300, plastanium/200, surge-alloy/150",
+            req="copper/2500, graphite/1400, silicon/1300, titanium/1300, thorium/1100, plastanium/900, surge-alloy/700",
+            build_mult=0.5, research_mult=0.3,
             metal=(168, 150, 148), steel=(92, 76, 80), acc=(255, 84, 60), trim=(255, 190, 80), coolant=0.5),
     6: dict(size=6, n=6, bw=12, pitch=20, step=6, reload=1.0, shots=2, health=12000, range=340,
             dmg=dict(copper=36, graphite=64, silicon=46, thorium=90, **{"surge-alloy": 80}),
-            req="silicon/700, titanium/600, thorium/500, plastanium/350, surge-alloy/300, phase-fabric/150",
+            req="copper/4000, graphite/2500, silicon/3000, titanium/3000, thorium/2500, plastanium/2200, surge-alloy/2200, phase-fabric/1200",
+            build_mult=0.4, research_mult=0.2,
             metal=(226, 224, 238), steel=(74, 70, 106), acc=(150, 120, 255), trim=(255, 208, 96), coolant=0.6),
 }
 ROMAN = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI"}
@@ -343,6 +357,8 @@ playerControllable: true
 requirements: [
 {reqs}
 ]
+buildCostMultiplier: {c['build_mult']}
+researchCostMultiplier: {c['research_mult']}
 size: {c['size']}
 health: {c['health']}
 range: {c['range']}
@@ -412,5 +428,23 @@ def outlined(g, radius=4, col=(64, 64, 73)):
     return out
 
 
+def dps(c, item):
+    ticks = max(1.0, c['reload'] / RELOAD_MULT[item])      # a turret fires at most once per tick
+    return c['dmg'][item] * c['shots'] * 60 / ticks
+
+
+def balance():
+    print("tier  value   best DPS  value/DPS  build s")
+    cost = {"copper": 0.5, "graphite": 1.0, "silicon": 0.8, "titanium": 1.0, "thorium": 1.1, "plastanium": 1.3,
+            "surge-alloy": 1.2, "phase-fabric": 1.3}
+    for t, c in T.items():
+        req = [r.strip().split("/") for r in c['req'].split(",")]
+        value = sum(VALUE[i] * int(n) for i, n in req)
+        best = max(dps(c, i) for i in c['dmg'])
+        secs = sum(cost[i] * int(n) for i, n in req) * 1.4 * c['build_mult'] / 60
+        print(f"{ROMAN[t]:>4} {value:>7.0f} {best:>9.0f} {value / best:>9.1f} {secs:>8.0f}")
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    balance() if "--balance" in sys.argv else main()

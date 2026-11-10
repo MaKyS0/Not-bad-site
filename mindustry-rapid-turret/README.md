@@ -16,6 +16,20 @@ Six tiers of extremely fast turrets (Turrets tab):
 Graphite hits harder, silicon homes in and fires faster. Water/cryofluid cooling boosts fire rate.
 Barrels glow in the tier colour while firing.
 
+## Build cost
+
+Prices follow firepower: each tier costs (its best sustained DPS) x (cost per DPS), and cost per
+DPS rises with the tier like it does for vanilla turrets. `python3 tools/gen.py --balance` prints the numbers.
+
+| Tier | Cost |
+|------|------|
+| I    | 250 copper, 120 graphite, 100 silicon |
+| II   | 400 copper, 220 graphite, 180 silicon, 100 titanium |
+| III  | 800 copper, 450 graphite, 400 silicon, 350 titanium, 200 thorium |
+| IV   | 1500 copper, 800 graphite, 700 silicon, 700 titanium, 600 thorium, 450 plastanium, 150 surge alloy |
+| V    | 2500 copper, 1400 graphite, 1300 silicon, 1300 titanium, 1100 thorium, 900 plastanium, 700 surge alloy |
+| VI   | 4000 copper, 2500 graphite, 3000 silicon, 3000 titanium, 2500 thorium, 2200 plastanium, 2200 surge alloy, 1200 phase fabric |
+
 Research: Rapid I sits under the Duo in the Serpulo tech tree, and every tier unlocks the next one
 (Duo -> I -> II -> III -> IV -> V -> VI). Research cost is derived from the build cost.
 In sandbox everything is available right away.

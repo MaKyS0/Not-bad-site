@@ -5,13 +5,16 @@ category: turret
 research: rapid-4
 playerControllable: true
 requirements: [
-  graphite/500
-  silicon/450
-  titanium/400
-  thorium/300
-  plastanium/200
-  surge-alloy/150
+  copper/2500
+  graphite/1400
+  silicon/1300
+  titanium/1300
+  thorium/1100
+  plastanium/900
+  surge-alloy/700
 ]
+buildCostMultiplier: 0.5
+researchCostMultiplier: 0.3
 size: 5
 health: 6500
 range: 300
