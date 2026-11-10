@@ -1,9 +1,9 @@
 {
   "name": "rapid-turret",
-  "displayName": "Rapid Turret",
+  "displayName": "Rapid Turrets",
   "author": "MaKyS0",
-  "description": "Adds the Hailstorm-fast 'Rapid' turret that fires bullets extremely quickly. Pure JSON mod (no Java/JS), so it works on desktop, Android and iOS.",
-  "version": "1.0",
+  "description": "Six tiers of extremely fast-firing turrets (Rapid I - VI) that you can also control by hand. Pure JSON mod (no Java/JS), so it works on desktop, Android and iOS.",
+  "version": "2.0",
   "minGameVersion": "146",
   "hidden": false
 }

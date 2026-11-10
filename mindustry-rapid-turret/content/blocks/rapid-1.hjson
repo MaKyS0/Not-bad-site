@@ -1,38 +1,52 @@
 type: ItemTurret
-name: Rapid I Turret
-description: Tier 1 rapid-fire turret. Fires 2 barrels at extreme speed. Feed it copper, graphite or silicon.
+name: Rapid I
+description: Tier 1 rapid-fire turret. Two barrels and a huge rate of fire.
 category: turret
 alwaysUnlocked: true
 playerControllable: true
-requirements: [copper/80, graphite/60, silicon/40]
+requirements: [
+  copper/80
+  graphite/60
+  silicon/40
+]
 size: 2
 health: 800
 range: 190
 reload: 3.0
 inaccuracy: 6
 rotateSpeed: 16
-recoil: 0.5
-shootY: 4
+recoil: 0.9
+shake: 0
+shootY: 6.75
 maxAmmo: 60
 targetAir: true
 targetGround: true
+heatColor: "ffbe50"
+shootEffect: shootSmall
+smokeEffect: shootSmallSmoke
+ammoUseEffect: casing1
 coolant: {
   type: ConsumeCoolant
   amount: 0.2
 }
 shoot: {
   type: ShootAlternate
-  spread: 5
   barrels: 2
+  spread: 3.0
+  shots: 1
 }
 ammoTypes: {
   copper: {
     type: BasicBulletType
     damage: 8
-    speed: 4
+    speed: 4.0
     lifetime: 55
     width: 6
-    height: 10
+    height: 11
+    frontColor: "ffecca"
+    backColor: "ffbe50"
+    hitEffect: hitBulletSmall
+    despawnEffect: hitBulletSmall
     ammoMultiplier: 3
   }
   graphite: {
@@ -42,8 +56,12 @@ ammoTypes: {
     lifetime: 51
     width: 7
     height: 12
-    reloadMultiplier: 0.85
+    frontColor: "ffecca"
+    backColor: "ffbe50"
+    hitEffect: hitBulletSmall
+    despawnEffect: hitBulletSmall
     ammoMultiplier: 4
+    reloadMultiplier: 0.85
   }
   silicon: {
     type: BasicBulletType
@@ -52,9 +70,13 @@ ammoTypes: {
     lifetime: 51
     width: 6
     height: 11
+    frontColor: "ffecca"
+    backColor: "ffbe50"
+    hitEffect: hitBulletSmall
+    despawnEffect: hitBulletSmall
+    ammoMultiplier: 5
+    reloadMultiplier: 1.3
     homingPower: 0.08
     homingRange: 70
-    reloadMultiplier: 1.3
-    ammoMultiplier: 5
   }
 }
