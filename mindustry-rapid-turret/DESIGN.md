@@ -987,3 +987,6 @@ trail, a casing and a muzzle flash). `tools/perf.py` now rewrites the stat table
 - unit weapons fire at most once every 8 ticks;
 - no bullet trails (`trailLength`) and no casings (`ammoUseEffect` / `ejectEffect`) anywhere. Ship wave trails stay.
 Numbers in the tables of sections 2–24 are the design values BEFORE this pass.
+- Regen walls (section 14) are `MendProjector`s, i.e. updating and self-drawing buildings, unlike plain `Wall`s
+  (`MendProjector` sets `update = true`; `Wall` does not). Hundreds of them dropped a host to 8 FPS / 6 TPS. They now heal once
+  every 600 ticks for 10× `healPercent` (same %/s) and have `emitLight: false`. Spamming them is still costlier than Rapid walls.
