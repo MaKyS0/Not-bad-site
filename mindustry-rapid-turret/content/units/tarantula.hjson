@@ -1,0 +1,102 @@
+type: legs
+name: Tarantula
+description: Tier 4 walker. A siege spider that out-ranges most turrets; its steps crush whatever is underfoot.
+research: {
+  parent: stalker
+  requirements: [
+    silicon/13000
+    titanium/11000
+    plastanium/6500
+    thorium/4800
+  ]
+}
+health: 6500
+armor: 7
+speed: 0.45
+drag: 0.1
+rotateSpeed: 3
+hitSize: 24
+hovering: true
+targetAir: false
+legCount: 6
+legLength: 26
+legBaseOffset: 5
+legMoveSpace: 1
+legPairOffset: 3
+legSpeed: 0.2
+legLengthScl: 0.96
+shadowElevation: 0.65
+groundLayer: 75
+stepShake: 0.5
+rippleScale: 2
+drownTimeMultiplier: 2
+legSplashDamage: 20
+legSplashRange: 20
+weapons: [
+  {
+    name: tarantula-mortar
+    x: 7.25
+    y: 2
+    top: true
+    mirror: true
+    alternate: true
+    reload: 22
+    recoil: 3
+    shake: 1
+    shootY: 4.75
+    inaccuracy: 3
+    velocityRnd: 0.1
+    ejectEffect: casing3
+    shootSound: artillery
+    bullet: {
+      type: ArtilleryBulletType
+      damage: 18
+      splashDamage: 90
+      splashDamageRadius: 28
+      speed: 3.7
+      lifetime: 77
+      knockback: 0.8
+      collidesTiles: false
+      width: 13
+      height: 13
+      frontColor: "ffd4f3"
+      backColor: "ff6ed7"
+      trailEffect: none
+      trailLength: 10
+      trailWidth: 2.5
+      trailColor: "ff6ed7"
+      hitEffect: blastExplosion
+      despawnEffect: blastExplosion
+    }
+  }
+  {
+    name: tarantula-flak
+    x: 2.75
+    y: -4
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 9
+    controllable: false
+    autoTarget: true
+    reload: 10
+    recoil: 1
+    shootY: 2.75
+    inaccuracy: 6
+    shootSound: shootSnap
+    bullet: {
+      type: FlakBulletType
+      damage: 4
+      speed: 5
+      lifetime: 50
+      splashDamage: 32
+      splashDamageRadius: 22
+      width: 6
+      height: 8
+      frontColor: "ffd4f3"
+      backColor: "ff6ed7"
+      hitEffect: flakExplosionBig
+    }
+  }
+]

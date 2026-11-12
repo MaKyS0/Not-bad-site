@@ -1,0 +1,40 @@
+type: ConsumeGenerator
+name: Dynamo IV
+description: Phase core cooled with cryofluid. 3900 power units a second.
+category: power
+research: rapid-generator-3
+requirements: [
+  lead/600
+  silicon/500
+  graphite/400
+  thorium/350
+  plastanium/250
+  surge-alloy/200
+  phase-fabric/100
+  metaglass/200
+]
+researchCostMultiplier: 0.5
+size: 4
+health: 1800
+powerProduction: 65
+itemDuration: 180
+generateEffect: generatespark
+ambientSound: smelter
+ambientSoundVolume: 0.03
+liquidCapacity: 60
+consumes: {
+  item: phase-fabric
+  liquid: {
+    liquid: cryofluid
+    amount: 0.25
+  }
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "ff6ed7"
+  }
+]

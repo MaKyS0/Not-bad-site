@@ -1,0 +1,82 @@
+type: ItemTurret
+name: Mortar I
+description: Tiny rapid artillery. Long range, splash damage, ground targets only.
+category: turret
+research: hail
+playerControllable: true
+requirements: [
+  copper/100
+  graphite/50
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 1
+size: 1
+health: 300
+range: 230
+reload: 30
+inaccuracy: 2
+velocityRnd: 0.1
+shootCone: 10
+rotateSpeed: 8
+recoil: 2
+shake: 1
+shootY: 2.75
+maxAmmo: 20
+targetAir: false
+targetGround: true
+heatColor: "ff4632"
+shootSound: artillery
+ammoUseEffect: casing2
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.1
+}
+ammoTypes: {
+  graphite: {
+    type: ArtilleryBulletType
+    damage: 6
+    splashDamage: 28
+    splashDamageRadius: 16
+    speed: 3
+    lifetime: 77
+    knockback: 0.8
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 8
+    trailWidth: 2
+    width: 11
+    height: 11
+    frontColor: "ffd9c8"
+    backColor: "ff4632"
+    trailColor: "ff4632"
+    hitEffect: flakExplosion
+    despawnEffect: flakExplosion
+    shootEffect: shootSmall
+    smokeEffect: shootSmallSmoke
+    ammoMultiplier: 2
+  }
+  silicon: {
+    type: ArtilleryBulletType
+    damage: 6
+    splashDamage: 28
+    splashDamageRadius: 16
+    speed: 3
+    lifetime: 77
+    knockback: 0.8
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 8
+    trailWidth: 2
+    width: 11
+    height: 11
+    frontColor: "ffd9c8"
+    backColor: "ff4632"
+    trailColor: "ff4632"
+    hitEffect: flakExplosion
+    despawnEffect: flakExplosion
+    shootEffect: shootSmall
+    smokeEffect: shootSmallSmoke
+    ammoMultiplier: 3
+    reloadMultiplier: 1.2
+  }
+}

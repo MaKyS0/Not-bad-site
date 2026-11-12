@@ -1,0 +1,95 @@
+type: legs
+name: Stalker
+description: Tier 3 walker. Six legs, heavier mortars and a pair of flak guns against aircraft.
+research: {
+  parent: weaver
+  requirements: [
+    silicon/4300
+    titanium/3300
+    graphite/2700
+    thorium/1000
+  ]
+}
+health: 950
+armor: 4
+speed: 0.5
+drag: 0.4
+rotateSpeed: 4
+hitSize: 14
+hovering: true
+targetAir: false
+legCount: 6
+legLength: 14
+legBaseOffset: 2.5
+legForwardScl: 0.8
+legMoveSpace: 1.4
+shadowElevation: 0.3
+groundLayer: 75
+weapons: [
+  {
+    name: stalker-mortar
+    x: 4.25
+    y: 1
+    top: true
+    mirror: true
+    alternate: true
+    reload: 28
+    recoil: 2.5
+    shake: 0.5
+    shootY: 3
+    inaccuracy: 3
+    velocityRnd: 0.1
+    ejectEffect: casing2
+    shootSound: artillery
+    bullet: {
+      type: ArtilleryBulletType
+      damage: 9
+      splashDamage: 46
+      splashDamageRadius: 22
+      speed: 3.4
+      lifetime: 71
+      knockback: 0.8
+      collidesTiles: false
+      width: 11
+      height: 11
+      frontColor: "d6ffe0"
+      backColor: "78ff96"
+      trailEffect: none
+      trailLength: 8
+      trailWidth: 2
+      trailColor: "78ff96"
+      hitEffect: flakExplosion
+      despawnEffect: flakExplosion
+    }
+  }
+  {
+    name: stalker-flak
+    x: 2
+    y: -3.5
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 9
+    controllable: false
+    autoTarget: true
+    reload: 12
+    recoil: 0.5
+    shootY: 1.75
+    inaccuracy: 6
+    shootSound: shootSnap
+    bullet: {
+      type: FlakBulletType
+      damage: 3
+      speed: 4.5
+      lifetime: 46
+      splashDamage: 22
+      splashDamageRadius: 18
+      width: 6
+      height: 8
+      frontColor: "d6ffe0"
+      backColor: "78ff96"
+      hitEffect: flakExplosion
+    }
+  }
+]

@@ -1,0 +1,40 @@
+type: ConsumeGenerator
+name: Dynamo II
+description: Water-cooled burner: 780 power units a second, enough for a Pulse III.
+category: power
+research: rapid-generator-1
+requirements: [
+  copper/150
+  lead/150
+  graphite/100
+  silicon/100
+  titanium/80
+  metaglass/50
+]
+researchCostMultiplier: 1
+size: 3
+health: 800
+powerProduction: 13
+itemDuration: 60
+generateEffect: generatespark
+ambientSound: smelter
+ambientSoundVolume: 0.03
+liquidCapacity: 30
+consumes: {
+  itemFlammable: {
+    minFlammability: 0.2
+  }
+  liquid: {
+    liquid: water
+    amount: 0.2
+  }
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "5ad7ff"
+  }
+]

@@ -1,0 +1,114 @@
+type: ItemTurret
+name: Mortar II
+description: Twin tubes; accepts blast compound for bigger explosions. Cannot hit targets right next to it.
+category: turret
+research: rapid-mortar-1
+playerControllable: true
+requirements: [
+  copper/250
+  graphite/180
+  titanium/90
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 1
+size: 2
+health: 950
+range: 270
+minRange: 40
+reload: 24
+inaccuracy: 3
+velocityRnd: 0.1
+shootCone: 10
+rotateSpeed: 7
+recoil: 3
+shake: 1.5
+shootY: 6.75
+maxAmmo: 24
+targetAir: false
+targetGround: true
+heatColor: "ff4632"
+shootSound: artillery
+ammoUseEffect: casing2
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.2
+}
+shoot: {
+  type: ShootAlternate
+  barrels: 2
+  spread: 4.5
+  shots: 1
+}
+ammoTypes: {
+  graphite: {
+    type: ArtilleryBulletType
+    damage: 10
+    splashDamage: 52
+    splashDamageRadius: 20
+    speed: 3.2
+    lifetime: 85
+    knockback: 0.8
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 9
+    trailWidth: 2.3
+    width: 12
+    height: 12
+    frontColor: "ffd9c8"
+    backColor: "ff4632"
+    trailColor: "ff4632"
+    hitEffect: flakExplosion
+    despawnEffect: flakExplosion
+    shootEffect: shootBig
+    smokeEffect: shootBigSmoke
+    ammoMultiplier: 2
+  }
+  silicon: {
+    type: ArtilleryBulletType
+    damage: 10
+    splashDamage: 52
+    splashDamageRadius: 20
+    speed: 3.2
+    lifetime: 85
+    knockback: 0.8
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 9
+    trailWidth: 2.3
+    width: 12
+    height: 12
+    frontColor: "ffd9c8"
+    backColor: "ff4632"
+    trailColor: "ff4632"
+    hitEffect: flakExplosion
+    despawnEffect: flakExplosion
+    shootEffect: shootBig
+    smokeEffect: shootBigSmoke
+    ammoMultiplier: 3
+    reloadMultiplier: 1.2
+  }
+  blast-compound: {
+    type: ArtilleryBulletType
+    damage: 16
+    splashDamage: 78
+    splashDamageRadius: 28
+    speed: 3.2
+    lifetime: 85
+    knockback: 0.8
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 9
+    trailWidth: 2.3
+    width: 12
+    height: 12
+    frontColor: "ffe9b8"
+    backColor: "ffa23c"
+    trailColor: "ffa23c"
+    hitEffect: blastExplosion
+    despawnEffect: blastExplosion
+    shootEffect: shootBig
+    smokeEffect: shootBigSmoke
+    ammoMultiplier: 4
+    status: blasted
+  }
+}

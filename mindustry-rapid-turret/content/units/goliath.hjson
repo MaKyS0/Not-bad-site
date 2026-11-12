@@ -1,0 +1,103 @@
+type: legs
+name: Goliath
+description: Tier 5 walker. A colossal siege engine: huge blast radius, the longest range of any Rapid unit.
+research: {
+  parent: tarantula
+  requirements: [
+    silicon/22000
+    plastanium/13000
+    surge-alloy/10000
+    thorium/8000
+    phase-fabric/5500
+  ]
+}
+health: 17000
+armor: 11
+speed: 0.4
+drag: 0.1
+rotateSpeed: 2.2
+hitSize: 32
+hovering: true
+targetAir: false
+legCount: 6
+legLength: 40
+legBaseOffset: 6.5
+legMoveSpace: 0.9
+legPairOffset: 3
+legSpeed: 0.19
+legLengthScl: 0.94
+shadowElevation: 0.9
+groundLayer: 75
+stepShake: 0.8
+rippleScale: 3
+drownTimeMultiplier: 3
+legSplashDamage: 45
+legSplashRange: 32
+weapons: [
+  {
+    name: goliath-mortar
+    x: 9.75
+    y: 3
+    top: true
+    mirror: true
+    alternate: true
+    reload: 16
+    recoil: 3.5
+    shake: 1.5
+    shootY: 6.5
+    inaccuracy: 3
+    velocityRnd: 0.1
+    ejectEffect: casing3
+    shootSound: artillery
+    bullet: {
+      type: ArtilleryBulletType
+      damage: 31
+      splashDamage: 155
+      splashDamageRadius: 34
+      speed: 4
+      lifetime: 83
+      knockback: 0.8
+      collidesTiles: false
+      width: 15
+      height: 15
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      trailEffect: none
+      trailLength: 12
+      trailWidth: 3
+      trailColor: "ff543c"
+      hitEffect: blastExplosion
+      despawnEffect: blastExplosion
+    }
+  }
+  {
+    name: goliath-flak
+    x: 4
+    y: -5
+    top: true
+    mirror: true
+    alternate: true
+    rotate: true
+    rotateSpeed: 9
+    controllable: false
+    autoTarget: true
+    reload: 8
+    recoil: 1
+    shootY: 2.75
+    inaccuracy: 6
+    shootSound: shootSnap
+    bullet: {
+      type: FlakBulletType
+      damage: 5
+      speed: 5.5
+      lifetime: 54
+      splashDamage: 46
+      splashDamageRadius: 26
+      width: 6
+      height: 8
+      frontColor: "ffccc4"
+      backColor: "ff543c"
+      hitEffect: flakExplosionBig
+    }
+  }
+]

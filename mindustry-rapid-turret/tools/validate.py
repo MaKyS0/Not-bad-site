@@ -191,6 +191,8 @@ def main():
     # Part 4: warships and the shipyard
     import naval
     check_naval(naval, data)
+    # Part 5: walkers, nest, mortars, power
+    check_part5(data)
 
     # bundles
     bundles = {}
@@ -299,6 +301,147 @@ def check_naval(naval, data):
         sprite(f"sprites/blocks/rapid-shipyard{sfx}.png", (160, 160))
 
 
+def vsymmetric(im):
+    return im.tobytes() == im.transpose(Image.FLIP_TOP_BOTTOM).tobytes()
+
+
+def artillery_ok(b, where, rng=None, unit_range=None):
+    if b.get("trailEffect") != "none":
+        err(f"{where}: artillery shells need trailEffect: none")
+    if not b.get("splashDamage", 0) > 0:
+        err(f"{where}: artillery shell without splashDamage")
+    for bad in ("homingPower", "fragBullets", "makeFire", "collides", "collidesAir"):
+        if bad in b:
+            err(f"{where}: artillery shell must not set {bad}")
+    reach = b.get("speed", 0) * b.get("lifetime", 0)
+    if rng is not None and not rng <= reach < rng + 4:
+        err(f"{where}: speed*lifetime {reach} must be in [range, range+4) = [{rng}, {rng + 4})")
+    if unit_range is not None and abs(reach - unit_range) > 1:
+        err(f"{where}: speed*lifetime {reach} != {unit_range}")
+
+
+def check_part5(data):
+    import walkers
+    import mortar
+    import power
+    for u in walkers.UNITS:
+        n, C = u['name'], u['C']
+        d = data.get(f"{ROOT}/content/units/{n}.hjson")
+        if not d:
+            err(f"content/units/{n}.hjson missing")
+            continue
+        if d.get("type") != "legs" or d.get("hovering") is not True or d.get("targetAir") is not False:
+            err(f"{n}: needs type: legs, hovering: true, targetAir: false")
+        if d.get("legCount", 0) < 4 or d.get("legCount") % 2:
+            err(f"{n}: legCount must be even and >= 4")
+        for bad in ("allowLegStep", "flying", "naval", "canDrown", "mechFrontSway", "engineOffset"):
+            if bad in d:
+                err(f"{n}: must not set {bad}")
+        for w in d.get("weapons", []):
+            if w.get("reload", 0) < 7:
+                err(f"{n}: weapon {w.get('name')} reload < 7")
+            b = w.get("bullet", {})
+            if b.get("type") == "ArtilleryBulletType":
+                if "rotate" in w:
+                    err(f"{n}: the mortar must not rotate")
+                m = u['mortar']
+                artillery_ok(b, f"{n} mortar", unit_range=round(m['speed'] * m['life'], 1))
+            else:
+                if w.get("rotate") is not True or w.get("controllable") is not False or w.get("autoTarget") is not True:
+                    err(f"{n}: flak needs rotate, controllable: false, autoTarget: true")
+            sp = f"{ROOT}/sprites/units/{w.get('name')}.png"
+            if os.path.exists(sp) and abs(w.get("shootY", 0) - (Image.open(sp).height / 2 - 4) / 4) > 1e-6:
+                err(f"{n}: {w.get('name')} shootY != (height/2-4)/4")
+        for sfx, size, mirror in (("", (C, C), "lr"), ("-cell", (C, C), "lr"), ("-leg", u['leg']['L'], "tb"),
+                                  ("-leg-base", u['leg']['L'], "tb"), ("-joint", (u['leg']['joint'],) * 2, None),
+                                  ("-mortar", u['mortar']['canvas'], "lr")):
+            path = f"sprites/units/{n}{sfx}.png"
+            border = 4 if sfx not in ("-leg", "-leg-base") else None
+            sprite(path, size, border=border)
+            p = f"{ROOT}/{path}"
+            if not os.path.exists(p):
+                continue
+            im = Image.open(p).convert("RGBA")
+            if mirror == "lr" and not symmetric(im):
+                err(f"{path}: not left/right symmetric")
+            if mirror == "tb":
+                if not vsymmetric(im):
+                    err(f"{path}: not top/bottom symmetric")
+                a = im.getchannel("A").load()
+                Lw, Lh = im.size
+                if any(a[x, y] for y in list(range(4)) + list(range(Lh - 4, Lh)) for x in range(Lw)):
+                    err(f"{path}: the 4 top/bottom rows must be empty")
+                if not all(a[0, y] for y in range(4, 4 + u['leg']['t'])):
+                    err(f"{path}: column 0 must be opaque in the limb rows")
+        if u['leg']['foot']:
+            sprite(f"sprites/units/{n}-foot.png", (u['leg']['foot'],) * 2, border=4)
+        if u['flak']:
+            sprite(f"sprites/units/{n}-flak.png", (20, 30) if u['T'] >= 4 else (14, 22), border=4)
+            body = Image.open(f"{ROOT}/sprites/units/{n}.png").convert("RGBA")
+            for x, y in walkers.flak_mounts(u):
+                if not body.getpixel((int(C / 2 + 4 * x), int(C / 2 - 4 * y)))[3]:
+                    err(f"{n}: flak mount {(x, y)} is not on the body")
+    y = data.get(f"{ROOT}/content/blocks/rapid-nest.hjson")
+    if not y or y.get("research") != "ground-factory" or "floating" in y or \
+            [p.get("unit") for p in y.get("plans", [])] != [u['name'] for u in walkers.UNITS]:
+        err("rapid-nest: needs research ground-factory, no floating, the five walkers in order")
+    sprite("sprites/blocks/rapid-nest.png", (160, 160), opaque=True)
+    for sfx in ("-top", "-out", "-in"):
+        sprite(f"sprites/blocks/rapid-nest{sfx}.png", (160, 160))
+    for n, p in mortar.MORTAR.items():
+        d = data.get(f"{ROOT}/content/blocks/rapid-mortar-{n}.hjson")
+        S = p['size'] * 32
+        for sfx in ("", "-heat"):
+            sprite(f"sprites/blocks/rapid-mortar-{n}{sfx}.png", (S, S), border=5)
+        sprite(f"sprites/blocks/rapid-mortar-{n}-base.png", (S, S))
+        if not d:
+            continue
+        if d.get("targetAir") is not False:
+            err(f"rapid-mortar-{n}: targetAir must be false")
+        if d.get("minRange", 0) >= d["range"] / 4:
+            err(f"rapid-mortar-{n}: minRange too large")
+        if 60 / d["reload"] * 1.2 > 60:
+            err(f"rapid-mortar-{n}: more than 60 shells/s")
+        if isinstance(d.get("shoot"), dict) and abs(d["shoot"]["spread"] * 4 - mortar.ART[n][0]) > 1e-6:
+            err(f"rapid-mortar-{n}: shoot.spread*4 != barrel pitch")
+        for item, b in d.get("ammoTypes", {}).items():
+            artillery_ok(b, f"rapid-mortar-{n} {item}", rng=d["range"])
+    for n, g in power.GEN.items():
+        name = f"rapid-generator-{n}"
+        d = data.get(f"{ROOT}/content/blocks/{name}.hjson")
+        S = g['size'] * 32
+        sprite(f"sprites/blocks/{name}.png", (S, S), opaque=True)
+        sprite(f"sprites/blocks/{name}-top.png", (S, S))
+        tp = f"{ROOT}/sprites/blocks/{name}-top.png"
+        if os.path.exists(tp) and Image.open(tp).convert("RGBA").getchannel("A").getextrema()[0] == 255:
+            err(f"{name}-top: must not be opaque")
+        if not d:
+            continue
+        cons = d.get("consumes", {})
+        if not d.get("powerProduction", 0) > 0 or "power" in cons:
+            err(f"{name}: needs powerProduction and no consumes.power")
+        if sum(1 for k in cons if k.startswith("item")) != 1 or len(d.get("drawer", [])) != 2:
+            err(f"{name}: needs exactly one item consumer and a 2-entry drawer")
+    d = data.get(f"{ROOT}/content/blocks/rapid-battery.hjson")
+    if not d or not d.get("consumes", {}).get("powerBuffered", 0) > 0:
+        err("rapid-battery: needs consumes.powerBuffered")
+    sprite("sprites/blocks/rapid-battery.png", (96, 96), opaque=True)
+    sprite("sprites/blocks/rapid-battery-top.png", (96, 96))
+    sprite("sprites/blocks/rapid-solar.png", (96, 96), opaque=True)
+    tp = f"{ROOT}/sprites/blocks/rapid-battery-top.png"
+    if os.path.exists(tp):
+        a = Image.open(tp).convert("RGBA").getchannel("A").load()
+        for yy in range(96):
+            for xx in range(96):
+                inside = 22 <= yy <= 73 and any(20 + 20 * k <= xx <= 35 + 20 * k for k in range(3))
+                if not inside and a[xx, yy] != 255:
+                    err(f"rapid-battery-top: transparent pixel outside the windows at {(xx, yy)}")
+                    break
+            else:
+                continue
+            break
+
+
 _cache = {}
 
 
@@ -328,16 +471,26 @@ SKIP = {"type", "name", "description", "research", "consumes", "requirements", "
 CLASSES = {"Wall": "mindustry.world.blocks.defense.Wall", "Drill": "mindustry.world.blocks.production.Drill",
            "UnitFactory": "mindustry.world.blocks.units.UnitFactory",
            "ItemTurret": "mindustry.world.blocks.defense.turrets.ItemTurret",
-           "mech": "mindustry.type.UnitType", "flying": "mindustry.type.UnitType", "naval": "mindustry.type.UnitType",
+           "mech": "mindustry.type.UnitType", "flying": "mindustry.type.UnitType", "naval": "mindustry.type.UnitType", "legs": "mindustry.type.UnitType",
            "Conveyor": "mindustry.world.blocks.distribution.Conveyor",
            "PowerTurret": "mindustry.world.blocks.defense.turrets.PowerTurret",
            "ShieldWall": "mindustry.world.blocks.defense.ShieldWall",
-           "MendProjector": "mindustry.world.blocks.defense.MendProjector"}
+           "MendProjector": "mindustry.world.blocks.defense.MendProjector",
+           "ConsumeGenerator": "mindustry.world.blocks.power.ConsumeGenerator",
+           "SolarGenerator": "mindustry.world.blocks.power.SolarGenerator",
+           "Battery": "mindustry.world.blocks.power.Battery"}
 BULLETS = {"BasicBulletType": "mindustry.entities.bullet.BasicBulletType",
            "LaserBoltBulletType": "mindustry.entities.bullet.LaserBoltBulletType",
-           "FlakBulletType": "mindustry.entities.bullet.FlakBulletType"}
+           "FlakBulletType": "mindustry.entities.bullet.FlakBulletType",
+           "ArtilleryBulletType": "mindustry.entities.bullet.ArtilleryBulletType"}
+CONSUMES = {"item", "items", "itemFlammable", "itemRadioactive", "itemCharged", "itemExplosive", "itemExplode", "liquid",
+            "liquids", "liquidFlammable", "coolant", "power", "powerBuffered"}
+CONSUMER_CLASS = {"itemFlammable": "mindustry.world.consumers.ConsumeItemFlammable",
+                  "itemRadioactive": "mindustry.world.consumers.ConsumeItemRadioactive",
+                  "liquid": "mindustry.world.consumers.ConsumeLiquid"}
 PATTERN = "mindustry.entities.pattern."
-EFFECT_KEYS = {"shootEffect", "smokeEffect", "ammoUseEffect", "hitEffect", "despawnEffect", "ejectEffect"}
+EFFECT_KEYS = {"shootEffect", "smokeEffect", "ammoUseEffect", "hitEffect", "despawnEffect", "ejectEffect", "trailEffect",
+               "generateEffect"}
 WEAPON = "mindustry.type.Weapon"
 BULLET = "mindustry.entities.bullet.BasicBulletType"
 
@@ -389,13 +542,26 @@ def check_fields(data):
                 for k, v in o.items():
                     if k in EFFECT_KEYS and isinstance(v, str) and v not in fx:
                         err(f"{rel}: effect {v!r} does not exist")
-                    if k == "shootSound" and v not in snd:
+                    if k in ("shootSound", "ambientSound") and v not in snd:
                         err(f"{rel}: sound {v!r} does not exist")
                     walk(v)
             elif isinstance(o, list):
                 for e in o:
                     walk(e)
         walk(d)
+        for i, dr in enumerate(d.get("drawer", []) if isinstance(d.get("drawer"), list) else []):
+            check_keys(dr, "mindustry.world.draw." + dr.get("type", "DrawDefault"), f"{rel} drawer {i}")
+        if isinstance(d.get("consumes"), dict):
+            for k, v in d["consumes"].items():
+                if k not in CONSUMES:
+                    err(f"{rel}: consumes key {k!r} is not accepted by the parser")
+                if k in CONSUMER_CLASS and isinstance(v, dict):
+                    check_keys(v, CONSUMER_CLASS[k], f"{rel} consumes {k}")
+        if d.get("status") or any(isinstance(b, dict) and b.get("status") for b in d.get("ammoTypes", {}).values()):
+            st = static_names("mindustry.content.StatusEffects")
+            for b in d.get("ammoTypes", {}).values():
+                if b.get("status") and b["status"] not in st:
+                    err(f"{rel}: status {b['status']!r} does not exist")
         if d.get("type") == "MendProjector":
             for k, v in (("range", 2), ("phaseBoost", 0), ("phaseRangeBoost", 0)):
                 if d.get(k) != v:

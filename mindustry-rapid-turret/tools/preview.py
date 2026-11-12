@@ -2,7 +2,8 @@
 """Design-review previews: python3 tools/preview.py <output dir>
 
 Writes walls.png, drills.png, units.png, forge.png, conveyors.png, air.png, hangar.png,
-turrets2.png, walls2.png, naval.png, shipyard.png (each scaled 4x, NEAREST, dark background)."""
+turrets2.png, walls2.png, naval.png, shipyard.png,
+walkers.png, nest.png, mortar.png, power.png (each scaled 4x, NEAREST, dark background)."""
 import os
 import sys
 from PIL import Image
@@ -264,6 +265,116 @@ def shipyard(out):
     sheet([[up(base), up(full)]]).save(out)
 
 
+def paste_rot(dst, im, cx, cy, deg):
+    r = im.rotate(deg, resample=Image.NEAREST, expand=True)
+    dst.alpha_composite(r, (int(round(cx - r.width / 2)), int(round(cy - r.height / 2))))
+
+
+def stretch(im, length):
+    """A leg strip stretched to `length` px (like Lines.line), keeping its height."""
+    return im.resize((max(1, int(round(length))), im.height), Image.NEAREST)
+
+
+def assemble_walker(u, outline=3):
+    import math
+    import walkers
+    C = u['C']
+    cnt, length = u['legs'][:2]
+    base_off = u['legs'][2]
+    pad = int(length * 4 * 1.1) + 8
+    W = C + 2 * pad
+    img = Image.new("RGBA", (W, W), (0, 0, 0, 0))
+    cx = cy = W / 2
+    n = u['name']
+    leg, legb, joint = (load(f"sprites/units/{n}{s}.png") for s in ("-leg", "-leg-base", "-joint"))
+    foot = load(f"sprites/units/{n}-foot.png") if u['leg']['foot'] else None
+    legs = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    for i in range(cnt):
+        phi = math.radians(360 / cnt * (i + 0.5))          # from "up", clockwise
+        dx, dy = math.sin(phi), -math.cos(phi)
+        root = (cx + dx * base_off * 4, cy + dy * base_off * 4)
+        jnt = (root[0] + dx * length * 2, root[1] + dy * length * 2)
+        ft = (root[0] + dx * length * 4, root[1] + dy * length * 4)
+        ang = -math.degrees(math.atan2(dy, dx))
+        for strip, a, b in ((leg, root, jnt), (legb, jnt, ft)):
+            seg = stretch(strip, length * 2)
+            paste_rot(legs, seg, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2, ang)
+        if foot:
+            paste_rot(legs, foot, ft[0], ft[1], ang)
+        legs.alpha_composite(joint, (int(jnt[0] - joint.width / 2), int(jnt[1] - joint.height / 2)))
+    img.alpha_composite(outlined(legs, outline))
+    top = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    top.alpha_composite(load(f"sprites/units/{n}.png"), (pad, pad))
+    top.alpha_composite(tint(load(f"sprites/units/{n}-cell.png"), (255, 211, 127)), (pad, pad))
+    m = u['mortar']
+    mounts = [(f"{n}-mortar", m['x'], m['y']), (f"{n}-mortar", -m['x'], m['y'])]
+    mounts += [(f"{n}-flak", x, y) for x, y in walkers.flak_mounts(u)]
+    for name, x, y in mounts:
+        w = load(f"sprites/units/{name}.png")
+        top.alpha_composite(w, (int(cx + 4 * x - w.width / 2), int(cy - 4 * y - w.height / 2)))
+    img.alpha_composite(outlined(top, outline))
+    return img
+
+
+def walkers_sheet(out):
+    import walkers
+    row = [up(assemble_walker(u)) for u in walkers.UNITS]
+    raw = []
+    for u in walkers.UNITS:
+        for sfx in ("", "-cell", "-leg", "-leg-base", "-joint", "-foot", "-mortar", "-flak"):
+            p = f"sprites/units/{u['name']}{sfx}.png"
+            if os.path.exists(f"{ROOT}/{p}"):
+                raw.append(up(on_bg(load(p))))
+    sheet([row, raw]).save(out)
+
+
+def nest(out):
+    import walkers
+    base = load("sprites/blocks/rapid-nest.png")
+    full = base.copy()
+    full.alpha_composite(load("sprites/blocks/rapid-nest-out.png"))
+    full.alpha_composite(load("sprites/blocks/rapid-nest-top.png"))
+    w = assemble_walker(walkers.BY_NAME["stalker"])
+    w = w.crop(((w.width - 150) // 2, (w.height - 150) // 2, (w.width + 150) // 2, (w.height + 150) // 2))
+    full.alpha_composite(w, (5, 5))
+    sheet([[up(base), up(full)]]).save(out)
+
+
+def mortars(out):
+    import mortar as mo
+    row = []
+    for n in mo.MORTAR:
+        name = f"sprites/blocks/rapid-mortar-{n}"
+        img = load(f"{name}-base.png")
+        img.alpha_composite(outlined(load(f"{name}.png")))
+        hot = img.copy()
+        heat = Image.new("RGBA", img.size, mo.GLOW + (0,))
+        heat.putalpha(load(f"{name}-heat.png").getchannel("A"))
+        hot.alpha_composite(heat)
+        row += [up(img), up(hot)]
+    sheet([row]).save(out)
+
+
+def power_sheet(out):
+    import power as pw
+    from art import TIER
+    row = []
+    for n in pw.GEN:
+        name = f"sprites/blocks/rapid-generator-{n}"
+        img = load(f"{name}.png")
+        lit = img.copy()
+        lit.alpha_composite(tint(load(f"{name}-top.png"), TIER[n][0]))
+        row += [up(img), up(lit)]
+    row.append(up(load("sprites/blocks/rapid-solar.png")))
+    bat = load("sprites/blocks/rapid-battery.png")
+    charged = bat.copy()
+    sq = Image.new("RGBA", (88, 88), (90, 215, 255, 255))
+    charged.alpha_composite(sq, (4, 4))
+    charged.alpha_composite(load("sprites/blocks/rapid-battery-top.png"))
+    row += [up(bat), up(charged)]
+    sheet([row]).save(out)
+
+
 def main():
     d = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(d, exist_ok=True)
@@ -278,6 +389,10 @@ def main():
     walls2(f"{d}/walls2.png")
     ships(f"{d}/naval.png")
     shipyard(f"{d}/shipyard.png")
+    walkers_sheet(f"{d}/walkers.png")
+    nest(f"{d}/nest.png")
+    mortars(f"{d}/mortar.png")
+    power_sheet(f"{d}/power.png")
 
 
 if __name__ == "__main__":

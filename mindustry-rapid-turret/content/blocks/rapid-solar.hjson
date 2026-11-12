@@ -1,0 +1,14 @@
+type: SolarGenerator
+name: Rapid Solar Array
+description: Dense solar array. 180 power units a second with no fuel at all.
+category: power
+research: solar-panel-large
+requirements: [
+  lead/150
+  silicon/200
+  titanium/60
+  phase-fabric/25
+]
+size: 3
+health: 500
+powerProduction: 3

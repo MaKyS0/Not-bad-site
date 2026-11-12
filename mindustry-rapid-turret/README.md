@@ -154,3 +154,38 @@ Every wall comes in 1x1 and 2x2. Research: Pulse from Arc, Buckshot from Hail, A
 
 The Rapid Shipyard (5x5, 210 power/s) floats like the vanilla naval factory: build it on shallow water or on
 deep water next to the shore, with the exit facing water. Research: shipyard from Naval Factory, ships in a chain from the shipyard.
+
+## Walkers (legged, built in the Rapid Nest)
+
+They step over walls and buildings and lob mortar shells. They cannot attack aircraft; Stalker and up carry
+flak guns that shoot aircraft only.
+
+| Tier | Walker | Health | Legs | Mortar range |
+|------|--------|--------|------|--------------|
+| 1 | Mite      | 130   | 4 | 171 |
+| 2 | Weaver    | 480   | 4 | 202 |
+| 3 | Stalker   | 950   | 6 | 241 (+ flak) |
+| 4 | Tarantula | 6500  | 6 | 285 (+ flak, crushing steps) |
+| 5 | Goliath   | 17000 | 6 | 332 (+ flak, crushing steps) |
+
+## Mortar turrets (artillery, ground targets only)
+
+| Tier | Size | Range | Shells/s | Ammo |
+|------|------|-------|----------|------|
+| I   | 1x1 | 230 | 2   | graphite, silicon |
+| II  | 2x2 | 270 | 2.5 | + blast compound |
+| III | 3x3 | 310 | 3.3 | + plastanium |
+| IV  | 4x4 | 350 | 5   | + plastanium |
+
+## Power
+
+| Block | Size | Power/s | Fuel |
+|-------|------|---------|------|
+| Dynamo I   | 2x2 | 240  | coal, spore pods, pyratite |
+| Dynamo II  | 3x3 | 780  | the same + water |
+| Dynamo III | 3x3 | 1560 | thorium |
+| Dynamo IV  | 4x4 | 3900 | phase fabric + cryofluid |
+| Rapid Solar Array | 3x3 | 180 | sunlight |
+| Rapid Capacitor   | 3x3 | stores 80000 | — |
+
+None of the Dynamos can explode.

@@ -1,0 +1,64 @@
+type: legs
+name: Weaver
+description: Tier 2 walker. Lobs explosive shells over walls from a safe distance.
+research: {
+  parent: mite
+  requirements: [
+    silicon/1700
+    graphite/1200
+    titanium/700
+  ]
+}
+health: 480
+armor: 2
+speed: 0.55
+drag: 0.4
+rotateSpeed: 4.5
+hitSize: 11
+hovering: true
+targetAir: false
+legCount: 4
+legLength: 10
+legBaseOffset: 1.5
+legForwardScl: 0.6
+legMoveSpace: 1.4
+shadowElevation: 0.2
+groundLayer: 74
+weapons: [
+  {
+    name: weaver-mortar
+    x: 3
+    y: 0.5
+    top: true
+    mirror: true
+    alternate: true
+    reload: 34
+    recoil: 2
+    shake: 0
+    shootY: 2.25
+    inaccuracy: 3
+    velocityRnd: 0.1
+    ejectEffect: casing2
+    shootSound: artillery
+    bullet: {
+      type: ArtilleryBulletType
+      damage: 6
+      splashDamage: 30
+      splashDamageRadius: 18
+      speed: 3.2
+      lifetime: 63
+      knockback: 0.8
+      collidesTiles: false
+      width: 10
+      height: 10
+      frontColor: "cef3ff"
+      backColor: "5ad7ff"
+      trailEffect: none
+      trailLength: 7
+      trailWidth: 1.8
+      trailColor: "5ad7ff"
+      hitEffect: flakExplosion
+      despawnEffect: flakExplosion
+    }
+  }
+]

@@ -1,0 +1,138 @@
+type: ItemTurret
+name: Mortar III
+description: Three tubes, three shells a second. Plastanium shells throw enemies back.
+category: turret
+research: rapid-mortar-2
+playerControllable: true
+requirements: [
+  copper/600
+  graphite/450
+  titanium/380
+  thorium/200
+]
+buildCostMultiplier: 1
+researchCostMultiplier: 0.8
+size: 3
+health: 1900
+range: 310
+minRange: 50
+reload: 18
+inaccuracy: 4
+velocityRnd: 0.1
+shootCone: 10
+rotateSpeed: 6
+recoil: 4
+shake: 2
+shootY: 10.75
+maxAmmo: 30
+targetAir: false
+targetGround: true
+heatColor: "ff4632"
+shootSound: artillery
+ammoUseEffect: casing3
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.3
+}
+shoot: {
+  type: ShootAlternate
+  barrels: 3
+  spread: 5
+  shots: 1
+}
+ammoTypes: {
+  graphite: {
+    type: ArtilleryBulletType
+    damage: 16
+    splashDamage: 82
+    splashDamageRadius: 24
+    speed: 3.4
+    lifetime: 92
+    knockback: 0.8
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 10
+    trailWidth: 2.6
+    width: 13
+    height: 13
+    frontColor: "ffd9c8"
+    backColor: "ff4632"
+    trailColor: "ff4632"
+    hitEffect: blastExplosion
+    despawnEffect: blastExplosion
+    shootEffect: shootBig
+    smokeEffect: shootBigSmoke
+    ammoMultiplier: 2
+  }
+  silicon: {
+    type: ArtilleryBulletType
+    damage: 16
+    splashDamage: 82
+    splashDamageRadius: 24
+    speed: 3.4
+    lifetime: 92
+    knockback: 0.8
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 10
+    trailWidth: 2.6
+    width: 13
+    height: 13
+    frontColor: "ffd9c8"
+    backColor: "ff4632"
+    trailColor: "ff4632"
+    hitEffect: blastExplosion
+    despawnEffect: blastExplosion
+    shootEffect: shootBig
+    smokeEffect: shootBigSmoke
+    ammoMultiplier: 3
+    reloadMultiplier: 1.2
+  }
+  blast-compound: {
+    type: ArtilleryBulletType
+    damage: 25
+    splashDamage: 123
+    splashDamageRadius: 34
+    speed: 3.4
+    lifetime: 92
+    knockback: 0.8
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 10
+    trailWidth: 2.6
+    width: 13
+    height: 13
+    frontColor: "ffe9b8"
+    backColor: "ffa23c"
+    trailColor: "ffa23c"
+    hitEffect: blastExplosion
+    despawnEffect: blastExplosion
+    shootEffect: shootBig
+    smokeEffect: shootBigSmoke
+    ammoMultiplier: 4
+    status: blasted
+  }
+  plastanium: {
+    type: ArtilleryBulletType
+    damage: 21
+    splashDamage: 107
+    splashDamageRadius: 30
+    speed: 3.4
+    lifetime: 92
+    knockback: 1.6
+    collidesTiles: false
+    trailEffect: none
+    trailLength: 10
+    trailWidth: 2.6
+    width: 13
+    height: 13
+    frontColor: "f6ffd0"
+    backColor: "c8e86a"
+    trailColor: "c8e86a"
+    hitEffect: plasticExplosion
+    despawnEffect: plasticExplosion
+    shootEffect: shootBig
+    smokeEffect: shootBigSmoke
+    ammoMultiplier: 3
+  }
+}

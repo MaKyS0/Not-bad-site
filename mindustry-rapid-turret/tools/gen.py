@@ -343,8 +343,8 @@ def main():
         key = f"block.rapid-turret-{name}"
         en += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {EN_DESC[t]}"]
         ru += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {RU_DESC[t]}"]
-    import walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2, naval, shipyard
-    for mod in (walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2, naval, shipyard):
+    import walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2, naval, shipyard, walkers, nest, mortar, power
+    for mod in (walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2, naval, shipyard, walkers, nest, mortar, power):
         e, r = mod.build(root)
         en += e
         ru += r
@@ -377,7 +377,8 @@ def balance():
         print(f"{ROMAN[t]:>4} {value:>7.0f} {best:>9.0f} {value / best:>9.1f} {secs:>8.0f}")
     import turrets2
     print("\nturret         value  best DPS  value/DPS")
-    for name, value, best in turrets2.balance_rows():
+    import mortar
+    for name, value, best in turrets2.balance_rows() + mortar.balance_rows():
         print(f"{name:<13} {value:>6.0f} {best:>9.0f} {value / best:>9.1f}")
 
 

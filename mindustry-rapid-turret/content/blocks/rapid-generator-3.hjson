@@ -1,0 +1,35 @@
+type: ConsumeGenerator
+name: Dynamo III
+description: Thorium cell. 1560 power units a second with no coolant and no meltdown.
+category: power
+research: rapid-generator-2
+requirements: [
+  lead/350
+  silicon/300
+  graphite/200
+  thorium/250
+  plastanium/100
+  metaglass/80
+]
+researchCostMultiplier: 0.8
+size: 3
+health: 900
+powerProduction: 26
+itemDuration: 240
+generateEffect: generatespark
+ambientSound: smelter
+ambientSoundVolume: 0.03
+consumes: {
+  itemRadioactive: {
+    minRadioactivity: 0.2
+  }
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "78ff96"
+  }
+]

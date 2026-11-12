@@ -32,6 +32,19 @@ def base(acc=ORANGE, pad="octagon"):
                 d.line((x, 0, x, S - 1), fill=255)
                 d.line((0, x, S - 1, x), fill=255)
         a.flat(ImageChops.multiply(grid, pad_m), shade(STEEL, 0.55))
+    elif pad == "web":
+        # web pad (nest), DESIGN.md 31.4
+        a.flat(a.octagon(c, c, 51), shade(STEEL, 0.62))
+        pad_m = a.octagon(c, c, 48)
+        a.flat(pad_m, shade(STEEL, 0.45))
+        web = ImageChops.lighter(ImageChops.subtract(a.octagon(c, c, 17), a.octagon(c, c, 16)),
+                                 ImageChops.subtract(a.octagon(c, c, 33), a.octagon(c, c, 32)))
+        web = ImageChops.lighter(web, a.rect(79, 0, 80, S - 1))
+        web = ImageChops.lighter(web, a.rect(0, 79, S - 1, 80))
+        web = ImageChops.lighter(web, a.where(lambda x, y: abs(x - 80) == abs(y - 80)))
+        a.flat(ImageChops.multiply(web, pad_m), shade(STEEL, 0.6))
+        a.flat(a.round_disc(c, c, 6), shade(acc, 0.6))
+        a.flat(a.round_disc(c, c - 1, 3), acc)
     elif pad == "basin":
         # water basin (shipyard), DESIGN.md 22.6
         water = (40, 66, 104)

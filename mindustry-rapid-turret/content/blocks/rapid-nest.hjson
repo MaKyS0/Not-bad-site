@@ -1,0 +1,68 @@
+type: UnitFactory
+name: Rapid Nest
+description: Builds the Rapid walkers: legged siege units that step over walls.
+category: units
+research: ground-factory
+requirements: [
+  copper/350
+  lead/250
+  graphite/200
+  silicon/250
+  titanium/100
+]
+size: 5
+health: 1700
+consumes: {
+  power: 3
+}
+plans: [
+  {
+    unit: mite
+    time: 1350
+    requirements: [
+      silicon/30
+      lead/20
+      graphite/15
+    ]
+  }
+  {
+    unit: weaver
+    time: 2700
+    requirements: [
+      silicon/90
+      graphite/70
+      titanium/40
+    ]
+  }
+  {
+    unit: stalker
+    time: 4500
+    requirements: [
+      silicon/240
+      titanium/180
+      graphite/150
+      thorium/60
+    ]
+  }
+  {
+    unit: tarantula
+    time: 9600
+    requirements: [
+      silicon/1000
+      titanium/850
+      plastanium/500
+      thorium/380
+    ]
+  }
+  {
+    unit: goliath
+    time: 15000
+    requirements: [
+      silicon/1500
+      plastanium/900
+      surge-alloy/680
+      thorium/600
+      phase-fabric/380
+    ]
+  }
+]

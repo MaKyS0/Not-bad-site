@@ -1,0 +1,33 @@
+type: ConsumeGenerator
+name: Dynamo I
+description: Compact burner. Turns coal, spore pods or pyratite into 240 power units a second.
+category: power
+research: combustion-generator
+requirements: [
+  copper/60
+  lead/50
+  graphite/30
+  silicon/20
+]
+researchCostMultiplier: 1
+size: 2
+health: 320
+powerProduction: 4
+itemDuration: 90
+generateEffect: generatespark
+ambientSound: smelter
+ambientSoundVolume: 0.03
+consumes: {
+  itemFlammable: {
+    minFlammability: 0.2
+  }
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "ffbe50"
+  }
+]
