@@ -1,10 +1,12 @@
-"""Aegis shield walls I-IV and Regen walls I-III, small and large. DESIGN.md sections 13, 14, 15.3, 15.4."""
+"""Aegis shield walls I-IV, small and large. DESIGN.md sections 13, 15.3.
+
+The Regen walls (sections 14, 15.4) were removed from the game: each one was a MendProjector that updates and draws every
+frame, and hundreds of them made the game lag."""
 from PIL import Image, ImageChops
 
 from art import Art, TIER, ROMAN, shade, mix, hexc, emblem
 
 WHITE = (255, 255, 255)
-HEAL = (132, 244, 145)
 
 # health/tile, armor, shield/tile, regen/tile, breakCooldown, power/tile, cost/tile
 AEGIS = {
@@ -14,11 +16,6 @@ AEGIS = {
             cost=[("thorium", 6), ("plastanium", 2), ("silicon", 4)]),
     4: dict(health=1000, armor=4, shield=600, regen=0.9, cool=300, power=0.08,
             cost=[("surge-alloy", 6), ("phase-fabric", 3), ("silicon", 4)]),
-}
-REGEN = {
-    1: dict(health=300, armor=0, heal=2, cost=[("lead", 6), ("silicon", 2)]),
-    2: dict(health=460, armor=0, heal=3, cost=[("titanium", 6), ("silicon", 4)]),
-    3: dict(health=680, armor=2, heal=4, cost=[("thorium", 6), ("phase-fabric", 2), ("silicon", 4)]),
 }
 AEGIS_EN = {
     1: "Wall with a small energy shield. Needs power and passes it to neighbouring shield walls.",
@@ -31,16 +28,6 @@ AEGIS_RU = {
     2: "Титановая щитовая стена: щит прочнее и восстанавливается быстрее.",
     3: "Бронированная ториевая щитовая стена.",
     4: "Самый мощный щит; стена под ним ещё и отражает пули.",
-}
-REGEN_EN = {
-    1: "Wall that slowly repairs itself. No power needed.",
-    2: "Titanium wall that repairs itself faster.",
-    3: "Armoured wall with the fastest self-repair.",
-}
-REGEN_RU = {
-    1: "Стена, которая медленно чинит сама себя. Энергия не нужна.",
-    2: "Титановая стена, чинит себя быстрее.",
-    3: "Бронированная стена с самым быстрым самовосстановлением.",
 }
 
 
@@ -102,27 +89,6 @@ def aegis_sprites(n, k):
     return a.im, glow
 
 
-def regen_sprites(n, k):
-    S = 32 * k
-    c = S // 2
-    acc, metal, steel = TIER[n]
-    a = frame(n, k, rivet=acc)
-    p0, p1 = 8 * k, S - 1 - 8 * k
-    a.sunk(a.rect(p0, p0, p1, p1), steel, k)
-    cross = ImageChops.lighter(a.rect(c - 5 * k, c - k, c + 5 * k - 1, c + k - 1),
-                               a.rect(c - k, c - 5 * k, c + k - 1, c + 5 * k - 1))
-    a.flat(cross, shade(HEAL, 0.6), sym=False)
-    if n >= 2:
-        a.box(p0 + 2 * k, p0 + k, p1 - 2 * k, p0 + 2 * k - 1, acc)
-        a.box(p0 + 2 * k, p1 - 2 * k + 1, p1 - 2 * k, p1 - k, acc)
-    if n >= 3:
-        a.box(p0 + k, p0 + 2 * k, p0 + 2 * k - 1, p1 - 2 * k, acc)
-        a.box(p1 - 2 * k + 1, p0 + 2 * k, p1 - k, p1 - 2 * k, acc)
-    top = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-    top.paste((255, 255, 255, 255), mask=cross)
-    return a.im, top
-
-
 def research(prefix, base_parent, n, large):
     if large:
         return f"{prefix}-{n}"
@@ -159,45 +125,10 @@ def aegis_hjson(n, large):
     return name, "\n".join(lines) + "\n"
 
 
-def regen_hjson(n, large):
-    w = REGEN[n]
-    m = 4 if large else 1
-    name = f"rapid-regen-wall-{n}" + ("-large" if large else "")
-    lines = [
-        "type: MendProjector",
-        f"name: {'Large ' if large else ''}Regen Wall {ROMAN[n]}",
-        f"description: {REGEN_EN[n]}{' Covers 2x2 tiles.' if large else ''}",
-        "category: defense",
-        f"research: {research('rapid-regen-wall', 'mender', n, large)}",
-        "requirements: [",
-    ] + [f"  {i}/{c * m}" for i, c in w['cost']] + [
-        "]",
-        f"size: {2 if large else 1}",
-        f"health: {w['health'] * m}",
-        f"armor: {w['armor']}",
-        f"healPercent: {w['heal']}",
-        "reload: 60",
-        "range: 2",
-        "phaseBoost: 0",
-        "phaseRangeBoost: 0",
-        'baseColor: "84f491"',
-        'phaseColor: "84f491"',
-        "hasPower: false",
-        "group: walls",
-        "priority: -2",
-        "buildCostMultiplier: 6",
-        "crushDamageMultiplier: 5",
-        "canOverdrive: false",
-        "lightRadius: 12",
-    ]
-    return name, "\n".join(lines) + "\n"
-
-
 def build(root):
     en, ru = [], []
     for fam, table, mk_h, mk_s, suffix, EN, RU, en_t, ru_t in (
         ("aegis", AEGIS, aegis_hjson, aegis_sprites, "-glow", AEGIS_EN, AEGIS_RU, "Aegis Wall", "щитовая стена"),
-        ("regen", REGEN, regen_hjson, regen_sprites, "-top", REGEN_EN, REGEN_RU, "Regen Wall", "ремонтная стена"),
     ):
         for n in table:
             for large in (False, True):

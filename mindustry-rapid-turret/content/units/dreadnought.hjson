@@ -32,7 +32,7 @@ weapons: [
     mirror: false
     rotate: true
     rotateSpeed: 3
-    reload: 5
+    reload: 7
     recoil: 2.4
     shootY: 7.5
     inaccuracy: 2
@@ -44,7 +44,7 @@ weapons: [
     }
     bullet: {
       type: BasicBulletType
-      damage: 27
+      damage: 38
       speed: 5.5
       lifetime: 55
       width: 10
@@ -68,7 +68,7 @@ weapons: [
     mirror: false
     rotate: true
     rotateSpeed: 3
-    reload: 5
+    reload: 7
     recoil: 2.4
     shootY: 7.5
     inaccuracy: 2
@@ -80,7 +80,7 @@ weapons: [
     }
     bullet: {
       type: BasicBulletType
-      damage: 27
+      damage: 38
       speed: 5.5
       lifetime: 55
       width: 10
@@ -104,7 +104,7 @@ weapons: [
     mirror: false
     rotate: true
     rotateSpeed: 3
-    reload: 5
+    reload: 7
     recoil: 2.4
     shootY: 7.5
     inaccuracy: 2
@@ -116,7 +116,7 @@ weapons: [
     }
     bullet: {
       type: BasicBulletType
-      damage: 27
+      damage: 38
       speed: 5.5
       lifetime: 55
       width: 10

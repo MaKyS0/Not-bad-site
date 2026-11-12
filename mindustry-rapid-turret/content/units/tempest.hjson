@@ -31,14 +31,14 @@ weapons: [
     alternate: true
     rotate: true
     rotateSpeed: 4
-    reload: 4
+    reload: 7
     recoil: 1.8
     shootY: 3.5
     inaccuracy: 2.5
     ejectEffect: casing2
     bullet: {
       type: BasicBulletType
-      damage: 25
+      damage: 44
       speed: 4.8
       lifetime: 40
       width: 9

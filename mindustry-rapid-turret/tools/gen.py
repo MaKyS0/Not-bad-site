@@ -26,32 +26,32 @@ RELOAD_MULT = {"copper": 1, "graphite": 0.85, "silicon": 1.3, "thorium": 1, "sur
 
 T = {
     1: dict(size=2, n=2, bw=6, pitch=12, step=0, reload=3.0, shots=1, health=800, range=190,
-            dmg=dict(copper=8, graphite=14, silicon=10),
+            dmg=dict(copper=8, graphite=14, silicon=11),
             req="copper/250, graphite/120, silicon/100",
             build_mult=1, research_mult=1,
             metal=(152, 154, 164), steel=(110, 112, 128), acc=(255, 190, 80), trim=None, coolant=0.2),
     2: dict(size=2, n=3, bw=6, pitch=10, step=3, reload=2.4, shots=1, health=1100, range=210,
-            dmg=dict(copper=11, graphite=19, silicon=14),
+            dmg=dict(copper=11, graphite=19, silicon=15),
             req="copper/400, graphite/220, silicon/180, titanium/100",
             build_mult=1, research_mult=1,
             metal=(146, 158, 176), steel=(98, 108, 132), acc=(90, 215, 255), trim=None, coolant=0.25),
     3: dict(size=3, n=3, bw=8, pitch=15, step=5, reload=1.9, shots=1, health=2000, range=235,
-            dmg=dict(copper=15, graphite=26, silicon=19),
+            dmg=dict(copper=15, graphite=26, silicon=21),
             req="copper/800, graphite/450, silicon/400, titanium/350, thorium/200",
             build_mult=1, research_mult=0.8,
             metal=(150, 164, 156), steel=(96, 114, 110), acc=(120, 255, 150), trim=None, coolant=0.3),
     4: dict(size=4, n=4, bw=10, pitch=17, step=5, reload=1.5, shots=1, health=3600, range=265,
-            dmg=dict(copper=20, graphite=36, silicon=26, thorium=48),
+            dmg=dict(copper=20, graphite=36, silicon=29, thorium=48),
             req="copper/1500, graphite/800, silicon/700, titanium/700, thorium/600, plastanium/450, surge-alloy/150",
             build_mult=0.7, research_mult=0.5,
             metal=(160, 152, 172), steel=(104, 94, 124), acc=(255, 110, 215), trim=None, coolant=0.4),
     5: dict(size=5, n=5, bw=10, pitch=19, step=6, reload=1.0, shots=1, health=6500, range=300,
-            dmg=dict(copper=28, graphite=50, silicon=36, thorium=66),
+            dmg=dict(copper=28, graphite=50, silicon=40, thorium=66),
             req="copper/2500, graphite/1400, silicon/1300, titanium/1300, thorium/1100, plastanium/900, surge-alloy/700",
             build_mult=0.5, research_mult=0.3,
             metal=(168, 150, 148), steel=(92, 76, 80), acc=(255, 84, 60), trim=(255, 190, 80), coolant=0.5),
-    6: dict(size=6, n=6, bw=12, pitch=20, step=6, reload=1.0, shots=2, health=12000, range=340,
-            dmg=dict(copper=36, graphite=64, silicon=46, thorium=90, **{"surge-alloy": 80}),
+    6: dict(size=6, n=6, bw=12, pitch=20, step=6, reload=1.0, shots=1, health=12000, range=340,
+            dmg=dict(copper=72, graphite=128, silicon=102, thorium=180, **{"surge-alloy": 160}),
             req="copper/4000, graphite/2500, silicon/3000, titanium/3000, thorium/2500, plastanium/2200, surge-alloy/2200, phase-fabric/1200",
             build_mult=0.4, research_mult=0.2,
             metal=(226, 224, 238), steel=(74, 70, 106), acc=(150, 120, 255), trim=(255, 208, 96), coolant=0.6),
@@ -63,7 +63,7 @@ RU_DESC = {
     3: "Скорострельная турель 3 тира. Тяжёлые стволы и трассирующие пули.",
     4: "Скорострельная турель 4 тира. Четыре ствола, принимает торий.",
     5: "Скорострельная турель 5 тира. Пять стволов, выстрел каждый тик.",
-    6: "Вершина линейки. Шесть стволов, два выстрела за тик, пули из кинетического сплава бьют молниями.",
+    6: "Вершина линейки. Шесть стволов, тяжёлые пули каждый тик, пули из кинетического сплава бьют молниями.",
 }
 EN_DESC = {
     1: "Tier 1 rapid-fire turret. Two barrels and a huge rate of fire.",
@@ -71,7 +71,7 @@ EN_DESC = {
     3: "Tier 3 rapid-fire turret. Heavy barrels and tracer rounds.",
     4: "Tier 4 rapid-fire turret. Four barrels, accepts thorium.",
     5: "Tier 5 rapid-fire turret. Five barrels, one shot every tick.",
-    6: "Top of the line. Six barrels, two shots per tick, surge rounds arc lightning.",
+    6: "Top of the line. Six barrels, a heavy round every tick, surge rounds arc lightning.",
 }
 
 
@@ -271,12 +271,12 @@ def bullet(t, c, item):
     if item == "graphite":
         lines += ["ammoMultiplier: 4", "reloadMultiplier: 0.85"]
     if item == "silicon":
-        lines += ["ammoMultiplier: 5", "reloadMultiplier: 1.3", "homingPower: 0.08", "homingRange: 70"]
+        lines += ["ammoMultiplier: 5", "reloadMultiplier: 1.3"]   # no homing: it searched for targets every tick per bullet
     if item == "thorium":
         lines += ["ammoMultiplier: 4", "pierce: true", "pierceCap: 3", "knockback: 0.6"]
     if item == "surge-alloy":
-        lines += ["ammoMultiplier: 5", "pierce: true", "pierceCap: 2", "lightning: 2", "lightningLength: 7",
-                  f"lightningDamage: {dmg // 3}", f"lightningColor: {hexc(acc)}"]
+        lines += ["ammoMultiplier: 5", "pierce: true", "pierceCap: 2", "lightning: 1", "lightningLength: 7",
+                  f"lightningDamage: {2 * dmg // 3}", f"lightningColor: {hexc(acc)}"]
     return "  %s: {\n%s\n  }" % (item, "\n".join("    " + l for l in lines))
 
 

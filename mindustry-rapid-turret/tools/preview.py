@@ -202,7 +202,7 @@ def walls2(out):
     """Aegis and Regen walls: small, large, each with its overlay lit; plus a 3x2 run of tier-2 small walls."""
     import walls2 as w2
     rows = []
-    for fam, table, layer, col in (("shield", w2.AEGIS, "-glow", None), ("regen", w2.REGEN, "-top", w2.HEAL)):
+    for fam, table, layer, col in (("shield", w2.AEGIS, "-glow", None),):
         row = []
         for n in table:
             for sfx in ("", "-large"):
@@ -216,7 +216,7 @@ def walls2(out):
                 lit.alpha_composite(glow)
                 row += [up(img), up(lit)]
         rows.append(row)
-    for fam in ("shield", "regen"):
+    for fam in ("shield",):
         run = Image.new("RGBA", (96, 64), BG)
         for x in range(3):
             for y in range(2):

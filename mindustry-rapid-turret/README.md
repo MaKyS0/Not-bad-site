@@ -13,7 +13,7 @@ Six tiers of extremely fast turrets (Turrets tab):
 | V    | 5x5  | 5       | 60             | 300   | + thorium (piercing) |
 | VI   | 6x6  | 6       | 120            | 340   | + surge alloy (lightning) |
 
-Graphite hits harder, silicon homes in and fires faster. Water/cryofluid cooling boosts fire rate.
+Graphite hits harder, silicon fires faster. Water/cryofluid cooling boosts fire rate.
 Barrels glow in the tier colour while firing.
 
 ## Build cost
@@ -129,7 +129,7 @@ in-game: Mods -> Import Mod/File.
 | I   | 1x1 | 3 | 5  | 95  | scrap, graphite | 80 copper, 60 lead, 40 graphite |
 | II  | 2x2 | 4 | 6.7 | 115 | scrap, graphite | 250 copper, 150 lead, 120 graphite, 70 titanium |
 | III | 3x3 | 5 | 8.6 | 135 | + thorium (piercing) | 600 copper, 400 graphite, 350 titanium, 220 thorium |
-| IV  | 4x4 | 7 | 12 | 160 | + thorium (piercing) | 1400 copper, 900 graphite, 800 titanium, 600 thorium, 350 plastanium, 150 surge alloy |
+| IV  | 4x4 | 5 | 12 | 160 | + thorium (piercing) | 1400 copper, 900 graphite, 800 titanium, 600 thorium, 350 plastanium, 150 surge alloy |
 
 ## Aegis shield walls (need power, pass it on to touching shield walls)
 
@@ -140,15 +140,7 @@ in-game: Mods -> Import Mod/File.
 | III | 700  | 380 | 6 thorium, 2 plastanium, 4 silicon |
 | IV  | 1000 | 600 | 6 surge alloy, 3 phase fabric, 4 silicon (also deflects bullets) |
 
-## Regen walls (repair themselves, no power)
-
-| Tier | Health/tile | Self-repair | Cost/tile |
-|------|-------------|-------------|-----------|
-| I   | 300 | 2 %/s | 6 lead, 2 silicon |
-| II  | 460 | 3 %/s | 6 titanium, 4 silicon |
-| III | 680 | 4 %/s | 6 thorium, 2 phase fabric, 4 silicon |
-
-Every wall comes in 1x1 and 2x2. Research: Pulse from Arc, Buckshot from Hail, Aegis from Rapid Wall I, Regen from Mender.
+Every wall comes in 1x1 and 2x2. Research: Pulse from Arc, Buckshot from Hail, Aegis from Rapid Wall I.
 
 ## Warships (built in the Rapid Shipyard, water only)
 

@@ -977,3 +977,14 @@ Bundle keys `unit.rapid-turret-<name>` / `block.rapid-turret-rapid-shipyard`, pl
    - bullet `speed × lifetime` equals the range column ±1; bundles have `.name` and `.description` for the 5 units and the shipyard in EN and RU.
 9. Add the ships (body + cell + turrets and flak composited at their mounts, `outlined()`) and the shipyard to `tools/preview.py`;
    add `metaglass: 2` to `VALUE` if `--balance` should print the table of section 20.
+
+## 25. Performance pass, level 3 (gameplay changes, visuals kept)
+
+Chosen by the player from the Android performance analysis. Bullet trails, smoke and casings are kept on purpose.
+- **Regen walls removed from the game** (sections 14, 15.4 are obsolete): every one was a `MendProjector` that updates and draws each
+  frame; hundreds of them dropped a host to 8 FPS. Saves that contain them lose those blocks on load.
+- Rapid VI: `shots: 1` instead of 2 at `reload: 1`, all ammo damage ×2 (60 bullets/s instead of 120, same DPS);
+  surge ammo `lightning: 1` with `lightningDamage = 2·damage/3` (same lightning damage per hit).
+- Silicon ammo (Rapid I–VI): no homing (`homingPower`/`homingRange` searched for a target every tick per bullet); damage +10 %.
+- Buckshot IV: 5 pellets (spread 9°, same 36° fan) instead of 7, pellet damage ×7/5; the gun sprite has 5 bores.
+- T4–T5 units (barrage, storm, tempest, hurricane, frigate, dreadnought): main guns `reload` at least 7, damage scaled to keep DPS.

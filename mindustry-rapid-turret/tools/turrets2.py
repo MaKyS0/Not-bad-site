@@ -228,32 +228,32 @@ BUCK = {
             maxAmmo=40, cost=[("copper", 250), ("lead", 150), ("graphite", 120), ("titanium", 70)], bm=1, rm=1),
     3: dict(size=3, health=2600, range=135, reload=7, shots=5, spread=7, coolant=0.3, rot=14, recoil=2.5, shake=1.5,
             maxAmmo=50, cost=[("copper", 600), ("graphite", 400), ("titanium", 350), ("thorium", 220)], bm=1, rm=0.8),
-    4: dict(size=4, health=4800, range=160, reload=5, shots=7, spread=6, coolant=0.4, rot=15, recoil=3.0, shake=2,
+    4: dict(size=4, health=4800, range=160, reload=5, shots=5, spread=9, coolant=0.4, rot=15, recoil=3.0, shake=2,
             maxAmmo=60, cost=[("copper", 1400), ("graphite", 900), ("titanium", 800), ("thorium", 600),
                               ("plastanium", 350), ("surge-alloy", 150)], bm=0.7, rm=0.5),
 }
 # item -> (damage by tier, ammoMultiplier, knockback)
 BUCK_AMMO = {
-    "scrap": ({1: 7, 2: 11, 3: 17, 4: 21}, 2, 0.2),
-    "graphite": ({1: 10, 2: 16, 3: 24, 4: 30}, 3, 0.4),
-    "thorium": ({3: 30, 4: 38}, 3, 0.8),
+    "scrap": ({1: 7, 2: 11, 3: 17, 4: 29}, 2, 0.2),
+    "graphite": ({1: 10, 2: 16, 3: 24, 4: 42}, 3, 0.4),
+    "thorium": ({3: 30, 4: 53}, 3, 0.8),
 }
 # sprite table: nb, pitch, bw, bh, mw, mh, hw, neck_y, ck, pip (w, h)
 BUCK_ART = {1: (3, 6, 2, 3, 9, 6, 7, 16, 0, (2, 1)), 2: (4, 10, 4, 5, 21, 10, 14, 32, 4, (2, 2)),
-            3: (5, 12, 6, 7, 31, 14, 21, 48, 6, (3, 3)), 4: (7, 12, 6, 9, 44, 18, 29, 64, 8, (3, 3))}
+            3: (5, 12, 6, 7, 31, 14, 21, 48, 6, (3, 3)), 4: (5, 16, 8, 9, 44, 18, 29, 64, 8, (3, 3))}
 B_HULL_L, B_HULL_D, B_GLOW = (134, 138, 104), (88, 94, 70), (255, 140, 40)
 B_DARK = shade(B_HULL_D, 0.45)
 BUCK_EN = {
     1: "Tiny rapid shotgun. Short range, three pellets per shot. Accepts scrap.",
     2: "Four pellets per shot, devastating up close.",
     3: "Five pellets per shot; thorium pellets pierce and push enemies back.",
-    4: "Seven pellets twelve times a second. Shreds anything that gets close.",
+    4: "Five heavy pellets twelve times a second. Shreds anything that gets close.",
 }
 BUCK_RU = {
     1: "Маленький скорострельный дробовик. Малая дальность, три дробины за выстрел. Принимает металлолом.",
     2: "Четыре дробины за выстрел, сокрушителен вблизи.",
     3: "Пять дробин за выстрел; ториевая картечь пробивает и отбрасывает врагов.",
-    4: "Семь дробин двенадцать раз в секунду. Рвёт в клочья всё, что подошло близко.",
+    4: "Пять тяжёлых дробин двенадцать раз в секунду. Рвёт в клочья всё, что подошло близко.",
 }
 
 

@@ -163,7 +163,7 @@ def main():
             sprite(f"sprites/blocks/rapid-{line}-{n}.png", (S, S), border=5)
             sprite(f"sprites/blocks/rapid-{line}-{n}-heat.png", (S, S), border=5)
             sprite(f"sprites/blocks/rapid-{line}-{n}-base.png", (S, S))
-    for fam, table, layer in (("shield", walls2.AEGIS, "-glow"), ("regen", walls2.REGEN, "-top")):
+    for fam, table, layer in (("shield", walls2.AEGIS, "-glow"),):
         for n in table:
             for sfx, S in (("", 32), ("-large", 64)):
                 name = f"rapid-{fam}-wall-{n}{sfx}"

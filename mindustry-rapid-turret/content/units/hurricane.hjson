@@ -32,14 +32,14 @@ weapons: [
     alternate: true
     rotate: true
     rotateSpeed: 3
-    reload: 4
+    reload: 7
     recoil: 2.4
     shootY: 4.5
     inaccuracy: 2
     ejectEffect: casing3
     bullet: {
       type: BasicBulletType
-      damage: 34
+      damage: 60
       speed: 5.5
       lifetime: 42
       width: 10
@@ -64,14 +64,14 @@ weapons: [
     alternate: true
     rotate: true
     rotateSpeed: 3
-    reload: 4
+    reload: 7
     recoil: 2.4
     shootY: 4.5
     inaccuracy: 2
     ejectEffect: casing3
     bullet: {
       type: BasicBulletType
-      damage: 34
+      damage: 60
       speed: 5.5
       lifetime: 42
       width: 10
