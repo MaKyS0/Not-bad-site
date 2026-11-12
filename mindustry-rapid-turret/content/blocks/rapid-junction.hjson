@@ -1,0 +1,14 @@
+type: Junction
+name: Rapid Junction
+description: Lets two belts cross at 30 items a second — fast enough for any Rapid Conveyor.
+category: distribution
+research: junction
+requirements: [
+  copper/3
+  graphite/2
+]
+size: 1
+health: 100
+speed: 12
+capacity: 6
+buildCostMultiplier: 6

@@ -1,6 +1,6 @@
 type: ItemTurret
 name: Rapid III
-description: Tier 3 rapid-fire turret. Heavy barrels and tracer rounds.
+description: Tier 3 rapid-fire turret. Heavy barrels and tracer rounds. Accepts Rapid Steel.
 category: turret
 research: rapid-2
 playerControllable: true
@@ -89,5 +89,22 @@ ammoTypes: {
     trailColor: "78ff96"
     ammoMultiplier: 5
     reloadMultiplier: 1.3
+  }
+  rapid-steel: {
+    type: BasicBulletType
+    damage: 27
+    speed: 4.8
+    lifetime: 56
+    width: 9
+    height: 14
+    frontColor: "eef5ff"
+    backColor: "8fb4e6"
+    hitEffect: hitBulletSmall
+    despawnEffect: hitBulletSmall
+    trailLength: 7
+    trailWidth: 1.65
+    trailColor: "78ff96"
+    ammoMultiplier: 4
+    pierceArmor: true
   }
 }

@@ -1,0 +1,33 @@
+type: GenericCrafter
+name: Rapid Press
+description: Presses coal into graphite six times faster than a graphite press. Needs power, no water.
+category: crafting
+research: graphite-press
+requirements: [
+  titanium/120
+  lead/120
+  silicon/60
+  graphite/60
+]
+researchCostMultiplier: 1
+size: 2
+health: 380
+itemCapacity: 20
+craftTime: 45
+outputItem: graphite/3
+craftEffect: pulverizeMedium
+consumes: {
+  items: [
+    coal/4
+  ]
+  power: 2
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "ffbe50"
+  }
+]

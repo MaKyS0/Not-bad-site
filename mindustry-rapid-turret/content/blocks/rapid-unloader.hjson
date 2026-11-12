@@ -1,0 +1,13 @@
+type: Unloader
+name: Rapid Unloader
+description: Unloads 22 items a second from cores, vaults and machines — twice an unloader.
+category: effect
+research: unloader
+requirements: [
+  titanium/30
+  silicon/40
+  rapid-steel/10
+]
+size: 1
+health: 120
+speed: 2.7273

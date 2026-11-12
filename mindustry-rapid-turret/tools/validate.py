@@ -106,7 +106,8 @@ def main():
     import units
     import air
 
-    files = sorted(glob.glob(f"{ROOT}/content/blocks/*.hjson") + glob.glob(f"{ROOT}/content/units/*.hjson"))
+    files = sorted(glob.glob(f"{ROOT}/content/blocks/*.hjson") + glob.glob(f"{ROOT}/content/units/*.hjson") +
+                   glob.glob(f"{ROOT}/content/items/*.hjson"))
     data = {}
     for f in files:
         d = parse(f)
@@ -193,6 +194,8 @@ def main():
     check_naval(naval, data)
     # Part 5: walkers, nest, mortars, power
     check_part5(data)
+    # Part 6: Rapid Steel, crafters, logistics
+    check_part6(data)
 
     # bundles
     bundles = {}
@@ -205,7 +208,7 @@ def main():
         bundles[b] = keys
     for f in data:
         name = os.path.splitext(os.path.basename(f))[0]
-        kind = "unit" if "/content/units/" in f else "block"
+        kind = "unit" if "/content/units/" in f else "item" if "/content/items/" in f else "block"
         for b, keys in bundles.items():
             for suffix in ("name", "description"):
                 k = f"{kind}.rapid-turret-{name}.{suffix}"
@@ -442,6 +445,158 @@ def check_part5(data):
             break
 
 
+def item_names():
+    """Vanilla item names (camelCase static fields of Items -> dash-case) plus the mod's own items."""
+    names = set()
+    if os.path.exists(JAR) and shutil.which("javap"):
+        for n in static_names("mindustry.content.Items"):
+            names.add(re.sub(r"([A-Z])", lambda m: "-" + m.group(1).lower(), n))
+    names |= {os.path.splitext(os.path.basename(f))[0] for f in glob.glob(f"{ROOT}/content/items/*.hjson")}
+    return names
+
+
+def stacks(d):
+    """Every item name used in requirements, outputItem, consumes, ammo keys and factory plans."""
+    out = []
+    def walk(o):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k in ("requirements", "items") and isinstance(v, list):
+                    out.extend(e.split("/")[0] for e in v if isinstance(e, str))
+                elif k == "outputItem" and isinstance(v, str):
+                    out.append(v.split("/")[0])
+                elif k == "ammoTypes" and isinstance(v, dict):
+                    out.extend(v)
+                walk(v)
+        elif isinstance(o, list):
+            for e in o:
+                walk(e)
+    walk(d)
+    return out
+
+
+def check_part6(data):
+    import works
+    import logistics
+    import gen
+    names = item_names()
+    if len(names) > 1:
+        for f, d in data.items():
+            for i in stacks(d):
+                if i not in names:
+                    err(f"{os.path.relpath(f, ROOT)}: unknown item {i!r}")
+    # item
+    it = data.get(f"{ROOT}/content/items/rapid-steel.hjson")
+    if not it or not re.match(r"^[0-9a-f]{6}$", str(it.get("color", ""))) or "type" in it or "research" not in it:
+        err("rapid-steel item: needs a 6-digit color, research and no type")
+    sprite("sprites/items/rapid-steel.png", (32, 32), border=1)
+    p = f"{ROOT}/sprites/items/rapid-steel.png"
+    if os.path.exists(p) and not symmetric(Image.open(p).convert("RGBA")):
+        err("rapid-steel item sprite is not left/right symmetric")
+    for sub in ("blocks", "units"):
+        if os.path.exists(f"{ROOT}/sprites/{sub}/rapid-steel.png"):
+            err(f"sprites/{sub}/rapid-steel.png clashes with the item region")
+    # crafters
+    for name, c in works.CRAFTERS.items():
+        d = data.get(f"{ROOT}/content/blocks/{name}.hjson")
+        S = c['size'] * 32
+        sprite(f"sprites/blocks/{name}.png", (S, S), opaque=True)
+        sprite(f"sprites/blocks/{name}-top.png", (S, S))
+        tp = f"{ROOT}/sprites/blocks/{name}-top.png"
+        if os.path.exists(tp):
+            top = Image.open(tp).convert("RGBA")
+            if top.getchannel("A").getextrema()[0] == 255:
+                err(f"{name}-top: must not be opaque")
+            ins = 2 if S == 64 else 4
+            tpx = top.load()
+            for (x, y) in ((x, y) for y in range(S) for x in range(S)):
+                px = tpx[x, y]
+                if px[3] and (px[:3] != (255, 255, 255) or min(x, y, S - 1 - x, S - 1 - y) < ins):
+                    err(f"{name}-top: pixel {(x, y)} must be pure white and inside the centre feature")
+                    break
+        if not d:
+            continue
+        for bad in ("dumpTime", "hasPower", "hasItems", "hasLiquids", "outputItems", "updateEffect"):
+            if bad in d:
+                err(f"{name}: must not set {bad}")
+        if not REQ.match(str(d.get("outputItem", ""))) or not d.get("craftTime", 0) > 0:
+            err(f"{name}: needs outputItem item/amount and craftTime > 0")
+            continue
+        out_n = int(d["outputItem"].split("/")[1])
+        if out_n * 60 / d["craftTime"] > 12:
+            err(f"{name}: outputs more than 12 items/s (dumpTime is final)")
+        ins_n = [int(e.split("/")[1]) for e in d.get("consumes", {}).get("items", [])]
+        if any(d.get("itemCapacity", 10) < 2 * n for n in ins_n + [out_n]):
+            err(f"{name}: itemCapacity must be >= 2x every input and output amount")
+        if not d.get("consumes", {}).get("power", 0) > 0:
+            err(f"{name}: needs consumes.power")
+        dr = d.get("drawer", [])
+        if len(dr) != 2 or dr[1].get("type") != "DrawWarmupRegion" or "color" not in dr[1]:
+            err(f"{name}: needs the 2-entry drawer with DrawWarmupRegion and a color")
+    # logistics
+    for name in ("rapid-bridge", "rapid-phase-bridge"):
+        d = data.get(f"{ROOT}/content/blocks/{name}.hjson") or {}
+        if not isinstance(d.get("range"), int) or d["range"] < 2 or d.get("arrowSpacing", 0) < 8 or "moveArrows" in d:
+            err(f"{name}: range must be an int >= 2, arrowSpacing >= 8, no moveArrows")
+        if d.get("type") == "BufferedItemBridge" and "consumes" in d:
+            err(f"{name}: a BufferedItemBridge takes no power")
+        if d.get("type") == "ItemBridge" and not d.get("consumes", {}).get("power", 0) > 0:
+            err(f"{name}: an ItemBridge needs consumes.power")
+        sprite(f"sprites/blocks/{name}.png", (32, 32), opaque=True)
+        for sfx in ("-end", "-bridge", "-arrow"):
+            sprite(f"sprites/blocks/{name}{sfx}.png", (32, 32))
+        P = f"{ROOT}/sprites/blocks/{name}"
+        if not os.path.exists(f"{P}-bridge.png"):
+            continue
+        end = Image.open(f"{P}-end.png").convert("RGBA")
+        if end.getchannel("A").crop((0, 0, 32, 24)).getbbox() or not symmetric(end):
+            err(f"{name}-end: rows 0..23 must be empty and the sprite left/right symmetric")
+        br = Image.open(f"{P}-bridge.png").convert("RGBA")
+        a = br.getchannel("A")
+        if a.crop((0, 0, 32, 4)).getbbox() or a.crop((0, 28, 32, 32)).getbbox() or \
+                a.crop((0, 4, 32, 28)).getextrema()[0] != 255 or not vsymmetric(br) or \
+                any(br.crop((x, 0, x + 1, 32)).tobytes() != br.crop((0, 0, 1, 32)).tobytes() for x in range(32)):
+            err(f"{name}-bridge: rows 4..27 opaque, the rest empty, all columns equal, top/bottom symmetric")
+        arw = Image.open(f"{P}-arrow.png").convert("RGBA")
+        bb = arw.getchannel("A").getbbox()
+        if not bb or bb[0] < 12 or bb[2] > 20 or bb[1] < 8 or bb[3] > 24 or not vsymmetric(arw):
+            err(f"{name}-arrow: must stay inside columns 12..19, rows 8..23, top/bottom symmetric")
+    d = data.get(f"{ROOT}/content/blocks/rapid-junction.hjson") or {}
+    if d and d["capacity"] / d["speed"] * 60 < 26:
+        err("rapid-junction: slower than a Rapid Conveyor V")
+    sprite("sprites/blocks/rapid-junction.png", (32, 32), opaque=True)
+    p = f"{ROOT}/sprites/blocks/rapid-junction.png"
+    if os.path.exists(p):
+        j = Image.open(p).convert("RGBA")
+        if not (symmetric(j) and vsymmetric(j) and j.tobytes() == j.rotate(90).tobytes()):
+            err("rapid-junction sprite must be symmetric both ways and under a 90 degree turn")
+    sprite("sprites/blocks/rapid-unloader.png", (32, 32), opaque=True)
+    sprite("sprites/blocks/rapid-unloader-center.png", (32, 32))
+    p = f"{ROOT}/sprites/blocks/rapid-unloader-center.png"
+    if os.path.exists(p):
+        cimg = Image.open(p).convert("RGBA")
+        bb = cimg.getchannel("A").getbbox()
+        if not bb or bb[0] < 10 or bb[1] < 10 or bb[2] > 22 or bb[3] > 22 or \
+                any(cimg.getpixel((x, y))[3] and cimg.getpixel((x, y))[:3] != (255, 255, 255)
+                    for y in range(32) for x in range(32)):
+            err("rapid-unloader-center: pure white, inside columns/rows 10..21")
+    sprite("sprites/blocks/rapid-vault.png", (96, 96), opaque=True)
+    if os.path.exists(f"{ROOT}/sprites/blocks/rapid-vault-team.png"):
+        err("rapid-vault: no -team overlay is shipped")
+    # steel ammo
+    for t, c in gen.T.items():
+        d = data.get(f"{ROOT}/content/blocks/rapid-{t}.hjson") or {}
+        ammo = d.get("ammoTypes", {})
+        if (t >= 3) != ("rapid-steel" in ammo):
+            err(f"rapid-{t}: rapid-steel ammo must exist exactly for tiers III-VI")
+        if "rapid-steel" in ammo:
+            b = ammo["rapid-steel"]
+            if b.get("pierceArmor") is not True or "pierce" in b or "homingPower" in b:
+                err(f"rapid-{t}: steel ammo needs pierceArmor and no pierce/homing")
+            if max(c['dmg'], key=lambda i: gen.dps(c, i)) == "rapid-steel":
+                err(f"rapid-{t}: steel must not be the best-DPS ammo")
+
+
 _cache = {}
 
 
@@ -478,7 +633,14 @@ CLASSES = {"Wall": "mindustry.world.blocks.defense.Wall", "Drill": "mindustry.wo
            "MendProjector": "mindustry.world.blocks.defense.MendProjector",
            "ConsumeGenerator": "mindustry.world.blocks.power.ConsumeGenerator",
            "SolarGenerator": "mindustry.world.blocks.power.SolarGenerator",
-           "Battery": "mindustry.world.blocks.power.Battery"}
+           "Battery": "mindustry.world.blocks.power.Battery",
+           "GenericCrafter": "mindustry.world.blocks.production.GenericCrafter",
+           "Junction": "mindustry.world.blocks.distribution.Junction",
+           "BufferedItemBridge": "mindustry.world.blocks.distribution.BufferedItemBridge",
+           "ItemBridge": "mindustry.world.blocks.distribution.ItemBridge",
+           "Unloader": "mindustry.world.blocks.storage.Unloader",
+           "StorageBlock": "mindustry.world.blocks.storage.StorageBlock",
+           "item": "mindustry.type.Item"}
 BULLETS = {"BasicBulletType": "mindustry.entities.bullet.BasicBulletType",
            "LaserBoltBulletType": "mindustry.entities.bullet.LaserBoltBulletType",
            "FlakBulletType": "mindustry.entities.bullet.FlakBulletType",
@@ -490,7 +652,7 @@ CONSUMER_CLASS = {"itemFlammable": "mindustry.world.consumers.ConsumeItemFlammab
                   "liquid": "mindustry.world.consumers.ConsumeLiquid"}
 PATTERN = "mindustry.entities.pattern."
 EFFECT_KEYS = {"shootEffect", "smokeEffect", "ammoUseEffect", "hitEffect", "despawnEffect", "ejectEffect", "trailEffect",
-               "generateEffect"}
+               "generateEffect", "craftEffect"}
 WEAPON = "mindustry.type.Weapon"
 BULLET = "mindustry.entities.bullet.BasicBulletType"
 
@@ -508,7 +670,7 @@ def check_keys(obj, cls, where):
 def check_fields(data):
     for f, d in data.items():
         rel = os.path.relpath(f, ROOT)
-        cls = CLASSES.get(d.get("type"))
+        cls = CLASSES.get("item" if "/content/items/" in f else d.get("type"))
         if not cls:
             err(f"{rel}: unknown type {d.get('type')!r}")
             continue
@@ -524,7 +686,8 @@ def check_fields(data):
             bullets = [(f"ammo {i}", b) for i, b in d.get("ammoTypes", {}).items()]
             items = static_names("mindustry.content.Items")
             for i in d.get("ammoTypes", {}):
-                if i.replace("-", "") not in {x.lower() for x in items}:
+                if i.replace("-", "") not in {x.lower() for x in items} and \
+                        not os.path.exists(f"{ROOT}/content/items/{i}.hjson"):
                     err(f"{rel}: ammo key {i!r} is not an item")
         if d.get("type") == "PowerTurret":
             bullets = [("shootType", d.get("shootType", {}))]

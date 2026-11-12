@@ -134,4 +134,21 @@ ammoTypes: {
     lightningDamage: 106
     lightningColor: "9678ff"
   }
+  rapid-steel: {
+    type: BasicBulletType
+    damage: 150
+    speed: 4.8
+    lifetime: 78
+    width: 12
+    height: 17
+    frontColor: "eef5ff"
+    backColor: "8fb4e6"
+    hitEffect: hitBulletBig
+    despawnEffect: hitBulletBig
+    trailLength: 10
+    trailWidth: 2.4
+    trailColor: "9678ff"
+    ammoMultiplier: 4
+    pierceArmor: true
+  }
 }

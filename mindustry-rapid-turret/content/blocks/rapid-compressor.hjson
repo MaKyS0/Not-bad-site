@@ -1,0 +1,39 @@
+type: GenericCrafter
+name: Rapid Compressor
+description: Three plastanium compressors in one housing: 3 plastanium a second from titanium and oil.
+category: crafting
+research: plastanium-compressor
+requirements: [
+  lead/300
+  silicon/250
+  titanium/250
+  graphite/180
+  rapid-steel/80
+]
+researchCostMultiplier: 0.8
+size: 3
+health: 900
+itemCapacity: 20
+liquidCapacity: 120
+craftTime: 60
+outputItem: plastanium/3
+craftEffect: formsmoke
+consumes: {
+  items: [
+    titanium/5
+  ]
+  power: 8
+  liquid: {
+    liquid: oil
+    amount: 0.6
+  }
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "d8f07a"
+  }
+]

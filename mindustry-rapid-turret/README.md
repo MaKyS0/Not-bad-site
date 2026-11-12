@@ -189,3 +189,26 @@ flak guns that shoot aircraft only.
 | Rapid Capacitor   | 3x3 | stores 80000 | — |
 
 None of the Dynamos can explode.
+
+## Industry (Rapid Steel and dense crafters)
+
+Chain: coal -> Rapid Press -> graphite -> Rapid Foundry (+ titanium) -> **Rapid Steel**.
+Rapid Steel is armour-piercing ammo for Rapid III-VI (ignores the target's armour) and goes into the advanced blocks below.
+
+| Block | Size | Makes | From | Power/s |
+|-------|------|-------|------|---------|
+| Rapid Press       | 2x2 | 4 graphite/s     | coal | 120 |
+| Rapid Smelter     | 3x3 | 6 silicon/s      | coal, sand | 300 |
+| Rapid Foundry     | 3x3 | 2 Rapid Steel/s  | titanium, graphite | 240 |
+| Rapid Compressor  | 3x3 | 3 plastanium/s   | titanium, oil | 480 |
+| Rapid Arc Furnace | 3x3 | 2 surge alloy/s  | copper, lead, titanium, silicon | 720 |
+
+## Logistics
+
+| Block | What it does |
+|-------|--------------|
+| Rapid Junction     | belts cross at 30 items/s (vanilla 13.8) |
+| Rapid Bridge       | over 6 tiles, 15 items/s, no power |
+| Rapid Phase Bridge | over 15 tiles, up to 40 items/s, needs power |
+| Rapid Unloader     | 22 items/s (vanilla 11) |
+| Rapid Vault        | 3x3, holds 2500 of every item |

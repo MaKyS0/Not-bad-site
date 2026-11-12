@@ -1,0 +1,22 @@
+type: ItemBridge
+name: Rapid Phase Bridge
+description: Teleports up to 40 items a second across 15 tiles. Needs power.
+category: distribution
+research: phase-conveyor
+requirements: [
+  rapid-steel/6
+  phase-fabric/5
+  silicon/10
+  graphite/10
+]
+size: 1
+health: 160
+range: 16
+transportTime: 1.5
+pulse: true
+arrowSpacing: 8
+arrowPeriod: 0.9
+arrowTimeScl: 2.75
+consumes: {
+  power: 0.5
+}

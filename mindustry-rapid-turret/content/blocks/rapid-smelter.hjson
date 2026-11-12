@@ -1,0 +1,37 @@
+type: GenericCrafter
+name: Rapid Smelter
+description: Twin crucibles: 6 silicon a second from coal and sand — four smelters in one.
+category: crafting
+research: silicon-smelter
+requirements: [
+  copper/200
+  lead/150
+  titanium/150
+  graphite/120
+  silicon/100
+]
+researchCostMultiplier: 1
+size: 3
+health: 800
+itemCapacity: 30
+craftTime: 40
+outputItem: silicon/4
+craftEffect: smeltsmoke
+ambientSound: smelter
+ambientSoundVolume: 0.05
+consumes: {
+  items: [
+    coal/3
+    sand/6
+  ]
+  power: 5
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "ffef99"
+  }
+]

@@ -1,0 +1,37 @@
+type: GenericCrafter
+name: Rapid Foundry
+description: Casts titanium and graphite into Rapid Steel.
+category: crafting
+research: rapid-press
+requirements: [
+  copper/180
+  lead/150
+  titanium/120
+  silicon/120
+  graphite/100
+]
+researchCostMultiplier: 1
+size: 3
+health: 850
+itemCapacity: 20
+craftTime: 60
+outputItem: rapid-steel/2
+craftEffect: smeltsmoke
+ambientSound: smelter
+ambientSoundVolume: 0.05
+consumes: {
+  items: [
+    titanium/3
+    graphite/2
+  ]
+  power: 4
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "ffb060"
+  }
+]

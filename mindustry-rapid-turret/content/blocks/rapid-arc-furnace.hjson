@@ -1,0 +1,39 @@
+type: GenericCrafter
+name: Rapid Arc Furnace
+description: Smelts 2 surge alloy a second. Hungry: 24 items and 720 power units a second.
+category: crafting
+research: surge-smelter
+requirements: [
+  silicon/300
+  lead/300
+  thorium/200
+  titanium/200
+  rapid-steel/120
+]
+researchCostMultiplier: 0.6
+size: 3
+health: 1000
+itemCapacity: 40
+craftTime: 60
+outputItem: surge-alloy/2
+craftEffect: smeltsmoke
+ambientSound: smelter
+ambientSoundVolume: 0.05
+consumes: {
+  items: [
+    copper/6
+    lead/8
+    titanium/4
+    silicon/6
+  ]
+  power: 12
+}
+drawer: [
+  {
+    type: DrawDefault
+  }
+  {
+    type: DrawWarmupRegion
+    color: "ffe08a"
+  }
+]

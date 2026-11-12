@@ -3,7 +3,7 @@
 
 Writes walls.png, drills.png, units.png, forge.png, conveyors.png, air.png, hangar.png,
 turrets2.png, walls2.png, naval.png, shipyard.png,
-walkers.png, nest.png, mortar.png, power.png (each scaled 4x, NEAREST, dark background)."""
+walkers.png, nest.png, mortar.png, power.png, works.png (each scaled 4x, NEAREST, dark background)."""
 import os
 import sys
 from PIL import Image
@@ -375,6 +375,42 @@ def power_sheet(out):
     sheet([row]).save(out)
 
 
+def bridge_link(name, tiles=4):
+    """Two bridge ends `tiles` apart, linked left -> right, the way ItemBridge.draw stacks the layers."""
+    W = 32 * (tiles + 1)
+    img = Image.new("RGBA", (W, 32), BG)
+    base, end, strip, arrow = (load(f"sprites/blocks/{name}{s}.png") for s in ("", "-end", "-bridge", "-arrow"))
+    img.alpha_composite(base, (0, 0))
+    img.alpha_composite(base, (W - 32, 0))
+    span = Image.new("RGBA", (W, 32), (0, 0, 0, 0))
+    s = strip.resize((W - 32, 26), Image.NEAREST)
+    span.alpha_composite(s, (16, 3))
+    span.alpha_composite(end.rotate(-90, expand=True), (0, 0))      # bottom edge faces the span (right)
+    span.alpha_composite(end.rotate(90, expand=True), (W - 32, 0))
+    for x in range(32, W - 32, 32):
+        span.alpha_composite(arrow, (x, 0))
+    img.alpha_composite(span)
+    return img
+
+
+def works_sheet(out):
+    import works as wk
+    rows = [[up(on_bg(load("sprites/items/rapid-steel.png")).resize((96 * K // 1, 96 * K // 1), Image.NEAREST))]]
+    row = []
+    for name, c in wk.CRAFTERS.items():
+        img = load(f"sprites/blocks/{name}.png")
+        lit = img.copy()
+        lit.alpha_composite(tint(load(f"sprites/blocks/{name}-top.png"), wk.rgb(c['glow'])))
+        row += [up(img), up(lit)]
+    rows.append(row)
+    unl = load("sprites/blocks/rapid-unloader.png")
+    unl_lit = unl.copy()
+    unl_lit.alpha_composite(tint(load("sprites/blocks/rapid-unloader-center.png"), wk.STEEL_BLUE))
+    rows.append([up(load("sprites/blocks/rapid-junction.png")), up(bridge_link("rapid-bridge")),
+                 up(bridge_link("rapid-phase-bridge")), up(unl), up(unl_lit), up(load("sprites/blocks/rapid-vault.png"))])
+    sheet(rows).save(out)
+
+
 def main():
     d = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(d, exist_ok=True)
@@ -393,6 +429,7 @@ def main():
     nest(f"{d}/nest.png")
     mortars(f"{d}/mortar.png")
     power_sheet(f"{d}/power.png")
+    works_sheet(f"{d}/works.png")
 
 
 if __name__ == "__main__":

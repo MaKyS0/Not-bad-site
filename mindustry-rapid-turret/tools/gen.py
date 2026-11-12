@@ -20,9 +20,9 @@ MARGIN = 5
 # "copper equivalents" (VALUE below) and cost per DPS climbs with the tier the way it does in vanilla
 # (Duo ~1, Salvo ~2.6, Spectre ~10): 2.8, 3.5, 6, 8, 9, 9 for tiers I-VI. `python3 tools/gen.py --balance`
 # prints the table. build_mult / research_mult keep build time and research cost of the big tiers sane.
-VALUE = {"copper": 1, "lead": 1, "metaglass": 2, "graphite": 2, "silicon": 2.5, "titanium": 3, "thorium": 5, "plastanium": 8,
+VALUE = {"copper": 1, "lead": 1, "rapid-steel": 7, "metaglass": 2, "graphite": 2, "silicon": 2.5, "titanium": 3, "thorium": 5, "plastanium": 8,
          "surge-alloy": 12, "phase-fabric": 10}
-RELOAD_MULT = {"copper": 1, "graphite": 0.85, "silicon": 1.3, "thorium": 1, "surge-alloy": 1}
+RELOAD_MULT = {"copper": 1, "graphite": 0.85, "silicon": 1.3, "thorium": 1, "surge-alloy": 1, "rapid-steel": 1}
 
 T = {
     1: dict(size=2, n=2, bw=6, pitch=12, step=0, reload=3.0, shots=1, health=800, range=190,
@@ -36,22 +36,22 @@ T = {
             build_mult=1, research_mult=1,
             metal=(146, 158, 176), steel=(98, 108, 132), acc=(90, 215, 255), trim=None, coolant=0.25),
     3: dict(size=3, n=3, bw=8, pitch=15, step=5, reload=1.9, shots=1, health=2000, range=235,
-            dmg=dict(copper=15, graphite=26, silicon=21),
+            dmg=dict(copper=15, graphite=26, silicon=21, **{"rapid-steel": 27}),
             req="copper/800, graphite/450, silicon/400, titanium/350, thorium/200",
             build_mult=1, research_mult=0.8,
             metal=(150, 164, 156), steel=(96, 114, 110), acc=(120, 255, 150), trim=None, coolant=0.3),
     4: dict(size=4, n=4, bw=10, pitch=17, step=5, reload=1.5, shots=1, health=3600, range=265,
-            dmg=dict(copper=20, graphite=36, silicon=29, thorium=48),
+            dmg=dict(copper=20, graphite=36, silicon=29, thorium=48, **{"rapid-steel": 41}),
             req="copper/1500, graphite/800, silicon/700, titanium/700, thorium/600, plastanium/450, surge-alloy/150",
             build_mult=0.7, research_mult=0.5,
             metal=(160, 152, 172), steel=(104, 94, 124), acc=(255, 110, 215), trim=None, coolant=0.4),
     5: dict(size=5, n=5, bw=10, pitch=19, step=6, reload=1.0, shots=1, health=6500, range=300,
-            dmg=dict(copper=28, graphite=50, silicon=40, thorium=66),
+            dmg=dict(copper=28, graphite=50, silicon=40, thorium=66, **{"rapid-steel": 57}),
             req="copper/2500, graphite/1400, silicon/1300, titanium/1300, thorium/1100, plastanium/900, surge-alloy/700",
             build_mult=0.5, research_mult=0.3,
             metal=(168, 150, 148), steel=(92, 76, 80), acc=(255, 84, 60), trim=(255, 190, 80), coolant=0.5),
     6: dict(size=6, n=6, bw=12, pitch=20, step=6, reload=1.0, shots=1, health=12000, range=340,
-            dmg=dict(copper=72, graphite=128, silicon=102, thorium=180, **{"surge-alloy": 160}),
+            dmg=dict(copper=72, graphite=128, silicon=102, thorium=180, **{"surge-alloy": 160, "rapid-steel": 150}),
             req="copper/4000, graphite/2500, silicon/3000, titanium/3000, thorium/2500, plastanium/2200, surge-alloy/2200, phase-fabric/1200",
             build_mult=0.4, research_mult=0.2,
             metal=(226, 224, 238), steel=(74, 70, 106), acc=(150, 120, 255), trim=(255, 208, 96), coolant=0.6),
@@ -60,7 +60,7 @@ ROMAN = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI"}
 RU_DESC = {
     1: "Скорострельная турель 1 тира. Два ствола, огромный темп огня.",
     2: "Скорострельная турель 2 тира. Три ствола, выше урон и дальность.",
-    3: "Скорострельная турель 3 тира. Тяжёлые стволы и трассирующие пули.",
+    3: "Скорострельная турель 3 тира. Тяжёлые стволы и трассирующие пули. Принимает сталь Rapid.",
     4: "Скорострельная турель 4 тира. Четыре ствола, принимает торий.",
     5: "Скорострельная турель 5 тира. Пять стволов, выстрел каждый тик.",
     6: "Вершина линейки. Шесть стволов, тяжёлые пули каждый тик, пули из кинетического сплава бьют молниями.",
@@ -68,7 +68,7 @@ RU_DESC = {
 EN_DESC = {
     1: "Tier 1 rapid-fire turret. Two barrels and a huge rate of fire.",
     2: "Tier 2 rapid-fire turret. Three barrels, more damage and range.",
-    3: "Tier 3 rapid-fire turret. Heavy barrels and tracer rounds.",
+    3: "Tier 3 rapid-fire turret. Heavy barrels and tracer rounds. Accepts Rapid Steel.",
     4: "Tier 4 rapid-fire turret. Four barrels, accepts thorium.",
     5: "Tier 5 rapid-fire turret. Five barrels, one shot every tick.",
     6: "Top of the line. Six barrels, a heavy round every tick, surge rounds arc lightning.",
@@ -250,8 +250,8 @@ def base(t, c):
 def bullet(t, c, item):
     acc = c['acc']
     dmg = c['dmg'][item]
-    speed = {"copper": 4.0, "graphite": 4.4, "silicon": 4.4, "thorium": 5.0, "surge-alloy": 5.4}[item]
-    w = {"copper": 5, "graphite": 6, "silicon": 5, "thorium": 7, "surge-alloy": 7}[item] + t
+    speed = {"copper": 4.0, "graphite": 4.4, "silicon": 4.4, "thorium": 5.0, "surge-alloy": 5.4, "rapid-steel": 4.8}[item]
+    w = {"copper": 5, "graphite": 6, "silicon": 5, "thorium": 7, "surge-alloy": 7, "rapid-steel": 6}[item] + t
     lines = [
         "type: BasicBulletType",
         f"damage: {dmg}",
@@ -259,8 +259,8 @@ def bullet(t, c, item):
         f"lifetime: {int(c['range'] / speed) + 8}",
         f"width: {w}",
         f"height: {w + 5}",
-        f"frontColor: {hexc(mix(acc, (255, 255, 255), 0.7))}",
-        f"backColor: {hexc(acc)}",
+        f"frontColor: {hexc(mix(acc, (255, 255, 255), 0.7))}" if item != "rapid-steel" else 'frontColor: "eef5ff"',
+        f"backColor: {hexc(acc)}" if item != "rapid-steel" else 'backColor: "8fb4e6"',
         f"hitEffect: {'hitBulletBig' if t >= 4 else 'hitBulletSmall'}",
         f"despawnEffect: {'hitBulletBig' if t >= 4 else 'hitBulletSmall'}",
     ]
@@ -274,6 +274,8 @@ def bullet(t, c, item):
         lines += ["ammoMultiplier: 5", "reloadMultiplier: 1.3"]   # no homing: it searched for targets every tick per bullet
     if item == "thorium":
         lines += ["ammoMultiplier: 4", "pierce: true", "pierceCap: 3", "knockback: 0.6"]
+    if item == "rapid-steel":
+        lines += ["ammoMultiplier: 4", "pierceArmor: true"]   # ignores armour; no pierce, no homing
     if item == "surge-alloy":
         lines += ["ammoMultiplier: 5", "pierce: true", "pierceCap: 2", "lightning: 1", "lightningLength: 7",
                   f"lightningDamage: {2 * dmg // 3}", f"lightningColor: {hexc(acc)}"]
@@ -330,7 +332,8 @@ ammoTypes: {{
 
 def main():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    for sub in ("content/blocks", "content/units", "sprites/blocks", "sprites/units", "bundles"):
+    for sub in ("content/blocks", "content/units", "content/items", "sprites/blocks", "sprites/units", "sprites/items",
+                "bundles"):
         os.makedirs(f"{root}/{sub}", exist_ok=True)
     en, ru = [], []
     for t, c in T.items():
@@ -343,8 +346,8 @@ def main():
         key = f"block.rapid-turret-{name}"
         en += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {EN_DESC[t]}"]
         ru += [f"{key}.name = Rapid {ROMAN[t]}", f"{key}.description = {RU_DESC[t]}"]
-    import walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2, naval, shipyard, walkers, nest, mortar, power
-    for mod in (walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2, naval, shipyard, walkers, nest, mortar, power):
+    import walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2, naval, shipyard, walkers, nest, mortar, power, works, logistics
+    for mod in (walls, drills, forge, units, conveyors, air, hangar, turrets2, walls2, naval, shipyard, walkers, nest, mortar, power, works, logistics):
         e, r = mod.build(root)
         en += e
         ru += r

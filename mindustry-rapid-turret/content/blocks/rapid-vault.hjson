@@ -1,0 +1,13 @@
+type: StorageBlock
+name: Rapid Vault
+description: Holds 2500 of every item. Placed against a core, it extends the core's storage.
+category: effect
+research: vault
+requirements: [
+  titanium/300
+  thorium/150
+  rapid-steel/120
+]
+size: 3
+health: 1500
+itemCapacity: 2500

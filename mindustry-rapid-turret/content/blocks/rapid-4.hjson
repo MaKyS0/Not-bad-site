@@ -111,4 +111,21 @@ ammoTypes: {
     pierceCap: 3
     knockback: 0.6
   }
+  rapid-steel: {
+    type: BasicBulletType
+    damage: 41
+    speed: 4.8
+    lifetime: 63
+    width: 10
+    height: 15
+    frontColor: "eef5ff"
+    backColor: "8fb4e6"
+    hitEffect: hitBulletBig
+    despawnEffect: hitBulletBig
+    trailLength: 8
+    trailWidth: 1.9
+    trailColor: "ff6ed7"
+    ammoMultiplier: 4
+    pierceArmor: true
+  }
 }

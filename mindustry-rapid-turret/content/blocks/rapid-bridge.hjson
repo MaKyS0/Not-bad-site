@@ -1,0 +1,17 @@
+type: BufferedItemBridge
+name: Rapid Bridge
+description: Carries items over 6 tiles of anything. Faster and longer than a bridge conveyor, no power.
+category: distribution
+research: bridge-conveyor
+requirements: [
+  copper/8
+  lead/8
+  graphite/8
+]
+size: 1
+health: 110
+range: 7
+speed: 40
+bufferCapacity: 14
+fadeIn: false
+arrowSpacing: 8
