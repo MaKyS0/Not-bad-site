@@ -3,7 +3,7 @@
 
 Writes walls.png, drills.png, units.png, forge.png, conveyors.png, air.png, hangar.png,
 turrets2.png, walls2.png, naval.png, shipyard.png,
-walkers.png, nest.png, mortar.png, power.png, works.png (each scaled 4x, NEAREST, dark background)."""
+walkers.png, nest.png, mortar.png, power.png, works.png, flow.png (each scaled 4x, NEAREST, dark background)."""
 import os
 import sys
 from PIL import Image
@@ -411,6 +411,84 @@ def works_sheet(out):
     sheet(rows).save(out)
 
 
+def conduit_tile(n, k, bot, full, rot=0, flip=False):
+    """One conduit tile drawn like ConduitBuild.draw: tinted bottom (approximated by a flat channel colour),
+    water at 70 % over the tile (shape 1: columns 6..31 x rows 0..25), then the top."""
+    import liquids
+    t = Image.new("RGBA", (32, 32), BG)
+    chan = liquids.channel(k)
+    under = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
+    up_ = under.load()
+    for y in range(32):
+        for x in range(32):
+            if chan(x, y):
+                up_[x, y] = bot + (255,)
+    t.alpha_composite(under)
+    if full:
+        w = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
+        box = (6, 0, 32, 26) if k == 1 else (0, 0, 32, 32)
+        w.paste((89, 106, 184, 178), box)
+        t.alpha_composite(w)
+    t.alpha_composite(load(f"sprites/blocks/rapid-conduit-{n}-top-{k}.png"))
+    if flip:
+        t = t.transpose(Image.FLIP_TOP_BOTTOM)
+    return t.rotate(rot)
+
+
+def flow(out):
+    import liquids
+    import overdrive as od
+    rows = []
+    for n, c in liquids.CONDUITS.items():
+        bot = tuple(int(c['bot'][i:i + 2], 16) for i in (0, 2, 4))
+        row = []
+        for full in (False, True):
+            row += [up(conduit_tile(n, k, bot, full)) for k in range(5)]
+            row.append(up(conduit_tile(n, 1, bot, full, flip=True)))
+        if n == 2:
+            cap = conduit_tile(n, 0, bot, True)
+            cap.alpha_composite(load("sprites/blocks/rapid-conduit-2-cap.png"))
+            row.append(up(cap))
+        # a little network: straight, straight, curve (down -> right)
+        net = Image.new("RGBA", (96, 64), BG)
+        net.alpha_composite(conduit_tile(n, 0, bot, True), (0, 0))
+        net.alpha_composite(conduit_tile(n, 0, bot, True), (32, 0))
+        net.alpha_composite(conduit_tile(n, 1, bot, True, rot=-90, flip=True), (64, 0))
+        net.alpha_composite(conduit_tile(n, 0, bot, True, rot=-90), (64, 32))
+        row.append(up(net))
+        rows.append(row)
+    row = []
+    for name in ("rapid-liquid-router", "rapid-liquid-tank"):
+        bottom, top = load(f"sprites/blocks/{name}-bottom.png"), load(f"sprites/blocks/{name}.png")
+        empty = bottom.copy()
+        empty.alpha_composite(top)
+        full = bottom.copy()
+        pad = 16 if name.endswith("tank") else 0
+        w = Image.new("RGBA", full.size, (0, 0, 0, 0))
+        w.paste((89, 106, 184, 220), (pad, pad, full.width - pad, full.height - pad))
+        full.alpha_composite(w)
+        full.alpha_composite(top)
+        row += [up(empty), up(full)]
+    row += [up(bridge_link("rapid-liquid-bridge")), up(bridge_link("rapid-phase-conduit"))]
+    rows.append(row)
+    row = []
+    for n in liquids.PUMPS:
+        img = load(f"sprites/blocks/rapid-pump-{n}.png")
+        wet = img.copy()
+        liq = tint(load(f"sprites/blocks/rapid-pump-{n}-liquid.png"), (89, 106, 184))
+        wet.alpha_composite(liq, ((img.width - liq.width) // 2, (img.height - liq.height) // 2))
+        row += [up(img), up(wet)]
+    for n, o in od.OD.items():
+        img = load(f"sprites/blocks/rapid-overdrive-{n}.png")
+        lit = img.copy()
+        t = tint(load(f"sprites/blocks/rapid-overdrive-{n}-top.png"), tuple(int(o['base'][i:i + 2], 16) for i in (0, 2, 4)))
+        t.putalpha(t.getchannel("A").point(lambda v: v // 2))
+        lit.alpha_composite(t, ((img.width - t.width) // 2, (img.height - t.height) // 2))
+        row += [up(img), up(lit)]
+    rows.append(row)
+    sheet(rows).save(out)
+
+
 def main():
     d = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(d, exist_ok=True)
@@ -430,6 +508,7 @@ def main():
     mortars(f"{d}/mortar.png")
     power_sheet(f"{d}/power.png")
     works_sheet(f"{d}/works.png")
+    flow(f"{d}/flow.png")
 
 
 if __name__ == "__main__":

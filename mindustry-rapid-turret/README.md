@@ -212,3 +212,29 @@ Rapid Steel is armour-piercing ammo for Rapid III-VI (ignores the target's armou
 | Rapid Phase Bridge | over 15 tiles, up to 40 items/s, needs power |
 | Rapid Unloader     | 22 items/s (vanilla 11) |
 | Rapid Vault        | 3x3, holds 2500 of every item |
+
+## Liquids
+
+| Block | What it does |
+|-------|--------------|
+| Rapid Conduit I       | ~650 liquid/s (pulse conduit ~520), flow arrows; leaks from open ends |
+| Rapid Conduit II      | armoured, ~1600/s, never leaks |
+| Rapid Liquid Router   | splits liquid, ~1200/s |
+| Rapid Bridge Conduit  | over 6 tiles, ~1400/s, no power |
+| Rapid Phase Conduit   | over 15 tiles, ~1600/s, needs power |
+| Rapid Liquid Tank     | 3x3, holds 5000 |
+| Rapid Pump I / II / III | 36 / 216 / 576 liquid/s (2x2 no power / 3x3 / 4x4) |
+
+Flow numbers are estimates from the game's formulas, not measured in game. Rapid Pump III needs Rapid conduits and bridges:
+vanilla pipes cannot carry it.
+
+## Overdrive
+
+| Block | Boost | With phase fabric | Radius |
+|-------|-------|-------------------|--------|
+| Rapid Overdrive I   | +60 %  | +125 % | 13 tiles |
+| Rapid Overdrive II  | +100 % | +160 % | 25 tiles |
+| Rapid Overdrive III | +200 % (needs phase fabric + Rapid Steel) | — | 37 tiles |
+
+Boosts do not stack. Rapid V-VI and Pulse IV already fire every tick and gain nothing. Keep Dynamos out of range:
+they only burn fuel faster.

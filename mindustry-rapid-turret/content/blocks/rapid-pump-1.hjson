@@ -1,0 +1,15 @@
+type: Pump
+name: Rapid Pump I
+description: Pumps 36 liquid a second without power — enough for one Rapid Compressor.
+category: liquid
+research: mechanical-pump
+requirements: [
+  copper/60
+  lead/40
+  graphite/30
+  metaglass/40
+]
+size: 2
+health: 180
+pumpAmount: 0.15
+liquidCapacity: 40

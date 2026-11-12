@@ -1,0 +1,33 @@
+type: OverdriveProjector
+name: Rapid Overdrive II
+description: Doubles the speed of buildings in a 25-tile radius on power alone. Phase fabric raises the boost to 160%.
+category: effect
+research: rapid-overdrive-1
+requirements: [
+  lead/250
+  titanium/200
+  silicon/200
+  plastanium/100
+  surge-alloy/100
+  rapid-steel/80
+]
+researchCostMultiplier: 0.8
+size: 3
+health: 900
+speedBoost: 2.0
+speedBoostPhase: 0.6
+phaseRangeBoost: 40
+range: 200
+useTime: 300
+baseColor: "ff6ed7"
+phaseColor: "ffc4ee"
+consumes: {
+  power: 12
+  items: {
+    items: [
+      phase-fabric/1
+    ]
+    optional: true
+    booster: true
+  }
+}

@@ -1,0 +1,31 @@
+type: OverdriveProjector
+name: Rapid Overdrive I
+description: Speeds up buildings in a 13-tile radius by 60%. Phase fabric raises the boost and the range. Keep Dynamos out of range: they only burn fuel faster.
+category: effect
+research: overdrive-projector
+requirements: [
+  lead/150
+  titanium/120
+  silicon/120
+  plastanium/40
+  rapid-steel/40
+]
+size: 2
+health: 400
+speedBoost: 1.6
+speedBoostPhase: 0.65
+phaseRangeBoost: 30
+range: 110
+useTime: 400
+baseColor: "78ff96"
+phaseColor: "c8ffd6"
+consumes: {
+  power: 5
+  items: {
+    items: [
+      phase-fabric/1
+    ]
+    optional: true
+    booster: true
+  }
+}

@@ -196,6 +196,8 @@ def main():
     check_part5(data)
     # Part 6: Rapid Steel, crafters, logistics
     check_part6(data)
+    # Part 7: liquids and overdrive
+    check_part7(data)
 
     # bundles
     bundles = {}
@@ -597,6 +599,145 @@ def check_part6(data):
                 err(f"rapid-{t}: steel must not be the best-DPS ammo")
 
 
+HEX6 = re.compile(r"^[0-9a-f]{6}$")
+
+
+def check_part7(data):
+    import liquids
+    import overdrive
+    B = f"{ROOT}/sprites/blocks"
+    blk = lambda n: data.get(f"{ROOT}/content/blocks/{n}.hjson") or {}   # noqa: E731
+    # conduits
+    for n, c in liquids.CONDUITS.items():
+        name = f"rapid-conduit-{n}"
+        d = blk(name)
+        if d.get("liquidCapacity", 0) < 20 or not HEX6.match(str(d.get("botColor", ""))):
+            err(f"{name}: liquidCapacity >= 20 and a 6-digit botColor")
+        br = blk(str(d.get("bridgeReplacement")))
+        if br.get("type") != "LiquidBridge":
+            err(f"{name}: bridgeReplacement must name a mod LiquidBridge")
+        for bad in ("rotate", "leaks", "junctionReplacement", "padCorners", "solid"):
+            if bad in d:
+                err(f"{name}: must not set {bad}")
+        if os.path.exists(f"{B}/{name}.png") or any(os.path.exists(f"{B}/{name}-bottom-{k}.png") for k in range(5)):
+            err(f"{name}: must not ship <name>.png or -bottom-k (vanilla fallback)")
+        for k in range(5):
+            path = f"sprites/blocks/{name}-top-{k}.png"
+            sprite(path, (32, 32))
+            if not os.path.exists(f"{ROOT}/{path}"):
+                continue
+            im = Image.open(f"{ROOT}/{path}").convert("RGBA").load()
+            chan = liquids.channel(k)
+            arr = set(liquids.arrows(k))
+            for y in range(32):
+                for x in range(32):
+                    want_clear = (chan(x, y) and (x, y) not in arr) or (k == 1 and x + 31 - y <= 6)
+                    if (im[x, y][3] == 0) != want_clear:
+                        err(f"{path}: pixel {(x, y)} transparency does not match the channel")
+                        break
+                else:
+                    continue
+                break
+        cap = os.path.exists(f"{B}/{name}-cap.png")
+        if cap != (c['type'] == "ArmoredConduit"):
+            err(f"{name}: a -cap exists exactly for the armoured conduit")
+        if cap:
+            ci = Image.open(f"{B}/{name}-cap.png").convert("RGBA")
+            bb = ci.getchannel("A").getbbox()
+            if not bb or bb[0] < 28 or bb[1] < 8 or bb[3] > 24 or not vsymmetric(ci):
+                err(f"{name}-cap: only columns 28..31 x rows 8..23, top/bottom symmetric")
+    # router and tank
+    for name in ("rapid-liquid-router", "rapid-liquid-tank"):
+        d = blk(name)
+        S = d.get("size", 1) * 32
+        pad = 4 * d.get("liquidPadding", 0)
+        sprite(f"sprites/blocks/{name}-bottom.png", (S, S), opaque=True)
+        sprite(f"sprites/blocks/{name}.png", (S, S))
+        p = f"{B}/{name}.png"
+        if os.path.exists(p):
+            im = Image.open(p).convert("RGBA")
+            a = im.getchannel("A")
+            if a.getextrema()[0] == 255 or not symmetric(im):
+                err(f"{name}: the top layer needs a transparent window and left/right symmetry")
+            ap = a.load()
+            if any(ap[x, y] == 0 and not (pad <= x <= S - 1 - pad and pad <= y <= S - 1 - pad)
+                   for y in range(S) for x in range(S)):
+                err(f"{name}: window outside the liquidPadding area")
+            if any(ap[x, y] == 0 for x in range(S) for y in (0, S - 1)) or \
+                    any(ap[x, y] == 0 for y in range(S) for x in (0, S - 1)):
+                err(f"{name}: the outer ring must be opaque")
+    # liquid bridges
+    for name in ("rapid-liquid-bridge", "rapid-phase-conduit"):
+        d = blk(name)
+        unpowered = d.get("hasPower") is False and "consumes" not in d
+        powered = d.get("consumes", {}).get("power", 0) > 0 and "hasPower" not in d
+        if not (unpowered or powered) or d.get("liquidCapacity", 0) < 40:
+            err(f"{name}: hasPower: false and no consumes, or consumes.power and no hasPower; liquidCapacity >= 40")
+        if not isinstance(d.get("range"), int) or d.get("arrowSpacing", 0) < 8:
+            err(f"{name}: integer range and arrowSpacing >= 8")
+        for bad in ("moveArrows", "transportTime", "itemCapacity"):
+            if bad in d:
+                err(f"{name}: must not set {bad}")
+        sprite(f"sprites/blocks/{name}.png", (32, 32), opaque=True)
+        for sfx in ("-end", "-bridge", "-arrow"):
+            sprite(f"sprites/blocks/{name}{sfx}.png", (32, 32))
+        if os.path.exists(f"{B}/{name}-bridge.png"):
+            br = Image.open(f"{B}/{name}-bridge.png").convert("RGBA")
+            if not vsymmetric(br) or \
+                    any(br.crop((x, 0, x + 1, 32)).tobytes() != br.crop((0, 0, 1, 32)).tobytes() for x in range(32)):
+                err(f"{name}-bridge: all columns equal, top/bottom symmetric")
+    # pumps
+    for n, pm in liquids.PUMPS.items():
+        name = f"rapid-pump-{n}"
+        d = blk(name)
+        S = pm['size'] * 32
+        if not d.get("pumpAmount", 0) > 0 or d.get("liquidCapacity", 0) < 20 * d["pumpAmount"] * pm['size'] ** 2:
+            err(f"{name}: pumpAmount > 0 and liquidCapacity >= 20 ticks of output")
+        if "drawer" in d or "hasPower" in d:
+            err(f"{name}: no drawer, no hasPower")
+        sprite(f"sprites/blocks/{name}.png", (S, S), opaque=True)
+        lp = f"{B}/{name}-liquid.png"
+        if os.path.exists(lp):
+            li = Image.open(lp).convert("RGBA")
+            L = li.width
+            if li.height != L or L % 2 or L >= S or not symmetric(li) or \
+                    any(li.getpixel((x, y))[3] and li.getpixel((x, y))[:3] != (255, 255, 255)
+                        for y in range(L) for x in range(L)):
+                err(f"{name}-liquid: square, even, smaller than the block, pure white, symmetric")
+        else:
+            err(f"missing sprite {name}-liquid")
+    # overdrive
+    import struct
+    for n, o in overdrive.OD.items():
+        name = f"rapid-overdrive-{n}"
+        d = blk(name)
+        S = o['size'] * 32
+        sb = d.get("speedBoost", 0)
+        f32 = struct.unpack("f", struct.pack("f", sb))[0]
+        if not sb > 1 or int(f32 * 100 - 100) != round(sb * 100 - 100):
+            err(f"{name}: speedBoost must be > 1 and print exactly")
+        if d.get("range", 0) < 80 or not d.get("consumes", {}).get("power", 0) > 0:
+            err(f"{name}: range >= 80 (world units) and consumes.power")
+        items = d.get("consumes", {}).get("items")
+        if (d.get("hasBoost") is False) != isinstance(items, list):
+            err(f"{name}: hasBoost: false exactly when consumes.items is an array")
+        if isinstance(items, dict) and not (items.get("optional") is True and items.get("booster") is True):
+            err(f"{name}: the optional booster needs optional and booster true")
+        if not (HEX6.match(str(d.get("baseColor", ""))) and HEX6.match(str(d.get("phaseColor", "")))):
+            err(f"{name}: 6-digit baseColor and phaseColor")
+        for bad in ("canOverdrive", "hasItems", "hasPower", "reload"):
+            if bad in d:
+                err(f"{name}: must not set {bad}")
+        sprite(f"sprites/blocks/{name}.png", (S, S), opaque=True)
+        tp = f"{B}/{name}-top.png"
+        if os.path.exists(tp):
+            t = Image.open(tp).convert("RGBA")
+            if t.width != t.height or t.width % 2 or t.width >= S or t.tobytes() != t.rotate(90).tobytes():
+                err(f"{name}-top: square, even, smaller than the block, equal to its 90 degree rotation")
+        else:
+            err(f"missing sprite {name}-top")
+
+
 _cache = {}
 
 
@@ -640,7 +781,13 @@ CLASSES = {"Wall": "mindustry.world.blocks.defense.Wall", "Drill": "mindustry.wo
            "ItemBridge": "mindustry.world.blocks.distribution.ItemBridge",
            "Unloader": "mindustry.world.blocks.storage.Unloader",
            "StorageBlock": "mindustry.world.blocks.storage.StorageBlock",
-           "item": "mindustry.type.Item"}
+           "item": "mindustry.type.Item",
+           "Conduit": "mindustry.world.blocks.liquid.Conduit",
+           "ArmoredConduit": "mindustry.world.blocks.liquid.ArmoredConduit",
+           "LiquidRouter": "mindustry.world.blocks.liquid.LiquidRouter",
+           "LiquidBridge": "mindustry.world.blocks.liquid.LiquidBridge",
+           "Pump": "mindustry.world.blocks.production.Pump",
+           "OverdriveProjector": "mindustry.world.blocks.defense.OverdriveProjector"}
 BULLETS = {"BasicBulletType": "mindustry.entities.bullet.BasicBulletType",
            "LaserBoltBulletType": "mindustry.entities.bullet.LaserBoltBulletType",
            "FlakBulletType": "mindustry.entities.bullet.FlakBulletType",
@@ -649,7 +796,8 @@ CONSUMES = {"item", "items", "itemFlammable", "itemRadioactive", "itemCharged", 
             "liquids", "liquidFlammable", "coolant", "power", "powerBuffered"}
 CONSUMER_CLASS = {"itemFlammable": "mindustry.world.consumers.ConsumeItemFlammable",
                   "itemRadioactive": "mindustry.world.consumers.ConsumeItemRadioactive",
-                  "liquid": "mindustry.world.consumers.ConsumeLiquid"}
+                  "liquid": "mindustry.world.consumers.ConsumeLiquid",
+                  "items": "mindustry.world.consumers.ConsumeItems"}
 PATTERN = "mindustry.entities.pattern."
 EFFECT_KEYS = {"shootEffect", "smokeEffect", "ammoUseEffect", "hitEffect", "despawnEffect", "ejectEffect", "trailEffect",
                "generateEffect", "craftEffect"}

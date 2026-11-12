@@ -1,0 +1,15 @@
+type: LiquidRouter
+name: Rapid Liquid Router
+description: Splits liquid to all sides without throttling large flows.
+category: liquid
+research: liquid-router
+requirements: [
+  graphite/6
+  metaglass/6
+  titanium/4
+]
+size: 1
+health: 150
+liquidCapacity: 80
+solid: false
+underBullets: true

@@ -1,0 +1,21 @@
+type: Pump
+name: Rapid Pump III
+description: Pumps 576 liquid a second — five impulse pumps in one. Needs Rapid conduits to carry it away.
+category: liquid
+research: rapid-pump-2
+requirements: [
+  titanium/300
+  metaglass/250
+  silicon/200
+  thorium/150
+  plastanium/60
+  rapid-steel/120
+]
+researchCostMultiplier: 0.8
+size: 4
+health: 1000
+pumpAmount: 0.6
+liquidCapacity: 400
+consumes: {
+  power: 7
+}

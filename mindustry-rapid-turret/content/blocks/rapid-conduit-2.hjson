@@ -1,0 +1,16 @@
+type: ArmoredConduit
+name: Rapid Conduit II
+description: Armoured conduit: never leaks, takes liquid only from pipes and from behind. Carries a whole pump station.
+category: liquid
+research: rapid-conduit-1
+requirements: [
+  thorium/2
+  metaglass/2
+  plastanium/1
+  rapid-steel/1
+]
+health: 320
+liquidCapacity: 50
+liquidPressure: 1.06
+botColor: "2b3332"
+bridgeReplacement: rapid-liquid-bridge

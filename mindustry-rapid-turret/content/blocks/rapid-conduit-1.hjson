@@ -1,0 +1,15 @@
+type: Conduit
+name: Rapid Conduit I
+description: Wide conduit with flow arrows. Carries twice as much as a conduit. Leaks from open ends.
+category: liquid
+research: conduit
+requirements: [
+  titanium/1
+  metaglass/2
+  graphite/1
+]
+health: 80
+liquidCapacity: 20
+liquidPressure: 1.03
+botColor: "32323a"
+bridgeReplacement: rapid-liquid-bridge

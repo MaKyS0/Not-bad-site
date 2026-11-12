@@ -1,0 +1,30 @@
+type: OverdriveProjector
+name: Rapid Overdrive III
+description: Triples the speed of buildings in a 37-tile radius. Does nothing without phase fabric and Rapid Steel. Rapid V-VI already fire every tick and gain nothing.
+category: effect
+research: rapid-overdrive-2
+requirements: [
+  lead/500
+  titanium/350
+  silicon/400
+  plastanium/200
+  surge-alloy/250
+  phase-fabric/100
+  rapid-steel/150
+]
+researchCostMultiplier: 0.5
+size: 4
+health: 1800
+speedBoost: 3.0
+range: 300
+useTime: 240
+baseColor: "ff543c"
+phaseColor: "ffb0a0"
+hasBoost: false
+consumes: {
+  power: 30
+  items: [
+    phase-fabric/1
+    rapid-steel/1
+  ]
+}

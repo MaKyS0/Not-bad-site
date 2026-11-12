@@ -1,0 +1,22 @@
+type: LiquidBridge
+name: Rapid Phase Conduit
+description: Teleports liquid across 15 tiles. Needs power.
+category: liquid
+research: phase-conduit
+requirements: [
+  rapid-steel/6
+  phase-fabric/5
+  silicon/10
+  metaglass/25
+]
+size: 1
+health: 160
+range: 16
+liquidCapacity: 60
+pulse: true
+arrowSpacing: 8
+arrowPeriod: 0.9
+arrowTimeScl: 2.75
+consumes: {
+  power: 0.5
+}

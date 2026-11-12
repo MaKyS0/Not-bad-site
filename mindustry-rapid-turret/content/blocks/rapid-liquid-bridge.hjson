@@ -1,0 +1,17 @@
+type: LiquidBridge
+name: Rapid Bridge Conduit
+description: Carries liquid over 6 tiles of anything. Four times the flow of a bridge conduit, no power.
+category: liquid
+research: bridge-conduit
+requirements: [
+  graphite/8
+  metaglass/12
+  titanium/4
+]
+size: 1
+health: 110
+range: 7
+hasPower: false
+liquidCapacity: 40
+fadeIn: false
+arrowSpacing: 8

@@ -1,0 +1,14 @@
+type: LiquidRouter
+name: Rapid Liquid Tank
+description: Holds 5000 units of liquid — almost three liquid tanks.
+category: liquid
+research: liquid-tank
+requirements: [
+  titanium/90
+  metaglass/120
+  rapid-steel/40
+]
+size: 3
+health: 1200
+liquidCapacity: 5000
+liquidPadding: 4
