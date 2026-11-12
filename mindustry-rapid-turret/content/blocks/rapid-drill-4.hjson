@@ -14,6 +14,8 @@ health: 1440
 tier: 5
 drillTime: 190
 rotateSpeed: 5.5
+drawSpinSprite: false
+updateEffectChance: 0
 consumes: {
   power: 4
   liquid: {

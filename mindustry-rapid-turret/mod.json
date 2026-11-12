@@ -3,7 +3,7 @@
   "displayName": "Rapid Arsenal",
   "author": "MaKyS0",
   "description": "Rapid Arsenal: very fast-firing turrets (Rapid, Pulse lasers, Buckshot shotguns), walls with energy shields, drills, conveyors, mech, air and naval units. Pure JSON mod (no Java/JS), so it works on desktop, Android and iOS.",
-  "version": "6.1",
+  "version": "6.2",
   "minGameVersion": "146",
   "hidden": false
 }

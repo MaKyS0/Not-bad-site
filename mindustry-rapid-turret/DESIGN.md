@@ -988,3 +988,7 @@ Chosen by the player from the Android performance analysis. Bullet trails, smoke
 - Silicon ammo (Rapid I–VI): no homing (`homingPower`/`homingRange` searched for a target every tick per bullet); damage +10 %.
 - Buckshot IV: 5 pellets (spread 9°, same 36° fan) instead of 7, pellet damage ×7/5; the gun sprite has 5 bores.
 - T4–T5 units (barrage, storm, tempest, hurricane, frigate, dreadnought): main guns `reload` at least 7, damage scaled to keep DPS.
+- Drills: `drawSpinSprite: false` (the default draws the rotor twice, cross-faded, and assumes 90° symmetry — wrong for 3/6 blades),
+  `updateEffectChance: 0` (no dust particles; also disables the per-item mine effect, which shares that chance in v146 `Drill`).
+  The `-rotator`, `-top` and `-item` layers are cropped to a centred square around their content (T5: 120, 66, 20 px instead of
+  160), so far less transparent area is drawn every frame; the composite is pixel-identical.

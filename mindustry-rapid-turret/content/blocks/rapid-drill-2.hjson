@@ -13,6 +13,8 @@ health: 360
 tier: 3
 drillTime: 320
 rotateSpeed: 3.5
+drawSpinSprite: false
+updateEffectChance: 0
 consumes: {
   liquid: {
     liquid: water

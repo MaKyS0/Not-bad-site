@@ -124,8 +124,14 @@ def main():
         sprite(f"sprites/blocks/rapid-wall-{n}-large.png", (64, 64), opaque=True)
         S = drills.DRILLS[n]['size'] * 32
         sprite(f"sprites/blocks/rapid-drill-{n}.png", (S, S), opaque=True)
-        for s in ("-rotator", "-top", "-item"):
-            sprite(f"sprites/blocks/rapid-drill-{n}{s}.png", (S, S))
+        for s in ("-rotator", "-top", "-item"):    # cropped layers: square, even, no bigger than the block
+            p = f"{ROOT}/sprites/blocks/rapid-drill-{n}{s}.png"
+            if not os.path.exists(p):
+                err(f"missing sprite rapid-drill-{n}{s}")
+                continue
+            w, h = Image.open(p).size
+            if w != h or w % 2 or w > S:
+                err(f"rapid-drill-{n}{s}: size {(w, h)} must be square, even and at most {S}")
     sprite("sprites/blocks/rapid-forge.png", (160, 160), opaque=True)
     for s in ("-top", "-out", "-in"):
         sprite(f"sprites/blocks/rapid-forge{s}.png", (160, 160))
