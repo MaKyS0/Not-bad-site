@@ -15,7 +15,7 @@ researchCostMultiplier: 0.8
 size: 3
 health: 2600
 range: 135
-reload: 13
+reload: 7
 inaccuracy: 3
 velocityRnd: 0.15
 rotateSpeed: 14
@@ -29,6 +29,7 @@ heatColor: "ff8c28"
 shootSound: shotgun
 shootEffect: shootBig
 smokeEffect: shootBigSmoke
+ammoUseEffect: casing3
 coolant: {
   type: ConsumeCoolant
   amount: 0.3
@@ -41,7 +42,7 @@ shoot: {
 ammoTypes: {
   scrap: {
     type: BasicBulletType
-    damage: 32
+    damage: 17
     speed: 5.5
     lifetime: 27
     width: 8
@@ -55,7 +56,7 @@ ammoTypes: {
   }
   graphite: {
     type: BasicBulletType
-    damage: 45
+    damage: 24
     speed: 5.5
     lifetime: 27
     width: 8
@@ -69,7 +70,7 @@ ammoTypes: {
   }
   thorium: {
     type: BasicBulletType
-    damage: 56
+    damage: 30
     speed: 5.5
     lifetime: 27
     width: 8

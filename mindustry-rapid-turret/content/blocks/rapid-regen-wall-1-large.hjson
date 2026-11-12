@@ -10,8 +10,8 @@ requirements: [
 size: 2
 health: 1200
 armor: 0
-healPercent: 20
-reload: 600
+healPercent: 2
+reload: 60
 range: 2
 phaseBoost: 0
 phaseRangeBoost: 0
@@ -23,4 +23,4 @@ priority: -2
 buildCostMultiplier: 6
 crushDamageMultiplier: 5
 canOverdrive: false
-emitLight: false
+lightRadius: 12

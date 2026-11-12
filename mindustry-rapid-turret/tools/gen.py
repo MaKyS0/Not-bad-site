@@ -57,28 +57,21 @@ T = {
             metal=(226, 224, 238), steel=(74, 70, 106), acc=(150, 120, 255), trim=(255, 208, 96), coolant=0.6),
 }
 ROMAN = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI"}
-
-import perf   # noqa: E402  fewer, heavier bullets (same DPS) so the game stays smooth on phones and tablets
-for _c in T.values():
-    _new, _f = perf.slow(_c['reload'], _c['shots'])
-    _c['reload'], _c['shots'] = _new, 1
-    _c['dmg'] = {k: int(round(v * _f)) for k, v in _c['dmg'].items()}
-
 RU_DESC = {
     1: "Скорострельная турель 1 тира. Два ствола, огромный темп огня.",
     2: "Скорострельная турель 2 тира. Три ствола, выше урон и дальность.",
     3: "Скорострельная турель 3 тира. Тяжёлые стволы и трассирующие пули.",
     4: "Скорострельная турель 4 тира. Четыре ствола, принимает торий.",
-    5: "Скорострельная турель 5 тира. Пять стволов и тяжёлые пули.",
-    6: "Вершина линейки. Шесть стволов, пули из кинетического сплава бьют молниями.",
+    5: "Скорострельная турель 5 тира. Пять стволов, выстрел каждый тик.",
+    6: "Вершина линейки. Шесть стволов, два выстрела за тик, пули из кинетического сплава бьют молниями.",
 }
 EN_DESC = {
     1: "Tier 1 rapid-fire turret. Two barrels and a huge rate of fire.",
     2: "Tier 2 rapid-fire turret. Three barrels, more damage and range.",
     3: "Tier 3 rapid-fire turret. Heavy barrels and tracer rounds.",
     4: "Tier 4 rapid-fire turret. Four barrels, accepts thorium.",
-    5: "Tier 5 rapid-fire turret. Five barrels and heavy rounds.",
-    6: "Top of the line. Six barrels, surge rounds arc lightning.",
+    5: "Tier 5 rapid-fire turret. Five barrels, one shot every tick.",
+    6: "Top of the line. Six barrels, two shots per tick, surge rounds arc lightning.",
 }
 
 
@@ -271,6 +264,8 @@ def bullet(t, c, item):
         f"hitEffect: {'hitBulletBig' if t >= 4 else 'hitBulletSmall'}",
         f"despawnEffect: {'hitBulletBig' if t >= 4 else 'hitBulletSmall'}",
     ]
+    if t >= 3:
+        lines += [f"trailLength: {4 + t}", f"trailWidth: {round(0.9 + 0.25 * t, 2)}", f"trailColor: {hexc(acc)}"]
     if item == "copper":
         lines += ["ammoMultiplier: 3"]
     if item == "graphite":
@@ -316,6 +311,7 @@ targetGround: true
 heatColor: {hexc(c['acc'])}
 shootEffect: {'shootBig' if t >= 3 else 'shootSmall'}
 smokeEffect: {'shootBigSmoke' if t >= 3 else 'shootSmallSmoke'}
+ammoUseEffect: {'casing1' if t < 3 else 'casing2' if t < 5 else 'casing3'}
 coolant: {{
   type: ConsumeCoolant
   amount: {c['coolant']}

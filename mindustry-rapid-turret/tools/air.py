@@ -36,10 +36,6 @@ UNITS = [
          en_d="Tier 5 gunship. A colossal gunship with four turning turrets whose rounds pierce armour.",
          ru_d="Воздушный корабль 5 тира. Колоссальный ганшип с четырьмя поворотными турелями, чьи пули пробивают броню."),
 ]
-
-import perf   # noqa: E402  fewer, heavier bullets (same DPS)
-perf.apply_units(UNITS)
-
 RECIPES = {   # factory plans: time, requirements
     "dart": (900, [("silicon", 20), ("lead", 10)]),
     "swift": (2100, [("silicon", 60), ("graphite", 45), ("titanium", 20)]),
@@ -229,6 +225,8 @@ def bullet_lines(u):
         f"hitEffect: {eff}",
         f"despawnEffect: {eff}",
     ]
+    if T >= 3:
+        bl += [f"trailLength: {3 + T}", f"trailWidth: {round(0.8 + 0.2 * T, 2)}", f"trailColor: {hexc(acc)}"]
     if T == 5:
         bl += ["pierce: true", "pierceCap: 2"]
     return bl
@@ -236,6 +234,7 @@ def bullet_lines(u):
 
 def hjson(u):
     T = u['T']
+    casing = "casing1" if T <= 2 else "casing2" if T <= 4 else "casing3"
     lines = [
         "type: flying",
         "flying: true",
@@ -278,6 +277,7 @@ def hjson(u):
             f"recoil: {[0.8, 1, 1.3, 1.8, 2.4][T - 1]}",
             f"shootY: {u['shoot_y']}",
             f"inaccuracy: {[4, 3.5, 3, 2.5, 2][T - 1]}",
+            f"ejectEffect: {casing}",
             "bullet: {",
         ] + ["  " + l for l in bullet_lines(u)] + ["}"]
         lines += ["  {"] + ["    " + l for l in wl] + ["  }"]

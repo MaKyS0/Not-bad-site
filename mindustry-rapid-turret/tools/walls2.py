@@ -175,8 +175,8 @@ def regen_hjson(n, large):
         f"size: {2 if large else 1}",
         f"health: {w['health'] * m}",
         f"armor: {w['armor']}",
-        f"healPercent: {w['heal'] * 10}",
-        "reload: 600",   # one heal every 10 s (same %/s): fewer heal passes and effects with hundreds of walls
+        f"healPercent: {w['heal']}",
+        "reload: 60",
         "range: 2",
         "phaseBoost: 0",
         "phaseRangeBoost: 0",
@@ -188,7 +188,7 @@ def regen_hjson(n, large):
         "buildCostMultiplier: 6",
         "crushDamageMultiplier: 5",
         "canOverdrive: false",
-        "emitLight: false",
+        "lightRadius: 12",
     ]
     return name, "\n".join(lines) + "\n"
 

@@ -15,7 +15,7 @@ researchCostMultiplier: 1
 size: 2
 health: 1300
 range: 115
-reload: 10
+reload: 9
 inaccuracy: 3
 velocityRnd: 0.15
 rotateSpeed: 13
@@ -29,6 +29,7 @@ heatColor: "ff8c28"
 shootSound: shotgun
 shootEffect: shootSmall
 smokeEffect: shootSmallSmoke
+ammoUseEffect: casing2
 coolant: {
   type: ConsumeCoolant
   amount: 0.2
@@ -41,7 +42,7 @@ shoot: {
 ammoTypes: {
   scrap: {
     type: BasicBulletType
-    damage: 12
+    damage: 11
     speed: 5.5
     lifetime: 23
     width: 7
@@ -55,7 +56,7 @@ ammoTypes: {
   }
   graphite: {
     type: BasicBulletType
-    damage: 18
+    damage: 16
     speed: 5.5
     lifetime: 23
     width: 7

@@ -57,10 +57,6 @@ PULSE = {
                   ("plastanium", 200), ("surge-alloy", 100)], dmg=20, speed=10, life=27, w=3.5, h=14, pierce=3,
             spread=5, bm=0.7, rm=0.5),
 }
-import perf   # noqa: E402
-for _p in PULSE.values():
-    _p['reload'], _f = perf.slow(_p['reload'])
-    _p['dmg'] = int(round(_p['dmg'] * _f))
 # sprite table: pitch, pw, step, cy, R, cw, pip (w, h)
 PULSE_ART = {1: (0, 4, 0, 19, 7, 0, (2, 1)), 2: (14, 6, 0, 38, 15, 5, (2, 2)),
              3: (18, 6, 6, 57, 22, 7, (3, 3)), 4: (20, 8, 6, 76, 29, 9, (3, 3))}
@@ -69,14 +65,14 @@ P_HOT = mix(P_GLOW, WHITE, 0.6)
 PULSE_EN = {
     1: "Tiny laser turret. Needs power instead of ammo and fires 12 bolts a second.",
     2: "Twin emitters, 20 laser bolts a second, no ammo needed.",
-    3: "Three emitters, 20 bolts a second; bolts pierce through two targets.",
-    4: "Four emitters, heavy bolts that pierce three targets. Very power hungry.",
+    3: "Three emitters; bolts pierce through two targets.",
+    4: "Four emitters, a bolt every tick, pierces three targets. Very power hungry.",
 }
 PULSE_RU = {
     1: "Маленькая лазерная турель. Вместо патронов нужна энергия, 12 выстрелов в секунду.",
     2: "Два излучателя, 20 лазерных импульсов в секунду, патроны не нужны.",
-    3: "Три излучателя, 20 импульсов в секунду; импульсы пробивают две цели насквозь.",
-    4: "Четыре излучателя, тяжёлые импульсы пробивают три цели. Потребляет очень много энергии.",
+    3: "Три излучателя; импульсы пробивают две цели насквозь.",
+    4: "Четыре излучателя, выстрел каждый тик, пробивает три цели. Потребляет очень много энергии.",
 }
 
 
@@ -242,13 +238,6 @@ BUCK_AMMO = {
     "graphite": ({1: 10, 2: 16, 3: 24, 4: 30}, 3, 0.4),
     "thorium": ({3: 30, 4: 38}, 3, 0.8),
 }
-for _n, _p in BUCK.items():
-    _new = max(_p['reload'], int(round(_p['shots'] * 60 / perf.SHOTGUN_PELLETS_PER_S + 0.49)))
-    _f = _new / _p['reload']
-    _p['reload'] = _new
-    for _d, _, _ in BUCK_AMMO.values():
-        if _n in _d:
-            _d[_n] = int(round(_d[_n] * _f))
 # sprite table: nb, pitch, bw, bh, mw, mh, hw, neck_y, ck, pip (w, h)
 BUCK_ART = {1: (3, 6, 2, 3, 9, 6, 7, 16, 0, (2, 1)), 2: (4, 10, 4, 5, 21, 10, 14, 32, 4, (2, 2)),
             3: (5, 12, 6, 7, 31, 14, 21, 48, 6, (3, 3)), 4: (7, 12, 6, 9, 44, 18, 29, 64, 8, (3, 3))}
@@ -258,13 +247,13 @@ BUCK_EN = {
     1: "Tiny rapid shotgun. Short range, three pellets per shot. Accepts scrap.",
     2: "Four pellets per shot, devastating up close.",
     3: "Five pellets per shot; thorium pellets pierce and push enemies back.",
-    4: "Seven heavy pellets per shot. Shreds anything that gets close.",
+    4: "Seven pellets twelve times a second. Shreds anything that gets close.",
 }
 BUCK_RU = {
     1: "Маленький скорострельный дробовик. Малая дальность, три дробины за выстрел. Принимает металлолом.",
     2: "Четыре дробины за выстрел, сокрушителен вблизи.",
     3: "Пять дробин за выстрел; ториевая картечь пробивает и отбрасывает врагов.",
-    4: "Семь тяжёлых дробин за выстрел. Рвёт в клочья всё, что подошло близко.",
+    4: "Семь дробин двенадцать раз в секунду. Рвёт в клочья всё, что подошло близко.",
 }
 
 
@@ -383,6 +372,7 @@ def buck_hjson(n):
         "shootSound: shotgun",
         f"shootEffect: {'shootSmall' if small else 'shootBig'}",
         f"smokeEffect: {'shootSmallSmoke' if small else 'shootBigSmoke'}",
+        f"ammoUseEffect: {'casing2' if small else 'casing3'}",
         "coolant: {",
         "  type: ConsumeCoolant",
         f"  amount: {p['coolant']}",

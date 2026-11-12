@@ -977,16 +977,3 @@ Bundle keys `unit.rapid-turret-<name>` / `block.rapid-turret-rapid-shipyard`, pl
    - bullet `speed × lifetime` equals the range column ±1; bundles have `.name` and `.description` for the 5 units and the shipyard in EN and RU.
 9. Add the ships (body + cell + turrets and flak composited at their mounts, `outlined()`) and the shipyard to `tools/preview.py`;
    add `metaglass: 2` to `VALUE` if `--balance` should print the table of section 20.
-
-## 25. Performance pass (applies to everything above)
-
-Players reported ~30 FPS on a Galaxy Tab S9 Ultra. The mod fired hundreds of bullets per second (Rapid VI: 120/s, each with a
-trail, a casing and a muzzle flash). `tools/perf.py` now rewrites the stat tables at import time, keeping damage per second:
-- turrets fire at most one bullet every 3 ticks (20/s); `shoot.shots` > 1 is folded into heavier single bullets;
-- Buckshot volleys fire at most 24 pellets per second (reload 12 / 10 / 13 / 18), pellet damage scaled up;
-- unit weapons fire at most once every 8 ticks;
-- no bullet trails (`trailLength`) and no casings (`ammoUseEffect` / `ejectEffect`) anywhere. Ship wave trails stay.
-Numbers in the tables of sections 2–24 are the design values BEFORE this pass.
-- Regen walls (section 14) are `MendProjector`s, i.e. updating and self-drawing buildings, unlike plain `Wall`s
-  (`MendProjector` sets `update = true`; `Wall` does not). Hundreds of them dropped a host to 8 FPS / 6 TPS. They now heal once
-  every 600 ticks for 10× `healPercent` (same %/s) and have `emitLight: false`. Spamming them is still costlier than Rapid walls.

@@ -1,6 +1,6 @@
 type: ItemTurret
 name: Buckshot IV
-description: Seven heavy pellets per shot. Shreds anything that gets close.
+description: Seven pellets twelve times a second. Shreds anything that gets close.
 category: turret
 research: rapid-buckshot-3
 playerControllable: true
@@ -17,7 +17,7 @@ researchCostMultiplier: 0.5
 size: 4
 health: 4800
 range: 160
-reload: 18
+reload: 5
 inaccuracy: 3
 velocityRnd: 0.15
 rotateSpeed: 15
@@ -31,6 +31,7 @@ heatColor: "ff8c28"
 shootSound: shotgun
 shootEffect: shootBig
 smokeEffect: shootBigSmoke
+ammoUseEffect: casing3
 coolant: {
   type: ConsumeCoolant
   amount: 0.4
@@ -43,7 +44,7 @@ shoot: {
 ammoTypes: {
   scrap: {
     type: BasicBulletType
-    damage: 76
+    damage: 21
     speed: 5.5
     lifetime: 31
     width: 9
@@ -57,7 +58,7 @@ ammoTypes: {
   }
   graphite: {
     type: BasicBulletType
-    damage: 108
+    damage: 30
     speed: 5.5
     lifetime: 31
     width: 9
@@ -71,7 +72,7 @@ ammoTypes: {
   }
   thorium: {
     type: BasicBulletType
-    damage: 137
+    damage: 38
     speed: 5.5
     lifetime: 31
     width: 9

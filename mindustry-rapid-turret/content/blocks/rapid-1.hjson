@@ -14,7 +14,7 @@ researchCostMultiplier: 1
 size: 2
 health: 800
 range: 190
-reload: 3
+reload: 3.0
 inaccuracy: 6
 rotateSpeed: 16
 recoil: 0.9
@@ -26,6 +26,7 @@ targetGround: true
 heatColor: "ffbe50"
 shootEffect: shootSmall
 smokeEffect: shootSmallSmoke
+ammoUseEffect: casing1
 coolant: {
   type: ConsumeCoolant
   amount: 0.2

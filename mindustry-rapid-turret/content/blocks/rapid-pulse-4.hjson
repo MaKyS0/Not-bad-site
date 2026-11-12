@@ -1,6 +1,6 @@
 type: PowerTurret
 name: Pulse IV
-description: Four emitters, heavy bolts that pierce three targets. Very power hungry.
+description: Four emitters, a bolt every tick, pierces three targets. Very power hungry.
 category: turret
 research: rapid-pulse-3
 playerControllable: true
@@ -18,7 +18,7 @@ researchCostMultiplier: 0.5
 size: 4
 health: 3400
 range: 250
-reload: 3
+reload: 1
 inaccuracy: 0
 rotateSpeed: 20
 recoil: 1.2
@@ -43,7 +43,7 @@ shoot: {
 }
 shootType: {
   type: LaserBoltBulletType
-  damage: 60
+  damage: 20
   speed: 10
   lifetime: 27
   width: 3.5

@@ -62,10 +62,6 @@ UNITS = [
          en_d="Tier 5 warship. Three quad turrets fire piercing rounds while four heavy flak guns clear the sky.",
          ru_d="Боевой корабль 5 тира. Три четырёхствольные турели бьют пробивающими снарядами, а четыре тяжёлые зенитки очищают небо."),
 ]
-
-import perf   # noqa: E402  fewer, heavier bullets (same DPS)
-perf.apply_units(UNITS)
-
 BY_NAME = {u['name']: u for u in UNITS}
 
 RECIPES = {   # shipyard plans: time, requirements
@@ -280,6 +276,8 @@ def gun_bullet(u):
         f"hitEffect: {eff}",
         f"despawnEffect: {eff}",
     ]
+    if T >= 3:
+        bl += [f"trailLength: {3 + T}", f"trailWidth: {round(0.8 + 0.2 * T, 2)}", f"trailColor: {hexc(acc)}"]
     if T == 5:
         bl += ["pierce: true", "pierceCap: 2"]
     return bl
@@ -305,6 +303,7 @@ def flak_bullet(u):
 
 def hjson(u):
     T = u['T']
+    casing = "casing1" if T <= 2 else "casing2" if T <= 4 else "casing3"
     tl, wx, wy, ts = u['trail']
     lines = [
         "type: naval",
@@ -343,6 +342,7 @@ def hjson(u):
             f"recoil: {[0.8, 1, 1.3, 1.8, 2.4][T - 1]}",
             f"shootY: {u['gshootY']}",
             f"inaccuracy: {[4, 3.5, 3, 2.5, 2][T - 1]}",
+            f"ejectEffect: {casing}",
         ]
         if u['spread']:
             wl += ["shoot: {", "  type: ShootAlternate", f"  barrels: {u['barrels']}", f"  spread: {u['spread']}", "}"]

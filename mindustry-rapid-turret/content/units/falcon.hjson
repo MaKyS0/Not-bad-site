@@ -28,13 +28,14 @@ weapons: [
     top: false
     mirror: true
     alternate: true
-    reload: 8
+    reload: 5
     recoil: 1.3
     shootY: 7
     inaccuracy: 3
+    ejectEffect: casing2
     bullet: {
       type: BasicBulletType
-      damage: 21
+      damage: 13
       speed: 4.2
       lifetime: 36
       width: 8
@@ -43,6 +44,9 @@ weapons: [
       backColor: "78ff96"
       hitEffect: hitBulletSmall
       despawnEffect: hitBulletSmall
+      trailLength: 6
+      trailWidth: 1.4
+      trailColor: "78ff96"
     }
   }
 ]

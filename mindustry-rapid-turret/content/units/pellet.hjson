@@ -26,6 +26,7 @@ weapons: [
     recoil: 0.8
     shootY: 2.5
     inaccuracy: 4
+    ejectEffect: casing1
     bullet: {
       type: BasicBulletType
       damage: 5
