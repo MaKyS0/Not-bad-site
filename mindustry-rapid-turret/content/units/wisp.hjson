@@ -1,0 +1,50 @@
+type: flying
+flying: true
+name: Wisp
+description: Tier 1 support drone. Rebuilds destroyed blocks, mines and heals buildings with its bolts.
+isEnemy: false
+defaultCommand: rebuild
+research: {
+  parent: rapid-workshop
+  requirements: [
+    silicon/800
+    graphite/400
+    titanium/200
+  ]
+}
+health: 300
+armor: 1
+speed: 2.8
+accel: 0.09
+drag: 0.04
+hitSize: 9
+lowAltitude: true
+engineOffset: 5.5
+engineSize: 2
+buildSpeed: 0.8
+mineTier: 2
+mineSpeed: 6
+itemCapacity: 40
+weapons: [
+  {
+    name: wisp-gun
+    x: 3
+    y: 0.5
+    top: false
+    mirror: true
+    alternate: true
+    reload: 25
+    inaccuracy: 2
+    shootSound: lasershoot
+    bullet: {
+      type: LaserBoltBulletType
+      damage: 10
+      speed: 5.2
+      lifetime: 30
+      healPercent: 4
+      collidesTeam: true
+      backColor: "84f491"
+      frontColor: "ffffff"
+    }
+  }
+]

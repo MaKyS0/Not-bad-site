@@ -2521,3 +2521,16 @@ Section 25 is knowingly relaxed for this part by the player's decision; nothing 
   `isEnemy: false`, health 320, armor 2, speed 3.8, `mineTier: 3` (titanium; Gamma 2), `mineSpeed: 9`, `buildSpeed: 1.4` (Gamma 1),
   `itemCapacity: 100`; twin guns `reload: 8`, damage 10, `buildingDamageMultiplier: 0.01` like vanilla core units. Body/cell drawn by
   `air.body`/`air.cell` on a 56 px canvas with the tier-3 accent recoloured to gold.
+
+## 54. Tesla I–III and the support line (designed by the engineer)
+
+- `rapid-tesla-N`: `PowerTurret`, `shootType: { type: LightningBulletType, damage, lightningLength, lightningLengthRand,
+  lightningColor, collidesAir, buildingDamageMultiplier: 0.25 }` (vanilla Arc pattern). N = 1/2/3: size 1/2/3, range 100/135/170,
+  reload 25/18/14, bolts per discharge 1/2/3 (`shoot: { shots }`, default `ShootPattern`), damage 22/30/40, length 22/30/38,
+  power 4/9/18 per tick, air targets from tier II. Research ← `arc`. Sprite: copper coil column, orb on top, side electrodes (II+);
+  `-heat` = orb + coil. Lightning is not a travelling bullet, so the validator's range check skips `LightningBulletType`.
+  Performance: every bolt spawns lightning segments with collision — accepted by the player.
+- Support units `wisp` / `keeper` / `warden` (`type: flying`, `isEnemy: false`, `defaultCommand: rebuild` / `repair` / `repair`,
+  resolved by the parser's `UnitCommand` lookup), buildSpeed 0.8 / 1.6 / 2.8, mineTier 2 / 3 / 4, healing `LaserBoltBulletType` guns
+  (`healPercent` 4 / 5 / 6, `collidesTeam: true`). Art = `air.body`/`air.cell` of air T1–T3 with a pale medic palette.
+- `rapid-workshop`: `forge.hjson` + `forge.base(HEAL, "circle")`, power 2.5, research ← `rapid-hangar`.

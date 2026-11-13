@@ -1,0 +1,47 @@
+type: PowerTurret
+name: Tesla III
+description: Three long bolts per discharge, four discharges a second. A storm around your walls.
+category: turret
+research: rapid-tesla-2
+playerControllable: true
+requirements: [
+  lead/400
+  silicon/350
+  titanium/250
+  thorium/150
+  surge-alloy/80
+]
+researchCostMultiplier: 0.8
+size: 3
+health: 2200
+range: 170
+reload: 14
+shootCone: 40
+inaccuracy: 10
+rotateSpeed: 10
+recoil: 0.5
+shootY: 7.25
+targetAir: true
+targetGround: true
+heatColor: "a0d8ff"
+shootEffect: lightningShoot
+shootSound: spark
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.3
+}
+consumes: {
+  power: 18
+}
+shoot: {
+  shots: 3
+}
+shootType: {
+  type: LightningBulletType
+  damage: 40
+  lightningLength: 38
+  lightningLengthRand: 8
+  lightningColor: "a0d8ff"
+  collidesAir: true
+  buildingDamageMultiplier: 0.25
+}

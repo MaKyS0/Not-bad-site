@@ -1,0 +1,51 @@
+type: flying
+flying: true
+name: Warden
+description: Tier 3 support ship. Builds almost three times faster than a Poly and keeps whole walls repaired.
+isEnemy: false
+defaultCommand: repair
+research: {
+  parent: keeper
+  requirements: [
+    silicon/7000
+    titanium/5000
+    plastanium/2000
+    rapid-steel/1200
+  ]
+}
+health: 1600
+armor: 6
+speed: 2.2
+accel: 0.06
+drag: 0.03
+hitSize: 20
+lowAltitude: true
+engineOffset: 11.5
+engineSize: 3.2
+buildSpeed: 2.8
+mineTier: 4
+mineSpeed: 6
+itemCapacity: 90
+weapons: [
+  {
+    name: warden-gun
+    x: 7
+    y: 1
+    top: false
+    mirror: true
+    alternate: true
+    reload: 12
+    inaccuracy: 2
+    shootSound: lasershoot
+    bullet: {
+      type: LaserBoltBulletType
+      damage: 20
+      speed: 5.6
+      lifetime: 34
+      healPercent: 6
+      collidesTeam: true
+      backColor: "84f491"
+      frontColor: "ffffff"
+    }
+  }
+]

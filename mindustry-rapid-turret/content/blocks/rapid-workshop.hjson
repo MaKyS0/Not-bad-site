@@ -1,0 +1,48 @@
+type: UnitFactory
+name: Rapid Workshop
+description: Builds the Rapid support drones: builders and medics for your base.
+category: units
+research: rapid-hangar
+requirements: [
+  copper/300
+  lead/250
+  silicon/250
+  titanium/120
+  metaglass/100
+]
+size: 5
+health: 1500
+consumes: {
+  power: 2.5
+}
+plans: [
+  {
+    unit: wisp
+    time: 1200
+    requirements: [
+      silicon/40
+      graphite/20
+      titanium/10
+    ]
+  }
+  {
+    unit: keeper
+    time: 2700
+    requirements: [
+      silicon/140
+      titanium/90
+      metaglass/60
+      graphite/60
+    ]
+  }
+  {
+    unit: warden
+    time: 5400
+    requirements: [
+      silicon/400
+      titanium/300
+      plastanium/120
+      rapid-steel/80
+    ]
+  }
+]

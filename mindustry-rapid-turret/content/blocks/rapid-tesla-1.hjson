@@ -1,0 +1,42 @@
+type: PowerTurret
+name: Tesla I
+description: Chain lightning that jumps between nearby ground targets. Needs power, no ammo.
+category: turret
+research: arc
+playerControllable: true
+requirements: [
+  copper/80
+  lead/60
+  silicon/40
+  graphite/30
+]
+size: 1
+health: 300
+range: 100
+reload: 25
+shootCone: 40
+inaccuracy: 10
+rotateSpeed: 10
+recoil: 0.5
+shootY: 1.5
+targetAir: false
+targetGround: true
+heatColor: "a0d8ff"
+shootEffect: lightningShoot
+shootSound: spark
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.1
+}
+consumes: {
+  power: 4
+}
+shootType: {
+  type: LightningBulletType
+  damage: 22
+  lightningLength: 22
+  lightningLengthRand: 4
+  lightningColor: "a0d8ff"
+  collidesAir: false
+  buildingDamageMultiplier: 0.25
+}

@@ -244,3 +244,21 @@ they only burn fuel faster.
 A 6x6 core that can be placed over any smaller core, including the Nucleus. Holds 18000 of every item,
 +30 unit cap, and its player unit is the **Vector**: a flying builder that builds faster than a Gamma
 (1.4 vs 1.0), mines up to titanium and fires twin rapid guns.
+
+## Tesla turrets (power, chain lightning)
+
+| Tier | Size | Range | Bolts per discharge | Discharges/s | Hits aircraft |
+|------|------|-------|---------------------|--------------|---------------|
+| I   | 1x1 | 100 | 1 | 2.4 | no  |
+| II  | 2x2 | 135 | 2 | 3.3 | yes |
+| III | 3x3 | 170 | 3 | 4.3 | yes |
+
+## Support drones (built in the Rapid Workshop)
+
+| Tier | Unit | Health | Build speed | Mines up to | Default job |
+|------|------|--------|-------------|-------------|-------------|
+| 1 | Wisp   | 300  | 0.8 | lead/sand (tier 2) | rebuilds destroyed blocks |
+| 2 | Keeper | 700  | 1.6 | titanium (tier 3)  | repairs damaged blocks |
+| 3 | Warden | 1600 | 2.8 | thorium (tier 4)   | repairs damaged blocks |
+
+Their guns heal friendly buildings. Workshop research: from the Rapid Hangar.

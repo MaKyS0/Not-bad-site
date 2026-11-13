@@ -200,6 +200,8 @@ def main():
     check_part7(data)
     # Part 8: core and core unit
     check_core(data)
+    # Part 9: tesla and support line
+    check_part9(data)
 
     # bundles
     bundles = {}
@@ -759,6 +761,44 @@ def check_core(data):
             err(f"vector{sfx}: not symmetric")
 
 
+def check_part9(data):
+    import tesla
+    import support
+    for n, t in tesla.TESLA.items():
+        name = f"rapid-tesla-{n}"
+        d = data.get(f"{ROOT}/content/blocks/{name}.hjson") or {}
+        S = t['size'] * 32
+        for sfx in ("", "-heat"):
+            sprite(f"sprites/blocks/{name}{sfx}.png", (S, S), border=5)
+            p = f"{ROOT}/sprites/blocks/{name}{sfx}.png"
+            if os.path.exists(p) and not symmetric(Image.open(p).convert("RGBA")):
+                err(f"{name}{sfx}: not symmetric")
+        sprite(f"sprites/blocks/{name}-base.png", (S, S))
+        st = d.get("shootType", {})
+        if st.get("type") != "LightningBulletType" or not st.get("lightningLength", 0) > 0 or \
+                not d.get("consumes", {}).get("power", 0) > 0:
+            err(f"{name}: LightningBulletType with lightningLength, and consumes.power")
+        if st.get("collidesAir") != d.get("targetAir"):
+            err(f"{name}: targetAir must match the lightning's collidesAir")
+    for u in support.UNITS:
+        n = u['name']
+        d = data.get(f"{ROOT}/content/units/{n}.hjson") or {}
+        if d.get("isEnemy") is not False or d.get("defaultCommand") not in ("rebuild", "repair", "assist"):
+            err(f"{n}: isEnemy false and a vanilla defaultCommand")
+        for w in d.get("weapons", []):
+            b = w.get("bullet", {})
+            if not (b.get("healPercent", 0) > 0 and b.get("collidesTeam") is True):
+                err(f"{n}: support bullets must heal (healPercent, collidesTeam)")
+        for sfx in ("", "-cell"):
+            sprite(f"sprites/units/{n}{sfx}.png", (u['C'], u['C']), border=4)
+    y = data.get(f"{ROOT}/content/blocks/rapid-workshop.hjson") or {}
+    if [p.get("unit") for p in y.get("plans", [])] != [u['name'] for u in support.UNITS]:
+        err("rapid-workshop: plans must list wisp, keeper, warden")
+    sprite("sprites/blocks/rapid-workshop.png", (160, 160), opaque=True)
+    for sfx in ("-top", "-out", "-in"):
+        sprite(f"sprites/blocks/rapid-workshop{sfx}.png", (160, 160))
+
+
 _cache = {}
 
 
@@ -865,7 +905,8 @@ def check_fields(data):
                 err(f"{rel}: PowerTurret without consumes.power")
         for label, b in bullets:
             check_keys(b, BULLETS.get(b.get("type"), BULLET), f"{rel} {label}")
-            if "turret" in d.get("category", "") and b.get("speed", 0) * b.get("lifetime", 0) < d.get("range", 0) * 0.98:
+            if "turret" in d.get("category", "") and b.get("type") != "LightningBulletType" and \
+                    b.get("speed", 0) * b.get("lifetime", 0) < d.get("range", 0) * 0.98:
                 err(f"{rel} {label}: speed*lifetime {b.get('speed', 0) * b.get('lifetime', 0)} < range {d.get('range')}")
         if isinstance(d.get("shoot"), dict):
             check_keys(d["shoot"], PATTERN + d["shoot"].get("type", "ShootPattern"), rel + " shoot")

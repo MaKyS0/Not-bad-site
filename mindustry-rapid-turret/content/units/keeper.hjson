@@ -1,0 +1,50 @@
+type: flying
+flying: true
+name: Keeper
+description: Tier 2 support ship. Flies from one damaged building to the next and repairs it.
+isEnemy: false
+defaultCommand: repair
+research: {
+  parent: wisp
+  requirements: [
+    silicon/2600
+    titanium/1800
+    metaglass/1200
+  ]
+}
+health: 700
+armor: 3
+speed: 2.5
+accel: 0.08
+drag: 0.04
+hitSize: 13
+lowAltitude: true
+engineOffset: 7.5
+engineSize: 2.5
+buildSpeed: 1.6
+mineTier: 3
+mineSpeed: 6
+itemCapacity: 60
+weapons: [
+  {
+    name: keeper-gun
+    x: 4.5
+    y: 0.5
+    top: false
+    mirror: true
+    alternate: true
+    reload: 16
+    inaccuracy: 2
+    shootSound: lasershoot
+    bullet: {
+      type: LaserBoltBulletType
+      damage: 14
+      speed: 5.4
+      lifetime: 32
+      healPercent: 5
+      collidesTeam: true
+      backColor: "84f491"
+      frontColor: "ffffff"
+    }
+  }
+]

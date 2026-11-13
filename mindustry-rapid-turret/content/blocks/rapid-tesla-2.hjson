@@ -1,0 +1,46 @@
+type: PowerTurret
+name: Tesla II
+description: Two bolts per discharge; also hits aircraft. Shreds swarms of small units.
+category: turret
+research: rapid-tesla-1
+playerControllable: true
+requirements: [
+  copper/200
+  lead/150
+  silicon/150
+  titanium/100
+  graphite/80
+]
+size: 2
+health: 1000
+range: 135
+reload: 18
+shootCone: 40
+inaccuracy: 10
+rotateSpeed: 10
+recoil: 0.5
+shootY: 4.5
+targetAir: true
+targetGround: true
+heatColor: "a0d8ff"
+shootEffect: lightningShoot
+shootSound: spark
+coolant: {
+  type: ConsumeCoolant
+  amount: 0.2
+}
+consumes: {
+  power: 9
+}
+shoot: {
+  shots: 2
+}
+shootType: {
+  type: LightningBulletType
+  damage: 30
+  lightningLength: 30
+  lightningLengthRand: 6
+  lightningColor: "a0d8ff"
+  collidesAir: true
+  buildingDamageMultiplier: 0.25
+}
