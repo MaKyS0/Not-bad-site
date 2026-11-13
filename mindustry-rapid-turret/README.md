@@ -238,3 +238,9 @@ vanilla pipes cannot carry it.
 
 Boosts do not stack. Rapid V-VI and Pulse IV already fire every tick and gain nothing. Keep Dynamos out of range:
 they only burn fuel faster.
+
+## Rapid Core
+
+A 6x6 core that can be placed over any smaller core, including the Nucleus. Holds 18000 of every item,
++30 unit cap, and its player unit is the **Vector**: a flying builder that builds faster than a Gamma
+(1.4 vs 1.0), mines up to titanium and fires twin rapid guns.

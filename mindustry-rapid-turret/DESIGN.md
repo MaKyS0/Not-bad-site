@@ -2507,3 +2507,17 @@ Section 25 is knowingly relaxed for this part by the player's decision; nothing 
   at all (section 45). Boosts never stack, so a second projector over the same turrets adds only its own small cost.
 - Net effect on a base that uses the line as intended (few big pumps, bridges instead of long pipe runs, one projector over a turret
   cluster): fewer liquid buildings than the vanilla equivalent, more bullets per second from Buckshot and vanilla turrets in overdrive range.
+
+# Part 8 — Rapid Core and the Vector (designed by the engineer, not in a spec pass)
+
+## 53. Rapid Core and Vector
+
+- `rapid-core`: `type: CoreBlock`, size 6 (so it can be placed over a 5×5 Nucleus — `CoreBlock.canPlaceOn` needs a larger size than the
+  core it replaces), health 9000, `itemCapacity: 18000` (Nucleus 13000), `unitCapModifier: 30` (Nucleus 24), `unitType: vector`,
+  `thrusterLength: 12`, research ← `core-nucleus`, `researchCostMultiplier: 0.1`, cost copper 10000, lead 10000, silicon 7000,
+  thorium 5000, rapid-steel 2500. Sprites `rapid-core.png` (192×192, opaque) and `rapid-core-team.png` (white ring + four bastion
+  lights, tinted with the team colour by the game). No `-thruster1/2` (they fall back to `clear-effect`).
+- `vector`: `type: flying`, `flying: true`, `controller: BuilderAI` (resolved through `ClassMap`; the parser removes the key),
+  `isEnemy: false`, health 320, armor 2, speed 3.8, `mineTier: 3` (titanium; Gamma 2), `mineSpeed: 9`, `buildSpeed: 1.4` (Gamma 1),
+  `itemCapacity: 100`; twin guns `reload: 8`, damage 10, `buildingDamageMultiplier: 0.01` like vanilla core units. Body/cell drawn by
+  `air.body`/`air.cell` on a 56 px canvas with the tier-3 accent recoloured to gold.

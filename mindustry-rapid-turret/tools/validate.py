@@ -198,6 +198,8 @@ def main():
     check_part6(data)
     # Part 7: liquids and overdrive
     check_part7(data)
+    # Part 8: core and core unit
+    check_core(data)
 
     # bundles
     bundles = {}
@@ -738,6 +740,25 @@ def check_part7(data):
             err(f"missing sprite {name}-top")
 
 
+def check_core(data):
+    d = data.get(f"{ROOT}/content/blocks/rapid-core.hjson") or {}
+    u = data.get(f"{ROOT}/content/units/vector.hjson") or {}
+    if d.get("unitType") != "vector" or d.get("size", 0) < 6:
+        err("rapid-core: unitType vector and size 6 (to upgrade a 5x5 Nucleus)")
+    if u.get("controller") != "BuilderAI" or u.get("isEnemy") is not False or u.get("flying") is not True:
+        err("vector: controller BuilderAI, isEnemy false, flying true")
+    for w in u.get("weapons", []):
+        if w.get("bullet", {}).get("buildingDamageMultiplier", 1) > 0.05:
+            err("vector: core-unit bullets must barely hurt buildings")
+    sprite("sprites/blocks/rapid-core.png", (192, 192), opaque=True)
+    sprite("sprites/blocks/rapid-core-team.png", (192, 192))
+    for sfx in ("", "-cell"):
+        sprite(f"sprites/units/vector{sfx}.png", (56, 56), border=4)
+        p = f"{ROOT}/sprites/units/vector{sfx}.png"
+        if os.path.exists(p) and not symmetric(Image.open(p).convert("RGBA")):
+            err(f"vector{sfx}: not symmetric")
+
+
 _cache = {}
 
 
@@ -763,7 +784,7 @@ def class_fields(cls):
     return names
 
 
-SKIP = {"type", "name", "description", "research", "consumes", "requirements", "category"}
+SKIP = {"type", "name", "description", "research", "consumes", "requirements", "category", "controller"}
 CLASSES = {"Wall": "mindustry.world.blocks.defense.Wall", "Drill": "mindustry.world.blocks.production.Drill",
            "UnitFactory": "mindustry.world.blocks.units.UnitFactory",
            "ItemTurret": "mindustry.world.blocks.defense.turrets.ItemTurret",
@@ -787,7 +808,8 @@ CLASSES = {"Wall": "mindustry.world.blocks.defense.Wall", "Drill": "mindustry.wo
            "LiquidRouter": "mindustry.world.blocks.liquid.LiquidRouter",
            "LiquidBridge": "mindustry.world.blocks.liquid.LiquidBridge",
            "Pump": "mindustry.world.blocks.production.Pump",
-           "OverdriveProjector": "mindustry.world.blocks.defense.OverdriveProjector"}
+           "OverdriveProjector": "mindustry.world.blocks.defense.OverdriveProjector",
+           "CoreBlock": "mindustry.world.blocks.storage.CoreBlock"}
 BULLETS = {"BasicBulletType": "mindustry.entities.bullet.BasicBulletType",
            "LaserBoltBulletType": "mindustry.entities.bullet.LaserBoltBulletType",
            "FlakBulletType": "mindustry.entities.bullet.FlakBulletType",

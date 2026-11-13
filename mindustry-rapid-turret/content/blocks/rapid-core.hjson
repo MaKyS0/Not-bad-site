@@ -1,0 +1,19 @@
+type: CoreBlock
+name: Rapid Core
+description: The Rapid command core. Holds 18000 of every item and builds the Vector. Can be placed over any smaller core.
+category: effect
+research: core-nucleus
+requirements: [
+  copper/10000
+  lead/10000
+  silicon/7000
+  thorium/5000
+  rapid-steel/2500
+]
+researchCostMultiplier: 0.1
+size: 6
+health: 9000
+itemCapacity: 18000
+unitCapModifier: 30
+unitType: vector
+thrusterLength: 12
