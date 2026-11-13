@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Медиатексты региональных интернет-СМИ — Смиж Антон</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500..800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box;}
+html,body{margin:0;height:100%;background:#0B1324;overflow:hidden;-webkit-text-size-adjust:100%;}
+p,h1,h2,h3,ul,ol,table{margin:0;}
+ul,ol{padding-left:0;}
+.tbl{border-collapse:collapse;}
+.tbl th{text-align:left;font-weight:600;}
+.tbl tr{border-bottom:1px solid #D9D4C8;}
+.tbl td,.tbl th{vertical-align:top;}
+:root{
+  --ink:#14213D;
+  --ink2:#1F2E50;
+  --paper:#F7F5F0;
+  --paper2:#E9EDF4;
+  --card:#FDFCF9;
+  --line:#D9D4C8;
+  --muted:#45516B;
+  --accent:#BF461E;
+  --accent-hi:#E2673A;
+  --blue:#4A6FA5;
+  --on-dark:#F4F1EA;
+  --on-dark-muted:#BFC9DC;
+  --accent-dark:#F29A6B;
+}
+
+section{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',Arial,sans-serif;
+  padding:112px 128px 160px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+}
+
+h2{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:60px;
+  font-weight:700;
+  line-height:1.1;
+  color:var(--ink);
+}
+
+.eyebrow{
+  font-size:24px;
+  font-weight:600;
+  letter-spacing:4px;
+  color:var(--accent);
+}
+
+.head{display:flex;flex-direction:column;gap:14px;}
+
+.lead{font-size:30px;line-height:1.4;color:var(--muted);width:1400px;}
+
+.foot{
+  position:absolute;
+  left:128px;
+  bottom:64px;
+  width:1664px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.foot p{font-size:24px;color:var(--muted);}
+.foot .num{font-weight:600;color:var(--accent);}
+
+/* arrival motion */
+@keyframes rise{
+  from{opacity:0;transform:translateY(28px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.rise{
+  animation:rise 600ms cubic-bezier(.2,.7,.2,1) both;
+  animation-delay:calc(var(--i) * 80ms);
+}
+
+/* ---------- cover ---------- */
+.cover{
+  background:var(--ink);
+  color:var(--on-dark);
+  padding:112px 128px;
+  justify-content:center;
+  gap:28px;
+}
+.cover-art{position:absolute;left:1160px;top:0;width:760px;height:1080px;}
+.cover-hello{font-size:34px;font-weight:500;line-height:1.3;color:var(--on-dark);width:1150px;}
+.cover-me{font-size:28px;line-height:1.45;color:var(--on-dark-muted);width:1100px;}
+.cover-rule{width:120px;height:6px;background:var(--accent-hi);border-radius:3px;}
+.cover-label{font-size:28px;font-weight:600;color:var(--accent-dark);}
+.cover-title{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:72px;
+  font-weight:700;
+  line-height:1.12;
+  color:var(--on-dark);
+  width:1200px;
+}
+
+/* ---------- dense intro slides ---------- */
+.dense-slide{gap:32px;}
+.cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:56px;}
+.col{display:flex;flex-direction:column;gap:16px;}
+.dense{font-size:24px;line-height:1.36;color:var(--muted);}
+.dense b{color:var(--accent);font-weight:700;}
+.tasks{font-size:24px;line-height:1.36;color:var(--muted);padding-left:34px;display:flex;flex-direction:column;gap:6px;}
+
+/* ---------- concept ---------- */
+.concept{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:start;}
+.quote{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:44px;
+  line-height:1.3;
+  color:var(--ink);
+  border-left:8px solid var(--accent-hi);
+  padding-left:40px;
+}
+.side{display:flex;flex-direction:column;gap:24px;}
+.label{font-size:24px;font-weight:600;letter-spacing:3px;color:var(--accent);}
+.chips{display:flex;flex-wrap:wrap;gap:16px;}
+.chip{font-size:26px;padding:12px 26px;border-radius:40px;background:var(--paper2);color:var(--ink);}
+.bar{
+  background:var(--ink);
+  color:var(--on-dark);
+  font-size:30px;
+  line-height:1.35;
+  padding:32px 44px;
+  border-radius:20px;
+}
+.spacer{flex:1;}
+
+/* ---------- cards ---------- */
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;}
+.card{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:20px;
+  padding:32px 32px 36px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.cn{font-size:24px;font-weight:700;letter-spacing:2px;color:var(--accent);}
+.ct{font-size:32px;font-weight:600;line-height:1.2;color:var(--ink);}
+.cd{font-size:24px;line-height:1.4;color:var(--muted);}
+
+/* ---------- genres ---------- */
+.gcard{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  padding-bottom:36px;
+}
+.gband{height:14px;background:var(--accent-hi);}
+.gband.b2{background:var(--ink);}
+.gband.b3{background:var(--blue);}
+.gin{padding:0 36px;display:flex;flex-direction:column;gap:18px;}
+.gt{font-size:36px;font-weight:700;color:var(--ink);}
+.gp{font-size:24px;line-height:1.4;color:var(--muted);}
+.glist{font-size:28px;line-height:1.55;color:var(--ink);padding-left:34px;}
+
+/* ---------- news ---------- */
+.news{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.blk{
+  box-sizing:border-box;
+  background:var(--card);
+  border:2px solid var(--line);
+  border-left:8px solid var(--accent-hi);
+  border-radius:16px;
+  padding:22px 30px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.blk.w1{width:100%;}
+.blk.w2{width:86%;}
+.blk.w3{width:72%;}
+.bt{font-size:30px;font-weight:700;color:var(--ink);}
+.bd{font-size:24px;line-height:1.35;color:var(--muted);}
+.qside{display:flex;flex-direction:column;gap:20px;}
+.qgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.q{
+  background:var(--ink);
+  color:var(--on-dark);
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:44px;
+  font-weight:700;
+  text-align:center;
+  padding:34px 0;
+  border-radius:18px;
+}
+.q.alt{background:var(--accent-hi);color:var(--ink);}
+.note{font-size:28px;line-height:1.4;color:var(--muted);}
+.note b{color:var(--accent);}
+
+/* ---------- dark statement ---------- */
+.dark{background:var(--ink);color:var(--on-dark);}
+.dark h2{color:var(--on-dark);}
+.dark .eyebrow{color:var(--accent-dark);}
+.dark .foot p{color:var(--on-dark-muted);}
+.dark .foot .num{color:var(--accent-dark);}
+.statement{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:64px;
+  font-weight:700;
+  line-height:1.15;
+  color:var(--on-dark);
+  width:1500px;
+}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px;}
+.dcard{
+  background:var(--ink2);
+  border-top:6px solid var(--accent-hi);
+  border-radius:18px;
+  padding:32px 30px 36px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.dt{font-size:30px;font-weight:700;line-height:1.2;color:var(--on-dark);}
+.dd{font-size:24px;line-height:1.4;color:var(--on-dark-muted);}
+
+/* ---------- lexis ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px 80px;}
+.li{display:flex;gap:26px;align-items:flex-start;border-top:2px solid var(--line);padding-top:20px;}
+.lin{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:44px;
+  font-weight:700;
+  line-height:1;
+  color:var(--accent);
+  width:56px;
+}
+.lib{display:flex;flex-direction:column;gap:6px;}
+.lt{font-size:30px;font-weight:600;line-height:1.2;color:var(--ink);}
+.ld{font-size:24px;line-height:1.35;color:var(--muted);}
+
+/* ---------- tables ---------- */
+.tbl{font-size:26px;line-height:1.3;color:var(--ink);width:100%;}
+.tbl.sm{font-size:24px;}
+.tbl th{color:var(--on-dark);padding:16px 22px;}
+.tbl td{padding:16px 22px;}
+.tbl .hr{background:var(--ink);}
+.tbl .z{background:var(--paper2);}
+.tbl .acc{color:var(--accent);}
+
+/* ---------- anglicisms ---------- */
+.soft{background:var(--paper2);}
+.cloud{display:flex;flex-wrap:wrap;gap:22px 24px;align-items:center;width:1560px;}
+.w{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:700;
+  border-radius:24px;
+  padding:14px 34px;
+}
+.w.l{font-size:76px;}
+.w.m{font-size:56px;}
+.w.s{font-size:42px;}
+.w.ink{background:var(--ink);color:var(--on-dark);}
+.w.hot{background:var(--accent-hi);color:var(--ink);}
+.w.plain{background:var(--card);color:var(--ink);border:2px solid var(--line);}
+
+/* ---------- results ---------- */
+.res{display:grid;grid-template-columns:500px 1fr;gap:72px;align-items:start;}
+.levels{display:flex;flex-direction:column;gap:16px;}
+.lvl{
+  box-sizing:border-box;
+  border-radius:16px;
+  padding:26px 32px;
+  font-size:30px;
+  font-weight:700;
+  color:var(--on-dark);
+}
+.lvl.a{background:var(--ink);width:100%;}
+.lvl.b{background:var(--blue);width:84%;}
+.lvl.c{background:var(--accent-hi);color:var(--ink);width:68%;}
+.grid2c{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.rcard{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:20px;
+  padding:30px 32px 34px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.ric{width:48px;height:48px;color:var(--accent);}
+.rt{font-size:26px;line-height:1.4;color:var(--ink);}
+
+/* ---------- final ---------- */
+.final{padding:112px 128px 112px;}
+.concl{display:flex;flex-direction:column;gap:18px;width:1500px;}
+.crow{display:flex;gap:28px;align-items:flex-start;border-top:2px solid #33446A;padding-top:18px;}
+.cnum{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:40px;
+  font-weight:700;
+  line-height:1;
+  color:var(--accent-dark);
+  width:48px;
+}
+.ctext{font-size:28px;line-height:1.38;color:var(--on-dark);}
+.thanks{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:64px;
+  font-weight:700;
+  color:var(--accent-dark);
+}
+
+.ric{display:block;}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;touch-action:pan-y;user-select:none;-webkit-user-select:none;}
+.deck{position:relative;width:1920px;height:1080px;flex:none;transform-origin:center center;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,.45);}
+.deck>section{position:absolute;left:0;top:0;width:1920px;height:1080px;display:none;}
+.deck>section.active{display:flex;}
+.ui{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));font-family:Inter,Arial,sans-serif;z-index:5;pointer-events:none;}
+.ui button,.ui span{pointer-events:auto;}
+.ui button{border:0;border-radius:999px;background:rgba(244,241,234,.14);color:#F4F1EA;font-size:18px;width:44px;height:44px;cursor:pointer;}
+.ui button:active{background:rgba(244,241,234,.3);}
+.ui span{color:#BFC9DC;font-size:15px;min-width:64px;text-align:center;}
+.bar-p{position:fixed;left:0;top:0;height:4px;background:#E2673A;z-index:6;transition:width .3s;}
+.hint{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:rgba(244,241,234,.14);color:#F4F1EA;font:14px Inter,Arial,sans-serif;padding:8px 14px;border-radius:999px;display:none;z-index:6;white-space:nowrap;}
+@media (orientation:portrait) and (max-width:900px){.hint{display:block;}}
+body.fs .ui,body.fs .hint{display:none;}
+</style>
+</head>
+<body>
+<div class="bar-p" id="prog"></div>
+<div class="hint">Поверните телефон горизонтально</div>
+<div class="stage" id="stage"><div class="deck" id="deck">
+<section id="cover" class="cover" data-transition="fade">
+<svg class="cover-art" aria-label="Декоративные волны сигнала" width="760" height="1080" viewBox="0 0 760 1080" xmlns="http://www.w3.org/2000/svg">
+<g fill="#BFC9DC" fill-opacity="0.3">
+<circle cx="380" cy="130" r="5"/><circle cx="428" cy="130" r="5"/><circle cx="476" cy="130" r="5"/><circle cx="524" cy="130" r="5"/><circle cx="572" cy="130" r="5"/><circle cx="620" cy="130" r="5"/><circle cx="668" cy="130" r="5"/>
+<circle cx="380" cy="178" r="5"/><circle cx="428" cy="178" r="5"/><circle cx="476" cy="178" r="5"/><circle cx="524" cy="178" r="5"/><circle cx="572" cy="178" r="5"/><circle cx="620" cy="178" r="5"/><circle cx="668" cy="178" r="5"/>
+<circle cx="380" cy="226" r="5"/><circle cx="428" cy="226" r="5"/><circle cx="476" cy="226" r="5"/><circle cx="524" cy="226" r="5"/><circle cx="572" cy="226" r="5"/><circle cx="620" cy="226" r="5"/><circle cx="668" cy="226" r="5"/>
+</g>
+<g fill="none" stroke="#F29A6B" stroke-width="2">
+<circle cx="640" cy="830" r="120" stroke-opacity="0.9"/>
+<circle cx="640" cy="830" r="220" stroke-opacity="0.6"/>
+<circle cx="640" cy="830" r="320" stroke-opacity="0.4"/>
+<circle cx="640" cy="830" r="420" stroke-opacity="0.24"/>
+<circle cx="640" cy="830" r="520" stroke-opacity="0.13"/>
+</g>
+<circle cx="640" cy="830" r="40" fill="#E2673A"/>
+</svg>
+<p class="cover-hello rise" style="--i:0">Здравствуйте, уважаемые члены жюри, участники конкурса научных проектов!</p>
+<p class="cover-me rise" style="--i:1">Я, Смиж Антон, ученик 10 класса лицея-интерната БІЛІМ-ИННОВАЦИЯ для одаренных детей г. Костаная.</p>
+<div class="cover-rule rise" style="--i:2"></div>
+<p class="cover-label rise" style="--i:3">Тема моего научного проекта:</p>
+<p class="cover-title rise" style="--i:4">«Жанровые и лексико-стилистические особенности медиатекстов региональных интернет СМИ»</p>
+</section>
+<section id="intro1" class="dense-slide">
+<p class="eyebrow">ВВЕДЕНИЕ</p>
+<div class="cols3">
+<div class="col rise" style="--i:0">
+<p class="dense"><b>Актуальность исследования:</b> Современное медиапространство активно развивается, а интернет-СМИ становятся ведущим источником информации для широкой аудитории. В связи с этим изучение медиатекстов, их жанровой специфики и лексико-стилистических особенностей приобретает особую значимость. Однако до сих пор недостаточно исследований, посвященных особенностям медиатекстов именно региональных интернет-СМИ, в частности Костанайского региона.</p>
+<p class="dense"><b>Целью работы</b> является изучение жанровых и лексико-стилистических особенностей медиатекстов интернет-СМИ Костанайского региона.</p>
+</div>
+<div class="col rise" style="--i:1">
+<p class="dense">Для достижения поставленной цели необходимо решить следующие задачи:</p>
+<ol class="tasks">
+<li>Охарактеризовать понятие медиатекста, его специфику и классификацию в интернет-СМИ.</li>
+<li>Определить лексико-стилистические особенности медиатекстов.</li>
+<li>Провести жанровый и лексико-стилистический анализ медиатекстов интернет-СМИ Костанайского региона.</li>
+<li>Выявить специфику функционирования региональных интернет-СМИ.</li>
+</ol>
+<p class="dense"><b>Объект исследования</b> – медиатексты интернет-СМИ Костанайского региона.</p>
+<p class="dense"><b>Предмет исследования</b> – жанровая структура, лексико-стилистические особенности медиатекстов.</p>
+</div>
+<div class="col rise" style="--i:2">
+<p class="dense"><b>Научная новизна</b> исследования заключается в комплексном анализе медиатекстов интернет-СМИ Костанайского региона, выявлении их жанровых и лексико-стилистических особенностей.</p>
+<p class="dense"><b>Степень изученности:</b> Тема жанровых и лексико-стилистических особенностей медиатекстов в интернет-СМИ широко изучается в рамках медиалингвистики, журналистики и лингвостилистики. Однако большинство исследований сосредоточено на государственных и международных изданиях, тогда как региональные интернет-СМИ остаются менее изученными.</p>
+</div>
+</div>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">02 / 15</p></div>
+</section>
+<section id="intro2" class="dense-slide">
+<p class="eyebrow">ВВЕДЕНИЕ</p>
+<div class="cols3">
+<div class="col rise" style="--i:0">
+<p class="dense">Жанровая специфика интернет-СМИ является предметом анализа в работах таких исследователей, как <b>Тимина Д. В, Трифонова Ю. В, Оспанов. Е</b> и других. Они отмечают трансформацию традиционных журналистских жанров (новость, репортаж, интервью, аналитическая статья) в условиях цифровой среды, появление гибридных форм (новостной блог, мультимедийная статья).</p>
+<p class="dense">Лексико-стилистические характеристики медиатекстов рассматриваются в трудах <b>М. Дзялошинского, М. А. Пильгуна, Бекмагамбетовой А. Р, Шарипова Ж. К, Герасименко Е. А</b> и других исследователей. Они отмечают использование разговорных элементов, экспрессивной и эмоционально окрашенной лексики, а также влияние сетевой коммуникации (мемов, сленга, неологизмов). Однако в региональном контексте этот аспект изучен недостаточно.</p>
+</div>
+<div class="col rise" style="--i:1">
+<p class="dense">Региональная журналистика изучается в трудах <b>Кононова С, Абаевой Д, Уразаевой Г</b>, однако медиалингвистический анализ текстов региональных интернет-изданий остается фрагментарным. Особенности стилистики и жанровых трансформаций в таких СМИ требуют более детального анализа на примере конкретных регионов.</p>
+<p class="dense">Несмотря на наличие значительного количества исследований в области интернет-журналистики, жанровых и стилистических особенностей медиатекстов, региональный аспект остается малоизученным. Это создает исследовательский пробел, который предполагает проведение детального анализа медиатекстов региональных интернет-СМИ.</p>
+</div>
+<div class="col rise" style="--i:2">
+<p class="dense"><b>Теоретическая значимость</b> исследования заключается в углубленном изучении медиатекстов как особого вида текстовой продукции, их стилистической природы и жанровых характеристик.</p>
+<p class="dense"><b>Практическая значимость</b> - материалы исследования могут служить основой для рекомендаций по созданию медиатекстов, ориентированных на региональную аудиторию.</p>
+<p class="dense">В работе используются следующие <b>методы исследования:</b></p>
+<ul class="tasks">
+<li>Анализ научной литературы по теме медиатекстов, их классификации и стилистических особенностей.</li>
+<li>Лингвостилистический анализ жанровых и языковых особенностей медиатекстов.</li>
+</ul>
+</div>
+</div>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">03 / 15</p></div>
+</section>
+<section id="concept">
+<div class="head">
+<p class="eyebrow">ГЛАВА 1 · ТЕОРИЯ</p>
+<h2>Понятие медиатекста</h2>
+</div>
+<div class="concept">
+<p class="quote rise" style="--i:0">Медиатекст — специфический вид текстового материала, который создается и распространяется через средства массовой информации с целью передачи информации широкой аудитории.</p>
+<div class="side rise" style="--i:1">
+<p class="label">ЖАНРЫ И ФОРМАТЫ</p>
+<div class="chips">
+<p class="chip">Новостные заметки</p>
+<p class="chip">Аналитические статьи</p>
+<p class="chip">Мультимедийные публикации</p>
+<p class="chip">Аудио- и видеоконтент</p>
+<p class="chip">Инфографика</p>
+<p class="chip">Интерактивные элементы</p>
+</div>
+</div>
+</div>
+<div class="spacer"></div>
+<p class="bar rise" style="--i:2">Развитие цифровых технологий сделало медиатекст более гибким, интерактивным и адаптивным к меняющимся условиям информационного поля.</p>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">04 / 15</p></div>
+</section>
+<section id="features">
+<div class="head">
+<p class="eyebrow">ГЛАВА 1 · ТЕОРИЯ</p>
+<h2>Специфика медиатекста в интернет-СМИ</h2>
+</div>
+<div class="grid3">
+<div class="card rise" style="--i:0"><p class="cn">01</p><h3 class="ct">Многозадачность</h3><p class="cd">Медиатекст одновременно информирует, анализирует и воздействует на читателя.</p></div>
+<div class="card rise" style="--i:1"><p class="cn">02</p><h3 class="ct">Интерактивность</h3><p class="cd">Читатель может комментировать, оценивать материал и делиться им.</p></div>
+<div class="card rise" style="--i:2"><p class="cn">03</p><h3 class="ct">Мультимодальность</h3><p class="cd">Текст сочетается с фото, видео, аудио и инфографикой.</p></div>
+<div class="card rise" style="--i:3"><p class="cn">04</p><h3 class="ct">Гипертекстуальность</h3><p class="cd">Гиперссылки позволяют быстро переходить от одного источника к другому.</p></div>
+<div class="card rise" style="--i:4"><p class="cn">05</p><h3 class="ct">Фрагментарность и клиповость</h3><p class="cd">Информация подается короткими блоками для быстрого чтения.</p></div>
+<div class="card rise" style="--i:5"><p class="cn">06</p><h3 class="ct">Алгоритмическая персонализация</h3><p class="cd">Алгоритмы подбирают контент и создают эффект «информационного пузыря».</p></div>
+</div>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">05 / 15</p></div>
+</section>
+<section id="genres">
+<div class="head">
+<p class="eyebrow">ГЛАВА 1 · ТЕОРИЯ</p>
+<h2>Жанровая классификация медиатекстов</h2>
+</div>
+<p class="lead">В зависимости от целей публикации жанры медиатекстов в интернет-СМИ делятся на три основные группы.</p>
+<div class="grid3">
+<div class="gcard rise" style="--i:0">
+<div class="gband"></div>
+<div class="gin">
+<h3 class="gt">Информационные</h3>
+<p class="gp">Оперативно и объективно передают факты, без лишних эмоций и оценок.</p>
+<ul class="glist"><li>Новостная заметка</li><li>Пресс-релиз</li><li>Репортаж</li></ul>
+</div>
+</div>
+<div class="gcard rise" style="--i:1">
+<div class="gband b2"></div>
+<div class="gin">
+<h3 class="gt">Аналитические</h3>
+<p class="gp">Осмысляют события, выявляют причины и прогнозируют последствия.</p>
+<ul class="glist"><li>Аналитическая статья</li><li>Рецензия</li><li>Интервью</li></ul>
+</div>
+</div>
+<div class="gcard rise" style="--i:2">
+<div class="gband b3"></div>
+<div class="gin">
+<h3 class="gt">Публицистические</h3>
+<p class="gp">Выражают авторское мнение и эмоционально воздействуют на аудиторию.</p>
+<ul class="glist"><li>Колонка</li><li>Эссе</li><li>Фельетон</li></ul>
+</div>
+</div>
+</div>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">06 / 15</p></div>
+</section>
+<section id="news">
+<div class="head">
+<p class="eyebrow">ИНФОРМАЦИОННЫЕ ЖАНРЫ</p>
+<h2>Структура новостной заметки</h2>
+</div>
+<div class="news">
+<div class="pyr rise" style="--i:0">
+<div class="blk w1"><p class="bt">Заголовок</p><p class="bd">Привлекает внимание аудитории.</p></div>
+<div class="blk w2"><p class="bt">Лид</p><p class="bd">Краткое введение с основными сведениями о событии.</p></div>
+<div class="blk w3"><p class="bt">Основной текст</p><p class="bd">Отвечает на ключевые вопросы.</p></div>
+</div>
+<div class="qside rise" style="--i:1">
+<p class="label">КЛЮЧЕВЫЕ ВОПРОСЫ</p>
+<div class="qgrid">
+<p class="q">Кто?</p><p class="q alt">Что?</p><p class="q">Где?</p>
+<p class="q alt">Когда?</p><p class="q">Почему?</p><p class="q alt">Как?</p>
+</div>
+</div>
+</div>
+<div class="spacer"></div>
+<p class="note rise" style="--i:2"><b>Репортаж</b>, в отличие от заметки, дает читателю погрузиться в атмосферу события, почувствовать его динамику и переживания участников.</p>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">07 / 15</p></div>
+</section>
+<section id="digital" class="dark">
+<p class="eyebrow">ЖАНРЫ В ЦИФРОВОЙ СРЕДЕ</p>
+<p class="statement rise" style="--i:0">Традиционные жанры меняются, и появляются гибридные формы</p>
+<div class="spacer"></div>
+<div class="grid4">
+<div class="dcard rise" style="--i:1"><p class="dt">Новостной блог</p><p class="dd">Гибрид новости и личного блога.</p></div>
+<div class="dcard rise" style="--i:2"><p class="dt">Мультимедийная статья</p><p class="dd">Текст вместе с фото, видео и инфографикой.</p></div>
+<div class="dcard rise" style="--i:3"><p class="dt">Колонка</p><p class="dd">Фото автора, ссылки на его публикации и обсуждение в комментариях.</p></div>
+<div class="dcard rise" style="--i:4"><p class="dt">Фельетон</p><p class="dd">Не только текст, но и комиксы, анимация, видеоролики.</p></div>
+</div>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">08 / 15</p></div>
+</section>
+<section id="lexis">
+<div class="head">
+<p class="eyebrow">ГЛАВА 1 · ТЕОРИЯ</p>
+<h2>Лексико-стилистические особенности</h2>
+</div>
+<div class="grid2">
+<div class="li rise" style="--i:0"><p class="lin">1</p><div class="lib"><p class="lt">Информативность</p><p class="ld">Точность, логическая последовательность и объективность.</p></div></div>
+<div class="li rise" style="--i:4"><p class="lin">5</p><div class="lib"><p class="lt">Эмоциональность и экспрессивность</p><p class="ld">Метафоры, эпитеты, гиперболы, риторические вопросы.</p></div></div>
+<div class="li rise" style="--i:1"><p class="lin">2</p><div class="lib"><p class="lt">Прецедентные тексты и клише</p><p class="ld">Знакомые выражения упрощают восприятие информации.</p></div></div>
+<div class="li rise" style="--i:5"><p class="lin">6</p><div class="lib"><p class="lt">Англицизмы и интернет-лексика</p><p class="ld">Результат глобализации информационного пространства.</p></div></div>
+<div class="li rise" style="--i:2"><p class="lin">3</p><div class="lib"><p class="lt">Клиповость</p><p class="ld">Краткая и динамичная подача материала.</p></div></div>
+<div class="li rise" style="--i:6"><p class="lin">7</p><div class="lib"><p class="lt">Цитаты и ссылки на источники</p><p class="ld">Повышают достоверность информации.</p></div></div>
+<div class="li rise" style="--i:3"><p class="lin">4</p><div class="lib"><p class="lt">Разговорные элементы</p><p class="ld">Особенно в блогах, колонках, рецензиях и интервью.</p></div></div>
+<div class="li rise" style="--i:7"><p class="lin">8</p><div class="lib"><p class="lt">Визуальная выразительность</p><p class="ld">Жирный шрифт, курсив, цветовые акценты, эмодзи.</p></div></div>
+</div>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">09 / 15</p></div>
+</section>
+<section id="examples">
+<div class="head">
+<p class="eyebrow">ГЛАВА 1 · ТЕОРИЯ</p>
+<h2>Выразительные средства на примерах</h2>
+</div>
+<table class="tbl rise" style="--i:0">
+<tr class="hr"><th style="width:32%">Приём</th><th style="width:68%">Пример из медиатекста</th></tr>
+<tr><td class="acc">Прецедентный заголовок</td><td>«Буря в стакане воды: реакция общества на новый законопроект»</td></tr>
+<tr class="z"><td class="acc">Разговорная лексика</td><td>«Этот фильм – просто огонь, советую всем!»</td></tr>
+<tr><td class="acc">Метафора</td><td>«Этот законопроект – бомба замедленного действия»</td></tr>
+<tr class="z"><td class="acc">Гипербола</td><td>«Экономика страны оказалась на краю пропасти»</td></tr>
+<tr><td class="acc">Ссылка на эксперта</td><td>«По словам политолога Н., этот законопроект может привести к серьезным последствиям»</td></tr>
+</table>
+<p class="note rise" style="--i:1">Такие средства усиливают воздействие на аудиторию и вызывают эмоциональный отклик у читателей.</p>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">10 / 15</p></div>
+</section>
+<section id="anglicisms" class="soft">
+<div class="head">
+<p class="eyebrow">ГЛАВА 1 · ТЕОРИЯ</p>
+<h2>Англицизмы и интернет-лексика</h2>
+</div>
+<div class="cloud">
+<p class="w l ink rise" style="--i:0">хайп</p>
+<p class="w s plain rise" style="--i:1">тренд</p>
+<p class="w m hot rise" style="--i:2">фейк</p>
+<p class="w s plain rise" style="--i:3">лайк</p>
+<p class="w m ink rise" style="--i:4">репост</p>
+<p class="w s hot rise" style="--i:5">стрим</p>
+<p class="w m plain rise" style="--i:1">фолловер</p>
+<p class="w s ink rise" style="--i:2">блогер</p>
+<p class="w s plain rise" style="--i:3">хейт</p>
+<p class="w l hot rise" style="--i:4">кликбейт</p>
+</div>
+<div class="spacer"></div>
+<p class="lead rise" style="--i:6">Эти заимствования из английского языка прочно вошли в современную медиареальность. Их появление связано с глобализацией и проникновением цифровых технологий в повседневную жизнь.</p>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">11 / 15</p></div>
+</section>
+<section id="media">
+<div class="head">
+<p class="eyebrow">ГЛАВА 2 · АНАЛИЗ</p>
+<h2>Интернет-СМИ Костанайского региона</h2>
+</div>
+<table class="tbl sm rise" style="--i:0">
+<tr class="hr"><th style="width:25%">Издание</th><th style="width:23%">Тип</th><th style="width:20%">Язык</th><th style="width:32%">Особенности</th></tr>
+<tr><td class="acc">«Костанайские новости» (kstnews.kz)</td><td>Областная газета, 3 раза в неделю</td><td>Русский, частично казахский</td><td>Основана в 1910 г., есть аналитические рубрики</td></tr>
+<tr class="z"><td class="acc">«Наш Костанай» (top-news.kz)</td><td>Городской еженедельник</td><td>Русский, приложение на казахском</td><td>С 1990 г., новости ЖКХ, образования, культуры</td></tr>
+<tr><td class="acc">«Наша Газета» (ng.kz)</td><td>Еженедельник и новостной портал</td><td>Русский, казахский</td><td>С 2002 г., социальные проблемы и криминал</td></tr>
+<tr class="z"><td class="acc">ТРК «Алау» (alau.kz)</td><td>Региональный телеканал</td><td>Русский</td><td>Около 90% аудитории, текст и видеосюжеты</td></tr>
+<tr><td class="acc">Районные СМИ («Арна»)</td><td>Районные газеты</td><td>Русский, казахский</td><td>Локальные новости и жизнь села</td></tr>
+</table>
+<p class="note rise" style="--i:1">Информационное поле области структурировано по уровням: <b>областные, городские и районные</b> издания.</p>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">12 / 15</p></div>
+</section>
+<section id="topics">
+<div class="head">
+<p class="eyebrow">ГЛАВА 2 · АНАЛИЗ</p>
+<h2>Тематика и стиль подачи</h2>
+</div>
+<table class="tbl sm rise" style="--i:0">
+<tr class="hr"><th style="width:27%">Тема</th><th style="width:43%">Стиль подачи</th><th style="width:30%">Пример</th></tr>
+<tr><td class="acc">Официальные события и политика</td><td>Нейтрально-информационный, факты и цитаты должностных лиц</td><td>«Наш Костанай»: отчеты акима перед населением</td></tr>
+<tr class="z"><td class="acc">Социальная сфера</td><td>Описательный, часто без глубокого разбора причин</td><td>«Алау»: новость «Школьный бум...»</td></tr>
+<tr><td class="acc">Криминал и ЧП</td><td>Оперативный, с элементами расследования</td><td>«Наша Газета»: резонансные случаи</td></tr>
+<tr class="z"><td class="acc">Экономика и агросектор</td><td>Позитивные репортажи, иногда проблемные материалы</td><td>«Костанайские новости»: урожай, агрохолдинги</td></tr>
+<tr><td class="acc">Культура и спорт</td><td>Позитивный, просветительский</td><td>«Костанай спортивный», ФК «Тобол»</td></tr>
+</table>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">13 / 15</p></div>
+</section>
+<section id="results">
+<div class="head">
+<p class="eyebrow">ГЛАВА 2 · АНАЛИЗ</p>
+<h2>Результаты анализа</h2>
+</div>
+<div class="res">
+<div class="levels rise" style="--i:0">
+<p class="label">УРОВНИ ИНФОРМАЦИОННОГО ПОЛЯ</p>
+<p class="lvl a">Областные</p>
+<p class="lvl b">Городские</p>
+<p class="lvl c">Районные</p>
+</div>
+<div class="grid2c">
+<div class="rcard rise" style="--i:1"><svg class="ric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><p class="rt">Преобладают информационные жанры: оперативные новости и репортажи с мест событий.</p></div>
+<div class="rcard rise" style="--i:2"><svg class="ric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><p class="rt">Сайты сочетают текст с видеосюжетами и активно ведут социальные сети.</p></div>
+<div class="rcard rise" style="--i:3"><svg class="ric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><p class="rt">Стиль зависит от темы: официальные новости нейтральны, криминальные оперативны.</p></div>
+<div class="rcard rise" style="--i:4"><svg class="ric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><p class="rt">Не хватает аналитики: материалы часто ограничиваются цифрами и цитатами чиновников.</p></div>
+</div>
+</div>
+<div class="foot"><p>Медиатексты региональных интернет-СМИ</p><p class="num">14 / 15</p></div>
+</section>
+<section id="final" class="dark final">
+<h2>Заключение</h2>
+<div class="concl">
+<div class="crow rise" style="--i:0"><p class="cnum">1</p><p class="ctext">Медиатексты интернет-СМИ — динамичный, интерактивный и многоуровневый формат текстового контента.</p></div>
+<div class="crow rise" style="--i:1"><p class="cnum">2</p><p class="ctext">Их жанровая система включает информационные, аналитические и публицистические жанры и меняется в цифровой среде.</p></div>
+<div class="crow rise" style="--i:2"><p class="cnum">3</p><p class="ctext">Интернет-СМИ Костанайского региона оперативно освещают местную повестку, но им не хватает аналитической глубины.</p></div>
+<div class="crow rise" style="--i:3"><p class="cnum">4</p><p class="ctext">Результаты исследования можно использовать при создании медиатекстов для региональной аудитории.</p></div>
+</div>
+<div class="spacer"></div>
+<p class="thanks rise" style="--i:5">Спасибо за внимание!</p>
+</section>
+</div></div>
+<div class="ui">
+<button id="prev" aria-label="Назад">&#8592;</button>
+<span id="count"></span>
+<button id="next" aria-label="Вперёд">&#8594;</button>
+<button id="full" aria-label="Во весь экран">&#9974;</button>
+</div>
+<script>
+(function(){
+  var deck=document.getElementById('deck'), slides=[].slice.call(deck.children), n=slides.length, cur=0;
+  function fit(){
+    var uiH = document.body.classList.contains('fs') ? 0 : 64;
+    var s=Math.min(window.innerWidth/1920,(window.innerHeight-uiH)/1080);
+    deck.style.transform='scale('+s+')';
+    document.getElementById('stage').style.bottom=uiH+'px';
+  }
+  function show(i){
+    cur=Math.max(0,Math.min(n-1,i));
+    slides.forEach(function(el,k){el.classList.toggle('active',k===cur);});
+    document.getElementById('count').textContent=(cur+1)+' / '+n;
+    document.getElementById('prog').style.width=((cur+1)/n*100)+'%';
+    if(location.hash!=='#'+(cur+1)) history.replaceState(null,'','#'+(cur+1));
+  }
+  document.getElementById('prev').onclick=function(e){e.stopPropagation();show(cur-1);};
+  document.getElementById('next').onclick=function(e){e.stopPropagation();show(cur+1);};
+  document.getElementById('full').onclick=function(e){
+    e.stopPropagation();
+    var d=document.documentElement;
+    if(!document.fullscreenElement && !document.webkitFullscreenElement){
+      (d.requestFullscreen||d.webkitRequestFullscreen||function(){}).call(d);
+    } else {
+      (document.exitFullscreen||document.webkitExitFullscreen).call(document);
+    }
+  };
+  function onFs(){document.body.classList.toggle('fs',!!(document.fullscreenElement||document.webkitFullscreenElement));fit();}
+  document.addEventListener('fullscreenchange',onFs);
+  document.addEventListener('webkitfullscreenchange',onFs);
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','PageDown',' ','Enter'].indexOf(e.key)>=0){e.preventDefault();show(cur+1);}
+    else if(['ArrowLeft','PageUp','Backspace'].indexOf(e.key)>=0){e.preventDefault();show(cur-1);}
+    else if(e.key==='Home') show(0); else if(e.key==='End') show(n-1);
+    else if(e.key==='f'||e.key==='F') document.getElementById('full').click();
+  });
+  document.getElementById('stage').addEventListener('click',function(e){
+    show(e.clientX < window.innerWidth/3 ? cur-1 : cur+1);
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ show(dx<0?cur+1:cur-1); e.preventDefault(); }
+    x0=null;
+  });
+  window.addEventListener('resize',fit);
+  window.addEventListener('orientationchange',function(){setTimeout(fit,200);});
+  fit();
+  show(parseInt(location.hash.slice(1),10)-1||0);
+})();
+</script>
+</body>
+</html>
