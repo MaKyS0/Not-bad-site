@@ -165,7 +165,12 @@
       case 't-jump': state.jumpP = true; break;
       case 't-crouch': state.crouch = !state.crouch; break;
       case 't-reload': state.reloadP = true; break;
-      case 't-swap': A.swap(); break;
+      case 't-swap':
+        // short tap swaps weapons; holding ~0.45 s inspects the weapon instead
+        T.swapHeld = true; T.swapInspected = false;
+        clearTimeout(T.swapTimer);
+        T.swapTimer = setTimeout(function () { if (T.swapHeld) { T.swapInspected = true; A.inspect(); } }, 450);
+        break;
       case 't-buy': A.toggleBuy(); break;
       case 't-score': A.toggleScore(); T.scoreAt = performance.now(); T.scorePtr = T.curPtr; break;
       case 't-pause': A.pause(); break;
@@ -173,6 +178,7 @@
     if (id !== 't-crouch') el.classList.add('is-on');
   }
   function release(id, el) {
+    if (id === 't-swap') { clearTimeout(T.swapTimer); if (T.swapHeld && !T.swapInspected) RZ.Game.api.swap(); T.swapHeld = false; }
     if (id === 't-fire') state.fire = anyRole('fire');
     if (id === 't-aim') state.alt = false;
     if (id !== 't-crouch') el.classList.remove('is-on');

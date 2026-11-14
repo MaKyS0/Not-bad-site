@@ -37,6 +37,8 @@
   }
   Fighter.prototype.weapon = function () { return this.weapons[this.slot] || this.weapons[2] || this.weapons[3]; };
   Fighter.prototype.weaponId = function () { var w = this.weapon(); return w ? w.id : 'knife'; };
+  /* weapon id for models: a knife painted with a knife-model paint shows that model (cosmetic) */
+  Fighter.prototype.weaponModelId = function () { var w = this.weapon(); return w ? RZ.paintModelWeapon(w.id, w.paint) : 'knife'; };
   Fighter.prototype.eyeH = function () { return EYE_STAND - this.crouchT * (EYE_STAND - EYE_CROUCH); };
   Fighter.prototype.headY = function () { return this.eyeH() - 0.02; };
   Fighter.prototype.hipY = function () { return 0.92 - this.crouchT * 0.34; };
@@ -340,7 +342,7 @@
   function melee(f, w, heavy) {
     var m = heavy ? w.def.heavy : w.def.fast;
     w.next = G.time + m.time; f.meleeT = heavy ? 1 : 0.6; f.fireAnim = 1;
-    G.vmMelee = heavy ? 2 : 1; G.vmMeleeT = 0;
+    if (f === G.player) { G.vmMelee = heavy ? 2 : 1; G.vmMeleeT = 0; G.vmMeleeSeq = (G.vmMeleeSeq || 0) + 1; G.vmInspect = 0; }
     if (f === G.cameraOwner) A.knife(null, heavy); else if (G.rendering) A.knife({ x: f.x, y: f.y + 1.2, z: f.z }, heavy);
     var ey = f.y + f.eyeH(), hit = null, part = '', bestT = m.range;
     for (var k = -1; k <= 1; k++) {
@@ -758,7 +760,17 @@
       else if (a === 'pistol') switchSlot(p, 2);
       else if (a === 'knife') switchSlot(p, 3);
       else if (a === 'last') switchSlot(p, p.weapons[p.prevSlot] ? p.prevSlot : (p.slot === 3 ? 2 : 3));
+      else if (a === 'inspect') startInspect();
     }
+  }
+  /* «Осмотреть оружие»: knife models play their own flourish, everything else a generic turn */
+  function startInspect() {
+    var p = G && G.player; if (!p || !p.alive || G.autoplay) return;
+    var w = p.weapon(); if (!w || w.reloadT > 0 || w.drawT > 0) return;
+    var e = G.vmCur;
+    if (e && e.knife && e.knife.busy()) return;
+    G.vmInspect = 1; G.vmInspectT = 0;
+    if (!(e && e.knife)) G.vmInspect = 2; // generic inspect runs as state 2
   }
   function onKeyUp(e) {
     if (!G) return;
@@ -1062,6 +1074,20 @@
     G.vmCache = G.vmCache || {};
     if (G.vmCache[key]) return G.vmCache[key];
     var W = RZ.WEAPONS[wid], grp = new THREE.Group();
+    if (!G.vmLimbGeo) {
+      G.vmLimbGeo = G.world.track(RZ.Models ? RZ.Models.vmLimbGeo() : new THREE.BoxGeometry(0.075, 0.075, 1));
+      G.vmHandGeo = G.world.track(RZ.Models ? RZ.Models.vmHandGeo() : new THREE.BoxGeometry(0.05, 0.07, 0.09));
+    }
+    var KP = wid === 'knife' && paint && RZ.PAINT_BY_ID[paint];
+    if (KP && KP.model && RZ.Knives) {
+      // knife model with its own rig and keyframed animations (knives.js)
+      var kc = RZ.Knives.buildVm(KP.model, { paint: paintMat(wid, paint), dark: M.dark, metal: M.metal, grip: M.grip, glove: M.glove, sleeve: M.sleeve },
+        { limb: G.vmLimbGeo, hand: G.vmHandGeo }, G.world.track.bind(G.world));
+      var kfl = new THREE.Sprite(); kfl.visible = false;
+      var kent = { group: kc.group, flash: kfl, pose: KP.model === 'karambit' ? [0.15, -0.16, -0.38] : [0.14, -0.13, -0.4], wid: wid, knife: kc };
+      G.vmCache[key] = kent;
+      return kent;
+    }
     var geo = Act.getWeaponGeo(wid);
     var gun = new THREE.Mesh(geo, [paintMat(wid, paint), M.dark, M.metal, M.grip]);
     grp.add(gun);
@@ -1100,6 +1126,14 @@
     if (G.vmCur !== e) {
       if (G.vmCur) G.vmRoot.remove(G.vmCur.group);
       G.vmRoot.add(e.group); G.vmCur = e;
+      G.vmInspect = 0;
+      if (e.knife) { e.knife.play('draw'); e.seq = G.vmMeleeSeq || 0; }
+    }
+    if (e.knife) {
+      // knife models: attacks and inspect are their own keyframed animations
+      if ((G.vmMeleeSeq || 0) !== e.seq) { e.seq = G.vmMeleeSeq; e.knife.play(G.vmMelee === 2 ? 'heavy' : 'fast'); G.vmMelee = 0; }
+      if (G.vmInspect === 1) { G.vmInspect = 0; e.knife.play('inspect'); }
+      e.knife.update(G.vmFreeze ? 0 : dt);
     }
     var def = w.def, sp = Math.sqrt(p.vx * p.vx + p.vz * p.vz);
     G.bob += sp * dt * 1.55;
@@ -1116,8 +1150,21 @@
       if (def.shellReload) d = 0.55;
       rx -= 0.45 * d; y -= 0.07 * d; rz += 0.35 * d; x -= 0.03 * d;
     }
-    if (w.drawT > 0) { var dd = clamp(w.drawT / def.draw, 0, 1); y -= 0.22 * dd; rx -= 0.7 * dd; }
-    if (def.kind === 'melee' && G.vmMelee) {
+    if (w.drawT > 0 && !e.knife) { var dd = clamp(w.drawT / def.draw, 0, 1); y -= 0.22 * dd; rx -= 0.7 * dd; }
+    // generic inspect for guns and the standard knife: turn the weapon to look at its side
+    if (G.vmInspect && !e.knife) {
+      if (w.reloadT > 0 || w.drawT > 0 || p.shotThisTick || p.wantFire) G.vmInspect = 0;
+      else {
+        G.vmInspectT += dt;
+        var ik = G.vmInspectT / 2.2;
+        if (ik >= 1) G.vmInspect = 0;
+        else {
+          var ie = Math.sin(Math.min(1, ik * 1.25) * Math.PI) , ib = Math.sin(clamp((ik - 0.35) / 0.4, 0, 1) * Math.PI);
+          ry += 0.85 * ie; rz += 0.45 * ie - 0.5 * ib; x -= 0.06 * ie; y += 0.02 * ie; rx += 0.2 * ib;
+        }
+      }
+    }
+    if (def.kind === 'melee' && G.vmMelee && !e.knife) {
       G.vmMeleeT += dt;
       var dur = G.vmMelee === 2 ? 0.45 : 0.28, k = G.vmMeleeT / dur;
       if (k >= 1) G.vmMelee = 0;
@@ -1184,7 +1231,8 @@
       hudSet('mag', H.mag, melee ? '—' : String(w.mag));
       hudSet('res', H.res, melee ? '' : (w.reloadT > 0 ? 'перезарядка' : String(w.reserve)));
       H.ammo.classList.toggle('is-low', !melee && w.mag <= Math.ceil(w.def.mag * 0.2));
-      hudSet('wname', H.wname, w.def.name + (w.paint && RZ.PAINT_BY_ID[w.paint] ? ' · «' + RZ.PAINT_BY_ID[w.paint].name + '»' : ''));
+      var wp = w.paint && RZ.PAINT_BY_ID[w.paint];
+      hudSet('wname', H.wname, (wp ? RZ.paintWeaponName(wp) + ' · «' + wp.name + '»' : w.def.name));
     }
     // slots
     var sk = [1, 2, 3].map(function (s) { var x = p.weapons[s]; return x ? s + ':' + x.id : ''; }).join(',') + '|' + p.slot;
@@ -1487,6 +1535,7 @@
     },
     toggleBuy: function () { if (!G) return; if (G.buyOpen) closeBuy(); else openBuy(); },
     toggleScore: function () { if (G) showScore(!G.scoreOn); },
+    inspect: function () { if (G) startInspect(); },
     pause: function () { openPause(); },
     cycleSpec: function () { if (G && !G.player.alive) cycleSpec(); },
     buyAllowed: function () { return !!G && buyAllowed(); }
@@ -1588,6 +1637,17 @@
       return log;
     },
     renderers: function () { return rendererCount; },
+    inspect: function () { if (G) startInspect(); },
+    /* test: show a knife-model animation frozen at time t (freeze=false resumes) */
+    knifeSeek: function (name, t) { var e = G && G.vmCur; if (!e || !e.knife) return null; G.vmFreeze = true; e.knife.play(name); e.knife.update(0); var left = t; while (left > 0) { e.knife.update(Math.min(0.05, left)); left -= 0.05; } return e.knife.pose(); },
+    knifeFreeze: function (on) { if (G) G.vmFreeze = on !== false; },
+    /* current first-person knife-model animation: name, time, joint pose, all finite? */
+    knife: function () {
+      var e = G && G.vmCur;
+      if (!e || !e.knife) return null;
+      var pz = e.knife.pose();
+      return { model: e.knife.model, anim: e.knife.name(), t: +e.knife.time().toFixed(3), pose: pz, finite: RZ.Knives.finite(pz) };
+    },
     /* recorded-sample status: decode counts/durations and per-sample play counters (synth fallbacks too) */
     audio: function () {
       var d = A.debug;

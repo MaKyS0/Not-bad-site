@@ -182,6 +182,19 @@
   };
   E.layoutState = function () { return { cur: JSON.parse(JSON.stringify(cur)), touched: Object.keys(touched), picked: picked, alpha: alpha }; };
 
+  /* buttons on the panel: act on a touch pointerup that began on the button (some touch sequences
+     after a drag never get a synthesised click), and on click for mouse/keyboard */
+  function tapButton(el, fn) {
+    var downId = null, lastTouch = 0;
+    el.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch') downId = e.pointerId; });
+    el.addEventListener('pointerup', function (e) {
+      if (e.pointerType !== 'touch' || e.pointerId !== downId) return;
+      downId = null; lastTouch = performance.now(); fn();
+    });
+    el.addEventListener('pointercancel', function () { downId = null; });
+    el.addEventListener('click', function () { if (performance.now() - lastTouch > 600) fn(); });
+  }
+
   function init() {
     var root = $('layout'); if (!root) return;
     root.addEventListener('pointerdown', onDown);
@@ -196,8 +209,8 @@
       avoidBar();
     });
     $('layout-opacity').addEventListener('input', function () { alpha = +this.value; stage.style.setProperty('--t-alpha', String(alpha)); });
-    $('layout-reset').addEventListener('click', function () { E.reset(); });
-    $('layout-done').addEventListener('click', function () { E.done(); });
+    tapButton($('layout-reset'), function () { E.reset(); });
+    tapButton($('layout-done'), function () { E.done(); });
     $('btn-layout').addEventListener('click', function () { E.open(); });
     window.addEventListener('resize', function () { if (open && (window.innerWidth !== W || window.innerHeight !== H)) E.open({ layout: currentLayout(), alpha: alpha }); });
   }

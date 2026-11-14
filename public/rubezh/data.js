@@ -251,16 +251,27 @@
     butterfly: { name: 'Бабочка', cls: 'Нож-бабочка', desc: 'Балисонг: клинок прячется между двух рукоятей на шарнирах. Раскрывается одним движением кисти.' },
     karambit: { name: 'Керамбит', cls: 'Керамбит', desc: 'Изогнутый клинок-коготь с кольцом под указательный палец, держится обратным хватом.' }
   };
+  /* balisong side view: blade out, handle B splayed ~24° from handle A so the two hinged
+     skeleton handles read at a glance */
+  function rotPts(pts, deg, cx, cy) {
+    var a = deg * Math.PI / 180, c = Math.cos(a), sn = Math.sin(a);
+    return pts.map(function (p) { var x = p[0] - cx, y = p[1] - cy; return [+(cx + x * c - y * sn).toFixed(2), +(cy + x * sn + y * c).toFixed(2)]; });
+  }
+  var BF_HANDLE = [[-13, -0.75], [0.7, -0.75], [1.3, 0], [0.7, 0.85], [-13, 0.85], [-13.6, 0.05]];
+  var BF_SLOTS = [[[-11.6, -0.25], [-9.3, -0.25], [-9.3, 0.35], [-11.6, 0.35]], [[-8.2, -0.25], [-5.9, -0.25], [-5.9, 0.35], [-8.2, 0.35]], [[-4.8, -0.25], [-2.5, -0.25], [-2.5, 0.35], [-4.8, 0.35]]];
+  var BF_SPLAY = -24;
   W.knife_butterfly = Object.assign({}, W.knife, {
     id: 'knife_butterfly', name: 'Бабочка', variantOf: 'knife', hidden: true,
     shape: [
+      { p: rotPts(BF_HANDLE, BF_SPLAY, 0, 0.05), t: 1.4, m: 'paint' }
+    ].concat(BF_SLOTS.map(function (sl) { return { p: rotPts(sl, BF_SPLAY, 0, 0.05), t: 1.6, m: 'dark' }; }), [
+      { p: rotPts([[-14.1, -0.45], [-12.9, -0.45], [-12.9, 0.55], [-14.1, 0.55]], BF_SPLAY, 0, 0.05), t: 1.0, m: 'metal' },
       { p: [[0.6, -0.7], [7.6, -0.75], [10.6, 0.35], [8.4, 0.85], [0.6, 0.85]], t: 0.35, m: 'metal' },
-      { p: [[-13, -0.75], [0.7, -0.75], [1.3, 0], [0.7, 0.85], [-13, 0.85], [-13.6, 0.05]], t: 1.6, m: 'paint' },
-      { p: [[-13.9, -0.45], [-12.8, -0.45], [-12.8, 0.55], [-13.9, 0.55]], t: 1.0, m: 'metal' },
-      { c: [-0.15, 0.25, 0.05, 0.38], m: 'dark' },
-      { p: [[-1.2, 1.0], [-0.2, 1.0], [-0.2, 1.25], [-1.2, 1.25]], t: 0.6, m: 'dark' }
-    ],
-    details: [[-11.5, 0.05, -9.2, 0.05], [-8.2, 0.05, -5.9, 0.05], [-4.9, 0.05, -2.6, 0.05], [1.3, 0.2, 7.2, 0.2]]
+      { p: BF_HANDLE, t: 1.6, m: 'paint' }
+    ], BF_SLOTS.map(function (sl) { return { p: sl, t: 1.8, m: 'dark' }; }), [
+      { c: [-0.2, 0.3, 0.05, 0.42], m: 'dark' }
+    ]),
+    details: [[1.3, 0.2, 7.2, 0.2]]
   });
   W.knife_karambit = Object.assign({}, W.knife, {
     id: 'knife_karambit', name: 'Керамбит', variantOf: 'knife', hidden: true,

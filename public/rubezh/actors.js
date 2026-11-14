@@ -159,7 +159,7 @@
     if (model.gunId === wid) return;
     model.gunId = wid;
     model.gun.geometry = Act.getWeaponGeo(wid);
-    if (wid === 'knife') { model.mount.position.set(0.2, -0.22, -0.2); model.gun.rotation.set(-1.2, 0, 0); }
+    if (RZ.WEAPONS[wid].kind === 'melee') { model.mount.position.set(0.2, -0.22, -0.2); model.gun.rotation.set(-1.2, 0, 0); }
     else { model.mount.position.set(0.1, -0.06, -0.3); model.gun.rotation.set(0, 0, 0); }
     poseArms(model, wid);
   };
@@ -202,7 +202,7 @@
     M.mount.position.z = (f.weaponId() === 'knife' ? -0.2 : -0.3) + kick * 0.04;
     if (f.fireAnim > 0) f.fireAnim -= dt * 8;
     M.helmet.visible = f.helmet;
-    Act.setModelWeapon(M, f.weaponId());
+    Act.setModelWeapon(M, f.weaponModelId ? f.weaponModelId() : f.weaponId());
   };
 
   /* ================================================================== */

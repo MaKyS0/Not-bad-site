@@ -214,7 +214,7 @@
     var own = D().inv.filter(function (it) { return RZ.PAINT_BY_ID[it.paint].weapon === sel; })
       .sort(function (a, b) { return RZ.PAINT_BY_ID[b.paint].rarity - RZ.PAINT_BY_ID[a.paint].rarity || a.uid - b.uid; });
     own.forEach(function (it) {
-      var p = RZ.PAINT_BY_ID[it.paint], card = itemCard(p, { meta: RZ.RARITY[p.rarity].name });
+      var p = RZ.PAINT_BY_ID[it.paint], card = itemCard(p, { meta: (p.model ? RZ.KNIFE_MODELS[p.model].name + ' · ' : '') + RZ.RARITY[p.rarity].name });
       card.dataset.uid = it.uid;
       card.setAttribute('aria-pressed', String(D().equipped[sel] === it.uid));
       card.addEventListener('click', function () {
