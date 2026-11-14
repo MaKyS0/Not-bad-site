@@ -558,3 +558,35 @@ body.is-touch.touch-mirror #killfeed { right: auto; left: calc(env(safe-area-ins
   body.is-touch #buy-note { margin-top: 8px; font-size: 12px; }
 }
 #menu { -webkit-tap-highlight-color: transparent; }
+
+/* ---------- редактор расстановки кнопок ---------- */
+.row-action { grid-template-columns: minmax(0, 1fr) auto; padding-block: 8px; }
+#touch { opacity: var(--t-alpha, 1); }
+#layout { position: fixed; inset: 0; z-index: 90; touch-action: none; user-select: none; -webkit-user-select: none; color: var(--chalk); }
+.layout-stage {
+  --t-scale: 1; --t: calc(58px * var(--t-scale));
+  --sl: env(safe-area-inset-left, 0px); --sr: env(safe-area-inset-right, 0px); --sb: env(safe-area-inset-bottom, 0px); --st: env(safe-area-inset-top, 0px);
+  position: absolute; inset: 0; overflow: hidden;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 calc(10% - 1px), rgba(244, 238, 221, .12) calc(10% - 1px) 10%),
+    repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), rgba(244, 238, 221, .12) calc(10% - 1px) 10%),
+    linear-gradient(180deg, #8d9aa1 0 46%, #6b6f6a 46%);
+}
+.layout-stage > * { cursor: grab; pointer-events: auto; opacity: var(--t-alpha, 1); }
+.layout-stage .t-stick { opacity: var(--t-alpha, 1); pointer-events: auto; }
+.layout-stage .is-picked { outline: 3px dashed var(--red); outline-offset: 5px; }
+.layout-stage .is-drag { cursor: grabbing; }
+.layout-bar {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(360px, 44vw); display: grid; gap: 8px; padding: 12px 14px 14px;
+  color: var(--ink); background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 rgba(0, 0, 0, .5);
+}
+.layout-bar b { font: 900 20px/1.1 var(--display); }
+.layout-bar p { margin: 0; font-size: 13px; color: var(--ink-2); }
+.layout-bar label { display: grid; gap: 2px; font-size: 13px; font-weight: 500; }
+.layout-bar output { font-weight: 400; color: var(--ink-2); }
+.layout-bar input[type="range"] { width: 100%; }
+.layout-bar input:disabled { opacity: .35; }
+.layout-actions { display: flex; gap: 8px; }
+.layout-actions .btn { flex: 1; min-height: 40px; padding: 8px 10px; font-size: 14px; }
+@media (max-height: 420px) { .layout-bar { gap: 5px; padding: 8px 12px 10px; } .layout-bar p { display: none; } }
