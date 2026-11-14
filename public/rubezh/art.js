@@ -290,7 +290,7 @@
   /* opts: {pad, shadow, flip, bg} — draws centered, muzzle to the right */
   Art.drawWeapon = function (cv, weaponId, paintId, opts) {
     opts = opts || {};
-    var W = RZ.WEAPONS[weaponId]; if (!W) return;
+    var W = RZ.WEAPONS[RZ.paintModelWeapon ? RZ.paintModelWeapon(weaponId, paintId) : weaponId]; if (!W) return;
     var ctx = cv.getContext('2d'), w = cv.width, h = cv.height;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, w, h);

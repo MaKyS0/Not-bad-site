@@ -78,7 +78,7 @@
     tpl.dataset.rarity = paint.rarity;
     var W = RZ.WEAPONS[paint.weapon];
     tpl.querySelector('.item-name').textContent = '«' + paint.name + '»';
-    tpl.querySelector('.item-meta').textContent = (opts && opts.meta) || (W.name + ' · ' + RZ.RARITY[paint.rarity].name);
+    tpl.querySelector('.item-meta').textContent = (opts && opts.meta) || (RZ.paintWeaponName(paint) + ' · ' + RZ.RARITY[paint.rarity].name);
     Art.drawWeapon(tpl.querySelector('.item-art'), paint.weapon, paint.id, { pad: 0.07 });
     return tpl;
   }
@@ -196,15 +196,17 @@
     [].forEach.call(list.children, function (b) {
       var id = b.dataset.weapon, W = RZ.WEAPONS[id], pid = equippedPaintId(id);
       b.setAttribute('aria-pressed', String(id === sel));
-      b.querySelector('span').textContent = W.cls + ' · ' + (pid ? '«' + RZ.PAINT_BY_ID[pid].name + '»' : 'без раскраски');
+      var pp = pid && RZ.PAINT_BY_ID[pid];
+      b.querySelector('span').textContent = W.cls + ' · ' + (pp ? (pp.model ? RZ.KNIFE_MODELS[pp.model].name + ' ' : '') + '«' + pp.name + '»' : 'без раскраски');
       Art.drawWeapon(b.querySelector('canvas'), id, pid, { pad: 0.06 });
     });
     var W = RZ.WEAPONS[sel], pid = equippedPaintId(sel);
     Art.drawWeapon($('gun-preview'), sel, pid, { pad: 0.1, shadow: true });
-    $('gun-name').textContent = W.name;
+    var pm = pid && RZ.PAINT_BY_ID[pid] && RZ.PAINT_BY_ID[pid].model;
+    $('gun-name').textContent = pm ? RZ.KNIFE_MODELS[pm].name : W.name;
     var price = W.price ? 'Цена в закупке: ' + RZ.fmt(W.price) + '.' : sel === 'knife' ? 'Всегда с собой.' : '';
     if (sel === 'osa') price = 'Выдаётся в начале каждой жизни.';
-    $('gun-desc').textContent = W.desc + ' ' + price;
+    $('gun-desc').textContent = (pm ? RZ.KNIFE_MODELS[pm].desc + ' Урон и дальность как у обычного ножа. ' : W.desc + ' ') + price;
     var st = [['Урон', W.ui.dmg], ['Темп', W.ui.rate], ['Точность', W.ui.acc], ['Отдача', W.ui.recoil], ['Подвижность', W.ui.mob]];
     $('gun-stats').innerHTML = st.map(function (s) { return '<div class="stat"><span>' + s[0] + '</span><i style="--v:' + s[1].toFixed(2) + '"></i></div>'; }).join('');
     // owned paints for this weapon
@@ -269,7 +271,12 @@
     if (rar == null) rar = +Object.keys(c.odds)[0];
     var pool = c.items.filter(function (id) { return RZ.PAINT_BY_ID[id].rarity === rar; });
     if (!pool.length) pool = c.items;
-    return RZ.PAINT_BY_ID[pool[(Math.random() * pool.length) | 0]];
+    // weighted pick: knife models are scarcer than paints of the same rarity
+    var wsum = 0, i;
+    for (i = 0; i < pool.length; i++) wsum += RZ.ITEM_WEIGHT[pool[i]] || 1;
+    var y = Math.random() * wsum;
+    for (i = 0; i < pool.length; i++) { y -= RZ.ITEM_WEIGHT[pool[i]] || 1; if (y <= 0) return RZ.PAINT_BY_ID[pool[i]]; }
+    return RZ.PAINT_BY_ID[pool[pool.length - 1]];
   }
   function drumItem(p) {
     var d = document.createElement('div');
@@ -278,7 +285,7 @@
     d.style.setProperty('--rar', 'var(--r' + p.rarity + ')');
     d.innerHTML = '<canvas width="300" height="120"></canvas><div><b></b><span></span></div>';
     d.querySelector('b').textContent = '«' + p.name + '»';
-    d.querySelector('span').textContent = RZ.WEAPONS[p.weapon].name + ' · ' + RZ.RARITY[p.rarity].name;
+    d.querySelector('span').textContent = RZ.paintWeaponName(p) + ' · ' + RZ.RARITY[p.rarity].name;
     Art.drawWeapon(d.querySelector('canvas'), p.weapon, p.id, { pad: 0.06 });
     return d;
   }
@@ -343,9 +350,9 @@
     st.textContent = RZ.RARITY[p.rarity].name;
     // restart the stamp animation
     st.style.animation = 'none'; void st.offsetWidth; st.style.animation = '';
-    $('drop-name').textContent = RZ.WEAPONS[p.weapon].name + ' «' + p.name + '»';
+    $('drop-name').textContent = RZ.paintWeaponName(p) + ' «' + p.name + '»';
     var dup = D().inv.filter(function (x) { return x.paint === p.id; }).length;
-    $('drop-meta').textContent = RZ.WEAPONS[p.weapon].cls + ' · ' + RZ.RARITY[p.rarity].name + (dup > 1 ? ' · уже есть: ' + (dup - 1) : '') + ' · в арсенале';
+    $('drop-meta').textContent = (p.model ? RZ.KNIFE_MODELS[p.model].cls : RZ.WEAPONS[p.weapon].cls) + ' · ' + RZ.RARITY[p.rarity].name + (dup > 1 ? ' · уже есть: ' + (dup - 1) : '') + ' · в арсенале';
     $('drop').hidden = false;
     $('sell-price').textContent = RZ.fmt(RZ.RARITY[p.rarity].sell);
     $('btn-sell').hidden = false; $('btn-sell').disabled = false;

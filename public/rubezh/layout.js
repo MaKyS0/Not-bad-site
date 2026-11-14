@@ -69,6 +69,7 @@
     });
     $('layout-opacity').value = alpha;
     resetBar();
+    avoidBar();
     pick(null);
   };
 
@@ -84,13 +85,24 @@
 
   /* the panel must never hide a control: drag it by its title, or it jumps aside automatically */
   function resetBar() { bar.style.left = ''; bar.style.top = ''; bar.style.transform = ''; }
-  function avoidBar(c) {
-    var r = bar.getBoundingClientRect();
-    if (c.x > r.left - 20 && c.x < r.right + 20 && c.y > r.top - 20 && c.y < r.bottom + 20) {
-      bar.style.transform = 'translate(-50%, -50%)';
-      bar.style.left = (c.x > W / 2 ? Math.max(r.width / 2 + 8, W * 0.27) : Math.min(W - r.width / 2 - 8, W * 0.73)) + 'px';
-      bar.style.top = (H / 2) + 'px';
+  /* move the panel to the candidate spot that covers the fewest controls (current spot wins ties) */
+  function avoidBar() {
+    var r = bar.getBoundingClientRect(), bw = r.width, bh = r.height;
+    var rects = Object.keys(copies).map(function (k) { return copies[k].getBoundingClientRect(); });
+    function hits(cx, cy) {
+      var l = cx - bw / 2 - 8, t = cy - bh / 2 - 8, rr = cx + bw / 2 + 8, bb = cy + bh / 2 + 8, n = 0;
+      rects.forEach(function (q) { if (q.right > l && q.left < rr && q.bottom > t && q.top < bb) n++; });
+      return n;
     }
+    var curX = r.left + bw / 2, curY = r.top + bh / 2, best = { x: curX, y: curY, n: hits(curX, curY) };
+    if (!best.n) return;
+    var xs = [W / 2, W * 0.27, W * 0.73, bw / 2 + 6, W - bw / 2 - 6], ys = [H / 2, bh / 2 + 6, H - bh / 2 - 6];
+    xs.forEach(function (x) {
+      x = Math.max(bw / 2, Math.min(W - bw / 2, x));
+      ys.forEach(function (y) { y = Math.max(bh / 2, Math.min(H - bh / 2, y)); var n = hits(x, y); if (n < best.n) best = { x: x, y: y, n: n }; });
+    });
+    bar.style.transform = 'translate(-50%, -50%)';
+    bar.style.left = best.x + 'px'; bar.style.top = best.y + 'px';
   }
 
   function onDown(e) {
@@ -131,13 +143,13 @@
     c.x = e.clientX - drag.dx; c.y = e.clientY - drag.dy;
     place(drag.ctl);
     touched[drag.ctl] = true;
-    avoidBar(c);
   }
   function onUp(e) {
     if (barDrag && e.pointerId === barDrag.id) { barDrag = null; return; }
     if (!drag || e.pointerId !== drag.id) return;
     copies[drag.ctl].classList.remove('is-drag');
     drag = null;
+    avoidBar();
   }
 
   E.reset = function () {
@@ -181,6 +193,7 @@
       if (!picked) return;
       cur[picked].s = +this.value; touched[picked] = true;
       place(picked); pick(picked);
+      avoidBar();
     });
     $('layout-opacity').addEventListener('input', function () { alpha = +this.value; stage.style.setProperty('--t-alpha', String(alpha)); });
     $('layout-reset').addEventListener('click', function () { E.reset(); });

@@ -231,6 +231,53 @@
   /* fraction of the pattern shown as camera kick; time before the index starts to decay */
   RZ.SPRAY = { viewFrac: 0.5, resetDelay: 0.4, decayRate: 18, crouchScale: 0.8 };
 
+  /* ------------------------------------------------------------------ */
+  /* Alternative knife models (cosmetic: same rules as the standard knife) */
+  /* Each has a hidden pseudo-weapon with its side-view shape so the       */
+  /* shared 2D renderer and the third-person extrusion can draw it.        */
+  /* ------------------------------------------------------------------ */
+  function ringParts(cx, cy, ro, ri, m, t) {
+    // a finger ring as two half-annulus polygons (no holes needed)
+    var out = [];
+    for (var half = 0; half < 2; half++) {
+      var pts = [], a0 = half * Math.PI, n = 10, i, a;
+      for (i = 0; i <= n; i++) { a = a0 + Math.PI * i / n; pts.push([+(cx + Math.cos(a) * ro).toFixed(2), +(cy + Math.sin(a) * ro).toFixed(2)]); }
+      for (i = n; i >= 0; i--) { a = a0 + Math.PI * i / n; pts.push([+(cx + Math.cos(a) * ri).toFixed(2), +(cy + Math.sin(a) * ri).toFixed(2)]); }
+      out.push({ p: pts, t: t, m: m });
+    }
+    return out;
+  }
+  RZ.KNIFE_MODELS = {
+    butterfly: { name: 'Бабочка', cls: 'Нож-бабочка', desc: 'Балисонг: клинок прячется между двух рукоятей на шарнирах. Раскрывается одним движением кисти.' },
+    karambit: { name: 'Керамбит', cls: 'Керамбит', desc: 'Изогнутый клинок-коготь с кольцом под указательный палец, держится обратным хватом.' }
+  };
+  W.knife_butterfly = Object.assign({}, W.knife, {
+    id: 'knife_butterfly', name: 'Бабочка', variantOf: 'knife', hidden: true,
+    shape: [
+      { p: [[0.6, -0.7], [7.6, -0.75], [10.6, 0.35], [8.4, 0.85], [0.6, 0.85]], t: 0.35, m: 'metal' },
+      { p: [[-13, -0.75], [0.7, -0.75], [1.3, 0], [0.7, 0.85], [-13, 0.85], [-13.6, 0.05]], t: 1.6, m: 'paint' },
+      { p: [[-13.9, -0.45], [-12.8, -0.45], [-12.8, 0.55], [-13.9, 0.55]], t: 1.0, m: 'metal' },
+      { c: [-0.15, 0.25, 0.05, 0.38], m: 'dark' },
+      { p: [[-1.2, 1.0], [-0.2, 1.0], [-0.2, 1.25], [-1.2, 1.25]], t: 0.6, m: 'dark' }
+    ],
+    details: [[-11.5, 0.05, -9.2, 0.05], [-8.2, 0.05, -5.9, 0.05], [-4.9, 0.05, -2.6, 0.05], [1.3, 0.2, 7.2, 0.2]]
+  });
+  W.knife_karambit = Object.assign({}, W.knife, {
+    id: 'knife_karambit', name: 'Керамбит', variantOf: 'knife', hidden: true,
+    shape: [
+      { p: [[-0.2, 1.3], [3, 2.15], [7, 2.55], [10.4, 1.8], [12.4, -0.4], [12.6, -2.7], [11, -1.3], [8.5, 0.15], [5, 0.55], [2, 0.15], [-0.2, -1.2]], t: 0.45, m: 'paint' },
+      { p: [[-0.2, -1.2], [2, 0.15], [5, 0.55], [8.5, 0.15], [11, -1.3], [12.6, -2.7], [12.15, -1.6], [10.7, -0.55], [8.4, 0.75], [5, 1.15], [2, 0.75], [-0.2, -0.45]], t: 0.3, m: 'metal' },
+      { p: [[-8.6, -1.45], [-0.2, -1.5], [0.3, 0], [-0.2, 1.5], [-8.6, 1.4], [-9.2, 0]], t: 1.8, m: 'grip' },
+      { p: [[-0.6, -1.9], [0.4, -1.9], [0.4, 1.9], [-0.6, 1.9]], t: 2.0, m: 'dark' }
+    ].concat(ringParts(-11.2, 0, 2.3, 1.35, 'dark', 1.4)),
+    details: [[-7.5, -0.7, -1.5, -0.7], [-7.5, 0.7, -1.5, 0.7]]
+  });
+  /* weapon id for drawing a paint: knife paints with a model use the model's pseudo-weapon */
+  RZ.paintModelWeapon = function (weaponId, paintId) {
+    var p = paintId && RZ.PAINT_BY_ID && RZ.PAINT_BY_ID[paintId];
+    return p && p.model ? 'knife_' + p.model : weaponId;
+  };
+
   RZ.WEAPONS = W;
   RZ.WEAPON_ORDER = ['knife', 'osa', 'shmel', 'shershen', 'taran', 'grom', 'vihr', 'igla'];
   RZ.SLOT_LABEL = { 1: 'Основное', 2: 'Пистолет', 3: 'Нож' };
@@ -290,6 +337,18 @@
     P('i-kuporos', 'igla', 'Купорос', 4, 'hex', ['#147d8c', '#3fc4d0', '#073840'], 0.9),
     P('i-zhest', 'igla', 'Жесть', 5, 'chevron', ['#c9ccd0', '#1c1f22'], 0.7)
   ];
+  /* knife models: rare, always rarity 4–5 */
+  function KP(id, model, name, rarity, t, c, s, a) { var x = P(id, 'knife', name, rarity, t, c, s, a); x.model = model; return x; }
+  RZ.PAINTS.push(
+    KP('kb-sazha', 'butterfly', 'Сажа', 4, 'splatter', ['#2a2a2e', '#55555c', '#8a8a92'], 0.8),
+    KP('kb-perlamutr', 'butterfly', 'Перламутр', 5, 'marble', ['#efe9f2', '#b9c7e0', '#cf9fd0'], 1),
+    KP('kb-plamya', 'butterfly', 'Пламя', 5, 'gradient', ['#ffd84a', '#ff6a1a', '#7a0f1f'], 1, 60),
+    KP('kk-moh', 'karambit', 'Мох', 4, 'camo', ['#4f5e3a', '#2f3a24', '#7d8a5a', '#1d2416'], 0.7),
+    KP('kk-pero', 'karambit', 'Перо', 5, 'stripes', ['#1a2440', '#e8e4d8', '#c7372f'], 0.45, 30),
+    KP('kk-siyanie', 'karambit', 'Северное сияние', 5, 'topo', ['#06131f', '#36e0a0', '#9b6bff'], 0.8)
+  );
+  /* name shown for a paint's weapon ("Бабочка" for knife models) */
+  RZ.paintWeaponName = function (p) { return p.model ? RZ.KNIFE_MODELS[p.model].name : RZ.WEAPONS[p.weapon].name; };
   RZ.PAINT_BY_ID = {};
   RZ.PAINTS.forEach(function (p) { RZ.PAINT_BY_ID[p.id] = p; });
 
@@ -319,15 +378,20 @@
       id: 'arsenal', name: 'Ящик «Арсенал»', price: 450, tape: '#2a55c4',
       odds: { 1: 38, 2: 34, 3: 19, 4: 8, 5: 1 },
       items: ['o-ohra', 't-beton', 'v-mazut', 'k-gudron', 'h-tel', 'v-priboy', 'i-nazhdak', 'g-listopad',
-        'k-inei', 's-kobalt', 't-cheremuha', 'v-razmetka', 'i-lednik', 'o-yantar', 'g-chertezh', 'v-malahit', 'g-polyarnaya']
+        'k-inei', 's-kobalt', 't-cheremuha', 'v-razmetka', 'i-lednik', 'o-yantar', 'g-chertezh', 'v-malahit', 'g-polyarnaya',
+        'kb-perlamutr', 'kk-pero']
     },
     {
       id: 'trofei', name: 'Ящик «Трофей»', price: 800, tape: '#b87600',
       odds: { 2: 40, 3: 34, 4: 19, 5: 7 },
       items: ['k-gudron', 's-pepel', 'v-priboy', 'i-nazhdak', 'o-razmetka', 'k-inei', 'g-inei', 'i-lednik', 'h-sota',
-        'h-sumerki', 't-mishen', 'i-kuporos', 'o-yantar', 'k-zarevo', 's-pozolota', 'i-zhest', 'g-polyarnaya']
+        'h-sumerki', 't-mishen', 'i-kuporos', 'o-yantar', 'k-zarevo', 's-pozolota', 'i-zhest', 'g-polyarnaya',
+        'kb-sazha', 'kb-perlamutr', 'kb-plamya', 'kk-moh', 'kk-pero', 'kk-siyanie']
     }
   ];
+
+  /* relative weight of an item inside its rarity pool (default 1): knife models are scarce */
+  RZ.ITEM_WEIGHT = { 'kb-sazha': 0.3, 'kb-perlamutr': 0.3, 'kb-plamya': 0.3, 'kk-moh': 0.3, 'kk-pero': 0.3, 'kk-siyanie': 0.3 };
 
   /* ------------------------------------------------------------------ */
   /* Input actions and settings                                          */
@@ -337,7 +401,7 @@
     ['jump', 'Прыжок', 'Space'], ['crouch', 'Присесть', 'ControlLeft'], ['walk', 'Шаг (тихо)', 'ShiftLeft'],
     ['reload', 'Перезарядка', 'KeyR'], ['buy', 'Закупка', 'KeyB'], ['score', 'Таблица', 'Tab'],
     ['primary', 'Основное оружие', 'Digit1'], ['pistol', 'Пистолет', 'Digit2'], ['knife', 'Нож', 'Digit3'],
-    ['last', 'Предыдущее оружие', 'KeyQ']
+    ['last', 'Предыдущее оружие', 'KeyQ'], ['inspect', 'Осмотреть оружие', 'KeyF']
   ];
   /* secondary key that also works for an action if not bound elsewhere */
   RZ.ALT_KEYS = { crouch: 'KeyC' };
