@@ -35,9 +35,90 @@
     el.classList.toggle('is-mirror', !!st.touchMirror);
     document.body.classList.toggle('touch-mirror', !!st.touchMirror); // lets the HUD killfeed move away from the chips
     if (state) state.autofire = !!st.touchAutofire;
+    el.style.setProperty('--t-alpha', String(st.touchAlpha == null ? 1 : st.touchAlpha));
+    T.applyLayout(st);
   };
 
-  function btnSize() { return 58 * (S().touchSize || 1); }
+  /* ================================================================== */
+  /* Custom layout (from the layout editor)                              */
+  /* Each moved control is stored as its centre anchored to the nearest  */
+  /* horizontal and vertical screen edge: {ax:'l'|'r', ox:px, ay:'t'|'b', */
+  /* oy:px, s:scale}. Px from the nearest edge keeps thumb reach the same */
+  /* on wider/taller screens; positions are clamped on screen. The       */
+  /* layout is stored un-mirrored; the mirror option flips it.           */
+  /* ================================================================== */
+  T.CTLS = ['fire', 'aim', 'jump', 'crouch', 'reload', 'swap', 'stick', 'top'];
+  T.CTL_NAMES = { fire: 'Огонь', aim: 'Прицел', jump: 'Прыжок', crouch: 'Присесть', reload: 'Перезарядка', swap: 'Смена оружия', stick: 'Джойстик', top: 'Верхние кнопки' };
+  /* base diameter factor relative to --t for each control (matches the CSS) */
+  T.CTL_K = { fire: 1.5, aim: 1, jump: 1, crouch: 1, reload: 1, swap: 1, stick: 2.2, top: 1 };
+  T.ctlElement = function (root, ctl) {
+    if (ctl === 'top') return root.querySelector('.t-top');
+    if (ctl === 'stick') return root.querySelector('.t-stick');
+    return root.querySelector('.t-' + ctl);
+  };
+  T.validEntry = function (e) {
+    return e && (e.ax === 'l' || e.ax === 'r') && (e.ay === 't' || e.ay === 'b') && isFinite(e.ox) && isFinite(e.oy) && isFinite(e.s) && e.s >= 0.4 && e.s <= 2;
+  };
+  /* entry → centre in px for a W×H screen (mirror flips x) */
+  T.entryCenter = function (e, W, H, mirror) {
+    var x = e.ax === 'l' ? e.ox : W - e.ox, y = e.ay === 't' ? e.oy : H - e.oy;
+    if (mirror) x = W - x;
+    return { x: x, y: y };
+  };
+  /* centre → entry (un-mirrored) */
+  T.centerEntry = function (x, y, W, H, mirror, scale) {
+    if (mirror) x = W - x;
+    return { ax: x < W / 2 ? 'l' : 'r', ox: Math.round(x < W / 2 ? x : W - x), ay: y < H / 2 ? 't' : 'b', oy: Math.round(y < H / 2 ? y : H - y), s: +(+scale).toFixed(2) };
+  };
+  T.clampCenter = function (c, half, W, H) {
+    var m = 4;
+    c.x = Math.max(half.x + m, Math.min(W - half.x - m, c.x));
+    c.y = Math.max(half.y + m, Math.min(H - half.y - m, c.y));
+    return c;
+  };
+  function ctlScale(ctl) { var L = S().touchLayout || {}, e = L[ctl]; return T.validEntry(e) ? e.s : 1; }
+  /* place one control element given its centre; sizes are analytic so hidden controls work too */
+  T.placeCtl = function (el, ctl, c, scale, baseT) {
+    var t = baseT * scale, size = t * T.CTL_K[ctl];
+    el.style.right = 'auto'; el.style.bottom = 'auto';
+    if (ctl === 'top') {
+      el.style.left = c.x + 'px'; el.style.top = c.y + 'px';
+      el.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
+      return;
+    }
+    el.style.setProperty('--t', t + 'px');
+    if (ctl === 'stick') { el.style.left = c.x + 'px'; el.style.top = c.y + 'px'; el.style.marginRight = '0'; return; }
+    el.style.left = (c.x - size / 2) + 'px'; el.style.top = (c.y - size / 2) + 'px';
+  };
+  T.clearCtl = function (el) {
+    ['left', 'top', 'right', 'bottom', 'transform', 'marginRight', 'width', 'height'].forEach(function (k) { el.style[k] = ''; });
+    el.style.removeProperty('--t');
+  };
+  T.halfSize = function (el, ctl, scale, baseT) {
+    if (ctl === 'top') { var w = el.offsetWidth || 200, h = el.offsetHeight || 40; return { x: w * scale / 2, y: h * scale / 2 }; }
+    var r = baseT * scale * T.CTL_K[ctl] / 2;
+    return { x: r, y: r };
+  };
+  var restStick = null;
+  T.applyLayout = function (st) {
+    var layer = $('touch'); if (!layer) return;
+    st = st || S();
+    var L = st.touchLayout || {}, W = window.innerWidth, H = window.innerHeight, baseT = 58 * (st.touchSize || 1);
+    restStick = null;
+    T.CTLS.forEach(function (ctl) {
+      var el = T.ctlElement(layer, ctl), e = L[ctl];
+      if (!el) return;
+      if (ctl === 'stick' && el.classList.contains('is-on')) { if (T.validEntry(e)) restStick = { e: e }; return; }
+      T.clearCtl(el);
+      if (!T.validEntry(e)) return;
+      var c = T.clampCenter(T.entryCenter(e, W, H, !!st.touchMirror), T.halfSize(el, ctl, e.s, baseT), W, H);
+      T.placeCtl(el, ctl, c, e.s, baseT);
+      if (ctl === 'stick') restStick = { e: e };
+    });
+    T.layoutW = W; T.layoutH = H;
+  };
+
+  function btnSize() { return 58 * (S().touchSize || 1) * ctlScale('stick'); }
   function local(e) {
     var r = layer.getBoundingClientRect();
     return { x: e.clientX - r.left, y: e.clientY - r.top };
@@ -70,6 +151,7 @@
     st.classList.remove('is-on');
     st.style.left = st.style.top = st.style.right = st.style.marginRight = '';
     $('t-knob').style.transform = '';
+    if (restStick) T.applyLayout(S()); // back to the custom resting spot
     state.mx = state.mz = 0; state.walk = false;
   }
 
@@ -199,6 +281,7 @@
     set('crouch', function (v) { $('t-crouch').classList.toggle('is-on', v); }, function () { return state.crouch; });
     set('reload', function (v) { $('t-reload').hidden = !v; }, function () { return !!(w && w.def.kind === 'gun'); });
     if (!p.alive && state.crouch) state.crouch = false;
+    if (window.innerWidth !== T.layoutW || window.innerHeight !== T.layoutH) T.applyLayout(S());
     var portrait = window.innerHeight > window.innerWidth;
     game.rotateBlock = portrait && !game.over;
     set('rotate', function (v) { $('rotate').hidden = !v; }, function () { return game.rotateBlock; });

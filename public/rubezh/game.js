@@ -173,7 +173,7 @@
           } else {
             var take = Math.min(def.mag - w.mag, w.reserve);
             w.mag += take; w.reserve -= take;
-            if (f === G.cameraOwner) A.mech('in');
+            if (f === G.cameraOwner) A.mech('in', null, w.id);
           }
         }
       }
@@ -301,10 +301,11 @@
     if (def.spread) w.spray = Math.min(def.spread.sprayMax, w.spray + def.spread.spray);
     if (hitAny) f.stats.hits++;
     if (f === G.cameraOwner) {
-      A.shot(def.sound, null);
+      A.shot(def.sound, null, def.id);
+      if (def.kind === 'gun' && def.mode !== 'pump') A.casing(0.3 + Math.random() * 0.15);
       G.vmKick = 1; G.vmFlashT = 0.045;
       if (def.mode === 'bolt' || def.mode === 'pump') setTimeout(function () { if (G && f === G.cameraOwner) A.mech(def.mode === 'bolt' ? 'bolt' : 'pump'); }, 380);
-    } else if (G.rendering) A.shot(def.sound, { x: f.x, y: eyeY, z: f.z });
+    } else if (G.rendering) A.shot(def.sound, { x: f.x, y: eyeY, z: f.z }, def.id);
     if (f !== G.cameraOwner || !f.alive) G.world.flash(mz.x, mz.y, mz.z, def.pellets > 1 ? 0.7 : 0.45);
     noise(f, def.id === 'osa' ? 32 : 45);
     if (f.isPlayer && hitAny) hitMarker(killed, head);
@@ -331,7 +332,7 @@
     if (tW < range) {
       G.world.decal(_end.x, _end.y, _end.z, _hit.nx, _hit.ny, _hit.nz);
       if (!quiet) G.world.puff(_end.x + _hit.nx * 0.05, _end.y + _hit.ny * 0.05, _end.z + _hit.nz * 0.05, false);
-      if (G.rendering && !quiet && Math.random() < 0.6) A.impact({ x: _end.x, y: _end.y, z: _end.z }, false);
+      if (G.rendering && !quiet && Math.random() < 0.6) A.impact({ x: _end.x, y: _end.y, z: _end.z }, false, _hit.box >= 0 ? G.world.colBoxes[_hit.box].mat : null);
     }
     return 0;
   }
@@ -340,7 +341,7 @@
     var m = heavy ? w.def.heavy : w.def.fast;
     w.next = G.time + m.time; f.meleeT = heavy ? 1 : 0.6; f.fireAnim = 1;
     G.vmMelee = heavy ? 2 : 1; G.vmMeleeT = 0;
-    if (f === G.cameraOwner) A.knife(null); else if (G.rendering) A.knife({ x: f.x, y: f.y + 1.2, z: f.z });
+    if (f === G.cameraOwner) A.knife(null, heavy); else if (G.rendering) A.knife({ x: f.x, y: f.y + 1.2, z: f.z }, heavy);
     var ey = f.y + f.eyeH(), hit = null, part = '', bestT = m.range;
     for (var k = -1; k <= 1; k++) {
       var yw = f.yaw + k * 0.16, cp = Math.cos(f.pitch), dx = -Math.sin(yw) * cp, dy = Math.sin(f.pitch), dz = -Math.cos(yw) * cp;
@@ -1065,8 +1066,8 @@
     var gun = new THREE.Mesh(geo, [paintMat(wid, paint), M.dark, M.metal, M.grip]);
     grp.add(gun);
     if (!G.vmLimbGeo) {
-      G.vmLimbGeo = G.world.track(new THREE.BoxGeometry(0.075, 0.075, 1));
-      G.vmHandGeo = G.world.track(new THREE.BoxGeometry(0.05, 0.07, 0.09));
+      G.vmLimbGeo = G.world.track(RZ.Models ? RZ.Models.vmLimbGeo() : new THREE.BoxGeometry(0.075, 0.075, 1));
+      G.vmHandGeo = G.world.track(RZ.Models ? RZ.Models.vmHandGeo() : new THREE.BoxGeometry(0.05, 0.07, 0.09));
     }
     var LG = G.vmLimbGeo, HG = G.vmHandGeo;
     var grip = [0, -0.04, 0.01];
@@ -1586,6 +1587,12 @@
       p.yaw = keep.yaw; p.pitch = keep.pitch;
       return log;
     },
-    renderers: function () { return rendererCount; }
+    renderers: function () { return rendererCount; },
+    /* recorded-sample status: decode counts/durations and per-sample play counters (synth fallbacks too) */
+    audio: function () {
+      var d = A.debug;
+      return { state: A.state(), ready: d.ready, total: d.total, decoded: d.decoded, failed: d.failed.slice(), durations: A.sampleInfo(),
+        plays: Object.assign({}, d.plays), synth: Object.assign({}, d.synth) };
+    }
   };
 })();

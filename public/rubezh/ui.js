@@ -109,6 +109,7 @@
     if (go) goto(go.dataset.goto);
     if (e.detail === 0) return; // keyboard activation: no hole
     if (t.matches && t.matches('input[type="range"]')) return;
+    if (t.closest && t.closest('#layout')) return; // the layout editor is a full-screen tool, no holes there
     var menu = $('menu'), rect = menu.getBoundingClientRect(), box = $('holes');
     box.style.bottom = 'auto';
     box.style.height = menu.scrollHeight + 'px';
@@ -471,6 +472,10 @@
   }
   function stopListen() { if (listening) { listening = null; renderKeybinds(); } }
   function onKeyCapture(e) {
+    if (RZ.Layout && RZ.Layout.isOpen()) {
+      if (e.code === 'Escape') { e.preventDefault(); e.stopImmediatePropagation(); RZ.Layout.close(); }
+      return;
+    }
     if (listening) {
       e.preventDefault(); e.stopImmediatePropagation();
       if (e.code === 'Escape') { stopListen(); return; }
