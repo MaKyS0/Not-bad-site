@@ -44,6 +44,13 @@
     var parsed = null;
     if (raw) { try { parsed = JSON.parse(raw); } catch (e) { parsed = null; } }
     Store.data = sanitize(parsed);
+    // gift: every butterfly-knife and karambit paint is always in the arsenal
+    var d = Store.data, gave = false;
+    Object.keys(RZ.PAINT_BY_ID).forEach(function (id) {
+      if (!/^k[bk]-/.test(id) || d.inv.some(function (it) { return it.paint === id; })) return;
+      d.inv.push({ uid: d.seq++, paint: id, t: Date.now() }); gave = true;
+    });
+    if (gave) { try { window.localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) { /* storage unavailable */ } }
   };
   var saveTimer = 0;
   Store.save = function (now) {
