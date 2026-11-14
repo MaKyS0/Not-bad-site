@@ -74,8 +74,9 @@ def drills(out):
         p = f"sprites/blocks/rapid-drill-{n}"
         base, rot, top, item = (load(f"{p}{s}.png") for s in ("", "-rotator", "-top", "-item"))
         comp = base.copy()
-        for layer in (rot, top, tint(item, (217, 157, 115))):   # cropped layers are drawn centred on the block
-            comp.alpha_composite(layer, ((base.width - layer.width) // 2, (base.height - layer.height) // 2))
+        comp.alpha_composite(rot)
+        comp.alpha_composite(top)
+        comp.alpha_composite(tint(item, (217, 157, 115)))
         rows.append([up(on_bg(i)) for i in (base, rot, top, item)] + [up(comp)])
     sheet(rows).save(out)
 

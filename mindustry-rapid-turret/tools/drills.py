@@ -149,8 +149,6 @@ def hjson(n):
         f"tier: {d['tier']}",
         f"drillTime: {d['time']}",
         f"rotateSpeed: {d['rot']}",
-        "drawSpinSprite: false",     # one rotated draw instead of two cross-faded ones (also right for 3/6 blades)
-        "updateEffectChance: 0",     # no dust particles while drilling
         "consumes: {",
     ]
     if d['power']:
@@ -167,28 +165,15 @@ def hjson(n):
     return "\n".join(lines) + "\n"
 
 
-def crop_centered(im, pad=1):
-    """Crop a full-tile layer to the smallest square around its content that stays centred on the tile centre
-    (the game draws the layer centred on the block, at the region's own size). Less transparent area = less fill-rate."""
-    S = im.width
-    box = im.getchannel("A").getbbox()
-    if not box:
-        return im
-    c = S // 2
-    half = max(c - box[0], box[2] - c, c - box[1], box[3] - c) + pad
-    half = min(half, c)
-    return im.crop((c - half, c - half, c + half, c + half))
-
-
 def build(root):
     en, ru = [], []
     for n in DRILLS:
         name = f"rapid-drill-{n}"
         open(f"{root}/content/blocks/{name}.hjson", "w").write(hjson(n))
         base(n).save(f"{root}/sprites/blocks/{name}.png")
-        crop_centered(rotator(n)).save(f"{root}/sprites/blocks/{name}-rotator.png")
-        crop_centered(top(n)).save(f"{root}/sprites/blocks/{name}-top.png")
-        crop_centered(item(n)).save(f"{root}/sprites/blocks/{name}-item.png")
+        rotator(n).save(f"{root}/sprites/blocks/{name}-rotator.png")
+        top(n).save(f"{root}/sprites/blocks/{name}-top.png")
+        item(n).save(f"{root}/sprites/blocks/{name}-item.png")
         key = f"block.rapid-turret-{name}"
         en += [f"{key}.name = Rapid Drill {ROMAN[n]}", f"{key}.description = {EN[n]}"]
         ru += [f"{key}.name = Бур Rapid {ROMAN[n]}", f"{key}.description = {RU[n]}"]

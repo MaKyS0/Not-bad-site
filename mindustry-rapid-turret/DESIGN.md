@@ -2534,3 +2534,6 @@ Section 25 is knowingly relaxed for this part by the player's decision; nothing 
   resolved by the parser's `UnitCommand` lookup), buildSpeed 0.8 / 1.6 / 2.8, mineTier 2 / 3 / 4, healing `LaserBoltBulletType` guns
   (`healPercent` 4 / 5 / 6, `collidesTeam: true`). Art = `air.body`/`air.cell` of air T1–T3 with a pale medic palette.
 - `rapid-workshop`: `forge.hjson` + `forge.base(HEAL, "circle")`, power 2.5, research ← `rapid-hangar`.
+
+**Rollback (player report: the drill model broke in game):** the drill change of section 25's follow-up (cropped `-rotator`/`-top`/`-item`
+layers, `drawSpinSprite: false`, `updateEffectChance: 0`) is reverted. Drills are back to full-size layers and the game's defaults.
