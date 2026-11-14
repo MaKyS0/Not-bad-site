@@ -84,7 +84,7 @@
     id: 'shershen', name: 'Шершень', cls: 'Пистолет-пулемёт', slot: 1, kind: 'gun', mode: 'auto', price: 1200,
     desc: 'Компактный пистолет-пулемёт с бешеным темпом. Хорош в коридорах и на бегу, на дальней дистанции теряет урон.',
     dmg: 25, pellets: 1, rate: 0.072, mag: 30, reserve: 120, reload: 2.3, pen: 0.55, falloff: 0.8, head: 3.6,
-    spread: { base: 0.009, move: 0.018, air: 0.1, spray: 0.004, sprayMax: 0.045, crouch: 0.8 },
+    spread: { base: 0.0055, move: 0.018, air: 0.1, spray: 0.0008, sprayMax: 0.009, crouch: 0.8 },
     recoil: { kick: 0.009, yaw: 0.006, recover: 8 },
     mob: 0.96, draw: 0.5, sound: 'smg', reward: 600,
     ui: { dmg: 0.25, rate: 0.95, acc: 0.42, recoil: 0.3, mob: 0.92 },
@@ -129,7 +129,7 @@
     id: 'grom', name: 'Гром', cls: 'Автомат', slot: 1, kind: 'gun', mode: 'auto', price: 2900,
     desc: 'Тяжёлый штурмовой автомат. Мощный патрон, убивает в голову через шлем, но уводит вверх при долгой очереди.',
     dmg: 35, pellets: 1, rate: 0.1, mag: 30, reserve: 90, reload: 2.5, pen: 0.78, falloff: 0.95, head: 4,
-    spread: { base: 0.003, move: 0.085, air: 0.16, spray: 0.0065, sprayMax: 0.06, crouch: 0.7 },
+    spread: { base: 0.003, move: 0.085, air: 0.16, spray: 0.0011, sprayMax: 0.013, crouch: 0.7 },
     recoil: { kick: 0.0165, yaw: 0.009, recover: 6 },
     mob: 0.86, draw: 0.7, sound: 'rifle', reward: 300,
     ui: { dmg: 0.7, rate: 0.72, acc: 0.78, recoil: 0.78, mob: 0.66 },
@@ -153,7 +153,7 @@
     id: 'vihr', name: 'Вихрь', cls: 'Карабин', slot: 1, kind: 'gun', mode: 'auto', price: 2300,
     desc: 'Компоновка «булл-пап»: короткий, лёгкий и скорострельный. Мягкая отдача и предсказуемая очередь, урон чуть ниже.',
     dmg: 30, pellets: 1, rate: 0.085, mag: 30, reserve: 90, reload: 2.2, pen: 0.7, falloff: 0.93, head: 4,
-    spread: { base: 0.0035, move: 0.065, air: 0.15, spray: 0.0045, sprayMax: 0.045, crouch: 0.7 },
+    spread: { base: 0.0035, move: 0.065, air: 0.15, spray: 0.0009, sprayMax: 0.011, crouch: 0.7 },
     recoil: { kick: 0.0115, yaw: 0.006, recover: 7 },
     mob: 0.9, draw: 0.6, sound: 'carbine', reward: 300,
     ui: { dmg: 0.6, rate: 0.85, acc: 0.82, recoil: 0.5, mob: 0.74 },
@@ -197,6 +197,39 @@
     ],
     details: [[-40, -1, -20, 0], [4, 3, 24, 3], [28, 2, 38, 2.2]]
   };
+
+  /* ------------------------------------------------------------------ */
+  /* Fixed, learnable spray patterns for automatic weapons.              */
+  /* Keys: [shot index, cumulative pitch (up +), cumulative yaw (right +)] */
+  /* in radians. A Catmull-Rom curve through the keys gives one offset    */
+  /* per shot for the whole magazine — no randomness, so it can be learnt.*/
+  /* ------------------------------------------------------------------ */
+  function buildPattern(keys, n) {
+    var out = [], k = 0;
+    function at(i) { return keys[Math.max(0, Math.min(keys.length - 1, i))]; }
+    for (var s = 0; s < n; s++) {
+      while (k < keys.length - 2 && s > keys[k + 1][0]) k++;
+      var p0 = at(k - 1), p1 = at(k), p2 = at(k + 1), p3 = at(k + 2);
+      var span = p2[0] - p1[0], t = span > 0 ? Math.max(0, Math.min(1, (s - p1[0]) / span)) : 0;
+      var t2 = t * t, t3 = t2 * t, o = [];
+      for (var c = 1; c <= 2; c++) {
+        o.push(0.5 * ((2 * p1[c]) + (-p0[c] + p2[c]) * t + (2 * p0[c] - 5 * p1[c] + 4 * p2[c] - p3[c]) * t2 + (-p0[c] + 3 * p1[c] - 3 * p2[c] + p3[c]) * t3));
+      }
+      out.push([+o[0].toFixed(5), +o[1].toFixed(5)]);
+    }
+    return out;
+  }
+  /* «Гром»: steep straight climb, then a slow «S»: left sweep, right sweep, back left */
+  W.grom.pattern = buildPattern([[0, 0, 0], [3, 0.034, 0.002], [6, 0.074, 0.004], [9, 0.106, -0.006], [12, 0.123, -0.03],
+    [15, 0.133, -0.046], [18, 0.14, -0.022], [21, 0.146, 0.024], [24, 0.151, 0.046], [27, 0.156, 0.022], [29, 0.159, -0.008]], 30);
+  /* «Вихрь»: short climb, a rightward curl, then a tight snake that keeps leaning right */
+  W.vihr.pattern = buildPattern([[0, 0, 0], [3, 0.024, 0], [5, 0.041, 0.004], [8, 0.058, 0.02], [11, 0.068, 0.032],
+    [14, 0.075, 0.017], [17, 0.08, 0.034], [20, 0.084, 0.019], [23, 0.088, 0.036], [26, 0.091, 0.021], [29, 0.093, 0.034]], 30);
+  /* «Шершень»: climb leaning left, then a widening pendulum right-left-right */
+  W.shershen.pattern = buildPattern([[0, 0, 0], [4, 0.027, -0.003], [8, 0.05, -0.008], [11, 0.06, 0.012], [14, 0.066, 0.035],
+    [17, 0.07, 0.012], [20, 0.073, -0.026], [23, 0.076, -0.036], [26, 0.078, -0.005], [29, 0.08, 0.031]], 30);
+  /* fraction of the pattern shown as camera kick; time before the index starts to decay */
+  RZ.SPRAY = { viewFrac: 0.5, resetDelay: 0.4, decayRate: 18, crouchScale: 0.8 };
 
   RZ.WEAPONS = W;
   RZ.WEAPON_ORDER = ['knife', 'osa', 'shmel', 'shershen', 'taran', 'grom', 'vihr', 'igla'];
@@ -344,17 +377,17 @@
   /* Difficulty profiles. Angles in radians, times in seconds. */
   RZ.DIFFICULTY = {
     easy: {
-      name: 'Курсанты', react: [0.55, 0.85], aimSpeed: 3.2, err0: 0.13, errFloor: 0.022, converge: 0.75,
+      name: 'Курсанты', react: [0.55, 0.85], aimSpeed: 3.2, err0: 0.13, errFloor: 0.028, track: 1.8, gain: 8, ff: 0.15, converge: 0.75,
       head: 0.08, comp: 0.25, fov: 1.6, spot: 42, hearing: 0.75, strafe: 0.25, burst: [4, 9], pause: [0.35, 0.7],
       stopToShoot: 0.3, crouch: 0.05, retreatHp: 0, tapDelay: 0.22
     },
     normal: {
-      name: 'Бойцы', react: [0.3, 0.46], aimSpeed: 6.5, err0: 0.08, errFloor: 0.012, converge: 0.5,
+      name: 'Бойцы', react: [0.3, 0.46], aimSpeed: 6.5, err0: 0.08, errFloor: 0.012, track: 1.0, gain: 14, ff: 0.55, converge: 0.5,
       head: 0.22, comp: 0.6, fov: 1.9, spot: 60, hearing: 1, strafe: 0.6, burst: [3, 7], pause: [0.2, 0.45],
       stopToShoot: 0.6, crouch: 0.15, retreatHp: 30, tapDelay: 0.1
     },
     hard: {
-      name: 'Ветераны', react: [0.17, 0.27], aimSpeed: 11, err0: 0.05, errFloor: 0.006, converge: 0.32,
+      name: 'Ветераны', react: [0.17, 0.27], aimSpeed: 11, err0: 0.05, errFloor: 0.006, track: 0.35, gain: 24, ff: 0.9, converge: 0.32,
       head: 0.42, comp: 0.88, fov: 2.2, spot: 75, hearing: 1.25, strafe: 0.9, burst: [3, 6], pause: [0.12, 0.3],
       stopToShoot: 0.9, crouch: 0.25, retreatHp: 40, tapDelay: 0.04
     }
@@ -362,7 +395,7 @@
 
   /* Economy (in-match money) */
   RZ.ECON = {
-    start: 800, max: 16000, win: 3250, loss: 1400, lossStep: 500, lossMax: 3400, timeoutWin: 3000,
+    start: 800, max: 16000, win: 3250, loss: 1500, lossStep: 500, lossMax: 3400, timeoutWin: 3000,
     armor: 650, helmet: 1000, ammo: 100
   };
   /* Meta tokens */
