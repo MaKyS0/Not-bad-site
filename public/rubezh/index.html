@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Рубеж — тактический тир</title>
+<meta name="description" content="Браузерный тактический шутер: раунды против ботов, закупка, кейсы и настройки.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Tektur:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-mode="menu">
+
+<!-- ======================= МЕНЮ ======================= -->
+<div id="menu">
+  <div id="holes" aria-hidden="true"></div>
+
+  <header id="topbar">
+    <button class="wordmark" data-goto="home" aria-label="Рубеж, на главную">Рубеж</button>
+    <nav class="tabs" aria-label="Разделы">
+      <button class="tab" data-goto="play">Играть</button>
+      <button class="tab" data-goto="arsenal">Арсенал</button>
+      <button class="tab" data-goto="cases">Кейсы</button>
+      <button class="tab" data-goto="settings">Настройки</button>
+    </nav>
+    <div class="who">
+      <label class="callsign">
+        <span class="sr">Позывной</span>
+        <input id="callsign" type="text" maxlength="14" value="Новичок" spellcheck="false" autocomplete="off">
+      </label>
+      <div class="balance" title="Жетоны: выдаются за убийства и раунды, тратятся на кейсы">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.2"/><circle cx="10" cy="10" r="3.2"/></svg>
+        <span id="balance">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Главная -->
+  <section class="screen is-active" id="screen-home">
+    <div class="home-copy">
+      <h1 class="title">Рубеж</h1>
+      <p class="lede">Тактический тир: ваша группа против группы ботов. Раунд — одна жизнь. Закупитесь, зачистите рубеж, заберите жетоны.</p>
+      <ul class="home-nav">
+        <li><button data-goto="play"><b>Играть</b><span>Выбрать полигон и начать матч</span></button></li>
+        <li><button data-goto="arsenal"><b>Арсенал</b><span>Оружие и раскраски</span></button></li>
+        <li><button data-goto="cases"><b>Кейсы</b><span>Вскрыть ящик за жетоны</span></button></li>
+        <li><button data-goto="settings"><b>Настройки</b><span>Мышь, клавиши, прицел, графика</span></button></li>
+      </ul>
+      <p class="home-last" id="home-last">Матчей пока нет. Первый даст стартовые жетоны.</p>
+    </div>
+
+    <svg class="target" viewBox="0 0 600 600" aria-hidden="true">
+      <g class="t-rings">
+        <circle cx="300" cy="300" r="290"/><circle cx="300" cy="300" r="245"/>
+        <circle cx="300" cy="300" r="200"/>
+      </g>
+      <circle class="t-black" cx="300" cy="300" r="155"/>
+      <g class="t-rings t-inv">
+        <circle cx="300" cy="300" r="110"/><circle cx="300" cy="300" r="65"/>
+      </g>
+      <circle class="t-bull" cx="300" cy="300" r="22"/>
+      <g class="t-num">
+        <text x="300" y="42">5</text><text x="300" y="87">6</text><text x="300" y="132">7</text>
+        <text x="300" y="574">5</text><text x="300" y="529">6</text><text x="300" y="484">7</text>
+        <text x="33" y="308">5</text><text x="78" y="308">6</text><text x="123" y="308">7</text>
+        <text x="567" y="308">5</text><text x="522" y="308">6</text><text x="477" y="308">7</text>
+      </g>
+      <g class="t-num t-inv">
+        <text x="300" y="177">8</text><text x="300" y="222">9</text>
+        <text x="300" y="439">8</text><text x="300" y="394">9</text>
+        <text x="168" y="308">8</text><text x="213" y="308">9</text>
+        <text x="432" y="308">8</text><text x="387" y="308">9</text>
+      </g>
+    </svg>
+  </section>
+
+  <!-- Играть -->
+  <section class="screen" id="screen-play">
+    <h2 class="h">Новый матч</h2>
+    <div class="play-grid">
+      <div>
+        <h3 class="sub">Полигон</h3>
+        <!-- JS: <button class="map-card" data-map="id" aria-pressed="true|false">
+               <canvas class="map-art" width="320" height="200"></canvas>
+               <b class="map-name">Склад</b><span class="map-note">Тесные проходы, ближний бой</span></button> -->
+        <div class="map-list" id="map-list"></div>
+      </div>
+      <div class="play-opts">
+        <h3 class="sub">Условия</h3>
+        <fieldset class="opt">
+          <legend>Боты</legend>
+          <div class="seg" id="opt-difficulty">
+            <input type="radio" name="difficulty" id="d-easy" value="easy"><label for="d-easy">Курсанты</label>
+            <input type="radio" name="difficulty" id="d-normal" value="normal" checked><label for="d-normal">Бойцы</label>
+            <input type="radio" name="difficulty" id="d-hard" value="hard"><label for="d-hard">Ветераны</label>
+          </div>
+        </fieldset>
+        <fieldset class="opt">
+          <legend>Играем до</legend>
+          <div class="seg" id="opt-rounds">
+            <input type="radio" name="rounds" id="r-5" value="5"><label for="r-5">5 побед</label>
+            <input type="radio" name="rounds" id="r-8" value="8" checked><label for="r-8">8 побед</label>
+            <input type="radio" name="rounds" id="r-13" value="13"><label for="r-13">13 побед</label>
+          </div>
+        </fieldset>
+        <fieldset class="opt">
+          <legend>Размер группы</legend>
+          <div class="seg" id="opt-team">
+            <input type="radio" name="team" id="t-3" value="3"><label for="t-3">3 на 3</label>
+            <input type="radio" name="team" id="t-4" value="4"><label for="t-4">4 на 4</label>
+            <input type="radio" name="team" id="t-5" value="5" checked><label for="t-5">5 на 5</label>
+          </div>
+        </fieldset>
+        <button class="btn btn-go" id="btn-start">Начать матч</button>
+        <p class="note">Мышь — обзор и огонь. Клавиши можно переназначить в настройках.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Арсенал -->
+  <section class="screen" id="screen-arsenal">
+    <h2 class="h">Арсенал</h2>
+    <div class="arsenal-grid">
+      <!-- JS: <button class="gun" data-weapon="id" aria-pressed>
+             <canvas class="gun-art" width="200" height="80"></canvas>
+             <b>Гром</b><span>Автомат · «Иней»</span></button> -->
+      <div class="gun-list" id="gun-list"></div>
+      <div class="gun-view">
+        <canvas id="gun-preview" width="900" height="360"></canvas>
+        <div class="gun-head">
+          <h3 id="gun-name">—</h3>
+          <p id="gun-desc"></p>
+          <!-- JS: <div class="stat"><span>Урон</span><i style="--v:.7"></i></div> -->
+          <div class="stats" id="gun-stats"></div>
+        </div>
+        <h3 class="sub">Раскраски <span class="count" id="skin-count"></span></h3>
+        <!-- JS: .item cards (см. шаблон ниже), aria-pressed="true" у надетой -->
+        <div class="items" id="skin-list"></div>
+        <p class="empty" id="skin-empty" hidden>Раскрасок для этого оружия пока нет. Они выпадают из кейсов.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Кейсы -->
+  <section class="screen" id="screen-cases">
+    <h2 class="h">Кейсы</h2>
+    <div class="cases-grid">
+      <div>
+        <!-- JS: <button class="crate" data-case="id" aria-pressed>
+               <span class="crate-box" style="--tape:#d8371b"><i></i></span>
+               <b class="crate-name">Ящик «Полигон»</b>
+               <span class="crate-price"><svg…/>250</span></button> -->
+        <div class="crate-list" id="crate-list"></div>
+        <h3 class="sub">Что внутри</h3>
+        <div class="items items-sm" id="crate-contents"></div>
+        <!-- JS: <li data-rarity="1"><span>Серийная</span><b>62%</b></li> -->
+        <ul class="odds" id="crate-odds"></ul>
+      </div>
+
+      <div class="opener">
+        <div class="drum" id="drum">
+          <!-- JS: .drum-item × N внутри #drum-strip, двигать transform: translateY().
+               Высота элемента = CSS-переменная --drum-h (96px). Выигрыш встаёт по центру окна. -->
+          <div class="drum-strip" id="drum-strip"></div>
+          <i class="drum-mark" aria-hidden="true"></i>
+        </div>
+        <div class="drop" id="drop" hidden>
+          <!-- JS заполняет; .stamp получает data-rarity -->
+          <canvas class="drop-art" id="drop-art" width="640" height="260"></canvas>
+          <span class="stamp" id="drop-stamp" data-rarity="1">Серийная</span>
+          <b class="drop-name" id="drop-name"></b>
+          <span class="drop-meta" id="drop-meta"></span>
+        </div>
+        <div class="opener-actions">
+          <button class="btn btn-go" id="btn-open">Вскрыть за <span id="open-price">0</span></button>
+          <button class="btn" id="btn-sell" hidden>Продать за <span id="sell-price">0</span></button>
+          <button class="btn" id="btn-equip" hidden>Надеть</button>
+        </div>
+        <p class="note" id="open-note" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Настройки -->
+  <section class="screen" id="screen-settings">
+    <h2 class="h">Настройки</h2>
+    <div class="set-grid">
+      <div class="set-tabs" role="tablist">
+        <button role="tab" data-pane="mouse" aria-selected="true">Мышь</button>
+        <button role="tab" data-pane="keys" aria-selected="false">Клавиши</button>
+        <button role="tab" data-pane="cross" aria-selected="false">Прицел</button>
+        <button role="tab" data-pane="video" aria-selected="false">Графика</button>
+        <button role="tab" data-pane="audio" aria-selected="false">Звук</button>
+      </div>
+
+      <div class="set-panes">
+        <div class="pane is-active" id="pane-mouse">
+          <label class="row"><span>Чувствительность</span><input type="range" id="set-sens" min="0.1" max="5" step="0.05" value="1.2"><output for="set-sens">1.20</output></label>
+          <label class="row"><span>Множитель в прицеле</span><input type="range" id="set-ads" min="0.2" max="1.5" step="0.05" value="0.6"><output for="set-ads">0.60</output></label>
+          <label class="row"><span>Инвертировать вертикаль</span><input type="checkbox" class="sw" id="set-invert"></label>
+        </div>
+
+        <div class="pane" id="pane-keys">
+          <!-- JS: <div class="row"><span>Вперёд</span><button class="keybind" data-action="forward">W</button></div>
+               Во время ожидания клавиши кнопке ставится .is-listening -->
+          <div id="keybinds"></div>
+          <p class="note">Нажмите на клавишу, затем на новую. Esc — отмена.</p>
+        </div>
+
+        <div class="pane" id="pane-cross">
+          <div class="ch-preview" id="ch-preview">
+            <div class="crosshair"><i class="ch-t"></i><i class="ch-b"></i><i class="ch-l"></i><i class="ch-r"></i><i class="ch-dot"></i></div>
+          </div>
+          <label class="row"><span>Цвет</span><input type="color" id="set-ch-color" value="#ffffff"></label>
+          <label class="row"><span>Длина линий</span><input type="range" id="set-ch-size" min="0" max="24" step="1" value="8"><output for="set-ch-size">8</output></label>
+          <label class="row"><span>Зазор</span><input type="range" id="set-ch-gap" min="0" max="16" step="1" value="4"><output for="set-ch-gap">4</output></label>
+          <label class="row"><span>Толщина</span><input type="range" id="set-ch-thick" min="1" max="6" step="1" value="2"><output for="set-ch-thick">2</output></label>
+          <label class="row"><span>Точка в центре</span><input type="checkbox" class="sw" id="set-ch-dot"></label>
+          <label class="row"><span>Разлёт при стрельбе</span><input type="checkbox" class="sw" id="set-ch-dynamic" checked></label>
+        </div>
+
+        <div class="pane" id="pane-video">
+          <label class="row"><span>Угол обзора</span><input type="range" id="set-fov" min="60" max="110" step="1" value="80"><output for="set-fov">80</output></label>
+          <label class="row"><span>Качество</span>
+            <select id="set-quality"><option value="low">Низкое</option><option value="medium" selected>Среднее</option><option value="high">Высокое</option></select>
+          </label>
+          <label class="row"><span>Тени</span><input type="checkbox" class="sw" id="set-shadows" checked></label>
+          <label class="row"><span>Счётчик кадров</span><input type="checkbox" class="sw" id="set-fps"></label>
+          <label class="row"><span>Оружие в левой руке</span><input type="checkbox" class="sw" id="set-lefty"></label>
+        </div>
+
+        <div class="pane" id="pane-audio">
+          <label class="row"><span>Общая громкость</span><input type="range" id="set-vol" min="0" max="1" step="0.01" value="0.7"><output for="set-vol">70</output></label>
+          <label class="row"><span>Выстрелы и шаги</span><input type="range" id="set-vol-sfx" min="0" max="1" step="0.01" value="0.9"><output for="set-vol-sfx">90</output></label>
+          <label class="row"><span>Звуки меню</span><input type="range" id="set-vol-ui" min="0" max="1" step="0.01" value="0.5"><output for="set-vol-ui">50</output></label>
+          <label class="row"><span>Щелчок при попадании</span><input type="checkbox" class="sw" id="set-hitsound" checked></label>
+        </div>
+
+        <div class="set-foot">
+          <button class="btn" id="btn-reset-settings">Сбросить настройки</button>
+          <button class="btn btn-danger" id="btn-wipe">Стереть прогресс</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="toast" id="toast" role="status" hidden></p>
+</div>
+
+<!-- Шаблон карточки раскраски (используется в арсенале, кейсах, барабане) -->
+<template id="tpl-item">
+  <button class="item" data-rarity="1">
+    <canvas class="item-art" width="240" height="96"></canvas>
+    <b class="item-name"></b>
+    <span class="item-meta"></span>
+  </button>
+</template>
+
+<!-- ======================= ИГРА ======================= -->
+<div id="game" hidden>
+  <canvas id="view"></canvas>
+
+  <div id="hud">
+    <div id="damage" aria-hidden="true"></div>
+    <div id="scope" hidden aria-hidden="true"><i></i></div>
+
+    <div class="crosshair" id="crosshair"><i class="ch-t"></i><i class="ch-b"></i><i class="ch-l"></i><i class="ch-r"></i><i class="ch-dot"></i></div>
+    <div id="hitmarker" aria-hidden="true"></div>
+
+    <div class="hud-top">
+      <!-- JS: по <i> на бойца, .is-dead у выбывших -->
+      <div class="pips pips-us" id="hud-alive-us"></div>
+      <b class="score score-us" id="hud-score-us">0</b>
+      <div class="clock"><span id="hud-timer">1:45</span><small id="hud-round">Раунд 1</small></div>
+      <b class="score score-them" id="hud-score-them">0</b>
+      <div class="pips pips-them" id="hud-alive-them"></div>
+    </div>
+
+    <!-- JS: <li class="is-mine"><b class="us">Вы</b><span>Гром</span><i class="hs"></i><b class="them">Бот Кремень</b></li> -->
+    <ul id="killfeed"></ul>
+
+    <div class="hud-bl">
+      <div class="vital"><span class="vital-n" id="hud-health">100</span><span class="vital-l">здоровье</span><i class="bar"><i id="hud-health-bar" style="--v:1"></i></i></div>
+      <div class="vital vital-armor"><span class="vital-n" id="hud-armor">0</span><span class="vital-l">броня</span><i class="bar"><i id="hud-armor-bar" style="--v:0"></i></i></div>
+    </div>
+
+    <div class="hud-br">
+      <div class="money" id="hud-money">800</div>
+      <div class="ammo"><span id="hud-ammo-mag">30</span><small id="hud-ammo-reserve">90</small></div>
+      <div class="weapon" id="hud-weapon">Гром</div>
+      <!-- JS: <li class="is-active"><kbd>1</kbd>Гром</li> -->
+      <ol class="slots" id="hud-slots"></ol>
+    </div>
+
+    <p id="hud-hint" hidden></p>
+    <div id="banner" hidden><b id="banner-title"></b><span id="banner-sub"></span></div>
+    <div id="fps" hidden>0</div>
+  </div>
+
+  <!-- Закупка -->
+  <div class="overlay" id="buy" hidden>
+    <div class="sheet">
+      <header class="sheet-head"><h2>Закупка</h2><span class="sheet-side">На счету <b id="buy-money">800</b></span></header>
+      <!-- JS: <section class="buy-col"><h3>Пистолеты</h3>
+             <button class="buy-item" data-buy="id" disabled?><kbd>1</kbd><b>Оса</b><span>200</span></button>…</section>
+           Купленному ставится .is-owned -->
+      <div class="buy-grid" id="buy-grid"></div>
+      <p class="note" id="buy-note">Закупка открыта первые секунды раунда. Закрыть — B или Esc.</p>
+    </div>
+  </div>
+
+  <!-- Таблица -->
+  <div class="overlay overlay-soft" id="scoreboard" hidden>
+    <div class="sheet">
+      <header class="sheet-head"><h2 id="sb-title">Счёт 0 : 0</h2><span class="sheet-side" id="sb-map"></span></header>
+      <!-- JS: две таблицы .sb (class="sb sb-us" / "sb sb-them"), строки tr, tr.is-me, tr.is-dead;
+           колонки: Боец, Убийства, Смерти, Счёт -->
+      <div class="sb-wrap" id="sb-wrap"></div>
+    </div>
+  </div>
+
+  <!-- Пауза -->
+  <div class="overlay" id="pause" hidden>
+    <div class="sheet sheet-narrow">
+      <h2>Пауза</h2>
+      <div class="stack">
+        <button class="btn btn-go" id="btn-resume">Вернуться в бой</button>
+        <button class="btn" id="btn-pause-settings">Настройки</button>
+        <button class="btn btn-danger" id="btn-quit">Выйти в меню</button>
+      </div>
+      <p class="note">Выход засчитает матч как незавершённый: жетоны за уже сыгранные раунды сохранятся.</p>
+    </div>
+  </div>
+
+  <!-- Клик для захвата мыши -->
+  <div class="overlay overlay-soft" id="click-to-play" hidden>
+    <button class="btn btn-go" id="btn-lock">Нажмите, чтобы захватить мышь</button>
+  </div>
+
+  <!-- Итог матча -->
+  <div class="overlay" id="matchend" hidden>
+    <div class="sheet sheet-narrow">
+      <span class="stamp" id="end-stamp" data-result="win">Победа</span>
+      <h2 id="end-score">8 : 5</h2>
+      <!-- JS: <div><dt>Убийства</dt><dd>14</dd></div> -->
+      <dl class="tally" id="end-tally"></dl>
+      <p class="reward">Заработано жетонов: <b id="end-reward">0</b></p>
+      <div class="stack">
+        <button class="btn btn-go" id="btn-again">Сыграть ещё</button>
+        <button class="btn" id="btn-end-cases">К кейсам</button>
+        <button class="btn" id="btn-end-menu">В меню</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
