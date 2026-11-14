@@ -807,6 +807,7 @@
     if (!G) return;
     var was = G.locked;
     G.locked = document.pointerLockElement === G.canvas;
+    if (was && !G.locked) G.unlockAt = performance.now();
     if (G.locked) { $('click-to-play').hidden = true; G.expectUnlock = false; }
     else if (was && !G.expectUnlock && !G.paused && !G.over && !G.buyOpen && needLock()) openPause();
     G.expectUnlock = false;
@@ -818,6 +819,8 @@
     var now = performance.now();
     if (G.lastLockFail && now - G.lastLockFail < 150) return; // promise rejection + error event for one request
     G.lastLockFail = now;
+    // Chrome refuses a re-lock for ~1 s after the user left it: transient, just show the prompt
+    if (G.unlockAt && now - G.unlockAt < 2500) { if (!G.paused && !G.over) $('click-to-play').hidden = G.buyOpen; return; }
     G.lockFails = (G.lockFails || 0) + 1;
     var g = typeof gesture === 'boolean' ? gesture : !!G.lockGesture;
     if (g || G.lockFails >= 2) { enableDragLook(); return; }
@@ -908,7 +911,7 @@
       b.querySelector('span').textContent = RZ.fmt(price);
     }
     var left = G.phase === 'freeze' ? G.phaseT + BUY_WINDOW : Math.max(0, BUY_WINDOW - (ROUND_TIME - G.phaseT));
-    $('buy-note').textContent = 'Закупка открыта ещё ' + Math.ceil(left) + ' с. Цифры — быстрая покупка. Закрыть — ' + RZ.keyLabel(S().keys.buy) + ' или Esc.';
+    $('buy-note').textContent = 'Закупка открыта ещё ' + Math.ceil(left) + ' с. ' + (G.touchMode ? 'Коснитесь предмета, чтобы купить.' : 'Цифры — быстрая покупка. Закрыть — ' + RZ.keyLabel(S().keys.buy) + ' или Esc.');
   }
   function showScore(on) {
     if (!G || !G.hud) return;
