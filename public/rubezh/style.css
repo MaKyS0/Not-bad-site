@@ -446,3 +446,90 @@ select { padding: 8px 10px; border: 2px solid var(--ink); background: var(--pape
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* ======================= СЕНСОРНОЕ УПРАВЛЕНИЕ =======================
+   Кнопки — кольца мишени: меловой контур, полупрозрачная тушь. Огонь — красный. */
+#game { touch-action: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+#touch {
+  --t-scale: 1; --t: calc(58px * var(--t-scale));
+  --sl: env(safe-area-inset-left, 0px); --sr: env(safe-area-inset-right, 0px); --sb: env(safe-area-inset-bottom, 0px); --st: env(safe-area-inset-top, 0px);
+  position: absolute; inset: 0; z-index: 5; touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.t-zone { position: absolute; top: 0; bottom: 0; }
+.t-zone-move { left: 0; width: 42%; }
+.t-zone-look { right: 0; width: 58%; }
+
+.t-stick {
+  position: absolute; left: calc(var(--sl) + 34px + var(--t)); top: calc(100% - var(--sb) - 40px - var(--t));
+  width: calc(var(--t) * 2.2); height: calc(var(--t) * 2.2); margin: calc(var(--t) * -1.1);
+  border: 2px solid rgba(244, 238, 221, .5); border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, transparent 0 62%, rgba(23, 20, 15, .28) 63%);
+  opacity: .55; transition: opacity .12s;
+}
+.t-stick.is-on { opacity: 1; }
+.t-stick i {
+  position: absolute; left: 50%; top: 50%; width: var(--t); height: var(--t); margin: calc(var(--t) / -2);
+  border-radius: 50%; background: rgba(244, 238, 221, .82); box-shadow: 0 0 0 2px rgba(23, 20, 15, .55);
+}
+
+.t-btn, .t-chip {
+  position: absolute; display: grid; place-items: center; padding: 0; touch-action: none;
+  color: var(--chalk); background: rgba(23, 20, 15, .46); border: 2px solid rgba(244, 238, 221, .72);
+}
+.t-btn { width: var(--t); height: var(--t); border-radius: 50%; }
+.t-btn svg, .t-chip svg { width: 52%; height: 52%; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.t-btn svg .fill { fill: currentColor; stroke: none; }
+.t-btn.is-on, .t-chip.is-on { background: var(--chalk); color: var(--ink); transform: scale(.94); }
+.t-btn:focus-visible, .t-chip:focus-visible { outline: 0; }
+
+/* правый кластер: огонь под большим пальцем, остальное веером вокруг */
+.t-fire   { width: calc(var(--t) * 1.5); height: calc(var(--t) * 1.5); right: calc(var(--sr) + 26px + var(--t) * .9); bottom: calc(var(--sb) + 30px + var(--t) * .5);
+            background: rgba(210, 53, 26, .78); border-color: var(--chalk); }
+.t-fire.is-on { background: var(--red); color: var(--chalk); }
+.t-jump   { right: calc(var(--sr) + 18px); bottom: calc(var(--sb) + 30px + var(--t) * 1.75); }
+.t-aim    { right: calc(var(--sr) + 26px + var(--t) * 1.25); bottom: calc(var(--sb) + 30px + var(--t) * 2.25); }
+.t-crouch { right: calc(var(--sr) + 18px); bottom: calc(var(--sb) + 22px); }
+.t-reload { right: calc(var(--sr) + 26px + var(--t) * 2.65); bottom: calc(var(--sb) + 22px); }
+.t-swap   { right: calc(var(--sr) + 26px + var(--t) * 2.65); bottom: calc(var(--sb) + 30px + var(--t) * 1.25); }
+
+.t-top { position: absolute; top: calc(var(--st) + 10px); left: calc(var(--sl) + 12px); display: flex; gap: 8px; }
+.t-chip { position: static; min-width: 44px; height: 40px; padding: 0 12px; border-radius: 2px; font: 700 14px var(--display); }
+.t-chip svg { width: 20px; height: 20px; }
+.t-chip[hidden] { display: none; }
+
+/* зеркальная раскладка */
+#touch.is-mirror .t-zone-move { left: auto; right: 0; } #touch.is-mirror .t-zone-look { right: auto; left: 0; }
+#touch.is-mirror .t-stick { left: auto; right: calc(var(--sr) + 34px + var(--t)); margin-right: calc(var(--t) * -1.1); }
+#touch.is-mirror .t-fire   { right: auto; left: calc(var(--sl) + 26px + var(--t) * .9); }
+#touch.is-mirror .t-jump   { right: auto; left: calc(var(--sl) + 18px); }
+#touch.is-mirror .t-aim    { right: auto; left: calc(var(--sl) + 26px + var(--t) * 1.25); }
+#touch.is-mirror .t-crouch { right: auto; left: calc(var(--sl) + 18px); }
+#touch.is-mirror .t-reload { right: auto; left: calc(var(--sl) + 26px + var(--t) * 2.65); }
+#touch.is-mirror .t-swap   { right: auto; left: calc(var(--sl) + 26px + var(--t) * 2.65); }
+#touch.is-mirror .t-top { left: auto; right: calc(var(--sr) + 12px); }
+
+/* HUD на сенсоре: углы заняты пальцами, показатели уходят в нижний центр */
+body.is-touch .hud-bl { left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 8px); transform: translateX(-104%) scale(.58); transform-origin: bottom right; }
+body.is-touch .hud-br { right: auto; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 8px); transform: translateX(4%) scale(.58); transform-origin: bottom left; justify-items: start; }
+body.is-touch .slots, body.is-touch #fps { display: none; }
+body.is-touch .hud-top { top: calc(env(safe-area-inset-top, 0px) + 8px); transform: translateX(-50%) scale(.8); transform-origin: top center; }
+body.is-touch #killfeed { top: calc(env(safe-area-inset-top, 0px) + 8px); right: calc(env(safe-area-inset-right, 0px) + 10px); font-size: 12px; max-width: 34vw; }
+body.is-touch #hud-hint { bottom: auto; top: 26%; font-size: 13px; }
+body.is-touch #banner { top: 16%; padding: 8px 22px 10px; } body.is-touch #banner b { font-size: 24px; }
+body.is-touch .overlay { padding: 10px; place-items: start center; }
+body.is-touch .sheet { padding: 16px 18px 18px; margin-block: auto; }
+body.is-touch .sheet h2 { font-size: 26px; margin-bottom: 12px; }
+body.is-touch .buy-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 12px; }
+body.is-touch .buy-item { padding: 8px; min-height: 44px; } body.is-touch .buy-item kbd { display: none; }
+body.is-touch .buy-item { grid-template-columns: 1fr auto; }
+body.is-touch #scoreboard { pointer-events: auto; }
+
+#rotate { position: fixed; inset: 0; z-index: 80; margin: 0; display: grid; place-items: center; padding: 24px; text-align: center;
+  background: var(--ink); color: var(--paper-hi); font: 700 22px var(--display); }
+
+@media (max-width: 860px) {
+  #topbar { flex-wrap: wrap; row-gap: 6px; padding-top: calc(env(safe-area-inset-top, 0px) + 10px); }
+  .tabs { order: 3; flex-basis: 100%; }
+  .who { margin-left: auto; }
+  .tab { padding: 10px 12px; }
+}

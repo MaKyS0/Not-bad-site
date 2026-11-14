@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Рубеж — тактический тир</title>
 <meta name="description" content="Браузерный тактический шутер: раунды против ботов, закупка, кейсы и настройки.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -192,6 +192,7 @@
         <button role="tab" data-pane="cross" aria-selected="false">Прицел</button>
         <button role="tab" data-pane="video" aria-selected="false">Графика</button>
         <button role="tab" data-pane="audio" aria-selected="false">Звук</button>
+        <button role="tab" data-pane="touch" aria-selected="false">Сенсор</button>
       </div>
 
       <div class="set-panes">
@@ -228,6 +229,17 @@
           <label class="row"><span>Тени</span><input type="checkbox" class="sw" id="set-shadows" checked></label>
           <label class="row"><span>Счётчик кадров</span><input type="checkbox" class="sw" id="set-fps"></label>
           <label class="row"><span>Оружие в левой руке</span><input type="checkbox" class="sw" id="set-lefty"></label>
+        </div>
+
+        <div class="pane" id="pane-touch">
+          <label class="row"><span>Сенсорные кнопки в бою</span>
+            <select id="set-touch-mode"><option value="auto" selected>Авто</option><option value="on">Всегда</option><option value="off">Никогда</option></select>
+          </label>
+          <label class="row"><span>Скорость обзора пальцем</span><input type="range" id="set-touch-sens" min="0.2" max="3" step="0.05" value="1"><output for="set-touch-sens">1.00</output></label>
+          <label class="row"><span>Размер кнопок</span><input type="range" id="set-touch-size" min="0.7" max="1.4" step="0.05" value="1"><output for="set-touch-size">1.00</output></label>
+          <label class="row"><span>Огонь сам, когда прицел на противнике</span><input type="checkbox" class="sw" id="set-touch-autofire"></label>
+          <label class="row"><span>Кнопки огня слева, джойстик справа</span><input type="checkbox" class="sw" id="set-touch-mirror"></label>
+          <p class="note">Левый палец ведёт бойца, правый крутит обзор. Кнопку огня можно зажать и вести — прицел продолжит двигаться.</p>
         </div>
 
         <div class="pane" id="pane-audio">
@@ -297,6 +309,30 @@
     <div id="banner" hidden><b id="banner-title"></b><span id="banner-sub"></span></div>
     <div id="fps" hidden>0</div>
   </div>
+
+  <!-- Сенсорное управление. JS показывает слой (hidden=false) и ставит body.is-touch на сенсорных экранах.
+       #t-move — левая зона: палец ставит джойстик (#t-stick получает left/top в px и .is-on, #t-knob — transform).
+       #t-look — правая зона: ведение пальцем крутит обзор. Кнопки лежат поверх зон; нажатой кнопке ставится .is-on.
+       Размер кнопок — CSS-переменная --t-scale на #touch. -->
+  <div id="touch" hidden>
+    <div class="t-zone t-zone-move" id="t-move"></div>
+    <div class="t-zone t-zone-look" id="t-look"></div>
+    <div class="t-stick" id="t-stick"><i id="t-knob"></i></div>
+
+    <div class="t-top">
+      <button class="t-chip" id="t-buy">Закупка</button>
+      <button class="t-chip" id="t-score">Счёт</button>
+      <button class="t-chip" id="t-pause" aria-label="Пауза"><svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg></button>
+    </div>
+
+    <button class="t-btn t-fire" id="t-fire" aria-label="Огонь"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.2" class="fill"/></svg></button>
+    <button class="t-btn t-aim" id="t-aim" aria-label="Прицел или сильный удар"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/></svg></button>
+    <button class="t-btn t-jump" id="t-jump" aria-label="Прыжок"><svg viewBox="0 0 24 24"><path d="M5 14l7-7 7 7M5 20l7-7 7 7"/></svg></button>
+    <button class="t-btn t-crouch" id="t-crouch" aria-label="Присесть"><svg viewBox="0 0 24 24"><path d="M5 6l7 7 7-7M4 19h16"/></svg></button>
+    <button class="t-btn t-reload" id="t-reload" aria-label="Перезарядка"><svg viewBox="0 0 24 24"><path d="M19 12a7 7 0 1 1-2.2-5.1M19 4v4h-4"/></svg></button>
+    <button class="t-btn t-swap" id="t-swap" aria-label="Сменить оружие"><svg viewBox="0 0 24 24"><path d="M4 8h14l-3-3M20 16H6l3 3"/></svg></button>
+  </div>
+  <p id="rotate" hidden>Поверните телефон горизонтально</p>
 
   <!-- Закупка -->
   <div class="overlay" id="buy" hidden>
