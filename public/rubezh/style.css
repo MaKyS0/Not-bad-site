@@ -533,3 +533,28 @@ body.is-touch #scoreboard { pointer-events: auto; }
   .who { margin-left: auto; }
   .tab { padding: 10px 12px; }
 }
+
+/* дополнения JS: прокрутка листов на сенсоре, вторая ступень подтверждения */
+.overlay { touch-action: pan-y; }
+.btn-danger.is-armed { background: var(--red-lo); color: var(--chalk); }
+.buy-close { display: none; }
+body.is-touch .buy-close { display: inline-flex; min-height: 40px; padding: 6px 14px; margin-left: auto; }
+/* зеркальная раскладка: лента убийств уходит от кнопок-чипов */
+body.is-touch.touch-mirror #killfeed { right: auto; left: calc(env(safe-area-inset-left, 0px) + 10px); justify-items: start; }
+/* низкий экран (телефон лёжа): итог матча и закупка помещаются без прокрутки */
+@media (max-height: 520px) {
+  #matchend .sheet { padding: 14px 18px 16px; }
+  #matchend .stamp { font-size: 18px; margin-bottom: 6px; }
+  #end-score { font-size: 40px !important; margin-bottom: 8px !important; }
+  #matchend .tally { grid-template-columns: repeat(6, minmax(0, 1fr)); padding: 8px 0; margin-bottom: 10px; }
+  #matchend .tally dd { font-size: 20px; }
+  #matchend .reward { margin-bottom: 10px; }
+  #matchend .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  #matchend .stack .btn { min-height: 42px; padding: 8px 10px; font-size: 15px; }
+  #matchend .sheet-narrow { width: min(100%, 620px); }
+  body.is-touch #buy .sheet-head { margin-bottom: 10px; }
+  body.is-touch .buy-col { gap: 5px; }
+  body.is-touch .buy-item { min-height: 40px; padding: 6px 8px; }
+  body.is-touch #buy-note { margin-top: 8px; font-size: 12px; }
+}
+#menu { -webkit-tap-highlight-color: transparent; }

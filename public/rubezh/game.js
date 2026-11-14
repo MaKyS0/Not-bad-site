@@ -677,16 +677,52 @@
   }
   function act(a) { var k = S().keys; return keys[k[a]] || (RZ.ALT_KEYS[a] && codeToAction[RZ.ALT_KEYS[a]] === a && keys[RZ.ALT_KEYS[a]]); }
   function playerInput(f) {
+    var T = G.touchMode ? G.touch : null;
     var fw = (act('forward') ? 1 : 0) - (act('back') ? 1 : 0), st = (act('right') ? 1 : 0) - (act('left') ? 1 : 0);
+    // touch joystick: analog vector (magnitude < 1 means slower)
+    if (T && (T.mx || T.mz)) { fw = T.mz; st = T.mx; }
     var cy = Math.cos(f.yaw), sy = Math.sin(f.yaw);
     var blocked = G.buyOpen || G.over;
     f.wishX = blocked ? 0 : -sy * fw + cy * st; f.wishZ = blocked ? 0 : -cy * fw - sy * st;
-    f.wantWalk = !!act('walk'); f.wantCrouch = !!act('crouch');
+    f.wantWalk = !!act('walk') || !!(T && T.walk); f.wantCrouch = !!act('crouch') || !!(T && T.crouch);
     if (pressed.jump) { f.wantJump = true; pressed.jump = false; }
-    var looking = G.locked || G.test;
-    f.wantFire = !blocked && looking && mouse[0];
-    f.wantAlt = !blocked && looking && mouse[2];
-    f.wantReload = !!pressed.reload; pressed.reload = false;
+    if (T && T.jumpP) { f.wantJump = true; T.jumpP = false; }
+    var looking = G.locked || G.test || G.touchMode || G.dragLook;
+    f.wantFire = !blocked && looking && (mouse[0] || !!(T && T.fire));
+    f.wantAlt = !blocked && looking && (mouse[2] || !!(T && T.alt));
+    f.wantReload = !!pressed.reload || !!(T && T.reloadP); pressed.reload = false;
+    if (T) T.reloadP = false;
+    if (T && T.autofire && !f.wantFire && !blocked && G.phase !== 'freeze' && autoFireTarget(f)) {
+      var w = f.weapon();
+      // semi/bolt/pump need separate presses: pulse the trigger
+      f.wantFire = w.def.mode === 'auto' || w.def.kind === 'melee' ? true : !f.fireHeld;
+    }
+  }
+
+  /* touch autofire: is the crosshair ray on a living, visible enemy within the weapon's effective range? */
+  var AUTO_RANGE = { osa: 24, shmel: 32, shershen: 26, taran: 13, grom: 55, vihr: 48, igla: 140, knife: 1.9 };
+  function autoFireTarget(f) {
+    var w = f.weapon(); if (!w) return false;
+    if (w.def.kind === 'gun' && (w.reloadT > 0 || (w.mag === 0 && w.reserve === 0))) return false;
+    // where the next bullet will go (full pattern offset / kick), so bursts stop when they'd climb off the target
+    var op = f.punchP, oy = f.punchY;
+    if (w.def.pattern) { var pp = w.def.pattern[Math.min(w.def.pattern.length - 1, Math.floor(w.sprayIdx))]; var sc = f.crouchT > 0.6 ? RZ.SPRAY.crouchScale : 1; op = pp[0] * sc; oy = pp[1] * sc; }
+    var py = f.pitch + op, yw = f.yaw - oy;
+    var cp = Math.cos(py), dx = -Math.sin(yw) * cp, dy = Math.sin(py), dz = -Math.cos(yw) * cp;
+    var ey = f.y + f.eyeH(), range = AUTO_RANGE[w.id] || 30;
+    var tW = G.world.raycast(f.x, ey, f.z, dx, dy, dz, range, null);
+    for (var i = 0; i < G.fighters.length; i++) {
+      var g = G.fighters[i];
+      if (!g.alive || g.team === f.team) continue;
+      if (rayFighter(g, f.x, ey, f.z, dx, dy, dz, tW)) return true;
+    }
+    return false;
+  }
+  /* camera kick currently shown to the player: [pitch, yaw] */
+  function viewKick(p, w) {
+    var kp = p.punchP, ky = p.punchY;
+    if (w && w.def.pattern) { var pa = patternAt(w.def, w.sprayIdx); if (pa) { kp = pa[0] * RZ.SPRAY.viewFrac; ky = pa[1] * RZ.SPRAY.viewFrac; } else { kp = 0; ky = 0; } }
+    return [kp, ky];
   }
 
   function onKeyDown(e) {
@@ -729,17 +765,29 @@
     if (codeToAction[e.code] === 'score') showScore(false);
   }
   function onMouseDown(e) {
-    if (!G || e.target !== G.canvas && e.target !== document.body && e.target.id !== 'hud') return;
+    if (!G || G.touchMode || e.target !== G.canvas && e.target !== document.body && e.target.id !== 'hud') return;
     A.init();
-    if (!G.locked && !G.test && !G.over && !G.paused && !G.buyOpen) { lockPointer(); return; }
+    if (!G.locked && needLock() && !G.over && !G.paused && !G.buyOpen) { lockPointer(); return; }
     if (!G.player.alive && G.phase !== 'freeze') { cycleSpec(); return; }
     mouse[e.button] = true;
   }
   function onMouseUp(e) { if (G) mouse[e.button] = false; }
   function onMouseMove(e) {
-    if (!G || !G.locked || G.paused || G.over) return;
-    look(e.movementX || 0, e.movementY || 0);
+    if (!G || G.paused || G.over) return;
+    if (G.locked) look(e.movementX || 0, e.movementY || 0);
+    else if (G.dragLook && !G.touchMode && (e.buttons & 3) && !G.buyOpen) look(e.movementX || 0, e.movementY || 0);
   }
+  /* finger look: a full-width swipe turns about 180° at sensitivity 1 */
+  function lookTouch(dx, dy) {
+    var p = G.player;
+    if (!p.alive || G.autoplay || G.paused || G.over) return;
+    var s = S(), k = Math.PI / Math.max(320, window.innerWidth) * s.touchSens * (p.scopedNow() ? s.ads * 0.45 : 1);
+    p.yaw -= dx * k;
+    p.pitch = clamp(p.pitch - dy * k * (s.invert ? -1 : 1), -1.52, 1.52);
+    G.swayX += dx * 0.0004; G.swayY += dy * 0.0004;
+  }
+  /* pointer lock is wanted only for mouse play with the API available */
+  function needLock() { return G && !G.test && !G.touchMode && !G.dragLook; }
   function look(mx, my) {
     var p = G.player;
     if (!p.alive || G.autoplay) return;
@@ -751,7 +799,7 @@
     G.swayX += mx * 0.00025; G.swayY += my * 0.00025;
   }
   function onWheel(e) {
-    if (!G || !G.locked || G.paused || !G.player.alive || G.autoplay) return;
+    if (!G || !(G.locked || G.dragLook) || G.touchMode || G.paused || !G.player.alive || G.autoplay) return;
     var p = G.player, order = [1, 2, 3], i = order.indexOf(p.slot), dir = e.deltaY > 0 ? 1 : -1;
     for (var k = 1; k <= 3; k++) { var s = order[(i + dir * k + 9) % 3]; if (p.weapons[s]) { switchSlot(p, s); break; } }
   }
@@ -760,25 +808,45 @@
     var was = G.locked;
     G.locked = document.pointerLockElement === G.canvas;
     if (G.locked) { $('click-to-play').hidden = true; G.expectUnlock = false; }
-    else if (was && !G.expectUnlock && !G.paused && !G.over && !G.buyOpen && !G.test) openPause();
+    else if (was && !G.expectUnlock && !G.paused && !G.over && !G.buyOpen && needLock()) openPause();
     G.expectUnlock = false;
   }
-  function onLockError() { if (G && !G.test && !G.paused && !G.over) $('click-to-play').hidden = G.buyOpen; }
+  /* gesture === true: the request came with user activation, so the API itself is refused
+     (e.g. a sandboxed frame) — switch to click-and-drag look instead of nagging */
+  function onLockError(gesture) {
+    if (!G || !needLock()) return;
+    var now = performance.now();
+    if (G.lastLockFail && now - G.lastLockFail < 150) return; // promise rejection + error event for one request
+    G.lastLockFail = now;
+    G.lockFails = (G.lockFails || 0) + 1;
+    var g = typeof gesture === 'boolean' ? gesture : !!G.lockGesture;
+    if (g || G.lockFails >= 2) { enableDragLook(); return; }
+    if (!G.paused && !G.over) $('click-to-play').hidden = G.buyOpen;
+  }
+  function enableDragLook() {
+    G.dragLook = true;
+    $('click-to-play').hidden = true;
+    if (G.hud) { setHint('Мышь не захвачена: обзор — ведите с зажатой кнопкой'); G.hintHold = 5; }
+  }
   function onBlur() { keys = {}; mouse[0] = mouse[2] = false; if (G) showScore(false); }
   function onVisibility() { if (document.hidden && G && !G.paused && !G.over && !G.test) openPause(); }
   function onResize() { if (G) resize(); }
   function onContext(e) { if (G) e.preventDefault(); }
-  function onBeforeUnload(e) { if (G && !G.over && !G.test) { e.preventDefault(); e.returnValue = ''; } }
+  /* desktop guard against an accidental Ctrl+W while crouching; sandboxed frames ignore it (harmless no-op) */
+  function onBeforeUnload(e) { if (G && !G.over && !G.test && !G.touchMode) { e.preventDefault(); e.returnValue = ''; } }
 
   function lockPointer() {
-    if (!G || G.test) return;
+    if (!needLock()) return;
+    var gesture = !!(navigator.userActivation && navigator.userActivation.isActive);
+    G.lockGesture = gesture;
+    if (typeof G.canvas.requestPointerLock !== 'function') { enableDragLook(); return; }
     try {
       var pr = G.canvas.requestPointerLock();
-      if (pr && pr.catch) pr.catch(function () { onLockError(); });
-    } catch (err) { onLockError(); }
+      if (pr && typeof pr.catch === 'function') pr.catch(function () { onLockError(gesture); });
+    } catch (err) { onLockError(gesture); }
   }
   function unlockPointer() {
-    if (document.pointerLockElement) { G.expectUnlock = true; document.exitPointerLock(); }
+    if (document.pointerLockElement && document.exitPointerLock) { G.expectUnlock = true; try { document.exitPointerLock(); } catch (e) { /* ignore */ } }
   }
 
   /* ================================================================== */
@@ -795,7 +863,7 @@
     if (!G) return;
     G.paused = false; $('pause').hidden = true;
     G.last = performance.now();
-    if (!G.test) { lockPointer(); if (!G.locked) $('click-to-play').hidden = false; }
+    if (needLock()) { lockPointer(); if (!G.locked && needLock()) $('click-to-play').hidden = false; }
   }
   function openBuy() {
     if (!buyAllowed()) { if (G.hud) { setHint('Закупка закрыта'); G.hintHold = 1.2; } return; }
@@ -805,8 +873,8 @@
   function closeBuy(relock) {
     if (!G || !G.buyOpen) return;
     G.buyOpen = false; $('buy').hidden = true;
-    if (relock && !G.test && !G.paused) { lockPointer(); }
-    if (!G.test && !G.paused && !G.over) setTimeout(function () { if (G && !G.locked && !G.paused && !G.over && !G.buyOpen) $('click-to-play').hidden = false; }, 250);
+    if (relock && needLock() && !G.paused) { lockPointer(); }
+    if (needLock() && !G.paused && !G.over) setTimeout(function () { if (G && needLock() && !G.locked && !G.paused && !G.over && !G.buyOpen) $('click-to-play').hidden = false; }, 250);
   }
   function buildBuy() {
     var grid = $('buy-grid'); grid.innerHTML = '';
@@ -1069,9 +1137,8 @@
       var ix = p.px + (p.x - p.px) * alpha, iy = p.py + (p.y - p.py) * alpha, iz = p.pz + (p.z - p.pz) * alpha;
       var eh = p.alive ? p.eyeH() : Math.max(0.35, p.eyeH() - G.deathT * 1.2);
       cam.position.set(ix, iy + eh, iz);
-      var w = p.weapon(), kp = p.punchP, ky = p.punchY;
-      if (w && w.def.pattern) { var pa = patternAt(w.def, w.sprayIdx); if (pa) { var sc = RZ.SPRAY.viewFrac; kp = pa[0] * sc; ky = pa[1] * sc; } }
-      cam.rotation.set(p.pitch + kp, p.yaw - ky, p.alive ? 0 : Math.min(0.5, G.deathT * 0.6), 'YXZ');
+      var vk = viewKick(p, p.weapon());
+      cam.rotation.set(p.pitch + vk[0], p.yaw - vk[1], p.alive ? 0 : Math.min(0.5, G.deathT * 0.6), 'YXZ');
       G.cameraOwner = p;
     } else {
       // spectate a living ally (third-person chase)
@@ -1148,9 +1215,9 @@
     if (G.hintHold <= 0) {
       var hint = null;
       if (!p.alive) {
-        hint = G.spec ? 'Наблюдение: ' + G.spec.name + ' · клик — следующий' : 'Вы выбыли до конца раунда';
-      } else if (buyAllowed() && !G.buyOpen) hint = RZ.keyLabel(S().keys.buy) + ' — закупка';
-      else if (w && w.def.kind === 'gun' && w.mag === 0 && w.reserve === 0) hint = 'Патроны кончились — ' + RZ.keyLabel(S().keys.pistol) + ' пистолет, ' + RZ.keyLabel(S().keys.knife) + ' нож';
+        hint = G.spec ? 'Наблюдение: ' + G.spec.name + (G.touchMode ? ' · касание — следующий' : ' · клик — следующий') : 'Вы выбыли до конца раунда';
+      } else if (buyAllowed() && !G.buyOpen) hint = G.touchMode ? 'Закупка открыта — кнопка «Закупка»' : RZ.keyLabel(S().keys.buy) + ' — закупка';
+      else if (w && w.def.kind === 'gun' && w.mag === 0 && w.reserve === 0) hint = G.touchMode ? 'Патроны кончились — смените оружие' : 'Патроны кончились — ' + RZ.keyLabel(S().keys.pistol) + ' пистолет, ' + RZ.keyLabel(S().keys.knife) + ' нож';
       else if (G.phase === 'post') hint = G.matchOver ? 'Матч окончен' : 'Следующий раунд через ' + Math.ceil(G.phaseT) + ' с';
       if (G.autoplay) hint = (hint ? hint + ' · ' : '') + 'автопилот';
       setHint(hint);
@@ -1205,7 +1272,8 @@
     var dt = Math.min(0.1, Math.max(0, (now - G.last) / 1000));
     G.last = now;
     if (document.hidden) return;
-    if (!G.paused && !G.frozen) {
+    if (G.touchMode && RZ.Touch) RZ.Touch.update(G, dt);
+    if (!G.paused && !G.frozen && !G.rotateBlock) {
       G.acc += dt * G.timeScale;
       var n = 0;
       while (G.acc >= TICK && n < 10) { tick(TICK); G.acc -= TICK; n++; }
@@ -1244,6 +1312,7 @@
       switchSlot: switchSlot
     };
     Game.G = G;
+    G.touchMode = !!(RZ.Touch && RZ.Touch.shouldEnable());
     Act.initShared(world.track.bind(world));
     // fighters
     var n = opts.team || 5;
@@ -1267,6 +1336,14 @@
     var vd = new THREE.DirectionalLight('#fff3df', 2.4); vd.position.set(0.5, 1, 0.3); G.vmScene.add(vd);
     G.vmRoot = new THREE.Group(); G.vmScene.add(G.vmRoot);
     buildBuy();
+    // touch: a close button in the sheet (the chip is under the overlay) and tap-outside-to-close
+    var head = document.querySelector('#buy .sheet-head');
+    if (!$('buy-close')) {
+      var bc = document.createElement('button'); bc.className = 'btn buy-close'; bc.id = 'buy-close'; bc.textContent = 'Закрыть';
+      bc.addEventListener('click', function () { if (G) closeBuy(); });
+      head.appendChild(bc);
+      $('buy').addEventListener('click', function (e) { if (G && G.touchMode && e.target === $('buy')) closeBuy(); });
+    }
     G.hudEls = {
       hp: $('hud-health'), hpBar: $('hud-health-bar'), ar: $('hud-armor'), arBar: $('hud-armor-bar'),
       hpWrap: $('hud-health').parentNode, arWrap: $('hud-armor').parentNode, money: $('hud-money'),
@@ -1292,7 +1369,8 @@
     document.addEventListener('visibilitychange', onVisibility);
     Game.active = true;
     startRound();
-    if (!G.test) { lockPointer(); setTimeout(function () { if (G && !G.locked && !G.paused && !G.over) $('click-to-play').hidden = false; }, 400); }
+    if (G.touchMode) touchOn();
+    else if (needLock()) { lockPointer(); setTimeout(function () { if (G && needLock() && !G.locked && !G.paused && !G.over) $('click-to-play').hidden = false; }, 400); }
     raf = requestAnimationFrame(frame);
   };
 
@@ -1316,7 +1394,10 @@
     if (!G) return;
     cancelAnimationFrame(raf);
     removeListeners();
-    if (document.pointerLockElement) { G.expectUnlock = true; document.exitPointerLock(); }
+    if (document.pointerLockElement && document.exitPointerLock) { G.expectUnlock = true; try { document.exitPointerLock(); } catch (e) { /* ignore */ } }
+    if (G.touchMode && RZ.Touch) RZ.Touch.detach();
+    if (G.wentFullscreen && document.fullscreenElement && document.exitFullscreen) { try { var xf = document.exitFullscreen(); if (xf && xf.catch) xf.catch(function () {}); } catch (e) { /* ignore */ } }
+    $('rotate').hidden = true;
     clearTimeout(bannerTimer);
     G.world.dispose();
     Act.disposeShared();
@@ -1368,7 +1449,44 @@
     Game.stop();
     Game.start(o);
   };
-  Game.lock = function () { lockPointer(); };
+  Game.lock = function () { if (G && G.dragLook) { $('click-to-play').hidden = true; return; } lockPointer(); };
+
+  /* ---- touch mode ---- */
+  function touchOn() {
+    G.touchMode = true;
+    $('click-to-play').hidden = true;
+    unlockPointer();
+    RZ.Touch.attach(G);
+    // try fullscreen + landscape; both may be refused (sandbox, desktop, iOS) — ignore
+    try {
+      var el = document.documentElement, rf = el.requestFullscreen || el.webkitRequestFullscreen;
+      var lockOri = function () {
+        try { if (screen.orientation && screen.orientation.lock) { var lp = screen.orientation.lock('landscape'); if (lp && lp.catch) lp.catch(function () {}); } } catch (e) { /* ignore */ }
+      };
+      if (rf && !document.fullscreenElement) {
+        var fp = rf.call(el);
+        G.wentFullscreen = true;
+        if (fp && fp.then) fp.then(lockOri, function () { G.wentFullscreen = false; });
+        else lockOri();
+      } else lockOri();
+    } catch (e) { /* ignore */ }
+  }
+  /* auto mode: the first touch during a match switches to the touch layout */
+  Game.enableTouch = function () { if (G && !G.touchMode && !G.over) touchOn(); };
+  Game.api = {
+    get G() { return G; },
+    lookTouch: function (dx, dy) { if (G) lookTouch(dx, dy); },
+    swap: function () {
+      if (!G || !G.player.alive || G.autoplay) return;
+      var p = G.player;
+      for (var k = 1; k <= 3; k++) { var sl = ((p.slot - 1 + k) % 3) + 1; if (p.weapons[sl]) { switchSlot(p, sl); return; } }
+    },
+    toggleBuy: function () { if (!G) return; if (G.buyOpen) closeBuy(); else openBuy(); },
+    toggleScore: function () { if (G) showScore(!G.scoreOn); },
+    pause: function () { openPause(); },
+    cycleSpec: function () { if (G && !G.player.alive) cycleSpec(); },
+    buyAllowed: function () { return !!G && buyAllowed(); }
+  };
   Game.isPaused = function () { return !!(G && G.paused); };
   Game.resume = function () { resume(); };
 
@@ -1381,6 +1499,7 @@
     els.forEach(function (el) { for (var k in vars) el.style.setProperty(k, vars[k]); });
     [].slice.call(document.querySelectorAll('.crosshair')).forEach(function (el) { el.classList.toggle('has-dot', !!st.chDot); });
     A.setVolumes(st.vol, st.volSfx, st.volUi);
+    if (RZ.Touch) RZ.Touch.applySettings(st);
     if (!G) return;
     rebuildKeymap();
     G.hudCache = {};

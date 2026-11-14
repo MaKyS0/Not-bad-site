@@ -299,6 +299,11 @@
     strip.innerHTML = '';
     for (var i = 0; i < N; i++) strip.appendChild(drumItem(i === win ? prize : roll(c)));
     drum.classList.remove('is-empty');
+    // narrow screens stack the drum below the contents list: bring it into view for the spin
+    var dr = drum.getBoundingClientRect();
+    if (dr.top < 0 || dr.bottom > window.innerHeight) {
+      try { drum.scrollIntoView({ block: 'center', behavior: reducedMotion() ? 'auto' : 'smooth' }); } catch (e) { drum.scrollIntoView(); }
+    }
     $('drop').hidden = true; $('btn-sell').hidden = true; $('btn-equip').hidden = true;
     $('open-note').textContent = '';
     spinning = true; $('btn-open').disabled = true;
@@ -382,7 +387,11 @@
     ['set-vol', 'vol', 'range', function (v) { return String(Math.round(v * 100)); }],
     ['set-vol-sfx', 'volSfx', 'range', function (v) { return String(Math.round(v * 100)); }],
     ['set-vol-ui', 'volUi', 'range', function (v) { return String(Math.round(v * 100)); }],
-    ['set-hitsound', 'hitsound', 'check']
+    ['set-hitsound', 'hitsound', 'check'],
+    ['set-touch-mode', 'touchMode', 'select'],
+    ['set-touch-sens', 'touchSens', 'range', function (v) { return v.toFixed(2); }],
+    ['set-touch-size', 'touchSize', 'range', function (v) { return v.toFixed(2); }],
+    ['set-touch-autofire', 'touchAutofire', 'check'], ['set-touch-mirror', 'touchMirror', 'check']
   ];
   function outputFor(id) { return document.querySelector('output[for="' + id + '"]'); }
   function syncSettings() {
@@ -418,8 +427,17 @@
     $('btn-reset-settings').addEventListener('click', function () {
       D().settings = clone(RZ.DEFAULT_SETTINGS); Store.save(true); syncSettings(); toast('Настройки сброшены');
     });
-    $('btn-wipe').addEventListener('click', function () {
-      if (!window.confirm('Стереть весь прогресс: жетоны, раскраски, статистику и настройки?')) return;
+    // two-step confirmation in the page (confirm() is unavailable in sandboxed frames)
+    var wipeBtn = $('btn-wipe'), wipeLabel = wipeBtn.textContent, wipeTimer = 0;
+    function disarmWipe() { clearTimeout(wipeTimer); wipeBtn.classList.remove('is-armed'); wipeBtn.textContent = wipeLabel; delete wipeBtn.dataset.armed; }
+    wipeBtn.addEventListener('click', function () {
+      if (!wipeBtn.dataset.armed) {
+        wipeBtn.dataset.armed = '1'; wipeBtn.classList.add('is-armed'); wipeBtn.textContent = 'Точно стереть?';
+        toast('Нажмите ещё раз, чтобы стереть жетоны, раскраски и настройки');
+        wipeTimer = setTimeout(disarmWipe, 4000);
+        return;
+      }
+      disarmWipe();
       var keepUi = D().ui.pane;
       Store.data = defaults(); Store.data.ui.pane = keepUi; Store.save(true);
       $('callsign').value = D().callsign;
@@ -512,6 +530,8 @@
   /* Boot                                                               */
   /* ================================================================== */
   function boot() {
+    // the host may strip attributes from <body>: make sure the mode hook exists
+    if (!document.body.dataset.mode) document.body.dataset.mode = 'menu';
     Store.load();
     var cs = $('callsign');
     cs.value = D().callsign;

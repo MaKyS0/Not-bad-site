@@ -347,6 +347,7 @@
     chColor: '#ffffff', chSize: 8, chGap: 4, chThick: 2, chDot: false, chDynamic: true,
     fov: 80, quality: 'medium', shadows: true, fps: false, lefty: false,
     vol: 0.7, volSfx: 0.9, volUi: 0.5, hitsound: true,
+    touchMode: 'auto', touchSens: 1, touchSize: 1, touchAutofire: false, touchMirror: false,
     keys: (function () { var k = {}; RZ.ACTIONS.forEach(function (a) { k[a[0]] = a[2]; }); return k; })()
   };
 
