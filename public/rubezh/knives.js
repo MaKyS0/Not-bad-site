@@ -25,7 +25,7 @@
   /* ---------- rest poses ---------- */
   var REST = {
     butterfly: { px: 0, py: 0.02, pz: 0, rx: 0.42, ry: 0.42, rz: -0.5, th: 0, ph: 180, ho: 0 },
-    karambit: { px: 0, py: 0.05, pz: 0.02, rx: 1.05, ry: -0.75, rz: 0.3, sp: 0, ho: 0 }
+    karambit: { px: -0.03, py: 0.06, pz: 0.0, rx: 0.7, ry: -0.5, rz: 0.95, sp: 0, ho: 0 }
   };
 
   /* ---------- animations (R = rest value of that channel) ---------- */
@@ -198,7 +198,7 @@
     rig.knife = knife; rig.blade = blade; rig.hingeB = hingeB;
     // in hand: handle A along the palm. Knife +x → view forward (-z)
     var orient = new THREE.Group(); orient.rotation.y = Math.PI / 2; orient.add(knife);
-    orient.position.set(0, 0, 0.065);   // grip centre on handle A sits at the hand
+    orient.position.set(0, 0, -0.012);  // the fist closes round the middle of the handles, pivot and blade ahead of it
     rig.orient = orient;
     return rig;
   }
@@ -240,17 +240,25 @@
     var rig = model === 'butterfly' ? buildButterfly(mats, geo, track) : buildKarambit(mats, geo, track);
     pose.add(rig.orient);
     // hand and forearm (the hand stays put while the knife moves inside it)
-    var hand = new THREE.Mesh(geo.hand, mats.glove);
-    var handBase = model === 'butterfly' ? [0.006, -0.016, 0.06] : [0.0, -0.035, 0.0];
+    // butterfly: point-forward grip round the latched handles (hand's +y runs towards the blade).
+    // karambit: reverse grip, index finger through the ring; a second, opened hand is shown while it spins.
+    var HN = geo.hands || {}, MO = RZ.Models, kind = model === 'butterfly' ? 'forward' : 'ring';
+    var hand = new THREE.Mesh(HN[kind] || geo.hand, mats.glove);
+    var ringY = 0.022, handBase = model === 'butterfly' ? [0.0, 0.0, 0.05] : [0.0, ringY - (MO ? MO.RING[1] : 0.057), 0.0];
     hand.position.set(handBase[0], handBase[1], handBase[2]);
-    // the shared glove is shaped for a vertical grip: turn it for the balisong's horizontal handle
-    var handRot = model === 'butterfly' ? [Math.PI / 2, 0, 0.25] : [0, 0, 0];
+    var handRot = model === 'butterfly' ? [-Math.PI / 2, 0, 0] : [0, 0, 0];
     hand.rotation.set(handRot[0], handRot[1], handRot[2]);
-    hand.scale.setScalar(model === 'butterfly' ? 0.82 : 0.9);
     pose.add(hand);
+    var handOpen = null;
+    if (model === 'karambit' && HN.ringOpen) {
+      handOpen = new THREE.Mesh(HN.ringOpen, mats.glove);
+      handOpen.position.copy(hand.position); handOpen.rotation.copy(hand.rotation); handOpen.visible = false;
+      pose.add(handOpen);
+    }
     var group = new THREE.Group(); group.add(pose);
     // forearm: from a fixed elbow to the wrist, re-aimed every frame so wrist rolls don't swing it around
-    var ELBOW = [0.08, -0.3, 0.38], wristLocal = new THREE.Vector3(handBase[0] + 0.004, handBase[1] - 0.012, handBase[2] + 0.045), wrist = new THREE.Vector3();
+    var ELBOW = [0.08, -0.3, 0.38], wrist = new THREE.Vector3();
+    var wristLocal = MO ? new THREE.Vector3().fromArray(MO.handWrist(kind)).applyEuler(hand.rotation).add(hand.position) : new THREE.Vector3(handBase[0] + 0.004, handBase[1] - 0.012, handBase[2] + 0.045);
     var arm = limb(group, geo.limb, mats.sleeve, ELBOW, [wristLocal.x, wristLocal.y, wristLocal.z]);
     function aimArm() {
       pose.updateMatrix();
@@ -330,9 +338,8 @@
         rig.hingeB.rotation.z = (cur.ph - 180 - cur.th) * D2R;
       } else {
         rig.pivot.rotation.z = -cur.sp * D2R;
-        // the fist opens and drops back a little while the knife spins on the finger
-        hand.position.set(handBase[0], handBase[1] - 0.03 * cur.ho, handBase[2] + 0.035 * cur.ho);
-        hand.rotation.x = handRot[0] + 0.6 * cur.ho;
+        // the ring stays on the index finger; the other fingers open while the knife spins
+        if (handOpen) { handOpen.visible = cur.ho > 0.5; hand.visible = !handOpen.visible; }
       }
     }
     C.update(0);

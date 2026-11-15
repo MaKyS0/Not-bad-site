@@ -1076,13 +1076,15 @@
     var W = RZ.WEAPONS[wid], grp = new THREE.Group();
     if (!G.vmLimbGeo) {
       G.vmLimbGeo = G.world.track(RZ.Models ? RZ.Models.vmLimbGeo() : new THREE.BoxGeometry(0.075, 0.075, 1));
-      G.vmHandGeo = G.world.track(RZ.Models ? RZ.Models.vmHandGeo() : new THREE.BoxGeometry(0.05, 0.07, 0.09));
+      G.vmHandGeo = G.world.track(RZ.Models ? RZ.Models.vmHandGeo('pistol') : new THREE.BoxGeometry(0.05, 0.07, 0.09));
+      G.vmHands = { pistol: G.vmHandGeo };
+      if (RZ.Models) ['forward', 'ring', 'ringOpen', 'support', 'pistolL'].forEach(function (k) { G.vmHands[k] = G.world.track(RZ.Models.vmHandGeo(k)); });
     }
     var KP = wid === 'knife' && paint && RZ.PAINT_BY_ID[paint];
     if (KP && KP.model && RZ.Knives) {
       // knife model with its own rig and keyframed animations (knives.js)
       var kc = RZ.Knives.buildVm(KP.model, { paint: paintMat(wid, paint), dark: M.dark, metal: M.metal, grip: M.grip, glove: M.glove, sleeve: M.sleeve },
-        { limb: G.vmLimbGeo, hand: G.vmHandGeo }, G.world.track.bind(G.world));
+        { limb: G.vmLimbGeo, hand: G.vmHandGeo, hands: G.vmHands }, G.world.track.bind(G.world));
       var kfl = new THREE.Sprite(); kfl.visible = false;
       var kent = { group: kc.group, flash: kfl, pose: KP.model === 'karambit' ? [0.15, -0.16, -0.38] : [0.14, -0.13, -0.4], wid: wid, knife: kc };
       G.vmCache[key] = kent;
@@ -1093,20 +1095,43 @@
     grp.add(gun);
     if (!G.vmLimbGeo) {
       G.vmLimbGeo = G.world.track(RZ.Models ? RZ.Models.vmLimbGeo() : new THREE.BoxGeometry(0.075, 0.075, 1));
-      G.vmHandGeo = G.world.track(RZ.Models ? RZ.Models.vmHandGeo() : new THREE.BoxGeometry(0.05, 0.07, 0.09));
+      G.vmHandGeo = G.world.track(RZ.Models ? RZ.Models.vmHandGeo('pistol') : new THREE.BoxGeometry(0.05, 0.07, 0.09));
+      G.vmHands = { pistol: G.vmHandGeo };
+      if (RZ.Models) ['forward', 'ring', 'ringOpen', 'support', 'pistolL'].forEach(function (k) { G.vmHands[k] = G.world.track(RZ.Models.vmHandGeo(k)); });
     }
-    var LG = G.vmLimbGeo, HG = G.vmHandGeo;
-    var grip = [0, -0.04, 0.01];
+    var LG = G.vmLimbGeo, HG = G.vmHandGeo, HN = G.vmHands, MO = RZ.Models;
+    // place a hand, then run the sleeve from the elbow to that hand's wrist
+    function hand(kind, pos, rx, elbow) {
+      var h = new THREE.Mesh(HN[kind] || HG, M.glove);
+      h.position.set(pos[0], pos[1], pos[2]); h.rotation.x = rx || 0; grp.add(h);
+      var w = MO ? new THREE.Vector3().fromArray(MO.handWrist(kind)).applyEuler(h.rotation).add(h.position) : new THREE.Vector3(pos[0], pos[1] - 0.01, pos[2] + 0.03);
+      vmLimb(grp, LG, M.sleeve, elbow, [w.x, w.y, w.z]);
+      return h;
+    }
     if (wid === 'knife') {
-      gun.rotation.set(0.25, 0, 0);
-      vmLimb(grp, LG, M.sleeve, [0.06, -0.3, 0.32], [0.01, -0.03, 0.06]);
+      // point-forward grip: the handle runs back from the guard, blade tilted up by the same angle
+      var tilt = 0.25; gun.rotation.set(tilt, 0, 0);
+      hand('forward', [0, -0.065 * Math.sin(tilt), 0.065 * Math.cos(tilt)], -(Math.PI / 2 - tilt), [0.07, -0.3, 0.34]);
     } else {
-      vmLimb(grp, LG, M.sleeve, [0.09, -0.32, 0.36], [0.012, -0.05, 0.04]);
-      var front = W.hold2 ? [0, W.hold2[1] * 0.01 - 0.035, -W.hold2[0] * 0.01] : [0.004, -0.088, 0.012];
-      vmLimb(grp, LG, M.sleeve, [-0.2, -0.32, 0.3], [front[0] - 0.02, front[1] - 0.02, front[2] + 0.06]);
-      var hl = new THREE.Mesh(HG, M.glove); hl.position.set(front[0] - 0.012, front[1], front[2] + 0.02); grp.add(hl);
+      // right hand on the pistol grip: centre and lean taken from the grip part of the side-view shape
+      var gp = null, gpos = [0.0, -0.045, 0.03], lean = 0.2;
+      W.shape.forEach(function (part) { if (part.p && part.m === 'grip' && !gp) gp = part.p; });
+      if (!gp && W.slot === 2) W.shape.forEach(function (part) {           // pistols: the part that reaches lowest
+        if (!part.p) return;
+        var lo = Math.min.apply(null, part.p.map(function (q) { return q[1]; }));
+        if (!gp || lo < gp.lo) { gp = part.p; gp.lo = lo; }
+      });
+      if (gp) {
+        var srt = gp.slice().sort(function (q, r) { return r[1] - q[1]; }), n = srt.length;
+        var top = [(srt[0][0] + srt[1][0]) / 2, (srt[0][1] + srt[1][1]) / 2], bot = [(srt[n - 1][0] + srt[n - 2][0]) / 2, (srt[n - 1][1] + srt[n - 2][1]) / 2];
+        var midY = Math.max(bot[1] + 4.4, Math.min(top[1] - 4.4, (top[1] + bot[1]) / 2)), u = (midY - bot[1]) / Math.max(0.01, top[1] - bot[1]);
+        gpos = [0, midY * 0.01, -(bot[0] + (top[0] - bot[0]) * u) * 0.01];
+        lean = Math.atan2(-(top[0] - bot[0]), top[1] - bot[1]);          // shape x runs towards -z
+      }
+      hand('pistol', gpos, lean, [0.09, -0.32, 0.36]);
+      if (W.hold2) hand('support', [0, W.hold2[1] * 0.01 + 0.024, -W.hold2[0] * 0.01], 0, [-0.2, -0.32, 0.3]);
+      else hand('pistolL', [gpos[0] - 0.004, gpos[1] - 0.014, gpos[2] - 0.002], lean, [-0.2, -0.32, 0.3]).scale.set(1.16, 1.0, 1.16);   // cups the right hand
     }
-    var hr = new THREE.Mesh(HG, M.glove); hr.position.set(grip[0] + 0.012, grip[1], grip[2] + 0.02); grp.add(hr);
     // muzzle flash sprite
     var mz = Act.muzzle(wid);
     if (!G.vmFlashMat) G.vmFlashMat = G.world.track(new THREE.SpriteMaterial({ map: G.world.texture(Art.sprite('flash')), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, fog: false }));

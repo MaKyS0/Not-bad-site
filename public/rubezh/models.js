@@ -22,7 +22,7 @@
       if (g.index) { var n = g.toNonIndexed(); g.dispose(); g = n; }
       var s = p.s == null ? [1, 1, 1] : typeof p.s === 'number' ? [p.s, p.s, p.s] : p.s;
       _pos.fromArray(p.p || [0, 0, 0]); _scl.fromArray(s);
-      _eul.set(p.r ? p.r[0] : 0, p.r ? p.r[1] : 0, p.r ? p.r[2] : 0); _quat.setFromEuler(_eul);
+      if (p.q) _quat.copy(p.q); else { _eul.set(p.r ? p.r[0] : 0, p.r ? p.r[1] : 0, p.r ? p.r[2] : 0); _quat.setFromEuler(_eul); }
       g.applyMatrix4(_mat.compose(_pos, _quat, _scl));
       list.push({ g: g, c: p.c || '#888888' });
       total += g.attributes.position.count;
@@ -288,17 +288,95 @@
     var cuff = cyl(0.041, 0.041, 0.07, 16); cuff.rotateX(PI / 2);
     return merge([{ g: a }, { g: cuff, p: [0, 0, 0.46] }]);
   };
-  Mo.vmHandGeo = function () {
-    var parts = [
-      { g: sph(0.04, 14, 10), s: [0.86, 1.02, 1.22] },                                // back of the hand
-      { g: sph(0.03, 10, 8), p: [0, 0.0, 0.04], s: [0.9, 1.0, 1.0] }                  // wrist
-    ];
-    for (var i = 0; i < 4; i++) {                                                     // knuckles and curled fingers
-      var y = 0.03 - i * 0.02;
-      parts.push({ g: sph(0.0125, 8, 6), p: [-0.012, y, -0.04], s: [1.1, 1, 1.3] });
-      parts.push({ g: new THREE.CapsuleGeometry(0.0105, 0.03, 3, 8), p: [-0.03, y, -0.03], r: [0, 0, PI / 2] });
+  /* ---- hands -------------------------------------------------------
+     A hand is modelled closed around a handle that runs along local +y (index finger and thumb
+     at the top, little finger at the bottom). It is a right hand: the palm sits on +x, the
+     fingers wrap round the front (-z) to the left, the thumb wraps round the near side (+z).
+     kinds:
+       pistol  – wrist leaves towards the viewer (+z): pistol grips, vertical handles
+       forward – wrist leaves past the little finger (-y): a knife held point-forward
+       ring    – pistol wrist, index finger hooked through a karambit ring at RING
+       ringOpen– same, but the other fingers and the thumb are opened so the knife can spin
+       support – left hand cradling a fore-end that runs along z, palm underneath            */
+  var UP = new THREE.Vector3(0, 1, 0), _d = new THREE.Vector3();
+  /* a chain of capsules through the points; radii per point */
+  function chain(parts, pts, radii) {
+    for (var i = 0; i < pts.length; i++) {
+      var r = radii[Math.min(i, radii.length - 1)];
+      parts.push({ g: sph(r, 8, 6), p: pts[i] });
+      if (!i) continue;
+      var a = pts[i - 1], b = pts[i], r0 = radii[Math.min(i - 1, radii.length - 1)];
+      _d.set(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
+      var len = _d.length();
+      parts.push({
+        g: new THREE.CylinderGeometry(r, r0, len, 8, 1, true),
+        p: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2],
+        q: new THREE.Quaternion().setFromUnitVectors(UP, _d.multiplyScalar(1 / (len || 1)))
+      });
     }
-    parts.push({ g: new THREE.CapsuleGeometry(0.012, 0.03, 3, 8), p: [0.012, 0.045, -0.022], r: [PI / 2, 0, 0.3] }); // thumb
+  }
+  /* point on a circle round the handle: angle 0 = palm side (+x), 90° = front (-z), 180° = left */
+  function ring(deg, rho, y) { var t = deg * PI / 180; return [rho * Math.cos(t), y, -rho * Math.sin(t)]; }
+  Mo.RING = [0, 0.067, 0];   // karambit ring centre in the hand's frame (ring axis along x)
+  var WRIST = { pistol: [0.04, -0.05, 0.1], forward: [0.046, -0.092, 0.058], ring: [0.04, -0.05, 0.1], ringOpen: [0.04, -0.05, 0.1], support: [-0.075, -0.075, 0.035], pistolL: [-0.04, -0.05, 0.1] };
+  Mo.handWrist = function (kind) { return WRIST[kind] || WRIST.pistol; };
+
+  Mo.vmHandGeo = function (kind) {
+    kind = kind || 'pistol';
+    if (kind === 'support') return supportHand();
+    if (kind === 'pistolL') return mirrorX(Mo.vmHandGeo('pistol'));
+    var parts = [], hooked = kind === 'ring' || kind === 'ringOpen', open = kind === 'ringOpen';
+    var ys = hooked ? [0, 0.008, -0.011, -0.029] : [0.03, 0.0105, -0.009, -0.0275];
+    var rs = [0.0098, 0.0102, 0.0096, 0.0085];
+    for (var i = 0; i < 4; i++) {
+      var y = ys[i], r = rs[i], pts;
+      if (hooked && i === 0) {
+        var c = Mo.RING;   // index finger through the ring, hooking down on the far side
+        pts = [[0.037, c[1] - 0.035, 0.008], [0.025, c[1] - 0.012, 0.002], [0.002, c[1], 0], [-0.02, c[1] - 0.009, 0.004], [-0.027, c[1] - 0.028, 0.012]];
+      } else if (open) {
+        pts = [[0.037, y, 0.004], [0.035, y + 0.002, -0.03], [0.031, y + 0.002, -0.056], [0.027, y, -0.078 + i * 0.006]];
+      } else {
+        pts = [ring(-30, 0.037, y), ring(30, 0.033, y), ring(95, 0.03, y), ring(155, 0.028, y), ring(i === 3 ? 182 : 205, 0.026, y)];
+      }
+      chain(parts, pts, [r * 1.12, r * 1.05, r, r * 0.95, r * 0.86]);
+    }
+    // palm and back of the hand, knuckle ridge
+    parts.push({ g: rbox(0.03, 0.09, 0.07, 0.013), p: [0.037, hooked ? -0.009 : 0.001, 0.03], r: [0, 0.12, 0] });
+    parts.push({ g: sph(0.02, 10, 7), p: [0.03, -0.03, 0.05], s: [1.1, 1.2, 1.3] });   // heel of the hand
+    // thumb: fleshy base, then two joints
+    parts.push({ g: sph(0.02, 10, 7), p: [0.026, hooked ? 0.0 : 0.012, 0.05], s: [1, 1.15, 1.1] });
+    var ty = hooked ? 0.004 : 0.018;
+    chain(parts, open ? [[0.026, ty, 0.054], [0.03, ty + 0.022, 0.05], [0.032, ty + 0.042, 0.042]]
+                      : [[0.024, ty, 0.054], [0.005, ty + 0.012, 0.043], [-0.015, ty + 0.018, 0.029]], [0.0125, 0.0115, 0.0102]);
+    // wrist stub towards the sleeve
+    var w = WRIST[kind], from = kind === 'forward' ? [0.036, -0.03, 0.038] : [0.035, -0.018, 0.056];
+    chain(parts, [from, [w[0] * 0.98, w[1], w[2]]], [0.027, 0.029]);
     return merge(parts);
   };
+  /* left-hand copy of a right-hand geometry: flip x and the triangle winding */
+  function mirrorX(g) {
+    var p = g.attributes.position.array, n = g.attributes.normal.array, c = g.attributes.color.array, i, k, t;
+    for (i = 0; i < p.length; i += 3) { p[i] = -p[i]; n[i] = -n[i]; }
+    for (i = 0; i < p.length; i += 9) for (k = 0; k < 3; k++) {
+      t = p[i + 3 + k]; p[i + 3 + k] = p[i + 6 + k]; p[i + 6 + k] = t;
+      t = n[i + 3 + k]; n[i + 3 + k] = n[i + 6 + k]; n[i + 6 + k] = t;
+      t = c[i + 3 + k]; c[i + 3 + k] = c[i + 6 + k]; c[i + 6 + k] = t;
+    }
+    return g;
+  }
+  function supportHand() {
+    // fore-end along z at the origin; palm below, fingers up the right side, thumb up the left
+    var parts = [], zs = [-0.03, -0.0105, 0.009, 0.0275], rs = [0.0098, 0.0102, 0.0096, 0.0085];
+    function at(deg, rho, z) { var t = deg * PI / 180; return [rho * Math.sin(t), -rho * Math.cos(t), z]; }
+    for (var i = 0; i < 4; i++) {
+      var r = rs[i];
+      chain(parts, [at(-20, 0.04, zs[i]), at(30, 0.038, zs[i]), at(70, 0.036, zs[i]), at(100, 0.035, zs[i]), at(i === 3 ? 112 : 124, 0.034, zs[i])], [r * 1.12, r * 1.05, r, r * 0.95, r * 0.86]);
+    }
+    parts.push({ g: rbox(0.075, 0.028, 0.09, 0.012), p: [-0.022, -0.043, 0.0], r: [0, 0, -0.18] });
+    parts.push({ g: sph(0.021, 10, 7), p: [-0.048, -0.04, 0.02], s: [1.2, 1, 1.3] });
+    chain(parts, [[-0.046, -0.03, -0.012], [-0.043, -0.006, -0.02], [-0.036, 0.014, -0.026]], [0.0125, 0.0115, 0.0102]);
+    var w = WRIST.support;
+    chain(parts, [[-0.05, -0.045, 0.012], w], [0.027, 0.029]);
+    return merge(parts);
+  }
 })();
