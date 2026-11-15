@@ -39,4 +39,15 @@ for (const u of UNIVERSITIES) {
   for (const p of u.programs || []) assert.ok(/^B\d{3}$/.test(p[0]) && p[1] && p[2] && p[3] > 0 && p[4] <= 140, `${u.name} ${p[0]}`);
 }
 for (const d of [...DIRECTIONS, ...THRESHOLDS]) assert.ok(d[0] && d[1] && d[2] > 0);
+
+// Finder: margin over last year's passing score, passing rows first.
+const { fit, finderRows } = await import('../public/mumkindik/app.js');
+assert.equal(fit('100', 90), 10);
+assert.equal(fit(90, 90), 0);
+assert.equal(fit('80', 90), -10);
+for (const bad of ['', null, 'abc', '141', '-1']) assert.equal(fit(bad, 90), null, String(bad));
+const unis = [{ name: 'A', programs: [['B001', 'a', 'a', 5, 100], ['B002', 'b', 'b', 50, 80]] }, { name: 'B', programs: [['B001', 'a', 'a', 9, 120], ['B003', 'c', 'c', 7, 60]] }, { name: 'C' }];
+assert.deepEqual(finderRows(unis, { code: '', score: '' }).map((r) => r.p[3]), [50, 9, 7, 5]); // most grants first
+assert.deepEqual(finderRows(unis, { code: 'B001', score: '' }).map((r) => r.u.name), ['B', 'A']);
+assert.deepEqual(finderRows(unis, { code: '', score: '95' }).map((r) => [r.p[0], r.gap]), [['B002', 15], ['B003', 35], ['B001', -5], ['B001', -25]]); // pass by grants, then nearest miss
 console.log('mumkindik data: ok');

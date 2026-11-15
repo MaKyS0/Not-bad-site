@@ -15,12 +15,12 @@
   --text:"PT Sans","Segoe UI",Roboto,Arial,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 var(--text)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--poppy);outline-offset:2px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
 h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;margin:0;overflow-wrap:break-word}
 
 /* hero */
@@ -36,8 +36,11 @@ h1{font-size:clamp(64px,15vw,168px);letter-spacing:-.02em;margin-top:8px}
 /* nav */
 nav{position:sticky;top:0;z-index:5;background:var(--ink)}
 nav .wrap{display:flex;gap:4px;overflow-x:auto}
-nav a{font:500 18px var(--display);color:#fff;text-decoration:none;padding:14px 16px;white-space:nowrap}
-nav a:hover{background:var(--sun);color:var(--ink)}
+nav a{color:#fff;text-decoration:none;padding:10px 20px 10px 16px;white-space:nowrap;border-bottom:4px solid transparent}
+nav a b{display:block;font:500 20px/1.2 var(--display)}
+nav a span{font-size:14px;opacity:.8}
+nav a:hover{background:#17386a}
+nav a[aria-current]{border-bottom-color:var(--sun)}
 
 section{padding:64px 0 24px}
 h2{font-size:clamp(36px,6vw,60px)}
@@ -46,13 +49,15 @@ h2{font-size:clamp(36px,6vw,60px)}
 .head svg{width:190px;height:auto}
 
 /* filters */
-form{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px 16px;padding:16px;background:var(--mist)}
+.split{display:grid;grid-template-columns:280px minmax(0,1fr);gap:40px;align-items:start}
+form{display:grid;gap:12px 16px}
+#filters{position:sticky;top:84px;padding:16px;background:var(--mist)}
 form label{display:flex;flex-direction:column;gap:4px;font-size:15px;font-weight:700}
-select,input[type=search]{font:inherit;color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:0;padding:9px 10px;min-height:44px;width:100%}
+select,input[type=search],input[type=number]{font:inherit;color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:0;padding:9px 10px;min-height:44px;width:100%}
 .checks{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 28px}
 .checks .check{flex-direction:row;align-items:center;gap:8px;font-weight:400;font-size:17px;min-height:44px;cursor:pointer}
 .check input{width:20px;height:20px;accent-color:var(--ink)}
-#found{margin:20px 0 0;font-weight:700}
+#found{margin:0;font-weight:700}
 
 /* timetable */
 #list{list-style:none;margin:8px 0 0;padding:0;border-top:4px solid var(--ink)}
@@ -72,8 +77,30 @@ select,input[type=search]{font:inherit;color:var(--ink);background:#fff;border:2
 .empty{padding:36px 0;font-size:19px}
 
 /* universities */
-#unis{display:grid;grid-template-columns:1fr 1fr;gap:36px 32px;align-items:start}
-.uni{border-top:4px solid var(--ink);padding-top:14px;min-width:0}
+.finder{display:grid;grid-template-columns:320px minmax(0,1fr);gap:40px;align-items:start;padding:24px;margin-bottom:48px;background:var(--mist)}
+.finder>div{min-width:0;overflow-x:auto;padding:5px;margin:-5px}
+.finder h3{font-size:30px}
+.finder p{margin:10px 0 16px}
+.finder table{margin-top:0;background:#fff}
+.finder th,.finder td{padding:8px 10px}
+.finder th.n,.finder td.n{padding:8px 10px}
+.finder td:nth-child(2){overflow-wrap:normal}
+.finder .code{color:var(--muted);font-size:14px}
+.finder .you{white-space:nowrap;color:var(--muted)}
+.finder .pass .you{color:var(--ink);font-weight:700;background:var(--sun)}
+.finder .fail .you{color:var(--poppy);font-weight:700}
+#finderMore{margin-top:12px;font:700 16px var(--text);color:var(--ink);background:#fff;border:2px solid var(--ink);padding:0 16px;min-height:44px;cursor:pointer}
+#unis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 32px;align-items:start}
+.uni{min-width:0;scroll-margin-top:96px}
+.uni:target{outline:4px solid var(--sun);outline-offset:8px}
+.uni figure{position:relative;margin:0 0 12px;aspect-ratio:16/10;background:var(--sky);display:grid;place-items:center;overflow:hidden}
+.uni figure span{font:700 30px/1.05 var(--display);color:#fff;text-align:center;padding:16px}
+.uni figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.uni figcaption{position:absolute;right:0;bottom:0;padding:1px 6px;font-size:12px;background:rgba(11,37,69,.75);color:#fff}
+.uni figure:not(:has(img)) figcaption{display:none}
+details{margin-top:14px;border-top:1px solid var(--mist)}
+summary{cursor:pointer;font-weight:700;padding:10px 0;min-height:44px}
+details table{margin-top:4px}
 .uni header{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .uni h3{font-size:28px}
 .uni header p{margin:0;color:var(--muted);white-space:nowrap}
@@ -93,7 +120,7 @@ td:nth-child(2),th{overflow-wrap:anywhere}
 .src{margin:10px 0 0;font-size:15px;color:var(--muted)}
 
 /* grants */
-.cols{display:grid;grid-template-columns:3fr 2fr;gap:40px;margin-top:8px}
+.cols{display:grid;grid-template-columns:5fr 4fr 4fr;gap:40px;margin-top:8px;align-items:start}
 .cols h3,.entbox h3{font-size:26px;margin-bottom:12px}
 ul.plain{list-style:none;margin:0;padding:0}
 #directions li{display:grid;grid-template-columns:1fr 84px;gap:2px 12px;align-items:center;margin-bottom:12px}
@@ -106,25 +133,40 @@ ul.plain{list-style:none;margin:0;padding:0}
 .small{color:var(--muted);font-size:16px;margin:10px 0 0}
 #entFacts{margin:0;padding-left:20px}
 #entFacts li{margin-bottom:6px}
-.entbox{margin-top:36px;padding:24px;background:var(--sun);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-.entbox svg{width:150px;height:auto}
+.entbox{padding:24px;background:var(--sun)}
+.entbox svg{width:110px;height:auto;margin-top:12px}
 
 footer{margin-top:56px;padding:28px 0 44px;background:var(--ink);color:#fff}
 footer p{margin:0 0 10px;max-width:44em}
 footer a{margin-right:16px;white-space:nowrap}
 
+@media (max-width:1100px){
+  #unis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cols{grid-template-columns:1fr 1fr}
+  .finder{grid-template-columns:minmax(0,1fr)}
+}
 @media (max-width:760px){
-  form{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr;gap:20px}
+  #filters{position:static}
   .row{grid-template-columns:84px minmax(0,1fr);gap:12px}
   .date b{font-size:20px}
   .side{grid-column:2;text-align:left}
   .prize{display:inline;margin-right:10px}
   #unis,.cols{grid-template-columns:1fr}
-  .head,.entbox{grid-template-columns:minmax(0,1fr)}
-  .head svg,.entbox svg{width:110px;grid-row:1}
+  .head{grid-template-columns:minmax(0,1fr)}
+  .head svg{width:110px;grid-row:1}
+  .finder{padding:16px}
+  /* finder rows become stacked blocks: a five-column table does not fit a phone */
+  .finder thead{display:none}
+  .finder tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;padding:10px;border-bottom:1px solid var(--mist)}
+  .finder td,.finder td.n{border:0;padding:0;text-align:left;font-weight:400}
+  .finder td:nth-child(1),.finder td:nth-child(2),.finder td.you{grid-column:1/-1}
+  .finder td:nth-child(1){font-weight:700}
+  .finder td[data-l]::before{content:attr(data-l) ": ";color:var(--muted)}
+  .finder td.you{justify-self:start;padding:2px 8px;margin-top:4px}
   table{font-size:15px}
-  th.n,td.n{padding-left:8px}
   section{padding-top:44px}
+  nav a span{display:none}
 }
 </style>
 </head>
@@ -160,9 +202,9 @@ footer a{margin-right:16px;white-space:nowrap}
 
 <nav aria-label="Разделы">
   <div class="wrap">
-    <a href="#programs" data-t="navPrograms"></a>
-    <a href="#universities" data-t="navUnis"></a>
-    <a href="#grants" data-t="navGrants"></a>
+    <a href="#programs"><b data-t="navPrograms"></b><span data-t="navProgramsHint"></span></a>
+    <a href="#universities"><b data-t="navUnis"></b><span data-t="navUnisHint"></span></a>
+    <a href="#grants"><b data-t="navGrants"></b><span data-t="navGrantsHint"></span></a>
   </div>
 </nav>
 
@@ -170,6 +212,7 @@ footer a{margin-right:16px;white-space:nowrap}
   <section id="programs">
     <h2 data-t="hPrograms"></h2>
     <p class="intro" data-t="pPrograms"></p>
+    <div class="split">
     <form id="filters">
       <label><span data-t="search"></span><input type="search" id="q" name="q"></label>
       <label><span data-t="typeLabel"></span>
@@ -194,8 +237,11 @@ footer a{margin-right:16px;white-space:nowrap}
         <label class="check"><input type="checkbox" name="open"><span data-t="open"></span></label>
       </div>
     </form>
-    <p id="found" aria-live="polite"></p>
-    <ul id="list"></ul>
+    <div>
+      <p id="found" aria-live="polite"></p>
+      <ul id="list"></ul>
+    </div>
+    </div>
   </section>
 
   <section id="universities">
@@ -212,6 +258,23 @@ footer a{margin-right:16px;white-space:nowrap}
       </svg>
     </div>
     <p class="intro" data-t="pUnis"></p>
+    <div class="finder">
+      <div>
+        <h3 data-t="hFinder"></h3>
+        <p data-t="pFinder"></p>
+        <form id="finder">
+          <label><span data-t="scoreLabel"></span><input type="number" name="score" min="0" max="140" inputmode="numeric"></label>
+          <label><span data-t="specLabel"></span><select name="code"></select></label>
+        </form>
+      </div>
+      <div>
+        <table>
+          <thead><tr><th data-t="thProgram"></th><th data-t="thUni"></th><th class="n" data-t="thGrants"></th><th class="n" data-t="thMin"></th><th data-t="thYou"></th></tr></thead>
+          <tbody id="finderBody"></tbody>
+        </table>
+        <button type="button" id="finderMore"></button>
+      </div>
+    </div>
     <div id="unis"></div>
   </section>
 
@@ -229,25 +292,26 @@ footer a{margin-right:16px;white-space:nowrap}
         <ul class="plain" id="thresholds"></ul>
         <p class="small" data-t="thresholdsNote"></p>
       </div>
-    </div>
     <div class="entbox">
-      <div>
-        <h3 data-t="hEnt"></h3>
-        <ul id="entFacts"></ul>
-      </div>
-      <!-- Illustration: answer sheet and pencil. -->
-      <svg viewBox="0 0 150 130" aria-hidden="true">
-        <rect x="14" y="6" width="96" height="118" fill="#fff" stroke="#0b2545" stroke-width="4"/>
-        <g fill="none" stroke="#0b2545" stroke-width="3">
-          <circle cx="36" cy="32" r="7"/><circle cx="62" cy="32" r="7"/><circle cx="88" cy="32" r="7"/>
-          <circle cx="36" cy="58" r="7"/><circle cx="62" cy="58" r="7"/><circle cx="88" cy="58" r="7"/>
-          <circle cx="36" cy="84" r="7"/><circle cx="62" cy="84" r="7"/><circle cx="88" cy="84" r="7"/>
-        </g>
-        <g fill="#0b2545"><circle cx="62" cy="32" r="7"/><circle cx="36" cy="58" r="7"/><circle cx="88" cy="84" r="7"/></g>
-        <path stroke="#0b2545" stroke-width="3" d="M28 106h68"/>
-        <g transform="rotate(38 118 70)"><rect x="110" y="20" width="16" height="78" fill="#d93a2b"/><path fill="#fff" stroke="#0b2545" stroke-width="2" d="M110 98h16l-8 18z"/><rect x="110" y="12" width="16" height="10" fill="#0b2545"/></g>
-      </svg>
+    <div>
+      <h3 data-t="hEnt"></h3>
+      <ul id="entFacts"></ul>
     </div>
+    <!-- Illustration: answer sheet and pencil. -->
+    <svg viewBox="0 0 150 130" aria-hidden="true">
+      <rect x="14" y="6" width="96" height="118" fill="#fff" stroke="#0b2545" stroke-width="4"/>
+      <g fill="none" stroke="#0b2545" stroke-width="3">
+        <circle cx="36" cy="32" r="7"/><circle cx="62" cy="32" r="7"/><circle cx="88" cy="32" r="7"/>
+        <circle cx="36" cy="58" r="7"/><circle cx="62" cy="58" r="7"/><circle cx="88" cy="58" r="7"/>
+        <circle cx="36" cy="84" r="7"/><circle cx="62" cy="84" r="7"/><circle cx="88" cy="84" r="7"/>
+      </g>
+      <g fill="#0b2545"><circle cx="62" cy="32" r="7"/><circle cx="36" cy="58" r="7"/><circle cx="88" cy="84" r="7"/></g>
+      <path stroke="#0b2545" stroke-width="3" d="M28 106h68"/>
+      <g transform="rotate(38 118 70)"><rect x="110" y="20" width="16" height="78" fill="#d93a2b"/><path fill="#fff" stroke="#0b2545" stroke-width="2" d="M110 98h16l-8 18z"/><rect x="110" y="12" width="16" height="10" fill="#0b2545"/></g>
+    </svg>
+  </div>
+    </div>
+
   </section>
 </main>
 

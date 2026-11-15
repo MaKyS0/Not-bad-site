@@ -137,10 +137,12 @@ export function ics(p) {
 
 // ---------- Universities ----------
 // Requirement cells: [ru, kz] or null when the source gives nothing.
+// photo: [Wikimedia Commons file name, author or null], hotlinked through Special:FilePath.
 // programs: [code, ru, kz, grants, minScore] — 2025 general grant competition (univision.kz).
 export const UNIVERSITIES = [
   {
     name: 'Nazarbayev University', city: ['Астана', 'Астана'], url: 'https://nu.edu.kz/?p=12745',
+    photo: ['Nazarbaev University Astana.JPG', 'Кондуктор-контролёр'],
     ielts: ['6.0 (Writing 6.0, остальные разделы от 5.5)', '6.0 (Writing 6.0, қалған бөлімдер 5.5-тен)'],
     sat: ['1240 или ACT 26', '1240 немесе ACT 26'],
     ent: ['85 на английском, матграмотность и чтение от 8 из 10', 'Ағылшын тілінде 85, математикалық және оқу сауаттылығы 10-нан 8'],
@@ -151,6 +153,7 @@ export const UNIVERSITIES = [
   },
   {
     name: 'Astana IT University', city: ['Астана', 'Астана'], url: 'https://univision.kz/univ/119-astana-it-university/ball',
+    photo: ['Astana IT University — Future of Digital Kazakhstan.jpg', 'Aliaskarov Danial'],
     ielts: null, sat: null,
     ent: ['Проходной на грант в 2025 году: от 70 до 126', '2025 жылы грантқа өту балы: 70-тен 126-ға дейін'],
     programs: [
@@ -181,6 +184,7 @@ export const UNIVERSITIES = [
   },
   {
     name: 'КБТУ', city: ['Алматы', 'Алматы'], url: 'https://the-tech.kz/?p=15681',
+    photo: ['Kazakh-British Technical University, Almaty (P1180218).jpg', null],
     ielts: ['5.5, либо TOEFL iBT 46, либо STEP KBTU B1', '5.5, немесе TOEFL iBT 46, немесе STEP KBTU B1'],
     sat: null,
     ent: ['Нужен сертификат ЕНТ, порог уточняйте в приёмной комиссии', 'ҰБТ сертификаты қажет, шекті балды қабылдау комиссиясынан нақтылаңыз'],
@@ -222,6 +226,7 @@ export const UNIVERSITIES = [
   {
     name: 'КазНУ им. аль-Фараби', city: ['Алматы', 'Алматы'],
     url: 'https://bes.media/news/postuplenie-v-kbtu-v-2026-godu-podrobnyy-gid-dlya-abiturientov/',
+    photo: ['Main building of KazNU.jpg', null],
     ielts: null, sat: null,
     ent: ['Порог 65 как у национального вуза, на популярные гуманитарные направления от 120', 'Ұлттық жоғары оқу орны ретінде шекті балл 65, танымал гуманитарлық бағыттарға 120-дан'],
     note: ['Платное обучение в 2026 году: от 500 тыс. до 1,9 млн ₸.', '2026 жылы ақылы оқу: 500 мыңнан 1,9 млн ₸-ге дейін.'],
@@ -240,6 +245,7 @@ export const UNIVERSITIES = [
   },
   {
     name: 'ЕНУ им. Л. Н. Гумилёва', city: ['Астана', 'Астана'], url: 'https://univision.kz/univ/23-evraziyskiy-natsionalnyy-universitet-im-l-n-gumileva/ball',
+    photo: ['L.N.Gumilyov Eurasian National University.JPG', 'ChelseaFunNumberOne'],
     ielts: null, sat: null,
     ent: ['Порог 65 как у национального вуза', 'Ұлттық жоғары оқу орны ретінде шекті балл 65'],
     programs: [
@@ -268,6 +274,7 @@ export const UNIVERSITIES = [
   },
   {
     name: 'KIMEP University', city: ['Алматы', 'Алматы'], url: 'https://www.kimep.kz/prospective-students/files/2025/08/HowToApplyRusUgradINL.pdf',
+    photo: ['KIMEP New Academic Building.jpg', null],
     ielts: ['5.5, каждый раздел от 5.0, для уровня Academic English', 'Academic English деңгейі үшін 5.5, әр бөлім 5.0-ден'],
     sat: null, ent: null,
     note: [
@@ -291,6 +298,23 @@ export const UNIVERSITIES = [
     note: ['В Астане для гранта также нужны GPA 4.0 и эссе.', 'Астанада грант үшін GPA 4.0 және эссе де қажет.'],
   },
 ];
+
+/** Margin over last year's passing score; null when the score is empty or outside 0–140. */
+export function fit(score, min) {
+  const n = score === '' || score == null ? NaN : Number(score);
+  return Number.isFinite(n) && n >= 0 && n <= 140 ? n - min : null;
+}
+
+/** Every programme row of every university, optionally one programme group.
+ *  With a score: passing rows first (most grants first), then the nearest misses. Without: most grants first. */
+export function finderRows(unis, { code, score }) {
+  const rows = unis.flatMap((u) => (u.programs || []).filter((p) => !code || p[0] === code).map((p) => ({ u, p, gap: fit(score, p[4]) })));
+  return rows.sort((a, b) => {
+    if (a.gap === null) return b.p[3] - a.p[3];
+    if ((a.gap >= 0) !== (b.gap >= 0)) return a.gap >= 0 ? -1 : 1;
+    return a.gap >= 0 ? b.p[3] - a.p[3] : b.gap - a.gap;
+  });
+}
 
 // State order 2026/27 as announced by the ministry: [ru, kz, grants].
 export const DIRECTIONS = [
@@ -318,6 +342,7 @@ const T = {
     locale: 'ru', i: 0,
     lead: 'Куда подать проект и куда поступать в Казахстане: конкурсы и акселераторы с дедлайнами, вузы с требованиями по IELTS, SAT и ЕНТ, гранты по направлениям.',
     navPrograms: 'Конкурсы', navUnis: 'Вузы', navGrants: 'ЕНТ и гранты',
+    navProgramsHint: 'куда подать проект', navUnisHint: 'требования, гранты, проходные', navGrantsHint: 'цифры 2026/27',
     hPrograms: 'Конкурсы, гранты и акселераторы',
     pPrograms: 'Наборы 2026 года в основном закрыты. Ближайшие откроются зимой и весной: строки без даты ждут объявления.',
     typeLabel: 'Тип', any: 'Все', competition: 'Конкурс', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
@@ -331,7 +356,14 @@ const T = {
     pUnis: 'Минимальные требования для бакалавриата. Гранты считаются по группам образовательных программ: конкурс идёт на группу, а не на отдельную специальность.',
     ent: 'ЕНТ', noData: 'нет данных', notReq: 'не требуется',
     thCode: 'Код', thProgram: 'Группа программ', thGrants: 'Грантов', thMin: 'Проходной',
-    tableCap: 'Общий конкурс 2025 года', source: 'Источник',
+    tableCap: 'Общий конкурс 2025 года', source: 'Источник', photoBy: 'Фото',
+    hFinder: 'Куда хватит баллов',
+    pFinder: 'Введите балл ЕНТ и выберите специальность. Сравниваем с проходными баллами на грант 2025 года: в 2026 году они могли измениться.',
+    scoreLabel: 'Мой балл ЕНТ, от 0 до 140', specLabel: 'Специальность', specAny: 'Все специальности',
+    thUni: 'Вуз', thYou: 'Ваш результат', enterScore: 'введите балл',
+    pass: (n) => (n ? `проходите, запас ${n}` : 'проходите впритык'), fail: (n) => `не хватает ${n}`,
+    showAll: (n) => `Показать все строки: ${n}`, showLess: 'Свернуть',
+    grantsDetails: (n) => `Гранты по специальностям: ${n}`,
     hGrants: 'ЕНТ и гранты 2026/27',
     pGrants: 'На 2026/27 учебный год выделено 89 457 грантов. Из них 75 371 на бакалавриат, 11 007 на магистратуру и 3 079 на докторантуру. На бакалаврские гранты подали около 127 тысяч заявлений.',
     hDirections: 'Грантов по направлениям',
@@ -347,6 +379,7 @@ const T = {
     locale: 'kk', i: 1,
     lead: 'Қазақстанда жобаны қайда тапсыруға және қайда оқуға түсуге болады: мерзімдері бар байқаулар мен акселераторлар, IELTS, SAT және ҰБТ талаптары бар жоғары оқу орындары, бағыттар бойынша гранттар.',
     navPrograms: 'Байқаулар', navUnis: 'ЖОО', navGrants: 'ҰБТ және гранттар',
+    navProgramsHint: 'жобаны қайда тапсыру', navUnisHint: 'талаптар, гранттар, өту балдары', navGrantsHint: '2026/27 сандары',
     hPrograms: 'Байқаулар, гранттар және акселераторлар',
     pPrograms: '2026 жылғы қабылдаулардың көбі жабылды. Жақын арадағылары қыста және көктемде ашылады: мерзімі жоқ жолдар хабарландыруды күтуде.',
     typeLabel: 'Түрі', any: 'Барлығы', competition: 'Байқау', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
@@ -360,7 +393,14 @@ const T = {
     pUnis: 'Бакалавриатқа қойылатын ең төменгі талаптар. Гранттар білім беру бағдарламаларының топтары бойынша есептеледі: конкурс жеке мамандыққа емес, топқа өтеді.',
     ent: 'ҰБТ', noData: 'дерек жоқ', notReq: 'қажет емес',
     thCode: 'Код', thProgram: 'Бағдарламалар тобы', thGrants: 'Грант саны', thMin: 'Өту балы',
-    tableCap: '2025 жылғы жалпы конкурс', source: 'Дереккөз',
+    tableCap: '2025 жылғы жалпы конкурс', source: 'Дереккөз', photoBy: 'Фото',
+    hFinder: 'Балым қайда жетеді',
+    pFinder: 'ҰБТ балыңызды енгізіп, мамандықты таңдаңыз. 2025 жылғы грантқа өту балдарымен салыстырамыз: 2026 жылы олар өзгеруі мүмкін.',
+    scoreLabel: 'Менің ҰБТ балым, 0-ден 140-қа дейін', specLabel: 'Мамандық', specAny: 'Барлық мамандықтар',
+    thUni: 'ЖОО', thYou: 'Сіздің нәтижеңіз', enterScore: 'балды енгізіңіз',
+    pass: (n) => (n ? `өтесіз, артық ${n} балл` : 'дәл өтесіз'), fail: (n) => `${n} балл жетпейді`,
+    showAll: (n) => `Барлық жолды көрсету: ${n}`, showLess: 'Жию',
+    grantsDetails: (n) => `Мамандықтар бойынша гранттар: ${n}`,
     hGrants: 'ҰБТ және гранттар 2026/27',
     pGrants: '2026/27 оқу жылына 89 457 грант бөлінді. Оның 75 371-і бакалавриатқа, 11 007-сі магистратураға, 3 079-ы докторантураға. Бакалавриат гранттарына шамамен 127 мың өтініш түсті.',
     hDirections: 'Бағыттар бойынша гранттар',
@@ -413,15 +453,23 @@ if (typeof document !== 'undefined') {
     $('#found').textContent = `${t.found}: ${list.length}`;
   }
 
+  const uid = (u) => `u${UNIVERSITIES.indexOf(u)}`;
+  const commons = 'https://commons.wikimedia.org/wiki/';
+
   function uni(u) {
     const t = T[lang], i = t.i;
     const cell = (label, v) => `<div class="req${v ? '' : ' none'}"><dt>${label}</dt><dd>${v ? esc(v[i]) : t.noData}</dd></div>`;
-    const table = u.programs ? `<table>
+    // No photo, or the photo fails to load: the poster with the name stays.
+    const file = u.photo && encodeURIComponent(u.photo[0].replaceAll(' ', '_'));
+    const pic = u.photo ? `<img src="${commons}Special:FilePath/${file}?width=960" alt="${esc(u.name)}" loading="lazy" onerror="this.remove()">
+      <figcaption><a href="${commons}File:${file}" target="_blank" rel="noopener">${t.photoBy}: ${esc(u.photo[1] || 'Wikimedia Commons')}${u.photo[1] ? ', Wikimedia Commons' : ''}</a></figcaption>` : '';
+    const table = u.programs ? `<details><summary>${t.grantsDetails(u.programs.length)}</summary><table>
       <caption>${t.tableCap}${u.tableUrl ? `, <a href="${esc(u.tableUrl)}" target="_blank" rel="noopener">univision.kz</a>` : ''}</caption>
       <thead><tr><th>${t.thCode}</th><th>${t.thProgram}</th><th class="n">${t.thGrants}</th><th class="n">${t.thMin}</th></tr></thead>
       <tbody>${u.programs.map((p) => `<tr><td>${p[0]}</td><td>${esc(p[1 + i])}</td><td class="n">${num(p[3])}</td><td class="n">${p[4]}</td></tr>`).join('')}</tbody>
-    </table>` : '';
-    return `<article class="uni">
+    </table></details>` : '';
+    return `<article class="uni" id="${uid(u)}">
+      <figure><span aria-hidden="true">${esc(u.name)}</span>${pic}</figure>
       <header><h3>${esc(u.name)}</h3><p>${esc(u.city[i])}</p></header>
       <dl>${cell('IELTS', u.ielts)}${cell('SAT', u.sat)}${cell(t.ent, u.ent)}</dl>
       ${u.note ? `<p class="note">${esc(u.note[i])}</p>` : ''}
@@ -430,9 +478,31 @@ if (typeof document !== 'undefined') {
     </article>`;
   }
 
+  let showAllRows = false;
+  function renderFinder() {
+    const t = T[lang], i = t.i, f = $('#finder');
+    // Rebuild the specialty list in the current language, keeping the choice.
+    const codes = new Map(UNIVERSITIES.flatMap((u) => u.programs || []).map((p) => [p[0], p[1 + i]]));
+    const chosen = f.code.value;
+    f.code.innerHTML = `<option value="">${t.specAny}</option>` + [...codes].sort((a, b) => a[1].localeCompare(b[1], t.locale))
+      .map(([c, n]) => `<option value="${c}">${esc(n)}</option>`).join('');
+    f.code.value = chosen;
+    const rows = finderRows(UNIVERSITIES, { code: f.code.value, score: f.score.value });
+    const limit = 10;
+    $('#finderBody').innerHTML = rows.slice(0, showAllRows ? rows.length : limit).map(({ u, p, gap }) => `<tr class="${gap === null ? '' : gap >= 0 ? 'pass' : 'fail'}">
+      <td>${esc(p[1 + i])} <span class="code">${p[0]}</span></td>
+      <td><a href="#${uid(u)}">${esc(u.name)}</a></td>
+      <td class="n" data-l="${t.thGrants}">${num(p[3])}</td><td class="n" data-l="${t.thMin}">${p[4]}</td>
+      <td class="you">${gap === null ? t.enterScore : gap >= 0 ? t.pass(gap) : t.fail(-gap)}</td></tr>`).join('');
+    const more = $('#finderMore');
+    more.hidden = rows.length <= limit;
+    more.textContent = showAllRows ? t.showLess : t.showAll(rows.length);
+  }
+
   function renderStatic() {
     const t = T[lang], i = t.i;
-    $('#unis').innerHTML = UNIVERSITIES.map(uni).join('');
+    // Universities with a photo first, so the grid starts with pictures.
+    $('#unis').innerHTML = [...UNIVERSITIES].sort((a, b) => !!b.photo - !!a.photo).map(uni).join('');
     const max = DIRECTIONS[0][2];
     $('#directions').innerHTML = DIRECTIONS.map((d) =>
       `<li><span class="lbl">${esc(d[i])}</span><span class="bar" style="--w:${(d[2] / max * 100).toFixed(1)}%"></span><b>${num(d[2])}</b></li>`).join('');
@@ -447,10 +517,21 @@ if (typeof document !== 'undefined') {
     document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
     renderPrograms();
     renderStatic();
+    renderFinder();
   }
 
   $('#filters').addEventListener('input', renderPrograms);
   $('#filters').addEventListener('submit', (e) => e.preventDefault());
+  $('#finder').addEventListener('input', renderFinder);
+  $('#finder').addEventListener('submit', (e) => e.preventDefault());
+  $('#finderMore').addEventListener('click', () => { showAllRows = !showAllRows; renderFinder(); });
+  // A card opened from the finder shows its grant table straight away.
+  addEventListener('hashchange', () => { const d = document.querySelector(`${location.hash || '#x'} details`); if (d) d.open = true; });
+  // Highlight the section being read in the menu.
+  const spy = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) document.querySelectorAll('nav a').forEach((a) => a.toggleAttribute('aria-current', a.hash === `#${e.target.id}`));
+  }), { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('main section').forEach((sec) => spy.observe(sec));
   document.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => {
     lang = b.dataset.lang; store.set(lang); applyLang();
   }));
