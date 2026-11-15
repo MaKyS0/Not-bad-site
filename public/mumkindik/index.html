@@ -108,14 +108,16 @@ select,input[type=search],input[type=number]{font:inherit;color:var(--ink);backg
 .uni header{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .uni h3{font-size:20px}
 .uni header p{margin:0;color:var(--muted);font-size:15px;white-space:nowrap}
-dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0 0}
-.req{padding:10px;background:var(--soft);border-radius:8px}
+/* requirements as rows: label, value, caption. Three narrow boxes broke long words mid-syllable. */
+dl{margin:14px 0 0;border-top:1px solid var(--line)}
+.req{display:grid;grid-template-columns:52px 80px minmax(0,1fr);gap:8px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
 .req dt{font-size:13px;font-weight:500;color:var(--muted)}
-.req dd{margin:0}
-.req b{display:block;font-size:24px;line-height:1.2}
-.req span{display:block;font-size:12.5px;line-height:1.3;color:var(--muted);overflow-wrap:anywhere;hyphens:auto}
+.req dd{display:contents}
+.req b{font-size:20px;line-height:1.2}
+.req span{font-size:13.5px;line-height:1.35;color:var(--muted)}
 .req.none b{color:#a3acb8}
-details{margin-top:10px;border-top:1px solid var(--line)}
+details{margin-top:6px;border-bottom:1px solid var(--line)}
+details[open]{padding-bottom:10px}
 summary{cursor:pointer;font-weight:500;padding:10px 0 2px;color:var(--accent)}
 details p{margin:8px 0 0;font-size:15px}
 table{width:100%;border-collapse:collapse;font-size:14.5px}

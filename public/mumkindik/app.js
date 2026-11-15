@@ -152,11 +152,13 @@ export const UNIVERSITIES = [
     ],
   },
   {
-    name: 'Astana IT University', city: ['Астана', 'Астана'], url: 'https://univision.kz/univ/119-astana-it-university/ball',
-    ielts: null,
-    sat: null,
-    ent: ['70–126', 'проходной на грант, 2025', 'грантқа өту балы, 2025'],
+    name: 'Astana IT University', city: ['Астана', 'Астана'], url: 'https://admission.astanait.edu.kz/',
+    fee: ['2,5 млн ₸ в год (2025/26)', 'жылына 2,5 млн ₸ (2025/26)'],
+    ielts: ['6.0', 'даёт скидку 20% на платном', 'ақылы бөлімде 20% жеңілдік береді'],
+    sat: ['—', 'принимают, переводят в баллы ЕНТ', 'қабылданады, ҰБТ балына аударылады'],
+    ent: ['80', 'платное, на грант 70 или 85; плюс экзамен AET', 'ақылы, грантқа 70 немесе 85; оған қоса AET емтиханы'],
     photo: ['Astana IT University — Future of Digital Kazakhstan.jpg', 'Aliaskarov Danial'],
+    tableUrl: 'https://univision.kz/univ/119-astana-it-university/ball',
     programs: [
       ['B057', 'Информационные технологии', 'Ақпараттық технологиялар', 1347, 80],
       ['B058', 'Информационная безопасность', 'Ақпараттық қауіпсіздік', 858, 85],
@@ -187,10 +189,10 @@ export const UNIVERSITIES = [
     ],
   },
   {
-    name: 'КБТУ', city: ['Алматы', 'Алматы'], url: 'https://the-tech.kz/?p=15681',
-    ielts: ['5.5', 'или TOEFL iBT 46, STEP KBTU B1', 'немесе TOEFL iBT 46, STEP KBTU B1'],
+    name: 'КБТУ', city: ['Алматы', 'Алматы'], url: 'https://kbtu.edu.kz/ru/shkoly/shkola-informatsionnykh-tekhnologij-i-inzhenerii/bakalavriat-shkoly-informatsionnykh-tekhnologij',
+    ielts: ['5.5', 'или TOEFL iBT 46, STEP KBTU B1, Duolingo', 'немесе TOEFL iBT 46, STEP KBTU B1, Duolingo'],
     sat: null,
-    ent: ['—', 'сертификат нужен, порог уточняйте', 'сертификат қажет, шекті нақтылаңыз'],
+    ent: ['—', 'приём по баллам ЕНТ, порог у программы свой', 'ҰБТ балы бойынша, шегі бағдарламаға байланысты'],
     photo: ['Kazakh-British Technical University, Almaty (P1180218).jpg', null],
     fee: ['1,8–3 млн ₸ в год', 'жылына 1,8–3 млн ₸'],
     note: [
@@ -211,7 +213,7 @@ export const UNIVERSITIES = [
     ],
   },
   {
-    name: 'SDU University', city: ['Каскелен', 'Қаскелең'], url: 'https://sdu.edu.kz/?p=38723',
+    name: 'SDU University', city: ['Каскелен', 'Қаскелең'], url: 'https://sdu.edu.kz/en/admission-3-2/',
     ielts: ['5.5', 'разделы от 5.0, или SDU B1', 'бөлімдер 5.0-ден, немесе SDU B1'],
     sat: null,
     ent: ['—', 'приём по результатам ЕНТ', 'қабылдау ҰБТ нәтижесі бойынша'],
@@ -266,10 +268,11 @@ export const UNIVERSITIES = [
     ],
   },
   {
-    name: 'МУИТ', city: ['Алматы', 'Алматы'], url: 'https://univision.kz/univ/85-mezhdunarodnyy-universitet-informatsionnyh-tehnologiy/ball',
-    ielts: null,
+    name: 'МУИТ', city: ['Алматы', 'Алматы'], url: 'https://iitu.edu.kz/ru/applicants/bachelor/',
+    ielts: ['5.0', 'освобождает от теста по английскому', 'ағылшын тілі тестінен босатады'],
     sat: null,
-    ent: ['71–127', 'проходной на грант, 2025', 'грантқа өту балы, 2025'],
+    ent: ['50', 'платное; на грант проходной 71–127 (2025)', 'ақылы; грантқа өту балы 71–127 (2025)'],
+    tableUrl: 'https://univision.kz/univ/85-mezhdunarodnyy-universitet-informatsionnyh-tehnologiy/ball',
     programs: [
       ['B057', 'Информационные технологии', 'Ақпараттық технологиялар', 363, 90],
       ['B058', 'Информационная безопасность', 'Ақпараттық қауіпсіздік', 287, 90],
@@ -311,10 +314,11 @@ export const UNIVERSITIES = [
   },
   {
     name: 'Narxoz University', city: ['Алматы', 'Алматы'],
-    ielts: null,
-    sat: null,
+    ielts: ['5.5', 'для программ двойного диплома', 'қос диплом бағдарламалары үшін'],
+    sat: ['—', 'принимают, переводят в баллы ЕНТ', 'қабылданады, ҰБТ балына аударылады'],
     ent: ['50', 'общий порог конкурса грантов', 'грант конкурсының жалпы шегі'],
-    url: 'https://univision.kz/univ/107-universitet-narhoz/ball',
+    url: 'https://portal.narxoz.kz/media/student_files/Admission_Rules_in_the_NJSC_Narxoz_University_of_applicants.pdf',
+    tableUrl: 'https://univision.kz/univ/107-universitet-narhoz/ball',
     programs: [
       ['B057', 'Информационные технологии', 'Ақпараттық технологиялар', 183, 105],
       ['B055', 'Математика и статистика', 'Математика және статистика', 126, 100],
@@ -358,14 +362,14 @@ export const UNIVERSITIES = [
     ],
   },
   {
-    name: 'KIMEP University', city: ['Алматы', 'Алматы'], url: 'https://www.kimep.kz/prospective-students/files/2025/08/HowToApplyRusUgradINL.pdf',
+    name: 'KIMEP University', city: ['Алматы', 'Алматы'], url: 'https://www.kimep.kz/prospective-students/kz/admission/high-school-graduates/',
     ielts: ['5.5', 'разделы от 5.0, уровень Academic English', 'бөлімдер 5.0-ден, Academic English деңгейі'],
     sat: null,
-    ent: null,
+    ent: ['50', 'общий порог, по предметам от 5', 'жалпы шек, пәндерден 5-тен'],
     photo: ['KIMEP New Academic Building.jpg', null],
     note: [
-      'С более низким баллом зачисляют на подготовительные уровни английского. Без сертификата сдают внутренний тест KEPT. Онлайн-заявки открываются 15 октября. Данные из памятки для иностранных абитуриентов.',
-      'Балл төмен болса, ағылшын тілінің дайындық деңгейлеріне қабылдайды. Сертификат болмаса, ішкі KEPT тесті тапсырылады. Онлайн өтінімдер 15 қазанда ашылады. Деректер шетелдік талапкерлерге арналған жадынамадан алынған.',
+      'С более низким баллом зачисляют на подготовительные уровни английского. Без сертификата сдают внутренний тест KEPT. Онлайн-заявки открываются 15 октября.',
+      'Балл төмен болса, ағылшын тілінің дайындық деңгейлеріне қабылдайды. Сертификат болмаса, ішкі KEPT тесті тапсырылады. Онлайн өтінімдер 15 қазанда ашылады.',
     ],
   },
   {
