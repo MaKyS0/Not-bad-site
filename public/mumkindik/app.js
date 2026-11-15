@@ -170,8 +170,10 @@ export const UNIVERSITIES = [
     name: 'Satbayev University', city: ['Алматы', 'Алматы'],
     ielts: null,
     sat: null,
-    ent: ['65', 'порог национального вуза', 'ұлттық ЖОО шегі'],
-    url: 'https://univision.kz/univ/47-kazahskiy-natsionalnyy-issledovatelskiy-tehnicheskiy-universitet-imeni-k-i-satpaeva/ball',
+    ent: ['80', 'порог вуза на грант и платное', 'ЖОО шегі: грант пен ақылы'],
+    fee: ['1,0–1,3 млн ₸ в год', 'жылына 1,0–1,3 млн ₸'],
+    url: 'https://bes.media/news/postuplenie-v-satbayev-university-v-2026-podrobnyy-gid-dlya-abiturientov/',
+    tableUrl: 'https://univision.kz/univ/47-kazahskiy-natsionalnyy-issledovatelskiy-tehnicheskiy-universitet-imeni-k-i-satpaeva/ball',
     programs: [
       ['B058', 'Информационная безопасность', 'Ақпараттық қауіпсіздік', 354, 85],
       ['B052', 'Наука о земле', 'Жер туралы ғылым', 288, 72],
@@ -190,6 +192,7 @@ export const UNIVERSITIES = [
     sat: null,
     ent: ['—', 'сертификат нужен, порог уточняйте', 'сертификат қажет, шекті нақтылаңыз'],
     photo: ['Kazakh-British Technical University, Almaty (P1180218).jpg', null],
+    fee: ['1,8–3 млн ₸ в год', 'жылына 1,8–3 млн ₸'],
     note: [
       'Школа IT и инженерии: бакалавриат 50 000 ₸ за кредит. В 2026 году открыты Game Development и Data Science and AI.',
       'IT және инженерия мектебі: бакалавриат бір кредитке 50 000 ₸. 2026 жылы Game Development және Data Science and AI ашылды.',
@@ -229,11 +232,9 @@ export const UNIVERSITIES = [
     name: 'КазНУ им. аль-Фараби', city: ['Алматы', 'Алматы'],
     ielts: null,
     sat: null,
-    ent: ['65', 'порог нацвуза, гуманитарные от 120', 'ұлттық ЖОО шегі, гуманитарлық 120-дан'],
-    url: 'https://bes.media/news/postuplenie-v-kbtu-v-2026-godu-podrobnyy-gid-dlya-abiturientov/',
+    ent: ['65', 'порог национального вуза', 'ұлттық ЖОО шегі'],
+    url: 'https://univision.kz/univ/50-kazahskiy-natsionalnyy-universitet-imeni-al-farabi/ball',
     photo: ['Main building of KazNU.jpg', null],
-    note: ['Платное обучение в 2026 году: от 500 тыс. до 1,9 млн ₸.', '2026 жылы ақылы оқу: 500 мыңнан 1,9 млн ₸-ге дейін.'],
-    tableUrl: 'https://univision.kz/univ/50-kazahskiy-natsionalnyy-universitet-imeni-al-farabi/ball',
     programs: [
       ['B050', 'Биологические и смежные науки', 'Биологиялық және сабақтас ғылымдар', 551, 81],
       ['B052', 'Наука о земле', 'Жер туралы ғылым', 400, 75],
@@ -278,6 +279,85 @@ export const UNIVERSITIES = [
     ],
   },
   {
+    name: 'КазНМУ им. Асфендиярова', city: ['Алматы', 'Алматы'],
+    ielts: null,
+    sat: null,
+    ent: ['70', 'порог для здравоохранения', 'денсаулық сақтау шегі'],
+    url: 'https://univision.kz/univ/48-kazahskiy-natsionalnyy-meditsinskiy-universitet-imeni-s-d-asfendiyarova/ball',
+    programs: [
+      ['BM086', 'Медицина', 'Медицина', 134, 124],
+      ['B072', 'Технология фармацевтического производства', 'Фармацевтикалық өндіріс технологиясы', 108, 75],
+      ['BM088', 'Педиатрия', 'Педиатрия', 81, 113],
+      ['BM089', 'Медико-профилактическое дело', 'Медициналық-профилактикалық іс', 24, 102],
+      ['B085', 'Фармация', 'Фармация', 11, 112],
+      ['B084', 'Сестринское дело', 'Мейіргер ісі', 2, 100],
+    ],
+  },
+  {
+    name: 'КазНПУ им. Абая', city: ['Алматы', 'Алматы'],
+    ielts: null,
+    sat: null,
+    ent: ['75', 'порог для педагогики, остальные 65', 'педагогика шегі, қалғандары 65'],
+    url: 'https://univision.kz/univ/55-kazahskiy-natsionalnyy-pedagogicheskiy-universitet-imeni-abaya/ball',
+    programs: [
+      ['B053', 'Химия', 'Химия', 533, 70],
+      ['B055', 'Математика и статистика', 'Математика және статистика', 334, 82],
+      ['B054', 'Физика', 'Физика', 194, 65],
+      ['B009', 'Подготовка учителей математики', 'Математика мұғалімдерін даярлау', 177, 106],
+      ['B020', 'Специальная педагогика', 'Арнайы педагогика', 150, 85],
+      ['B050', 'Биологические и смежные науки', 'Биологиялық және сабақтас ғылымдар', 132, 81],
+      ['B011', 'Подготовка учителей информатики', 'Информатика мұғалімдерін даярлау', 116, 75],
+    ],
+  },
+  {
+    name: 'Narxoz University', city: ['Алматы', 'Алматы'],
+    ielts: null,
+    sat: null,
+    ent: ['50', 'общий порог конкурса грантов', 'грант конкурсының жалпы шегі'],
+    url: 'https://univision.kz/univ/107-universitet-narhoz/ball',
+    programs: [
+      ['B057', 'Информационные технологии', 'Ақпараттық технологиялар', 183, 105],
+      ['B055', 'Математика и статистика', 'Математика және статистика', 126, 100],
+      ['B058', 'Информационная безопасность', 'Ақпараттық қауіпсіздік', 111, 100],
+      ['B091', 'Туризм', 'Туризм', 90, 100],
+      ['B090', 'Социальная работа', 'Әлеуметтік жұмыс', 87, 72],
+      ['B093', 'Ресторанное дело и гостиничный бизнес', 'Мейрамхана ісі және қонақүй бизнесі', 71, 103],
+      ['B046', 'Финансы, экономика, банковское и страховое дело', 'Қаржы, экономика, банк және сақтандыру ісі', 63, 103],
+    ],
+  },
+  {
+    name: 'АУЭС', city: ['Алматы', 'Алматы'],
+    ielts: null,
+    sat: null,
+    ent: ['50', 'общий порог конкурса грантов', 'грант конкурсының жалпы шегі'],
+    url: 'https://univision.kz/univ/9-almatinskiy-universitet-energetiki-i-svyazi/ball',
+    programs: [
+      ['B058', 'Информационная безопасность', 'Ақпараттық қауіпсіздік', 872, 71],
+      ['B162', 'Теплоэнергетика', 'Жылу энергетикасы', 200, 50],
+      ['B064', 'Механика и металлообработка', 'Механика және металл өңдеу', 185, 52],
+      ['B062', 'Электротехника и электроэнергетика', 'Электр техникасы және энергетика', 117, 56],
+      ['B059', 'Коммуникации и коммуникационные технологии', 'Коммуникациялар және коммуникациялық технологиялар', 59, 52],
+      ['B063', 'Электротехника и автоматизация', 'Электр техникасы және автоматтандыру', 44, 78],
+      ['B065', 'Транспортная техника и технологии', 'Көлік техникасы және технологиялары', 37, 51],
+    ],
+  },
+  {
+    name: 'Карагандинский университет им. Букетова', city: ['Караганда', 'Қарағанды'],
+    ielts: null,
+    sat: null,
+    ent: null,
+    url: 'https://univision.kz/univ/69-karagandinskiy-gosudarstvennyy-universitet-imeni-akademika-e-buketova/ball',
+    programs: [
+      ['B053', 'Химия', 'Химия', 114, 70],
+      ['B052', 'Наука о земле', 'Жер туралы ғылым', 68, 72],
+      ['B054', 'Физика', 'Физика', 64, 65],
+      ['B072', 'Технология фармацевтического производства', 'Фармацевтикалық өндіріс технологиясы', 30, 66],
+      ['B050', 'Биологические и смежные науки', 'Биологиялық және сабақтас ғылымдар', 29, 82],
+      ['B051', 'Окружающая среда', 'Қоршаған орта', 28, 74],
+      ['B020', 'Специальная педагогика', 'Арнайы педагогика', 25, 88],
+    ],
+  },
+  {
     name: 'KIMEP University', city: ['Алматы', 'Алматы'], url: 'https://www.kimep.kz/prospective-students/files/2025/08/HowToApplyRusUgradINL.pdf',
     ielts: ['5.5', 'разделы от 5.0, уровень Academic English', 'бөлімдер 5.0-ден, Academic English деңгейі'],
     sat: null,
@@ -311,10 +391,39 @@ export function fit(score, min) {
   return Number.isFinite(n) && n >= 0 && n <= 140 ? n - min : null;
 }
 
-/** Every programme row of every university, optionally one programme group.
+// ENT profile-subject pairs and the programme groups they open: [id, ru, kz, codes] (univision.kz).
+// Medicine is listed there as B086–B089; university tables use the BM0xx codes for the same programmes.
+export const PAIRS = [
+  ['mi', 'Математика и информатика', 'Математика және информатика', 'B011 B057 B058 B158'],
+  ['mf', 'Математика и физика', 'Математика және физика', 'B009 B010 B054 B055 B056 B059 B061 B062 B063 B064 B065 B066 B067 B069 B070 B071 B074 B076 B081 B082 B094 B097 B167 B183'],
+  ['mg', 'Математика и география', 'Математика және география', 'B038 B044 B045 B046 B047 B048 B052 B075 B095 B145'],
+  ['bc', 'Биология и химия', 'Биология және химия', 'B012 B013 B050 B053 B068 B072 B077 B078 B080 B083 B084 B085 B086 B087 B088 B089 BM086 BM088 BM089'],
+  ['cf', 'Химия и физика', 'Химия және физика', 'B060'],
+  ['bg', 'Биология и география', 'Биология және география', 'B001 B002 B003 B019 B020 B041 B051 B079 B090'],
+  ['fh', 'Иностранный язык и всемирная история', 'Шет тілі және дүниежүзі тарихы', 'B018 B035 B036 B039 B040 B135 B140'],
+  ['gf', 'География и иностранный язык', 'География және шет тілі', 'B091 B093'],
+  ['hl', 'Всемирная история и основы права', 'Дүниежүзі тарихы және құқық негіздері', 'B049 B096'],
+  ['hg', 'Всемирная история и география', 'Дүниежүзі тарихы және география', 'B008 B014 B015 B032 B034 B134'],
+  ['kk', 'Казахский язык и литература', 'Қазақ тілі мен әдебиеті', 'B016'],
+  ['rr', 'Русский язык и литература', 'Орыс тілі мен әдебиеті', 'B017'],
+  ['kr', 'Казахский или русский язык и литература', 'Қазақ немесе орыс тілі мен әдебиеті', 'B037 B043'],
+  ['cr', 'Творческий экзамен', 'Шығармашылық емтихан', 'B004 B005 B006 B007 B021 B022 B023 B024 B025 B026 B027 B028 B029 B030 B031 B033 B042 B073 B092'],
+];
+
+/** The pair of profile subjects a programme group needs, or undefined when the source lists none. */
+export const pairOf = (code) => PAIRS.find((x) => x[3].split(' ').includes(code));
+
+/** Grants and passing-score range across a university's listed programme groups; null without a table. */
+export function summary(u) {
+  if (!u.programs) return null;
+  const scores = u.programs.map((x) => x[4]);
+  return { grants: u.programs.reduce((n, x) => n + x[3], 0), min: Math.min(...scores), max: Math.max(...scores) };
+}
+
+/** Every programme row of every university, optionally one programme group or one subject pair.
  *  With a score: passing rows first (most grants first), then the nearest misses. Without: most grants first. */
-export function finderRows(unis, { code, score }) {
-  const rows = unis.flatMap((u) => (u.programs || []).filter((p) => !code || p[0] === code).map((p) => ({ u, p, gap: fit(score, p[4]) })));
+export function finderRows(unis, { code, score, pair }) {
+  const rows = unis.flatMap((u) => (u.programs || []).filter((p) => (!code || p[0] === code) && (!pair || pairOf(p[0])?.[0] === pair)).map((p) => ({ u, p, gap: fit(score, p[4]) })));
   return rows.sort((a, b) => {
     if (a.gap === null) return b.p[3] - a.p[3];
     if ((a.gap >= 0) !== (b.gap >= 0)) return a.gap >= 0 ? -1 : 1;
@@ -339,6 +448,15 @@ export const THRESHOLDS = [
   ['Национальные вузы', 'Ұлттық жоғары оқу орындары', 65],
   ['Остальные вузы', 'Қалған жоғары оқу орындары', 50],
   ['Сельское хозяйство и ветеринария', 'Ауыл шаруашылығы және ветеринария', 50],
+];
+
+// Grants set aside by quota in 2026/27: [value, ru, kz] (np.kz).
+export const QUOTAS = [
+  ['2 180', 'по программе «Серпін»', '«Серпін» бағдарламасы бойынша'],
+  ['2 500', 'молодёжи западных регионов', 'батыс өңірлердің жастарына'],
+  ['3 190', 'в филиалах зарубежных вузов', 'шетелдік ЖОО филиалдарында'],
+  ['1 816', 'отслужившим срочную службу', 'мерзімді әскери қызмет өткергендерге'],
+  ['2 392', 'гранты акиматов', 'әкімдіктердің гранттары'],
 ];
 
 // How the ENT works: [value, ru, kz].
@@ -377,7 +495,12 @@ const T = {
     tableCap: 'Общий конкурс 2025 года', source: 'Источник', photoBy: 'Фото',
     grantsDetails: (n) => `Гранты по специальностям: ${n}`,
     hFinder: 'Куда хватит баллов', pFinder: 'Сравниваем с проходными на грант 2025 года. В 2026 году они могли измениться.',
-    specLabel: 'Специальность', specAny: 'Все специальности', thUni: 'Вуз', thYou: 'Ваш результат', enterScore: 'введите балл',
+    specLabel: 'Специальность', specAny: 'Все специальности', pairLabel: 'Профильные предметы', pairAny: 'Любые',
+    fee: 'Платно', compare: 'Сравнить', hCompare: 'Сравнение вузов', cmpClear: 'Очистить', cmpMax: 'Сравнить можно не больше трёх вузов.',
+    cmpPicked: (n) => `Выбрано ${n} из 3`, cmpShow: 'Показать сравнение',
+    cityLabel: 'Город', cmpGrants: 'Грантов в таблице, 2025', cmpRange: 'Проходные, 2025',
+    hQuotas: 'Квоты', quotasNote: 'Победители международных олимпиад и крупных спортивных соревнований получают грант вне конкурса.',
+    report: 'Сообщить об ошибке', updated: 'Обновлено 15 ноября 2026 года.', thUni: 'Вуз', thYou: 'Ваш результат', enterScore: 'введите балл',
     pass: (n) => (n ? `проходите, запас ${n}` : 'проходите впритык'), fail: (n) => `не хватает ${n}`,
     showAll: (n) => `Показать все строки: ${n}`, showLess: 'Свернуть',
     hGrants: 'ЕНТ и гранты 2026/27',
@@ -412,7 +535,12 @@ const T = {
     tableCap: '2025 жылғы жалпы конкурс', source: 'Дереккөз', photoBy: 'Фото',
     grantsDetails: (n) => `Мамандықтар бойынша гранттар: ${n}`,
     hFinder: 'Балым қайда жетеді', pFinder: '2025 жылғы грантқа өту балдарымен салыстырамыз. 2026 жылы олар өзгеруі мүмкін.',
-    specLabel: 'Мамандық', specAny: 'Барлық мамандықтар', thUni: 'ЖОО', thYou: 'Сіздің нәтижеңіз', enterScore: 'балды енгізіңіз',
+    specLabel: 'Мамандық', specAny: 'Барлық мамандықтар', pairLabel: 'Бейіндік пәндер', pairAny: 'Кез келген',
+    fee: 'Ақылы', compare: 'Салыстыру', hCompare: 'ЖОО-ларды салыстыру', cmpClear: 'Тазарту', cmpMax: 'Үш ЖОО-дан артық салыстыруға болмайды.',
+    cmpPicked: (n) => `3-тен ${n} таңдалды`, cmpShow: 'Салыстыруды көрсету',
+    cityLabel: 'Қала', cmpGrants: 'Кестедегі грант саны, 2025', cmpRange: 'Өту балдары, 2025',
+    hQuotas: 'Квоталар', quotasNote: 'Халықаралық олимпиадалар мен ірі спорт жарыстарының жеңімпаздары грантты конкурстан тыс алады.',
+    report: 'Қате туралы хабарлау', updated: '2026 жылғы 15 қарашада жаңартылды.', thUni: 'ЖОО', thYou: 'Сіздің нәтижеңіз', enterScore: 'балды енгізіңіз',
     pass: (n) => (n ? `өтесіз, артық ${n} балл` : 'дәл өтесіз'), fail: (n) => `${n} балл жетпейді`,
     showAll: (n) => `Барлық жолды көрсету: ${n}`, showLess: 'Жию',
     hGrants: 'ҰБТ және гранттар 2026/27',
@@ -468,6 +596,28 @@ if (typeof document !== 'undefined') {
 
   // ----- universities -----
   let city = '';
+  const picked = new Set(); // indexes of universities chosen for comparison, three at most
+  function renderCompare(full) {
+    const t = T[lang], i = t.i, us = [...picked].map((n) => UNIVERSITIES[n]);
+    const val = (v) => (v ? `<b>${esc(v[0])}</b> ${esc(v[1 + i])}` : t.noData);
+    const sum = us.map(summary);
+    const rows = [
+      [t.cityLabel, us.map((u) => esc(u.city[i]))],
+      ['IELTS', us.map((u) => val(u.ielts))], ['SAT', us.map((u) => val(u.sat))], [t.ent, us.map((u) => val(u.ent))],
+      [t.fee, us.map((u) => (u.fee ? esc(u.fee[i]) : t.noData))],
+      [t.cmpGrants, sum.map((x) => (x ? `<b>${num(x.grants)}</b>` : t.noData))],
+      [t.cmpRange, sum.map((x) => (x ? `${x.min}–${x.max}` : t.noData))],
+    ];
+    const box = $('#compare');
+    box.hidden = !us.length;
+    box.innerHTML = `<div class="cmphead"><h3>${t.hCompare}</h3><button type="button" class="ghost" id="cmpClear">${t.cmpClear}</button></div>
+      <table><thead><tr><th></th>${us.map((u) => `<th><a href="#${uid(u)}">${esc(u.name)}</a></th>`).join('')}</tr></thead>
+      <tbody>${rows.map(([k, vs]) => `<tr><th>${k}</th>${vs.map((v) => `<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    // The table sits above the cards, so a bar at the bottom of the screen says what is picked and leads to it.
+    const bar = $('#cmpBar');
+    bar.hidden = !us.length;
+    bar.innerHTML = `<span role="status">${full ? t.cmpMax : t.cmpPicked(us.length)}</span><button type="button" class="btn" id="cmpShow">${t.cmpShow}</button>`;
+  }
   function uni(u) {
     const t = T[lang], i = t.i;
     const req = (label, v) => `<div class="req${v ? '' : ' none'}"><dt>${label}</dt><dd><b>${v ? esc(v[0]) : '—'}</b><span>${v ? esc(v[1 + i]) : t.noData}</span></dd></div>`;
@@ -486,7 +636,9 @@ if (typeof document !== 'undefined') {
       <div class="pad">
         <header><h3>${esc(u.name)}</h3><p>${esc(u.city[i])}</p></header>
         <dl>${req('IELTS', u.ielts)}${req('SAT', u.sat)}${req(t.ent, u.ent)}</dl>
+        ${u.fee ? `<p class="fee">${t.fee}: <b>${esc(u.fee[i])}</b></p>` : ''}
         ${table}${note}
+        <label class="check cmp"><input type="checkbox" data-cmp="${UNIVERSITIES.indexOf(u)}"${picked.has(UNIVERSITIES.indexOf(u)) ? ' checked' : ''}><span>${t.compare}</span></label>
         <p class="src"><a href="${esc(u.url)}" target="_blank" rel="noopener">${t.source}: ${esc(new URL(u.url).hostname.replace('www.', ''))}</a></p>
       </div>
     </article>`;
@@ -501,6 +653,7 @@ if (typeof document !== 'undefined') {
     // Universities with a photo first, so the grid starts with pictures.
     $('#uniGrid').innerHTML = UNIVERSITIES.filter((u) => !city || u.city[0].includes(city))
       .sort((a, b) => !!b.photo - !!a.photo).map(uni).join('');
+    renderCompare();
   }
 
   // ----- finder -----
@@ -513,10 +666,15 @@ if (typeof document !== 'undefined') {
     f.code.innerHTML = `<option value="">${t.specAny}</option>` + [...codes].sort((a, b) => a[1].localeCompare(b[1], t.locale))
       .map(([c, n]) => `<option value="${c}">${esc(n)}</option>`).join('');
     f.code.value = chosen;
-    const rows = finderRows(UNIVERSITIES, { code: f.code.value, score: f.score.value });
+    // Only pairs that open at least one listed programme group.
+    const used = new Set(UNIVERSITIES.flatMap((u) => u.programs || []).map((p) => pairOf(p[0])?.[0]));
+    const chosenPair = f.pair.value;
+    f.pair.innerHTML = `<option value="">${t.pairAny}</option>` + PAIRS.filter((x) => used.has(x[0])).map((x) => `<option value="${x[0]}">${esc(x[1 + i])}</option>`).join('');
+    f.pair.value = chosenPair;
+    const rows = finderRows(UNIVERSITIES, { code: f.code.value, score: f.score.value, pair: f.pair.value });
     const limit = 12;
     $('#finderBody').innerHTML = rows.slice(0, showAllRows ? rows.length : limit).map(({ u, p, gap }) => `<tr class="${gap === null ? '' : gap >= 0 ? 'pass' : 'fail'}">
-      <td>${esc(p[1 + i])}</td>
+      <td>${esc(p[1 + i])}${pairOf(p[0]) ? `<span class="pair">${esc(pairOf(p[0])[1 + i])}</span>` : ''}</td>
       <td><a href="#${uid(u)}">${esc(u.name)}</a></td>
       <td class="n" data-l="${t.thGrants}">${num(p[3])}</td><td class="n" data-l="${t.thMin}">${p[4]}</td>
       <td><span class="you">${gap === null ? t.enterScore : gap >= 0 ? t.pass(gap) : t.fail(-gap)}</span></td></tr>`).join('');
@@ -531,6 +689,7 @@ if (typeof document !== 'undefined') {
     $('#directions').innerHTML = DIRECTIONS.map((d) =>
       `<li><span class="lbl">${esc(d[i])}</span><span class="bar" style="--w:${(d[2] / max * 100).toFixed(1)}%"></span><b>${num(d[2])}</b></li>`).join('');
     $('#thresholds').innerHTML = THRESHOLDS.map((d) => `<li><b>${d[2]}</b><span>${esc(d[i])}</span></li>`).join('');
+    $('#quotas').innerHTML = QUOTAS.map((d) => `<li><b>${d[0]}</b><span>${esc(d[1 + i])}</span></li>`).join('');
     $('#entFacts').innerHTML = ENT_FACTS.map((d) => `<li><b>${d[0]}</b><span>${esc(d[1 + i])}</span></li>`).join('');
   }
 
@@ -562,6 +721,16 @@ if (typeof document !== 'undefined') {
   $('#finderForm').addEventListener('input', renderFinder);
   $$('form').forEach((f) => f.addEventListener('submit', (e) => e.preventDefault()));
   $('#finderMore').addEventListener('click', () => { showAllRows = !showAllRows; renderFinder(); });
+  // Compare: tick up to three cards; a fourth tick is refused with a note.
+  $('#uniGrid').addEventListener('change', (e) => {
+    const n = Number(e.target.dataset.cmp);
+    if (!e.target.matches('[data-cmp]')) return;
+    const full = e.target.checked && picked.size >= 3;
+    if (full) e.target.checked = false; else if (e.target.checked) picked.add(n); else picked.delete(n);
+    renderCompare(full);
+  });
+  $('#compare').addEventListener('click', (e) => { if (e.target.id === 'cmpClear') { picked.clear(); renderUnis(); } });
+  $('#cmpBar').addEventListener('click', (e) => { if (e.target.id === 'cmpShow') $('#compare').scrollIntoView({ block: 'center' }); });
   $('#cities').addEventListener('click', (e) => { const b = e.target.closest('[data-city]'); if (b) { city = b.dataset.city; renderUnis(); } });
   // The score typed on the home screen opens the finder already filled in.
   $('#quick').addEventListener('submit', () => { $('#finderForm').score.value = $('#quick').score.value; renderFinder(); location.hash = 'finder'; });

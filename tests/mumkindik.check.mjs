@@ -36,7 +36,7 @@ const { UNIVERSITIES, DIRECTIONS, THRESHOLDS, ENT_FACTS } = await import('../pub
 for (const u of UNIVERSITIES) {
   assert.ok(u.name && u.city.length === 2 && u.url.startsWith('https://'), u.name);
   for (const k of ['ielts', 'sat', 'ent']) assert.ok(u[k] === null || u[k].length === 3, `${u.name} ${k}`);
-  for (const p of u.programs || []) assert.ok(/^B\d{3}$/.test(p[0]) && p[1] && p[2] && p[3] > 0 && p[4] <= 140, `${u.name} ${p[0]}`);
+  for (const p of u.programs || []) assert.ok(/^BM?\d{3}$/.test(p[0]) && p[1] && p[2] && p[3] > 0 && p[4] <= 140, `${u.name} ${p[0]}`);
 }
 for (const d of [...DIRECTIONS, ...THRESHOLDS]) assert.ok(d[0] && d[1] && d[2] > 0);
 for (const d of ENT_FACTS) assert.ok(d.length === 3 && d.every(Boolean));
@@ -51,4 +51,17 @@ const unis = [{ name: 'A', programs: [['B001', 'a', 'a', 5, 100], ['B002', 'b', 
 assert.deepEqual(finderRows(unis, { code: '', score: '' }).map((r) => r.p[3]), [50, 9, 7, 5]); // most grants first
 assert.deepEqual(finderRows(unis, { code: 'B001', score: '' }).map((r) => r.u.name), ['B', 'A']);
 assert.deepEqual(finderRows(unis, { code: '', score: '95' }).map((r) => [r.p[0], r.gap]), [['B002', 15], ['B003', 35], ['B001', -5], ['B001', -25]]); // pass by grants, then nearest miss
+
+// Profile subjects: each group code belongs to one pair; the finder filters by pair; summary adds up a table.
+const { PAIRS, pairOf, summary, QUOTAS } = await import('../public/mumkindik/app.js');
+const allCodes = PAIRS.flatMap((x) => x[3].split(' '));
+assert.equal(new Set(allCodes).size, allCodes.length, 'a code sits in two pairs');
+assert.equal(pairOf('B057')[0], 'mi');
+assert.equal(pairOf('BM086')[0], 'bc');
+assert.equal(pairOf('B999'), undefined);
+assert.deepEqual(finderRows(unis, { code: '', score: '', pair: 'mi' }), []); // B001–B003 are not maths + informatics
+assert.deepEqual(finderRows(unis, { code: '', score: '', pair: 'bg' }).map((r) => r.p[0]), ['B002', 'B001', 'B003', 'B001']);
+assert.deepEqual(summary(unis[0]), { grants: 55, min: 80, max: 100 });
+assert.equal(summary(unis[2]), null);
+for (const d of QUOTAS) assert.ok(d.length === 3 && d.every(Boolean));
 console.log('mumkindik data: ok');
