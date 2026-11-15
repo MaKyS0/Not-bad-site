@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Мүмкіндік — IT-конкурсы, гранты и акселераторы Казахстана</title>
+<meta name="description" content="Все IT-конкурсы, гранты, инкубаторы и акселераторы Казахстана в одной ленте с дедлайнами. Қазақша және орысша.">
+<style>
+:root{
+  --bg:#f6f1e7; --card:#fffdf8; --ink:#16242b; --muted:#56666d; --line:#e2d9c6;
+  --sky:#00798c; --sky-soft:#d9eff2; --sun:#e9a100; --sun-soft:#fff1c9; --off:#9aa3a6;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0f1b20; --card:#172830; --ink:#eef3f1; --muted:#a3b3b8; --line:#2a3f48;
+    --sky:#4cc6d6; --sky-soft:#17383f; --sun:#f5bd3d; --sun-soft:#3b3115; --off:#6d7d83;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{padding:28px 0 20px;border-bottom:3px solid var(--sun)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-size:clamp(34px,8vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1;margin:0;color:var(--sky)}
+.brand i{font-style:normal;color:var(--sun)}
+.tagline{margin:12px 0 0;max-width:34em;color:var(--muted);font-size:18px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+.lang button{border:0;background:none;color:var(--muted);font:inherit;font-weight:600;padding:8px 14px;min-height:44px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--sky);color:var(--bg)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px 0}
+form label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);font-weight:600}
+select,input[type=search]{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:100%}
+.q{grid-column:1/-1}
+.check{flex-direction:row;align-items:center;gap:8px;font-size:15px;color:var(--ink);min-height:44px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--sky)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+#found{margin:0 0 8px;color:var(--muted);font-size:14px}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.card{display:grid;grid-template-columns:96px 1fr;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.count{display:grid;place-items:center;font:800 40px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--sky-soft);color:var(--sky)}
+.card.open .count{background:var(--sun-soft);color:var(--sun)}
+.card.closed .count{color:var(--off)}
+.body{padding:16px 18px}
+.body p{margin:0 0 8px}
+.meta{font-size:13px;color:var(--muted)}
+.meta b{color:var(--ink)}
+.tag{display:inline-block;background:var(--sky-soft);color:var(--sky);font-weight:700;border-radius:6px;padding:1px 8px;margin-right:4px}
+h2{margin:2px 0 6px;font-size:22px;line-height:1.2;letter-spacing:-.01em}
+.when{font-weight:600}
+.card.closed .when,.card.unknown .when{color:var(--muted);font-weight:500}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0!important}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600}
+.btn.primary{background:var(--sky);border-color:var(--sky);color:var(--bg)}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+footer{padding:28px 0 40px;color:var(--muted);font-size:13px}
+@media (max-width:520px){
+  form{grid-template-columns:1fr}
+  .card{grid-template-columns:64px 1fr}
+  .count{font-size:28px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="top">
+      <h1 class="brand">Мүмкіндік<i>.</i></h1>
+      <div class="lang" role="group" aria-label="Тіл / Язык">
+        <button type="button" data-lang="kz">ҚАЗ</button>
+        <button type="button" data-lang="ru">РУС</button>
+      </div>
+    </div>
+    <p class="tagline" data-t="tagline"></p>
+  </header>
+
+  <main>
+    <form id="filters">
+      <label class="q"><input type="search" id="q" name="q" aria-label="Поиск / Іздеу"></label>
+      <label><span data-t="typeLabel"></span>
+        <select name="type">
+          <option value="" data-t="any"></option>
+          <option value="competition" data-t="competition"></option>
+          <option value="incubator" data-t="incubator"></option>
+          <option value="accelerator" data-t="accelerator"></option>
+          <option value="grant" data-t="grant"></option>
+        </select>
+      </label>
+      <label><span data-t="stageLabel"></span>
+        <select name="stage">
+          <option value="" data-t="stageAny"></option>
+          <option value="idea" data-t="idea"></option>
+          <option value="mvp" data-t="mvp"></option>
+          <option value="growth" data-t="growth"></option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" name="prize"><span data-t="prize"></span></label>
+      <label class="check"><input type="checkbox" name="open"><span data-t="open"></span></label>
+    </form>
+    <p id="found" aria-live="polite"></p>
+    <ul id="list"></ul>
+  </main>
+
+  <footer><p data-t="note"></p></footer>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
