@@ -3,77 +3,175 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Мүмкіндік — IT-конкурсы, гранты и акселераторы Казахстана</title>
-<meta name="description" content="Все IT-конкурсы, гранты, инкубаторы и акселераторы Казахстана в одной ленте с дедлайнами. Қазақша және орысша.">
+<title>Мүмкіндік: конкурсы, вузы и гранты Казахстана</title>
+<meta name="description" content="IT-конкурсы и акселераторы Казахстана с дедлайнами, вузы с требованиями IELTS, SAT и ЕНТ, количество грантов по специальностям. Қазақша және орысша.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=PT+Sans:wght@400;700&display=swap">
 <style>
 :root{
-  --bg:#f6f1e7; --card:#fffdf8; --ink:#16242b; --muted:#56666d; --line:#e2d9c6;
-  --sky:#00798c; --sky-soft:#d9eff2; --sun:#e9a100; --sun-soft:#fff1c9; --off:#9aa3a6;
-}
-@media (prefers-color-scheme:dark){
-  :root{--bg:#0f1b20; --card:#172830; --ink:#eef3f1; --muted:#a3b3b8; --line:#2a3f48;
-    --sky:#4cc6d6; --sky-soft:#17383f; --sun:#f5bd3d; --sun-soft:#3b3115; --off:#6d7d83;}
+  --sky:#0a84c6; --ink:#0b2545; --paper:#fff; --sun:#ffc629; --poppy:#d93a2b; --mist:#e6f0f8; --muted:#4a5b70;
+  --display:"Oswald","Arial Narrow","Roboto Condensed",sans-serif;
+  --text:"PT Sans","Segoe UI",Roboto,Arial,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
-header{padding:28px 0 20px;border-bottom:3px solid var(--sun)}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{font-size:clamp(34px,8vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1;margin:0;color:var(--sky)}
-.brand i{font-style:normal;color:var(--sun)}
-.tagline{margin:12px 0 0;max-width:34em;color:var(--muted);font-size:18px}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
-.lang button{border:0;background:none;color:var(--muted);font:inherit;font-weight:600;padding:8px 14px;min-height:44px;cursor:pointer}
-.lang button[aria-pressed=true]{background:var(--sky);color:var(--bg)}
-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px 0}
-form label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);font-weight:600}
-select,input[type=search]{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:100%}
-.q{grid-column:1/-1}
-.check{flex-direction:row;align-items:center;gap:8px;font-size:15px;color:var(--ink);min-height:44px;cursor:pointer}
-.check input{width:20px;height:20px;accent-color:var(--sky)}
-:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
-#found{margin:0 0 8px;color:var(--muted);font-size:14px}
-ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.card{display:grid;grid-template-columns:96px 1fr;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.count{display:grid;place-items:center;font:800 40px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--sky-soft);color:var(--sky)}
-.card.open .count{background:var(--sun-soft);color:var(--sun)}
-.card.closed .count{color:var(--off)}
-.body{padding:16px 18px}
-.body p{margin:0 0 8px}
-.meta{font-size:13px;color:var(--muted)}
-.meta b{color:var(--ink)}
-.tag{display:inline-block;background:var(--sky-soft);color:var(--sky);font-weight:700;border-radius:6px;padding:1px 8px;margin-right:4px}
-h2{margin:2px 0 6px;font-size:22px;line-height:1.2;letter-spacing:-.01em}
-.when{font-weight:600}
-.card.closed .when,.card.unknown .when{color:var(--muted);font-weight:500}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0!important}
-.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600}
-.btn.primary{background:var(--sky);border-color:var(--sky);color:var(--bg)}
-.empty{padding:40px 0;text-align:center;color:var(--muted)}
-footer{padding:28px 0 40px;color:var(--muted);font-size:13px}
-@media (max-width:520px){
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 var(--text)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--poppy);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;margin:0;overflow-wrap:break-word}
+
+/* hero */
+.hero{background:var(--sky);color:#fff;overflow:hidden}
+.hero .wrap{position:relative;padding-top:20px}
+.lang{display:flex;justify-content:flex-end;gap:4px}
+.lang button{font:700 15px var(--text);color:#fff;background:none;border:2px solid transparent;padding:8px 12px;min-height:44px;cursor:pointer}
+.lang button[aria-pressed=true]{border-color:#fff}
+h1{font-size:clamp(64px,15vw,168px);letter-spacing:-.02em;margin-top:8px}
+.lead{max-width:36em;font-size:clamp(18px,2.2vw,22px);margin:16px 0 0}
+.hero svg{display:block;width:100%;height:auto;margin-top:8px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:var(--ink)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto}
+nav a{font:500 18px var(--display);color:#fff;text-decoration:none;padding:14px 16px;white-space:nowrap}
+nav a:hover{background:var(--sun);color:var(--ink)}
+
+section{padding:64px 0 24px}
+h2{font-size:clamp(36px,6vw,60px)}
+.intro{max-width:40em;margin:14px 0 28px;font-size:19px}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+.head svg{width:190px;height:auto}
+
+/* filters */
+form{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px 16px;padding:16px;background:var(--mist)}
+form label{display:flex;flex-direction:column;gap:4px;font-size:15px;font-weight:700}
+select,input[type=search]{font:inherit;color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:0;padding:9px 10px;min-height:44px;width:100%}
+.checks{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 28px}
+.checks .check{flex-direction:row;align-items:center;gap:8px;font-weight:400;font-size:17px;min-height:44px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--ink)}
+#found{margin:20px 0 0;font-weight:700}
+
+/* timetable */
+#list{list-style:none;margin:8px 0 0;padding:0;border-top:4px solid var(--ink)}
+.row{display:grid;grid-template-columns:120px 1fr 190px;gap:20px;padding:18px 0;border-bottom:1px solid var(--ink)}
+.date b{display:block;font:700 28px/1 var(--display);white-space:nowrap}
+.date span{color:var(--muted)}
+.row h3{font-size:26px}
+.row p{margin:4px 0 0}
+.row .org{color:var(--muted)}
+.row .links{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:10px;font-weight:700}
+.side{text-align:right}
+.prize{display:block;font:700 24px/1.1 var(--display)}
+.state{display:inline-block;margin-top:6px;padding:2px 8px;background:var(--mist)}
+.row.open .state{background:var(--sun)}
+.row.open .date b{color:var(--poppy)}
+.row.closed .date b,.row.unknown .date b{color:var(--muted)}
+.empty{padding:36px 0;font-size:19px}
+
+/* universities */
+#unis{display:grid;grid-template-columns:1fr 1fr;gap:36px 32px;align-items:start}
+.uni{border-top:4px solid var(--ink);padding-top:14px;min-width:0}
+.uni header{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.uni h3{font-size:28px}
+.uni header p{margin:0;color:var(--muted);white-space:nowrap}
+dl{margin:14px 0 0}
+.req{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:8px 0;border-top:1px solid var(--mist)}
+.req dt{font:700 19px/1.3 var(--display)}
+.req dd{margin:0}
+.req.none dd{color:var(--muted)}
+.note{margin:12px 0 0;padding:10px 12px;background:var(--mist)}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:16px}
+caption{text-align:left;font-weight:700;padding-bottom:6px}
+th{text-align:left;font-weight:700;border-bottom:2px solid var(--ink);padding:4px 6px 4px 0;vertical-align:bottom}
+td{padding:6px 6px 6px 0;border-bottom:1px solid var(--mist);vertical-align:top}
+th.n,td.n{text-align:right;padding:4px 0 4px 12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.n{font-weight:700}
+td:nth-child(2),th{overflow-wrap:anywhere}
+.src{margin:10px 0 0;font-size:15px;color:var(--muted)}
+
+/* grants */
+.cols{display:grid;grid-template-columns:3fr 2fr;gap:40px;margin-top:8px}
+.cols h3,.entbox h3{font-size:26px;margin-bottom:12px}
+ul.plain{list-style:none;margin:0;padding:0}
+#directions li{display:grid;grid-template-columns:1fr 84px;gap:2px 12px;align-items:center;margin-bottom:12px}
+#directions .lbl{grid-column:1/-1}
+#directions .bar{height:22px;width:var(--w);background:var(--sky)}
+#directions li:first-child .bar{background:var(--poppy)}
+#directions b{font:700 22px var(--display);text-align:right}
+#thresholds li{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:baseline;padding:6px 0;border-top:1px solid var(--mist)}
+#thresholds b{font:700 34px/1 var(--display)}
+.small{color:var(--muted);font-size:16px;margin:10px 0 0}
+#entFacts{margin:0;padding-left:20px}
+#entFacts li{margin-bottom:6px}
+.entbox{margin-top:36px;padding:24px;background:var(--sun);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.entbox svg{width:150px;height:auto}
+
+footer{margin-top:56px;padding:28px 0 44px;background:var(--ink);color:#fff}
+footer p{margin:0 0 10px;max-width:44em}
+footer a{margin-right:16px;white-space:nowrap}
+
+@media (max-width:760px){
   form{grid-template-columns:1fr}
-  .card{grid-template-columns:64px 1fr}
-  .count{font-size:28px}
+  .row{grid-template-columns:84px minmax(0,1fr);gap:12px}
+  .date b{font-size:20px}
+  .side{grid-column:2;text-align:left}
+  .prize{display:inline;margin-right:10px}
+  #unis,.cols{grid-template-columns:1fr}
+  .head,.entbox{grid-template-columns:minmax(0,1fr)}
+  .head svg,.entbox svg{width:110px;grid-row:1}
+  table{font-size:15px}
+  th.n,td.n{padding-left:8px}
+  section{padding-top:44px}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="top">
-      <h1 class="brand">Мүмкіндік<i>.</i></h1>
-      <div class="lang" role="group" aria-label="Тіл / Язык">
-        <button type="button" data-lang="kz">ҚАЗ</button>
-        <button type="button" data-lang="ru">РУС</button>
-      </div>
+<div class="hero">
+  <div class="wrap">
+    <div class="lang" role="group" aria-label="Тіл / Язык">
+      <button type="button" data-lang="kz">Қазақша</button>
+      <button type="button" data-lang="ru">Русский</button>
     </div>
-    <p class="tagline" data-t="tagline"></p>
-  </header>
+    <h1>Мүмкіндік</h1>
+    <p class="lead" data-t="lead"></p>
+  </div>
+  <!-- Illustration: mountain range over the steppe, a paper plane carrying an application. -->
+  <svg viewBox="0 0 1200 300" role="img" aria-label="Горы и степь">
+    <circle cx="930" cy="120" r="62" fill="#ffc629"/>
+    <g stroke="#ffc629" stroke-width="7" stroke-linecap="round">
+      <path d="M930 30v-18M930 228v-18M840 120h-18M1038 120h-18M866 56l-13-13M1007 197l-13-13M994 56l13-13M853 197l13-13"/>
+    </g>
+    <path fill="#5fb3e4" d="M0 240 150 130l90 70 120-120 130 110 110-80 160 120 140-90 150 100 150-60v120H0z"/>
+    <path fill="#0b2545" d="M0 300 0 250 170 150 290 235 450 105 610 240 730 170 900 270 1040 190 1200 260v40z"/>
+    <path fill="#fff" d="M450 105 398 148l28-8 22 22 20-24 30 12zM170 150l-46 27 30-4 18 16 16-18 22 6zM730 170l-34 20 24-3 12 14 12-14 20 4zM1040 190l-36 21 26-3 12 13 12-14 22 5z"/>
+    <path fill="#ffc629" d="M0 300v-22c200-18 420-10 620 4s400 8 580-10v28z"/>
+    <g fill="#d93a2b">
+      <circle cx="120" cy="286" r="6"/><circle cx="210" cy="291" r="5"/><circle cx="345" cy="284" r="6"/><circle cx="560" cy="292" r="5"/>
+      <circle cx="770" cy="293" r="6"/><circle cx="905" cy="290" r="5"/><circle cx="1090" cy="285" r="6"/>
+    </g>
+    <path fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round" d="M250 210c120-70 230-90 330-70s170 10 230-40"/>
+    <path fill="#fff" d="M800 78 874 60 838 122 826 96z"/>
+    <path fill="#c9e3f5" d="M826 96 874 60 834 106z"/>
+  </svg>
+</div>
 
-  <main>
+<nav aria-label="Разделы">
+  <div class="wrap">
+    <a href="#programs" data-t="navPrograms"></a>
+    <a href="#universities" data-t="navUnis"></a>
+    <a href="#grants" data-t="navGrants"></a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="programs">
+    <h2 data-t="hPrograms"></h2>
+    <p class="intro" data-t="pPrograms"></p>
     <form id="filters">
-      <label class="q"><input type="search" id="q" name="q" aria-label="Поиск / Іздеу"></label>
+      <label><span data-t="search"></span><input type="search" id="q" name="q"></label>
       <label><span data-t="typeLabel"></span>
         <select name="type">
           <option value="" data-t="any"></option>
@@ -91,15 +189,78 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:13px}
           <option value="growth" data-t="growth"></option>
         </select>
       </label>
-      <label class="check"><input type="checkbox" name="prize"><span data-t="prize"></span></label>
-      <label class="check"><input type="checkbox" name="open"><span data-t="open"></span></label>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="prize"><span data-t="prize"></span></label>
+        <label class="check"><input type="checkbox" name="open"><span data-t="open"></span></label>
+      </div>
     </form>
     <p id="found" aria-live="polite"></p>
     <ul id="list"></ul>
-  </main>
+  </section>
 
-  <footer><p data-t="note"></p></footer>
-</div>
+  <section id="universities">
+    <div class="head">
+      <h2 data-t="hUnis"></h2>
+      <!-- Illustration: university building with columns. -->
+      <svg viewBox="0 0 190 120" aria-hidden="true">
+        <rect y="108" width="190" height="12" fill="#0b2545"/>
+        <path fill="#0b2545" d="M95 8 180 44H10z"/>
+        <circle cx="95" cy="31" r="7" fill="#ffc629"/>
+        <rect x="14" y="44" width="162" height="10" fill="#0a84c6"/>
+        <g fill="#0b2545"><rect x="24" y="58" width="14" height="46"/><rect x="56" y="58" width="14" height="46"/><rect x="120" y="58" width="14" height="46"/><rect x="152" y="58" width="14" height="46"/></g>
+        <path fill="#ffc629" d="M80 104V76a15 15 0 0 1 30 0v28z"/>
+      </svg>
+    </div>
+    <p class="intro" data-t="pUnis"></p>
+    <div id="unis"></div>
+  </section>
+
+  <section id="grants">
+    <h2 data-t="hGrants"></h2>
+    <p class="intro" data-t="pGrants"></p>
+    <div class="cols">
+      <div>
+        <h3 data-t="hDirections"></h3>
+        <ul class="plain" id="directions"></ul>
+        <p class="small" data-t="directionsNote"></p>
+      </div>
+      <div>
+        <h3 data-t="hThresholds"></h3>
+        <ul class="plain" id="thresholds"></ul>
+        <p class="small" data-t="thresholdsNote"></p>
+      </div>
+    </div>
+    <div class="entbox">
+      <div>
+        <h3 data-t="hEnt"></h3>
+        <ul id="entFacts"></ul>
+      </div>
+      <!-- Illustration: answer sheet and pencil. -->
+      <svg viewBox="0 0 150 130" aria-hidden="true">
+        <rect x="14" y="6" width="96" height="118" fill="#fff" stroke="#0b2545" stroke-width="4"/>
+        <g fill="none" stroke="#0b2545" stroke-width="3">
+          <circle cx="36" cy="32" r="7"/><circle cx="62" cy="32" r="7"/><circle cx="88" cy="32" r="7"/>
+          <circle cx="36" cy="58" r="7"/><circle cx="62" cy="58" r="7"/><circle cx="88" cy="58" r="7"/>
+          <circle cx="36" cy="84" r="7"/><circle cx="62" cy="84" r="7"/><circle cx="88" cy="84" r="7"/>
+        </g>
+        <g fill="#0b2545"><circle cx="62" cy="32" r="7"/><circle cx="36" cy="58" r="7"/><circle cx="88" cy="84" r="7"/></g>
+        <path stroke="#0b2545" stroke-width="3" d="M28 106h68"/>
+        <g transform="rotate(38 118 70)"><rect x="110" y="20" width="16" height="78" fill="#d93a2b"/><path fill="#fff" stroke="#0b2545" stroke-width="2" d="M110 98h16l-8 18z"/><rect x="110" y="12" width="16" height="10" fill="#0b2545"/></g>
+      </svg>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <p data-t="foot"></p>
+  <p><span data-t="sources"></span>:
+    <a href="https://rntb.kz/ru/obem-gosudarstvennogo-obrazovatelnogo-zakaza-na-2026-2027-uchebnyj-god/">rntb.kz</a>
+    <a href="https://np.kz/news/obshhestvo/obrazovanie/schastlivchiki-i-otverzhennye">np.kz</a>
+    <a href="https://univision.kz/granty/granty-2026/1245-gosudarstvennye-obrazovatelnye-granty-2026.html">univision.kz</a>
+    <a href="https://bes.media/news/zavershilas-registratsiya-na-osnovnoe-ent-2026-ebcafe/">bes.media</a>
+    <a href="https://astanahub.com/">astanahub.com</a>
+  </p>
+</div></footer>
 <script type="module" src="app.js"></script>
 </body>
 </html>

@@ -29,4 +29,14 @@ for (const x of PROGRAMS) {
   assert.ok(x.deadline === null || !Number.isNaN(Date.parse(x.deadline)), x.name);
   assert.ok(x.ru && x.kz && x.url.startsWith('https://'), x.name);
 }
-console.log('mumkindik: ok');
+
+
+// Universities and grant data stay well-formed in both languages.
+const { UNIVERSITIES, DIRECTIONS, THRESHOLDS } = await import('../public/mumkindik/app.js');
+for (const u of UNIVERSITIES) {
+  assert.ok(u.name && u.city.length === 2 && u.url.startsWith('https://'), u.name);
+  for (const k of ['ielts', 'sat', 'ent']) assert.ok(u[k] === null || u[k].length === 2, `${u.name} ${k}`);
+  for (const p of u.programs || []) assert.ok(/^B\d{3}$/.test(p[0]) && p[1] && p[2] && p[3] > 0 && p[4] <= 140, `${u.name} ${p[0]}`);
+}
+for (const d of [...DIRECTIONS, ...THRESHOLDS]) assert.ok(d[0] && d[1] && d[2] > 0);
+console.log('mumkindik data: ok');

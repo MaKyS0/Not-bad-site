@@ -135,32 +135,169 @@ export function ics(p) {
   ].join('\r\n');
 }
 
+// ---------- Universities ----------
+// Requirement cells: [ru, kz] or null when the source gives nothing.
+// programs: [code, ru, kz, grants, minScore] — 2025 general grant competition (univision.kz).
+export const UNIVERSITIES = [
+  {
+    name: 'Nazarbayev University', city: ['Астана', 'Астана'], url: 'https://nu.edu.kz/?p=12745',
+    ielts: ['6.0 (Writing 6.0, остальные разделы от 5.5)', '6.0 (Writing 6.0, қалған бөлімдер 5.5-тен)'],
+    sat: ['1240 или ACT 26', '1240 немесе ACT 26'],
+    ent: ['85 на английском, матграмотность и чтение от 8 из 10', 'Ағылшын тілінде 85, математикалық және оқу сауаттылығы 10-нан 8'],
+    note: [
+      'Достаточно одного из результатов: SAT, ACT, ЕНТ, IB (27) или A-level (BBB). Свой экзамен NUET: от 130, по 60 в каждой части. Foundation: IELTS 5.5, SAT 1140 или ЕНТ 75. Для финансовой поддержки требования выше.',
+      'Нәтижелердің біреуі жеткілікті: SAT, ACT, ҰБТ, IB (27) немесе A-level (BBB). Өз емтиханы NUET: 130-дан, әр бөлімнен 60. Foundation: IELTS 5.5, SAT 1140 немесе ҰБТ 75. Қаржылай қолдау үшін талаптар жоғары.',
+    ],
+  },
+  {
+    name: 'Astana IT University', city: ['Астана', 'Астана'], url: 'https://univision.kz/univ/119-astana-it-university/ball',
+    ielts: null, sat: null,
+    ent: ['Проходной на грант в 2025 году: от 70 до 126', '2025 жылы грантқа өту балы: 70-тен 126-ға дейін'],
+    programs: [
+      ['B057', 'Информационные технологии', 'Ақпараттық технологиялар', 1347, 80],
+      ['B058', 'Информационная безопасность', 'Ақпараттық қауіпсіздік', 858, 85],
+      ['B063', 'Электротехника и автоматизация', 'Электр техникасы және автоматтандыру', 298, 75],
+      ['B059', 'Коммуникации и коммуникационные технологии', 'Коммуникациялар және коммуникациялық технологиялар', 234, 70],
+      ['B044', 'Менеджмент и управление', 'Менеджмент және басқару', 9, 99],
+      ['B042', 'Журналистика и репортерское дело', 'Журналистика және репортер ісі', 9, 126],
+    ],
+  },
+  {
+    name: 'Satbayev University', city: ['Алматы', 'Алматы'],
+    url: 'https://univision.kz/univ/47-kazahskiy-natsionalnyy-issledovatelskiy-tehnicheskiy-universitet-imeni-k-i-satpaeva/ball',
+    ielts: null, sat: null,
+    ent: ['Порог 65 как у национального вуза', 'Ұлттық жоғары оқу орны ретінде шекті балл 65'],
+    programs: [
+      ['B058', 'Информационная безопасность', 'Ақпараттық қауіпсіздік', 354, 85],
+      ['B052', 'Наука о земле', 'Жер туралы ғылым', 288, 72],
+      ['B071', 'Горное дело и добыча полезных ископаемых', 'Тау-кен ісі және пайдалы қазбаларды өндіру', 267, 65],
+      ['B074', 'Градостроительство и гражданское строительство', 'Қала құрылысы және азаматтық құрылыс', 231, 72],
+      ['B063', 'Электротехника и автоматизация', 'Электр техникасы және автоматтандыру', 134, 74],
+      ['B062', 'Электротехника и электроэнергетика', 'Электр техникасы және энергетика', 107, 65],
+      ['B064', 'Механика и металлообработка', 'Механика және металл өңдеу', 99, 65],
+      ['B057', 'Информационные технологии', 'Ақпараттық технологиялар', 94, 75],
+      ['B073', 'Архитектура', 'Сәулет', 93, 89],
+    ],
+  },
+  {
+    name: 'КБТУ', city: ['Алматы', 'Алматы'], url: 'https://the-tech.kz/?p=15681',
+    ielts: ['5.5, либо TOEFL iBT 46, либо STEP KBTU B1', '5.5, немесе TOEFL iBT 46, немесе STEP KBTU B1'],
+    sat: null,
+    ent: ['Нужен сертификат ЕНТ, порог уточняйте в приёмной комиссии', 'ҰБТ сертификаты қажет, шекті балды қабылдау комиссиясынан нақтылаңыз'],
+    note: [
+      'Школа IT и инженерии: бакалавриат 50 000 ₸ за кредит. В 2026 году открыты Game Development и Data Science and AI.',
+      'IT және инженерия мектебі: бакалавриат бір кредитке 50 000 ₸. 2026 жылы Game Development және Data Science and AI ашылды.',
+    ],
+  },
+  {
+    name: 'SDU University', city: ['Каскелен', 'Қаскелең'], url: 'https://sdu.edu.kz/?p=38723',
+    ielts: ['5.5, каждый раздел от 5.0, либо сертификат SDU Language School B1', '5.5, әр бөлім 5.0-ден, немесе SDU Language School B1 сертификаты'],
+    sat: null,
+    ent: ['Приём по результатам ЕНТ', 'Қабылдау ҰБТ нәтижесі бойынша'],
+  },
+  {
+    name: 'КазНУ им. аль-Фараби', city: ['Алматы', 'Алматы'],
+    url: 'https://bes.media/news/postuplenie-v-kbtu-v-2026-godu-podrobnyy-gid-dlya-abiturientov/',
+    ielts: null, sat: null,
+    ent: ['Порог 65 как у национального вуза, на популярные гуманитарные направления от 120', 'Ұлттық жоғары оқу орны ретінде шекті балл 65, танымал гуманитарлық бағыттарға 120-дан'],
+    note: ['Платное обучение в 2026 году: от 500 тыс. до 1,9 млн ₸.', '2026 жылы ақылы оқу: 500 мыңнан 1,9 млн ₸-ге дейін.'],
+  },
+  {
+    name: 'Cardiff University Kazakhstan', city: ['Астана', 'Астана'],
+    url: 'https://www.gov.kz/uploads/2026/3/30/7699885c1c2362b098c5ce9bcf2fb859_original.23144520.pdf',
+    ielts: ['6.5 на первый курс, 6.0 на Foundation, разделы от 5.5', 'Бірінші курсқа 6.5, Foundation-ға 6.0, бөлімдер 5.5-тен'],
+    sat: null,
+    ent: ['80 для государственного гранта', 'Мемлекеттік грант үшін 80'],
+  },
+  {
+    name: 'Coventry University Kazakhstan', city: ['Астана, Алматы', 'Астана, Алматы'],
+    url: 'https://www.gov.kz/uploads/2026/3/30/7699885c1c2362b098c5ce9bcf2fb859_original.23144520.pdf',
+    ielts: ['6.0 на грант, 5.0 на платное', 'Грантқа 6.0, ақылы бөлімге 5.0'],
+    sat: null,
+    ent: ['50 для гранта, на платное ЕНТ не нужен', 'Грант үшін 50, ақылы бөлімге ҰБТ қажет емес'],
+    note: ['В Астане для гранта также нужны GPA 4.0 и эссе.', 'Астанада грант үшін GPA 4.0 және эссе де қажет.'],
+  },
+];
+
+// State order 2026/27 as announced by the ministry: [ru, kz, grants].
+export const DIRECTIONS = [
+  ['Инженерия, производство и строительство', 'Инженерия, өндіріс және құрылыс', 19250],
+  ['Педагогические науки', 'Педагогикалық ғылымдар', 13738],
+  ['Информационно-коммуникационные технологии', 'Ақпараттық-коммуникациялық технологиялар', 11662],
+  ['Естественные науки и математика', 'Жаратылыстану ғылымдары және математика', 9363],
+  ['Сельское хозяйство', 'Ауыл шаруашылығы', 3145],
+  ['Здравоохранение', 'Денсаулық сақтау', 2700],
+];
+
+// Minimum ENT score to enter the grant competition, 2026: [ru, kz, score].
+export const THRESHOLDS = [
+  ['Педагогика и право', 'Педагогика және құқық', 75],
+  ['Здравоохранение', 'Денсаулық сақтау', 70],
+  ['Национальные вузы', 'Ұлттық жоғары оқу орындары', 65],
+  ['Остальные вузы', 'Қалған жоғары оқу орындары', 50],
+  ['Сельское хозяйство и ветеринария', 'Ауыл шаруашылығы және ветеринария', 50],
+];
+
 // ---------- UI (browser only) ----------
 
 const T = {
   ru: {
-    tagline: 'Все IT-конкурсы, гранты и акселераторы Казахстана — в одном месте, с дедлайнами.',
-    any: 'Все', competition: 'Конкурс', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
-    typeLabel: 'Тип', stageLabel: 'Моя стадия', stageAny: 'Любая', idea: 'Только идея', mvp: 'Есть MVP', growth: 'Есть выручка',
-    prize: 'С призовым фондом', open: 'Только открытый приём', search: 'Поиск по названию…',
-    today: 'Последний день подачи', closed: 'Приём закрыт', unknown: 'Срок не объявлен',
-    wait: 'Ждите следующий набор', until: 'до', cal: 'В календарь', more: 'Подробнее',
-    empty: 'Ничего не найдено. Ослабьте фильтры.', found: 'Найдено',
-    note: 'Данные собраны из открытых источников. Условия и сроки проверяйте на сайте организатора.',
+    locale: 'ru', i: 0,
+    lead: 'Куда подать проект и куда поступать в Казахстане: конкурсы и акселераторы с дедлайнами, вузы с требованиями по IELTS, SAT и ЕНТ, гранты по направлениям.',
+    navPrograms: 'Конкурсы', navUnis: 'Вузы', navGrants: 'ЕНТ и гранты',
+    hPrograms: 'Конкурсы, гранты и акселераторы',
+    pPrograms: 'Наборы 2026 года в основном закрыты. Ближайшие откроются зимой и весной: строки без даты ждут объявления.',
+    typeLabel: 'Тип', any: 'Все', competition: 'Конкурс', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
+    stageLabel: 'Моя стадия', stageAny: 'Любая', idea: 'Только идея', mvp: 'Есть MVP', growth: 'Есть выручка',
+    prize: 'С призовым фондом', open: 'Только открытый приём', search: 'Поиск по названию',
+    today: 'последний день', closed: 'приём закрыт', unknown: 'срок не объявлен', left: 'осталось',
+    cal: 'Добавить в календарь', more: 'Условия на сайте', found: 'Найдено',
+    empty: 'Под эти фильтры ничего не подходит. Снимите один из них.',
     days: (n) => `${n} ${{ one: 'день', few: 'дня', many: 'дней' }[new Intl.PluralRules('ru').select(n)] || 'дня'}`,
-    left: 'осталось', locale: 'ru',
+    hUnis: 'Вузы и специальности',
+    pUnis: 'Минимальные требования для бакалавриата. Гранты считаются по группам образовательных программ: конкурс идёт на группу, а не на отдельную специальность.',
+    ent: 'ЕНТ', noData: 'нет данных', notReq: 'не требуется',
+    thCode: 'Код', thProgram: 'Группа программ', thGrants: 'Грантов', thMin: 'Проходной',
+    tableCap: 'Общий конкурс 2025 года', source: 'Источник',
+    hGrants: 'ЕНТ и гранты 2026/27',
+    pGrants: 'На 2026/27 учебный год выделено 89 457 грантов. Из них 75 371 на бакалавриат, 11 007 на магистратуру и 3 079 на докторантуру. На бакалаврские гранты подали около 127 тысяч заявлений.',
+    hDirections: 'Грантов по направлениям',
+    directionsNote: 'Госзаказ, объявленный министерством. В итоговом распределении цифры по части направлений ниже.',
+    hThresholds: 'Порог ЕНТ для конкурса грантов',
+    thresholdsNote: 'Порог только допускает к конкурсу. Реальные проходные в 2026 году: 110–130 на право, международные отношения, психологию и перевод, 90–100 на инженерию и IT в ряде вузов.',
+    hEnt: 'Как устроен ЕНТ',
+    entFacts: ['120 заданий на 4 часа', 'Максимум 140 баллов', 'Три обязательных предмета и два профильных', 'Средний результат 2026 года: 66 баллов', 'По каждому предмету нужен минимум: от 5 баллов по истории и профильным, от 3 по грамотности чтения и математической'],
+    foot: 'Данные собраны из открытых источников в ноябре 2026 года. Перед подачей проверяйте условия на сайте организатора или вуза.',
+    sources: 'Источники',
   },
   kz: {
-    tagline: 'Қазақстандағы барлық IT-байқаулар, гранттар мен акселераторлар — бір жерде, мерзімдерімен.',
-    any: 'Барлығы', competition: 'Байқау', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
-    typeLabel: 'Түрі', stageLabel: 'Менің кезеңім', stageAny: 'Кез келген', idea: 'Тек идея', mvp: 'MVP бар', growth: 'Табыс бар',
-    prize: 'Жүлде қоры бар', open: 'Тек ашық қабылдау', search: 'Атауы бойынша іздеу…',
-    today: 'Өтінім берудің соңғы күні', closed: 'Қабылдау жабылды', unknown: 'Мерзімі жарияланбаған',
-    wait: 'Келесі қабылдауды күтіңіз', until: 'дейін', cal: 'Күнтізбеге', more: 'Толығырақ',
-    empty: 'Ештеңе табылмады. Сүзгілерді жеңілдетіңіз.', found: 'Табылды',
-    note: 'Деректер ашық дереккөздерден жиналған. Шарттар мен мерзімдерді ұйымдастырушының сайтынан тексеріңіз.',
+    locale: 'kk', i: 1,
+    lead: 'Қазақстанда жобаны қайда тапсыруға және қайда оқуға түсуге болады: мерзімдері бар байқаулар мен акселераторлар, IELTS, SAT және ҰБТ талаптары бар жоғары оқу орындары, бағыттар бойынша гранттар.',
+    navPrograms: 'Байқаулар', navUnis: 'ЖОО', navGrants: 'ҰБТ және гранттар',
+    hPrograms: 'Байқаулар, гранттар және акселераторлар',
+    pPrograms: '2026 жылғы қабылдаулардың көбі жабылды. Жақын арадағылары қыста және көктемде ашылады: мерзімі жоқ жолдар хабарландыруды күтуде.',
+    typeLabel: 'Түрі', any: 'Барлығы', competition: 'Байқау', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
+    stageLabel: 'Менің кезеңім', stageAny: 'Кез келген', idea: 'Тек идея', mvp: 'MVP бар', growth: 'Табыс бар',
+    prize: 'Жүлде қоры бар', open: 'Тек ашық қабылдау', search: 'Атауы бойынша іздеу',
+    today: 'соңғы күн', closed: 'қабылдау жабылды', unknown: 'мерзімі жарияланбаған', left: 'қалды',
+    cal: 'Күнтізбеге қосу', more: 'Шарттары сайтта', found: 'Табылды',
+    empty: 'Бұл сүзгілерге ештеңе сәйкес келмейді. Біреуін алып тастаңыз.',
     days: (n) => `${n} күн`,
-    left: 'қалды', locale: 'kk',
+    hUnis: 'ЖОО және мамандықтар',
+    pUnis: 'Бакалавриатқа қойылатын ең төменгі талаптар. Гранттар білім беру бағдарламаларының топтары бойынша есептеледі: конкурс жеке мамандыққа емес, топқа өтеді.',
+    ent: 'ҰБТ', noData: 'дерек жоқ', notReq: 'қажет емес',
+    thCode: 'Код', thProgram: 'Бағдарламалар тобы', thGrants: 'Грант саны', thMin: 'Өту балы',
+    tableCap: '2025 жылғы жалпы конкурс', source: 'Дереккөз',
+    hGrants: 'ҰБТ және гранттар 2026/27',
+    pGrants: '2026/27 оқу жылына 89 457 грант бөлінді. Оның 75 371-і бакалавриатқа, 11 007-сі магистратураға, 3 079-ы докторантураға. Бакалавриат гранттарына шамамен 127 мың өтініш түсті.',
+    hDirections: 'Бағыттар бойынша гранттар',
+    directionsNote: 'Министрлік жариялаған мемлекеттік тапсырыс. Қорытынды бөлуде кейбір бағыттар бойынша сандар төмен.',
+    hThresholds: 'Грант конкурсына қажет ҰБТ шекті балы',
+    thresholdsNote: 'Шекті балл тек конкурсқа жібереді. 2026 жылғы нақты өту балдары: құқық, халықаралық қатынастар, психология және аударма ісіне 110–130, кейбір ЖОО-да инженерия мен IT-ге 90–100.',
+    hEnt: 'ҰБТ қалай өтеді',
+    entFacts: ['4 сағатқа 120 тапсырма', 'Ең жоғары балл 140', 'Үш міндетті және екі бейіндік пән', '2026 жылғы орташа нәтиже: 66 балл', 'Әр пәннен ең төменгі балл қажет: тарих пен бейіндік пәндерден 5, оқу және математикалық сауаттылықтан 3'],
+    foot: 'Деректер 2026 жылғы қарашада ашық дереккөздерден жиналды. Тапсырар алдында шарттарды ұйымдастырушының немесе ЖОО-ның сайтынан тексеріңіз.',
+    sources: 'Дереккөздер',
   },
 };
 
@@ -173,46 +310,73 @@ if (typeof document !== 'undefined') {
   let lang = store.get() === 'kz' ? 'kz' : 'ru';
   const now = new Date();
   const today = new Date(now - now.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); // local date
-  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const num = (n) => n.toLocaleString('ru');
 
-  function card(p) {
+  function row(p) {
     const t = T[lang], s = status(p.deadline, today);
-    const date = p.deadline && new Date(p.deadline).toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
-    const big = s.state === 'open' ? (s.days === 0 ? '!' : s.days) : s.state === 'closed' ? '×' : '?';
-    const line = s.state === 'open'
-      ? (s.days === 0 ? t.today : `${t.days(s.days)} ${t.left} · ${t.until} ${date}`)
-      : s.state === 'closed' ? `${t.closed} ${date}. ${t.wait}` : `${t.unknown}. ${t.wait}`;
+    const d = p.deadline && new Date(p.deadline);
+    const day = d ? d.toLocaleDateString(t.locale, { day: 'numeric', month: 'short' }).replace('.', '') : '—';
+    const state = s.state === 'open' ? (s.days === 0 ? t.today : `${t.days(s.days)} ${t.left}`) : t[s.state];
     const cal = s.state === 'open'
-      ? `<a class="btn" download="${esc(p.name)}.ics" href="data:text/calendar;charset=utf-8,${encodeURIComponent(ics(p))}">${t.cal}</a>` : '';
-    return `<li class="card ${s.state}">
-      <div class="count" aria-hidden="true">${big}</div>
-      <div class="body">
-        <p class="meta"><span class="tag">${t[p.type]}</span> ${esc(p.org)}${p.prize ? ` · <b>${esc(p.prize)}</b>` : ''}</p>
-        <h2>${esc(p.name)}</h2>
+      ? `<a download="${esc(p.name)}.ics" href="data:text/calendar;charset=utf-8,${encodeURIComponent(ics(p))}">${t.cal}</a>` : '';
+    return `<li class="row ${s.state}">
+      <div class="date"><b>${day}</b><span>${d ? d.getFullYear() : ''}</span></div>
+      <div class="what">
+        <h3>${esc(p.name)}</h3>
+        <p class="org">${t[p.type]}, ${esc(p.org)}</p>
         <p>${esc(p[lang])}</p>
-        <p class="when">${line}</p>
-        <p class="actions"><a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">${t.more} ↗</a>${cal}</p>
-      </div></li>`;
+        <p class="links"><a href="${esc(p.url)}" target="_blank" rel="noopener">${t.more}</a>${cal}</p>
+      </div>
+      <div class="side">${p.prize ? `<b class="prize">${esc(p.prize)}</b>` : ''}<span class="state">${state}</span></div>
+    </li>`;
   }
 
-  function render() {
+  function renderPrograms() {
     const t = T[lang], f = $('#filters');
     const filter = { type: f.type.value, stage: f.stage.value, prize: f.prize.checked, open: f.open.checked, q: f.q.value };
     const list = sortPrograms(PROGRAMS.filter((p) => matches(p, filter, today)), today);
-    $('#list').innerHTML = list.map(card).join('') || `<li class="empty">${t.empty}</li>`;
+    $('#list').innerHTML = list.map(row).join('') || `<li class="empty">${t.empty}</li>`;
     $('#found').textContent = `${t.found}: ${list.length}`;
+  }
+
+  function uni(u) {
+    const t = T[lang], i = t.i;
+    const cell = (label, v) => `<div class="req${v ? '' : ' none'}"><dt>${label}</dt><dd>${v ? esc(v[i]) : t.noData}</dd></div>`;
+    const table = u.programs ? `<table>
+      <caption>${t.tableCap}</caption>
+      <thead><tr><th>${t.thCode}</th><th>${t.thProgram}</th><th class="n">${t.thGrants}</th><th class="n">${t.thMin}</th></tr></thead>
+      <tbody>${u.programs.map((p) => `<tr><td>${p[0]}</td><td>${esc(p[1 + i])}</td><td class="n">${num(p[3])}</td><td class="n">${p[4]}</td></tr>`).join('')}</tbody>
+    </table>` : '';
+    return `<article class="uni">
+      <header><h3>${esc(u.name)}</h3><p>${esc(u.city[i])}</p></header>
+      <dl>${cell('IELTS', u.ielts)}${cell('SAT', u.sat)}${cell(t.ent, u.ent)}</dl>
+      ${u.note ? `<p class="note">${esc(u.note[i])}</p>` : ''}
+      ${table}
+      <p class="src"><a href="${esc(u.url)}" target="_blank" rel="noopener">${t.source}: ${esc(new URL(u.url).hostname.replace('www.', ''))}</a></p>
+    </article>`;
+  }
+
+  function renderStatic() {
+    const t = T[lang], i = t.i;
+    $('#unis').innerHTML = UNIVERSITIES.map(uni).join('');
+    const max = DIRECTIONS[0][2];
+    $('#directions').innerHTML = DIRECTIONS.map((d) =>
+      `<li><span class="lbl">${esc(d[i])}</span><span class="bar" style="--w:${(d[2] / max * 100).toFixed(1)}%"></span><b>${num(d[2])}</b></li>`).join('');
+    $('#thresholds').innerHTML = THRESHOLDS.map((d) => `<li><b>${d[2]}</b><span>${esc(d[i])}</span></li>`).join('');
+    $('#entFacts').innerHTML = t.entFacts.map((s) => `<li>${esc(s)}</li>`).join('');
   }
 
   function applyLang() {
     const t = T[lang];
     document.documentElement.lang = t.locale;
     document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = t[el.dataset.t]; });
-    $('#q').placeholder = t.search;
     document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
-    render();
+    renderPrograms();
+    renderStatic();
   }
 
-  $('#filters').addEventListener('input', render);
+  $('#filters').addEventListener('input', renderPrograms);
   $('#filters').addEventListener('submit', (e) => e.preventDefault());
   document.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => {
     lang = b.dataset.lang; store.set(lang); applyLang();

@@ -15,7 +15,7 @@ Universal File Toolbox is a static web app (no backend, no database, no sign-up)
 - Dark / Light / System theme, global search in both languages (`/` or `Ctrl+K`), local history
 - Works on Windows, macOS, Linux, Android, iOS — desktop and mobile browsers
 
-- **Bonus:** «Мүмкіндік» — a feed of Kazakhstan IT competitions, grants and accelerators with deadlines, filters and calendar reminders (static, no dependencies, Kazakh & Russian) at `/mumkindik/` — files in `public/mumkindik/` (`index.html`, `app.js`); logic check: `node tests/mumkindik.check.mjs`
+- **Bonus:** «Мүмкіндік» — Kazakhstan IT competitions and accelerators with deadlines, universities with IELTS/SAT/ENT requirements and grant counts by programme group (static, no dependencies, Kazakh & Russian) at `/mumkindik/` — files in `public/mumkindik/` (`index.html`, `app.js`); logic check: `node tests/mumkindik.check.mjs`
 - **Bonus:** a small website with an interactive 3D black hole (WebGL, no dependencies, Russian) at `/black-hole/` — files in `public/black-hole/` (`index.html`, `style.css`, `site.js`, `engine.js`); open it directly or via the built site
 
 ---
