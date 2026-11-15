@@ -62,7 +62,8 @@ async function networkFirstPage(request) {
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 4000);
-    const res = await fetch(request, { signal: controller.signal });
+    // no-cache: revalidate with the server so a fresh deploy is never hidden by the HTTP cache.
+    const res = await fetch(request, { signal: controller.signal, cache: 'no-cache' });
     clearTimeout(timer);
     if (res.ok && res.type === 'basic') {
       const cache = await caches.open(RUNTIME_CACHE);
@@ -90,7 +91,8 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin || !url.href.startsWith(SCOPE)) return;
   // Speech models are cached by the recognition library itself (Cache API).
   if (url.href.startsWith(new URL('models/', SCOPE).href)) return;
-  if (request.mode === 'navigate') {
+  // Standalone pages in public/ ship unhashed files (app.js, style.css): cache-first would pin old versions.
+  if (request.mode === 'navigate' || /\/(mumkindik|black-hole|presentation)\//.test(url.pathname)) {
     event.respondWith(networkFirstPage(request));
     return;
   }
