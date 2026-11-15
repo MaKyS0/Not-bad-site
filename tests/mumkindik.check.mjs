@@ -32,13 +32,14 @@ for (const x of PROGRAMS) {
 
 
 // Universities and grant data stay well-formed in both languages.
-const { UNIVERSITIES, DIRECTIONS, THRESHOLDS } = await import('../public/mumkindik/app.js');
+const { UNIVERSITIES, DIRECTIONS, THRESHOLDS, ENT_FACTS } = await import('../public/mumkindik/app.js');
 for (const u of UNIVERSITIES) {
   assert.ok(u.name && u.city.length === 2 && u.url.startsWith('https://'), u.name);
-  for (const k of ['ielts', 'sat', 'ent']) assert.ok(u[k] === null || u[k].length === 2, `${u.name} ${k}`);
+  for (const k of ['ielts', 'sat', 'ent']) assert.ok(u[k] === null || u[k].length === 3, `${u.name} ${k}`);
   for (const p of u.programs || []) assert.ok(/^B\d{3}$/.test(p[0]) && p[1] && p[2] && p[3] > 0 && p[4] <= 140, `${u.name} ${p[0]}`);
 }
 for (const d of [...DIRECTIONS, ...THRESHOLDS]) assert.ok(d[0] && d[1] && d[2] > 0);
+for (const d of ENT_FACTS) assert.ok(d.length === 3 && d.every(Boolean));
 
 // Finder: margin over last year's passing score, passing rows first.
 const { fit, finderRows } = await import('../public/mumkindik/app.js');
