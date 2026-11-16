@@ -123,13 +123,13 @@ export function sortPrograms(list, today) {
 /** All-day calendar event on the deadline with a reminder 3 days before. */
 export function ics(p) {
   const d = p.deadline.replaceAll('-', '');
-  const next = new Date(Date.parse(p.deadline) + 864e5).toISOString().slice(0, 10).replaceAll('-', '');
+  const next = new Date(Date.parse(p.end || p.deadline) + 864e5).toISOString().slice(0, 10).replaceAll('-', '');
   const esc = (s) => s.replace(/[\\;,]/g, '\\$&');
   return [
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Mumkindik//KZ', 'BEGIN:VEVENT',
     `UID:${d}-${encodeURIComponent(p.name)}@mumkindik`, `DTSTAMP:${d}T000000Z`,
     `DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${next}`,
-    `SUMMARY:${esc('Дедлайн: ' + p.name)}`, `URL:${p.url}`,
+    `SUMMARY:${esc(p.end ? p.name : 'Дедлайн: ' + p.name)}`, `URL:${p.url}`,
     'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Deadline', 'TRIGGER:-P3D', 'END:VALARM',
     'END:VEVENT', 'END:VCALENDAR',
   ].join('\r\n');
@@ -396,10 +396,20 @@ export const CALENDAR = [
   ['2027-03-01', '2027-04-06', 'paid', false, 'Мартовское ЕНТ', 'Наурыздағы ҰБТ', '', ''],
   ['2027-04-11', '2027-04-25', 'grant', true, 'Регистрация на основное ЕНТ', 'Негізгі ҰБТ-ға тіркелу', 'Через сайт НЦТ, можно записаться на две попытки', 'ҰТО сайты арқылы, екі талпынысқа жазылуға болады'],
   ['2027-05-10', '2027-07-10', 'grant', false, 'Основное ЕНТ', 'Негізгі ҰБТ', 'Две попытки, в конкурс идёт лучший результат', 'Екі талпыныс, конкурсқа үздік нәтиже өтеді'],
-  ['2027-06-01', '2027-06-01', 'other', false, 'Nazarbayev University: срок сдачи IELTS или TOEFL', 'Nazarbayev University: IELTS немесе TOEFL тапсыру мерзімі', '', ''],
   ['2027-07-13', '2027-07-20', 'grant', true, 'Подача заявлений на грант', 'Грантқа өтініш беру', 'До четырёх вузов и четырёх групп программ', 'Төрт ЖОО мен төрт бағдарламалар тобына дейін'],
   ['2027-08-10', '2027-08-20', 'paid', false, 'Августовское ЕНТ', 'Тамыздағы ҰБТ', '', ''],
 ];
+
+// Own month names: Chrome ships no Kazakh date data and prints "M01 10" for the 'kk' locale.
+const MONTHS = [
+  ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'],
+  ['қаңтар', 'ақпан', 'наурыз', 'сәуір', 'мамыр', 'маусым', 'шілде', 'тамыз', 'қыркүйек', 'қазан', 'қараша', 'желтоқсан'],
+];
+/** "2027-01-10" as "10 января" / "10 қаңтар" (i: 0 ru, 1 kz), with the year when asked. */
+export function dateText(iso, i, year = false) {
+  const [y, m, d] = iso.split('-').map(Number), s = `${d} ${MONTHS[i][m - 1]}`;
+  return !year ? s : i ? `${y} жылғы ${s}` : `${s} ${y} г.`;
+}
 
 /** Where today sits against a date range: before it (days until the start), inside it, or after it. */
 export function phase(start, end, today) {
@@ -516,7 +526,7 @@ const T = {
     hCalendar: 'Календарь абитуриента 2027',
     pCalendar: 'Сроки ЕНТ по действующему расписанию. Точные даты на 2027 год объявит Национальный центр тестирования.',
     calNow: 'идёт сейчас', calPast: 'прошло', calIn: (d) => `через ${d}`, approx: 'по датам 2026 года',
-    kinds: { grant: 'для гранта', paid: 'для платного', other: 'вуз' },
+    kinds: { grant: 'для гранта', paid: 'для платного' },
     mineLabel: 'Только мой список', saveRow: 'В мой список', mineEmpty: 'В списке пусто. Отметьте специальности звёздочкой.',
     copyLink: 'Скопировать ссылку на этот подбор', copied: 'Ссылка скопирована', copyFail: 'Скопируйте ссылку из адресной строки',
     hPrograms: 'Конкурсы для IT-проектов', pPrograms: 'Наборы 2026 года в основном закрыты, следующие ждём зимой и весной.',
@@ -562,7 +572,7 @@ const T = {
     hCalendar: 'Талапкер күнтізбесі 2027',
     pCalendar: 'ҰБТ мерзімдері қолданыстағы кесте бойынша. 2027 жылғы нақты күндерді Ұлттық тестілеу орталығы жариялайды.',
     calNow: 'қазір өтіп жатыр', calPast: 'өтті', calIn: (d) => `${d} кейін`, approx: '2026 жылғы күндер бойынша',
-    kinds: { grant: 'грант үшін', paid: 'ақылы бөлім үшін', other: 'ЖОО' },
+    kinds: { grant: 'грант үшін', paid: 'ақылы бөлім үшін' },
     mineLabel: 'Тек менің тізімім', saveRow: 'Тізіміме қосу', mineEmpty: 'Тізім бос. Мамандықтарды жұлдызшамен белгілеңіз.',
     copyLink: 'Осы таңдаудың сілтемесін көшіру', copied: 'Сілтеме көшірілді', copyFail: 'Сілтемені мекенжай жолынан көшіріңіз',
     hPrograms: 'IT-жобаларға арналған байқаулар', pPrograms: '2026 жылғы қабылдаулардың көбі жабылды, келесілері қыста және көктемде.',
@@ -617,7 +627,7 @@ if (typeof document !== 'undefined') {
   // ----- programmes -----
   function programCard(p) {
     const t = T[lang], s = status(p.deadline, today);
-    const date = p.deadline && new Date(p.deadline).toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
+    const date = p.deadline && dateText(p.deadline, t.i, true);
     const state = s.state === 'open' ? (s.days === 0 ? t.today : `${t.left} ${t.days(s.days)}, ${t.until} ${date}`)
       : s.state === 'closed' ? `${t.closed} ${date}` : t.unknown;
     const cal = s.state === 'open'
@@ -742,11 +752,11 @@ if (typeof document !== 'undefined') {
   // ----- calendar -----
   function renderCalendar() {
     const t = T[lang], i = t.i;
-    const fmt = (d) => new Date(d).toLocaleDateString(t.locale, { day: 'numeric', month: 'long' });
+    const fmt = (d) => dateText(d, i);
     $('#calendar').innerHTML = CALENDAR.map(([start, end, kind, approx, ru, kz, nru, nkz]) => {
       const ph = phase(start, end, today), name = [ru, kz][i], note = [nru, nkz][i];
       const when = ph.state === 'now' ? t.calNow : ph.state === 'past' ? t.calPast : t.calIn(t.days(ph.days));
-      const cal = ph.state === 'past' ? '' : `<a download="${esc(name)}.ics" href="data:text/calendar;charset=utf-8,${encodeURIComponent(ics({ name, deadline: start, url: location.href.split('#')[0] }))}">${t.cal}</a>`;
+      const cal = ph.state === 'past' ? '' : `<a download="${esc(name)}.ics" href="data:text/calendar;charset=utf-8,${encodeURIComponent(ics({ name, deadline: start, end, url: location.href.split('#')[0] }))}">${t.cal}</a>`;
       return `<li class="ev ${ph.state}">
         <div class="when"><b>${start === end ? fmt(start) : `${fmt(start)} – ${fmt(end)}`}</b><span>${when}</span></div>
         <div class="what"><h3>${esc(name)}</h3>${note ? `<p>${esc(note)}</p>` : ''}

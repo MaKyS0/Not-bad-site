@@ -73,6 +73,14 @@ assert.equal(phase('2027-01-10', '2027-02-10', '2027-02-10').state, 'now'); // l
 assert.equal(phase('2027-01-10', '2027-02-10', '2027-02-11').state, 'past');
 for (const e of CALENDAR) assert.ok(e.length === 8 && e[0] <= e[1] && e[4] && e[5], e[4]);
 assert.deepEqual(CALENDAR.map((e) => e[0]), [...CALENDAR.map((e) => e[0])].sort(), 'calendar is in date order');
+const { dateText } = await import('../public/mumkindik/app.js');
+assert.equal(dateText('2027-01-10', 0), '10 января');
+assert.equal(dateText('2027-01-10', 1), '10 қаңтар');
+assert.equal(dateText('2026-09-28', 0, true), '28 сентября 2026 г.');
+assert.equal(dateText('2026-12-03', 1, true), '2026 жылғы 3 желтоқсан');
+const span = ics({ name: 'ЕНТ', deadline: '2027-05-10', end: '2027-07-10', url: 'https://x.kz' });
+assert.ok(span.includes('DTSTART;VALUE=DATE:20270510') && span.includes('DTEND;VALUE=DATE:20270711'), 'a period covers its last day');
+assert.ok(span.includes('SUMMARY:ЕНТ') && !span.includes('Дедлайн'), 'a period is not labelled as a deadline');
 assert.equal(buildHash({ tab: 'finder', score: '95', pair: 'mi', code: '' }), '#finder?score=95&pair=mi');
 assert.equal(buildHash({ tab: 'finder', score: '', pair: '', code: '' }), '#finder');
 assert.deepEqual(parseState('#finder?score=95&pair=mi'), { tab: 'finder', score: '95', pair: 'mi', code: '' });
