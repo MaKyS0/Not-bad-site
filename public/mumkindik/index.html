@@ -66,7 +66,7 @@ select,input[type=search],input[type=number]{font:inherit;color:var(--ink);backg
 #quick{display:flex;gap:8px;align-items:center;justify-content:center;margin:28px auto 0;padding:8px;max-width:560px;border:1px solid var(--line);border-radius:999px;box-shadow:0 6px 24px rgba(22,32,44,.08)}
 #quick label{flex:1;flex-direction:row;align-items:center;gap:10px;padding-left:16px;white-space:nowrap}
 #quick input{border:0;min-height:44px;padding:0 4px}
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:48px 0 0;text-align:left}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:48px 0 0;text-align:left}
 .tile{display:block;padding:20px;color:var(--ink);text-decoration:none}
 .tile:hover{border-color:var(--accent)}
 .tile svg{width:36px;height:36px;color:var(--accent)}
@@ -96,7 +96,7 @@ select,input[type=search],input[type=number]{font:inherit;color:var(--ink);backg
 #cities{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
 #cities button{font:500 15px inherit;font-family:inherit;color:var(--ink);background:#fff;border:1px solid #b9c1cb;border-radius:999px;padding:0 16px;min-height:40px;cursor:pointer}
 #cities button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
-#uniGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+#uniGrid,.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
 .uni{overflow:hidden;scroll-margin-top:84px}
 #compare{scroll-margin-top:84px}
 .uni:target{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
@@ -164,6 +164,16 @@ td.none{padding:24px 0;color:var(--muted)}
 .ev .chips{margin-top:8px}
 .ev.past{opacity:.55}
 h2.second{margin-top:48px}
+/* abroad */
+.abroad{padding:18px 20px}
+.abroad h3{font-size:22px;margin-top:10px}
+.rows{margin:12px 0 0}
+.rows div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px solid var(--line)}
+.rows dt{color:var(--muted);font-size:14px;padding-top:1px}
+.rows dd{margin:0;font-size:15px}
+p.factsrc{margin:-8px 0 28px}
+.under2{margin-top:28px}
+.bolashak{margin:10px 0 0}
 
 /* grants */
 .tilesrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0 0 20px;padding:0;list-style:none}
@@ -194,7 +204,7 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
 
 @media (max-width:1000px){
   .tiles,.stats,.tilesrow{grid-template-columns:repeat(2,1fr)}
-  #uniGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #uniGrid,.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
   #filters{grid-template-columns:1fr 1fr}
   .facts{grid-template-columns:repeat(3,1fr)}
 }
@@ -204,7 +214,7 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
   .brand{flex:1}
   main.wrap{padding-top:24px}
   #quick{flex-direction:column;align-items:stretch;border-radius:var(--r)}
-  .tiles,#list,#uniGrid,.cols,#filters,#finderForm{grid-template-columns:minmax(0,1fr)}
+  .tiles,#list,#uniGrid,.grid3,.cols,#filters,#finderForm{grid-template-columns:minmax(0,1fr)}
   .stats b,.tilesrow b{font-size:24px}
   .facts{grid-template-columns:repeat(2,1fr)}
   /* finder rows become stacked blocks: a five-column table does not fit a phone */
@@ -232,6 +242,7 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
       <a href="#unis" data-t="tabUnis"></a>
       <a href="#finder" data-t="tabFinder"></a>
       <a href="#grants" data-t="tabGrants"></a>
+      <a href="#abroad" data-t="tabAbroad"></a>
       <a href="#calendar" data-t="tabPrograms"></a>
     </nav>
     <div class="lang" role="group" aria-label="Тіл / Язык">
@@ -262,6 +273,10 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
       <a class="card tile" href="#grants">
         <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 30V18M14 30V8M22 30V14M30 30V22M3 30h30"/></svg>
         <b data-t="tabGrants"></b><span data-t="tileGrantsD"></span>
+      </a>
+      <a class="card tile" href="#abroad">
+        <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="13"/><path d="M5 18h26M18 5c4 4 6 8 6 13s-2 9-6 13c-4-4-6-8-6-13s2-9 6-13z"/></svg>
+        <b data-t="tabAbroad"></b><span data-t="tileAbroadD"></span>
       </a>
       <a class="card tile" href="#calendar">
         <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5h14v9a7 7 0 0 1-14 0V5zM11 8H5c0 5 2 7 6 7M25 8h6c0 5-2 7-6 7M18 21v6M11 31h14"/></svg>
@@ -346,6 +361,27 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
       <div class="card box span2">
         <h3 data-t="hEnt"></h3>
         <ul class="plain facts" id="entFacts"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section data-panel="abroad" hidden>
+    <h2 data-t="hAbroad"></h2>
+    <p class="sub" data-t="pAbroad"></p>
+    <ul class="tilesrow" id="abroadFacts"></ul>
+    <p class="small factsrc" data-t="aFactsSrc"></p>
+    <div class="grid3" id="abroadGrid"></div>
+    <div class="cols under2">
+      <div class="card box">
+        <h3 data-t="hOther"></h3>
+        <ul class="plain facts" id="otherGrants"></ul>
+        <p class="small" data-t="otherNote"></p>
+        <p class="src"><a href="https://bolashak.gov.kz/en/acceptance-documents" target="_blank" rel="noopener">bolashak.gov.kz</a></p>
+      </div>
+      <div class="card box">
+        <h3 data-t="hBolashak"></h3>
+        <p class="bolashak" data-t="pBolashak"></p>
+        <p class="src"><a href="https://digitalbusiness.kz/2026-03-16/v-kazahstane-nachalsya-priem-zayavok-na-bolashak-skolko-stipendiy-videlyat-v-2026-godu/" target="_blank" rel="noopener">digitalbusiness.kz</a></p>
       </div>
     </div>
   </section>

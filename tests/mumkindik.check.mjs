@@ -86,4 +86,18 @@ assert.equal(buildHash({ tab: 'finder', score: '', pair: '', code: '' }), '#find
 assert.deepEqual(parseState('#finder?score=95&pair=mi'), { tab: 'finder', score: '95', pair: 'mi', code: '' });
 assert.deepEqual(parseState('#u3'), { tab: 'u3', score: '', pair: '', code: '' });
 assert.deepEqual(parseState(''), { tab: '', score: '', pair: '', code: '' });
+
+// Study-abroad data: every text cell has both languages, every card says something and names a source.
+const { ABROAD, ABROAD_FACTS, OTHER_GRANTS } = await import('../public/mumkindik/app.js');
+const pair = (v) => Array.isArray(v) && v.length === 2 && v.every((x) => typeof x === 'string' && x.trim());
+for (const c of ABROAD) {
+  assert.ok(pair(c.name) && ['grant', 'free', 'paid'].includes(c.way), c.name[0]);
+  for (const k of ['students', 'free', 'need', 'cost', 'when']) assert.ok(c[k] === null || pair(c[k]), `${c.name[0]}.${k}`);
+  assert.ok(c.free || c.cost, `${c.name[0]} says how to pay for it`);
+  assert.ok(c.urls.length && c.urls.every((u) => new URL(u).protocol === 'https:'), `${c.name[0]} sources`);
+}
+assert.equal(new Set(ABROAD.map((c) => c.name[0])).size, ABROAD.length);
+for (const f of ABROAD_FACTS) assert.ok(f.length === 4 && f.every(Boolean));
+for (const g of OTHER_GRANTS) assert.ok(/^\d+$/.test(g[0]) && g[1] && g[2]);
+for (const e of CALENDAR) assert.ok(['grant', 'paid', 'abroad'].includes(e[2]), e[4]);
 console.log('mumkindik data: ok');

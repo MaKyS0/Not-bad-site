@@ -389,10 +389,107 @@ export const UNIVERSITIES = [
   },
 ];
 
+// ---------- Study abroad ----------
+// The destinations Kazakh applicants ask about most. Text cells are [ru, kz]; null = the sources give nothing.
+// way: grant = a state scholarship with places for Kazakhstan, free = no tuition in the local language, paid.
+export const ABROAD = [
+  {
+    name: ['Россия', 'Ресей'], way: 'grant', students: ['свыше 60 тыс. казахстанцев', '60 мыңнан астам қазақстандық'],
+    free: ['Квота Россотрудничества: 800 бюджетных мест в 2026 году, от бакалавриата до аспирантуры', 'Россотрудничество квотасы: 2026 жылы 800 бюджеттік орын, бакалавриаттан аспирантураға дейін'],
+    need: null, cost: null,
+    when: ['Заявки на квоту открываются в сентябре, отбор ведёт представительство Россотрудничества в Астане', 'Квотаға өтінім қыркүйекте ашылады, іріктеуді Россотрудничествоның Астанадағы өкілдігі жүргізеді'],
+    urls: ['https://www.lada.kz/kazakhstan-news/155786-rossiia-vydelila-800-besplatnykh-mest-dlia-kazakhstanskikh-studentov-kak-postupit-v-vuzy.html'],
+  },
+  {
+    name: ['Китай', 'Қытай'], way: 'grant', students: null,
+    free: ['Стипендия правительства КНР: 73 гранта на 2026/27 год. Покрывает обучение, общежитие, страховку и ежемесячную стипендию', 'ҚХР үкіметінің стипендиясы: 2026/27 жылға 73 грант. Оқуды, жатақхананы, сақтандыруды және ай сайынғы стипендияны жабады'],
+    need: ['Регистрация на сайте CSC; для бакалавриата с 2026 года тест CSCA', 'CSC сайтында тіркелу; бакалавриат үшін 2026 жылдан CSCA тесті'],
+    cost: ['Без гранта обучение 3 000–7 000 $ в год', 'Грантсыз оқу жылына 3 000–7 000 $'],
+    when: ['На 2026/27 год документы принимали с 21 января по 18 февраля', '2026/27 жылға құжаттар 21 қаңтар – 18 ақпан аралығында қабылданды'],
+    urls: ['https://bolashak.gov.kz/en/acceptance-documents', 'https://inbusiness.kz/ru/news/kazahstan-voshel-v-mirovuyu-desyatku-po-eksportu-studentov'],
+  },
+  {
+    name: ['Турция', 'Түркия'], way: 'grant', students: null,
+    free: ['Türkiye Bursları: обучение, общежитие, страховка, стипендия и год курсов турецкого', 'Türkiye Bursları: оқу, жатақхана, сақтандыру, стипендия және бір жыл түрік тілі курсы'],
+    need: ['Средний балл от 70% (медицина от 90%), возраст до 21 года', 'Орташа балл 70%-дан (медицина 90%-дан), жасы 21-ге дейін'],
+    cost: ['Без стипендии в госвузах 1 000–5 000 $ в год', 'Стипендиясыз мемлекеттік ЖОО-да жылына 1 000–5 000 $'],
+    when: ['Каждый год с 10 января по 20 февраля', 'Жыл сайын 10 қаңтар – 20 ақпан'],
+    urls: ['https://www.turkiyeburslari.gov.tr/calendar', 'https://www.turkiyeburslari.gov.tr/bursprogramlari', 'https://inbusiness.kz/ru/news/kazahstan-voshel-v-mirovuyu-desyatku-po-eksportu-studentov'],
+  },
+  {
+    name: ['Южная Корея', 'Оңтүстік Корея'], way: 'grant', students: ['около 1 000 казахстанцев', 'шамамен 1 000 қазақстандық'],
+    free: ['GKS: 286 стипендий на бакалавриат на весь мир в 2027 году. Обучение, перелёт и ежемесячное пособие', 'GKS: 2027 жылы бүкіл әлемге бакалавриатқа 286 стипендия. Оқу, ұшу билеті және ай сайынғы жәрдемақы'],
+    need: ['Возраст до 25 лет. Первый год учат корейский, с TOPIK 5–6 от него освобождают', 'Жасы 25-ке дейін. Бірінші жылы корей тілі оқытылады, TOPIK 5–6 болса, одан босатады'],
+    cost: ['Без стипендии обучение 4 000–8 000 $ в год', 'Стипендиясыз оқу жылына 4 000–8 000 $'],
+    when: ['Набор на 2027 год: через посольство с 15 сентября 2026 года, через вузы до ноября', '2027 жылға қабылдау: елшілік арқылы 2026 жылғы 15 қыркүйектен, ЖОО арқылы қарашаға дейін'],
+    urls: ['https://www.koreajoongangdaily.com/korea/gksu-2027-what-international-students-need-to-know-before-applying/12878569', 'https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/'],
+  },
+  {
+    name: ['Венгрия', 'Венгрия'], way: 'grant', students: null,
+    free: ['Stipendium Hungaricum: 250 грантов в год для Казахстана, из них 110 на бакалавриат. Обучение, жильё, страховка и стипендия', 'Stipendium Hungaricum: Қазақстанға жылына 250 грант, оның 110-ы бакалавриатқа. Оқу, тұрғын үй, сақтандыру және стипендия'],
+    need: ['Обучение на английском или венгерском', 'Оқу ағылшын немесе венгр тілінде'],
+    cost: null,
+    when: ['На 2026/27 год заявки принимали до 15 января 2026 года', '2026/27 жылға өтінімдер 2026 жылғы 15 қаңтарға дейін қабылданды'],
+    urls: ['https://bolashak.gov.kz/grant-granting-countries', 'https://weproject.media/articles/detail/250-kazakhstantsev-smogut-uchitsya-v-vengrii-v-2026-godu-trebovaniya-kvoty-i-sroki-podachi/'],
+  },
+  {
+    name: ['Германия', 'Германия'], way: 'free', students: null,
+    free: ['В государственных вузах обучение бесплатное, семестровый взнос 150–350 €', 'Мемлекеттік ЖОО-да оқу тегін, семестрлік жарна 150–350 €'],
+    need: ['Немецкий B2–C1. После 11 классов обычно нужен год в штудиенколлеге', 'Неміс тілі B2–C1. 11 сыныптан кейін әдетте штудиенколлегте бір жыл оқу қажет'],
+    cost: ['Жизнь 900–1 200 € в месяц', 'Тұру айына 900–1 200 €'],
+    when: null,
+    urls: ['https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/', 'https://www.unipage.net/ru/studienkollegs_germany'],
+  },
+  {
+    name: ['Чехия', 'Чехия'], way: 'free', students: null,
+    free: ['В государственных вузах бесплатно, если учиться на чешском', 'Мемлекеттік ЖОО-да чех тілінде оқысаңыз, тегін'],
+    need: ['Чешский язык, на него уходит время до поступления', 'Чех тілі, оны түсуге дейін үйренуге уақыт кетеді'],
+    cost: ['На английском 8 000–15 000 € в год. Жизнь 600–900 € в месяц', 'Ағылшын тілінде жылына 8 000–15 000 €. Тұру айына 600–900 €'],
+    when: null,
+    urls: ['https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/'],
+  },
+  {
+    name: ['США', 'АҚШ'], way: 'paid', students: null,
+    free: null,
+    need: ['Для сильных программ обычно IELTS 7.0', 'Мықты бағдарламаларға әдетте IELTS 7.0'],
+    cost: ['В среднем 85–92 тыс. $ в год вместе с проживанием. Первые два года дешевле в community college', 'Тұруды қосқанда орта есеппен жылына 85–92 мың $. Алғашқы екі жыл community college-де арзанырақ'],
+    when: null,
+    urls: ['https://inbusiness.kz/ru/news/kazahstan-voshel-v-mirovuyu-desyatku-po-eksportu-studentov', 'https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/'],
+  },
+  {
+    name: ['Великобритания', 'Ұлыбритания'], way: 'paid', students: null,
+    free: ['Стипендия Chevening рассчитана на магистратуру', 'Chevening стипендиясы магистратураға арналған'],
+    need: null,
+    cost: ['Обучение и жизнь вместе от 40 тыс. £ в год', 'Оқу мен тұру бірге жылына 40 мың £-тен'],
+    when: null,
+    urls: ['https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/', 'https://bes.media/amp/posolstvo-velikobritanii-nazvalo-daty-priema-zayavok-na-stipendiyu-chevening-dlya-kazahstantsev/'],
+  },
+];
+
+// Headline numbers: [ru value, kz value, ru label, kz label] (UNESCO; the minister's figures of June 2024).
+export const ABROAD_FACTS = [
+  ['91,2 тыс.', '91,2 мың', 'казахстанцев учатся за рубежом', 'қазақстандық шетелде оқиды'],
+  ['9-е место', '9-орын', 'в мире по числу студентов за рубежом', 'шетелдегі студенттер саны бойынша әлемде'],
+  ['60 тыс.+', '60 мың+', 'из них в России', 'оның ішінде Ресейде'],
+  ['1 000', '1 000', 'в Южной Корее, ещё около 450 в Гонконге', 'Оңтүстік Кореяда, тағы 450-дей Гонконгта'],
+];
+
+// Smaller intergovernmental grants for 2026/27: [grants, ru, kz] (bolashak.gov.kz).
+export const OTHER_GRANTS = [
+  ['100', 'Таджикистан', 'Тәжікстан'],
+  ['20', 'Узбекистан', 'Өзбекстан'],
+  ['12', 'Азербайджан', 'Әзербайжан'],
+  ['10', 'Кыргызстан', 'Қырғызстан'],
+  ['3', 'Вьетнам', 'Вьетнам'],
+];
+
 // Applicant's calendar for 2027: [start, end, kind, approx, ru, kz, ru note, kz note].
 // ENT windows follow the standing schedule; approx = dates of the 2026 campaign, the 2027 ones are not announced yet.
 export const CALENDAR = [
   ['2027-01-10', '2027-02-10', 'paid', false, 'Январское ЕНТ', 'Қаңтардағы ҰБТ', '', ''],
+  ['2027-01-10', '2027-02-20', 'abroad', false, 'Турция: заявки на Türkiye Bursları', 'Түркия: Türkiye Bursları өтінімдері', 'Приём идёт каждый год в эти даты', 'Қабылдау жыл сайын осы күндері өтеді'],
+  ['2027-01-15', '2027-01-15', 'abroad', true, 'Венгрия: последний день подачи на Stipendium Hungaricum', 'Венгрия: Stipendium Hungaricum-ға өтінім берудің соңғы күні', '', ''],
+  ['2027-01-21', '2027-02-18', 'abroad', true, 'Китай: документы на стипендию правительства КНР', 'Қытай: ҚХР үкіметінің стипендиясына құжаттар', 'Через eGov или Центр международных программ', 'eGov немесе Халықаралық бағдарламалар орталығы арқылы'],
   ['2027-03-01', '2027-04-06', 'paid', false, 'Мартовское ЕНТ', 'Наурыздағы ҰБТ', '', ''],
   ['2027-04-11', '2027-04-25', 'grant', true, 'Регистрация на основное ЕНТ', 'Негізгі ҰБТ-ға тіркелу', 'Через сайт НЦТ, можно записаться на две попытки', 'ҰТО сайты арқылы, екі талпынысқа жазылуға болады'],
   ['2027-05-10', '2027-07-10', 'grant', false, 'Основное ЕНТ', 'Негізгі ҰБТ', 'Две попытки, в конкурс идёт лучший результат', 'Екі талпыныс, конкурсқа үздік нәтиже өтеді'],
@@ -516,17 +613,27 @@ export const ENT_FACTS = [
 const T = {
   ru: {
     locale: 'ru', i: 0,
-    tabHome: 'Главная', tabPrograms: 'Календарь', tabUnis: 'Вузы', tabFinder: 'Подбор по баллу', tabGrants: 'ЕНТ и гранты',
+    tabHome: 'Главная', tabPrograms: 'Календарь', tabUnis: 'Вузы', tabFinder: 'Подбор по баллу', tabGrants: 'ЕНТ и гранты', tabAbroad: 'За рубежом',
     h1: 'Куда поступить и куда подать проект в Казахстане',
     lead: 'Вузы, гранты и IT-конкурсы в одном месте.',
     scoreLabel: 'Мой балл ЕНТ', scoreGo: 'Показать, куда хватит', scoreHint: 'от 0 до 140',
     tileProgramsD: 'Даты ЕНТ, подачи на грант и конкурсы', tileUnisD: 'Требования IELTS, SAT и ЕНТ, фото, гранты',
     tileFinderD: 'Сравните свой балл с проходными', tileGrantsD: 'Сколько грантов и какие пороги',
     statGrants: 'грантов на бакалавриат в 2026/27', statUnis: 'вузов с требованиями', statPrograms: 'конкурсов для проектов', statRows: 'специальностей с проходными',
+    tileAbroadD: 'Страны, стипендии, язык и расходы',
+    hAbroad: 'Учёба за рубежом',
+    pAbroad: 'Куда чаще всего уезжают казахстанцы и как там учиться бесплатно. Условия меняются каждый год, перед подачей сверяйтесь с источником.',
+    ways: { grant: 'есть стипендия', free: 'бесплатно на языке страны', paid: 'платно' },
+    aFree: 'Бесплатно', aNeed: 'Что нужно', aCost: 'Расходы', aWhen: 'Когда',
+    aFactsSrc: 'Число студентов: ЮНЕСКО и слова министра науки и высшего образования, июнь 2024 года.',
+    hOther: 'Ещё межправительственные гранты 2026/27',
+    otherNote: 'Конкурс проводит Центр международных программ. После учёбы по такому гранту, включая китайский и венгерский, нужно вернуться и год отработать в Казахстане.',
+    hBolashak: '«Болашак» для выпускников школ',
+    pBolashak: 'В программе снова есть бакалавриат: в 2026 году выделили 20 стипендий для победителей и призёров международных олимпиад и конкурсов научных проектов. Документы принимали с 16 марта по 16 октября через eGov.',
     hCalendar: 'Календарь абитуриента 2027',
     pCalendar: 'Сроки ЕНТ по действующему расписанию. Точные даты на 2027 год объявит Национальный центр тестирования.',
     calNow: 'идёт сейчас', calPast: 'прошло', calIn: (d) => `через ${d}`, approx: 'по датам 2026 года',
-    kinds: { grant: 'для гранта', paid: 'для платного' },
+    kinds: { grant: 'для гранта', paid: 'для платного', abroad: 'за рубеж' },
     mineLabel: 'Только мой список', saveRow: 'В мой список', mineEmpty: 'В списке пусто. Отметьте специальности звёздочкой.',
     copyLink: 'Скопировать ссылку на этот подбор', copied: 'Ссылка скопирована', copyFail: 'Скопируйте ссылку из адресной строки',
     hPrograms: 'Конкурсы для IT-проектов', pPrograms: 'Наборы 2026 года в основном закрыты, следующие ждём зимой и весной.',
@@ -549,7 +656,7 @@ const T = {
     cmpPicked: (n) => `Выбрано ${n} из 3`, cmpShow: 'Показать сравнение',
     cityLabel: 'Город', cmpGrants: 'Грантов в таблице, 2025', cmpRange: 'Проходные, 2025',
     hQuotas: 'Квоты', quotasNote: 'Победители международных олимпиад и крупных спортивных соревнований получают грант вне конкурса.',
-    report: 'Сообщить об ошибке', updated: 'Обновлено 15 ноября 2026 года.', thUni: 'Вуз', thYou: 'Ваш результат', enterScore: 'введите балл',
+    report: 'Сообщить об ошибке', updated: 'Обновлено 16 ноября 2026 года.', thUni: 'Вуз', thYou: 'Ваш результат', enterScore: 'введите балл',
     pass: (n) => (n ? `проходите, запас ${n}` : 'проходите впритык'), fail: (n) => `не хватает ${n}`,
     showAll: (n) => `Показать все строки: ${n}`, showLess: 'Свернуть',
     hGrants: 'ЕНТ и гранты 2026/27',
@@ -562,17 +669,27 @@ const T = {
   },
   kz: {
     locale: 'kk', i: 1,
-    tabHome: 'Басты бет', tabPrograms: 'Күнтізбе', tabUnis: 'ЖОО', tabFinder: 'Балл бойынша таңдау', tabGrants: 'ҰБТ және гранттар',
+    tabHome: 'Басты бет', tabPrograms: 'Күнтізбе', tabUnis: 'ЖОО', tabFinder: 'Балл бойынша таңдау', tabGrants: 'ҰБТ және гранттар', tabAbroad: 'Шетелде',
     h1: 'Қазақстанда қайда түсуге және жобаны қайда тапсыруға болады',
     lead: 'ЖОО, гранттар және IT-байқаулар бір жерде.',
     scoreLabel: 'Менің ҰБТ балым', scoreGo: 'Қайда жететінін көрсету', scoreHint: '0-ден 140-қа дейін',
     tileProgramsD: 'ҰБТ, грантқа өтініш және байқау мерзімдері', tileUnisD: 'IELTS, SAT және ҰБТ талаптары, фото, гранттар',
     tileFinderD: 'Балыңызды өту балдарымен салыстырыңыз', tileGrantsD: 'Грант саны мен шекті балдар',
     statGrants: '2026/27 бакалавриат гранты', statUnis: 'талаптары бар ЖОО', statPrograms: 'байқау мен бағдарлама', statRows: 'өту балы бар мамандық',
+    tileAbroadD: 'Елдер, стипендиялар, тіл және шығын',
+    hAbroad: 'Шетелде оқу',
+    pAbroad: 'Қазақстандықтар қайда жиі кетеді және онда қалай тегін оқуға болады. Шарттар жыл сайын өзгереді, тапсырар алдында дереккөзден тексеріңіз.',
+    ways: { grant: 'стипендия бар', free: 'ел тілінде тегін', paid: 'ақылы' },
+    aFree: 'Тегін', aNeed: 'Не қажет', aCost: 'Шығын', aWhen: 'Қашан',
+    aFactsSrc: 'Студенттер саны: ЮНЕСКО және ғылым және жоғары білім министрінің сөзі, 2024 жылғы маусым.',
+    hOther: 'Тағы да үкіметаралық гранттар 2026/27',
+    otherNote: 'Конкурсты Халықаралық бағдарламалар орталығы өткізеді. Мұндай грантпен, соның ішінде Қытай мен Венгрия грантымен оқығаннан кейін елге оралып, Қазақстанда бір жыл жұмыс істеу қажет.',
+    hBolashak: 'Мектеп түлектеріне арналған «Болашақ»',
+    pBolashak: 'Бағдарламада қайтадан бакалавриат бар: 2026 жылы халықаралық олимпиадалар мен ғылыми жобалар байқауларының жеңімпаздары мен жүлдегерлеріне 20 стипендия бөлінді. Құжаттар 16 наурыз – 16 қазан аралығында eGov арқылы қабылданды.',
     hCalendar: 'Талапкер күнтізбесі 2027',
     pCalendar: 'ҰБТ мерзімдері қолданыстағы кесте бойынша. 2027 жылғы нақты күндерді Ұлттық тестілеу орталығы жариялайды.',
     calNow: 'қазір өтіп жатыр', calPast: 'өтті', calIn: (d) => `${d} кейін`, approx: '2026 жылғы күндер бойынша',
-    kinds: { grant: 'грант үшін', paid: 'ақылы бөлім үшін' },
+    kinds: { grant: 'грант үшін', paid: 'ақылы бөлім үшін', abroad: 'шетел' },
     mineLabel: 'Тек менің тізімім', saveRow: 'Тізіміме қосу', mineEmpty: 'Тізім бос. Мамандықтарды жұлдызшамен белгілеңіз.',
     copyLink: 'Осы таңдаудың сілтемесін көшіру', copied: 'Сілтеме көшірілді', copyFail: 'Сілтемені мекенжай жолынан көшіріңіз',
     hPrograms: 'IT-жобаларға арналған байқаулар', pPrograms: '2026 жылғы қабылдаулардың көбі жабылды, келесілері қыста және көктемде.',
@@ -595,7 +712,7 @@ const T = {
     cmpPicked: (n) => `3-тен ${n} таңдалды`, cmpShow: 'Салыстыруды көрсету',
     cityLabel: 'Қала', cmpGrants: 'Кестедегі грант саны, 2025', cmpRange: 'Өту балдары, 2025',
     hQuotas: 'Квоталар', quotasNote: 'Халықаралық олимпиадалар мен ірі спорт жарыстарының жеңімпаздары грантты конкурстан тыс алады.',
-    report: 'Қате туралы хабарлау', updated: '2026 жылғы 15 қарашада жаңартылды.', thUni: 'ЖОО', thYou: 'Сіздің нәтижеңіз', enterScore: 'балды енгізіңіз',
+    report: 'Қате туралы хабарлау', updated: '2026 жылғы 16 қарашада жаңартылды.', thUni: 'ЖОО', thYou: 'Сіздің нәтижеңіз', enterScore: 'балды енгізіңіз',
     pass: (n) => (n ? `өтесіз, артық ${n} балл` : 'дәл өтесіз'), fail: (n) => `${n} балл жетпейді`,
     showAll: (n) => `Барлық жолды көрсету: ${n}`, showLess: 'Жию',
     hGrants: 'ҰБТ және гранттар 2026/27',
@@ -766,6 +883,22 @@ if (typeof document !== 'undefined') {
     }).join('');
   }
 
+  // ----- abroad -----
+  function renderAbroad() {
+    const t = T[lang], i = t.i;
+    const host = (u) => new URL(u).hostname.replace('www.', '');
+    const glue = (x) => esc(x).replace(/(\d) (?=[\d$€£])/g, '$1\u00a0');
+    const row = (label, v) => (v ? `<div><dt>${label}</dt><dd>${glue(v[i])}</dd></div>` : '');
+    $('#abroadFacts').innerHTML = ABROAD_FACTS.map((f) => `<li><b>${f[i]}</b><span>${esc(f[2 + i])}</span></li>`).join('');
+    $('#abroadGrid').innerHTML = ABROAD.map((c) => `<article class="card abroad">
+      <p class="chips"><span class="chip${c.way === 'grant' ? ' money' : ''}">${t.ways[c.way]}</span>${c.students ? `<span class="chip">${esc(c.students[i])}</span>` : ''}</p>
+      <h3>${esc(c.name[i])}</h3>
+      <dl class="rows">${row(t.aFree, c.free)}${row(t.aNeed, c.need)}${row(t.aCost, c.cost)}${row(t.aWhen, c.when)}</dl>
+      <p class="src">${t.source}: ${c.urls.filter((u, n, all) => all.findIndex((x) => host(x) === host(u)) === n).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join(', ')}</p>
+    </article>`).join('');
+    $('#otherGrants').innerHTML = OTHER_GRANTS.map((d) => `<li><b>${d[0]}</b><span>${esc(d[1 + i])}</span></li>`).join('');
+  }
+
   // ----- grants -----
   function renderGrants() {
     const i = T[lang].i, max = DIRECTIONS[0][2];
@@ -777,7 +910,7 @@ if (typeof document !== 'undefined') {
   }
 
   // ----- tabs: one panel on screen, the address keeps the tab -----
-  const TABS = ['home', 'calendar', 'unis', 'finder', 'grants'];
+  const TABS = ['home', 'calendar', 'unis', 'finder', 'grants', 'abroad'];
   function route() {
     const st = parseState(location.hash), h = st.tab, isCard = /^u\d+$/.test(h);
     // A card hidden by the city filter: drop the filter so the link still lands on it.
@@ -805,7 +938,7 @@ if (typeof document !== 'undefined') {
     $('#statRows').textContent = allRows;
     $('#statUnis').textContent = UNIVERSITIES.length;
     $('#statPrograms').textContent = PROGRAMS.length;
-    renderPrograms(); renderUnis(); renderFinder(); renderGrants(); renderCalendar();
+    renderPrograms(); renderUnis(); renderFinder(); renderGrants(); renderCalendar(); renderAbroad();
   }
 
   $('#filters').addEventListener('input', renderPrograms);
