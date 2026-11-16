@@ -140,14 +140,30 @@ th.n,td.n{text-align:right;padding-right:0;padding-left:10px;white-space:nowrap;
 .src a{color:var(--muted)}
 
 /* finder */
-#finderForm{display:grid;grid-template-columns:220px minmax(0,300px) minmax(0,360px);gap:16px;padding:16px;background:var(--soft);border-radius:var(--r);margin-bottom:20px}
+#finderForm{display:grid;align-items:end;grid-template-columns:200px minmax(0,280px) minmax(0,340px) auto;gap:16px;padding:16px;background:var(--soft);border-radius:var(--r);margin-bottom:20px}
 .results{padding:4px 20px 16px}
 .results table{font-size:16px}
 .results th,.results td{padding:11px 12px 11px 0}
 .you{display:inline-block;font-size:14px;font-weight:500;padding:3px 10px;border-radius:999px;background:var(--soft);color:var(--muted);white-space:nowrap}
 .pass .you{background:var(--ok-soft);color:var(--ok)}
 .fail .you{background:var(--warn-soft);color:var(--warn)}
-#finderMore{margin-top:16px}
+.under{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px}
+#copyNote{color:var(--ok);font-size:15px}
+.star{font-size:26px;line-height:1;font-family:inherit;color:var(--muted);background:none;border:0;min-width:44px;min-height:44px;cursor:pointer}
+.star[aria-pressed=true]{color:#d99a00}
+td.none{padding:24px 0;color:var(--muted)}
+/* calendar */
+#calendar{list-style:none;margin:0;padding:4px 20px}
+.ev{display:grid;grid-template-columns:230px minmax(0,1fr) auto;gap:20px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line)}
+.ev:last-child{border-bottom:0}
+.ev .when b{display:block;font-size:17px}
+.ev .when span{font-size:14px;color:var(--muted)}
+.ev.now .when span{color:var(--ok);font-weight:500}
+.ev h3{font-size:18px}
+.ev p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.ev .chips{margin-top:8px}
+.ev.past{opacity:.55}
+h2.second{margin-top:48px}
 
 /* grants */
 .tilesrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0 0 20px;padding:0;list-style:none}
@@ -197,10 +213,13 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
   .results thead{display:none}
   .results tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
   .results td,.results td.n{border:0;padding:0;text-align:left}
-  .results td:nth-child(1),.results td:nth-child(2),.results td:nth-child(5){grid-column:1/-1}
+  .results td:nth-child(1),.results td:nth-child(2){grid-column:1/-1}
   .results td:nth-child(1){font-weight:500}
   .results td[data-l]::before{content:attr(data-l) ": ";color:var(--muted)}
   .results td:nth-child(5){margin-top:4px}
+  .results tr{position:relative;padding-right:44px}
+  .results td:nth-child(6){position:absolute;top:2px;right:-6px}
+  .ev{grid-template-columns:minmax(0,1fr);gap:6px}
 }
 </style>
 </head>
@@ -213,7 +232,7 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
       <a href="#unis" data-t="tabUnis"></a>
       <a href="#finder" data-t="tabFinder"></a>
       <a href="#grants" data-t="tabGrants"></a>
-      <a href="#programs" data-t="tabPrograms"></a>
+      <a href="#calendar" data-t="tabPrograms"></a>
     </nav>
     <div class="lang" role="group" aria-label="Тіл / Язык">
       <button type="button" data-lang="kz">Қаз</button>
@@ -244,7 +263,7 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
         <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 30V18M14 30V8M22 30V14M30 30V22M3 30h30"/></svg>
         <b data-t="tabGrants"></b><span data-t="tileGrantsD"></span>
       </a>
-      <a class="card tile" href="#programs">
+      <a class="card tile" href="#calendar">
         <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5h14v9a7 7 0 0 1-14 0V5zM11 8H5c0 5 2 7 6 7M25 8h6c0 5-2 7-6 7M18 21v6M11 31h14"/></svg>
         <b data-t="tabPrograms"></b><span data-t="tileProgramsD"></span>
       </a>
@@ -285,13 +304,18 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
       <label><span data-t="scoreLabel"></span><input type="number" name="score" min="0" max="140" inputmode="numeric" placeholder="0–140"></label>
       <label><span data-t="pairLabel"></span><select name="pair"></select></label>
       <label><span data-t="specLabel"></span><select name="code"></select></label>
+      <label class="check"><input type="checkbox" name="mine"><span data-t="mineLabel"></span></label>
     </form>
     <div class="card results">
       <table>
-        <thead><tr><th data-t="thProgram"></th><th data-t="thUni"></th><th class="n" data-t="thGrants"></th><th class="n" data-t="thMin"></th><th data-t="thYou"></th></tr></thead>
+        <thead><tr><th data-t="thProgram"></th><th data-t="thUni"></th><th class="n" data-t="thGrants"></th><th class="n" data-t="thMin"></th><th data-t="thYou"></th><th></th></tr></thead>
         <tbody id="finderBody"></tbody>
       </table>
-      <button type="button" class="ghost" id="finderMore"></button>
+      <div class="under">
+        <button type="button" class="ghost" id="finderMore"></button>
+        <button type="button" class="ghost" id="copyLink" data-t="copyLink"></button>
+        <span id="copyNote" role="status"></span>
+      </div>
     </div>
   </section>
 
@@ -326,8 +350,11 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
     </div>
   </section>
 
-  <section data-panel="programs" hidden>
-    <h2 data-t="hPrograms"></h2>
+  <section data-panel="calendar" hidden>
+    <h2 data-t="hCalendar"></h2>
+    <p class="sub" data-t="pCalendar"></p>
+    <ul id="calendar" class="card"></ul>
+    <h2 data-t="hPrograms" class="second"></h2>
     <p class="sub" data-t="pPrograms"></p>
     <form id="filters">
       <label><span data-t="search"></span><input type="search" name="q"></label>

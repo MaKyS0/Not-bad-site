@@ -64,4 +64,18 @@ assert.deepEqual(finderRows(unis, { code: '', score: '', pair: 'bg' }).map((r) =
 assert.deepEqual(summary(unis[0]), { grants: 55, min: 80, max: 100 });
 assert.equal(summary(unis[2]), null);
 for (const d of QUOTAS) assert.ok(d.length === 3 && d.every(Boolean));
+
+// Calendar phases and the finder state carried in the address.
+const { CALENDAR, phase, parseState, buildHash } = await import('../public/mumkindik/app.js');
+assert.deepEqual(phase('2027-01-10', '2027-02-10', '2026-11-16'), { state: 'future', days: 55 });
+assert.equal(phase('2027-01-10', '2027-02-10', '2027-01-10').state, 'now'); // first day counts
+assert.equal(phase('2027-01-10', '2027-02-10', '2027-02-10').state, 'now'); // last day counts
+assert.equal(phase('2027-01-10', '2027-02-10', '2027-02-11').state, 'past');
+for (const e of CALENDAR) assert.ok(e.length === 8 && e[0] <= e[1] && e[4] && e[5], e[4]);
+assert.deepEqual(CALENDAR.map((e) => e[0]), [...CALENDAR.map((e) => e[0])].sort(), 'calendar is in date order');
+assert.equal(buildHash({ tab: 'finder', score: '95', pair: 'mi', code: '' }), '#finder?score=95&pair=mi');
+assert.equal(buildHash({ tab: 'finder', score: '', pair: '', code: '' }), '#finder');
+assert.deepEqual(parseState('#finder?score=95&pair=mi'), { tab: 'finder', score: '95', pair: 'mi', code: '' });
+assert.deepEqual(parseState('#u3'), { tab: 'u3', score: '', pair: '', code: '' });
+assert.deepEqual(parseState(''), { tab: '', score: '', pair: '', code: '' });
 console.log('mumkindik data: ok');

@@ -389,6 +389,35 @@ export const UNIVERSITIES = [
   },
 ];
 
+// Applicant's calendar for 2027: [start, end, kind, approx, ru, kz, ru note, kz note].
+// ENT windows follow the standing schedule; approx = dates of the 2026 campaign, the 2027 ones are not announced yet.
+export const CALENDAR = [
+  ['2027-01-10', '2027-02-10', 'paid', false, 'Январское ЕНТ', 'Қаңтардағы ҰБТ', '', ''],
+  ['2027-03-01', '2027-04-06', 'paid', false, 'Мартовское ЕНТ', 'Наурыздағы ҰБТ', '', ''],
+  ['2027-04-11', '2027-04-25', 'grant', true, 'Регистрация на основное ЕНТ', 'Негізгі ҰБТ-ға тіркелу', 'Через сайт НЦТ, можно записаться на две попытки', 'ҰТО сайты арқылы, екі талпынысқа жазылуға болады'],
+  ['2027-05-10', '2027-07-10', 'grant', false, 'Основное ЕНТ', 'Негізгі ҰБТ', 'Две попытки, в конкурс идёт лучший результат', 'Екі талпыныс, конкурсқа үздік нәтиже өтеді'],
+  ['2027-06-01', '2027-06-01', 'other', false, 'Nazarbayev University: срок сдачи IELTS или TOEFL', 'Nazarbayev University: IELTS немесе TOEFL тапсыру мерзімі', '', ''],
+  ['2027-07-13', '2027-07-20', 'grant', true, 'Подача заявлений на грант', 'Грантқа өтініш беру', 'До четырёх вузов и четырёх групп программ', 'Төрт ЖОО мен төрт бағдарламалар тобына дейін'],
+  ['2027-08-10', '2027-08-20', 'paid', false, 'Августовское ЕНТ', 'Тамыздағы ҰБТ', '', ''],
+];
+
+/** Where today sits against a date range: before it (days until the start), inside it, or after it. */
+export function phase(start, end, today) {
+  if (today < start) return { state: 'future', days: Math.round((Date.parse(start) - Date.parse(today)) / 864e5) };
+  return { state: today > end ? 'past' : 'now', days: 0 };
+}
+
+/** Finder state kept in the address so a result can be sent to someone: "#finder?score=95&pair=mi". */
+export function parseState(hash) {
+  const [tab, query = ''] = hash.replace(/^#/, '').split('?');
+  const q = new URLSearchParams(query);
+  return { tab, score: q.get('score') || '', pair: q.get('pair') || '', code: q.get('code') || '' };
+}
+export function buildHash({ tab, score, pair, code }) {
+  const q = new URLSearchParams(Object.entries({ score, pair, code }).filter(([, v]) => v)).toString();
+  return `#${tab}${q ? `?${q}` : ''}`;
+}
+
 /** Margin over last year's passing score; null when the score is empty or outside 0–140. */
 export function fit(score, min) {
   const n = score === '' || score == null ? NaN : Number(score);
@@ -477,14 +506,20 @@ export const ENT_FACTS = [
 const T = {
   ru: {
     locale: 'ru', i: 0,
-    tabHome: 'Главная', tabPrograms: 'Конкурсы', tabUnis: 'Вузы', tabFinder: 'Подбор по баллу', tabGrants: 'ЕНТ и гранты',
+    tabHome: 'Главная', tabPrograms: 'Календарь', tabUnis: 'Вузы', tabFinder: 'Подбор по баллу', tabGrants: 'ЕНТ и гранты',
     h1: 'Куда поступить и куда подать проект в Казахстане',
     lead: 'Вузы, гранты и IT-конкурсы в одном месте.',
     scoreLabel: 'Мой балл ЕНТ', scoreGo: 'Показать, куда хватит', scoreHint: 'от 0 до 140',
-    tileProgramsD: 'Акселераторы, инкубаторы и гранты для проектов', tileUnisD: 'Требования IELTS, SAT и ЕНТ, фото, гранты',
+    tileProgramsD: 'Даты ЕНТ, подачи на грант и конкурсы', tileUnisD: 'Требования IELTS, SAT и ЕНТ, фото, гранты',
     tileFinderD: 'Сравните свой балл с проходными', tileGrantsD: 'Сколько грантов и какие пороги',
-    statGrants: 'грантов на бакалавриат в 2026/27', statUnis: 'вузов с требованиями', statPrograms: 'конкурсов и программ', statRows: 'специальностей с проходными',
-    hPrograms: 'Конкурсы, гранты и акселераторы', pPrograms: 'Наборы 2026 года в основном закрыты, следующие ждём зимой и весной.',
+    statGrants: 'грантов на бакалавриат в 2026/27', statUnis: 'вузов с требованиями', statPrograms: 'конкурсов для проектов', statRows: 'специальностей с проходными',
+    hCalendar: 'Календарь абитуриента 2027',
+    pCalendar: 'Сроки ЕНТ по действующему расписанию. Точные даты на 2027 год объявит Национальный центр тестирования.',
+    calNow: 'идёт сейчас', calPast: 'прошло', calIn: (d) => `через ${d}`, approx: 'по датам 2026 года',
+    kinds: { grant: 'для гранта', paid: 'для платного', other: 'вуз' },
+    mineLabel: 'Только мой список', saveRow: 'В мой список', mineEmpty: 'В списке пусто. Отметьте специальности звёздочкой.',
+    copyLink: 'Скопировать ссылку на этот подбор', copied: 'Ссылка скопирована', copyFail: 'Скопируйте ссылку из адресной строки',
+    hPrograms: 'Конкурсы для IT-проектов', pPrograms: 'Наборы 2026 года в основном закрыты, следующие ждём зимой и весной.',
     typeLabel: 'Тип', any: 'Все', competition: 'Конкурс', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
     stageLabel: 'Моя стадия', stageAny: 'Любая', idea: 'Только идея', mvp: 'Есть MVP', growth: 'Есть выручка',
     needs: { idea: 'можно с идеей', mvp: 'нужен MVP', growth: 'нужна выручка' },
@@ -517,14 +552,20 @@ const T = {
   },
   kz: {
     locale: 'kk', i: 1,
-    tabHome: 'Басты бет', tabPrograms: 'Байқаулар', tabUnis: 'ЖОО', tabFinder: 'Балл бойынша таңдау', tabGrants: 'ҰБТ және гранттар',
+    tabHome: 'Басты бет', tabPrograms: 'Күнтізбе', tabUnis: 'ЖОО', tabFinder: 'Балл бойынша таңдау', tabGrants: 'ҰБТ және гранттар',
     h1: 'Қазақстанда қайда түсуге және жобаны қайда тапсыруға болады',
     lead: 'ЖОО, гранттар және IT-байқаулар бір жерде.',
     scoreLabel: 'Менің ҰБТ балым', scoreGo: 'Қайда жететінін көрсету', scoreHint: '0-ден 140-қа дейін',
-    tileProgramsD: 'Жобаларға арналған акселераторлар, инкубаторлар, гранттар', tileUnisD: 'IELTS, SAT және ҰБТ талаптары, фото, гранттар',
+    tileProgramsD: 'ҰБТ, грантқа өтініш және байқау мерзімдері', tileUnisD: 'IELTS, SAT және ҰБТ талаптары, фото, гранттар',
     tileFinderD: 'Балыңызды өту балдарымен салыстырыңыз', tileGrantsD: 'Грант саны мен шекті балдар',
     statGrants: '2026/27 бакалавриат гранты', statUnis: 'талаптары бар ЖОО', statPrograms: 'байқау мен бағдарлама', statRows: 'өту балы бар мамандық',
-    hPrograms: 'Байқаулар, гранттар және акселераторлар', pPrograms: '2026 жылғы қабылдаулардың көбі жабылды, келесілері қыста және көктемде.',
+    hCalendar: 'Талапкер күнтізбесі 2027',
+    pCalendar: 'ҰБТ мерзімдері қолданыстағы кесте бойынша. 2027 жылғы нақты күндерді Ұлттық тестілеу орталығы жариялайды.',
+    calNow: 'қазір өтіп жатыр', calPast: 'өтті', calIn: (d) => `${d} кейін`, approx: '2026 жылғы күндер бойынша',
+    kinds: { grant: 'грант үшін', paid: 'ақылы бөлім үшін', other: 'ЖОО' },
+    mineLabel: 'Тек менің тізімім', saveRow: 'Тізіміме қосу', mineEmpty: 'Тізім бос. Мамандықтарды жұлдызшамен белгілеңіз.',
+    copyLink: 'Осы таңдаудың сілтемесін көшіру', copied: 'Сілтеме көшірілді', copyFail: 'Сілтемені мекенжай жолынан көшіріңіз',
+    hPrograms: 'IT-жобаларға арналған байқаулар', pPrograms: '2026 жылғы қабылдаулардың көбі жабылды, келесілері қыста және көктемде.',
     typeLabel: 'Түрі', any: 'Барлығы', competition: 'Байқау', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
     stageLabel: 'Менің кезеңім', stageAny: 'Кез келген', idea: 'Тек идея', mvp: 'MVP бар', growth: 'Табыс бар',
     needs: { idea: 'идеямен болады', mvp: 'MVP қажет', growth: 'табыс қажет' },
@@ -662,6 +703,11 @@ if (typeof document !== 'undefined') {
 
   // ----- finder -----
   let showAllRows = false;
+  let currentTab = 'home';
+  // "My list": starred rows, kept in this browser only.
+  const rowKey = ({ u, p }) => `${u.name}|${p[0]}`;
+  const saved = new Set((() => { try { return JSON.parse(localStorage.getItem('mumkindik-list')) || []; } catch { return []; } })());
+  const keepSaved = () => { try { localStorage.setItem('mumkindik-list', JSON.stringify([...saved])); } catch { /* private mode: the list lives until the tab closes */ } };
   function renderFinder() {
     const t = T[lang], i = t.i, f = $('#finderForm');
     // Rebuild the specialty list in the current language, keeping the choice.
@@ -675,16 +721,39 @@ if (typeof document !== 'undefined') {
     const chosenPair = f.pair.value;
     f.pair.innerHTML = `<option value="">${t.pairAny}</option>` + PAIRS.filter((x) => used.has(x[0])).map((x) => `<option value="${x[0]}">${esc(x[1 + i])}</option>`).join('');
     f.pair.value = chosenPair;
-    const rows = finderRows(UNIVERSITIES, { code: f.code.value, score: f.score.value, pair: f.pair.value });
+    const rows = finderRows(UNIVERSITIES, { code: f.code.value, score: f.score.value, pair: f.pair.value })
+      .filter((r) => !f.mine.checked || saved.has(rowKey(r)));
     const limit = 12;
     $('#finderBody').innerHTML = rows.slice(0, showAllRows ? rows.length : limit).map(({ u, p, gap }) => `<tr class="${gap === null ? '' : gap >= 0 ? 'pass' : 'fail'}">
       <td>${esc(p[1 + i])}${pairOf(p[0]) ? `<span class="pair">${esc(pairOf(p[0])[1 + i])}</span>` : ''}</td>
       <td><a href="#${uid(u)}">${esc(u.name)}</a></td>
       <td class="n" data-l="${t.thGrants}">${num(p[3])}</td><td class="n" data-l="${t.thMin}">${p[4]}</td>
-      <td><span class="you">${gap === null ? t.enterScore : gap >= 0 ? t.pass(gap) : t.fail(-gap)}</span></td></tr>`).join('');
+      <td><span class="you">${gap === null ? t.enterScore : gap >= 0 ? t.pass(gap) : t.fail(-gap)}</span></td>
+      <td class="n"><button type="button" class="star" data-save="${rowKey({ u, p })}" aria-pressed="${saved.has(rowKey({ u, p }))}" aria-label="${t.saveRow}" title="${t.saveRow}">${saved.has(rowKey({ u, p })) ? '★' : '☆'}</button></td></tr>`).join('')
+      || `<tr><td colspan="6" class="none">${f.mine.checked ? t.mineEmpty : t.empty}</td></tr>`;
     const more = $('#finderMore');
     more.hidden = rows.length <= limit;
     more.textContent = showAllRows ? t.showLess : t.showAll(rows.length);
+    $('#copyNote').textContent = '';
+    // Keep the address in step with the form, so the link in the bar is the link to this result.
+    if (currentTab === 'finder') history.replaceState(null, '', buildHash({ tab: 'finder', score: f.score.value, pair: f.pair.value, code: f.code.value }));
+  }
+
+  // ----- calendar -----
+  function renderCalendar() {
+    const t = T[lang], i = t.i;
+    const fmt = (d) => new Date(d).toLocaleDateString(t.locale, { day: 'numeric', month: 'long' });
+    $('#calendar').innerHTML = CALENDAR.map(([start, end, kind, approx, ru, kz, nru, nkz]) => {
+      const ph = phase(start, end, today), name = [ru, kz][i], note = [nru, nkz][i];
+      const when = ph.state === 'now' ? t.calNow : ph.state === 'past' ? t.calPast : t.calIn(t.days(ph.days));
+      const cal = ph.state === 'past' ? '' : `<a download="${esc(name)}.ics" href="data:text/calendar;charset=utf-8,${encodeURIComponent(ics({ name, deadline: start, url: location.href.split('#')[0] }))}">${t.cal}</a>`;
+      return `<li class="ev ${ph.state}">
+        <div class="when"><b>${start === end ? fmt(start) : `${fmt(start)} – ${fmt(end)}`}</b><span>${when}</span></div>
+        <div class="what"><h3>${esc(name)}</h3>${note ? `<p>${esc(note)}</p>` : ''}
+          <p class="chips"><span class="chip${kind === 'grant' ? ' money' : ''}">${t.kinds[kind]}</span>${approx ? `<span class="chip">${t.approx}</span>` : ''}</p></div>
+        <div class="links">${cal}</div>
+      </li>`;
+    }).join('');
   }
 
   // ----- grants -----
@@ -698,15 +767,23 @@ if (typeof document !== 'undefined') {
   }
 
   // ----- tabs: one panel on screen, the address keeps the tab -----
-  const TABS = ['home', 'programs', 'unis', 'finder', 'grants'];
+  const TABS = ['home', 'calendar', 'unis', 'finder', 'grants'];
   function route() {
-    const h = location.hash.slice(1), isCard = /^u\d+$/.test(h);
+    const st = parseState(location.hash), h = st.tab, isCard = /^u\d+$/.test(h);
     // A card hidden by the city filter: drop the filter so the link still lands on it.
     if (isCard && !document.getElementById(h) && city) { city = ''; renderUnis(); }
     const target = isCard && document.getElementById(h);
-    const tab = target ? 'unis' : TABS.includes(h) ? h : 'home';
+    // "#programs" is the old name of the calendar tab; old links keep working.
+    const tab = target ? 'unis' : h === 'programs' ? 'calendar' : TABS.includes(h) ? h : 'home';
+    currentTab = tab;
     $$('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== tab; });
     $$('nav a').forEach((a) => a.toggleAttribute('aria-current', a.hash === `#${tab}`));
+    if (tab === 'finder') {
+      // A shared link fills the form; a plain "#finder" keeps what is already typed.
+      const f = $('#finderForm');
+      if (st.score || st.pair || st.code) { f.score.value = st.score; f.pair.value = st.pair; f.code.value = st.code; }
+      renderFinder();
+    }
     if (target) { target.querySelector('details')?.setAttribute('open', ''); target.scrollIntoView(); } else scrollTo(0, 0);
   }
 
@@ -718,13 +795,23 @@ if (typeof document !== 'undefined') {
     $('#statRows').textContent = allRows;
     $('#statUnis').textContent = UNIVERSITIES.length;
     $('#statPrograms').textContent = PROGRAMS.length;
-    renderPrograms(); renderUnis(); renderFinder(); renderGrants();
+    renderPrograms(); renderUnis(); renderFinder(); renderGrants(); renderCalendar();
   }
 
   $('#filters').addEventListener('input', renderPrograms);
   $('#finderForm').addEventListener('input', renderFinder);
   $$('form').forEach((f) => f.addEventListener('submit', (e) => e.preventDefault()));
   $('#finderMore').addEventListener('click', () => { showAllRows = !showAllRows; renderFinder(); });
+  $('#finderBody').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-save]');
+    if (!b) return;
+    if (saved.has(b.dataset.save)) saved.delete(b.dataset.save); else saved.add(b.dataset.save);
+    keepSaved(); renderFinder();
+  });
+  $('#copyLink').addEventListener('click', async () => {
+    const t = T[lang];
+    try { await navigator.clipboard.writeText(location.href); $('#copyNote').textContent = t.copied; } catch { $('#copyNote').textContent = t.copyFail; }
+  });
   // Compare: tick up to three cards; a fourth tick is refused with a note.
   $('#uniGrid').addEventListener('change', (e) => {
     const n = Number(e.target.dataset.cmp);
