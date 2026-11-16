@@ -33,10 +33,10 @@ h1,h2,h3{margin:0;line-height:1.15;font-weight:700;overflow-wrap:break-word}
 
 /* top bar with tabs */
 .top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:24px;min-height:64px}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
 .brand{font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;white-space:nowrap}
-nav{display:flex;gap:4px;flex:1;overflow-x:auto;align-self:stretch}
-nav a{display:flex;align-items:center;padding:0 14px;color:var(--muted);text-decoration:none;font-weight:500;white-space:nowrap;border-bottom:3px solid transparent;border-top:3px solid transparent}
+nav{display:flex;flex:1;overflow-x:auto;align-self:stretch;scrollbar-width:none}
+nav a{display:flex;align-items:center;padding:0 12px;color:var(--muted);text-decoration:none;font-weight:500;white-space:nowrap;border-bottom:3px solid transparent;border-top:3px solid transparent}
 nav a:hover{color:var(--ink)}
 nav a[aria-current]{color:var(--accent);border-bottom-color:var(--accent)}
 .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
@@ -168,7 +168,7 @@ h2.second{margin-top:48px}
 .abroad{padding:18px 20px}
 .abroad h3{font-size:22px;margin-top:10px}
 .rows{margin:12px 0 0}
-.rows div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px solid var(--line)}
+.rows div{display:grid;grid-template-columns:80px minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px solid var(--line)}
 .rows dt{color:var(--muted);font-size:14px;padding-top:1px}
 .rows dd{margin:0;font-size:15px}
 p.factsrc{margin:-8px 0 28px}
@@ -202,16 +202,16 @@ footer{padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);f
 footer p{margin:0 0 8px}
 footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
 
-@media (max-width:1000px){
+@media (max-width:1040px){
   .tiles,.stats,.tilesrow{grid-template-columns:repeat(2,1fr)}
   #uniGrid,.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
   #filters{grid-template-columns:1fr 1fr}
   .facts{grid-template-columns:repeat(3,1fr)}
-}
-@media (max-width:700px){
   .top .wrap{flex-wrap:wrap;gap:0 12px;padding-top:8px}
   nav{order:3;flex-basis:100%;min-height:44px}
   .brand{flex:1}
+}
+@media (max-width:700px){
   main.wrap{padding-top:24px}
   #quick{flex-direction:column;align-items:stretch;border-radius:var(--r)}
   .tiles,#list,#uniGrid,.grid3,.cols,#filters,#finderForm{grid-template-columns:minmax(0,1fr)}
