@@ -83,9 +83,12 @@ assert.ok(span.includes('DTSTART;VALUE=DATE:20270510') && span.includes('DTEND;V
 assert.ok(span.includes('SUMMARY:ЕНТ') && !span.includes('Дедлайн'), 'a period is not labelled as a deadline');
 assert.equal(buildHash({ tab: 'finder', score: '95', pair: 'mi', code: '' }), '#finder?score=95&pair=mi');
 assert.equal(buildHash({ tab: 'finder', score: '', pair: '', code: '' }), '#finder');
-assert.deepEqual(parseState('#finder?score=95&pair=mi'), { tab: 'finder', score: '95', pair: 'mi', code: '' });
-assert.deepEqual(parseState('#u3'), { tab: 'u3', score: '', pair: '', code: '' });
-assert.deepEqual(parseState(''), { tab: '', score: '', pair: '', code: '' });
+assert.equal(buildHash({ tab: 'finder', mode: 'tests', ielts: '6.5', sat: '', where: 'abroad' }), '#finder?mode=tests&ielts=6.5&where=abroad');
+const blank = { score: '', pair: '', code: '', mode: '', ielts: '', sat: '', where: '' };
+assert.deepEqual(parseState('#finder?score=95&pair=mi'), { ...blank, tab: 'finder', score: '95', pair: 'mi' });
+assert.deepEqual(parseState('#finder?mode=tests&ielts=6.5&sat=1300'), { ...blank, tab: 'finder', mode: 'tests', ielts: '6.5', sat: '1300' });
+assert.deepEqual(parseState('#u3'), { ...blank, tab: 'u3' });
+assert.deepEqual(parseState(''), { ...blank, tab: '' });
 
 // Study-abroad data: every text cell has both languages, every card says something and names a source.
 const { ABROAD, ABROAD_FACTS, OTHER_GRANTS } = await import('../public/mumkindik/app.js');
@@ -109,4 +112,49 @@ for (const c of ABROAD) {
 for (const f of ABROAD_FACTS) assert.ok(f.length === 4 && f.every(Boolean));
 for (const g of OTHER_GRANTS) assert.ok(/^\d+$/.test(g[0]) && g[1] && g[2]);
 for (const e of CALENDAR) assert.ok(['grant', 'paid', 'abroad'].includes(e[2]), e[4]);
+
+// IELTS and SAT finder: a place is compared only where both sides have a number; enough first, then the nearest misses.
+const { testList, testRows, ABROAD_TESTS } = await import('../public/mumkindik/app.js');
+assert.equal(fit('6.5', 6, 9), 0.5);
+assert.equal(fit('9.5', 6, 9), null);
+assert.equal(fit('1300', 1240, 1600), 60);
+const places = [
+  { name: 'A', abroad: false, ielts: 6, sat: 1240 }, { name: 'B', abroad: false, ielts: 5.5, sat: null },
+  { name: 'C', abroad: true, ielts: 7, sat: null }, { name: 'D', abroad: true, ielts: null, sat: 1100 },
+];
+const names = (q) => testRows(places, { ielts: '', sat: '', where: '', ...q }).map((r) => r.x.name + (r.state ? `:${r.state}` : ''));
+assert.deepEqual(names({}), ['B', 'A', 'C', 'D']); // nothing typed: lowest IELTS minimum first, SAT-only places last
+assert.deepEqual(names({ where: 'abroad' }), ['C', 'D']);
+assert.deepEqual(names({ ielts: '6.5' }), ['A:pass', 'B:pass', 'C:fail']); // D sets no IELTS bar: left out
+assert.deepEqual(names({ ielts: '6.5', sat: '1200' }), ['B:pass', 'D:pass', 'C:fail', 'A:fail']); // A misses SAT by 40, C misses IELTS by half a band
+assert.deepEqual(names({ ielts: 'abc', sat: '99999' }), ['B', 'A', 'C', 'D']); // rubbish counts as nothing typed
+const tl = testList();
+assert.ok(tl.every((x) => (x.ielts !== null || x.sat !== null) && x.place.length === 2 && x.href.startsWith('#')));
+assert.equal(new Set(tl.map((x) => x.name)).size, tl.length);
+const nu = tl.find((x) => x.name === 'Nazarbayev University');
+assert.deepEqual([nu.ielts, nu.sat, nu.abroad], [6, 1240, false]);
+for (const [name, r] of Object.entries(ABROAD_TESTS)) {
+  assert.ok(ABROAD.some((c) => c.unis.some((u) => u[0] === name)), `${name} is not in the university lists`);
+  assert.ok(r.ielts == null || (r.ielts >= 4 && r.ielts <= 9 && r.ielts * 2 % 1 === 0), `${name} IELTS`);
+  assert.ok(r.sat == null || (r.sat >= 400 && r.sat <= 1600), `${name} SAT`);
+  assert.ok(r.ielts != null || r.sat != null || r.ieltsNote || r.satNote, `${name} says nothing`);
+  for (const k of ['ieltsNote', 'satNote']) assert.ok(r[k] == null || pair(r[k]), `${name}.${k}`);
+  assert.equal(new URL(r.url).protocol, 'https:', name);
+}
+
+// Freshness: 90 days fresh, then aging, stale after 180; every block has both languages; the page refers only to real blocks.
+const { FRESH, freshness, T: TEXT } = await import('../public/mumkindik/app.js');
+assert.deepEqual(freshness('2026-11-16', '2026-11-16'), { days: 0, state: 'fresh' });
+assert.equal(freshness('2026-08-18', '2026-11-16').state, 'fresh'); // 90 days
+assert.equal(freshness('2026-08-17', '2026-11-16').state, 'aging');
+assert.equal(freshness('2026-05-20', '2026-11-16').state, 'aging'); // 180 days
+assert.equal(freshness('2026-05-19', '2026-11-16').state, 'stale');
+for (const d of FRESH) assert.ok(pair(d.name) && pair(d.period) && !Number.isNaN(Date.parse(d.checked)) && d.urls.every((u) => new URL(u).protocol === 'https:'), d.id);
+assert.equal(new Set(FRESH.map((d) => d.id)).size, FRESH.length);
+const { readFileSync } = await import('node:fs');
+const html = readFileSync(new URL('../public/mumkindik/index.html', import.meta.url), 'utf8');
+for (const [, ids] of html.matchAll(/data-fresh="([^"]+)"/g)) for (const id of ids.split(' ')) assert.ok(FRESH.some((d) => d.id === id), `unknown freshness block "${id}"`);
+// Every label the page asks for exists as plain text in both languages, and the two languages have the same keys.
+for (const [, key] of html.matchAll(/data-t="([^"]+)"/g)) for (const l of ['ru', 'kz']) assert.equal(typeof TEXT[l][key], 'string', `${l}.${key}`);
+assert.deepEqual(Object.keys(TEXT.ru).sort(), Object.keys(TEXT.kz).sort());
 console.log('mumkindik data: ok');

@@ -94,11 +94,11 @@ select,input[type=search],input[type=number]{font:inherit;color:var(--ink);backg
 
 /* universities */
 #cities{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
-#cities button{font:500 15px inherit;font-family:inherit;color:var(--ink);background:#fff;border:1px solid #b9c1cb;border-radius:999px;padding:0 16px;min-height:40px;cursor:pointer}
-#cities button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+#cities button,.seg button{font:500 15px inherit;font-family:inherit;color:var(--ink);background:#fff;border:1px solid #b9c1cb;border-radius:999px;padding:0 16px;min-height:40px;cursor:pointer}
+#cities button[aria-pressed=true],.seg button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
 #uniGrid,.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
 .uni{overflow:hidden;scroll-margin-top:84px}
-#compare{scroll-margin-top:84px}
+.compare{scroll-margin-top:84px}
 .uni:target{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .uni figure{position:relative;margin:0;aspect-ratio:16/9;background:var(--soft)}
 .uni figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -127,20 +127,26 @@ td{padding:7px 8px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
 th.n,td.n{text-align:right;padding-right:0;padding-left:10px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .fee{margin:10px 0 0;font-size:15px}
 .cmp{margin-top:10px;font-size:15px}
-#compare{padding:16px 20px;margin-bottom:20px;overflow-x:auto}
+.compare{padding:16px 20px;margin-bottom:20px;overflow-x:auto}
 .cmphead{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .cmphead h3{font-size:20px}
-#cmpBar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 20px;max-width:calc(100vw - 24px);background:var(--ink);color:#fff;border-radius:999px;box-shadow:0 8px 28px rgba(22,32,44,.25);font-size:15px}
-#cmpBar .btn{min-height:40px;white-space:nowrap}
-#compare table{font-size:15px}
-#compare thead th{font-size:16px;color:var(--ink)}
-#compare tbody th{white-space:nowrap;width:1%;padding-right:20px}
+.cmpbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 20px;max-width:calc(100vw - 24px);background:var(--ink);color:#fff;border-radius:999px;box-shadow:0 8px 28px rgba(22,32,44,.25);font-size:15px}
+.cmpbar .btn{min-height:40px;white-space:nowrap}
+.compare table{font-size:15px}
+.compare thead th{font-size:16px;color:var(--ink)}
+.compare tbody th{white-space:nowrap;width:1%;padding-right:20px}
+.compare tbody th,.compare tbody td{vertical-align:baseline}
 .pair{display:block;font-size:13px;color:var(--muted)}
 .src{margin:12px 0 0;font-size:13px}
 .src a{color:var(--muted)}
 
 /* finder */
-#finderForm{display:grid;align-items:end;grid-template-columns:200px minmax(0,280px) minmax(0,340px) auto;gap:16px;padding:16px;background:var(--soft);border-radius:var(--r);margin-bottom:20px}
+.seg{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+#finderForm,#testsForm{display:grid;align-items:end;gap:16px;padding:16px;background:var(--soft);border-radius:var(--r);margin-bottom:20px}
+#finderForm{grid-template-columns:200px minmax(0,280px) minmax(0,340px) auto}
+#testsForm{grid-template-columns:170px 170px minmax(0,240px) auto}
+.tests th:nth-child(2),.tests th:nth-child(3){width:25%}
+.nodata{color:#a3acb8}
 .results{padding:4px 20px 16px}
 .results table{font-size:16px}
 .results th,.results td{padding:11px 12px 11px 0}
@@ -153,7 +159,7 @@ th.n,td.n{text-align:right;padding-right:0;padding-left:10px;white-space:nowrap;
 .star[aria-pressed=true]{color:#d99a00}
 td.none{padding:24px 0;color:var(--muted)}
 /* calendar */
-#calendar{list-style:none;margin:0;padding:4px 20px}
+#calendar,.evlist{list-style:none;margin:0;padding:4px 20px}
 .ev{display:grid;grid-template-columns:230px minmax(0,1fr) auto;gap:20px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line)}
 .ev:last-child{border-bottom:0}
 .ev .when b{display:block;font-size:17px}
@@ -190,6 +196,19 @@ a.ghost{display:inline-flex;align-items:center;text-decoration:none}
 .unilist .city{display:block;font-weight:400;font-size:14px;color:var(--muted)}
 #country h2{margin-bottom:20px}
 .country .abroad h3{display:none}
+
+.country.wide{grid-template-columns:minmax(0,1fr)}
+.unilist.stack th:nth-child(2),.unilist.stack th:nth-child(3){width:27%}
+.cardfoot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px;margin-top:14px}
+.cardfoot .more,.cardfoot .cmp{margin-top:0}
+/* freshness line under a heading: the period the numbers cover and the date they were checked */
+.fresh{display:flex;flex-wrap:wrap;gap:4px 18px;margin:-16px 0 24px;font-size:14px;color:var(--muted)}
+h2+.fresh{margin-top:12px}
+.fresh a{color:var(--muted)}
+.f::before{content:"";display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:50%;background:var(--ok)}
+.f.is-aging,.f.is-stale,.ev .when .f.is-aging,.ev .when .f.is-stale{color:var(--warn)}
+.f.is-aging::before,.f.is-stale::before{background:var(--warn)}
+.srcs{flex-wrap:wrap;justify-content:flex-end;max-width:300px;gap:4px 14px;font-weight:400;font-size:14px}
 
 /* grants */
 .tilesrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:0 0 20px;padding:0;list-style:none}
@@ -230,21 +249,23 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
 @media (max-width:700px){
   main.wrap{padding-top:24px}
   #quick{flex-direction:column;align-items:stretch;border-radius:var(--r)}
-  .tiles,#list,#uniGrid,.grid3,.cols,#filters,#finderForm{grid-template-columns:minmax(0,1fr)}
+  .tiles,#list,#uniGrid,.grid3,.cols,#filters,#finderForm,#testsForm{grid-template-columns:minmax(0,1fr)}
   .stats b,.tilesrow b{font-size:24px}
   .facts{grid-template-columns:repeat(2,1fr)}
-  /* finder rows become stacked blocks: a five-column table does not fit a phone */
-  #compare tbody th{white-space:normal;padding-right:8px}
-  #compare td,#compare thead th:not(:first-child){min-width:130px}
-  .results thead{display:none}
-  .results tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
-  .results td,.results td.n{border:0;padding:0;text-align:left}
-  .results td:nth-child(1),.results td:nth-child(2){grid-column:1/-1}
-  .results td:nth-child(1){font-weight:500}
-  .results td[data-l]::before{content:attr(data-l) ": ";color:var(--muted)}
-  .results td:nth-child(5){margin-top:4px}
-  .results tr{position:relative;padding-right:44px}
-  .results td:nth-child(6){position:absolute;top:2px;right:-6px}
+  .compare tbody th{white-space:normal;padding-right:8px}
+  .compare td,.compare thead th:not(:first-child){min-width:130px}
+  /* wide tables become stacked blocks on a phone: the first cell is the title, labelled cells sit two in a row */
+  .stack thead{display:none}
+  .stack tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line);position:relative}
+  .stack td,.stack td.n,.unilist.stack td{border:0;padding:0;text-align:left;width:auto;white-space:normal}
+  .stack td:first-child,.stack td.wide{grid-column:1/-1}
+  .stack td:first-child{font-weight:500}
+  .stack td[data-l]::before{content:attr(data-l) ": ";color:var(--muted)}
+  .stack td.wide{margin-top:4px}
+  .results .stack tr{padding-right:44px}
+  .stack td.s{position:absolute;top:2px;right:-6px}
+  .ent td:nth-child(2){grid-column:1/-1}
+  .srcs{justify-content:flex-start;max-width:none}
   .ev{grid-template-columns:minmax(0,1fr);gap:6px}
 }
 </style>
@@ -322,25 +343,47 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
   <section data-panel="unis" hidden>
     <h2 data-t="hUnis"></h2>
     <p class="sub" data-t="pUnis"></p>
-    <div id="compare" class="card" hidden></div>
+    <p class="fresh" data-fresh="req scores"></p>
+    <div id="compare" class="card compare" hidden></div>
     <div id="cities"></div>
     <div id="uniGrid"></div>
-    <div id="cmpBar" hidden></div>
+    <div id="cmpBar" class="cmpbar" hidden></div>
   </section>
 
   <section data-panel="finder" hidden>
     <h2 data-t="hFinder"></h2>
-    <p class="sub" data-t="pFinder"></p>
+    <p class="sub" id="finderSub"></p>
+    <p class="fresh" id="finderFresh"></p>
+    <div class="seg" id="finderMode" role="group">
+      <button type="button" data-mode="ent" data-t="modeEnt"></button>
+      <button type="button" data-mode="tests" data-t="modeTests"></button>
+    </div>
     <form id="finderForm">
       <label><span data-t="scoreLabel"></span><input type="number" name="score" min="0" max="140" inputmode="numeric" placeholder="0–140"></label>
       <label><span data-t="pairLabel"></span><select name="pair"></select></label>
       <label><span data-t="specLabel"></span><select name="code"></select></label>
       <label class="check"><input type="checkbox" name="mine"><span data-t="mineLabel"></span></label>
     </form>
+    <form id="testsForm" hidden>
+      <label><span data-t="ieltsLabel"></span><input type="number" name="ielts" min="0" max="9" step="0.5" inputmode="decimal" placeholder="0–9"></label>
+      <label><span data-t="satLabel"></span><input type="number" name="sat" min="400" max="1600" step="10" inputmode="numeric" placeholder="400–1600"></label>
+      <label><span data-t="whereLabel"></span>
+        <select name="where">
+          <option value="" data-t="whereAny"></option>
+          <option value="kz" data-t="whereKz"></option>
+          <option value="abroad" data-t="whereAbroad"></option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" name="mine"><span data-t="mineLabel"></span></label>
+    </form>
     <div class="card results">
-      <table>
+      <table id="entTable" class="stack ent">
         <thead><tr><th data-t="thProgram"></th><th data-t="thUni"></th><th class="n" data-t="thGrants"></th><th class="n" data-t="thMin"></th><th data-t="thYou"></th><th></th></tr></thead>
         <tbody id="finderBody"></tbody>
+      </table>
+      <table id="testsTable" class="stack tests" hidden>
+        <thead><tr><th data-t="thUni"></th><th>IELTS</th><th>SAT</th><th data-t="thYou"></th><th></th></tr></thead>
+        <tbody id="testsBody"></tbody>
       </table>
       <div class="under">
         <button type="button" class="ghost" id="finderMore"></button>
@@ -351,7 +394,8 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
   </section>
 
   <section data-panel="grants" hidden>
-    <h2 data-t="hGrants" style="margin-bottom:24px"></h2>
+    <h2 data-t="hGrants"></h2>
+    <p class="fresh" data-fresh="order"></p>
     <ul class="tilesrow">
       <li><b>89 457</b><span data-t="gTotal"></span></li>
       <li><b>75 371</b><span data-t="gBach"></span></li>
@@ -384,8 +428,10 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
   <section data-panel="abroad" hidden>
     <h2 data-t="hAbroad"></h2>
     <p class="sub" data-t="pAbroad"></p>
+    <p class="fresh" data-fresh="abroad qs"></p>
     <ul class="tilesrow" id="abroadFacts"></ul>
     <p class="small factsrc" data-t="aFactsSrc"></p>
+    <div id="compareC" class="card compare" hidden></div>
     <div class="grid3" id="abroadGrid"></div>
     <div class="cols under2">
       <div class="card box">
@@ -400,6 +446,7 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
         <p class="src"><a href="https://digitalbusiness.kz/2026-03-16/v-kazahstane-nachalsya-priem-zayavok-na-bolashak-skolko-stipendiy-videlyat-v-2026-godu/" target="_blank" rel="noopener">digitalbusiness.kz</a></p>
       </div>
     </div>
+    <div id="cmpBarC" class="cmpbar" hidden></div>
   </section>
 
   <section data-panel="country" id="country" hidden></section>
@@ -407,9 +454,11 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
   <section data-panel="calendar" hidden>
     <h2 data-t="hCalendar"></h2>
     <p class="sub" data-t="pCalendar"></p>
+    <p class="fresh" data-fresh="calendar"></p>
     <ul id="calendar" class="card"></ul>
     <h2 data-t="hPrograms" class="second"></h2>
     <p class="sub" data-t="pPrograms"></p>
+    <p class="fresh" data-fresh="programs"></p>
     <form id="filters">
       <label><span data-t="search"></span><input type="search" name="q"></label>
       <label><span data-t="typeLabel"></span>
@@ -435,17 +484,19 @@ footer a{color:var(--muted);margin-right:14px;white-space:nowrap}
     <p id="found" aria-live="polite"></p>
     <ul id="list"></ul>
   </section>
+
+  <!-- What period every block of data covers and when it was checked -->
+  <section data-panel="data" hidden>
+    <h2 data-t="hData"></h2>
+    <p class="sub" data-t="pData"></p>
+    <ul id="freshList" class="card evlist"></ul>
+    <p class="small"><span data-t="dataReport"></span> <a href="https://github.com/MaKyS0/Not-bad-site/issues/new" target="_blank" rel="noopener" data-t="report"></a></p>
+  </section>
 </main>
 
 <footer><div class="wrap">
-  <p><span data-t="foot"></span> <span data-t="updated"></span> <a href="https://github.com/MaKyS0/Not-bad-site/issues/new" target="_blank" rel="noopener" data-t="report"></a></p>
-  <p><span data-t="sources"></span>:
-    <a href="https://rntb.kz/ru/obem-gosudarstvennogo-obrazovatelnogo-zakaza-na-2026-2027-uchebnyj-god/">rntb.kz</a>
-    <a href="https://np.kz/news/obshhestvo/obrazovanie/schastlivchiki-i-otverzhennye">np.kz</a>
-    <a href="https://univision.kz/granty/granty-2026/1245-gosudarstvennye-obrazovatelnye-granty-2026.html">univision.kz</a>
-    <a href="https://bes.media/news/zavershilas-registratsiya-na-osnovnoe-ent-2026-ebcafe/">bes.media</a>
-    <a href="https://astanahub.com/">astanahub.com</a>
-  </p>
+  <p><span data-t="foot"></span> <span id="updated"></span></p>
+  <p><a href="#data" data-t="hData"></a><a href="https://github.com/MaKyS0/Not-bad-site/issues/new" target="_blank" rel="noopener" data-t="report"></a></p>
 </div></footer>
 <script type="module" src="app.js"></script>
 </body>

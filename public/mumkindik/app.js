@@ -142,6 +142,7 @@ export function ics(p) {
 export const UNIVERSITIES = [
   {
     name: 'Nazarbayev University', city: ['Астана', 'Астана'], url: 'https://nu.edu.kz/?p=12745',
+    fee: ['15 000 $ в год (2026/27)', 'жылына 15 000 $ (2026/27)'],
     ielts: ['6.0', 'Writing 6.0, остальные от 5.5', 'Writing 6.0, қалғандары 5.5-тен'],
     sat: ['1240', 'или ACT 26', 'немесе ACT 26'],
     ent: ['85', 'на английском, грамотность от 8 из 10', 'ағылшын тілінде, сауаттылық 10-нан 8'],
@@ -153,8 +154,8 @@ export const UNIVERSITIES = [
   },
   {
     name: 'Astana IT University', city: ['Астана', 'Астана'], url: 'https://admission.astanait.edu.kz/',
-    fee: ['2,5 млн ₸ в год (2025/26)', 'жылына 2,5 млн ₸ (2025/26)'],
-    ielts: ['6.0', 'даёт скидку 20% на платном', 'ақылы бөлімде 20% жеңілдік береді'],
+    fee: ['2,5 млн ₸ в год (2026/27)', 'жылына 2,5 млн ₸ (2026/27)'],
+    ielts: ['5.5', 'освобождает от английского в тесте AET; с 6.0 скидка 20%', 'AET тестіндегі ағылшын тілінен босатады; 6.0-ден 20% жеңілдік'],
     sat: ['—', 'принимают, переводят в баллы ЕНТ', 'қабылданады, ҰБТ балына аударылады'],
     ent: ['80', 'платное, на грант 70 или 85; плюс экзамен AET', 'ақылы, грантқа 70 немесе 85; оған қоса AET емтиханы'],
     photo: ['Astana IT University — Future of Digital Kazakhstan.jpg', 'Aliaskarov Danial'],
@@ -190,7 +191,7 @@ export const UNIVERSITIES = [
   },
   {
     name: 'КБТУ', city: ['Алматы', 'Алматы'], url: 'https://kbtu.edu.kz/ru/shkoly/shkola-informatsionnykh-tekhnologij-i-inzhenerii/bakalavriat-shkoly-informatsionnykh-tekhnologij',
-    ielts: ['5.5', 'или TOEFL iBT 46, STEP KBTU B1, Duolingo', 'немесе TOEFL iBT 46, STEP KBTU B1, Duolingo'],
+    ielts: ['5.5', 'или TOEFL iBT 46; без сертификата внутренний тест вуза', 'немесе TOEFL iBT 46; сертификат болмаса, ЖОО-ның ішкі тесті'],
     sat: null,
     ent: ['—', 'приём по баллам ЕНТ, порог у программы свой', 'ҰБТ балы бойынша, шегі бағдарламаға байланысты'],
     photo: ['Kazakh-British Technical University, Almaty (P1180218).jpg', null],
@@ -214,7 +215,7 @@ export const UNIVERSITIES = [
   },
   {
     name: 'SDU University', city: ['Каскелен', 'Қаскелең'], url: 'https://sdu.edu.kz/en/admission-3-2/',
-    ielts: ['5.5', 'разделы от 5.0, или SDU B1', 'бөлімдер 5.0-ден, немесе SDU B1'],
+    ielts: ['5.5', 'разделы от 5.0; освобождает от теста на уровень', 'бөлімдер 5.0-ден; деңгейді анықтау тестінен босатады'],
     sat: null,
     ent: ['—', 'приём по результатам ЕНТ', 'қабылдау ҰБТ нәтижесі бойынша'],
     tableUrl: 'https://univision.kz/univ/104-universitet-imeni-suleymana-demirelya/ball',
@@ -592,21 +593,23 @@ export function phase(start, end, today) {
   return { state: today > end ? 'past' : 'now', days: 0 };
 }
 
-/** Finder state kept in the address so a result can be sent to someone: "#finder?score=95&pair=mi". */
+/** Finder state kept in the address so a result can be sent to someone:
+ *  "#finder?score=95&pair=mi" for the ENT, "#finder?mode=tests&ielts=6.5&sat=1300" for IELTS and SAT. */
+const STATE_KEYS = ['score', 'pair', 'code', 'mode', 'ielts', 'sat', 'where'];
 export function parseState(hash) {
   const [tab, query = ''] = hash.replace(/^#/, '').split('?');
   const q = new URLSearchParams(query);
-  return { tab, score: q.get('score') || '', pair: q.get('pair') || '', code: q.get('code') || '' };
+  return { tab, ...Object.fromEntries(STATE_KEYS.map((k) => [k, q.get(k) || ''])) };
 }
-export function buildHash({ tab, score, pair, code }) {
-  const q = new URLSearchParams(Object.entries({ score, pair, code }).filter(([, v]) => v)).toString();
+export function buildHash({ tab, ...state }) {
+  const q = new URLSearchParams(STATE_KEYS.filter((k) => state[k]).map((k) => [k, state[k]])).toString();
   return `#${tab}${q ? `?${q}` : ''}`;
 }
 
-/** Margin over last year's passing score; null when the score is empty or outside 0–140. */
-export function fit(score, min) {
+/** Margin over a minimum; null when the score is empty or outside 0–top (140 for the ENT, 9 for IELTS, 1600 for SAT). */
+export function fit(score, min, top = 140) {
   const n = score === '' || score == null ? NaN : Number(score);
-  return Number.isFinite(n) && n >= 0 && n <= 140 ? n - min : null;
+  return Number.isFinite(n) && n >= 0 && n <= top ? n - min : null;
 }
 
 // ENT profile-subject pairs and the programme groups they open: [id, ru, kz, codes] (univision.kz).
@@ -649,6 +652,133 @@ export function finderRows(unis, { code, score, pair }) {
   });
 }
 
+// The year of the grant competition the passing scores come from.
+// Checked on 16 November 2026: univision.kz still shows the 2025 tables, the 2026 results exist only as lists of winners.
+export const SCORES_YEAR = 2025;
+
+// IELTS and SAT minimums of foreign universities by name: { ielts, sat, ieltsNote, satNote }, from their own admission pages.
+// A university that is not here publishes no minimum we could confirm.
+const NOTE = {
+  noBar: ['порог не публикуют', 'шегі жарияланбайды'],
+  noTest: ['тест по английскому не обязателен', 'ағылшын тілі тесті міндетті емес'],
+  satReq: ['SAT или ACT обязателен, порога нет', 'SAT немесе ACT міндетті, шегі жоқ'],
+  satExtra: ['по желанию, порога нет', 'қалауыңызша, шегі жоқ'],
+};
+export const ABROAD_TESTS = {
+  'Massachusetts Institute of Technology (MIT)': { ielts: 7, ieltsNote: ['рекомендуют 7.5; тест желателен, но не обязателен', 'ұсынылатыны 7.5; тест міндетті емес, бірақ қалаулы'], satNote: NOTE.satReq, url: 'https://mitadmissions.org/apply/firstyear/tests-scores/' },
+  'Stanford University': { ieltsNote: NOTE.noTest, satNote: NOTE.satReq, url: 'https://admission.stanford.edu/apply/international/index.html' },
+  'Harvard University': { ieltsNote: NOTE.noTest, satNote: NOTE.satReq, url: 'https://college.harvard.edu/admissions/apply/international-applicants' },
+  'California Institute of Technology (Caltech)': { ielts: 7, ieltsNote: ['не ниже 7 в каждом разделе', 'әр бөлімнен кемінде 7'], satNote: NOTE.satReq, url: 'https://www.admissions.caltech.edu/apply/first-year-applicants/international-applicants' },
+  'University of Pennsylvania': { ieltsNote: NOTE.noBar, satNote: NOTE.satReq, url: 'https://admissions.upenn.edu/how-to-apply/international-applicants/guidelines' },
+  'Yale University': { ieltsNote: ['порога нет, у поступивших обычно от 7', 'шегі жоқ, түскендерде әдетте 7-ден'], satNote: NOTE.satReq, url: 'https://admissions.yale.edu/standardized-testing' },
+  'Imperial College London': { ielts: 6.5, ieltsNote: ['разделы от 6.0; на части программ 7.0', 'бөлімдер 6.0-ден; кейбір бағдарламаларда 7.0'], sat: 1460, satNote: ['вместе с тремя AP на 5, 5 и 4', 'үш AP-мен бірге: 5, 5 және 4'], url: 'https://www.imperial.ac.uk/study/apply/english-language/' },
+  'University of Oxford': { ielts: 7.5, ieltsNote: ['разделы от 7.0', 'бөлімдер 7.0-ден'], url: 'https://www.ox.ac.uk/admissions/undergraduate/applying-to-oxford/for-international-students/ELR' },
+  'University of Cambridge': { ielts: 7.5, ieltsNote: ['разделы от 7.0; одного аттестата мало, нужны A-level, IB или AP', 'бөлімдер 7.0-ден; аттестат жеткіліксіз, A-level, IB немесе AP қажет'], url: 'https://www.undergraduate.study.cam.ac.uk/apply/before/entry-requirements' },
+  'University College London (UCL)': { ielts: 6.5, ieltsNote: ['от 6.5 до 7.5 по программам', 'бағдарламаға қарай 6.5-тен 7.5-ке дейін'], url: 'https://www.ucl.ac.uk/study/current-students/academic-manual/chapters/chapter-1-student-recruitment-and-admissions/section-2-entrance-requirements' },
+  'University of Edinburgh': { ieltsNote: ['зависит от программы; с обычным аттестатом нужен Foundation', 'бағдарламаға байланысты; кәдімгі аттестатпен Foundation қажет'], url: 'https://www.ed.ac.uk/studying/international/country/asia/central-west-asia/kazakhstan' },
+  'Peking University': { ieltsNote: ['учат на китайском, HSK 6', 'қытай тілінде оқытады, HSK 6'], sat: 1400, satNote: ['и три AP от 4: приём без экзаменов вуза', 'және үш AP 4-тен: ЖОО емтихандарынсыз қабылдау'], url: 'https://isd.pku.edu.cn/en/detail.php?id=816' },
+  'Tsinghua University': { ieltsNote: ['IELTS или TOEFL нужен, порог не публикуют', 'IELTS немесе TOEFL қажет, шегі жарияланбайды'], satNote: NOTE.satExtra, url: 'https://international.join-tsinghua.edu.cn/Admission1/Eligibility.htm' },
+  'Fudan University': { ielts: 6.5, ieltsNote: ['программы на английском, набор 2026 года', 'ағылшын тіліндегі бағдарламалар, 2026 жылғы қабылдау'], url: 'https://iso.fudan.edu.cn/_upload/article/files/bc/ed/37f712cb4e3f8316f4ec2ebc4ba2/6c9fce5d-d137-4934-b484-1c4630f18aa5.pdf' },
+  'Shanghai Jiao Tong University': { ielts: 6, ieltsNote: ['программы на английском; не нужен при SAT EBRW от 650', 'ағылшын тіліндегі бағдарламалар; SAT EBRW 650-ден болса, қажет емес'], satNote: NOTE.satExtra, url: 'https://gc.sjtu.edu.cn/admission/international-undergraduate-admission/application-requirements/' },
+  'Zhejiang University': { ielts: 6, ieltsNote: ['медицина и биоинженерия; Global Communication 6.5', 'медицина мен биоинженерия; Global Communication 6.5'], satNote: NOTE.satExtra, url: 'https://iczu.zju.edu.cn/_upload/article/files/e7/8c/1be7b2df433fb9427df707571d84/f8f1cb33-05a5-4fec-a602-3eac6caf8e14.pdf' },
+  'Nanjing University': { ieltsNote: ['учат на китайском, HSK 5', 'қытай тілінде оқытады, HSK 5'], satNote: NOTE.satExtra, url: 'https://hwxy.nju.edu.cn/English/StudyatNJU/Admissions/BachelorsPrograms/index.html' },
+  'Yonsei University': { ieltsNote: ['на английском только колледж UIC; порог не публикуют', 'ағылшын тілінде тек UIC колледжі; шегі жарияланбайды'], satNote: NOTE.satExtra, url: 'https://uic.yonsei.ac.kr/admission.php?mid=m04_02_02' },
+  'Korea University': { ieltsNote: NOTE.noBar, satNote: NOTE.satExtra, url: 'https://oia.korea.ac.kr/_res/oia/etc/Application_Guide_for_Spring_2026_Freshman(ENG).pdf' },
+  'LMU Munich': { ieltsNote: ['учат на немецком: DSH-2 или TestDaF 4×4', 'неміс тілінде оқытады: DSH-2 немесе TestDaF 4×4'], url: 'https://www.lmu.de/en/study/degree-students/prerequisites/german-proficiency/' },
+  'Heidelberg University': { ieltsNote: ['учат на немецком: DSH-2', 'неміс тілінде оқытады: DSH-2'], url: 'https://www.uni-heidelberg.de/en/study/advisory-services/learning-languages/language-requirements-for-international-students' },
+  'Freie Universität Berlin': { ielts: 7, ieltsNote: ['North American Studies, единственный бакалавриат на английском; Writing от 6.0', 'North American Studies, ағылшын тіліндегі жалғыз бакалавриат; Writing 6.0-ден'], url: 'https://www.sprachenzentrum.fu-berlin.de/en/sprachtests/sprachtests_fuer_Studienbewerber/englisch/index.html' },
+  'RWTH Aachen University': { ieltsNote: ['бакалавриата на английском нет, нужен немецкий C1', 'ағылшын тілінде бакалавриат жоқ, неміс тілі C1 қажет'], url: 'https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/zugangsvoraussetzungen/zugangsvoraussetzung-fuer-den-bachelor-un/~drar/zugangsvoraussetzungen-fuer-internationa/?lidx=1' },
+  'Karlsruhe Institute of Technology (KIT)': { ielts: 6.5, ieltsNote: ['Mechanical Engineering International; разделы от 5.5', 'Mechanical Engineering International; бөлімдер 5.5-тен'], sat: 1200, satNote: ['или ACT 24, или TestAS: вступительный тест этой программы', 'немесе ACT 24, немесе TestAS: осы бағдарламаның кіру тесті'], url: 'https://www.sle.kit.edu/english/vorstudium/bachelor-mechanical-engineering-international.php' },
+};
+
+/** Everyone who publishes an IELTS or SAT minimum, Kazakh and foreign, as one list for the finder. */
+export function testList() {
+  const n = (v) => (v && /^\d+(\.\d+)?$/.test(v[0]) ? Number(v[0]) : null);
+  const home = UNIVERSITIES.map((u, k) => ({
+    name: u.name, place: u.city, href: `#u${k}`, abroad: false,
+    ielts: n(u.ielts), sat: n(u.sat), ieltsNote: u.ielts && u.ielts.slice(1), satNote: u.sat && u.sat.slice(1),
+  }));
+  const away = ABROAD.flatMap((c) => c.unis.map((u) => ({
+    name: u[0], place: [`${c.name[0]}, ${u[1]}`, `${c.name[1]}, ${u[2]}`], href: `#abroad-${c.id}`, abroad: true,
+    ielts: null, sat: null, ieltsNote: null, satNote: null, ...ABROAD_TESTS[u[0]],
+  })));
+  return [...home, ...away].filter((x) => x.ielts !== null || x.sat !== null);
+}
+
+/** Rows for the IELTS/SAT finder. A place is compared only on the tests both sides have a number for.
+ *  With a score typed: places where it is enough first (the most demanding first), then the nearest misses.
+ *  Nothing typed: the whole list, lowest IELTS minimum first. */
+export function testRows(list, { ielts, sat, where }) {
+  const typed = fit(ielts, 0, 9) !== null || fit(sat, 0, 1600) !== null;
+  const rows = list.filter((x) => !where || (where === 'abroad') === x.abroad).map((x) => {
+    const gi = x.ielts === null ? null : fit(ielts, x.ielts, 9), gs = x.sat === null ? null : fit(sat, x.sat, 1600);
+    // How far below the bar: a half band of IELTS and ten SAT points count as one step each.
+    const short = Math.max(0, -(gi ?? 0)) * 2 + Math.max(0, -(gs ?? 0)) / 10;
+    return { x, gi, gs, short, state: gi === null && gs === null ? null : short ? 'fail' : 'pass' };
+  });
+  if (!typed) return rows.sort((a, b) => (a.x.ielts ?? 99) - (b.x.ielts ?? 99) || (a.x.sat ?? 9999) - (b.x.sat ?? 9999));
+  return rows.filter((r) => r.state).sort((a, b) => a.short - b.short || (b.x.ielts ?? -1) - (a.x.ielts ?? -1) || (b.x.sat ?? -1) - (a.x.sat ?? -1));
+}
+
+// ---------- Freshness ----------
+// What period each block of data covers, when it was last checked against its sources, and the sources themselves.
+export const FRESH = [
+  {
+    id: 'req', checked: '2026-11-16',
+    name: ['Требования вузов Казахстана', 'Қазақстан ЖОО-ларының талаптары'],
+    period: ['приём 2026/27, источник указан в карточке вуза', '2026/27 қабылдау, дереккөз ЖОО карточкасында көрсетілген'],
+    urls: [],
+  },
+  {
+    id: 'scores', checked: '2026-11-16',
+    name: ['Гранты и проходные баллы', 'Гранттар мен өту балдары'],
+    period: [`конкурс ${SCORES_YEAR} года, таблиц за 2026 год на univision ещё нет`, `${SCORES_YEAR} жылғы конкурс, 2026 жылғы кестелер univision-да әлі жоқ`],
+    urls: ['https://univision.kz/'],
+  },
+  {
+    id: 'order', checked: '2026-11-15',
+    name: ['Госзаказ, пороги ЕНТ и квоты', 'Мемлекеттік тапсырыс, ҰБТ шектері және квоталар'],
+    period: ['2026/27 учебный год', '2026/27 оқу жылы'],
+    urls: ['https://rntb.kz/ru/obem-gosudarstvennogo-obrazovatelnogo-zakaza-na-2026-2027-uchebnyj-god/', 'https://np.kz/news/obshhestvo/obrazovanie/schastlivchiki-i-otverzhennye', 'https://bes.media/news/zavershilas-registratsiya-na-osnovnoe-ent-2026-ebcafe/'],
+  },
+  {
+    id: 'calendar', checked: '2026-11-16',
+    name: ['Календарь ЕНТ и подачи на грант', 'ҰБТ және грантқа өтініш күнтізбесі'],
+    period: ['2027 год, регистрация и подача по датам 2026 года', '2027 жыл, тіркелу мен өтініш 2026 жылғы күндер бойынша'],
+    urls: ['https://edutest.kz/', 'https://www.zakon.kz/obshestvo/6514002-osnovnoe-ent-po-itogam-kotorogo-mozhno-podat-na-grant-vse-chto-vazhno-znat.html', 'https://www.invisionu.education/blog-ru/granty-na-obuchenie-v-2026-2027-v-kazahstane'],
+  },
+  {
+    id: 'abroad', checked: '2026-11-16',
+    name: ['Учёба за рубежом: стипендии и расходы', 'Шетелде оқу: стипендиялар мен шығын'],
+    period: ['наборы 2026/27 и 2027 года', '2026/27 және 2027 жылғы қабылдаулар'],
+    urls: ['https://bolashak.gov.kz/en/acceptance-documents', 'https://inbusiness.kz/ru/news/kazahstan-voshel-v-mirovuyu-desyatku-po-eksportu-studentov', 'https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/'],
+  },
+  {
+    id: 'qs', checked: '2026-11-16',
+    name: ['Рейтинг зарубежных вузов', 'Шетел ЖОО-ларының рейтингі'],
+    period: ['QS World University Rankings 2027, вышел в июне 2026 года', 'QS World University Rankings 2027, 2026 жылғы маусымда шықты'],
+    urls: ['https://www.topuniversities.com/world-university-rankings'],
+  },
+  {
+    id: 'tests', checked: '2026-11-16',
+    name: ['IELTS и SAT в зарубежных вузах', 'Шетел ЖОО-ларындағы IELTS және SAT'],
+    period: ['приём 2026 и 2027 годов, с сайтов самих вузов', '2026 және 2027 жылғы қабылдау, ЖОО-лардың өз сайттарынан'],
+    urls: [],
+  },
+  {
+    id: 'programs', checked: '2026-11-15',
+    name: ['Конкурсы для IT-проектов', 'IT-жобаларға арналған байқаулар'],
+    period: ['наборы 2026 года', '2026 жылғы қабылдаулар'],
+    urls: ['https://astanahub.com/'],
+  },
+];
+
+/** How old a check is: fresh for 90 days, then "aging", after 180 days "stale". */
+export function freshness(checked, today) {
+  const days = Math.round((Date.parse(today) - Date.parse(checked)) / 864e5);
+  return { days, state: days > 180 ? 'stale' : days > 90 ? 'aging' : 'fresh' };
+}
+
 // State order 2026/27 as announced by the ministry: [ru, kz, grants].
 export const DIRECTIONS = [
   ['Инженерия, производство и строительство', 'Инженерия, өндіріс және құрылыс', 19250],
@@ -688,7 +818,7 @@ export const ENT_FACTS = [
 
 // ---------- UI (browser only) ----------
 
-const T = {
+export const T = {
   ru: {
     locale: 'ru', i: 0,
     tabHome: 'Главная', tabPrograms: 'Календарь', tabUnis: 'Вузы', tabFinder: 'Подбор по баллу', tabGrants: 'ЕНТ и гранты', tabAbroad: 'За рубежом',
@@ -696,7 +826,7 @@ const T = {
     lead: 'Вузы, гранты и IT-конкурсы в одном месте.',
     scoreLabel: 'Мой балл ЕНТ', scoreGo: 'Показать, куда хватит', scoreHint: 'от 0 до 140',
     tileProgramsD: 'Даты ЕНТ, подачи на грант и конкурсы', tileUnisD: 'Требования IELTS, SAT и ЕНТ, фото, гранты',
-    tileFinderD: 'Сравните свой балл с проходными', tileGrantsD: 'Сколько грантов и какие пороги',
+    tileFinderD: 'ЕНТ, IELTS и SAT: куда хватит вашего балла', tileGrantsD: 'Сколько грантов и какие пороги',
     statGrants: 'грантов на бакалавриат в 2026/27', statUnis: 'вузов с требованиями', statPrograms: 'конкурсов для проектов', statRows: 'специальностей с проходными',
     tileAbroadD: 'Страны, стипендии, язык и расходы',
     hAbroad: 'Учёба за рубежом',
@@ -714,7 +844,7 @@ const T = {
     pCalendar: 'Сроки ЕНТ по действующему расписанию. Точные даты на 2027 год объявит Национальный центр тестирования.',
     calNow: 'идёт сейчас', calPast: 'прошло', calIn: (d) => `через ${d}`, approx: 'по датам 2026 года',
     kinds: { grant: 'для гранта', paid: 'для платного', abroad: 'за рубеж' },
-    mineLabel: 'Только мой список', saveRow: 'В мой список', mineEmpty: 'В списке пусто. Отметьте специальности звёздочкой.',
+    mineLabel: 'Только мой список', saveRow: 'В мой список', mineEmpty: 'В списке пусто. Отметьте строки звёздочкой.',
     copyLink: 'Скопировать ссылку на этот подбор', copied: 'Ссылка скопирована', copyFail: 'Скопируйте ссылку из адресной строки',
     hPrograms: 'Конкурсы для IT-проектов', pPrograms: 'Наборы 2026 года в основном закрыты, следующие ждём зимой и весной.',
     typeLabel: 'Тип', any: 'Все', competition: 'Конкурс', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
@@ -728,15 +858,25 @@ const T = {
     hUnis: 'Вузы', pUnis: 'Минимальные требования для бакалавриата.', cityAll: 'Все города',
     ent: 'ЕНТ', noData: 'нет данных', details: 'Подробнее',
     thCode: 'Код', thProgram: 'Специальность', thGrants: 'Грантов', thMin: 'Проходной',
-    tableCap: 'Общий конкурс 2025 года', source: 'Источник', photoBy: 'Фото',
+    tableCap: (y) => `Общий конкурс ${y} года`, source: 'Источник', photoBy: 'Фото',
     grantsDetails: (n) => `Гранты по специальностям: ${n}`,
-    hFinder: 'Куда хватит баллов', pFinder: 'Сравниваем с проходными на грант 2025 года. В 2026 году они могли измениться.',
+    hFinder: 'Куда хватит баллов', pFinder: (y) => `Сравниваем с проходными на грант ${y} года. В следующем наборе они могут измениться.`,
+    modeEnt: 'По ЕНТ', modeTests: 'По IELTS и SAT',
+    pTests: 'Введите IELTS и SAT: покажем вузы Казахстана и зарубежья, где такого балла хватает. Порог у вуза общий, на отдельных программах он выше.',
+    ieltsLabel: 'Мой IELTS', satLabel: 'Мой SAT', whereLabel: 'Где учиться', whereAny: 'Везде', whereKz: 'В Казахстане', whereAbroad: 'За рубежом',
+    enough: 'хватает',
+    hCompareC: 'Сравнение стран', cmpWay: 'Как учиться', cmpStudents: 'Казахстанцев учится', cmpTop: 'Лучший вуз в QS 2027', cmpIelts: 'IELTS в вузах списка',
+    testsNote: 'IELTS и SAT: общий минимум для бакалавриата с сайта вуза, на отдельных программах он выше.',
+    hData: 'Актуальность данных',
+    pData: 'К какому периоду относится каждая цифра и когда её сверяли с источником. Если с проверки прошло больше 90 дней, строка помечается.',
+    checkedOn: (d) => `проверено ${d}`, freshState: { fresh: 'проверено недавно', aging: 'пора перепроверить', stale: 'могло устареть' },
+    freshMore: 'Все данные и источники', dataReport: 'Нашли расхождение с источником?',
     specLabel: 'Специальность', specAny: 'Все специальности', pairLabel: 'Профильные предметы', pairAny: 'Любые',
-    fee: 'Платно', compare: 'Сравнить', hCompare: 'Сравнение вузов', cmpClear: 'Очистить', cmpMax: 'Сравнить можно не больше трёх вузов.',
+    fee: 'Платно', compare: 'Сравнить', hCompare: 'Сравнение вузов', cmpClear: 'Очистить', cmpMax: 'Сравнить можно не больше трёх.',
     cmpPicked: (n) => `Выбрано ${n} из 3`, cmpShow: 'Показать сравнение',
-    cityLabel: 'Город', cmpGrants: 'Грантов в таблице, 2025', cmpRange: 'Проходные, 2025',
+    cityLabel: 'Город', cmpGrants: (y) => `Грантов в таблице, ${y}`, cmpRange: (y) => `Проходные, ${y}`,
     hQuotas: 'Квоты', quotasNote: 'Победители международных олимпиад и крупных спортивных соревнований получают грант вне конкурса.',
-    report: 'Сообщить об ошибке', updated: 'Обновлено 16 ноября 2026 года.', thUni: 'Вуз', thYou: 'Ваш результат', enterScore: 'введите балл',
+    report: 'Сообщить об ошибке', updated: (d) => `Обновлено ${d}`, thUni: 'Вуз', thYou: 'Ваш результат', enterScore: 'введите балл',
     pass: (n) => (n ? `проходите, запас ${n}` : 'проходите впритык'), fail: (n) => `не хватает ${n}`,
     showAll: (n) => `Показать все строки: ${n}`, showLess: 'Свернуть',
     hGrants: 'ЕНТ и гранты 2026/27',
@@ -744,8 +884,7 @@ const T = {
     hDirections: 'Гранты по направлениям', directionsNote: 'Госзаказ, объявленный министерством. В итоговом распределении часть цифр ниже.',
     hThresholds: 'Порог ЕНТ для конкурса грантов', thresholdsNote: 'Порог только допускает к конкурсу. Реальные проходные 2026 года: 110–130 на право и международные отношения, 90–100 на инженерию и IT.',
     hEnt: 'Как устроен ЕНТ',
-    foot: 'Данные из открытых источников, ноябрь 2026 года. Перед подачей проверяйте условия на сайте вуза или организатора.',
-    sources: 'Источники',
+    foot: 'Данные из открытых источников. Перед подачей проверяйте условия на сайте вуза или организатора.',
   },
   kz: {
     locale: 'kk', i: 1,
@@ -754,7 +893,7 @@ const T = {
     lead: 'ЖОО, гранттар және IT-байқаулар бір жерде.',
     scoreLabel: 'Менің ҰБТ балым', scoreGo: 'Қайда жететінін көрсету', scoreHint: '0-ден 140-қа дейін',
     tileProgramsD: 'ҰБТ, грантқа өтініш және байқау мерзімдері', tileUnisD: 'IELTS, SAT және ҰБТ талаптары, фото, гранттар',
-    tileFinderD: 'Балыңызды өту балдарымен салыстырыңыз', tileGrantsD: 'Грант саны мен шекті балдар',
+    tileFinderD: 'ҰБТ, IELTS және SAT: балыңыз қайда жетеді', tileGrantsD: 'Грант саны мен шекті балдар',
     statGrants: '2026/27 бакалавриат гранты', statUnis: 'талаптары бар ЖОО', statPrograms: 'байқау мен бағдарлама', statRows: 'өту балы бар мамандық',
     tileAbroadD: 'Елдер, стипендиялар, тіл және шығын',
     hAbroad: 'Шетелде оқу',
@@ -772,7 +911,7 @@ const T = {
     pCalendar: 'ҰБТ мерзімдері қолданыстағы кесте бойынша. 2027 жылғы нақты күндерді Ұлттық тестілеу орталығы жариялайды.',
     calNow: 'қазір өтіп жатыр', calPast: 'өтті', calIn: (d) => `${d} кейін`, approx: '2026 жылғы күндер бойынша',
     kinds: { grant: 'грант үшін', paid: 'ақылы бөлім үшін', abroad: 'шетел' },
-    mineLabel: 'Тек менің тізімім', saveRow: 'Тізіміме қосу', mineEmpty: 'Тізім бос. Мамандықтарды жұлдызшамен белгілеңіз.',
+    mineLabel: 'Тек менің тізімім', saveRow: 'Тізіміме қосу', mineEmpty: 'Тізім бос. Жолдарды жұлдызшамен белгілеңіз.',
     copyLink: 'Осы таңдаудың сілтемесін көшіру', copied: 'Сілтеме көшірілді', copyFail: 'Сілтемені мекенжай жолынан көшіріңіз',
     hPrograms: 'IT-жобаларға арналған байқаулар', pPrograms: '2026 жылғы қабылдаулардың көбі жабылды, келесілері қыста және көктемде.',
     typeLabel: 'Түрі', any: 'Барлығы', competition: 'Байқау', incubator: 'Инкубатор', accelerator: 'Акселератор', grant: 'Грант',
@@ -786,15 +925,25 @@ const T = {
     hUnis: 'ЖОО', pUnis: 'Бакалавриатқа қойылатын ең төменгі талаптар.', cityAll: 'Барлық қала',
     ent: 'ҰБТ', noData: 'дерек жоқ', details: 'Толығырақ',
     thCode: 'Код', thProgram: 'Мамандық', thGrants: 'Грант саны', thMin: 'Өту балы',
-    tableCap: '2025 жылғы жалпы конкурс', source: 'Дереккөз', photoBy: 'Фото',
+    tableCap: (y) => `${y} жылғы жалпы конкурс`, source: 'Дереккөз', photoBy: 'Фото',
     grantsDetails: (n) => `Мамандықтар бойынша гранттар: ${n}`,
-    hFinder: 'Балым қайда жетеді', pFinder: '2025 жылғы грантқа өту балдарымен салыстырамыз. 2026 жылы олар өзгеруі мүмкін.',
+    hFinder: 'Балым қайда жетеді', pFinder: (y) => `${y} жылғы грантқа өту балдарымен салыстырамыз. Келесі қабылдауда олар өзгеруі мүмкін.`,
+    modeEnt: 'ҰБТ бойынша', modeTests: 'IELTS және SAT бойынша',
+    pTests: 'IELTS пен SAT балыңызды енгізіңіз: осы балл жететін Қазақстан мен шетел ЖОО-ларын көрсетеміз. Бұл ЖОО-ның жалпы шегі, жекелеген бағдарламаларда ол жоғары.',
+    ieltsLabel: 'Менің IELTS балым', satLabel: 'Менің SAT балым', whereLabel: 'Қайда оқу', whereAny: 'Барлық жерде', whereKz: 'Қазақстанда', whereAbroad: 'Шетелде',
+    enough: 'жетеді',
+    hCompareC: 'Елдерді салыстыру', cmpWay: 'Қалай оқуға болады', cmpStudents: 'Оқитын қазақстандықтар', cmpTop: 'QS 2027 бойынша үздік ЖОО', cmpIelts: 'Тізімдегі ЖОО-лардағы IELTS',
+    testsNote: 'IELTS және SAT: ЖОО сайтындағы бакалавриаттың жалпы ең төменгі шегі, жекелеген бағдарламаларда ол жоғары.',
+    hData: 'Деректердің өзектілігі',
+    pData: 'Әр дерек қай кезеңге жатады және дереккөзбен қашан салыстырылды. Тексерілгеннен бері 90 күннен асса, жол белгіленеді.',
+    checkedOn: (d) => `тексерілген күні: ${d}`, freshState: { fresh: 'жақында тексерілді', aging: 'қайта тексеру керек', stale: 'ескірген болуы мүмкін' },
+    freshMore: 'Барлық дерек пен дереккөздер', dataReport: 'Дереккөзден айырмашылық таптыңыз ба?',
     specLabel: 'Мамандық', specAny: 'Барлық мамандықтар', pairLabel: 'Бейіндік пәндер', pairAny: 'Кез келген',
-    fee: 'Ақылы', compare: 'Салыстыру', hCompare: 'ЖОО-ларды салыстыру', cmpClear: 'Тазарту', cmpMax: 'Үш ЖОО-дан артық салыстыруға болмайды.',
+    fee: 'Ақылы', compare: 'Салыстыру', hCompare: 'ЖОО-ларды салыстыру', cmpClear: 'Тазарту', cmpMax: 'Үшеуден артық салыстыруға болмайды.',
     cmpPicked: (n) => `3-тен ${n} таңдалды`, cmpShow: 'Салыстыруды көрсету',
-    cityLabel: 'Қала', cmpGrants: 'Кестедегі грант саны, 2025', cmpRange: 'Өту балдары, 2025',
+    cityLabel: 'Қала', cmpGrants: (y) => `Кестедегі грант саны, ${y}`, cmpRange: (y) => `Өту балдары, ${y}`,
     hQuotas: 'Квоталар', quotasNote: 'Халықаралық олимпиадалар мен ірі спорт жарыстарының жеңімпаздары грантты конкурстан тыс алады.',
-    report: 'Қате туралы хабарлау', updated: '2026 жылғы 16 қарашада жаңартылды.', thUni: 'ЖОО', thYou: 'Сіздің нәтижеңіз', enterScore: 'балды енгізіңіз',
+    report: 'Қате туралы хабарлау', updated: (d) => `Жаңартылған күні: ${d}.`, thUni: 'ЖОО', thYou: 'Сіздің нәтижеңіз', enterScore: 'балды енгізіңіз',
     pass: (n) => (n ? `өтесіз, артық ${n} балл` : 'дәл өтесіз'), fail: (n) => `${n} балл жетпейді`,
     showAll: (n) => `Барлық жолды көрсету: ${n}`, showLess: 'Жию',
     hGrants: 'ҰБТ және гранттар 2026/27',
@@ -802,8 +951,7 @@ const T = {
     hDirections: 'Бағыттар бойынша гранттар', directionsNote: 'Министрлік жариялаған мемлекеттік тапсырыс. Қорытынды бөлуде кейбір сандар төмен.',
     hThresholds: 'Грант конкурсына қажет ҰБТ шекті балы', thresholdsNote: 'Шекті балл тек конкурсқа жібереді. 2026 жылғы нақты өту балдары: құқық пен халықаралық қатынастарға 110–130, инженерия мен IT-ге 90–100.',
     hEnt: 'ҰБТ қалай өтеді',
-    foot: 'Деректер ашық дереккөздерден, 2026 жылғы қараша. Тапсырар алдында шарттарды ЖОО-ның немесе ұйымдастырушының сайтынан тексеріңіз.',
-    sources: 'Дереккөздер',
+    foot: 'Деректер ашық дереккөздерден алынған. Тапсырар алдында шарттарды ЖОО-ның немесе ұйымдастырушының сайтынан тексеріңіз.',
   },
 };
 
@@ -822,6 +970,9 @@ if (typeof document !== 'undefined') {
   const uid = (u) => `u${UNIVERSITIES.indexOf(u)}`;
   const commons = 'https://commons.wikimedia.org/wiki/';
   const allRows = UNIVERSITIES.reduce((n, u) => n + (u.programs || []).length, 0);
+  const host = (u) => new URL(u).hostname.replace('www.', '');
+  // Numbers, ranges and their currency sign stay on one line.
+  const glue = (x) => esc(x).replace(/(\d) (?=[\d$€£])/g, '$1\u00a0').replace(/(\d)–(?=\d)/g, '$1–\u2060');
 
   // ----- programmes -----
   function programCard(p) {
@@ -850,27 +1001,40 @@ if (typeof document !== 'undefined') {
 
   // ----- universities -----
   let city = '';
-  const picked = new Set(); // indexes of universities chosen for comparison, three at most
+  // Comparison, shared by universities and countries: a table above the cards and a bar at the bottom of the screen.
+  function compareBox(box, bar, title, heads, rows, full) {
+    const t = T[lang];
+    box.hidden = bar.hidden = !heads.length;
+    box.innerHTML = `<div class="cmphead"><h3>${title}</h3><button type="button" class="ghost" data-clear>${t.cmpClear}</button></div>
+      <table><thead><tr><th></th>${heads.map((h) => `<th>${h}</th>`).join('')}</tr></thead>
+      <tbody>${rows.map(([k, vs]) => `<tr><th>${k}</th>${vs.map((v) => `<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    // The table sits above the cards, so the bar says what is picked and leads to it.
+    bar.innerHTML = `<span role="status">${full ? t.cmpMax : t.cmpPicked(heads.length)}</span><button type="button" class="btn" data-show>${t.cmpShow}</button>`;
+  }
+  // Tick up to three cards; a fourth tick is refused with a note.
+  function comparing(grid, box, bar, attr, picked, render, redraw) {
+    grid.addEventListener('change', (e) => {
+      if (!e.target.matches(`[data-${attr}]`)) return;
+      const key = e.target.dataset[attr], full = e.target.checked && picked.size >= 3;
+      if (full) e.target.checked = false; else if (e.target.checked) picked.add(key); else picked.delete(key);
+      render(full);
+    });
+    box.addEventListener('click', (e) => { if (e.target.matches('[data-clear]')) { picked.clear(); redraw(); } });
+    bar.addEventListener('click', (e) => { if (e.target.matches('[data-show]')) box.scrollIntoView({ block: 'center' }); });
+  }
+
+  const picked = new Set(); // indexes of the universities chosen for comparison, kept as strings
   function renderCompare(full) {
     const t = T[lang], i = t.i, us = [...picked].map((n) => UNIVERSITIES[n]);
     const val = (v) => (v ? `<b>${esc(v[0])}</b> ${esc(v[1 + i])}` : t.noData);
     const sum = us.map(summary);
-    const rows = [
+    compareBox($('#compare'), $('#cmpBar'), t.hCompare, us.map((u) => `<a href="#${uid(u)}">${esc(u.name)}</a>`), [
       [t.cityLabel, us.map((u) => esc(u.city[i]))],
       ['IELTS', us.map((u) => val(u.ielts))], ['SAT', us.map((u) => val(u.sat))], [t.ent, us.map((u) => val(u.ent))],
       [t.fee, us.map((u) => (u.fee ? esc(u.fee[i]) : t.noData))],
-      [t.cmpGrants, sum.map((x) => (x ? `<b>${num(x.grants)}</b>` : t.noData))],
-      [t.cmpRange, sum.map((x) => (x ? `${x.min}–${x.max}` : t.noData))],
-    ];
-    const box = $('#compare');
-    box.hidden = !us.length;
-    box.innerHTML = `<div class="cmphead"><h3>${t.hCompare}</h3><button type="button" class="ghost" id="cmpClear">${t.cmpClear}</button></div>
-      <table><thead><tr><th></th>${us.map((u) => `<th><a href="#${uid(u)}">${esc(u.name)}</a></th>`).join('')}</tr></thead>
-      <tbody>${rows.map(([k, vs]) => `<tr><th>${k}</th>${vs.map((v) => `<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
-    // The table sits above the cards, so a bar at the bottom of the screen says what is picked and leads to it.
-    const bar = $('#cmpBar');
-    bar.hidden = !us.length;
-    bar.innerHTML = `<span role="status">${full ? t.cmpMax : t.cmpPicked(us.length)}</span><button type="button" class="btn" id="cmpShow">${t.cmpShow}</button>`;
+      [t.cmpGrants(SCORES_YEAR), sum.map((x) => (x ? `<b>${num(x.grants)}</b>` : t.noData))],
+      [t.cmpRange(SCORES_YEAR), sum.map((x) => (x ? `${x.min}–${x.max}` : t.noData))],
+    ], full);
   }
   function uni(u) {
     const t = T[lang], i = t.i;
@@ -880,7 +1044,7 @@ if (typeof document !== 'undefined') {
     const pic = u.photo ? `<figure><img src="${commons}Special:FilePath/${file}?width=960" alt="${esc(u.name)}" loading="lazy" onerror="this.closest('figure').remove()">
       <figcaption><a href="${commons}File:${file}" target="_blank" rel="noopener">${t.photoBy}: ${esc(u.photo[1] || 'Wikimedia Commons')}${u.photo[1] ? ', Wikimedia Commons' : ''}</a></figcaption></figure>` : '';
     const table = u.programs ? `<details><summary>${t.grantsDetails(u.programs.length)}</summary><table>
-      <caption>${t.tableCap}${u.tableUrl ? `, <a href="${esc(u.tableUrl)}" target="_blank" rel="noopener">univision.kz</a>` : ''}</caption>
+      <caption>${t.tableCap(SCORES_YEAR)}${u.tableUrl ? `, <a href="${esc(u.tableUrl)}" target="_blank" rel="noopener">univision.kz</a>` : ''}</caption>
       <thead><tr><th>${t.thProgram}</th><th class="n">${t.thGrants}</th><th class="n">${t.thMin}</th></tr></thead>
       <tbody>${u.programs.map((p) => `<tr><td>${esc(p[1 + i])}</td><td class="n">${num(p[3])}</td><td class="n">${p[4]}</td></tr>`).join('')}</tbody>
     </table></details>` : '';
@@ -892,7 +1056,7 @@ if (typeof document !== 'undefined') {
         <dl>${req('IELTS', u.ielts)}${req('SAT', u.sat)}${req(t.ent, u.ent)}</dl>
         ${u.fee ? `<p class="fee">${t.fee}: <b>${esc(u.fee[i])}</b></p>` : ''}
         ${table}${note}
-        <label class="check cmp"><input type="checkbox" data-cmp="${UNIVERSITIES.indexOf(u)}"${picked.has(UNIVERSITIES.indexOf(u)) ? ' checked' : ''}><span>${t.compare}</span></label>
+        <label class="check cmp"><input type="checkbox" data-cmp="${UNIVERSITIES.indexOf(u)}"${picked.has(String(UNIVERSITIES.indexOf(u))) ? ' checked' : ''}><span>${t.compare}</span></label>
         <p class="src"><a href="${esc(u.url)}" target="_blank" rel="noopener">${t.source}: ${esc(new URL(u.url).hostname.replace('www.', ''))}</a></p>
       </div>
     </article>`;
@@ -910,15 +1074,47 @@ if (typeof document !== 'undefined') {
     renderCompare();
   }
 
-  // ----- finder -----
+  // ----- freshness: the period the numbers cover and the date they were checked -----
+  function fresh(el, ids) {
+    const t = T[lang], i = t.i;
+    el.innerHTML = ids.split(' ').map((id) => {
+      const d = FRESH.find((x) => x.id === id), s = freshness(d.checked, today).state;
+      return `<span class="f is-${s}">${esc(d.name[i])}: ${esc(d.period[i])}, ${t.checkedOn(dateText(d.checked, i, true))}${s === 'fresh' ? '' : `, ${t.freshState[s]}`}</span>`;
+    }).join('') + `<a href="#data">${t.freshMore}</a>`;
+  }
+  function renderFresh() {
+    const t = T[lang], i = t.i;
+    $$('[data-fresh]').forEach((el) => fresh(el, el.dataset.fresh));
+    $('#freshList').innerHTML = FRESH.map((d) => {
+      const s = freshness(d.checked, today).state;
+      return `<li class="ev">
+        <div class="when"><b>${dateText(d.checked, i, true)}</b><span class="f is-${s}">${t.freshState[s]}</span></div>
+        <div class="what"><h3>${esc(d.name[i])}</h3><p>${esc(d.period[i])}</p></div>
+        <div class="links srcs">${d.urls.map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join('')}</div>
+      </li>`;
+    }).join('');
+    $('#updated').textContent = t.updated(dateText(FRESH.map((d) => d.checked).sort().pop(), i, true));
+  }
+
+  // ----- finder: an ENT score against passing scores, or IELTS and SAT against the universities' minimums -----
+  let mode = 'ent';
   let showAllRows = false;
   let currentTab = 'home';
-  // "My list": starred rows, kept in this browser only.
+  // "My list": starred rows of both finders, kept in this browser only.
   const rowKey = ({ u, p }) => `${u.name}|${p[0]}`;
   const saved = new Set((() => { try { return JSON.parse(localStorage.getItem('mumkindik-list')) || []; } catch { return []; } })());
   const keepSaved = () => { try { localStorage.setItem('mumkindik-list', JSON.stringify([...saved])); } catch { /* private mode: the list lives until the tab closes */ } };
+  const star = (key) => `<td class="n s"><button type="button" class="star" data-save="${esc(key)}" aria-pressed="${saved.has(key)}" aria-label="${T[lang].saveRow}" title="${T[lang].saveRow}">${saved.has(key) ? '★' : '☆'}</button></td>`;
+  const tests = testList();
+  // A minimum with its caveat under it: the IELTS/SAT finder and the country pages draw it the same way.
+  const bar = (min, note, digits) => `<b>${min == null ? '—' : min.toFixed(digits)}</b>${note ? `<span class="pair">${esc(note[T[lang].i])}</span>` : ''}`;
   function renderFinder() {
-    const t = T[lang], i = t.i, f = $('#finderForm');
+    const t = T[lang], i = t.i, f = $('#finderForm'), g = $('#testsForm'), ent = mode === 'ent';
+    f.hidden = $('#entTable').hidden = !ent;
+    g.hidden = $('#testsTable').hidden = ent;
+    $$('#finderMode button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+    $('#finderSub').textContent = ent ? t.pFinder(SCORES_YEAR) : t.pTests;
+    fresh($('#finderFresh'), ent ? 'scores' : 'req tests');
     // Rebuild the specialty list in the current language, keeping the choice.
     const codes = new Map(UNIVERSITIES.flatMap((u) => u.programs || []).map((p) => [p[0], p[1 + i]]));
     const chosen = f.code.value;
@@ -930,22 +1126,40 @@ if (typeof document !== 'undefined') {
     const chosenPair = f.pair.value;
     f.pair.innerHTML = `<option value="">${t.pairAny}</option>` + PAIRS.filter((x) => used.has(x[0])).map((x) => `<option value="${x[0]}">${esc(x[1 + i])}</option>`).join('');
     f.pair.value = chosenPair;
-    const rows = finderRows(UNIVERSITIES, { code: f.code.value, score: f.score.value, pair: f.pair.value })
-      .filter((r) => !f.mine.checked || saved.has(rowKey(r)));
-    const limit = 12;
-    $('#finderBody').innerHTML = rows.slice(0, showAllRows ? rows.length : limit).map(({ u, p, gap }) => `<tr class="${gap === null ? '' : gap >= 0 ? 'pass' : 'fail'}">
-      <td>${esc(p[1 + i])}${pairOf(p[0]) ? `<span class="pair">${esc(pairOf(p[0])[1 + i])}</span>` : ''}</td>
-      <td><a href="#${uid(u)}">${esc(u.name)}</a></td>
-      <td class="n" data-l="${t.thGrants}">${num(p[3])}</td><td class="n" data-l="${t.thMin}">${p[4]}</td>
-      <td><span class="you">${gap === null ? t.enterScore : gap >= 0 ? t.pass(gap) : t.fail(-gap)}</span></td>
-      <td class="n"><button type="button" class="star" data-save="${rowKey({ u, p })}" aria-pressed="${saved.has(rowKey({ u, p }))}" aria-label="${t.saveRow}" title="${t.saveRow}">${saved.has(rowKey({ u, p })) ? '★' : '☆'}</button></td></tr>`).join('')
-      || `<tr><td colspan="6" class="none">${f.mine.checked ? t.mineEmpty : t.empty}</td></tr>`;
+    const limit = 12, cut = (rows) => rows.slice(0, showAllRows ? rows.length : limit);
+    const none = (mine) => `<tr><td colspan="6" class="none">${mine ? t.mineEmpty : t.empty}</td></tr>`;
+    let total;
+    if (ent) {
+      const rows = finderRows(UNIVERSITIES, { code: f.code.value, score: f.score.value, pair: f.pair.value })
+        .filter((r) => !f.mine.checked || saved.has(rowKey(r)));
+      total = rows.length;
+      $('#finderBody').innerHTML = cut(rows).map(({ u, p, gap }) => `<tr class="${gap === null ? '' : gap >= 0 ? 'pass' : 'fail'}">
+        <td>${esc(p[1 + i])}${pairOf(p[0]) ? `<span class="pair">${esc(pairOf(p[0])[1 + i])}</span>` : ''}</td>
+        <td><a href="#${uid(u)}">${esc(u.name)}</a></td>
+        <td class="n" data-l="${t.thGrants}">${num(p[3])}</td><td class="n" data-l="${t.thMin}">${p[4]}</td>
+        <td class="wide"><span class="you">${gap === null ? t.enterScore : gap >= 0 ? t.pass(gap) : t.fail(-gap)}</span></td>
+        ${star(rowKey({ u, p }))}</tr>`).join('') || none(f.mine.checked);
+    } else {
+      const rows = testRows(tests, { ielts: g.ielts.value, sat: g.sat.value, where: g.where.value })
+        .filter((r) => !g.mine.checked || saved.has(`uni|${r.x.name}`));
+      total = rows.length;
+      const r1 = (n) => Math.round(n * 10) / 10;
+      const verdict = ({ gi, gs, state }) => (!state ? t.enterScore : state === 'pass' ? t.enough
+        : [gi < 0 && `IELTS: ${t.fail(r1(-gi))}`, gs < 0 && `SAT: ${t.fail(-gs)}`].filter(Boolean).join(', '));
+      $('#testsBody').innerHTML = cut(rows).map((r) => `<tr class="${r.state || ''}">
+        <td><a href="${r.x.href}">${esc(r.x.name)}</a><span class="pair">${esc(r.x.place[i])}</span></td>
+        <td data-l="IELTS">${bar(r.x.ielts, r.x.ieltsNote, 1)}</td><td data-l="SAT">${bar(r.x.sat, r.x.satNote, 0)}</td>
+        <td class="wide"><span class="you">${verdict(r)}</span></td>
+        ${star(`uni|${r.x.name}`)}</tr>`).join('') || none(g.mine.checked);
+    }
     const more = $('#finderMore');
-    more.hidden = rows.length <= limit;
-    more.textContent = showAllRows ? t.showLess : t.showAll(rows.length);
+    more.hidden = total <= limit;
+    more.textContent = showAllRows ? t.showLess : t.showAll(total);
     $('#copyNote').textContent = '';
     // Keep the address in step with the form, so the link in the bar is the link to this result.
-    if (currentTab === 'finder') history.replaceState(null, '', buildHash({ tab: 'finder', score: f.score.value, pair: f.pair.value, code: f.code.value }));
+    if (currentTab === 'finder') history.replaceState(null, '', buildHash(ent
+      ? { tab: 'finder', score: f.score.value, pair: f.pair.value, code: f.code.value }
+      : { tab: 'finder', mode: 'tests', ielts: g.ielts.value, sat: g.sat.value, where: g.where.value }));
   }
 
   // ----- calendar -----
@@ -966,9 +1180,6 @@ if (typeof document !== 'undefined') {
   }
 
   // ----- abroad -----
-  const host = (u) => new URL(u).hostname.replace('www.', '');
-  // Numbers, ranges and their currency sign stay on one line.
-  const glue = (x) => esc(x).replace(/(\d) (?=[\d$€£])/g, '$1\u00a0').replace(/(\d)–(?=\d)/g, '$1–\u2060');
   function countryFacts(c) {
     const t = T[lang], i = t.i;
     const row = (label, v) => (v ? `<div><dt>${label}</dt><dd>${glue(v[i])}</dd></div>` : '');
@@ -981,28 +1192,58 @@ if (typeof document !== 'undefined') {
     const t = T[lang], i = t.i;
     $('#abroadFacts').innerHTML = ABROAD_FACTS.map((f) => `<li><b>${f[i]}</b><span>${esc(f[2 + i])}</span></li>`).join('');
     $('#abroadGrid').innerHTML = ABROAD.map((c) => `<article class="card abroad">${countryFacts(c)}
-      <a class="ghost more" href="#abroad-${c.id}">${t.aUnis(c.unis.length)}</a>
+      <div class="cardfoot"><a class="ghost more" href="#abroad-${c.id}">${t.aUnis(c.unis.length)}</a>
+        <label class="check cmp"><input type="checkbox" data-cmpc="${c.id}"${pickedC.has(c.id) ? ' checked' : ''}><span>${t.compare}</span></label></div>
     </article>`).join('');
     $('#otherGrants').innerHTML = OTHER_GRANTS.map((d) => `<li><b>${d[0]}</b><span>${esc(d[1 + i])}</span></li>`).join('');
+    renderCompareC();
     if (country) renderCountry();
+  }
+  const pickedC = new Set(); // ids of the countries chosen for comparison
+  function renderCompareC(full) {
+    const t = T[lang], i = t.i, cs = [...pickedC].map((id) => ABROAD.find((c) => c.id === id));
+    const cell = (v) => (v ? glue(v[i]) : '—');
+    // Lowest and highest IELTS minimum among the country's listed universities.
+    const band = (c) => {
+      const v = c.unis.map((u) => ABROAD_TESTS[u[0]]?.ielts).filter((x) => x != null);
+      return v.length ? [...new Set([Math.min(...v), Math.max(...v)])].map((x) => x.toFixed(1)).join('–') : t.noData;
+    };
+    compareBox($('#compareC'), $('#cmpBarC'), t.hCompareC, cs.map((c) => `<a href="#abroad-${c.id}">${esc(c.name[i])}</a>`), [
+      [t.cmpWay, cs.map((c) => t.ways[c.way])],
+      [t.aFree, cs.map((c) => cell(c.free))], [t.aNeed, cs.map((c) => cell(c.need))],
+      [t.aCost, cs.map((c) => cell(c.cost))], [t.aWhen, cs.map((c) => cell(c.when))],
+      [t.cmpStudents, cs.map((c) => (c.students ? esc(c.students[i]) : t.noData))],
+      [t.cmpTop, cs.map((c) => `${esc(c.unis[0][0])}, ${esc(c.unis[0][3])}`)],
+      [t.cmpIelts, cs.map(band)],
+    ], full);
   }
 
   // One country: its conditions and its universities. Opens from a card, address "#abroad-ru".
   let country = null;
   function renderCountry() {
     const t = T[lang], i = t.i, c = country;
+    // IELTS and SAT columns appear once at least one university of the country has them.
+    const has = c.unis.some((u) => ABROAD_TESTS[u[0]]);
+    const cell = (r, k, digits) => (r && (r[k] != null || r[`${k}Note`]) ? bar(r[k], r[`${k}Note`], digits) : `<span class="nodata">${t.noData}</span>`);
+    const row = (u) => {
+      const r = ABROAD_TESTS[u[0]];
+      return `<tr><td><a href="${esc(u[4])}" target="_blank" rel="noopener">${esc(u[0])}</a><span class="city">${esc(u[1 + i])}${r?.url ? `, <a href="${esc(r.url)}" target="_blank" rel="noopener">${t.source.toLowerCase()}</a>` : ''}</span></td>
+        ${has ? `<td data-l="IELTS">${cell(r, 'ielts', 1)}</td><td data-l="SAT">${cell(r, 'sat', 0)}</td>` : ''}<td class="n" data-l="QS 2027">${esc(u[3])}</td></tr>`;
+    };
     $('#country').innerHTML = `<p class="back"><a href="#abroad">${t.aBack}</a></p>
       <h2>${esc(c.name[i])}</h2>
-      <div class="cols country">
+      <p class="fresh" id="countryFresh"></p>
+      <div class="cols country${has ? ' wide' : ''}">
         <div class="card abroad">${countryFacts(c)}</div>
         <div class="card box">
           <h3>${t.hUnisOf}</h3>
-          <table class="unilist"><thead><tr><th>${t.thUni}</th><th class="n">${t.thRank}</th></tr></thead>
-          <tbody>${c.unis.map((u) => `<tr><td><a href="${esc(u[4])}" target="_blank" rel="noopener">${esc(u[0])}</a><span class="city">${esc(u[1 + i])}</span></td><td class="n">${esc(u[3])}</td></tr>`).join('')}</tbody></table>
-          <p class="small">${t.rankNote}</p>
+          <table class="unilist${has ? ' stack' : ''}"><thead><tr><th>${t.thUni}</th>${has ? '<th>IELTS</th><th>SAT</th>' : ''}<th class="n">${t.thRank}</th></tr></thead>
+          <tbody>${c.unis.map(row).join('')}</tbody></table>
+          <p class="small">${has ? `${t.testsNote} ` : ''}${t.rankNote}</p>
           <p class="src"><a href="https://www.topuniversities.com/world-university-rankings" target="_blank" rel="noopener">topuniversities.com</a></p>
         </div>
       </div>`;
+    fresh($('#countryFresh'), has ? 'qs tests' : 'abroad qs');
   }
 
   // ----- grants -----
@@ -1024,16 +1265,17 @@ if (typeof document !== 'undefined') {
     const target = isCard && document.getElementById(h);
     // "#programs" is the old name of the calendar tab; old links keep working.
     country = ABROAD.find((c) => h === `abroad-${c.id}`) || null;
-    const tab = target ? 'unis' : country ? 'abroad' : h === 'programs' ? 'calendar' : TABS.includes(h) ? h : 'home';
+    const tab = target ? 'unis' : country ? 'abroad' : h === 'programs' ? 'calendar' : TABS.includes(h) || h === 'data' ? h : 'home';
     currentTab = tab;
     if (country) renderCountry();
     // A country page is its own screen inside the "abroad" tab.
     $$('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== (country ? 'country' : tab); });
     $$('nav a').forEach((a) => a.toggleAttribute('aria-current', a.hash === `#${tab}`));
     if (tab === 'finder') {
-      // A shared link fills the form; a plain "#finder" keeps what is already typed.
-      const f = $('#finderForm');
-      if (st.score || st.pair || st.code) { f.score.value = st.score; f.pair.value = st.pair; f.code.value = st.code; }
+      // A shared link picks the finder and fills its form; a plain "#finder" keeps what is already typed.
+      const f = $('#finderForm'), g = $('#testsForm');
+      if (st.mode === 'tests' || st.ielts || st.sat) { mode = 'tests'; g.ielts.value = st.ielts; g.sat.value = st.sat; g.where.value = st.where; }
+      else if (st.score || st.pair || st.code) { mode = 'ent'; f.score.value = st.score; f.pair.value = st.pair; f.code.value = st.code; }
       renderFinder();
     }
     if (target) { target.querySelector('details')?.setAttribute('open', ''); target.scrollIntoView(); } else scrollTo(0, 0);
@@ -1047,14 +1289,16 @@ if (typeof document !== 'undefined') {
     $('#statRows').textContent = allRows;
     $('#statUnis').textContent = UNIVERSITIES.length;
     $('#statPrograms').textContent = PROGRAMS.length;
-    renderPrograms(); renderUnis(); renderFinder(); renderGrants(); renderCalendar(); renderAbroad();
+    renderPrograms(); renderUnis(); renderFinder(); renderGrants(); renderCalendar(); renderAbroad(); renderFresh();
   }
 
   $('#filters').addEventListener('input', renderPrograms);
   $('#finderForm').addEventListener('input', renderFinder);
+  $('#testsForm').addEventListener('input', renderFinder);
+  $('#finderMode').addEventListener('click', (e) => { const b = e.target.closest('[data-mode]'); if (b) { mode = b.dataset.mode; showAllRows = false; renderFinder(); } });
   $$('form').forEach((f) => f.addEventListener('submit', (e) => e.preventDefault()));
   $('#finderMore').addEventListener('click', () => { showAllRows = !showAllRows; renderFinder(); });
-  $('#finderBody').addEventListener('click', (e) => {
+  $('.results').addEventListener('click', (e) => {
     const b = e.target.closest('[data-save]');
     if (!b) return;
     if (saved.has(b.dataset.save)) saved.delete(b.dataset.save); else saved.add(b.dataset.save);
@@ -1064,19 +1308,11 @@ if (typeof document !== 'undefined') {
     const t = T[lang];
     try { await navigator.clipboard.writeText(location.href); $('#copyNote').textContent = t.copied; } catch { $('#copyNote').textContent = t.copyFail; }
   });
-  // Compare: tick up to three cards; a fourth tick is refused with a note.
-  $('#uniGrid').addEventListener('change', (e) => {
-    const n = Number(e.target.dataset.cmp);
-    if (!e.target.matches('[data-cmp]')) return;
-    const full = e.target.checked && picked.size >= 3;
-    if (full) e.target.checked = false; else if (e.target.checked) picked.add(n); else picked.delete(n);
-    renderCompare(full);
-  });
-  $('#compare').addEventListener('click', (e) => { if (e.target.id === 'cmpClear') { picked.clear(); renderUnis(); } });
-  $('#cmpBar').addEventListener('click', (e) => { if (e.target.id === 'cmpShow') $('#compare').scrollIntoView({ block: 'center' }); });
+  comparing($('#uniGrid'), $('#compare'), $('#cmpBar'), 'cmp', picked, renderCompare, renderUnis);
+  comparing($('#abroadGrid'), $('#compareC'), $('#cmpBarC'), 'cmpc', pickedC, renderCompareC, renderAbroad);
   $('#cities').addEventListener('click', (e) => { const b = e.target.closest('[data-city]'); if (b) { city = b.dataset.city; renderUnis(); } });
   // The score typed on the home screen opens the finder already filled in.
-  $('#quick').addEventListener('submit', () => { $('#finderForm').score.value = $('#quick').score.value; renderFinder(); location.hash = 'finder'; });
+  $('#quick').addEventListener('submit', () => { mode = 'ent'; $('#finderForm').score.value = $('#quick').score.value; renderFinder(); location.hash = 'finder'; });
   $$('[data-lang]').forEach((b) => b.addEventListener('click', () => { lang = b.dataset.lang; store.set(lang); applyLang(); }));
   addEventListener('hashchange', route);
   applyLang();
