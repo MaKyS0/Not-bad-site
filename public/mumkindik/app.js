@@ -392,77 +392,155 @@ export const UNIVERSITIES = [
 // ---------- Study abroad ----------
 // The destinations Kazakh applicants ask about most. Text cells are [ru, kz]; null = the sources give nothing.
 // way: grant = a state scholarship with places for Kazakhstan, free = no tuition in the local language, paid.
+// unis: [name, city ru, city kz, place in QS World University Rankings 2027, official site], best place first.
 export const ABROAD = [
   {
+    id: 'ru',
     name: ['Россия', 'Ресей'], way: 'grant', students: ['свыше 60 тыс. казахстанцев', '60 мыңнан астам қазақстандық'],
     free: ['Квота Россотрудничества: 800 бюджетных мест в 2026 году, от бакалавриата до аспирантуры', 'Россотрудничество квотасы: 2026 жылы 800 бюджеттік орын, бакалавриаттан аспирантураға дейін'],
     need: null, cost: null,
     when: ['Заявки на квоту открываются в сентябре, отбор ведёт представительство Россотрудничества в Астане', 'Квотаға өтінім қыркүйекте ашылады, іріктеуді Астанадағы Россотрудничество өкілдігі жүргізеді'],
     urls: ['https://www.lada.kz/kazakhstan-news/155786-rossiia-vydelila-800-besplatnykh-mest-dlia-kazakhstanskikh-studentov-kak-postupit-v-vuzy.html'],
+    unis: [
+      ['МГУ им. М. В. Ломоносова', 'Москва', 'Мәскеу', '115', 'https://www.msu.ru/'],
+      ['МГТУ им. Н. Э. Баумана', 'Москва', 'Мәскеу', '318', 'https://bmstu.ru/'],
+      ['РУДН', 'Москва', 'Мәскеу', '359', 'https://www.rudn.ru/'],
+      ['СПбГУ', 'Санкт-Петербург', 'Санкт-Петербург', '390', 'https://spbu.ru/'],
+      ['НИУ ВШЭ', 'Москва', 'Мәскеу', '423', 'https://www.hse.ru/'],
+      ['Казанский федеральный университет', 'Казань', 'Қазан', '468', 'https://kpfu.ru/'],
+      ['Новосибирский государственный университет', 'Новосибирск', 'Новосібір', '488', 'https://www.nsu.ru/'],
+    ],
   },
   {
+    id: 'cn',
     name: ['Китай', 'Қытай'], way: 'grant', students: null,
     free: ['Стипендия правительства КНР: 73 гранта на 2026/27 год. Покрывает обучение, общежитие, страховку и ежемесячную стипендию', 'ҚХР үкіметінің стипендиясы: 2026/27 жылға 73 грант. Оқуды, жатақхананы, сақтандыруды және ай сайынғы стипендияны жабады'],
     need: ['Регистрация на сайте CSC; для бакалавриата с 2026 года тест CSCA', 'CSC сайтында тіркелу; бакалавриат үшін 2026 жылдан CSCA тесті'],
     cost: ['Без гранта обучение 3 000–7 000 $ в год', 'Грантсыз оқу жылына 3 000–7 000 $'],
     when: ['На 2026/27 год документы принимали с 21 января по 18 февраля', '2026/27 жылға құжаттар 21 қаңтар – 18 ақпан аралығында қабылданды'],
     urls: ['https://bolashak.gov.kz/en/acceptance-documents', 'https://inbusiness.kz/ru/news/kazahstan-voshel-v-mirovuyu-desyatku-po-eksportu-studentov'],
+    unis: [
+      ['Peking University', 'Пекин', 'Бейжің', '13', 'https://english.pku.edu.cn/'],
+      ['Tsinghua University', 'Пекин', 'Бейжің', '14', 'https://www.tsinghua.edu.cn/en/'],
+      ['Fudan University', 'Шанхай', 'Шанхай', '26', 'https://www.fudan.edu.cn/en/'],
+      ['Shanghai Jiao Tong University', 'Шанхай', 'Шанхай', '36', 'https://en.sjtu.edu.cn/'],
+      ['Zhejiang University', 'Ханчжоу', 'Ханчжоу', '47', 'https://www.zju.edu.cn/english/'],
+      ['Nanjing University', 'Нанкин', 'Нанкин', '=90', 'https://www.nju.edu.cn/en/'],
+    ],
   },
   {
+    id: 'tr',
     name: ['Турция', 'Түркия'], way: 'grant', students: null,
     free: ['Türkiye Bursları: обучение, общежитие, страховка, стипендия и год курсов турецкого', 'Türkiye Bursları: оқу, жатақхана, сақтандыру, стипендия және бір жыл түрік тілі курсы'],
     need: ['Средний балл от 70% (медицина от 90%), возраст до 21 года', 'Орташа балл 70%-дан (медицина 90%-дан), жасы 21-ге дейін'],
     cost: ['Без стипендии в госвузах 1 000–5 000 $ в год', 'Стипендиясыз мемлекеттік ЖОО-да жылына 1 000–5 000 $'],
     when: ['Каждый год с 10 января по 20 февраля', 'Жыл сайын 10 қаңтар – 20 ақпан'],
     urls: ['https://www.turkiyeburslari.gov.tr/calendar', 'https://www.turkiyeburslari.gov.tr/bursprogramlari', 'https://inbusiness.kz/ru/news/kazahstan-voshel-v-mirovuyu-desyatku-po-eksportu-studentov'],
+    unis: [
+      ['Istanbul Technical University', 'Стамбул', 'Стамбұл', '279', 'https://www.itu.edu.tr/en'],
+      ['Middle East Technical University', 'Анкара', 'Анкара', '305', 'https://www.metu.edu.tr/'],
+      ['Koç University', 'Стамбул', 'Стамбұл', '329', 'https://www.ku.edu.tr/en/'],
+      ['Boğaziçi University', 'Стамбул', 'Стамбұл', '345', 'https://www.bogazici.edu.tr/'],
+      ['Sabancı University', 'Стамбул', 'Стамбұл', '357', 'https://www.sabanciuniv.edu/en'],
+      ['Bilkent University', 'Анкара', 'Анкара', '454', 'https://www.bilkent.edu.tr/'],
+    ],
   },
   {
+    id: 'kr',
     name: ['Южная Корея', 'Оңтүстік Корея'], way: 'grant', students: ['около 1 000 казахстанцев', 'шамамен 1 000 қазақстандық'],
     free: ['GKS: 286 стипендий на бакалавриат на весь мир в 2027 году. Обучение, перелёт и ежемесячное пособие', 'GKS: 2027 жылы бүкіл әлемге бакалавриатқа 286 стипендия. Оқу, ұшу билеті және ай сайынғы жәрдемақы'],
     need: ['Возраст до 25 лет. Первый год учат корейский, с TOPIK 5–6 от него освобождают', 'Жасы 25-ке дейін. Бірінші жылы корей тілі оқытылады, TOPIK 5–6 болса, одан босатады'],
     cost: ['Без стипендии обучение 4 000–8 000 $ в год', 'Стипендиясыз оқу жылына 4 000–8 000 $'],
     when: ['Набор на 2027 год: через посольство с 15 сентября 2026 года, через вузы до ноября', '2027 жылға қабылдау: елшілік арқылы 2026 жылғы 15 қыркүйектен, ЖОО арқылы қарашаға дейін'],
     urls: ['https://www.koreajoongangdaily.com/korea/gksu-2027-what-international-students-need-to-know-before-applying/12878569', 'https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/'],
+    unis: [
+      ['Seoul National University', 'Сеул', 'Сеул', '38', 'https://en.snu.ac.kr/'],
+      ['Yonsei University', 'Сеул', 'Сеул', '42', 'https://www.yonsei.ac.kr/en_sc/'],
+      ['Korea University', 'Сеул', 'Сеул', '=52', 'https://www.korea.edu/'],
+      ['KAIST', 'Тэджон', 'Тэджон', '65', 'https://www.kaist.ac.kr/en/'],
+      ['POSTECH', 'Пхохан', 'Пхохан', '106', 'https://www.postech.ac.kr/eng/'],
+    ],
   },
   {
+    id: 'hu',
     name: ['Венгрия', 'Венгрия'], way: 'grant', students: null,
     free: ['Stipendium Hungaricum: 250 грантов в год для Казахстана, из них 110 на бакалавриат. Обучение, жильё, страховка и стипендия', 'Stipendium Hungaricum: Қазақстанға жылына 250 грант, оның 110-ы бакалавриатқа. Оқу, тұрғын үй, сақтандыру және стипендия'],
     need: ['Обучение на английском или венгерском', 'Оқу ағылшын немесе венгр тілінде'],
     cost: null,
     when: ['На 2026/27 год заявки принимали до 15 января 2026 года', '2026/27 жылға өтінімдер 2026 жылғы 15 қаңтарға дейін қабылданды'],
     urls: ['https://bolashak.gov.kz/grant-granting-countries', 'https://weproject.media/articles/detail/250-kazakhstantsev-smogut-uchitsya-v-vengrii-v-2026-godu-trebovaniya-kvoty-i-sroki-podachi/'],
+    unis: [
+      ['Eötvös Loránd University (ELTE)', 'Будапешт', 'Будапешт', '595', 'https://www.elte.hu/en'],
+      ['University of Debrecen', 'Дебрецен', 'Дебрецен', '600', 'https://unideb.hu/en'],
+      ['University of Szeged', 'Сегед', 'Сегед', '633', 'https://u-szeged.hu/english'],
+    ],
   },
   {
+    id: 'de',
     name: ['Германия', 'Германия'], way: 'free', students: null,
     free: ['В государственных вузах обучение бесплатное, семестровый взнос 150–350 €', 'Мемлекеттік ЖОО-да оқу тегін, семестрлік жарна 150–350 €'],
     need: ['Немецкий B2–C1. После 11 классов обычно нужен год в штудиенколлеге', 'Неміс тілі B2–C1. 11 сыныптан кейін әдетте штудиенколлегте бір жыл оқу қажет'],
     cost: ['Жизнь 900–1 200 € в месяц', 'Тұру айына 900–1 200 €'],
     when: null,
     urls: ['https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/', 'https://www.unipage.net/ru/studienkollegs_germany'],
+    unis: [
+      ['Technical University of Munich (TUM)', 'Мюнхен', 'Мюнхен', '25', 'https://www.tum.de/en/'],
+      ['LMU Munich', 'Мюнхен', 'Мюнхен', '61', 'https://www.lmu.de/en/'],
+      ['Heidelberg University', 'Гейдельберг', 'Гейдельберг', '86', 'https://www.uni-heidelberg.de/en'],
+      ['Freie Universität Berlin', 'Берлин', 'Берлин', '=98', 'https://www.fu-berlin.de/en/'],
+      ['RWTH Aachen University', 'Ахен', 'Ахен', '104', 'https://www.rwth-aachen.de/'],
+      ['Karlsruhe Institute of Technology (KIT)', 'Карлсруэ', 'Карлсруэ', '110', 'https://www.kit.edu/english/'],
+    ],
   },
   {
+    id: 'cz',
     name: ['Чехия', 'Чехия'], way: 'free', students: null,
     free: ['В государственных вузах бесплатно, если учиться на чешском', 'Мемлекеттік ЖОО-да чех тілінде оқысаңыз, тегін'],
     need: ['Чешский язык, на него уходит время до поступления', 'Чех тілі, оны түсуге дейін үйренуге уақыт кетеді'],
     cost: ['На английском 8 000–15 000 € в год. Жизнь 600–900 € в месяц', 'Ағылшын тілінде жылына 8 000–15 000 €. Тұру айына 600–900 €'],
     when: null,
     urls: ['https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/'],
+    unis: [
+      ['Charles University', 'Прага', 'Прага', '273', 'https://cuni.cz/'],
+      ['Czech Technical University in Prague', 'Прага', 'Прага', '432', 'https://www.cvut.cz/en'],
+      ['Masaryk University', 'Брно', 'Брно', '454', 'https://www.muni.cz/en'],
+      ['Brno University of Technology', 'Брно', 'Брно', '588', 'https://www.vut.cz/en'],
+    ],
   },
   {
+    id: 'us',
     name: ['США', 'АҚШ'], way: 'paid', students: null,
     free: null,
     need: ['Для сильных программ обычно IELTS 7.0', 'Мықты бағдарламаларға әдетте IELTS 7.0'],
     cost: ['В среднем 85–92 тыс. $ в год вместе с проживанием. Первые два года дешевле в community college', 'Тұруды қосқанда орта есеппен жылына 85–92 мың $. Алғашқы екі жыл community college-де арзанырақ'],
     when: null,
     urls: ['https://inbusiness.kz/ru/news/kazahstan-voshel-v-mirovuyu-desyatku-po-eksportu-studentov', 'https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/'],
+    unis: [
+      ['Massachusetts Institute of Technology (MIT)', 'Кембридж, Массачусетс', 'Кембридж, Массачусетс', '1', 'https://www.mit.edu/'],
+      ['Stanford University', 'Стэнфорд', 'Стэнфорд', '=2', 'https://www.stanford.edu/'],
+      ['Harvard University', 'Кембридж, Массачусетс', 'Кембридж, Массачусетс', '5', 'https://www.harvard.edu/'],
+      ['California Institute of Technology (Caltech)', 'Пасадена', 'Пасадена', '7', 'https://www.caltech.edu/'],
+      ['University of Pennsylvania', 'Филадельфия', 'Филадельфия', '15', 'https://www.upenn.edu/'],
+      ['Yale University', 'Нью-Хейвен', 'Нью-Хейвен', '16', 'https://www.yale.edu/'],
+    ],
   },
   {
+    id: 'uk',
     name: ['Великобритания', 'Ұлыбритания'], way: 'paid', students: null,
     free: ['Стипендия Chevening рассчитана на магистратуру', 'Chevening стипендиясы магистратураға арналған'],
     need: null,
     cost: ['Обучение и жизнь вместе от 40 тыс. £ в год', 'Оқу мен тұру бірге жылына 40 мың £-тен'],
     when: null,
     urls: ['https://el.kz/ru/kuda-postupat-za-granitsey-v-2026-strany-tseny-i-riski_400046459/', 'https://bes.media/amp/posolstvo-velikobritanii-nazvalo-daty-priema-zayavok-na-stipendiyu-chevening-dlya-kazahstantsev/'],
+    unis: [
+      ['Imperial College London', 'Лондон', 'Лондон', '=2', 'https://www.imperial.ac.uk/'],
+      ['University of Oxford', 'Оксфорд', 'Оксфорд', '4', 'https://www.ox.ac.uk/'],
+      ['University of Cambridge', 'Кембридж', 'Кембридж', '6', 'https://www.cam.ac.uk/'],
+      ['University College London (UCL)', 'Лондон', 'Лондон', '=8', 'https://www.ucl.ac.uk/'],
+      ['University of Edinburgh', 'Эдинбург', 'Эдинбург', '35', 'https://www.ed.ac.uk/'],
+      ['King’s College London', 'Лондон', 'Лондон', '37', 'https://www.kcl.ac.uk/'],
+      ['University of Manchester', 'Манчестер', 'Манчестер', '=40', 'https://www.manchester.ac.uk/'],
+    ],
   },
 ];
 
@@ -625,6 +703,8 @@ const T = {
     pAbroad: 'Куда чаще всего уезжают казахстанцы и как там учиться бесплатно. Условия меняются каждый год, перед подачей сверяйтесь с источником.',
     ways: { grant: 'есть стипендия', free: 'бесплатно на языке страны', paid: 'платно' },
     aFree: 'Бесплатно', aNeed: 'Что нужно', aCost: 'Расходы', aWhen: 'Когда',
+    aUnis: (n) => `Университеты: ${n}`, aBack: 'Все страны', hUnisOf: 'Университеты', thRank: 'Место в QS 2027',
+    rankNote: 'Вузы страны с самыми высокими местами в мировом рейтинге QS World University Rankings 2027. Стипендии и квоты к этому списку не привязаны: условия приёма смотрите на сайте вуза и программы.',
     aFactsSrc: 'Число студентов: ЮНЕСКО и слова министра науки и высшего образования, июнь 2024 года.',
     hOther: 'Ещё межправительственные гранты 2026/27',
     otherNote: 'Конкурс проводит Центр международных программ. После учёбы по такому гранту, включая китайский и венгерский, нужно вернуться и год отработать в Казахстане.',
@@ -681,6 +761,8 @@ const T = {
     pAbroad: 'Қазақстандықтар қайда жиі кетеді және онда қалай тегін оқуға болады. Шарттар жыл сайын өзгереді, тапсырар алдында дереккөзден тексеріңіз.',
     ways: { grant: 'стипендия бар', free: 'ел тілінде тегін', paid: 'ақылы' },
     aFree: 'Тегін', aNeed: 'Не қажет', aCost: 'Шығын', aWhen: 'Қашан',
+    aUnis: (n) => `Университеттер: ${n}`, aBack: 'Барлық ел', hUnisOf: 'Университеттер', thRank: 'QS 2027 орны',
+    rankNote: 'QS World University Rankings 2027 әлемдік рейтингінде елдің ең жоғары орын алған ЖОО-лары. Стипендиялар мен квоталар бұл тізімге байланбаған: қабылдау шарттарын ЖОО мен бағдарлама сайтынан қараңыз.',
     aFactsSrc: 'Студенттер саны: ЮНЕСКО және ғылым және жоғары білім министрінің сөзі, 2024 жылғы маусым.',
     hOther: 'Тағы да үкіметаралық гранттар 2026/27',
     otherNote: 'Конкурсты Халықаралық бағдарламалар орталығы өткізеді. Мұндай грантпен, соның ішінде Қытай мен Венгрия грантымен оқығаннан кейін елге оралып, Қазақстанда бір жыл жұмыс істеу қажет.',
@@ -884,19 +966,43 @@ if (typeof document !== 'undefined') {
   }
 
   // ----- abroad -----
+  const host = (u) => new URL(u).hostname.replace('www.', '');
+  // Numbers, ranges and their currency sign stay on one line.
+  const glue = (x) => esc(x).replace(/(\d) (?=[\d$€£])/g, '$1\u00a0').replace(/(\d)–(?=\d)/g, '$1–\u2060');
+  function countryFacts(c) {
+    const t = T[lang], i = t.i;
+    const row = (label, v) => (v ? `<div><dt>${label}</dt><dd>${glue(v[i])}</dd></div>` : '');
+    return `<p class="chips"><span class="chip${c.way === 'grant' ? ' money' : ''}">${t.ways[c.way]}</span>${c.students ? `<span class="chip">${esc(c.students[i])}</span>` : ''}</p>
+      <h3><a href="#abroad-${c.id}">${esc(c.name[i])}</a></h3>
+      <dl class="rows">${row(t.aFree, c.free)}${row(t.aNeed, c.need)}${row(t.aCost, c.cost)}${row(t.aWhen, c.when)}</dl>
+      <p class="src">${t.source}: ${c.urls.filter((u, n, all) => all.findIndex((x) => host(x) === host(u)) === n).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join(', ')}</p>`;
+  }
   function renderAbroad() {
     const t = T[lang], i = t.i;
-    const host = (u) => new URL(u).hostname.replace('www.', '');
-    const glue = (x) => esc(x).replace(/(\d) (?=[\d$€£])/g, '$1\u00a0');
-    const row = (label, v) => (v ? `<div><dt>${label}</dt><dd>${glue(v[i])}</dd></div>` : '');
     $('#abroadFacts').innerHTML = ABROAD_FACTS.map((f) => `<li><b>${f[i]}</b><span>${esc(f[2 + i])}</span></li>`).join('');
-    $('#abroadGrid').innerHTML = ABROAD.map((c) => `<article class="card abroad">
-      <p class="chips"><span class="chip${c.way === 'grant' ? ' money' : ''}">${t.ways[c.way]}</span>${c.students ? `<span class="chip">${esc(c.students[i])}</span>` : ''}</p>
-      <h3>${esc(c.name[i])}</h3>
-      <dl class="rows">${row(t.aFree, c.free)}${row(t.aNeed, c.need)}${row(t.aCost, c.cost)}${row(t.aWhen, c.when)}</dl>
-      <p class="src">${t.source}: ${c.urls.filter((u, n, all) => all.findIndex((x) => host(x) === host(u)) === n).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join(', ')}</p>
+    $('#abroadGrid').innerHTML = ABROAD.map((c) => `<article class="card abroad">${countryFacts(c)}
+      <a class="ghost more" href="#abroad-${c.id}">${t.aUnis(c.unis.length)}</a>
     </article>`).join('');
     $('#otherGrants').innerHTML = OTHER_GRANTS.map((d) => `<li><b>${d[0]}</b><span>${esc(d[1 + i])}</span></li>`).join('');
+    if (country) renderCountry();
+  }
+
+  // One country: its conditions and its universities. Opens from a card, address "#abroad-ru".
+  let country = null;
+  function renderCountry() {
+    const t = T[lang], i = t.i, c = country;
+    $('#country').innerHTML = `<p class="back"><a href="#abroad">${t.aBack}</a></p>
+      <h2>${esc(c.name[i])}</h2>
+      <div class="cols country">
+        <div class="card abroad">${countryFacts(c)}</div>
+        <div class="card box">
+          <h3>${t.hUnisOf}</h3>
+          <table class="unilist"><thead><tr><th>${t.thUni}</th><th class="n">${t.thRank}</th></tr></thead>
+          <tbody>${c.unis.map((u) => `<tr><td><a href="${esc(u[4])}" target="_blank" rel="noopener">${esc(u[0])}</a><span class="city">${esc(u[1 + i])}</span></td><td class="n">${esc(u[3])}</td></tr>`).join('')}</tbody></table>
+          <p class="small">${t.rankNote}</p>
+          <p class="src"><a href="https://www.topuniversities.com/world-university-rankings" target="_blank" rel="noopener">topuniversities.com</a></p>
+        </div>
+      </div>`;
   }
 
   // ----- grants -----
@@ -917,9 +1023,12 @@ if (typeof document !== 'undefined') {
     if (isCard && !document.getElementById(h) && city) { city = ''; renderUnis(); }
     const target = isCard && document.getElementById(h);
     // "#programs" is the old name of the calendar tab; old links keep working.
-    const tab = target ? 'unis' : h === 'programs' ? 'calendar' : TABS.includes(h) ? h : 'home';
+    country = ABROAD.find((c) => h === `abroad-${c.id}`) || null;
+    const tab = target ? 'unis' : country ? 'abroad' : h === 'programs' ? 'calendar' : TABS.includes(h) ? h : 'home';
     currentTab = tab;
-    $$('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== tab; });
+    if (country) renderCountry();
+    // A country page is its own screen inside the "abroad" tab.
+    $$('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== (country ? 'country' : tab); });
     $$('nav a').forEach((a) => a.toggleAttribute('aria-current', a.hash === `#${tab}`));
     if (tab === 'finder') {
       // A shared link fills the form; a plain "#finder" keeps what is already typed.

@@ -97,6 +97,15 @@ for (const c of ABROAD) {
   assert.ok(c.urls.length && c.urls.every((u) => new URL(u).protocol === 'https:'), `${c.name[0]} sources`);
 }
 assert.equal(new Set(ABROAD.map((c) => c.name[0])).size, ABROAD.length);
+assert.equal(new Set(ABROAD.map((c) => c.id)).size, ABROAD.length);
+const place = (r) => Number(r.replace('=', ''));
+for (const c of ABROAD) {
+  assert.match(c.id, /^[a-z]{2}$/);
+  assert.ok(c.unis.length >= 3, `${c.name[0]} universities`);
+  for (const u of c.unis) assert.ok(u.length === 5 && u[0] && u[1] && u[2] && /^=?\d+$/.test(u[3]) && new URL(u[4]).protocol === 'https:', u[0]);
+  assert.deepEqual(c.unis.map((u) => place(u[3])), [...c.unis.map((u) => place(u[3]))].sort((a, b) => a - b), `${c.name[0]}: best place first`);
+  assert.equal(new Set(c.unis.map((u) => u[0])).size, c.unis.length);
+}
 for (const f of ABROAD_FACTS) assert.ok(f.length === 4 && f.every(Boolean));
 for (const g of OTHER_GRANTS) assert.ok(/^\d+$/.test(g[0]) && g[1] && g[2]);
 for (const e of CALENDAR) assert.ok(['grant', 'paid', 'abroad'].includes(e[2]), e[4]);
