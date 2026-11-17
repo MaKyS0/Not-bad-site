@@ -364,6 +364,7 @@ export const UNIVERSITIES = [
   },
   {
     name: 'KIMEP University', city: ['Алматы', 'Алматы'], url: 'https://www.kimep.kz/prospective-students/kz/admission/high-school-graduates/',
+    fee: ['4,9–5,9 млн ₸ в год (2026/27)', 'жылына 4,9–5,9 млн ₸ (2026/27)'],
     ielts: ['5.5', 'разделы от 5.0, уровень Academic English', 'бөлімдер 5.0-ден, Academic English деңгейі'],
     sat: null,
     ent: ['50', 'общий порог, по предметам от 5', 'жалпы шек, пәндерден 5-тен'],
@@ -694,6 +695,11 @@ export const ABROAD_TESTS = {
   'Boğaziçi University': { ielts: 6.5, ieltsNote: ['освобождает от подготовительного года английского; Writing от 6.5', 'ағылшын тілінің дайындық жылынан босатады; Writing 6.5-тен'], sat: 1300, satNote: ['для большинства программ; у части программ свой порог', 'бағдарламалардың көбіне; кейбір бағдарламаларда өз шегі бар'], url: 'https://intl.bogazici.edu.tr/node/100023029' },
   'Bilkent University': { ielts: 6.5, ieltsNote: ['разделы от 5.5; или TOEFL iBT 87', 'бөлімдер 5.5-тен; немесе TOEFL iBT 87'], sat: 1000, satNote: ['это минимум, приёма он не гарантирует', 'бұл ең төменгі шек, қабылдауға кепілдік бермейді'], url: 'https://w3.bilkent.edu.tr/international/how-to-apply' },
   'Sabancı University': { sat: 1100, satNote: ['Superscore не принимают', 'Superscore қабылданбайды'], url: 'https://iro.sabanciuniv.edu/en/required-examdiploma-list' },
+  'Middle East Technical University': { sat: 1200, satNote: ['Math от 700 для инженерных, архитектурных и естественно-научных программ; список вуза от января 2024 года', 'инженерлік, сәулет және жаратылыстану бағдарламаларына Math 700-ден; ЖОО тізімі 2024 жылғы қаңтардан'], url: 'https://iso.metu.edu.tr/en/system/files/odtu_iso_requirements.pdf' },
+  'Koç University': { ieltsNote: ['в списке принимаемых тестов IELTS нет: нужен TOEFL iBT 80, Writing от 20', 'қабылданатын тесттер тізімінде IELTS жоқ: TOEFL iBT 80, Writing 20-дан қажет'], sat: 1200, satNote: ['от 1200 до 1450 по факультетам: инженерный 1300, право 1420, медицина 1450; страница набора 2024 года', 'факультетке қарай 1200-ден 1450-ге дейін: инженерлік 1300, құқық 1420, медицина 1450; 2024 жылғы қабылдау беті'], url: 'https://international.ku.edu.tr/?p=3948' },
+  'Seoul National University': { ielts: 6, ieltsNote: ['или TOEFL iBT 80; из FAQ вуза, обновлён в 2021 году', 'немесе TOEFL iBT 80; ЖОО FAQ-ынан, 2021 жылы жаңартылған'], url: 'https://en-cdn.snu.ac.kr/admission/overview/faq/admission' },
+  'Technical University of Munich (TUM)': { ieltsNote: ['на шести программах, включая Aerospace, сертификат английского не нужен: язык проверяют на отборе', 'алты бағдарламада, соның ішінде Aerospace, ағылшын тілі сертификаты қажет емес: тіл іріктеуде тексеріледі'], url: 'https://www.tum.de/en/studies/application/application-info-portal/admission-requirements/language-certificates' },
+  'Brno University of Technology': { ieltsNote: ['программа Entrepreneurship: устный вступительный экзамен на английском, балл IELTS не указан', 'Entrepreneurship бағдарламасы: ағылшын тілінде ауызша кіру емтиханы, IELTS балы көрсетілмеген'], url: 'https://www.vut.cz/en/board/internal-legislation-fbm/-d305666/rules-of-admissions-and-conditions-for-admission-to-study-in-bachelor-and-master-programmes-taught-in-english-for-the-academick-year-2026-2027-p317353' },
   'Charles University': { ielts: 6.5, ieltsNote: ['факультет математики и физики; на других факультетах свои условия', 'математика және физика факультеті; басқа факультеттерде өз шарттары'], sat: 1250, satNote: ['тот же факультет; Math от 720', 'сол факультет; Math 720-дан'], url: 'https://www.mff.cuni.cz/en/admissions/admission-requirements-for-bachelor-s-programmes-in-english/2026-2027' },
   'Czech Technical University in Prague': { ielts: 5.5, ieltsNote: ['факультет информационных технологий; на других факультетах свои условия', 'ақпараттық технологиялар факультеті; басқа факультеттерде өз шарттары'], url: 'https://fit.cvut.cz/en/applicants/admissions-procedure' },
   'Masaryk University': { ielts: 6.5, ieltsNote: ['факультет экономики; разделы от 6.0', 'экономика факультеті; бөлімдер 6.0-ден'], url: 'https://www.econ.muni.cz/en/admissions/bachelor-studies/application-requirements' },
@@ -735,7 +741,7 @@ export function testRows(list, { ielts, sat, where }) {
 // What period each block of data covers, when it was last checked against its sources, and the sources themselves.
 export const FRESH = [
   {
-    id: 'req', checked: '2026-11-16',
+    id: 'req', checked: '2026-11-15',
     name: ['Требования вузов Казахстана', 'Қазақстан ЖОО-ларының талаптары'],
     period: ['приём 2026/27, источник указан в карточке вуза', '2026/27 қабылдау, дереккөз ЖОО карточкасында көрсетілген'],
     urls: [],
@@ -773,7 +779,7 @@ export const FRESH = [
   {
     id: 'tests', checked: '2026-11-16',
     name: ['IELTS и SAT в зарубежных вузах', 'Шетел ЖОО-ларындағы IELTS және SAT'],
-    period: ['приём 2026 и 2027 годов, с сайтов самих вузов', '2026 және 2027 жылғы қабылдау, ЖОО-лардың өз сайттарынан'],
+    period: ['приём 2026 и 2027 годов, с сайтов самих вузов; если страница вуза старше, год указан в примечании', '2026 және 2027 жылғы қабылдау, ЖОО-лардың өз сайттарынан; ЖОО беті ескірек болса, жылы ескертпеде көрсетілген'],
     urls: [],
   },
   {
