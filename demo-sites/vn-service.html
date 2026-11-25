@@ -4,227 +4,213 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VN SERVICE — СТО и автозапчасти на Акжол, Астана</title>
-<meta name="description" content="СТО и магазин автозапчастей на проспекте Акжол, 52/1 в Астане. Ходовая, МКПП, аппаратная замена масла. Каждый день с 9:00 до 20:00.">
+<meta name="description" content="СТО и магазин автозапчастей в одном здании: проспект Акжол, 52/1, Астана. Ходовая, тормоза, МКПП, аппаратная замена масла. Каждый день с 9:00 до 20:00.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@600;800&family=Fira+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --concrete:#dadbd7; --concrete2:#cfd0cb; --paper:#f8f8f5; --asphalt:#1e2125; --ink:#1e2125;
-  --muted:#5d636b; --rule:#b9bbb5; --yellow:#f0c02f; --kz:#00a3c4; --wa:#1fb855;
-  --cond:"Fira Sans Extra Condensed","Arial Narrow",sans-serif;
-  --max:1140px;
+  --paper:#ffffff; --mist:#eef2f7; --line:#d9e0ea; --ink:#121821; --soft:#4a5563;
+  --blue:#1f6fe5; --navy:#0f2a5c; --wa:#1faa53; --gold:#e3a008;
+  --display:"Inter Tight","Inter",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--concrete);color:var(--ink);font:17px/1.6 "Fira Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:74px}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:72px}
 a{color:inherit}
 img{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--kz);outline-offset:3px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
 
 /* demo marks */
 .wm{position:fixed;inset:0;z-index:999;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='240'%3E%3Ctext x='50%25' y='50%25' fill='%23000' fill-opacity='0.07' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' transform='rotate(-24 190 120)'%3E%D0%94%D0%95%D0%9C%D0%9E-%D0%92%D0%95%D0%A0%D0%A1%D0%98%D0%AF%3C/text%3E%3C/svg%3E")}
-.tape{background:repeating-linear-gradient(-45deg,var(--yellow) 0 16px,var(--asphalt) 16px 32px);padding:4px 0}
-.tape p{background:var(--asphalt);color:var(--yellow);text-align:center;font-size:14px;font-weight:700;padding:6px 12px}
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='260'%3E%3Ctext x='50%25' y='50%25' fill='%23000' fill-opacity='0.055' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' transform='rotate(-24 210 130)'%3E%D0%94%D0%95%D0%9C%D0%9E-%D0%92%D0%95%D0%A0%D0%A1%D0%98%D0%AF%3C/text%3E%3C/svg%3E")}
+.demo{background:var(--navy);color:#fff;font-size:13.5px;text-align:center;padding:8px 16px}
+.demo b{background:#ffd84d;color:var(--navy);border-radius:4px;padding:1px 6px;margin-right:6px}
 
 /* header */
-header{background:var(--concrete);border-bottom:2px solid var(--asphalt);position:sticky;top:0;z-index:40}
-.nav{display:flex;align-items:center;gap:20px;height:68px}
-.plate{display:inline-flex;align-items:stretch;border:2.5px solid var(--asphalt);border-radius:6px;background:var(--paper);text-decoration:none;height:40px;overflow:hidden}
-.plate .fl{background:var(--kz);color:#fff;font:700 10px/1 "Fira Sans";display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 5px 5px;gap:3px}
-.plate .fl::before{content:"";width:10px;height:10px;border-radius:50%;background:#f7d117}
-.plate b{font:800 25px/36px var(--cond);letter-spacing:.06em;padding:0 10px}
-.nav nav{display:flex;gap:24px;margin-left:auto;font-weight:500}
-.nav nav a{text-decoration:none}
-.nav nav a:hover{text-decoration:underline;text-underline-offset:4px}
-.hphone{font-weight:700;text-decoration:none;white-space:nowrap}
-.lang{display:flex;border:2px solid var(--asphalt);border-radius:6px;overflow:hidden;font-weight:700;font-size:14px}
-.lang button{background:none;border:0;padding:5px 10px;cursor:pointer;font:inherit;color:var(--ink)}
-.lang button[aria-pressed=true]{background:var(--asphalt);color:var(--paper)}
-@media(max-width:900px){.nav nav,.hphone{display:none}.lang{margin-left:auto}}
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:20px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 20px/1 var(--display);letter-spacing:.01em}
+.logo svg{width:38px;height:38px}
+.hinfo{margin-left:auto;display:flex;gap:22px;align-items:center;font-size:15px;color:var(--soft)}
+.hinfo a{color:var(--ink);font-weight:600;text-decoration:none}
+.lang{display:flex;background:var(--mist);border-radius:8px;padding:3px}
+.lang button{border:0;background:none;font:600 13px Inter;padding:5px 9px;border-radius:6px;cursor:pointer;color:var(--soft)}
+.lang button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(15,42,92,.15)}
+@media(max-width:860px){.hinfo .h-hide{display:none}}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:54px;padding:0 24px;border-radius:8px;font:700 17px/1 "Fira Sans";text-decoration:none;border:2px solid var(--asphalt);cursor:pointer}
-.btn svg{width:20px;height:20px;flex:none}
-.b-call{background:var(--yellow);color:var(--asphalt)}
-.b-wa{background:var(--wa);border-color:var(--wa);color:#fff}
-.b-line{background:transparent;color:var(--ink)}
-.btn:hover{filter:brightness(.95)}
-.btn:active{transform:translateY(1px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:0 22px;border-radius:10px;font:600 16px/1 Inter;text-decoration:none;border:0;cursor:pointer}
+.btn svg{width:19px;height:19px;flex:none}
+.b-blue{background:var(--blue);color:#fff}
+.b-blue:hover{background:#185fcb}
+.b-wa{background:var(--wa);color:#fff}
+.b-wa:hover{background:#1a944a}
+.b-quiet{background:var(--mist);color:var(--ink)}
+.b-quiet:hover{background:#e2e8f0}
 
 /* hero */
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border-bottom:2px solid var(--asphalt)}
-.hero-text{padding:56px 48px 56px max(16px,calc((100vw - var(--max))/2 + 16px))}
-.status{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px}
-.status i{width:10px;height:10px;border-radius:50%;background:#1a9d4b}
-.status.off i{background:#9a9d97}
-h1{font:800 clamp(46px,7.4vw,92px)/.95 var(--cond);letter-spacing:-.005em;margin:18px 0 22px;max-width:11ch;text-wrap:balance}
-.sub{font-size:19px;max-width:36ch;color:#33383e}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.score{display:flex;align-items:center;gap:14px;margin-top:34px;padding-top:22px;border-top:2px solid var(--asphalt);max-width:460px}
-.score strong{font:800 46px/1 var(--cond)}
-.score span{color:var(--muted);font-size:15px;line-height:1.35}
-.stars,.score .stars{color:#c88f00;letter-spacing:2px}
-.hero-photo{position:relative;min-height:520px;background:var(--asphalt)}
-.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.hero-photo figcaption{position:absolute;left:0;bottom:0;background:var(--asphalt);color:var(--paper);font-size:14px;padding:8px 14px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:56px 16px 64px}
+h1{font:800 clamp(40px,5.6vw,68px)/1.02 var(--display);letter-spacing:-.025em;margin:16px 0 18px;text-wrap:balance}
+.lede{font-size:18px;color:var(--soft);max-width:44ch}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.proof{display:inline-flex;align-items:center;gap:14px;margin-top:30px;text-decoration:none}
+.proof .num{font:800 34px/1 var(--display)}
+.proof .st{color:var(--gold);font-size:15px;letter-spacing:1px}
+.proof small{display:block;color:var(--soft);font-size:14px}
+.proof:hover small{text-decoration:underline}
+.now{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;color:#167a3c;background:#e7f6ec;border-radius:999px;padding:4px 11px}
+.now i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.now.off{color:var(--soft);background:var(--mist)}
+
+/* inspect: real photo + hotspots */
+.inspect{position:relative}
+.shot{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:685/760;background:#222}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.hint{position:absolute;left:14px;top:14px;background:rgba(18,24,33,.78);color:#fff;font-size:13.5px;padding:6px 11px;border-radius:8px}
+.spot{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:0;cursor:pointer;background:rgba(255,255,255,.95);box-shadow:0 0 0 5px rgba(31,111,229,.45),0 6px 16px rgba(0,0,0,.35);display:grid;place-items:center}
+.spot::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--blue);transition:transform .15s}
+.spot[aria-pressed=true]{background:var(--blue);box-shadow:0 0 0 6px rgba(255,255,255,.7),0 6px 16px rgba(0,0,0,.35)}
+.spot[aria-pressed=true]::after{background:#fff;transform:scale(.7)}
+.spot:not([aria-pressed=true]){animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(31,111,229,.6),0 6px 16px rgba(0,0,0,.35)}70%{box-shadow:0 0 0 14px rgba(31,111,229,0),0 6px 16px rgba(0,0,0,.35)}100%{box-shadow:0 0 0 0 rgba(31,111,229,0),0 6px 16px rgba(0,0,0,.35)}}
+@media (prefers-reduced-motion:reduce){.spot{animation:none!important}}
+.card{position:relative;margin:-64px 20px 0;background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 18px 40px rgba(15,42,92,.18);border:1px solid var(--line)}
+.card h3{font:800 22px/1.2 var(--display);margin-bottom:6px}
+.card p{color:var(--soft);font-size:15px}
+.card .stock{margin-top:12px;font-size:14px;color:var(--ink)}
+.card .stock span{color:var(--soft)}
+.card .btn{margin-top:14px;min-height:46px;font-size:15px}
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .hero-text{padding:36px 16px 40px}
-  .hero-photo{min-height:220px;order:-1}
-  .hero-text{padding-top:24px}
+  .hero{grid-template-columns:1fr;gap:28px;padding:32px 16px 48px}
+  .card{margin:-48px 10px 0}
 }
 
-/* sections */
-section{padding:80px 0}
-h2{font:800 clamp(34px,5vw,54px)/1 var(--cond);margin-bottom:12px}
-.intro{color:#33383e;max-width:52ch;margin-bottom:36px}
+/* list of work */
+.band{background:var(--mist);padding:72px 0}
+h2{font:800 clamp(30px,3.8vw,44px)/1.08 var(--display);letter-spacing:-.02em;margin-bottom:10px}
+.band .lede{margin-bottom:34px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+.panel{background:#fff;border-radius:16px;padding:26px 28px}
+.panel h3{font:800 20px var(--display);margin-bottom:12px}
+.panel ul{list-style:none}
+.panel li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line)}
+.panel li a{color:var(--blue);font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap}
+.panel li a:hover{text-decoration:underline}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:var(--mist);border-radius:8px;padding:7px 12px;font-size:15px}
+.panel .note{color:var(--soft);font-size:15px;margin-top:16px}
 
-/* work order rows */
-.order{border-top:2px solid var(--asphalt)}
-.line{display:grid;grid-template-columns:minmax(220px,1fr) 1.4fr auto;gap:8px 32px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--rule)}
-.line h3{font:600 26px/1.1 var(--cond)}
-.line p{color:#3c4148}
-.line a{font-weight:700;color:#0d6e86;white-space:nowrap;text-underline-offset:4px}
-@media(max-width:760px){.line{grid-template-columns:1fr}}
-
-/* parts */
-.parts{background:var(--asphalt);color:var(--paper)}
-.parts .intro{color:#c3c6c1}
-.parts-grid{display:block}.parts .bins{max-width:820px}
-@media(max-width:900px){.parts-grid{grid-template-columns:1fr}}
-.bins{display:flex;flex-wrap:wrap;gap:10px}
-.bin{position:relative;background:var(--paper);color:var(--ink);font-weight:500;padding:9px 14px 9px 30px;border-radius:3px;font-size:16px}
-.bin::before{content:"";position:absolute;left:11px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--asphalt)}
-.facts{margin-top:40px;display:grid;gap:18px;max-width:560px}
-.facts p{padding-left:18px;border-left:4px solid var(--yellow);color:#c3c6c1}
-.facts strong{display:block;color:var(--paper);font-size:18px}
-.parts figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
-
-/* ask */
-.ask-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-@media(max-width:900px){.ask-grid{grid-template-columns:1fr;gap:24px}}
-.ask form{background:var(--paper);border:2px solid var(--asphalt);border-radius:8px;padding:24px;display:grid;gap:8px}
-.ask label{font-weight:700;font-size:15px;margin-top:6px}
-.ask select,.ask input{width:100%;height:52px;border:2px solid var(--rule);border-radius:6px;background:#fff;color:var(--ink);padding:0 14px;font:inherit}
-.ask select:focus,.ask input:focus{border-color:var(--asphalt);outline:none}
-.ask .btn{margin-top:12px}
-.ask small{color:var(--muted);font-size:14px}
-
-/* reviews */
-.reviews{background:var(--concrete2);border-top:2px solid var(--asphalt);border-bottom:2px solid var(--asphalt)}
-.rv-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
-@media(max-width:900px){.rv-grid{grid-template-columns:1fr}}
-blockquote{font:600 clamp(26px,3.4vw,36px)/1.2 var(--cond);margin:24px 0 16px;max-width:30ch}
-cite{font-style:normal;color:var(--muted)}
-.rv-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px}
-.rv-link{margin-top:28px}
+/* review */
+.review{padding:80px 16px;display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+@media(max-width:860px){.review{grid-template-columns:1fr;gap:28px;padding:56px 16px}}
+.review img{border-radius:18px;aspect-ratio:4/5;object-fit:cover;width:100%}
+blockquote{font:600 clamp(24px,2.8vw,32px)/1.3 var(--display);letter-spacing:-.01em;margin:18px 0 14px}
+.who{color:var(--soft);font-size:15px}
+.review .btn{margin-top:26px}
 
 /* contacts */
-.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 48px}
-@media(max-width:900px){.ct-grid{grid-template-columns:1fr}}
-.addr{font:800 clamp(34px,5vw,52px)/1 var(--cond);margin:8px 0 10px}
-dl{display:grid;grid-template-columns:auto 1fr;gap:14px 24px;align-content:start;border-top:2px solid var(--asphalt);padding-top:20px}
-dt{color:var(--muted)}
-dd{font-weight:700}
+.contacts{background:var(--navy);color:#fff;padding:72px 0}
+.contacts h2{color:#fff}
+.cgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+@media(max-width:860px){.cgrid{grid-template-columns:1fr}}
+.addr{font:800 clamp(30px,4vw,44px)/1.1 var(--display);margin:6px 0 8px}
+.contacts p{color:#b9c7e2}
+.contacts .addr{color:#fff}
+.contacts .cta .b-quiet{background:rgba(255,255,255,.12);color:#fff}
+.contacts .cta .b-quiet:hover{background:rgba(255,255,255,.2)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:14px 28px;background:rgba(255,255,255,.07);border-radius:16px;padding:26px 28px}
+dt{color:#b9c7e2}
+dd{font-weight:600}
 dd a{text-decoration:none}
-footer{background:var(--asphalt);color:#b5b8b3;font-size:14px;padding:26px 0 30px}
-footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);color:#8fa1c4;font-size:14px;padding:22px 0 26px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
 
-/* mobile action bar */
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:9px 10px calc(9px + env(safe-area-inset-bottom));background:var(--concrete);border-top:2px solid var(--asphalt)}
-.bar .btn{min-height:48px;padding:0 8px;font-size:15px;gap:6px}
-.bar .btn svg{width:18px;height:18px}
-@media(min-width:901px){.bar{display:none}body{padding-bottom:0}}
+/* phone bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);backdrop-filter:blur(10px)}
+.bar .btn{min-height:48px}
+@media(min-width:861px){.bar{display:none}body{padding-bottom:0}}
 </style>
 </head>
 <body>
 <div class="wm" aria-hidden="true"></div>
-<div class="tape"><p data-t="demo"></p></div>
+<div class="demo" id="demo"></div>
 
 <header><div class="wrap nav">
-  <a class="plate" href="#top" aria-label="VN SERVICE"><span class="fl">KZ</span><b id="brand"></b></a>
-  <nav><a href="#services" data-t="nServices"></a><a href="#parts" data-t="nParts"></a><a href="#reviews" data-t="nReviews"></a><a href="#contacts" data-t="nContacts"></a></nav>
-  <a class="hphone" id="hphone"></a>
-  <div class="lang" role="group" aria-label="Язык / Тіл"><button data-l="ru">RU</button><button data-l="kz">KZ</button></div>
+  <a class="logo" href="#top">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b86ff"/><stop offset="1" stop-color="#0f2a5c"/></linearGradient></defs><circle cx="20" cy="20" r="19" fill="url(#lg)"/><path d="M10 23.5v-4l2.4-5.2a2 2 0 0 1 1.8-1.2h11.6a2 2 0 0 1 1.8 1.2l2.4 5.2v4a1.5 1.5 0 0 1-1.5 1.5h-.8a1.5 1.5 0 0 1-1.5-1.5V23H13.8v.5a1.5 1.5 0 0 1-1.5 1.5h-.8a1.5 1.5 0 0 1-1.5-1.5z" fill="#fff"/><path d="M13 19l1.6-3.6h10.8L27 19z" fill="#1f6fe5"/><circle cx="14" cy="21" r="1.2" fill="#1f6fe5"/><circle cx="26" cy="21" r="1.2" fill="#1f6fe5"/></svg>
+    <span id="brand"></span>
+  </a>
+  <div class="hinfo">
+    <span class="h-hide" id="hhours"></span>
+    <a class="h-hide" id="hphone"></a>
+    <div class="lang" role="group" aria-label="Язык / Тіл"><button data-l="ru">RU</button><button data-l="kz">KZ</button></div>
+  </div>
 </div></header>
 
 <main id="top">
-<div class="hero">
-  <div class="hero-text">
-    <span class="status" id="open"><i></i><span></span></span>
-    <h1 data-t="h1"></h1>
-    <p class="sub" id="sub"></p>
+<div class="wrap hero">
+  <div>
+    <span class="now" id="now"><i></i><span></span></span>
+    <h1 id="h1"></h1>
+    <p class="lede" id="lede"></p>
     <div class="cta">
-      <a class="btn b-call" id="call1"></a>
+      <a class="btn b-blue" id="call1"></a>
       <a class="btn b-wa" id="wa1" target="_blank" rel="noopener"></a>
-      <a class="btn b-line" id="route1" target="_blank" rel="noopener"></a>
     </div>
-    <div class="score"><strong id="rating"></strong><span><span class="stars" aria-hidden="true">★★★★★</span><br><span id="rcount"></span></span></div>
+    <a class="proof" id="proof" target="_blank" rel="noopener">
+      <span class="num" id="rating"></span>
+      <span><span class="st" aria-hidden="true">★★★★★</span><small id="rcount"></small></span>
+    </a>
   </div>
-  <figure class="hero-photo"><img id="ph1" alt=""><figcaption data-t="cap"></figcaption></figure>
+
+  <div class="inspect">
+    <div class="shot">
+      <img id="ph1" alt="">
+      <span class="hint" id="hint"></span>
+      <div id="spots"></div>
+    </div>
+    <div class="card" aria-live="polite">
+      <h3 id="cT"></h3>
+      <p id="cD"></p>
+      <p class="stock" id="cS"></p>
+      <a class="btn b-wa" id="cW" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
 </div>
 
-<section id="services"><div class="wrap">
-  <h2 data-t="hServices"></h2>
-  <p class="intro" data-t="pServices"></p>
-  <div class="order" id="svc"></div>
-</div></section>
-
-<section id="parts" class="parts"><div class="wrap parts-grid">
-  <div>
-    <h2 data-t="hParts"></h2>
-    <p class="intro" data-t="pParts"></p>
-    <div class="bins" id="bins"></div>
-    <div class="facts" id="facts"></div>
+<section class="band" id="services"><div class="wrap">
+  <h2 id="h2w"></h2>
+  <p class="lede" id="pw"></p>
+  <div class="cols">
+    <div class="panel"><h3 id="h3s"></h3><ul id="svc"></ul></div>
+    <div class="panel"><h3 id="h3p"></h3><div class="tags" id="parts"></div><p class="note" id="pnote"></p></div>
   </div>
 </div></section>
 
-<section id="price" class="ask"><div class="wrap ask-grid">
+<section class="wrap review" id="reviews">
+  <img id="ph2" alt="">
   <div>
-    <h2 data-t="hAsk"></h2>
-    <p class="intro" data-t="pAsk"></p>
-  </div>
-  <form id="askf">
-    <label for="q1" data-t="fSvc"></label>
-    <select id="q1"></select>
-    <label for="q2" data-t="fCar"></label>
-    <input id="q2" autocomplete="off">
-    <button class="btn b-wa" type="submit" id="askbtn"></button>
-    <small data-t="fNote"></small>
-  </form>
-</div></section>
-
-<section id="reviews" class="reviews"><div class="wrap rv-grid">
-  <div>
-    <h2 data-t="hRev"></h2>
+    <h2 id="h2r"></h2>
     <div id="revs"></div>
-    <a class="btn b-line rv-link" id="allrev" target="_blank" rel="noopener"></a>
+    <a class="btn b-quiet" id="allrev" target="_blank" rel="noopener"></a>
   </div>
-  <img id="ph3" alt="">
-</div></section>
+</section>
 
-<section id="contacts"><div class="wrap ct-grid">
+<section class="contacts" id="contacts"><div class="wrap cgrid">
   <div>
-    <h2 data-t="hCt"></h2>
+    <h2 id="h2c"></h2>
     <p class="addr" id="addr"></p>
-    <p id="district" style="color:var(--muted)"></p>
-    <div class="cta"><a class="btn b-call" id="route2" target="_blank" rel="noopener"></a></div>
+    <p id="district"></p>
+    <div class="cta"><a class="btn b-blue" id="route" target="_blank" rel="noopener"></a><a class="btn b-quiet" id="call3"></a></div>
   </div>
-  <dl id="ctlist"></dl>
+  <dl id="ct"></dl>
 </div></section>
 </main>
+<footer><div class="wrap"><span id="copy"></span><span id="foot"></span></div></footer>
 
-<footer><div class="wrap"><span id="copy"></span><span data-t="demoFoot"></span></div></footer>
-
-<div class="bar">
-  <a class="btn b-call" id="call2"></a>
-  <a class="btn b-wa" id="wa2" target="_blank" rel="noopener"></a>
-  <a class="btn b-line" id="route3" target="_blank" rel="noopener"></a>
-</div>
+<div class="bar"><a class="btn b-blue" id="call2"></a><a class="btn b-wa" id="wa2" target="_blank" rel="noopener"></a></div>
 
 <script>
 /* ===== ДАННЫЕ БИЗНЕСА: для нового сайта меняем только этот блок ===== */
@@ -234,26 +220,27 @@ const DATA = {
   phone: "+7 771 534-86-56",
   whatsapp: "77715348656",
   gis: "https://2gis.kz/astana/search/VN%20SERVICE%20%D0%90%D0%BA%D0%B6%D0%BE%D0%BB%2052%2F1",
-  address: {ru:"Акжол, 52/1", kz:"Ақжол, 52/1"},
-  district: {ru:"Проспект Акжол, Байконыр район. От остановки «Акжол» 3 минуты пешком.", kz:"Ақжол даңғылы, Байқоңыр ауданы. «Ақжол» аялдамасынан жаяу 3 минут."},
+  address: {ru:"Проспект Акжол, 52/1", kz:"Ақжол даңғылы, 52/1"},
+  district: {ru:"Байконыр район. От остановки «Акжол» 3 минуты пешком.", kz:"Байқоңыр ауданы. «Ақжол» аялдамасынан жаяу 3 минут."},
   hours: {open:9, close:20, label:{ru:"Каждый день, 9:00–20:00", kz:"Күн сайын, 9:00–20:00"}},
   rating: "4,9", reviewsCount: 206,
-  sub: {ru:"СТО и магазин запчастей под одной крышей. Деталь не нужно искать по городу: её продадут и поставят здесь же.", kz:"Автосервис пен бөлшектер дүкені бір жерде. Бөлшекті қала аралап іздеудің қажеті жоқ: осында сатып, осында орнатады."},
-  services: [
-    {ru:["Ходовая","Подвеска, рычаги, амортизаторы, сайлентблоки. Смотрим на подъёмнике."], kz:["Жүріс бөлігі","Аспа, иінтіректер, амортизаторлар, сайлентблоктар. Көтергіште қараймыз."]},
-    {ru:["МКПП","Ремонт механической коробки и сцепления."], kz:["МКПП","Механикалық қорап пен ілінісуді жөндеу."]},
-    {ru:["Замена масла","Аппаратная: старое масло выходит полностью."], kz:["Май ауыстыру","Аппаратпен: ескі май толық шығады."]},
-    {ru:["Диагностика","Ищем причину поломки и называем цену до начала работ."], kz:["Диагностика","Ақаудың себебін тауып, жұмыс басталмай тұрып бағасын айтамыз."]},
-    {ru:["Тормоза","Колодки, диски, суппорты, тормозная жидкость."], kz:["Тежегіштер","Қалыптар, дискілер, суппорттар, тежегіш сұйықтығы."]},
-    {ru:["Электрика","Неисправности проводки и электрооборудования."], kz:["Электрика","Сымдар мен электр жабдығының ақаулары."]},
+  h1: {ru:"Ремонт без поездок за запчастями", kz:"Бөлшек іздеп жүрмей-ақ жөндеу"},
+  lede: {ru:"СТО и магазин автозапчастей в одном здании на Акжол. Мастер находит поломку, нужную деталь берут здесь же, и машина не стоит в ожидании.", kz:"Автосервис пен автобөлшектер дүкені Ақжолдағы бір ғимаратта. Шебер ақауды табады, керек бөлшекті осы жерден алады, көлік күтіп тұрмайды."},
+  /* точки на фото: x,y в процентах от кадра */
+  spots: [
+    {x:31, y:31, ru:["Двигатель и масло","Аппаратная замена масла: старое уходит полностью. Фильтры меняем в тот же визит.","Масла, фильтры, расходники, автохимия"], kz:["Қозғалтқыш және май","Майды аппаратпен ауыстыру: ескісі толық шығады. Сүзгілерді сол келгенде ауыстырамыз.","Майлар, сүзгілер, шығын материалдары, автохимия"]},
+    {x:63, y:44, ru:["Оптика и кузов","Фары, бамперы, кузовные детали — подбираем и ставим.","Автооптика, кузовные детали"], kz:["Оптика және шанақ","Шамдар, бамперлер, шанақ бөлшектері — таңдап, орнатамыз.","Автооптика, шанақ бөлшектері"]},
+    {x:72, y:66, ru:["Ходовая","Подвеска, рычаги, амортизаторы, сайлентблоки. Смотрим на подъёмнике, как на этом фото.","Подвеска, ходовая, рулевое"], kz:["Жүріс бөлігі","Аспа, иінтіректер, амортизаторлар, сайлентблоктар. Осы фотодағыдай көтергіште қараймыз.","Аспа, жүріс бөлігі, руль"]},
+    {x:15, y:77, ru:["Тормоза","Колодки, диски, суппорты, тормозная жидкость.","Тормозная система"], kz:["Тежегіштер","Қалыптар, дискілер, суппорттар, тежегіш сұйықтығы.","Тежегіш жүйесі"]},
+    {x:47, y:63, ru:["Коробка и электрика","Ремонт МКПП и сцепления. Ищем неисправности проводки и электрооборудования.","Электрика, топливная система"], kz:["Қорап және электрика","МКПП мен ілінісуді жөндеу. Сымдар мен электр жабдығының ақауын іздейміз.","Электрика, отын жүйесі"]}
   ],
-  parts: {
-    ru:["Двигатель","Кузов","Автооптика","Подвеска и ходовая","Расходники","Рулевое","Отопление и кондиционер","Топливная система","Тормоза","Электрика","Автохимия"],
-    kz:["Қозғалтқыш","Шанақ","Автооптика","Аспа және жүріс бөлігі","Шығын материалдары","Руль","Жылыту және кондиционер","Отын жүйесі","Тежегіштер","Электрика","Автохимия"]
+  services: {
+    ru:["Ремонт ходовой","Тормозная система","Ремонт МКПП","Аппаратная замена масла","Диагностика","Электрика"],
+    kz:["Жүріс бөлігін жөндеу","Тежегіш жүйесі","МКПП жөндеу","Майды аппаратпен ауыстыру","Диагностика","Электрика"]
   },
-  facts: {
-    ru:[["Деталь и ремонт в одном месте","Купили запчасть — тут же поставили. Не нужно возить её из магазина."],["Без выходных","Работаем каждый день с 9 до 20."]],
-    kz:[["Бөлшек пен жөндеу бір жерде","Бөлшекті сатып алдыңыз — бірден орнатамыз. Дүкеннен тасудың қажеті жоқ."],["Демалыссыз","Күн сайын 9-дан 20-ға дейін жұмыс істейміз."]]
+  parts: {
+    ru:["Двигатель","Кузов","Автооптика","Подвеска и ходовая","Рулевое","Тормоза","Топливная система","Отопление и кондиционер","Электрика","Расходники","Автохимия"],
+    kz:["Қозғалтқыш","Шанақ","Автооптика","Аспа және жүріс бөлігі","Руль","Тежегіштер","Отын жүйесі","Жылыту және кондиционер","Электрика","Шығын материалдары","Автохимия"]
   },
   reviews: [
     {name:"ktb 888", date:{ru:"октябрь 2026", kz:"қазан 2026"}, text:"Супер СТО, все сделали отлично, машину привезли в плачевном состоянии на эвакуаторе, до вечера сделали все 😊 цены хорошие…"}
@@ -263,95 +250,93 @@ const DATA = {
 /* ===== конец блока данных ===== */
 
 const T = {
-  ru:{demo:"Демо-версия сайта для "+DATA.name+". Сайт ещё не опубликован.",nServices:"Услуги",nParts:"Запчасти",nReviews:"Отзывы",nContacts:"Контакты",
-    h1:"Ремонт и запчасти в одном боксе",cap:"Фото из мастерской",
-    call:"Позвонить",wa:"WhatsApp",route:"Маршрут в 2ГИС",routeShort:"2ГИС",
-    open:"Открыто до ",closed:"Сейчас закрыто, откроемся в ",reviews:" отзывов в 2ГИС",
-    hServices:"Что ремонтируем",pServices:"Легковые автомобили. Цену называем после осмотра — или напишите в WhatsApp, ответим заранее.",ask:"Узнать цену",
-    hParts:"Запчасти",pParts:"Магазин прямо в сервисе. Если нужной детали нет на полке, спросите — подскажем.",
-    hAsk:"Сколько будет стоить ремонт?",pAsk:"Выберите работу и укажите машину. Откроется WhatsApp с готовым сообщением — мастер ответит с ценой и временем, когда можно приехать.",
-    fSvc:"Работа",fCar:"Машина",carPh:"Например, Toyota Camry 2018",askBtn:"Написать в WhatsApp",fNote:"Сайт ничего не сохраняет: сообщение уходит прямо в WhatsApp.",
-    other:"Другое",waMsg:"Здравствуйте! Сколько стоит: ",waCar:". Машина: ",waHi:"Здравствуйте! Пишу с сайта.",
-    hRev:"Что пишут клиенты",allRev:"Все 206 отзывов в 2ГИС",
-    hCt:"Как доехать",tel:"Телефон",hrs:"Часы работы",
-    demoFoot:"Демо-версия. Без согласования не использовать."},
-  kz:{demo:DATA.name+" үшін сайттың демо-нұсқасы. Сайт әлі жарияланбаған.",nServices:"Қызметтер",nParts:"Бөлшектер",nReviews:"Пікірлер",nContacts:"Байланыс",
-    h1:"Жөндеу мен бөлшектер бір боксте",cap:"Шеберханадан фото",
-    call:"Қоңырау шалу",wa:"WhatsApp",route:"2ГИС-те бағыт",routeShort:"2ГИС",
-    open:"Ашық, жабылуы ",closed:"Қазір жабық, ашылуы ",reviews:" пікір 2ГИС-те",
-    hServices:"Не жөндейміз",pServices:"Жеңіл көліктер. Бағасын қарағаннан кейін айтамыз — немесе WhatsApp-қа жазыңыз, алдын ала жауап береміз.",ask:"Бағасын білу",
-    hParts:"Бөлшектер",pParts:"Дүкен сервистің ішінде. Керекті бөлшек сөреде болмаса, сұраңыз — көмектесеміз.",
-    hAsk:"Жөндеу қанша тұрады?",pAsk:"Жұмысты таңдап, көлікті жазыңыз. Дайын хабарламамен WhatsApp ашылады — шебер бағасын және келуге болатын уақытты айтады.",
-    fSvc:"Жұмыс",fCar:"Көлік",carPh:"Мысалы, Toyota Camry 2018",askBtn:"WhatsApp-қа жазу",fNote:"Сайт ештеңе сақтамайды: хабарлама тікелей WhatsApp-қа кетеді.",
-    other:"Басқа",waMsg:"Сәлеметсіз бе! Бағасы қанша: ",waCar:". Көлік: ",waHi:"Сәлеметсіз бе! Сайттан жазып отырмын.",
-    hRev:"Клиенттер не дейді",allRev:"2ГИС-тегі барлық 206 пікір",
-    hCt:"Қалай жетуге болады",tel:"Телефон",hrs:"Жұмыс уақыты",
-    demoFoot:"Демо-нұсқа. Келісімсіз пайдаланбаңыз."}
+  ru:{demo:"Демо",demoText:"Так может выглядеть сайт "+DATA.name+". Он ещё не опубликован.",
+    call:"Позвонить",wa:"Написать в WhatsApp",waShort:"WhatsApp",route:"Построить маршрут в 2ГИС",
+    open:"Открыто до ",closed:"Закрыто, откроемся в ",reviews:" отзывов в 2ГИС",
+    hint:"Нажмите на точку на фото",stock:"В магазине: ",ask:"Спросить цену в WhatsApp",
+    waAsk:"Здравствуйте! Сколько стоит: ",waHi:"Здравствуйте! Пишу с сайта.",
+    h2w:"Работы и запчасти",pw:"Легковые автомобили. Цену называют после осмотра, но примерную можно узнать заранее в WhatsApp.",
+    h3s:"Что ремонтируем",h3p:"Что продаём",pnote:"Если детали нет на полке, спросите: подскажут, где и когда будет.",askShort:"Узнать цену",
+    h2r:"Что пишут в 2ГИС",allRev:"Читать все 206 отзывов",
+    h2c:"Как доехать",tel:"Телефон",hrs:"Часы работы",foot:"Демо-версия. Без согласования не использовать."},
+  kz:{demo:"Демо",demoText:DATA.name+" сайты осылай көрінуі мүмкін. Сайт әлі жарияланбаған.",
+    call:"Қоңырау шалу",wa:"WhatsApp-қа жазу",waShort:"WhatsApp",route:"2ГИС-те бағыт құру",
+    open:"Ашық, жабылуы ",closed:"Жабық, ашылуы ",reviews:" пікір 2ГИС-те",
+    hint:"Фотодағы нүктені басыңыз",stock:"Дүкенде: ",ask:"Бағасын WhatsApp-та сұрау",
+    waAsk:"Сәлеметсіз бе! Бағасы қанша: ",waHi:"Сәлеметсіз бе! Сайттан жазып отырмын.",
+    h2w:"Жұмыстар мен бөлшектер",pw:"Жеңіл көліктер. Бағасы қарағаннан кейін айтылады, бірақ шамамен бағасын WhatsApp-та алдын ала білуге болады.",
+    h3s:"Не жөндейміз",h3p:"Не сатамыз",pnote:"Бөлшек сөреде болмаса, сұраңыз: қайда және қашан болатынын айтады.",askShort:"Бағасын білу",
+    h2r:"2ГИС-те не жазады",allRev:"Барлық 206 пікірді оқу",
+    h2c:"Қалай жетуге болады",tel:"Телефон",hrs:"Жұмыс уақыты",foot:"Демо-нұсқа. Келісімсіз пайдаланбаңыз."}
 };
 
 const I = {
   phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
-  wa:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.7 17.9L0 24l6.3-1.6A11.8 11.8 0 0 0 23.8 12c0-3.2-1.2-6.1-3.4-8.4z"/></svg>',
-  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>'
+  wa:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.700-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.7 17.9L0 24l6.3-1.6A11.8 11.8 0 0 0 23.8 12c0-3.2-1.2-6.1-3.4-8.4z"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>'
 };
 
 const $ = id => document.getElementById(id);
 const wa = text => "https://wa.me/"+DATA.whatsapp+"?text="+encodeURIComponent(text);
 const tel = "tel:"+DATA.phone.replace(/[^\d+]/g,"");
-let L = "ru";
+let L = "ru", active = 2;
 try { L = localStorage.getItem("lang") || ((navigator.language||"").startsWith("kk") ? "kz" : "ru"); } catch(e) {}
+
+function showSpot(i){
+  active = i; const t = T[L], s = DATA.spots[i][L];
+  document.querySelectorAll(".spot").forEach((b,k) => b.setAttribute("aria-pressed", k === i));
+  $("cT").textContent = s[0]; $("cD").textContent = s[1];
+  $("cS").innerHTML = "<span>"+t.stock+"</span>"+s[2];
+  $("cW").href = wa(t.waAsk + s[0].toLowerCase()); $("cW").innerHTML = I.wa + t.ask;
+}
 
 function render(){
   const t = T[L];
   document.documentElement.lang = L === "kz" ? "kk" : "ru";
-  document.querySelectorAll("[data-t]").forEach(e => e.textContent = t[e.dataset.t]);
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.l === L));
+  $("demo").innerHTML = "<b>"+t.demo+"</b>"+t.demoText;
   $("brand").textContent = DATA.name;
+  $("hhours").textContent = DATA.hours.label[L];
   $("hphone").textContent = DATA.phone; $("hphone").href = tel;
-  $("sub").textContent = DATA.sub[L];
-  for (const id of ["call1","call2"]) { $(id).href = tel; $(id).innerHTML = I.phone + t.call; }
-  for (const id of ["wa1","wa2"]) { $(id).href = wa(t.waHi); $(id).innerHTML = I.wa + t.wa; }
-  for (const id of ["route1","route2","route3"]) { $(id).href = DATA.gis; $(id).innerHTML = I.route + (id === "route3" ? t.routeShort : t.route); }
+  $("h1").textContent = DATA.h1[L]; $("lede").textContent = DATA.lede[L];
+  for (const id of ["call1","call2","call3"]) { $(id).href = tel; $(id).innerHTML = I.phone + t.call; }
+  $("wa1").href = $("wa2").href = wa(t.waHi);
+  $("wa1").innerHTML = I.wa + t.wa; $("wa2").innerHTML = I.wa + t.waShort;
+  $("route").href = DATA.gis; $("route").innerHTML = I.pin + t.route;
 
-  // открыто ли сейчас — по времени Астаны (UTC+5)
-  const now = new Date(Date.now() + (new Date().getTimezoneOffset() + 300) * 60000);
-  const h = now.getHours() + now.getMinutes()/60, H = DATA.hours;
-  const isOpen = h >= H.open && h < H.close;
-  $("open").className = "status" + (isOpen ? "" : " off");
-  $("open").lastElementChild.textContent = isOpen ? t.open + H.close + ":00" : t.closed + H.open + ":00";
+  const now = new Date(Date.now() + (new Date().getTimezoneOffset() + 300) * 60000); // время Астаны, UTC+5
+  const h = now.getHours() + now.getMinutes()/60, H = DATA.hours, open = h >= H.open && h < H.close;
+  $("now").className = "now" + (open ? "" : " off");
+  $("now").lastElementChild.textContent = open ? t.open + H.close + ":00" : t.closed + H.open + ":00";
 
-  $("rating").textContent = DATA.rating;
+  $("proof").href = DATA.gis; $("rating").textContent = DATA.rating;
   $("rcount").textContent = DATA.reviewsCount + t.reviews;
 
-  $("svc").innerHTML = DATA.services.map(s => `<div class="line"><h3>${s[L][0]}</h3><p>${s[L][1]}</p><a href="${wa(t.waMsg + s[L][0])}" target="_blank" rel="noopener">${t.ask}</a></div>`).join("");
-  $("bins").innerHTML = DATA.parts[L].map(p => `<span class="bin">${p}</span>`).join("");
-  $("facts").innerHTML = DATA.facts[L].map(f => `<p><strong>${f[0]}</strong>${f[1]}</p>`).join("");
+  $("ph1").src = DATA.photos[0]; $("ph2").src = DATA.photos[1];
+  $("ph1").alt = $("ph2").alt = DATA.name;
+  $("hint").textContent = t.hint;
+  $("spots").innerHTML = DATA.spots.map((s,i) => `<button class="spot" style="left:${s.x}%;top:${s.y}%" aria-label="${s[L][0]}"></button>`).join("");
+  document.querySelectorAll(".spot").forEach((b,i) => b.onclick = () => showSpot(i));
+  showSpot(active);
 
-  $("q1").innerHTML = DATA.services.map(s => `<option>${s[L][0]}</option>`).join("") + `<option>${t.other}</option>`;
-  $("q2").placeholder = t.carPh;
-  $("askbtn").innerHTML = I.wa + t.askBtn;
+  $("h2w").textContent = t.h2w; $("pw").textContent = t.pw;
+  $("h3s").textContent = t.h3s; $("h3p").textContent = t.h3p; $("pnote").textContent = t.pnote;
+  $("svc").innerHTML = DATA.services[L].map(s => `<li>${s}<a href="${wa(t.waAsk + s.toLowerCase())}" target="_blank" rel="noopener">${t.askShort}</a></li>`).join("");
+  $("parts").innerHTML = DATA.parts[L].map(p => `<span>${p}</span>`).join("");
 
-  $("revs").innerHTML = DATA.reviews.map(r => `<blockquote>«${r.text}»</blockquote><cite><span class="stars">★★★★★</span> ${r.name}, ${r.date[L]}, 2ГИС</cite>`).join("");
+  $("h2r").textContent = t.h2r;
+  $("revs").innerHTML = DATA.reviews.map(r => `<blockquote>«${r.text}»</blockquote><p class="who"><span style="color:var(--gold)">★★★★★</span> ${r.name}, ${r.date[L]}</p>`).join("");
   $("allrev").href = DATA.gis; $("allrev").textContent = t.allRev;
 
-  $("ph1").src = DATA.photos[0]; $("ph3").src = DATA.photos[1];
-  $("ph1").alt = $("ph3").alt = t.cap;
-
-  $("addr").textContent = DATA.address[L];
-  $("district").textContent = DATA.district[L];
-  $("ctlist").innerHTML = `
-    <dt>${t.tel}</dt><dd><a href="${tel}">${DATA.phone}</a></dd>
+  $("h2c").textContent = t.h2c; $("addr").textContent = DATA.address[L]; $("district").textContent = DATA.district[L];
+  $("ct").innerHTML = `<dt>${t.tel}</dt><dd><a href="${tel}">${DATA.phone}</a></dd>
     <dt>WhatsApp</dt><dd><a href="${wa(t.waHi)}" target="_blank" rel="noopener">${DATA.phone}</a></dd>
     <dt>${t.hrs}</dt><dd>${DATA.hours.label[L]}</dd>`;
   $("copy").textContent = "© " + new Date().getFullYear() + " " + DATA.name + ", " + DATA.city[L];
+  $("foot").textContent = t.foot;
 }
 
 document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { L = b.dataset.l; try { localStorage.setItem("lang", L); } catch(e) {} render(); });
-$("askf").onsubmit = e => {
-  e.preventDefault(); const t = T[L];
-  const car = $("q2").value.trim();
-  window.open(wa(t.waMsg + $("q1").value + (car ? t.waCar + car : "")), "_blank");
-};
 render();
 </script>
 </body>
