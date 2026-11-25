@@ -3,232 +3,227 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VN SERVICE — СТО и автозапчасти в Астане</title>
-<meta name="description" content="СТО + автозапчасти на проспекте Акжол, 52/1, Астана. Ремонт ходовой, МКПП, аппаратная замена масла, запчасти на месте. Ежедневно 9:00–20:00.">
+<title>VN SERVICE — СТО и автозапчасти на Акжол, Астана</title>
+<meta name="description" content="СТО и магазин автозапчастей на проспекте Акжол, 52/1 в Астане. Ходовая, МКПП, аппаратная замена масла. Каждый день с 9:00 до 20:00.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@600;800&family=Fira+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0d1014; --bg2:#141920; --card:#181e27; --line:#262e3a;
-  --text:#eef2f7; --muted:#9aa6b6; --accent:#2f7bff; --accent2:#5fa0ff;
-  --ok:#2bd17e; --wa:#25d366; --star:#ffc53d;
-  --r:18px; --max:1120px;
+  --concrete:#dadbd7; --concrete2:#cfd0cb; --paper:#f8f8f5; --asphalt:#1e2125; --ink:#1e2125;
+  --muted:#5d636b; --rule:#b9bbb5; --yellow:#f0c02f; --kz:#00a3c4; --wa:#1fb855;
+  --cond:"Fira Sans Extra Condensed","Arial Narrow",sans-serif;
+  --max:1140px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font:16px/1.55 Onest,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:76px}
-a{color:inherit;text-decoration:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--concrete);color:var(--ink);font:17px/1.6 "Fira Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:74px}
+a{color:inherit}
 img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--kz);outline-offset:3px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
 
-/* demo watermark */
+/* demo marks */
 .wm{position:fixed;inset:0;z-index:999;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='220'%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' fill-opacity='0.07' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' transform='rotate(-24 180 110)'%3E%D0%94%D0%95%D0%9C%D0%9E-%D0%92%D0%95%D0%A0%D0%A1%D0%98%D0%AF%3C/text%3E%3C/svg%3E");}
-.ribbon{position:relative;z-index:50;background:repeating-linear-gradient(-45deg,#ffcc00 0 14px,#111 14px 28px);padding:3px 0}
-.ribbon div{background:#111;color:#ffcc00;text-align:center;font-size:13px;font-weight:700;letter-spacing:.04em;padding:6px 12px}
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='240'%3E%3Ctext x='50%25' y='50%25' fill='%23000' fill-opacity='0.07' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' transform='rotate(-24 190 120)'%3E%D0%94%D0%95%D0%9C%D0%9E-%D0%92%D0%95%D0%A0%D0%A1%D0%98%D0%AF%3C/text%3E%3C/svg%3E")}
+.tape{background:repeating-linear-gradient(-45deg,var(--yellow) 0 16px,var(--asphalt) 16px 32px);padding:4px 0}
+.tape p{background:var(--asphalt);color:var(--yellow);text-align:center;font-size:14px;font-weight:700;padding:6px 12px}
 
 /* header */
-header{position:sticky;top:0;z-index:40;background:rgba(13,16,20,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:16px;height:64px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.02em}
-.logo i{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#1747b3);display:grid;place-items:center;font-style:normal;font-size:14px}
-.nav nav{display:flex;gap:22px;margin-left:auto;font-size:15px;color:var(--muted)}
-.nav nav a:hover{color:var(--text)}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:13px;font-weight:700}
-.lang button{background:none;border:0;color:var(--muted);padding:6px 10px;cursor:pointer;font:inherit}
-.lang button.on{background:var(--accent);color:#fff}
-.hphone{font-weight:700;white-space:nowrap}
-@media(max-width:860px){.nav nav,.hphone{display:none}.lang{margin-left:auto}}
+header{background:var(--concrete);border-bottom:2px solid var(--asphalt);position:sticky;top:0;z-index:40}
+.nav{display:flex;align-items:center;gap:20px;height:68px}
+.plate{display:inline-flex;align-items:stretch;border:2.5px solid var(--asphalt);border-radius:6px;background:var(--paper);text-decoration:none;height:40px;overflow:hidden}
+.plate .fl{background:var(--kz);color:#fff;font:700 10px/1 "Fira Sans";display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 5px 5px;gap:3px}
+.plate .fl::before{content:"";width:10px;height:10px;border-radius:50%;background:#f7d117}
+.plate b{font:800 25px/36px var(--cond);letter-spacing:.06em;padding:0 10px}
+.nav nav{display:flex;gap:24px;margin-left:auto;font-weight:500}
+.nav nav a{text-decoration:none}
+.nav nav a:hover{text-decoration:underline;text-underline-offset:4px}
+.hphone{font-weight:700;text-decoration:none;white-space:nowrap}
+.lang{display:flex;border:2px solid var(--asphalt);border-radius:6px;overflow:hidden;font-weight:700;font-size:14px}
+.lang button{background:none;border:0;padding:5px 10px;cursor:pointer;font:inherit;color:var(--ink)}
+.lang button[aria-pressed=true]{background:var(--asphalt);color:var(--paper)}
+@media(max-width:900px){.nav nav,.hphone{display:none}.lang{margin-left:auto}}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 22px;border-radius:14px;font-weight:700;font-size:16px;border:1px solid transparent;cursor:pointer;transition:transform .15s,filter .15s;font-family:inherit}
-.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:54px;padding:0 24px;border-radius:8px;font:700 17px/1 "Fira Sans";text-decoration:none;border:2px solid var(--asphalt);cursor:pointer}
 .btn svg{width:20px;height:20px;flex:none}
-.b-main{background:var(--accent);color:#fff}
-.b-wa{background:var(--wa);color:#06331a}
-.b-ghost{background:transparent;border-color:var(--line);color:var(--text)}
+.b-call{background:var(--yellow);color:var(--asphalt)}
+.b-wa{background:var(--wa);border-color:var(--wa);color:#fff}
+.b-line{background:transparent;color:var(--ink)}
+.btn:hover{filter:brightness(.95)}
+.btn:active{transform:translateY(1px)}
 
 /* hero */
-.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-.hero-bg{position:absolute;inset:0;background:var(--p1) center 35%/cover no-repeat;opacity:.55}
-.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(13,16,20,.92) 42%,rgba(13,16,20,.35) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 40%)}
-.hero .wrap{position:relative;padding-top:72px;padding-bottom:72px}
-.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(43,209,126,.12);color:var(--ok);border:1px solid rgba(43,209,126,.3);padding:6px 12px;border-radius:999px;font-size:14px;font-weight:700}
-.badge b{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(43,209,126,.2)}
-.badge.closed{background:rgba(255,255,255,.06);color:var(--muted);border-color:var(--line)}
-.badge.closed b{background:var(--muted);box-shadow:none}
-h1{font-size:clamp(38px,7vw,72px);line-height:1.02;font-weight:800;letter-spacing:-.02em;margin:18px 0 14px;max-width:12ch}
-h1 span{color:var(--accent2)}
-.lead{font-size:clamp(17px,2.2vw,20px);color:#c9d2de;max-width:34ch}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border-bottom:2px solid var(--asphalt)}
+.hero-text{padding:56px 48px 56px max(16px,calc((100vw - var(--max))/2 + 16px))}
+.status{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px}
+.status i{width:10px;height:10px;border-radius:50%;background:#1a9d4b}
+.status.off i{background:#9a9d97}
+h1{font:800 clamp(46px,7.4vw,92px)/.95 var(--cond);letter-spacing:-.005em;margin:18px 0 22px;max-width:11ch;text-wrap:balance}
+.sub{font-size:19px;max-width:36ch;color:#33383e}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.facts{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:34px;color:var(--muted);font-size:15px}
-.facts div{display:flex;align-items:center;gap:8px}
-.facts strong{color:var(--text)}
-.stars{color:var(--star);letter-spacing:1px}
+.score{display:flex;align-items:center;gap:14px;margin-top:34px;padding-top:22px;border-top:2px solid var(--asphalt);max-width:460px}
+.score strong{font:800 46px/1 var(--cond)}
+.score span{color:var(--muted);font-size:15px;line-height:1.35}
+.stars,.score .stars{color:#c88f00;letter-spacing:2px}
+.hero-photo{position:relative;min-height:520px;background:var(--asphalt)}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero-photo figcaption{position:absolute;left:0;bottom:0;background:var(--asphalt);color:var(--paper);font-size:14px;padding:8px 14px}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-text{padding:36px 16px 40px}
+  .hero-photo{min-height:220px;order:-1}
+  .hero-text{padding-top:24px}
+}
 
 /* sections */
-section{padding:72px 0}
-.kicker{color:var(--accent2);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
-h2{font-size:clamp(28px,4.4vw,42px);line-height:1.1;letter-spacing:-.01em;margin:8px 0 28px;font-weight:800}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
-.svc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s}
-.svc:hover{border-color:#36445a}
-.svc .ic{width:44px;height:44px;border-radius:12px;background:rgba(47,123,255,.12);color:var(--accent2);display:grid;place-items:center}
-.svc .ic svg{width:24px;height:24px}
-.svc h3{font-size:18px}
-.svc p{color:var(--muted);font-size:15px;flex:1}
-.svc a{color:var(--accent2);font-weight:700;font-size:15px}
+section{padding:80px 0}
+h2{font:800 clamp(34px,5vw,54px)/1 var(--cond);margin-bottom:12px}
+.intro{color:#33383e;max-width:52ch;margin-bottom:36px}
 
-.alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.split{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-@media(max-width:860px){.split{grid-template-columns:1fr}}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px}
-.why{display:grid;gap:14px;margin-top:28px}
-.why div{display:flex;gap:14px;align-items:flex-start}
-.why b{flex:none;width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;font-size:14px}
-.why p{color:var(--muted)}
-.why strong{color:var(--text);display:block}
-.photo{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;background:var(--card)}
-.photo img{width:100%;height:100%;object-fit:cover}
+/* work order rows */
+.order{border-top:2px solid var(--asphalt)}
+.line{display:grid;grid-template-columns:minmax(220px,1fr) 1.4fr auto;gap:8px 32px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--rule)}
+.line h3{font:600 26px/1.1 var(--cond)}
+.line p{color:#3c4148}
+.line a{font-weight:700;color:#0d6e86;white-space:nowrap;text-underline-offset:4px}
+@media(max-width:760px){.line{grid-template-columns:1fr}}
 
-/* price request */
-.ask{background:linear-gradient(135deg,#123a8a,#0f1f45);border:1px solid #2a4f9e;border-radius:24px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
-@media(max-width:860px){.ask{grid-template-columns:1fr;padding:22px}}
-.ask p{color:#c3d3f2}
-.ask form{display:grid;gap:10px}
-.ask label{font-size:14px;color:#c3d3f2}
-.ask select,.ask input{width:100%;height:50px;border-radius:12px;border:1px solid #3a5ea8;background:rgba(0,0,0,.25);color:#fff;padding:0 14px;font:inherit}
-.ask select option{color:#000}
-.ask small{color:#9fb4dc;font-size:13px}
+/* parts */
+.parts{background:var(--asphalt);color:var(--paper)}
+.parts .intro{color:#c3c6c1}
+.parts-grid{display:block}.parts .bins{max-width:820px}
+@media(max-width:900px){.parts-grid{grid-template-columns:1fr}}
+.bins{display:flex;flex-wrap:wrap;gap:10px}
+.bin{position:relative;background:var(--paper);color:var(--ink);font-weight:500;padding:9px 14px 9px 30px;border-radius:3px;font-size:16px}
+.bin::before{content:"";position:absolute;left:11px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--asphalt)}
+.facts{margin-top:40px;display:grid;gap:18px;max-width:560px}
+.facts p{padding-left:18px;border-left:4px solid var(--yellow);color:#c3c6c1}
+.facts strong{display:block;color:var(--paper);font-size:18px}
+.parts figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
 
-/* gallery + reviews */
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.gal .photo{aspect-ratio:3/4}
-.rev-top{display:flex;align-items:center;gap:18px;margin-bottom:22px}
-.big{font-size:56px;font-weight:800;line-height:1}
-.rev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
-.rev .who{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;font-weight:700}
-.rev .who span{color:var(--muted);font-weight:400;font-size:14px}
-.rev p{color:#d5dce6}
+/* ask */
+.ask-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:900px){.ask-grid{grid-template-columns:1fr;gap:24px}}
+.ask form{background:var(--paper);border:2px solid var(--asphalt);border-radius:8px;padding:24px;display:grid;gap:8px}
+.ask label{font-weight:700;font-size:15px;margin-top:6px}
+.ask select,.ask input{width:100%;height:52px;border:2px solid var(--rule);border-radius:6px;background:#fff;color:var(--ink);padding:0 14px;font:inherit}
+.ask select:focus,.ask input:focus{border-color:var(--asphalt);outline:none}
+.ask .btn{margin-top:12px}
+.ask small{color:var(--muted);font-size:14px}
+
+/* reviews */
+.reviews{background:var(--concrete2);border-top:2px solid var(--asphalt);border-bottom:2px solid var(--asphalt)}
+.rv-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+@media(max-width:900px){.rv-grid{grid-template-columns:1fr}}
+blockquote{font:600 clamp(26px,3.4vw,36px)/1.2 var(--cond);margin:24px 0 16px;max-width:30ch}
+cite{font-style:normal;color:var(--muted)}
+.rv-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px}
+.rv-link{margin-top:28px}
 
 /* contacts */
-.ct{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:860px){.ct{grid-template-columns:1fr}}
-.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px}
-.row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
-.row:last-child{border:0}
-.row svg{width:22px;height:22px;color:var(--accent2);flex:none;margin-top:2px}
-.row small{display:block;color:var(--muted);font-size:14px}
-.mapcard{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);min-height:280px;display:flex;align-items:flex-end;padding:24px;
-  background:radial-gradient(circle at 60% 40%,rgba(47,123,255,.35),transparent 55%),
-  repeating-linear-gradient(28deg,transparent 0 46px,rgba(255,255,255,.05) 46px 48px),
-  repeating-linear-gradient(-62deg,transparent 0 70px,rgba(255,255,255,.04) 70px 72px),#121821}
-.pin{position:absolute;left:60%;top:40%;transform:translate(-50%,-100%);width:46px;height:46px;border-radius:50% 50% 50% 0;rotate:-45deg;background:var(--accent);box-shadow:0 10px 30px rgba(47,123,255,.6)}
-.pin::after{content:"";position:absolute;inset:14px;border-radius:50%;background:#fff}
-footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 48px}
+@media(max-width:900px){.ct-grid{grid-template-columns:1fr}}
+.addr{font:800 clamp(34px,5vw,52px)/1 var(--cond);margin:8px 0 10px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:14px 24px;align-content:start;border-top:2px solid var(--asphalt);padding-top:20px}
+dt{color:var(--muted)}
+dd{font-weight:700}
+dd a{text-decoration:none}
+footer{background:var(--asphalt);color:#b5b8b3;font-size:14px;padding:26px 0 30px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
 /* mobile action bar */
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(13,16,20,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
-.bar a{height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:6px;font-weight:700;font-size:14px}
-.bar svg{width:18px;height:18px}
-@media(min-width:861px){.bar{display:none}body{padding-bottom:0}}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:9px 10px calc(9px + env(safe-area-inset-bottom));background:var(--concrete);border-top:2px solid var(--asphalt)}
+.bar .btn{min-height:48px;padding:0 8px;font-size:15px;gap:6px}
+.bar .btn svg{width:18px;height:18px}
+@media(min-width:901px){.bar{display:none}body{padding-bottom:0}}
 </style>
 </head>
 <body>
 <div class="wm" aria-hidden="true"></div>
-<div class="ribbon"><div data-t="demo"></div></div>
+<div class="tape"><p data-t="demo"></p></div>
 
 <header><div class="wrap nav">
-  <a class="logo" href="#top"><i>VN</i><span id="brand"></span></a>
+  <a class="plate" href="#top" aria-label="VN SERVICE"><span class="fl">KZ</span><b id="brand"></b></a>
   <nav><a href="#services" data-t="nServices"></a><a href="#parts" data-t="nParts"></a><a href="#reviews" data-t="nReviews"></a><a href="#contacts" data-t="nContacts"></a></nav>
   <a class="hphone" id="hphone"></a>
-  <div class="lang"><button data-l="ru">RU</button><button data-l="kz">KZ</button></div>
+  <div class="lang" role="group" aria-label="Язык / Тіл"><button data-l="ru">RU</button><button data-l="kz">KZ</button></div>
 </div></header>
 
 <main id="top">
-<div class="hero"><div class="hero-bg"></div><div class="wrap">
-  <span class="badge" id="open"><b></b><span></span></span>
-  <h1 id="h1"></h1>
-  <p class="lead" data-t="lead"></p>
-  <div class="cta">
-    <a class="btn b-main" id="call1"></a>
-    <a class="btn b-wa" id="wa1" target="_blank" rel="noopener"></a>
-    <a class="btn b-ghost" id="route1" target="_blank" rel="noopener"></a>
+<div class="hero">
+  <div class="hero-text">
+    <span class="status" id="open"><i></i><span></span></span>
+    <h1 data-t="h1"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="cta">
+      <a class="btn b-call" id="call1"></a>
+      <a class="btn b-wa" id="wa1" target="_blank" rel="noopener"></a>
+      <a class="btn b-line" id="route1" target="_blank" rel="noopener"></a>
+    </div>
+    <div class="score"><strong id="rating"></strong><span><span class="stars" aria-hidden="true">★★★★★</span><br><span id="rcount"></span></span></div>
   </div>
-  <div class="facts">
-    <div><span class="stars">★★★★★</span><strong id="rating"></strong></div>
-    <div id="hours"></div>
-    <div id="addrShort"></div>
-  </div>
-</div></div>
+  <figure class="hero-photo"><img id="ph1" alt=""><figcaption data-t="cap"></figcaption></figure>
+</div>
 
 <section id="services"><div class="wrap">
-  <div class="kicker" data-t="kServices"></div>
   <h2 data-t="hServices"></h2>
-  <div class="grid" id="svc"></div>
+  <p class="intro" data-t="pServices"></p>
+  <div class="order" id="svc"></div>
 </div></section>
 
-<section id="parts" class="alt"><div class="wrap split">
+<section id="parts" class="parts"><div class="wrap parts-grid">
   <div>
-    <div class="kicker" data-t="kParts"></div>
     <h2 data-t="hParts"></h2>
-    <div class="chips" id="chips"></div>
-    <div class="why" id="why"></div>
-  </div>
-  <div class="photo"><img id="ph2" alt=""></div>
-</div></section>
-
-<section id="price"><div class="wrap">
-  <div class="ask">
-    <div>
-      <div class="kicker" style="color:#9fc0ff" data-t="kAsk"></div>
-      <h2 style="margin-bottom:12px" data-t="hAsk"></h2>
-      <p data-t="pAsk"></p>
-    </div>
-    <form id="askf">
-      <label for="q1" data-t="fSvc"></label>
-      <select id="q1"></select>
-      <label for="q2" data-t="fCar"></label>
-      <input id="q2" autocomplete="off">
-      <button class="btn b-wa" type="submit" id="askbtn"></button>
-      <small data-t="fNote"></small>
-    </form>
+    <p class="intro" data-t="pParts"></p>
+    <div class="bins" id="bins"></div>
+    <div class="facts" id="facts"></div>
   </div>
 </div></section>
 
-<section id="reviews" class="alt"><div class="wrap split">
+<section id="price" class="ask"><div class="wrap ask-grid">
   <div>
-    <div class="kicker" data-t="kRev"></div>
-    <h2 data-t="hRev"></h2>
-    <div class="rev-top">
-      <div class="big" id="rbig"></div>
-      <div><div class="stars" style="font-size:22px">★★★★★</div><div style="color:var(--muted)" id="rcount"></div></div>
-    </div>
-    <div id="revs" style="display:grid;gap:14px"></div>
-    <a class="btn b-ghost" style="margin-top:18px" id="allrev" target="_blank" rel="noopener"></a>
+    <h2 data-t="hAsk"></h2>
+    <p class="intro" data-t="pAsk"></p>
   </div>
-  <div class="gal"><div class="photo"><img id="g1" alt=""></div><div class="photo"><img id="g2" alt=""></div></div>
+  <form id="askf">
+    <label for="q1" data-t="fSvc"></label>
+    <select id="q1"></select>
+    <label for="q2" data-t="fCar"></label>
+    <input id="q2" autocomplete="off">
+    <button class="btn b-wa" type="submit" id="askbtn"></button>
+    <small data-t="fNote"></small>
+  </form>
 </div></section>
 
-<section id="contacts"><div class="wrap">
-  <div class="kicker" data-t="kCt"></div>
-  <h2 data-t="hCt"></h2>
-  <div class="ct">
-    <div class="box" id="ctbox"></div>
-    <a class="mapcard" id="map" target="_blank" rel="noopener"><span class="pin"></span><span class="btn b-main" id="route2"></span></a>
+<section id="reviews" class="reviews"><div class="wrap rv-grid">
+  <div>
+    <h2 data-t="hRev"></h2>
+    <div id="revs"></div>
+    <a class="btn b-line rv-link" id="allrev" target="_blank" rel="noopener"></a>
   </div>
+  <img id="ph3" alt="">
+</div></section>
+
+<section id="contacts"><div class="wrap ct-grid">
+  <div>
+    <h2 data-t="hCt"></h2>
+    <p class="addr" id="addr"></p>
+    <p id="district" style="color:var(--muted)"></p>
+    <div class="cta"><a class="btn b-call" id="route2" target="_blank" rel="noopener"></a></div>
+  </div>
+  <dl id="ctlist"></dl>
 </div></section>
 </main>
 
 <footer><div class="wrap"><span id="copy"></span><span data-t="demoFoot"></span></div></footer>
 
 <div class="bar">
-  <a class="b-main" id="call2"></a>
-  <a class="b-wa" id="wa2" target="_blank" rel="noopener"></a>
-  <a class="b-ghost" style="border:1px solid var(--line)" id="route3" target="_blank" rel="noopener"></a>
+  <a class="btn b-call" id="call2"></a>
+  <a class="btn b-wa" id="wa2" target="_blank" rel="noopener"></a>
+  <a class="btn b-line" id="route3" target="_blank" rel="noopener"></a>
 </div>
 
 <script>
@@ -239,27 +234,26 @@ const DATA = {
   phone: "+7 771 534-86-56",
   whatsapp: "77715348656",
   gis: "https://2gis.kz/astana/search/VN%20SERVICE%20%D0%90%D0%BA%D0%B6%D0%BE%D0%BB%2052%2F1",
-  address: {ru:"проспект Акжол, 52/1", kz:"Ақжол даңғылы, 52/1"},
-  district: {ru:"Астана, Байконыр район", kz:"Астана, Байқоңыр ауданы"},
-  howto: {ru:"Остановка «Акжол» — 3 минуты пешком", kz:"«Ақжол» аялдамасы — жаяу 3 минут"},
-  hours: {open:9, close:20, label:{ru:"Ежедневно 9:00–20:00", kz:"Күн сайын 9:00–20:00"}},
-  rating: "4.9", reviewsCount: 206,
-  h1: {ru:"СТО + <span>автозапчасти.</span> Всё в одном", kz:"Автосервис + <span>бөлшектер.</span> Бәрі бір жерде"},
+  address: {ru:"Акжол, 52/1", kz:"Ақжол, 52/1"},
+  district: {ru:"Проспект Акжол, Байконыр район. От остановки «Акжол» 3 минуты пешком.", kz:"Ақжол даңғылы, Байқоңыр ауданы. «Ақжол» аялдамасынан жаяу 3 минут."},
+  hours: {open:9, close:20, label:{ru:"Каждый день, 9:00–20:00", kz:"Күн сайын, 9:00–20:00"}},
+  rating: "4,9", reviewsCount: 206,
+  sub: {ru:"СТО и магазин запчастей под одной крышей. Деталь не нужно искать по городу: её продадут и поставят здесь же.", kz:"Автосервис пен бөлшектер дүкені бір жерде. Бөлшекті қала аралап іздеудің қажеті жоқ: осында сатып, осында орнатады."},
   services: [
-    {ic:"lift", ru:["Ремонт ходовой части","Подвеска, рычаги, амортизаторы, сайлентблоки. Диагностика на подъёмнике."], kz:["Жүріс бөлігін жөндеу","Аспа, иінтіректер, амортизаторлар, сайлентблоктар. Көтергіште диагностика."]},
-    {ic:"gear", ru:["Ремонт МКПП","Диагностика и ремонт механической коробки передач, сцепление."], kz:["МКПП жөндеу","Механикалық беріліс қорабын диагностикалау және жөндеу, ілінісу."]},
-    {ic:"oil", ru:["Аппаратная замена масла","Полная замена масла аппаратом — старое масло уходит без остатка."], kz:["Майды аппаратпен ауыстыру","Аппарат арқылы толық ауыстыру — ескі май қалдықсыз шығады."]},
-    {ic:"scan", ru:["Компьютерная диагностика","Находим причину неисправности и сразу говорим, сколько стоит ремонт."], kz:["Компьютерлік диагностика","Ақаудың себебін тауып, жөндеу бағасын бірден айтамыз."]},
-    {ic:"brake", ru:["Тормозная система","Колодки, диски, суппорты, тормозная жидкость."], kz:["Тежегіш жүйесі","Қалыптар, дискілер, суппорттар, тежегіш сұйықтығы."]},
-    {ic:"bolt", ru:["Электрика","Поиск и устранение неисправностей электрооборудования."], kz:["Электрика","Электр жабдығының ақауларын тауып, жою."]},
+    {ru:["Ходовая","Подвеска, рычаги, амортизаторы, сайлентблоки. Смотрим на подъёмнике."], kz:["Жүріс бөлігі","Аспа, иінтіректер, амортизаторлар, сайлентблоктар. Көтергіште қараймыз."]},
+    {ru:["МКПП","Ремонт механической коробки и сцепления."], kz:["МКПП","Механикалық қорап пен ілінісуді жөндеу."]},
+    {ru:["Замена масла","Аппаратная: старое масло выходит полностью."], kz:["Май ауыстыру","Аппаратпен: ескі май толық шығады."]},
+    {ru:["Диагностика","Ищем причину поломки и называем цену до начала работ."], kz:["Диагностика","Ақаудың себебін тауып, жұмыс басталмай тұрып бағасын айтамыз."]},
+    {ru:["Тормоза","Колодки, диски, суппорты, тормозная жидкость."], kz:["Тежегіштер","Қалыптар, дискілер, суппорттар, тежегіш сұйықтығы."]},
+    {ru:["Электрика","Неисправности проводки и электрооборудования."], kz:["Электрика","Сымдар мен электр жабдығының ақаулары."]},
   ],
   parts: {
-    ru:["Двигатели","Кузов","Автооптика","Подвеска и ходовая","Расходные материалы","Рулевое управление","Отопление и кондиционер","Топливная система","Тормозная система","Электрика","Автохимия"],
-    kz:["Қозғалтқыштар","Шанақ","Автооптика","Аспа және жүріс бөлігі","Шығын материалдары","Руль басқаруы","Жылыту және кондиционер","Отын жүйесі","Тежегіш жүйесі","Электрика","Автохимия"]
+    ru:["Двигатель","Кузов","Автооптика","Подвеска и ходовая","Расходники","Рулевое","Отопление и кондиционер","Топливная система","Тормоза","Электрика","Автохимия"],
+    kz:["Қозғалтқыш","Шанақ","Автооптика","Аспа және жүріс бөлігі","Шығын материалдары","Руль","Жылыту және кондиционер","Отын жүйесі","Тежегіштер","Электрика","Автохимия"]
   },
-  why: {
-    ru:[["Запчасти на месте","Не нужно ездить по магазинам — подберём и сразу поставим."],["Ремонт за один день","Даже если машину привезли на эвакуаторе."],["Рейтинг 4.9 в 2ГИС","206 отзывов от реальных клиентов."]],
-    kz:[["Бөлшектер орнында","Дүкен аралаудың қажеті жоқ — таңдап, бірден орнатамыз."],["Бір күнде жөндеу","Көлікті эвакуатормен әкелсе де."],["2ГИС-те 4.9 рейтинг","Нақты клиенттерден 206 пікір."]]
+  facts: {
+    ru:[["Деталь и ремонт в одном месте","Купили запчасть — тут же поставили. Не нужно возить её из магазина."],["Без выходных","Работаем каждый день с 9 до 20."]],
+    kz:[["Бөлшек пен жөндеу бір жерде","Бөлшекті сатып алдыңыз — бірден орнатамыз. Дүкеннен тасудың қажеті жоқ."],["Демалыссыз","Күн сайын 9-дан 20-ға дейін жұмыс істейміз."]]
   },
   reviews: [
     {name:"ktb 888", date:{ru:"октябрь 2026", kz:"қазан 2026"}, text:"Супер СТО, все сделали отлично, машину привезли в плачевном состоянии на эвакуаторе, до вечера сделали все 😊 цены хорошие…"}
@@ -269,41 +263,36 @@ const DATA = {
 /* ===== конец блока данных ===== */
 
 const T = {
-  ru:{demo:"ДЕМО-ВЕРСИЯ САЙТА · подготовлено для "+DATA.name+" · не опубликовано",nServices:"Услуги",nParts:"Запчасти",nReviews:"Отзывы",nContacts:"Контакты",
-    lead:"Ремонтируем и сразу ставим запчасти — без поиска по магазинам и лишних поездок.",call:"Позвонить",wa:"WhatsApp",route:"Маршрут в 2ГИС",
-    open:"Открыто до ",closed:"Сейчас закрыто · откроемся в ",rating:" · отзывов в 2ГИС: ",
-    kServices:"Что делаем",hServices:"Услуги автосервиса",more:"Узнать цену →",
-    kParts:"Магазин запчастей",hParts:"Запчасти в наличии и под заказ",
-    kAsk:"Без звонков",hAsk:"Узнайте стоимость ремонта в WhatsApp",pAsk:"Выберите услугу и напишите марку авто — мастер ответит с ценой и свободным временем.",
-    fSvc:"Услуга",fCar:"Марка и модель авто",carPh:"Например, Toyota Camry 2018",askBtn:"Отправить в WhatsApp",fNote:"Откроется WhatsApp с готовым сообщением. Данные не сохраняются на сайте.",
-    other:"Другое",waMsg:"Здравствуйте! Хочу узнать стоимость: ",waCar:". Авто: ",waHi:"Здравствуйте! Пишу с сайта.",
-    kRev:"Отзывы",hRev:"Нам доверяют",reviews:" отзывов в 2ГИС",allRev:"Все отзывы в 2ГИС",
-    kCt:"Контакты",hCt:"Как нас найти",tel:"Телефон",hrs:"Режим работы",adr:"Адрес",
-    demoFoot:"Демо-версия. Использование без согласования запрещено."},
-  kz:{demo:"САЙТТЫҢ ДЕМО-НҰСҚАСЫ · "+DATA.name+" үшін дайындалған · жарияланбаған",nServices:"Қызметтер",nParts:"Бөлшектер",nReviews:"Пікірлер",nContacts:"Байланыс",
-    lead:"Жөндейміз және бөлшектерді бірден орнатамыз — дүкен аралаусыз, артық жол жүрусіз.",call:"Қоңырау шалу",wa:"WhatsApp",route:"2ГИС-те бағыт",
-    open:"Ашық, жабылуы ",closed:"Қазір жабық · ашылуы ",rating:" · 2ГИС-тегі пікірлер: ",
-    kServices:"Не істейміз",hServices:"Автосервис қызметтері",more:"Бағасын білу →",
-    kParts:"Бөлшектер дүкені",hParts:"Қоймада бар және тапсырыспен",
-    kAsk:"Қоңыраусыз",hAsk:"Жөндеу бағасын WhatsApp арқылы біліңіз",pAsk:"Қызметті таңдап, көлік маркасын жазыңыз — шебер бағасын және бос уақытын айтады.",
-    fSvc:"Қызмет",fCar:"Көліктің маркасы мен моделі",carPh:"Мысалы, Toyota Camry 2018",askBtn:"WhatsApp-қа жіберу",fNote:"Дайын хабарламамен WhatsApp ашылады. Деректер сайтта сақталмайды.",
-    other:"Басқа",waMsg:"Сәлеметсіз бе! Бағасын білгім келеді: ",waCar:". Көлік: ",waHi:"Сәлеметсіз бе! Сайттан жазып отырмын.",
-    kRev:"Пікірлер",hRev:"Бізге сенеді",reviews:" пікір 2ГИС-те",allRev:"2ГИС-тегі барлық пікірлер",
-    kCt:"Байланыс",hCt:"Бізді қалай табуға болады",tel:"Телефон",hrs:"Жұмыс уақыты",adr:"Мекенжай",
-    demoFoot:"Демо-нұсқа. Келісімсіз пайдалануға тыйым салынады."}
+  ru:{demo:"Демо-версия сайта для "+DATA.name+". Сайт ещё не опубликован.",nServices:"Услуги",nParts:"Запчасти",nReviews:"Отзывы",nContacts:"Контакты",
+    h1:"Ремонт и запчасти в одном боксе",cap:"Фото из мастерской",
+    call:"Позвонить",wa:"WhatsApp",route:"Маршрут в 2ГИС",routeShort:"2ГИС",
+    open:"Открыто до ",closed:"Сейчас закрыто, откроемся в ",reviews:" отзывов в 2ГИС",
+    hServices:"Что ремонтируем",pServices:"Легковые автомобили. Цену называем после осмотра — или напишите в WhatsApp, ответим заранее.",ask:"Узнать цену",
+    hParts:"Запчасти",pParts:"Магазин прямо в сервисе. Если нужной детали нет на полке, спросите — подскажем.",
+    hAsk:"Сколько будет стоить ремонт?",pAsk:"Выберите работу и укажите машину. Откроется WhatsApp с готовым сообщением — мастер ответит с ценой и временем, когда можно приехать.",
+    fSvc:"Работа",fCar:"Машина",carPh:"Например, Toyota Camry 2018",askBtn:"Написать в WhatsApp",fNote:"Сайт ничего не сохраняет: сообщение уходит прямо в WhatsApp.",
+    other:"Другое",waMsg:"Здравствуйте! Сколько стоит: ",waCar:". Машина: ",waHi:"Здравствуйте! Пишу с сайта.",
+    hRev:"Что пишут клиенты",allRev:"Все 206 отзывов в 2ГИС",
+    hCt:"Как доехать",tel:"Телефон",hrs:"Часы работы",
+    demoFoot:"Демо-версия. Без согласования не использовать."},
+  kz:{demo:DATA.name+" үшін сайттың демо-нұсқасы. Сайт әлі жарияланбаған.",nServices:"Қызметтер",nParts:"Бөлшектер",nReviews:"Пікірлер",nContacts:"Байланыс",
+    h1:"Жөндеу мен бөлшектер бір боксте",cap:"Шеберханадан фото",
+    call:"Қоңырау шалу",wa:"WhatsApp",route:"2ГИС-те бағыт",routeShort:"2ГИС",
+    open:"Ашық, жабылуы ",closed:"Қазір жабық, ашылуы ",reviews:" пікір 2ГИС-те",
+    hServices:"Не жөндейміз",pServices:"Жеңіл көліктер. Бағасын қарағаннан кейін айтамыз — немесе WhatsApp-қа жазыңыз, алдын ала жауап береміз.",ask:"Бағасын білу",
+    hParts:"Бөлшектер",pParts:"Дүкен сервистің ішінде. Керекті бөлшек сөреде болмаса, сұраңыз — көмектесеміз.",
+    hAsk:"Жөндеу қанша тұрады?",pAsk:"Жұмысты таңдап, көлікті жазыңыз. Дайын хабарламамен WhatsApp ашылады — шебер бағасын және келуге болатын уақытты айтады.",
+    fSvc:"Жұмыс",fCar:"Көлік",carPh:"Мысалы, Toyota Camry 2018",askBtn:"WhatsApp-қа жазу",fNote:"Сайт ештеңе сақтамайды: хабарлама тікелей WhatsApp-қа кетеді.",
+    other:"Басқа",waMsg:"Сәлеметсіз бе! Бағасы қанша: ",waCar:". Көлік: ",waHi:"Сәлеметсіз бе! Сайттан жазып отырмын.",
+    hRev:"Клиенттер не дейді",allRev:"2ГИС-тегі барлық 206 пікір",
+    hCt:"Қалай жетуге болады",tel:"Телефон",hrs:"Жұмыс уақыты",
+    demoFoot:"Демо-нұсқа. Келісімсіз пайдаланбаңыз."}
 };
 
 const I = {
-  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
-  wa:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.7 17.9L0 24l6.3-1.6A11.8 11.8 0 0 0 23.8 12c0-3.2-1.2-6.1-3.4-8.4z"/></svg>',
-  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',
-  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-  lift:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V4M21 21V4M3 12h18"/><path d="M6 9l2-3h8l2 3"/><circle cx="8" cy="9.5" r="1"/><circle cx="16" cy="9.5" r="1"/></svg>',
-  gear:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="12" cy="18" r="2"/><path d="M6 8v8M12 8v8M18 8v4H6"/></svg>',
-  oil:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>',
-  scan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 12l2.5-3 2.5 2 3-4 2 2M8 20h8M12 16v4"/></svg>',
-  brake:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M5 7a9 9 0 0 1 4-3"/></svg>',
-  bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>'
+  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+  wa:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.7 17.9L0 24l6.3-1.6A11.8 11.8 0 0 0 23.8 12c0-3.2-1.2-6.1-3.4-8.4z"/></svg>',
+  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>'
 };
 
 const $ = id => document.getElementById(id);
@@ -316,49 +305,45 @@ function render(){
   const t = T[L];
   document.documentElement.lang = L === "kz" ? "kk" : "ru";
   document.querySelectorAll("[data-t]").forEach(e => e.textContent = t[e.dataset.t]);
-  document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.l === L));
-  document.documentElement.style.setProperty("--p1", "url("+DATA.photos[0]+")");
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.l === L));
   $("brand").textContent = DATA.name;
   $("hphone").textContent = DATA.phone; $("hphone").href = tel;
-  $("h1").innerHTML = DATA.h1[L];
+  $("sub").textContent = DATA.sub[L];
   for (const id of ["call1","call2"]) { $(id).href = tel; $(id).innerHTML = I.phone + t.call; }
   for (const id of ["wa1","wa2"]) { $(id).href = wa(t.waHi); $(id).innerHTML = I.wa + t.wa; }
-  for (const id of ["route1","route2","route3"]) { $(id).href = DATA.gis; $(id).innerHTML = I.route + (id==="route3" ? "2ГИС" : t.route); }
-  $("map").href = DATA.gis;
+  for (const id of ["route1","route2","route3"]) { $(id).href = DATA.gis; $(id).innerHTML = I.route + (id === "route3" ? t.routeShort : t.route); }
 
-  // open now (Astana time, UTC+5)
+  // открыто ли сейчас — по времени Астаны (UTC+5)
   const now = new Date(Date.now() + (new Date().getTimezoneOffset() + 300) * 60000);
   const h = now.getHours() + now.getMinutes()/60, H = DATA.hours;
   const isOpen = h >= H.open && h < H.close;
-  $("open").className = "badge" + (isOpen ? "" : " closed");
+  $("open").className = "status" + (isOpen ? "" : " off");
   $("open").lastElementChild.textContent = isOpen ? t.open + H.close + ":00" : t.closed + H.open + ":00";
 
-  $("rating").textContent = DATA.rating + t.rating + DATA.reviewsCount;
-  $("hours").innerHTML = I.clock.replace("<svg","<svg width='18' height='18'") + DATA.hours.label[L];
-  $("addrShort").innerHTML = I.route.replace("<svg","<svg width='18' height='18'") + DATA.address[L];
+  $("rating").textContent = DATA.rating;
+  $("rcount").textContent = DATA.reviewsCount + t.reviews;
 
-  $("svc").innerHTML = DATA.services.map(s => `<div class="svc"><div class="ic">${I[s.ic]}</div><h3>${s[L][0]}</h3><p>${s[L][1]}</p><a href="${wa(t.waMsg + s[L][0])}" target="_blank" rel="noopener">${t.more}</a></div>`).join("");
-  $("chips").innerHTML = DATA.parts[L].map(p => `<span class="chip">${p}</span>`).join("");
-  $("why").innerHTML = DATA.why[L].map((w,i) => `<div><b>${i+1}</b><p><strong>${w[0]}</strong>${w[1]}</p></div>`).join("");
+  $("svc").innerHTML = DATA.services.map(s => `<div class="line"><h3>${s[L][0]}</h3><p>${s[L][1]}</p><a href="${wa(t.waMsg + s[L][0])}" target="_blank" rel="noopener">${t.ask}</a></div>`).join("");
+  $("bins").innerHTML = DATA.parts[L].map(p => `<span class="bin">${p}</span>`).join("");
+  $("facts").innerHTML = DATA.facts[L].map(f => `<p><strong>${f[0]}</strong>${f[1]}</p>`).join("");
 
   $("q1").innerHTML = DATA.services.map(s => `<option>${s[L][0]}</option>`).join("") + `<option>${t.other}</option>`;
   $("q2").placeholder = t.carPh;
   $("askbtn").innerHTML = I.wa + t.askBtn;
 
-  $("rbig").textContent = DATA.rating;
-  $("rcount").textContent = DATA.reviewsCount + t.reviews;
-  $("revs").innerHTML = DATA.reviews.map(r => `<div class="rev"><div class="who">${r.name}<span>${r.date[L]} · 2ГИС</span></div><div class="stars" style="margin-bottom:8px">★★★★★</div><p>${r.text}</p></div>`).join("");
+  $("revs").innerHTML = DATA.reviews.map(r => `<blockquote>«${r.text}»</blockquote><cite><span class="stars">★★★★★</span> ${r.name}, ${r.date[L]}, 2ГИС</cite>`).join("");
   $("allrev").href = DATA.gis; $("allrev").textContent = t.allRev;
 
-  $("ph2").src = DATA.photos[1]; $("g1").src = DATA.photos[0]; $("g2").src = DATA.photos[1];
-  $("ph2").alt = $("g1").alt = $("g2").alt = DATA.name;
+  $("ph1").src = DATA.photos[0]; $("ph3").src = DATA.photos[1];
+  $("ph1").alt = $("ph3").alt = t.cap;
 
-  $("ctbox").innerHTML = `
-    <a class="row" href="${tel}">${I.phone}<div><small>${t.tel}</small><strong>${DATA.phone}</strong></div></a>
-    <a class="row" href="${wa(t.waHi)}" target="_blank" rel="noopener">${I.wa}<div><small>WhatsApp</small><strong>${DATA.phone}</strong></div></a>
-    <div class="row">${I.clock}<div><small>${t.hrs}</small><strong>${DATA.hours.label[L]}</strong></div></div>
-    <a class="row" href="${DATA.gis}" target="_blank" rel="noopener">${I.route}<div><small>${t.adr}</small><strong>${DATA.address[L]}</strong><small>${DATA.district[L]} · ${DATA.howto[L]}</small></div></a>`;
-  $("copy").textContent = "© " + new Date().getFullYear() + " " + DATA.name + " · " + DATA.city[L];
+  $("addr").textContent = DATA.address[L];
+  $("district").textContent = DATA.district[L];
+  $("ctlist").innerHTML = `
+    <dt>${t.tel}</dt><dd><a href="${tel}">${DATA.phone}</a></dd>
+    <dt>WhatsApp</dt><dd><a href="${wa(t.waHi)}" target="_blank" rel="noopener">${DATA.phone}</a></dd>
+    <dt>${t.hrs}</dt><dd>${DATA.hours.label[L]}</dd>`;
+  $("copy").textContent = "© " + new Date().getFullYear() + " " + DATA.name + ", " + DATA.city[L];
 }
 
 document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { L = b.dataset.l; try { localStorage.setItem("lang", L); } catch(e) {} render(); });
