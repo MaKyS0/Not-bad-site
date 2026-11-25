@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Авто7я — Мойка, шиномонтаж и замена масла за один заезд, Астана</title>
+<meta name="description" content="Авто7я — большой автокомплекс в Астане. Помоем машину, переобуем, поменяем масло и сделаем детейлинг, не гоняя вас по разным адресам.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --mist:#eef2f7; --line:#d9e0ea; --ink:#121821; --soft:#4a5563;
+  --blue:#1f6fe5; --blue-d:#185fcb; --navy:#0f2a5c; --wa:#1faa53; --gold:#e3a008;
+  --display:"Inter Tight","Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:72px}
+a{color:inherit}
+img{display:block;max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* demo marks */
+.wm{position:fixed;inset:0;z-index:999;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='260'%3E%3Ctext x='50%25' y='50%25' fill='%23000' fill-opacity='0.055' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' transform='rotate(-24 210 130)'%3E%D0%94%D0%95%D0%9C%D0%9E-%D0%92%D0%95%D0%A0%D0%A1%D0%98%D0%AF%3C/text%3E%3C/svg%3E")}
+.demo{background:var(--navy);color:#fff;font-size:13.5px;text-align:center;padding:8px 16px}
+.demo b{background:#ffd84d;color:var(--navy);border-radius:4px;padding:1px 6px;margin-right:6px}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:20px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 20px/1 var(--display);letter-spacing:.01em}
+.logo .mark{width:38px;height:38px;flex:none}
+.mono{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;display:grid;place-items:center;font:800 15px var(--display)}
+.hinfo{margin-left:auto;display:flex;gap:22px;align-items:center;font-size:15px;color:var(--soft)}
+.hinfo a{color:var(--ink);font-weight:600;text-decoration:none}
+.lang{display:flex;background:var(--mist);border-radius:8px;padding:3px}
+.lang button{border:0;background:none;font:600 13px Inter;padding:5px 9px;border-radius:6px;cursor:pointer;color:var(--soft)}
+.lang button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(15,42,92,.15)}
+@media(max-width:860px){.hinfo .h-hide{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:0 22px;border-radius:10px;font:600 16px/1 Inter;text-decoration:none;border:0;cursor:pointer}
+.btn svg{width:19px;height:19px;flex:none}
+.b-blue{background:var(--blue);color:#fff}
+.b-blue:hover{background:var(--blue-d)}
+.b-wa{background:var(--wa);color:#fff}
+.b-wa:hover{background:#1a944a}
+.b-ig{background:linear-gradient(45deg,#f09433,#dc2743 50%,#bc1888);color:#fff}
+.b-ig:hover{filter:brightness(.95)}
+.b-quiet{background:var(--mist);color:var(--ink)}
+.b-quiet:hover{background:#e2e8f0}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:56px 16px 64px}
+h1{font:800 clamp(38px,5.2vw,64px)/1.03 var(--display);letter-spacing:-.025em;margin:16px 0 18px;text-wrap:balance}
+.lede{font-size:18px;color:var(--soft);max-width:44ch}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.proof{display:inline-flex;align-items:center;gap:14px;margin-top:30px;text-decoration:none}
+.proof .num{font:800 34px/1 var(--display)}
+.proof .st{color:var(--gold);font-size:15px;letter-spacing:1px}
+.proof small{display:block;color:var(--soft);font-size:14px}
+.proof:hover small{text-decoration:underline}
+.now{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;color:#167a3c;background:#e7f6ec;border-radius:999px;padding:4px 11px}
+.now i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.now.off{color:var(--soft);background:var(--mist)}
+
+/* inspect: photo or schematic + hotspots */
+.inspect{position:relative}
+.shot{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:685/760;background:#222}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.shot.schema{aspect-ratio:600/360;background:var(--mist) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M24 0H0v24' fill='none' stroke='%23d5dde8'/%3E%3C/svg%3E")}
+.shot.schema svg{position:absolute;inset:0;width:100%;height:100%}
+.hint{position:absolute;left:14px;top:14px;background:rgba(18,24,33,.78);color:#fff;font-size:13.5px;padding:6px 11px;border-radius:8px}
+.spot{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:0;cursor:pointer;background:rgba(255,255,255,.97);box-shadow:0 0 0 5px rgba(31,111,229,.45),0 6px 16px rgba(0,0,0,.3);display:grid;place-items:center}
+.spot::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--blue);transition:transform .15s}
+.spot[aria-pressed=true]{background:var(--blue);box-shadow:0 0 0 6px rgba(255,255,255,.75),0 6px 16px rgba(0,0,0,.3)}
+.spot[aria-pressed=true]::after{background:#fff;transform:scale(.7)}
+.spot:not([aria-pressed=true]){animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(31,111,229,.6),0 6px 16px rgba(0,0,0,.3)}70%{box-shadow:0 0 0 14px rgba(31,111,229,0),0 6px 16px rgba(0,0,0,.3)}100%{box-shadow:0 0 0 0 rgba(31,111,229,0),0 6px 16px rgba(0,0,0,.3)}}
+@media (prefers-reduced-motion:reduce){.spot{animation:none!important}}
+.card{position:relative;margin:-64px 20px 0;background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 18px 40px rgba(15,42,92,.18);border:1px solid var(--line)}
+.shot.schema + .card{margin-top:-28px}
+.card h3{font:800 22px/1.2 var(--display);margin-bottom:6px}
+.card p{color:var(--soft);font-size:15px}
+.card .stock{margin-top:12px;font-size:14px;color:var(--ink)}
+.card .stock span{color:var(--soft)}
+.card .btn{margin-top:14px;min-height:46px;font-size:15px}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:28px;padding:32px 16px 48px}
+  .card{margin:-48px 10px 0}
+  .shot.schema + .card{margin-top:-16px}
+}
+
+/* list of work */
+.band{background:var(--mist);padding:72px 0}
+h2{font:800 clamp(30px,3.8vw,44px)/1.08 var(--display);letter-spacing:-.02em;margin-bottom:10px}
+.band .lede{margin-bottom:34px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cols.one{grid-template-columns:minmax(0,640px)}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+.panel{background:#fff;border-radius:16px;padding:26px 28px}
+.panel h3{font:800 20px var(--display);margin-bottom:12px}
+.panel ul{list-style:none}
+.panel li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line)}
+.panel li a{color:var(--blue);font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap}
+.panel li a:hover{text-decoration:underline}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:var(--mist);border-radius:8px;padding:7px 12px;font-size:15px}
+.panel .note{color:var(--soft);font-size:15px;margin-top:16px}
+
+/* review */
+.review{padding:80px 16px;display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.review.noimg{grid-template-columns:1fr}
+@media(max-width:860px){.review{grid-template-columns:1fr;gap:28px;padding:56px 16px}}
+.review img{border-radius:18px;aspect-ratio:4/5;object-fit:cover;width:100%}
+blockquote{font:600 clamp(24px,2.8vw,32px)/1.3 var(--display);letter-spacing:-.01em;margin:18px 0 14px}
+.who{color:var(--soft);font-size:15px}
+.review .btn{margin-top:26px}
+
+/* contacts */
+.contacts{background:var(--navy);color:#fff;padding:72px 0}
+.contacts h2{color:#fff}
+.cgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+@media(max-width:860px){.cgrid{grid-template-columns:1fr}}
+.addr{font:800 clamp(30px,4vw,44px)/1.1 var(--display);margin:6px 0 8px;color:#fff}
+.contacts p{color:#b9c7e2}
+.contacts .cta .b-quiet{background:rgba(255,255,255,.12);color:#fff}
+.contacts .cta .b-quiet:hover{background:rgba(255,255,255,.2)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:14px 28px;background:rgba(255,255,255,.07);border-radius:16px;padding:26px 28px}
+dt{color:#b9c7e2}
+dd{font-weight:600}
+dd a{text-decoration:none}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);color:#8fa1c4;font-size:14px;padding:22px 0 26px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+
+/* phone bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);backdrop-filter:blur(10px)}
+.bar .btn{min-height:48px;padding:0 10px}
+@media(min-width:861px){.bar{display:none}body{padding-bottom:0}}
+</style>
+</head>
+<body>
+<div class="wm" aria-hidden="true"></div>
+<div class="demo" id="demo"></div>
+
+<header><div class="wrap nav">
+  <a class="logo" href="#top" id="logo"></a>
+  <div class="hinfo">
+    <span class="h-hide" id="hhours"></span>
+    <a class="h-hide" id="hphone"></a>
+    <div class="lang" role="group" aria-label="Язык / Тіл"><button data-l="ru">RU</button><button data-l="kz">KZ</button></div>
+  </div>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <span class="now" id="now"><i></i><span></span></span>
+    <h1 id="h1"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="cta" id="cta1"></div>
+    <a class="proof" id="proof" target="_blank" rel="noopener">
+      <span class="num" id="rating"></span>
+      <span><span class="st" aria-hidden="true">★★★★★</span><small id="rcount"></small></span>
+    </a>
+  </div>
+
+  <div class="inspect">
+    <div class="shot" id="shot">
+      <span class="hint" id="hint"></span>
+      <div id="spots"></div>
+    </div>
+    <div class="card" aria-live="polite">
+      <h3 id="cT"></h3>
+      <p id="cD"></p>
+      <p class="stock" id="cS"></p>
+      <a class="btn" id="cW" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+</div>
+
+<section class="band" id="services"><div class="wrap">
+  <h2 id="h2w"></h2>
+  <p class="lede" id="pw"></p>
+  <div class="cols" id="cols">
+    <div class="panel"><h3 id="h3s"></h3><ul id="svc"></ul></div>
+    <div class="panel" id="ppanel"><h3 id="h3p"></h3><div class="tags" id="parts"></div><p class="note" id="pnote"></p></div>
+  </div>
+</div></section>
+
+<section class="wrap review" id="reviews">
+  <img id="ph2" alt="">
+  <div>
+    <h2 id="h2r"></h2>
+    <div id="revs"></div>
+    <a class="btn b-quiet" id="allrev" target="_blank" rel="noopener"></a>
+  </div>
+</section>
+
+<section class="contacts" id="contacts"><div class="wrap cgrid">
+  <div>
+    <h2 id="h2c"></h2>
+    <p class="addr" id="addr"></p>
+    <p id="district"></p>
+    <div class="cta" id="cta3"></div>
+  </div>
+  <dl id="ct"></dl>
+</div></section>
+</main>
+<footer><div class="wrap"><span id="copy"></span><span id="foot"></span></div></footer>
+
+<div class="bar" id="bar"></div>
+
+<script>
+/* ===== ДАННЫЕ БИЗНЕСА (подставляются сборщиком) ===== */
+const DATA = {"name": "Авто7я", "monogram": "7я", "city": {"ru": "Астана", "kz": "Астана"}, "instagram": "auto7ya.kz", "contactNote": {"ru": "Адрес, время работы и запись — в Instagram.", "kz": "Мекенжай, жұмыс уақыты және жазылу — Instagram-да."}, "servicesNote": {"ru": "Цена зависит от машины и объёма работ. Напишите, и вам назовут её заранее.", "kz": "Бағасы көлікке және жұмыс көлеміне байланысты. Жазыңыз, алдын ала айтады."}, "h1": {"ru": "Мойка, шиномонтаж и замена масла за один заезд", "kz": "Жуу, шиномонтаж және май ауыстыру бір келгенде"}, "lede": {"ru": "Авто7я — большой автокомплекс в Астане. Помоем машину, переобуем, поменяем масло и сделаем детейлинг, не гоняя вас по разным адресам.", "kz": "Авто7я — Астанадағы үлкен автокешен. Көлікті жуамыз, дөңгелегін ауыстырамыз, майын ауыстырып, детейлинг жасаймыз — әр жерге барудың қажеті жоқ."}, "spots": [{"key": "roof", "ru": ["Автомойка", "Мойка кузова и салона.", ""], "kz": ["Автожуу", "Шанақ пен салонды жуу.", ""]}, {"key": "tires", "ru": ["Шиномонтаж", "Сезонная переобувка и ремонт колёс.", ""], "kz": ["Шиномонтаж", "Маусымдық ауыстыру және дөңгелек жөндеу.", ""]}, {"key": "engine", "ru": ["Замена масла", "Меняем масло, пока машину моют.", ""], "kz": ["Май ауыстыру", "Көлік жуылып жатқанда майын ауыстырамыз.", ""]}, {"key": "body", "ru": ["Детейлинг", "Полировка и уход за кузовом.", ""], "kz": ["Детейлинг", "Шанақты жылтырату және күту.", ""]}], "services": {"ru": ["Автомойка", "Шиномонтаж", "Замена масла", "Детейлинг"], "kz": ["Автожуу", "Шиномонтаж", "Май ауыстыру", "Детейлинг"]}};
+/* ===== конец блока данных ===== */
+
+const T = {
+  ru:{demo:"Демо",demoText:"Так может выглядеть сайт "+DATA.name+". Он ещё не опубликован.",
+    call:"Позвонить",wa:"Написать в WhatsApp",waShort:"WhatsApp",ig:"Написать в Instagram",igShort:"Instagram",route:"Построить маршрут в 2ГИС",
+    open:"Открыто до ",closed:"Закрыто, откроемся в ",reviews:" отзывов в 2ГИС",
+    hintPhoto:"Нажмите на точку на фото",hintSchema:"Нажмите на точку на схеме",stock:"В магазине: ",
+    askWa:"Спросить цену в WhatsApp",askIg:"Спросить цену в Instagram",
+    waAsk:"Здравствуйте! Сколько стоит: ",waHi:"Здравствуйте! Пишу с сайта.",
+    h2w:"Работы и цены",pw:"Цену называют после осмотра, но примерную можно узнать заранее, просто напишите.",
+    h3s:"Что делаем",h3p:"Что продаём",askShort:"Узнать цену",
+    h2r:"Что пишут в 2ГИС",allRev:"Читать все отзывы",
+    h2c:"Как связаться",tel:"Телефон",hrs:"Часы работы",foot:"Демо-версия. Без согласования не использовать."},
+  kz:{demo:"Демо",demoText:DATA.name+" сайты осылай көрінуі мүмкін. Сайт әлі жарияланбаған.",
+    call:"Қоңырау шалу",wa:"WhatsApp-қа жазу",waShort:"WhatsApp",ig:"Instagram-ға жазу",igShort:"Instagram",route:"2ГИС-те бағыт құру",
+    open:"Ашық, жабылуы ",closed:"Жабық, ашылуы ",reviews:" пікір 2ГИС-те",
+    hintPhoto:"Фотодағы нүктені басыңыз",hintSchema:"Сызбадағы нүктені басыңыз",stock:"Дүкенде: ",
+    askWa:"Бағасын WhatsApp-та сұрау",askIg:"Бағасын Instagram-да сұрау",
+    waAsk:"Сәлеметсіз бе! Бағасы қанша: ",waHi:"Сәлеметсіз бе! Сайттан жазып отырмын.",
+    h2w:"Жұмыстар мен бағалар",pw:"Бағасы қарағаннан кейін айтылады, бірақ шамамен бағасын алдын ала білуге болады, жай ғана жазыңыз.",
+    h3s:"Не істейміз",h3p:"Не сатамыз",askShort:"Бағасын білу",
+    h2r:"2ГИС-те не жазады",allRev:"Барлық пікірлерді оқу",
+    h2c:"Байланыс",tel:"Телефон",hrs:"Жұмыс уақыты",foot:"Демо-нұсқа. Келісімсіз пайдаланбаңыз."}
+};
+
+const I = {
+  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+  wa:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.7 17.9L0 24l6.3-1.6A11.8 11.8 0 0 0 23.8 12c0-3.2-1.2-6.1-3.4-8.4z"/></svg>',
+  ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>'
+};
+
+/* схема машины для бизнеса без фото + позиции узлов на ней (в %) */
+const SCHEMA = '<svg viewBox="0 -30 600 360" aria-hidden="true"><line x1="20" y1="263" x2="580" y2="263" stroke="#b8c4d6" stroke-width="2" stroke-dasharray="6 6"/><path d="M40 215V178q2-18 22-23l88-15q35-45 80-52l140-3q35 2 70 45l90 15q30 5 35 30v40q-5 7-20 7h-55a40 40 0 0 0-80 0H180a40 40 0 0 0-80 0H55q-13 0-15-7z" fill="#fff" stroke="#0f2a5c" stroke-width="3" stroke-linejoin="round"/><path d="M175 138q25-36 60-40l60-1v41zM307 97l58-1q30 2 55 42H307z" fill="#dbe7fb" stroke="#0f2a5c" stroke-width="2.5" stroke-linejoin="round"/><path d="M300 140v80M150 150h20M455 152h18" stroke="#0f2a5c" stroke-width="2.5" stroke-linecap="round"/><rect x="42" y="166" width="22" height="12" rx="4" fill="#ffd84d" stroke="#0f2a5c" stroke-width="2"/><rect x="545" y="168" width="16" height="12" rx="4" fill="#e5484d" stroke="#0f2a5c" stroke-width="2"/><g fill="#0f2a5c"><circle cx="140" cy="225" r="36"/><circle cx="450" cy="225" r="36"/></g><g fill="#c9d4e4" stroke="#fff" stroke-width="3"><circle cx="140" cy="225" r="17"/><circle cx="450" cy="225" r="17"/></g></svg>';
+const POS = {engine:[17.5,50],optics:[8,56],suspension:[23.3,71],brakes:[75,71],tires:[75,71],gearbox:[50,73],body:[63,58],cabin:[42,41],electrics:[34,47],roof:[52,32],underbody:[50,73]};
+
+const $ = id => document.getElementById(id);
+const wa = text => "https://wa.me/"+DATA.whatsapp+"?text="+encodeURIComponent(text);
+const ig = () => "https://www.instagram.com/"+DATA.instagram+"/";
+const tel = DATA.phone ? "tel:"+DATA.phone.replace(/[^\d+]/g,"") : "";
+let L = "ru", active = DATA.startSpot || 0;
+try { L = localStorage.getItem("lang") || ((navigator.language||"").startsWith("kk") ? "kz" : "ru"); } catch(e) {}
+
+/* главный способ связи: WhatsApp, если есть, иначе Instagram */
+function ask(text){
+  const t = T[L];
+  if (DATA.whatsapp) return {href:wa(text), cls:"b-wa", label:t.askWa, icon:I.wa};
+  return {href:ig(), cls:"b-ig", label:t.askIg, icon:I.ig};
+}
+function buttons(where){
+  const t = T[L], out = [];
+  if (DATA.phone) out.push(`<a class="btn b-blue" href="${tel}">${I.phone}${t.call}</a>`);
+  if (DATA.whatsapp) out.push(`<a class="btn b-wa" href="${wa(t.waHi)}" target="_blank" rel="noopener">${I.wa}${where==="bar"?t.waShort:t.wa}</a>`);
+  if (DATA.instagram && (where!=="bar" || out.length < 2)) out.push(`<a class="btn ${out.length? "b-quiet":"b-ig"}" href="${ig()}" target="_blank" rel="noopener">${I.ig}${where==="bar"?t.igShort:t.ig}</a>`);
+  return out.join("");
+}
+
+function showSpot(i){
+  active = i; const t = T[L], s = DATA.spots[i][L];
+  document.querySelectorAll(".spot").forEach((b,k) => b.setAttribute("aria-pressed", k === i));
+  $("cT").textContent = s[0]; $("cD").textContent = s[1];
+  $("cS").hidden = !s[2];
+  if (s[2]) $("cS").innerHTML = "<span>"+(DATA.stockLabel ? DATA.stockLabel[L] : t.stock)+"</span>"+s[2];
+  const a = ask(t.waAsk + s[0].toLowerCase());
+  $("cW").href = a.href; $("cW").className = "btn "+a.cls; $("cW").innerHTML = a.icon + a.label;
+}
+
+function render(){
+  const t = T[L];
+  document.documentElement.lang = L === "kz" ? "kk" : "ru";
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.l === L));
+  $("demo").innerHTML = "<b>"+t.demo+"</b>"+t.demoText;
+  $("logo").innerHTML = (DATA.logoSvg || `<span class="mono">${DATA.monogram}</span>`) + "<span>"+DATA.name+"</span>";
+  $("hhours").hidden = !DATA.hours; if (DATA.hours) $("hhours").textContent = DATA.hours.label[L];
+  $("hphone").hidden = !DATA.phone; if (DATA.phone) { $("hphone").textContent = DATA.phone; $("hphone").href = tel; }
+  $("h1").textContent = DATA.h1[L]; $("lede").textContent = DATA.lede[L];
+  $("cta1").innerHTML = buttons("hero"); $("bar").innerHTML = buttons("bar");
+
+  // статус: по часам работы (время Астаны, UTC+5) или просто подпись
+  if (DATA.hours && DATA.hours.open != null) {
+    const now = new Date(Date.now() + (new Date().getTimezoneOffset() + 300) * 60000);
+    const h = now.getHours() + now.getMinutes()/60, H = DATA.hours, open = h >= H.open && h < H.close;
+    $("now").className = "now" + (open ? "" : " off");
+    $("now").lastElementChild.textContent = open ? t.open + H.close + ":00" : t.closed + H.open + ":00";
+  } else if (DATA.badge) { $("now").className = "now"; $("now").lastElementChild.textContent = DATA.badge[L]; }
+  else $("now").hidden = true;
+
+  $("proof").hidden = !DATA.rating;
+  if (DATA.rating) { $("proof").href = DATA.gis; $("rating").textContent = DATA.rating; $("rcount").textContent = DATA.reviewsCount + t.reviews; }
+
+  const photo = DATA.photos && DATA.photos[0];
+  const shot = $("shot");
+  shot.classList.toggle("schema", !photo);
+  shot.querySelectorAll("img,svg").forEach(e => { if (!e.closest("#spots")) e.remove(); });
+  shot.insertAdjacentHTML("afterbegin", photo ? `<img src="${photo}" alt="${DATA.name}">` : SCHEMA);
+  $("hint").textContent = photo ? t.hintPhoto : t.hintSchema;
+  $("spots").innerHTML = DATA.spots.map(s => { const p = (photo && s.x != null) ? [s.x, s.y] : POS[s.key]; return `<button class="spot" style="left:${p[0]}%;top:${p[1]}%" aria-label="${s[L][0]}"></button>`; }).join("");
+  document.querySelectorAll(".spot").forEach((b,i) => b.onclick = () => showSpot(i));
+  showSpot(active);
+
+  $("h2w").textContent = DATA.servicesTitle ? DATA.servicesTitle[L] : t.h2w;
+  $("pw").textContent = DATA.servicesNote ? DATA.servicesNote[L] : t.pw;
+  $("h3s").textContent = t.h3s;
+  $("svc").innerHTML = DATA.services[L].map(s => `<li>${s}<a href="${ask(t.waAsk + s.toLowerCase()).href}" target="_blank" rel="noopener">${t.askShort}</a></li>`).join("");
+  $("ppanel").hidden = !DATA.parts; $("cols").classList.toggle("one", !DATA.parts);
+  if (DATA.parts) {
+    $("h3p").textContent = DATA.partsTitle ? DATA.partsTitle[L] : t.h3p;
+    $("parts").innerHTML = DATA.parts[L].map(p => `<span>${p}</span>`).join("");
+    $("pnote").hidden = !DATA.partsNote; if (DATA.partsNote) $("pnote").textContent = DATA.partsNote[L];
+  }
+
+  const hasRev = DATA.reviews && DATA.reviews.length;
+  $("reviews").hidden = !hasRev;
+  if (hasRev) {
+    const p2 = DATA.photos && DATA.photos[1];
+    $("ph2").hidden = !p2; $("reviews").classList.toggle("noimg", !p2); if (p2) { $("ph2").src = p2; $("ph2").alt = DATA.name; }
+    $("h2r").textContent = t.h2r;
+    $("revs").innerHTML = DATA.reviews.map(r => `<blockquote>«${r.text}»</blockquote><p class="who"><span style="color:var(--gold)">★★★★★</span> ${r.name}, ${r.date[L]}</p>`).join("");
+    $("allrev").href = DATA.gis; $("allrev").textContent = !DATA.reviewsCount ? t.allRev : (L === "kz" ? "Барлық " + DATA.reviewsCount + " пікірді оқу" : "Читать все " + DATA.reviewsCount + " отзывов");
+  }
+
+  $("h2c").textContent = DATA.address ? (L === "kz" ? "Қалай жетуге болады" : "Как доехать") : t.h2c;
+  $("addr").textContent = DATA.address ? DATA.address[L] : DATA.city[L];
+  $("district").textContent = DATA.district ? DATA.district[L] : (DATA.contactNote ? DATA.contactNote[L] : "");
+  let c3 = "";
+  if (DATA.gis && DATA.address) c3 += `<a class="btn b-blue" href="${DATA.gis}" target="_blank" rel="noopener">${I.pin}${t.route}</a>`;
+  if (DATA.phone) c3 += `<a class="btn b-quiet" href="${tel}">${I.phone}${t.call}</a>`;
+  if (!DATA.phone && DATA.instagram) c3 += `<a class="btn b-ig" href="${ig()}" target="_blank" rel="noopener">${I.ig}${t.ig}</a>`;
+  $("cta3").innerHTML = c3;
+  let dl = "";
+  if (DATA.phone) dl += `<dt>${t.tel}</dt><dd><a href="${tel}">${DATA.phone}</a></dd>`;
+  if (DATA.whatsapp) dl += `<dt>WhatsApp</dt><dd><a href="${wa(t.waHi)}" target="_blank" rel="noopener">${DATA.phone || DATA.whatsapp}</a></dd>`;
+  if (DATA.instagram) dl += `<dt>Instagram</dt><dd><a href="${ig()}" target="_blank" rel="noopener">@${DATA.instagram}</a></dd>`;
+  if (DATA.hours) dl += `<dt>${t.hrs}</dt><dd>${DATA.hours.label[L]}</dd>`;
+  $("ct").innerHTML = dl;
+  $("copy").textContent = "© " + new Date().getFullYear() + " " + DATA.name + ", " + DATA.city[L];
+  $("foot").textContent = t.foot;
+}
+
+document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { L = b.dataset.l; try { localStorage.setItem("lang", L); } catch(e) {} render(); });
+render();
+</script>
+</body>
+</html>
