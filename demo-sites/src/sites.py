@@ -128,6 +128,8 @@ SITES = {
 tpl = open(os.path.join(HERE, "template.html")).read()
 os.makedirs(OUT, exist_ok=True)
 for slug, d in SITES.items():
+    if slug == "vn-service":  # the pilot is now built in ../vn-service with the taste-skill kit (export.py)
+        continue
     title = f"{d['name']} — {d['h1']['ru']}, {d['city']['ru']}"
     page = (tpl.replace("__TITLE__", html.escape(title))
                .replace("__DESC__", html.escape(d["lede"]["ru"]))

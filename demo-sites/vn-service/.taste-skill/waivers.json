@@ -1,0 +1,12 @@
+[
+  {
+    "check": "phone-number",
+    "target": "div#visit",
+    "reason": "the brief is a real, existing workshop (VN SERVICE, Astana); the phone is the client's own published number from its 2GIS card, and calling it is the page's purpose"
+  },
+  {
+    "check": "container-edges",
+    "target": "div.demo-wm",
+    "reason": "the brief asks for a visible demo watermark until the client pays; it is a fixed, click-through overlay, not content"
+  }
+]
