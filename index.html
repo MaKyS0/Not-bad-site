@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="VN SERVICE: автосервис и запчасти на проспекте Акжол, Астана">
 <meta property="og:description" content="Ремонт и магазин запчастей в одном здании, каждый день с 9:00 до 20:00.">
-<meta property="og:image" content="share.jpg">
+<meta property="og:image" content="https://makys0.github.io/Not-bad-site/share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#f1f2f0">
@@ -44,8 +44,11 @@
 <link rel="modulepreload" href="assets/moments/lib.js">
 <link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
 <style>
-/* page CSS (sections.md, The short page): the tablet keeps the groups across, the photograph above them */
+/* page CSS (sections.md, The short page): one screen on a desktop, two on a phone; the tablet keeps the groups
+   across with the photograph above them, on two screens. Set here, not inline, so the tablet rule can win. */
+#service { --h: 1; --hm: 2; }
 @media (min-width: 640px) and (max-width: 1023px) {
+  #service .hours { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
   #service { --h: 2; }
   #service .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   #service .grid > :not(.pl-photo) { grid-column: auto; }
@@ -53,13 +56,19 @@
   #service .pl-photo > img { aspect-ratio: auto; height: calc(var(--pl-room) - 1.25 * var(--t-h2) - var(--head-gap)); margin-bottom: calc(var(--padt) + var(--padb) + var(--bar) - var(--card-gap)); }
   #service .visit__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-@media (max-width: 639px) { #service .pl-photo > img { aspect-ratio: 16 / 9; } #contact .closing__links .grid > .footer__col { grid-column: 1 / -1; } }
+@media (max-width: 639px) { #service .pl-photo > img { aspect-ratio: 16 / 9; } }
 /* the close's wide button: its label may wrap on the narrowest phones instead of pushing the page sideways */
 @media (max-width: 399px) { #contact .btn--xl { white-space: normal; height: auto; min-height: 64px; padding-block: var(--s-4); text-align: left; } }
 /* the language switch: two plain words beside the nav's button */
 .hero__proof { margin-top: var(--s-5); }
+/* anchors inside the section land below the fixed header, not under it */
+#repair, #parts, #visit { scroll-margin-top: calc(var(--nav) + var(--s-5)); }
+/* taps: no double-tap zoom delay, a tap highlight in the brand's blue */
+a, button { touch-action: manipulation; -webkit-tap-highlight-color: rgb(23 73 168 / .15); }
+.nowrap { white-space: nowrap; }
 .lang { display: flex; gap: var(--s-3); font: 500 15px/1 var(--font-text); }
 .lang button { border: 0; background: none; padding: 0; min-height: 44px; min-width: 32px; color: var(--muted); font: inherit; cursor: pointer; }
+.lang button:hover { color: var(--ink); }
 .lang button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
 /* the demo mark the brief asks for: a faint repeated word over the page, never taking a click */
 .demo-wm { position: fixed; inset: 0; z-index: 30; pointer-events: none;
@@ -70,8 +79,9 @@
 <!-- type: place (СТО и магазин автозапчастей), the short page: two client photographs, both screenshots at 685px wide
      deal: hero split, not the place hero: the client's two photographs are 685px-wide portrait screenshots, which the
        place hero's full-bleed band blows up 2.1x; on span-6 they stay sharp (the statement hero, tried first, left the
-       first screen an empty blue band). nav nav-split, footer footer-columns, rhythm space (no brand band left once the
-       hero is a photograph and the close a type close), buttons solid, mark dots,
+       first screen an empty blue band). nav nav-split, footer footer-visit (the address, hours and phone fill the last
+       screen), rhythm colour-band as dealt (the close and footer on .ground-brand, the client's blue; cross-checked with
+       awesome-design-md bmw: a light page that ends on one colour band before the footer), buttons solid, mark dots,
        offer: the short page's two groups beside one photograph (strip not used), place composition not used,
        type moment not used, rooms not used
      palette: start.mjs brand from the client's logo (the blue of its 2GIS pin on the light grey of a workshop floor);
@@ -82,7 +92,7 @@
 <header class="nav nav--split">
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top" data-i18n="skip">К содержанию</a>
-    <a class="nav__logo" href="#top"><span class="mark" data-mark="dots" aria-hidden="true"></span>VN SERVICE</a>
+    <a class="nav__logo" href="#top"><span class="mark" data-mark="dots" aria-hidden="true"></span><span translate="no">VN SERVICE</span></a>
     <nav class="nav__links" aria-label="Главное" data-i18n-label="navLabel">
       <div class="nav__item"><a class="nav__link" href="#repair" data-i18n="navRepair">Ремонт</a></div>
       <div class="nav__item"><a class="nav__link" href="#parts" data-i18n="navParts">Запчасти</a></div>
@@ -114,7 +124,7 @@
     </div>
   </section>
 
-  <section class="section" id="service" style="--h: 1; --hm: 2" aria-labelledby="service-h">
+  <section class="section" id="service" aria-labelledby="service-h">
     <div class="wrap">
       <div class="section-head">
         <h2 id="service-h" data-i18n="h2">Ремонт и запчасти в одном здании</h2>
@@ -155,7 +165,7 @@
             <p class="t-small" data-open-now style="margin-top: var(--s-3)"></p>
           </div>
           <div class="visit__col stack-4">
-            <p class="visit__address"><a href="tel:+77715348656">+7 771 534-86-56</a></p>
+            <p class="visit__address"><a class="nowrap" href="tel:+77715348656">+7&nbsp;771&nbsp;534&#8209;86&#8209;56</a></p>
             <a class="link" href="https://wa.me/77715348656" data-i18n="waWrite">Написать в WhatsApp</a>
           </div>
         </div>
@@ -164,7 +174,7 @@
   </section>
 </main>
 
-<footer class="footer closing" id="contact" aria-labelledby="close-h">
+<footer class="footer closing footer--visit ground-brand" id="contact" aria-labelledby="close-h">
   <div class="wrap">
     <div class="closing__cta close--type">
       <div class="section-head">
@@ -176,15 +186,17 @@
     <div class="closing__links">
       <div class="grid">
         <div class="span-6 stack-4">
-          <a class="nav__logo" href="#top"><span class="mark" data-mark="dots" aria-hidden="true"></span>VN SERVICE</a>
-          <p class="footer__lede" data-i18n="fLede">СТО и магазин автозапчастей на проспекте Акжол в Астане.</p>
+          <address class="footer__address"><span data-i18n="street">Проспект Акжол, 52/1</span>, <span data-i18n="districtShort">Астана</span></address>
+          <p><a class="link" href="https://2gis.kz/astana/search/VN%20SERVICE%20%D0%90%D0%BA%D0%B6%D0%BE%D0%BB%2052%2F1" data-i18n="route">Построить маршрут в 2ГИС</a></p>
         </div>
-        <div class="span-2 footer__col"><h3 data-i18n="navRepair">Ремонт</h3><ul><li><a href="#repair" data-i18n="fRepair">Что ремонтируем</a></li></ul></div>
-        <div class="span-2 footer__col"><h3 data-i18n="navParts">Запчасти</h3><ul><li><a href="#parts" data-i18n="fParts">Что в магазине</a></li></ul></div>
-        <div class="span-2 footer__col"><h3 data-i18n="navVisit">Адрес</h3><ul><li><a href="#visit" data-i18n="fVisit">Как доехать</a></li></ul></div>
+        <div class="span-6 start-7 stack-4">
+          <h3 data-i18n="hoursH">Часы работы</h3>
+          <dl class="hours" data-tz="Asia/Almaty"><dt data-days="mon-sun" data-i18n="days">Каждый день</dt><dd>9:00–20:00</dd></dl>
+          <p><a class="link nowrap" href="tel:+77715348656">+7&nbsp;771&nbsp;534&#8209;86&#8209;56</a></p>
+        </div>
       </div>
       <div class="footer__legal">
-        <span>&copy; 2026 VN SERVICE</span>
+        <span>&copy; 2026 <span translate="no">VN&nbsp;SERVICE</span></span>
         <span data-i18n="demo">Демо-версия сайта, ещё не опубликована</span>
       </div>
     </div>
@@ -213,7 +225,7 @@
     closeH: 'Жөндеуге жазылу', closeP: 'Көлік маркасын және не болғанын жазыңыз, шебер 9:00-ден 20:00-ге дейін жауап береді.',
     fLede: 'Астанадағы Ақжол даңғылындағы автосервис пен автобөлшектер дүкені.', fRepair: 'Не жөндейміз', fParts: 'Дүкенде не бар', fVisit: 'Қалай жетуге болады', call: 'Қоңырау шалу',
     demo: 'Сайттың демо-нұсқасы, әлі жарияланбаған', altLift: 'VN SERVICE боксындағы көтергіште тұрған кроссовер, астында шебер', altBay: 'VN SERVICE боксындағы BMW седаны, артында көтергіштегі көлік',
-    navLabel: 'Басты', menu: 'Мәзір', barLabel: 'Жылдам әрекеттер'
+    districtShort: 'Астана', hoursH: 'Жұмыс уақыты', navLabel: 'Басты', menu: 'Мәзір', barLabel: 'Жылдам әрекеттер'
   };
   const WA = { ru: 'Здравствуйте! Хочу записаться на ремонт.', kz: 'Сәлеметсіз бе! Жөндеуге жазылғым келеді.' };
   const RU = {};
@@ -241,7 +253,8 @@
   };
   document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => set(b.dataset.lang)));
   let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
-  if (saved === 'kz') set('kz');
+  const first = (navigator.languages || [navigator.language || '']).find(l => /^(kk|ru)\b/i.test(l)) || '';
+  if (saved === 'kz' || (!saved && /^kk/i.test(first))) set('kz');
 })();
 </script>
 </body>
